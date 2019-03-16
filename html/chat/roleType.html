@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script type="text/javascript" src="../../script/api.js"></script>
+  <title>Document</title>
+  <style type="text/css">
+  	*{
+  		padding:0;
+  		margin:0;
+  	}
+    html{
+      font-family: Arial;
+    }
+    .top{
+      position: absolute;
+      top: 0;
+      height: 65px;
+      width: 100%;
+      background: white;
+      text-align: center;
+      line-height: 87px;
+      font-weight: bold;
+      font-size: 15px;
+      box-shadow: 0px 1px 0px #efefef;
+    }
+    .back{
+      float: left;
+      position: absolute;
+      left: 20px;
+    }
+    .hel{
+      line-height: 87px;
+    }
+    .top img{
+      position: absolute;
+      top: 28px;
+      left: 10px;
+      height: 30px;
+      width: 30px;
+    }
+    .box{
+      position: relative;
+      width: 94%;
+      height: 120px;
+      margin-left: 3vw;
+      margin-top: 20px;
+      border-radius: 5px;
+      box-shadow: -0.1px 1px 1px .5px #efefef;
+    }
+    .box1{
+      margin-top: 85px;
+    }
+    .box img{
+      height: 120px;
+      width: 120px;
+      background: black;
+    }
+    .all{
+      display: inline-block;
+      position: absolute;
+      left: 130px;
+      top: 12px;
+      font-size: 15px;
+      font-weight: bold;
+      line-height: 20px;
+    }
+    .only{
+      font-size: 12px;
+      color: rgba(170, 170, 170, 1);
+      font-weight: normal;
+    }
+    .all2{
+      display: inline-block;
+      position: absolute;
+      left: 130px;
+      bottom: 12px;
+      font-size: 12px;
+      font-weight: bold;
+      line-height: 20px;
+    }
+    .invite{
+      display: inline-block;
+      position: absolute;
+      right: 10px;
+      bottom: 12px;
+      width: 60px;
+      height: 30px;
+      border: 2px solid black;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+      text-align: center;
+      line-height: 31px;
+    }
+    .button{
+      position: absolute;
+      bottom: 8vh;
+      height: 50px;
+      width: 94vw;
+      margin-left: 3vw;
+      background: rgba(239, 239, 239, 1);
+      font-weight: bold;
+      font-size: 15px;
+      text-align: center;
+      line-height: 51px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="top"><p class="hel">Role play</p>
+  <img class="back"src="../../icon/left.png">
+  </div>
+	<div class="box box1">
+      <img src="../../image/zuji.png">
+      <span class="all">Couple<br/><span class="only">one week</span></span>
+      <span class="all2">21 <span class="only">Random Tasks</span><br/>12.4k <span class="only">People Played</span></span>
+      <span class="invite">INVITE</span>
+	</div>
+  <div class="box">
+      <img src="../../image/zuji.png">
+      <span class="all">Couple<br/><span class="only">one week</span></span>
+      <span class="all2">21 <span class="only">Random Tasks</span><br/>12.4k <span class="only">People Played</span></span>
+      <span class="invite">INVITE</span>
+  </div>
+  <div class="box">
+      <img src="../../image/zuji.png">
+      <span class="all">Couple<br/><span class="only">one week</span></span>
+      <span class="all2">21 <span class="only">Random Tasks</span><br/>12.4k <span class="only">People Played</span></span>
+      <span class="invite">INVITE</span>
+  </div>
+  <div class="button">BACK</div>
+</body>
+<script src="../../script/jquery-3.1.0.min.js"></script>
+<script type="text/javascript">
+  apiready=function () {
+    $('.invite').click(function(){
+      api.sendEvent({
+          name: 'roleplay',
+          extra: {
+          }
+      });
+      api.closeWin({
+      });
+
+    });
+    var hhh = window.screen.height;
+    var www = window.screen.width;
+    if(hhh/www>2){
+      $api.css($api.dom('.top'), 'top:25px;');
+      $api.css($api.dom('.box1'), 'margin-top:110px;');
+    }
+  }
+</script>
+</html>

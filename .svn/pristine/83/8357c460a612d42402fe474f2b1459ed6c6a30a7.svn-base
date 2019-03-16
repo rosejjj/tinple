@@ -1,0 +1,252 @@
+[v-cloak] {
+  display: none;
+}
+/*遮罩层*/
+
+.alert-mask {
+	width: 100%;
+	height: 100vh;
+	background-color: #484848;
+	opacity: 0.7;
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 9999;
+	transform: translateZ(0);
+	/*display: none;*/
+}
+
+
+/*登录框*/
+
+.login-loading {
+	width: 83.3333vw;
+	height: 55.5555vw;
+	border-radius: 5.5555vw;
+	position: absolute;
+	top: 50%;
+	margin-top: -27.77775vw;
+	left: 50%;
+	margin-left: -41.665vw;
+	display: flex;
+	-webkit-justify-content: center;
+	justify-content: center;
+	z-index: 9999;
+	background: url(../image/logon-page/loaader_circle.gif)no-repeat center 4.1666vw;
+	background-size: 41.6666vw;
+	background-color: #fff;
+	display: none;
+}
+
+.login-title {
+	font-size: 3.333vw;
+	text-align: center;
+	color: #484848;
+	font-weight: bold;
+	margin-top: 35.5555vw;
+}
+
+
+/*大型提示框*/
+
+.alert-big {
+	width: 83.333333vw;
+	height: 66.6666666vw;
+	padding: 3.333333vw 13.888888vw;
+	border-radius: 20px;
+	background-color: #fff;
+	position: fixed;
+	top: 50%;
+	transform: translateY(-50%);
+	left: 50%;
+	margin-left: -41.6666665vw;
+	z-index: 99999;
+	text-align: center;
+}
+
+.alert-big-title {
+	color: #484848;
+	font-size: 5.555555vw;
+	font-weight: bold;
+	margin-bottom: 3.333333vw;
+}
+
+.alert-big-line {
+	width: 100%;
+	height: 1px;
+	background-color: #efefef;
+	border-radius: 30px;
+}
+
+.alert-big-content {
+	width: 72.222222vw;
+	color: #484848;
+	font-size: 4.1666666vw;
+	font-weight: bold;
+	line-height: 6.111111vw;
+	margin: 8.333333vw 0 8.333333vw -8.333333vw;
+}
+
+.alert-big-define {
+	color: #fff;
+	font-size: 4.1666666vw;
+	font-weight: bold;
+	width: 44.444444vw;
+	background: -webkit-linear-gradient(left, #EFBDBC , #ED7B85);
+	background: linear-gradient(left, #EFBDBC , #ED7B85);
+	border-radius: 8.3333vw;
+	box-shadow: 0 2px 4px rgba(255, 128, 138, 0.18), 0 4px 4px rgba(255, 128, 138, 0.25);
+	font-size: 3.888888vw;
+	height: 11.111111vw;
+	line-height: 11.111111vw;
+	text-align: center;
+	margin: 0 auto ;
+}
+/*底部有cancel按妞*/
+.alert-big-content-cancel {
+	
+	margin: 4.16666vw 0 4.16666vw -8.333333vw;
+}
+.alert-big-cancel{
+	color: #ff808a;
+    font-size: 3.333vw;
+    font-weight: bold;
+    margin-top: 4.1666vw;
+}
+
+
+/*中型提示框*/
+
+
+/*无法分享弹框*/
+
+.alert-middle {
+	width: 69.44444vw;
+	height: 55.55555vw;
+	border-radius: 5.555555vw;
+	background-color: #fff;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-align-items: center;
+	align-content: center;
+	position: absolute;
+	left: 15.277777vw;
+	bottom: 53.88888vw;
+	z-index: 9999;
+	display: none;
+}
+
+
+
+.alert-middle-wrap {
+	width: 100%;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: column;
+	flex-direction: column;
+}
+
+.alert-middle-icon {
+	width: 13.8888vw;
+	height: 13.888888vw;
+	background: url(../image/personal/zuhe.png)no-repeat center center;
+	background-size: cover;
+	margin: 0 auto;
+}
+
+.alert-middle-cont {
+	width: 100%;
+	padding: 0 8vw;
+	color: #484848;
+	font-size: 4.166666vw;
+	font-weight: bold;
+	margin: 5.55555vw auto 0;
+	text-align: center;
+}
+
+
+/*小型提示框*/
+
+
+/*关注框*/
+.alert-focus {
+	width: 55.555555vw;
+	height: 36.94444vw;
+	background-color: #fff;
+	border-radius: 5.5555vw;
+	position: fixed;
+	left: 50%;
+	margin-left: -27.7777775vw;
+	bottom: 63.055555vw;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-align-items: center;
+	align-items: center;
+	z-index: 99999;
+	transform: translateZ(0);
+	display: none;
+/*	display: flex;*/
+}
+.alert-focus-cont {
+	width: 100%;
+	display: -webkit-flex;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+}
+.alert-focus-icon {
+	width: 13.8888vw;
+	height: 13.888vw;
+	display: inline-block;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+	margin: 0 auto 4.166666vw;
+}
+
+.alert-focus-text {
+	color: #484848;
+	font-size: 4.1666666vw;
+	font-weight: bold;
+	text-align: center;
+}
+
+/*关注图标*/
+.alert-icon-follow{
+	background-image: url(../image/focus/buxinsui.png);
+}
+/*取消关注*/
+.alert-icon-follow{
+	background-image: url(../image/focus/xinsui.png);
+}
+
+.shareFail {
+	display: flex;
+}
+
+/*新信息提示*/
+.message-news{
+	width: 4.1666vw;
+	height: 4.1666vw;
+	border-radius: 50%;
+	border: 2px solid #fff;
+	background-color: #ff808a;
+	position: absolute;
+	/*top: -0.6vw;
+	right: -0.6vw;*/
+	top: 50%;
+	right: 50%;
+	margin-top: -4.5833vw;
+	margin-right: -4.5833vw;
+	/*margin: -8.333vw -8.3333vw 0 0;*/
+	animation-name: zoomIn;
+	animation-duration: 1s;
+	animation-fill-mode: both;
+	animation-iteration-count: infinite;
+}
+@keyframes zoomIn {
+	from {
+		transform: scale3d(.75, .75, .75);
+	}
+}

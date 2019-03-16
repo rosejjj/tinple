@@ -1,0 +1,1773 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>主页</title>
+    <!--     <link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <script src="../../script/jquery-3.1.0.min.js"></script>
+    <!-- 引入jQuery -->
+    <script src="../../script/doT.min.js"></script>
+    <!-- 引入doT模板引擎 -->
+    <script src="../../script/masonry.pkgd.min.js"></script>
+    <!-- 引入jQuery瀑布流插件 -->
+    <script src="../../script/imagesloaded.pkgd.min.js"></script>
+    <!-- 引入瀑布流imagesloaded事件 -->
+    <!-- <script src="../../script/nav.js"></script> -->
+    <!-- 引入通用导航栏 -->
+    <script src="../../script/public.js"></script>
+    <!-- 引入通用导航栏 -->
+    <style type="text/css">
+/*        * {
+            padding: 0;
+            margin: 0;
+        }*/
+        html{
+            background-color: #fff;
+        }
+        .shadow{border:0px solid #efefef;position: fixed;top:0px;z-index: 9999;width: 100%;
+            box-shadow: 0px 0px 2px .9px #efefef; }
+        img{
+            display: block;
+        }
+
+        img[src=""]{
+            visibility: hidden;
+        }
+        a {
+            text-decoration: none;
+            font:#000;
+        }
+
+        header span {
+            display: inline-block;
+        }
+        .zhuangtailan{
+            position: fixed;
+            top:0;
+            width: 100vw;
+            height:5.32vw;
+            background-color: #fff;
+            z-index: 9999;
+        }
+        header {
+            position: fixed;
+            top:5.32vw;
+            width:100vw;
+            height:11.97vw;
+            /*65px*/
+            background-color: #fff;
+            /*display: flex;*/
+            /*align-items: center;*/
+            border-bottom:1px solid #efefef;
+            box-sizing: border-box;
+            display: none;
+            z-index: 999;
+        }
+        /*个人页面头部*/
+
+        .bell {
+            position: absolute;
+            left: 2.66vw;
+            width: 7.98vw;
+            height: 11.97vw;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            z-index:10;
+        }
+
+        .bell img {
+            width: 7.98vw;
+            height: 7.98vw;
+        }
+
+        .header-center {
+            font-weight: bold!important;
+            position: absolute;
+            left: 50%;
+            width: 100vw;
+            margin-left: -50%;
+            display:inline-block;
+            text-align: center;
+            font:3.99vw/11.97vw Microsoft Yahei;
+            font-weight:700;
+            z-index:10;
+        }
+
+        .setup {
+            position: absolute;
+            left: 89.36vw;
+            width: 7.98vw;
+            height: 11.97vw;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            z-index:10;
+        }
+
+        .setup img {
+            width: 7.98vw;
+            height: 7.98vw;
+        }
+        /*其他用户信息页面头部*/
+
+        .return {
+            position: absolute;
+            left: 2.66vw;
+            width: 7.98vw;
+            /*30px*/
+            height: 11.97vw;
+            /*30px*/
+            line-height: 7.98vw;
+            /*30px*/
+            text-align: center;
+            /*font:25px/30px Arial;*/
+            z-index:10;
+            display: flex;
+            align-items: center;
+        }
+
+        .return img {
+            width: 7.98vw;
+            /*30px*/
+            height: 7.98vw;
+            /*30px*/
+        }
+
+        .btn {
+            position: absolute;
+            left:50%;
+            width:auto !important;
+            height: 11.97vw;
+            display: flex;
+            align-items: center;
+            z-index:10;
+        }
+
+/*        #chat {
+            position: absolute;
+            left: 0;
+            display: inline-block;
+        }
+
+        #isFollow {
+            position: absolute;
+            right: 0;
+            display: inline-block;
+        }*/
+
+        .privatechat {
+            /*position: absolute;*/
+            /*left:0;*/
+            /*222px*/
+            width: 18.09vw;
+            /*68px*/
+            height: 7.98vw;
+            /*30px*/
+            
+            /*10px*/
+            background-color: #fff;
+            text-align: center;
+            border-radius: 5px;
+            font: 3.19vw/7.45vw Arial;
+            font-weight: 700;
+            color: #000;
+            z-index:10;
+            border-radius: 7.98vw;
+            border:0.53vw solid #000;
+            box-sizing: border-box;
+            display: none;
+        }
+
+        .isfollow {
+            /*margin-right:2.66vw;*/
+            /*position: absolute;*/
+            /*right:0;*/
+            width: 23.4vw;
+            /*68px*/
+            height: 7.98vw;
+            /*30x*/
+            /*background-color: #F381A3;*/
+            text-align: center;
+            font: 3.19vw/7.45vw Arial;
+            font-weight: 700;
+            color: #000;
+            border-radius: 7.98vw;
+            border:0.53vw solid #000;
+            box-sizing: border-box;
+            z-index:10;
+        }
+        .isfollowing{
+            margin-right:2.66vw;
+            width:7.98vw;
+            height:7.98vw;
+            background:url(../../image/eye.png) no-repeat center;
+            background-size: 5.32vw 5.32vw;
+            background-position: center !important;
+            background-color: #F381A3;
+            border-radius:50%;
+            z-index:10;
+        }
+        .more{
+            position: absolute;
+            right:2.66vw;
+            width:7.98vw;
+            height:11.97vw;
+            background:url(../../image/more.png) no-repeat center;
+            background-size:contain;
+        }
+        /*个人信息内容*/
+        .wrap {
+            margin-top:17.29vw;
+            width: 100vw;
+            /*height: 75.27vw;*/
+            height:auto !important;
+            /*min-height: 75.27vw;*/
+            /*42.4%   283px*/
+            /*position: absolute;*/
+            background-color: #fff;
+            z-index:999;
+            float:left;
+            /*display: inline-block;*/
+            /*border:1px solid #fff;*/
+        }
+
+        .wrap .left {
+            display: inline-block;
+            float: left;
+            width: 39.89vw;
+            /*40%  150px*/
+            /*height: 75.27vw;*/
+            height:auto !important;
+            /*min-height: 75.27vw;*/
+            /* 310px*/
+        }
+
+        .wrap .right {
+            display: inline-block;
+            float: right;
+            width: 60.11vw;
+            /*60%  226px*/
+            /*height: 75.27vw;*/
+            height:auto !important;
+            /*min-height: 75.27vw;*/
+            /*310px*/
+            /*position: absolute;*/
+        }
+        /*左部分*/
+        .avatar {
+            position: relative;
+            width: 29.26vw;
+            /*110px*/
+            height: 29.26vw;
+            /*110px*/
+            margin: 7.98vw 5.32vw 9.84vw 5.32vw;
+            /*25px 20px 37px 20px*/
+            border-radius: 50%;
+            background:#efefef;
+        }
+        .head{
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .avatar-button {
+            position: absolute;
+            left: 21.28vw;
+            /*80px*/
+            bottom: 0;
+            width: 6.65vw;
+            /*25px*/
+            height: 6.65vw;
+            /*25px*/
+            /*line-height: 25px;*/
+            /*font-size:25px;color:#fff;*/
+            /*font-weight: 1000;*/
+            /*text-align: center;*/
+            /*background-color: #000;*/
+            /*border-radius: 50%;*/
+            /*border:1.5px solid #fff;*/
+        }
+
+        .avatar-button img {
+            width: 6.65vw;
+            height: 6.65vw;
+        }
+
+        div[class="icon"] img:nth-child(1),div[class="icon"] img:nth-child(4){
+            margin-left: 5.32vw;
+            /*20px*/
+        }
+
+        .icon img {
+            display: inline-block;
+            width: 9.31vw;
+            /*35px*/
+            height: 9.31vw;
+            /*35px*/
+            margin-right: 0.53vw;
+            /*1.33%  2px*/
+        }
+        /*右部分*/
+        .nickname{
+            margin-top: 6.65vw;
+            /*25px*/
+            margin-bottom: 2.39vw;
+            /*9px*/
+            width: 56.38vw;
+            /* 170px*/
+/*            height: 11.97vw;*/
+            /* 45px*/
+            font: 10.64vw/11.97vw Arial;
+            /*40px/45px */
+            font-weight: 700;
+            white-space: pre-line;
+            word-wrap:break-word;
+            word-wrap:break-word;
+            min-height: 50px;overflow: hidden;
+        }
+
+        .summary {
+            width: 56.38vw;
+            /* 93.8%  212px*/
+            /*height: 18.09vw;*/
+            height:auto !important;
+            /*21.9%  68px*/
+            line-height: 4.52vw;
+            /*17px*/
+            font: 3.19vw/4.52vw Arial;
+            font-weight:700;
+            color: #AAA;
+            /*12px/17px*/
+            margin-bottom:3.19vw ;
+            /*12px  3.19vw*/
+            white-space: pre-line;
+            word-wrap: break-word;
+            /*内容超过宽度自动换行，不带空格的全英文和全数字也可以*/
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: box;
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-box;
+            display: -o-box;
+        }
+/*        .statistics{
+            position: absolute;
+            left:0;
+            top: 43.62vw;
+        }*/
+        ul li {
+            list-style: none;
+            float: left;
+            margin-right: 2vw;
+            /*13.3%   30px   3.99*/
+            margin-top: 1.86vw;
+            /*7px*/
+            width:15.63vw;
+            /* 17.7% 40px   15.63*/
+            height:auto !important;
+        }
+
+        .number {
+            width: 15.63vw;
+            /*40px  15.63*/
+            height: 5.5vw;
+            /*25px 6.65vw*/
+            line-height: 5.5vw;
+            /* 22px  5.85vw*/
+            font: 3.99vw/5.5vw Arial;
+            /*15px/22px*/
+            font-weight: 700;
+            text-align: left;
+        }
+
+        .text {
+            width: 15.63vw;
+            /* 40px  15.63*/
+            height: 4.52vw;
+            /*17px*/
+            line-height: 4.52vw;
+            /*17px*/
+            font: 3.19vw/4.52vw Arial;
+            /*12px/17px*/
+            font-weight:700;
+            color: #AAA;
+            text-align: left;
+            white-space: pre-line;
+            word-wrap: break-word;
+            /*内容超过宽度自动换行，不带空格的全英文和全数字也可以*/
+        }
+
+        .libottom{
+            margin-bottom:7.45vw;
+        }
+        #relative {
+            position: relative;
+        }
+
+        .new {
+            position: absolute;
+            left: 39.8%;
+            bottom: -4.52vw;
+            /* -17px*/
+            background-color: #ff808a;
+            width: 5.32vw;
+            /*20px*/
+            height: 5.32vw;
+            /*20px*/
+            font-size: 3.19vw;
+            color: #fff;
+            font-weight: 1000;
+            line-height: 5.32vw;
+            /*20px*/
+            text-align: center;
+            border-radius: 50%;
+            display: none;
+            /*			box-shadow: 0px 0px 10px #ff808a;
+			animation:flash 3s linear infinite;*/
+        }
+
+        .new_bg {
+            position: absolute;
+            left: 37.55%;
+            bottom: -5.83vw;
+            /*left: -1.33vw;*/
+            /*bottom: -1.33vw;*/
+            /*display: block;*/
+            width: 7.98vw;
+            height: 7.98vw;
+            background-color: rgba(255, 128, 138, 0.4);
+            border-radius: 50%;
+            transform: scale(1);
+            -webkit-animation: flash 3s linear 0s infinite;
+            animation: flash 3s linear 0s infinite;
+
+            display: none;
+        }
+
+        @keyframes flash {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(0.7);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+/*        .waterfall::before{
+            content:"";
+            height:75.29vw;
+            display: block;
+            visibility: hidden;
+        }*/
+/*        .waterfall{
+
+            display: inline-block;
+            float:left;
+        }*/
+        .boxs{display: inline-block;width: 46%;height: 15.6rem;margin:2.6% -1.6% -1.0% 2.9%;background: #ffffff;border-radius: 8px;position: relative;box-shadow: 0px 2px 10px 3px rgba(170,170,170,0.3);}
+  .boxs:nth-of-type(1){display: inline-block;width: 46%;height: 14.7rem;margin:2.6% -1.6% -1.0% 2.9%;background: #ffffff;border-radius: 8px;position: relative;}
+  .boxs:nth-of-type(2n+1){top: -0.9rem;}
+  .boxs p{font-size: 12px;display: inline-block;
+    position: absolute;top: 11.65rem;left: 6%;
+    line-height: 16px;
+    /*margin-top:1.3vw;*/
+    /*left:6%;*/
+    /*white-space:nowrap;*/
+    display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    width:88%;}
+    .boxs:nth-of-type(1) p{
+      margin-bottom:1vw;
+      display: -webkit-box;
+          -webkit-line-clamp: 1;
+          -webkit-box-orient: vertical;
+          overflow: hidden;}
+  .boxs p span:nth-of-type(1){display: inline;}
+  .boxs p span:nth-of-type(2){display: inline;}
+  .boxs .icon1{position: absolute;bottom: 10px;width: 88%;height:14px;left: 6%;display: flex;color: rgba(177,177,177,.8);
+  }
+  .boxs .icon1 img{width: 14px;height: 14px;margin-right:0.68vw;}
+  .boxs .icon1 span{height: 15px;font-size: 2.66vw;line-height: 15px;font-weight: bold;display: flex;align-items: center;position: absolute;color:#aaa;}
+  .boxs .icon1 span samp{
+    margin-top:1.5px;
+    }
+  .boxs .icon1 span:nth-child(1){
+        left:0;
+        top:0;
+      }
+      .boxs .icon1 span:nth-child(2){
+        left:15.7vw;
+        top:0;
+      }
+      .boxs .icon1 span:nth-child(3){
+        left:29vw;
+        top:0;
+      }
+      .boxs1{width: 100%;height: 11rem;background-size: cover;background-position: center;background-repeat: no-repeat;
+  background-color:#EFEFEF;border-radius: 8px 8px 0px 0px;display: inline-block; position: absolute;}
+  .boxs1>img{width: 30px;height: 30px;display: inline-block;margin: 5% 0% 0% 75%;}
+  /*.cnm{}*/
+  @keyframes rubberBand {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+
+  30% {
+    transform: scale3d(1.25, 0.75, 1);
+  }
+
+  40% {
+    transform: scale3d(0.75, 1.25, 1);
+  }
+
+  50% {
+    transform: scale3d(1.15, 0.85, 1);
+  }
+
+  65% {
+    transform: scale3d(0.95, 1.05, 1);
+  }
+
+  75% {
+    transform: scale3d(1.05, 0.95, 1);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.rubberBand {
+  animation: rubberBand 1.5s;
+}
+        /*.box{*/
+            /*瀑布流的元素*/
+            /*width: 29.79vw;
+            height:39.63vw;
+            display: inline-block;
+            background-size: cover !important;
+            background-position: center !important;
+            border-radius: 2.66vw;
+            background-color:#efefef;
+            margin-bottom: 2.66vw;
+            position: relative;*/
+            /*float: left;*/
+        /*}*/
+        /*.box:nth-of-type(1),.box:nth-of-type(3){
+            width: 29.79vw;
+            height:29.79vw;
+        }*/
+        /*.type{瀑布流元素的类型
+            position: absolute;
+            width: 8vw;
+            right: 1.33vw;
+            top: 1.33vw;
+        }*/
+        .loading{
+            width: 100vw;
+            padding: 13.3vw 0;
+        }
+        .loading img{
+            width: 13.3vw;
+            margin: 0 auto;
+        }
+        .loading div{
+            width: 69.6vw;
+            margin: 0 auto;
+            display: none;
+        }
+        .loading p{
+            text-align: center;
+            color: #AAC1D3;
+            font-size: 3.19vw;
+            line-height: 6vw;
+            font-weight: bold;
+            background: #aaa;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .empty-container{
+            width: 100vw;
+            margin: 0 auto;
+            overflow: hidden;
+            display: none;
+        }
+        .empty-container p{
+            margin-top:42.55vw;
+            margin-bottom:42.55vw;
+            width:100vw;
+            height: 5.85vw;
+            font-size:3.19vw;
+            font-family: Arial;
+            font-weight: 700;
+            color:#aaa;
+            line-height: 5.85vw;
+            text-align: center;
+        }
+        .clearfix:after{
+            content: "";
+            height: 0;
+            line-height: 0;
+            visibility: hidden;
+            display: block;
+            clear:both;
+        }
+        .clearfix{
+            zoom:1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="zhuangtailan"></div>
+    <header>
+<!--         个人页面头部
+        <span class="bell"><img src="../../image/icon-echo@3x2.png" alt=""></span>
+        <span class="header-center">ABOUT ME</span>
+        <span class="setup"><img src="../../image/icon-set@3x2.png" alt=""></span> -->
+        <!-- 其他用户信息页面头部 -->
+        <span class="return" tapmode onclick="fnCloseHomeWin();"><img src="../../image/icon-back@3x2.png" alt=""></span>
+        <div class="btn" id="btn">
+            <!-- <a href="javascript:;"> --><span class="isfollow isfollowing" id="isFollow">FOLLOW</span></a>
+            <!-- <a href="javascript:;" > --><span class="privatechat" id="chat" tapmode onclick="openChat()">CHAT</span></a>
+        </div>
+        <div class="more" onclick="openmoree()"></div>
+        </div>
+    </header>
+    <div class="shadow"></div>
+    <div class="wrap clearfix">
+        <div class="left">
+            <div class="avatar" style="background-color: #efefef;"><img src="" class="head" id="head">
+                <div class="avatar-button">
+                    <a href="javascript:;"><img src="../../image/icon-update@3x2.png" alt="" class="plus" id="plus"></a>
+                </div>
+            </div>
+            <div class="icon">
+<!--                 <img src="../../image/raw_1529764873.png" alt="">
+                <img src="../../image/raw_1529769790.png" alt="">
+                <img src="../../image/raw_1529764878.png" alt="">
+                <img src="../../image/raw_1529764873.png" alt="">
+                <img src="../../image/raw_1529769790.png" alt="">
+                <img src="../../image/raw_1529764878.png" alt=""> -->
+            </div>
+        </div>
+        <div class="right">
+            <h1 class="nickname" id="nickname"></h1>
+            <div class="summary" id="summary"></div>
+            <div class="statistics">
+                <ul id="relative">
+                    <li>
+                        <p class="number" id="heatNum"></p>
+                        <p class="text" id="heat">Hot</p>
+                    </li>
+                    <li onclick="OpenFollowsWin()">
+                        <p class="number" id="fanNum"></p>
+                        <p class="text" id="fan">Followers</p>
+                    </li>
+                    <li onclick="OpenFollowingWin()">
+                        <p class="number" id="followNum"></p>
+                        <p class="text" id="follow">Following</p>
+                    </li>
+                    <div class="new_bg" id="new_bg"></div><div class="new" id="new"></div>
+                </ul>
+                <ul>
+                    <li class="libottom">
+                        <p class="number" id="postNum"></p>
+                        <p class="text" id="post">Tins</p>
+                    </li>
+                    <li class="libottom">
+                        <p class="number" id="featuredNum">0</p>
+                        <p class="text" id="featured">Featured</p>
+                    </li>
+                    <li class="libottom">
+                        <p class="number" id="groupNum"></p>
+                        <p class="text" id="group" onclick="openGroup()">Groups</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 瀑布流 -->
+    <div class="waterfall">
+    <!-- 按钮容器 -->
+        <div id="masonry" class="fluid_container"></div>
+        <!-- 瀑布流 -->
+        <div id="one"></div>
+        <div class="loading" id="loading">
+            <img src="../../icon/loading.gif" id="loadingImg">
+            <div id="loadingPage">
+                <p>No More Dataヽ(✿ﾟ▽ﾟ)ノ</p>
+                <p>You Can Try Refreshing The Page</p>
+            </div>
+        </div>
+        <div class="empty-container" id="empty">
+                <p id="emptyppp">Nothing at all Σ(*ﾟдﾟﾉ)ﾉ</p>
+        </div>
+    </div>
+
+<!--     <script type="text/x-dot-template" id="one">
+    <div class="box" id="box" style="background:url('{{=it.src}}')" onclick="openDetail('{{=it.postId}}', '{{=it.isText}}')" >
+        <img src="{{=it.type}}" class="type">
+    </div>
+    </script> -->
+</body>
+<script type="text/javascript">
+    var startIndex = 0,//初始化获取的帖子index
+        endIndex = 100,
+        lock = true,//滑动是否加载的判断
+        headImg = [],//储存头像地址
+        tempFollow = false,//是否关注的临时储存
+        user = "",//用户昵称
+        language,
+        testId,
+        otherId,
+        postType = ["../../icon/imgs.png", "../../icon/Video.png", ""],
+        loadingImg,
+        loadingPage,
+        tempAuthor = "",
+        $grid,
+        loadMore_cont,
+        popNum,
+        tinNum,
+        summary,
+        followDom,
+        resTime = getRefreshTime(),
+        groupNum = 0,
+        nickname = '';//用户名
+
+    var img_url_num=[];
+    var dyn_id_num=[];
+    var post_type=[];
+    var pop_num=[];
+    var cover_num=[];
+    var avatar_num=[];
+    var nickname_num=[];
+    var title_num=[];
+    var like_num=[];
+    var comment_num=[];
+    var ui_id_num=[];
+    //var num_i=[];
+    var str="";
+    var j=0;
+    var k=0;
+    var z;
+    var img_qian="http://bin.baopinghui.com/";
+    var img_suo="?imageView2/0/w/350";
+    var img_video="?vframe/jpg/offset/5/w/350";
+
+    var hhh =window.screen.height;
+    var www =window.screen.width;
+    apiready = function() {
+        console.log($api.getStorage('id'));
+      //监听返回顶部
+      api.addEventListener({
+          name: 'dingbu'
+      }, function(ret, err){
+        var osTop = document.documentElement.scrollTop || document.body.scrollTop;
+        document.documentElement.scrollTop = document.body.scrollTop = -200;
+      });
+
+        // 适应刘海屏
+        if(hhh/www > 2){
+            $api.css($api.dom('.zhuangtailan'), 'height:11.7vw;');
+            $api.css($api.dom('header'), 'top:11.7vw;');
+            $api.css($api.dom('.wrap'), 'margin-top:23.67vw;');
+            // $api.css($api.dom('.shadow'), 'margin-top:23.67vw;');
+            $api.css($api.dom('#emptyppp'), 'margin-top:52.55vw;margin-bottom:52.55vw;');
+        }
+
+        //alert($api.getStorage('id'));
+        $api.setStorage("frameName",'');
+        // $api.setStorage("id", "f8cc5f9956df68260156dffa4e9b0014");//设置缓存ID，登录后直接获取就可以
+        // $api.setStorage("language", null);//设置缓存语言设置，登录后直接获取就可以
+        testId = $api.getStorage("id"),//获取缓存ID
+        otherId = api.pageParam["otherId"] || testId;//获取参数ID，没有则默认是缓存的ID
+        language = $api.getStorage("language");//获取用户使用的版本语言
+        loadingImg = $api.dom("#loadingImg");
+        loadingPage = $api.dom("#loadingPage");
+        var isFollow = $api.dom("#isFollow"),
+            chat = $api.dom("#chat"),
+            head = $api.dom("#head"),
+            loading = $api.dom("#loading"),
+            loadFirst = $api.first(loading, "p"),
+            loadLast = $api.last(loading, "p"),
+            empty = $api.dom("#empty");
+        followDom = $api.dom("#follow");
+        $api.removeCls(isFollow, 'isfollowing');
+        // $grid = $('#masonry').masonry({//瀑布流插件的设置语句
+        //     itemSelector: '.box',//需要使用瀑布流的item
+        //     gutter: 10,//每个item之间的间距
+        //     isAnimated: true//窗口变化时，使用动画重新布局
+        // });
+        // loadMore_cont = doT.template($api.dom("#one").innerHTML);//doT模版的JS语句
+        //账号设置页传来修改信息成功-刷新页面
+        api.addEventListener({
+            name: 'home_loader'
+        }, function(ret, err) {
+            window.location.reload();
+        });
+
+
+        // 获取后台数据（相关群数）
+        api.ajax({
+            url: 'http://api.baopinghui.com/jpushim/findnewbin6',
+            method: 'GET',
+            data: {
+                values: {
+                    uiid: otherId
+                }
+            }
+        }, function(ret, err) {
+            if (ret) {
+                groupNum = ret.data.groupsNum;
+                $api.html($api.dom("#groupNum"), groupNum);
+            }
+        });
+        // 監聽out傳過來的取消關注指令
+            api.addEventListener({
+                name: 'cancelfollow'
+            }, function(ret, err) {
+                followOne.call($api.dom('#isFollow'), "cancel");
+            });
+
+        // 设置是否全屏
+        setTimeout(function() {
+            api.setFullScreen({
+                fullScreen: false
+            });
+            api.setStatusBarStyle({
+                style: 'dark',
+                color: '#fff'
+            });
+        }, 1000);
+
+        if(language == "zho"){
+            $api.html(isFollow, "關&nbsp;注");
+            $api.html(chat, "私&nbsp;聊");
+            $api.html($api.dom("#heat"), "熱&nbsp;度");
+            $api.html($api.dom("#follow"), "關&nbsp;注");
+            $api.html($api.dom("#fan"), "粉&nbsp;絲");
+            $api.html($api.dom("#post"), "帖&nbsp;子");
+            $api.html($api.dom("#featured"), "精&nbsp;選");
+            $api.html(loadFirst, "沒 有 更 多 信 息 了ヽ(✿ﾟ▽ﾟ)ノ");
+            $api.html(loadLast, "你 可 以 嘗 試 刷 新 頁 面");
+        };
+
+
+
+        if (testId === otherId) { //判断是不是登录用户的主页
+                //          返回桌面
+                closeWidget();
+                //openNav(); //打开小球导航
+                $api.addEvt(head, "click", changeHead); //为头像绑定换头像事件，不是登录用户自己的主页则不绑定
+                $api.css($api.dom("#btn"), "display: none;"); //是登录用户的主页的话，将按钮组隐藏
+
+
+
+                $api.css($api.dom('.zhuangtailan'), 'display:none');
+                    $api.css($api.dom('.wrap'),'margin-top:0');
+
+
+                // 下拉刷新
+            api.setRefreshHeaderInfo({
+                    visible: true,
+                    loadingImg: 'widget://image/refresh.png',
+                    bgColor: '#efefef',
+                    textColor: '#aaa',
+                    textDown: 'Ready to refresh',
+                    textUp: 'Ready to refresh',
+                    textLoading:'Ready to refresh',
+                    showTime: false
+            }, function(ret, err){
+                setTimeout(function(){
+                    window.location.reload();
+                    api.refreshHeaderLoadDone();
+                },500)
+            });
+
+            } else {
+                api.addEventListener({
+                    name: 'swiperight'
+                }, function() {
+                    api.closeWin({
+                        animation: {
+                            type: "push", //动画类型（详见动画类型常量）
+                            subType: "from_left", //动画子类型（详见动画子类型常量）
+                            duration: 300 //动画过渡时间，默认300毫秒
+                        }
+                    });
+                }); //右滑关闭win
+
+                // 其他用户信息显示头部
+                $api.css($api.dom("header"), "display:block");
+
+                //判断是不是登录用户的主页
+                $api.css($api.dom("#plus"), "display:none");
+                $api.addEvt(head, "click", bigImg);
+                // $api.addEvt(chat, "click", openChat);
+                api.ajax({ //如果不是登录用户的主页的话，判断是否关注了该用户
+                    url: "http://api.baopinghui.com/app_tinUserinfoControllerC/userinfo?uiId=" + testId + "&pageUiId=" + otherId,
+                    //url: "http://112.74.20.66:18098/app_tinUserinfoControllerC/userinfo?uiId=" + testId + "&pageUiId=" + otherId,
+                    method: "post"
+                }, function(ret, err) {
+                    if (ret) {
+                        if (ret["status"]) {
+                            if (ret["data"]["isFocus"]) {
+                                tempFollow = true;
+                                $api.html(isFollow, "");
+                                $api.addCls(isFollow, 'isfollowing');
+                                $api.removeCls(isFollow, 'isfollow');
+                                $api.css($api.dom('#chat'), 'display:block;');
+                                $api.css($api.dom('#btn'), 'margin-left:-'+ $('#btn').width()/2 +'px;');
+                                $api.dom('.isfollowing').onclick = function(){
+                                            // followOne.call(this, "cancel");
+                                            api.openFrame({
+                                                name: 'out',
+                                                url: 'widget://html/nav/out.html',
+                                                rect: {
+                                                    x: 0,
+                                                    y: 0,
+                                                    w: 'auto',
+                                                    h: 'auto'
+                                                },
+                                                pageParam: {
+                                                    follow: 1
+                                                }
+                                            });
+                                        };
+                                //关注成功后，为按钮绑定取消关注的事件
+                                return;
+                            };
+                            tempFollow = false;
+                            if(language == "zho"){
+                                $api.html(isFollow, "關&nbsp;注");
+                            }else{
+                                $api.html(isFollow, "FOLLOW");
+                            }
+                            $api.addCls(isFollow, 'isfollow');
+                            $api.removeCls(isFollow, 'isfollowing');
+                            $api.css($api.dom('#chat'), 'display:none;');
+                            $api.css($api.dom('#btn'), 'margin-left:-'+ $('#btn').width()/2 +'px;');
+                            isFollow.onclick = function() {
+                                followOne.call($api.dom('#isFollow'), "focus");
+                            }; //没有关注的话，为按钮绑定关注事件
+                        };
+                        return;
+                    };
+                    console.log(err);
+                });
+        };
+
+        api.ajax({//获取后台数据（个人签名，用户昵称，头像）
+            url: "http://api.baopinghui.com/app_tinUserinfoControllerC/userinfo?uiId=" + testId + "&pageUiId=" + otherId,
+        //url: "http://112.74.20.66:18098/app_tinUserinfoControllerC/userinfo?uiId=" + testId + "&pageUiId=" + otherId,
+            method: "post"
+        }, function(ret, err){
+            if(ret){
+                if(ret["status"]){//状态码为1表示成功
+                    var jsondata = ret["data"],//获取数据
+                        avatar = jsondata["avatar_url"],//获取用户头像
+                        nick = $api.dom("#nickname"),
+                        sum = $api.dom("#summary");
+                    nickname = jsondata["nickname"];//获取用户昵称
+                    summary = jsondata["summary"];//获取个人签名
+                    !summary ? summary = "This person has left nothing (｡ŏ_ŏ)" : null;//个人签名如果为空的话默认显示这条语句
+                    if(groupNum != 0){//如果相关组数量不为0，则绑定相关组数量到页面上
+                        $api.html($api.dom("#groupNum"),  groupNum)
+                    };
+                    if(language == "zho") {//选择的语言如果是中文，将必要的信息从英文改为中文
+                        var group = $api.dom("#group");
+                        if(groupNum != 0){
+                            $api.html(group, "相&nbsp;關&nbsp;組");
+                        }else{
+                            $api.html(group, "相&nbsp;關&nbsp;組");
+                        };
+                        summary == "This person has left nothing (｡ŏ_ŏ)" ? summary = "這個人什麽都沒有留下 (｡ŏ_ŏ)" : null;
+                    };
+                    $api.setStorage("summary", jsondata["summary"]);
+                    $api.html(nick, nickname);//将用户昵称渲染
+                    $api.html(sum, summary);//将个人简介渲染
+                    head.src = "http://bin.baopinghui.com/" + avatar + '?imageView2/0/w/200';
+                    //将头像渲染
+                    headImg.push("http://bin.baopinghui.com/" + avatar);
+                    if(testId !== otherId){//判断是不是登录用户的主页
+                        //如果不是的话，将头部名称显示
+                        user = nickname;
+                    };
+                    if(testId === otherId){
+                        $api.setStorage("nickname", nickname);
+                        $api.setStorage("avatar", avatar);
+                    };
+
+                };
+                return;
+            };
+            console.log(err);//请求错误时打印出错误信息
+        });
+
+            //获取后台数据(精选)
+            // api.ajax({
+            //     url: 'http://192.168.16.188:8081/app_dynamicCover/findpostBytimeAndhot?numx='+0+'&numy='+5,
+            //     method: 'GET',
+            // }, function(ret, err) {
+            //     if (ret) {
+            //         if(ret["status"]){
+            //             var test= ret["data"][0]["title"];
+            //             $api.html($api.dom("#featuredNum"), test);
+            //         }
+            //     }
+            // });
+
+            // 获取后台数据(热度，粉丝，关注，帖子)
+            api.ajax({
+                url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/baseCount?uiId=' + otherId,
+                method: 'post'
+            }, function(ret, err) {
+                if (ret) {
+                    if (ret["status"]) {
+                        var ary = [],
+                            jsondata = ret["data"],
+                            heatNum = $api.dom("#heatNum"),
+                            fanNum = $api.dom("#fanNum"),
+                            followNum = $api.dom("#followNum"),
+                            postNum = $api.dom("#postNum");
+                            featuredNum = $api.dom('#featuredNum');
+                        // 将后台数据传到数组里面
+                        ary.push(jsondata["popularNum"]);
+                        ary.push(jsondata["fansNum"]);
+                        ary.push(jsondata["myFocusNum"]);
+                        ary.push(jsondata["coverNum"]);
+                        ary.push(jsondata["hotNum"]);
+                        for (var i = 0; i < ary.length; i++) {
+                            parseFloat(ary[i]) >= 1000 ? ary[i] = (ary[i] / 1000).toFixed(1) + "k" : null;
+                        }
+                        popNum = ary[0];
+                        tinNum = ary[3];
+                        $api.html(heatNum, ary[0]);
+                        $api.text(fanNum, ary[1]);
+                        $api.html(followNum, ary[2]);
+                        $api.html(postNum, ary[3]);
+                        ary[4]==0?ary[4]=0:ary[4]=ary[4]-1;
+                        $api.html(featuredNum, ary[4]);
+                        if (testId === otherId) { //判断是不是登录用户的主页，是的话执行以下操作
+                            if ($api.getStorage("fansNum") === undefined) {
+                                $api.setStorage("fansNum", ary[1]);
+                            }
+                            var increaseNum =ary[1] - $api.getStorage("fansNum"); //获取粉丝数量
+                            // var increaseNum =100; //获取粉丝数量
+
+                            // alert(ary[1]);
+                            // alert($api.getStorage("fansNum"));
+                            // alert(increaseNum);
+                            if (increaseNum > 0) { //增加的粉丝ss大于0的话，显示出粉丝增加的提示，并将粉丝数重新缓存
+                                var newt = $api.dom("#new");
+                                var newbg = $api.dom("#new_bg");
+                                $api.css(newt, "display:block;");
+                                $api.css(newbg, "display:block;");
+                                if (increaseNum > 99) {
+                                    $api.text(newt, '99+');
+                                    $api.setStorage('fansNum', ary[1]);
+                                    return;
+                                }
+                                $api.text(newt, increaseNum);
+                                // $api.setStorage('fansNum', ary[1]);
+                            }
+                            $api.setStorage('fansNum', ary[1]);
+                            $api.setStorage('tinsNum', ary[3]);
+                        }
+                    }
+                    return;
+                }
+            });
+
+
+            getpost(startIndex,endIndex);//获取帖子数
+            // api.addEventListener({
+            //     name: 'scrolltobottom',
+            //     extra:{
+            //         threshold:0
+            //     }
+            // }, function(ret, err) {
+            //     if (ret) {
+            //         startIndex = startIndex+10;
+            //         endIndex = endIndex+10;
+            //         setTimeout(function(){
+            //             getpost(startIndex,endIndex);
+            //         },500);
+            //     }
+            // });
+            var o,
+                oo;
+            api.addEventListener({//绑定滑动加载事件，设置距离底部400时执行函数
+                name: "scrolltobottom",
+                extra: {
+                    threshold: 0
+                }
+            }, function(ret, err){
+                if(lock){
+                    lock = !lock;
+
+                if(z){i=z};
+           temp=z
+           // oo=i;
+           o=i+6;
+           o>img_url_num.length?o=img_url_num.length:o=o;
+           // alert(img_url_num.length);
+           // alert(o);
+           for(z=i;z<o;z++){
+             (function(z){
+               var temp2=
+               `<div class="boxs"><div class="boxs1"  style="background-image:url(${img_qian+img_url_num[j++]+`${img_suo}`})" onclick="openDetail(dyn_id_num[${z}],pop_num[${z}],cover_num[${z}])"><img src="../../icon/touming.png"></div>
+                    <p class="box_content"><span>${title_num[`${z}`]}</span></p>
+                    <div class="icon1"><span><img src="../../icon/c.png" alt="" /><samp>  `+(Number(`${pop_num[`${z}`]}`)> 1000 ? (`${pop_num[`${z}`]}`/ 1000).toFixed(1) + 'k' : `${pop_num[`${z}`]}`)+`</samp></span><span><img src="../../icon/d.png" alt="" /><samp>${comment_num[`${z}`]}</samp></span><span><img name="cnm"  ui_id="`+ui_id_num[`${z}`]+`" dyn_id="`+dyn_id_num[`${z}`]+`" src="../../icon/a.png" alt="" onclick="dianzan(this)"/><samp name="cnmtext">${like_num[`${z}`]}</samp></span></div></div>`;
+
+               if(post_type[z]=="imgs"){
+                 temp2=temp2.replace("touming.png","imgs.png")
+               }else if(post_type[z]=="Video"){
+                 temp2=temp2.replace('touming.png',"Video.png");
+                 temp2=temp2.replace(`${img_suo}`,`${img_video}`);
+               };
+               api.ajax({
+                   url: 'http://api.baopinghui.com/app_dynamicCover/checkPraise',
+                   method: 'post',
+                   data: {
+                       values: {
+                           praiseUid: $api.getStorage('id'),
+                           dynId:dyn_id_num[z]
+                       }
+                   }
+               },function(ret, err){
+                   if(ret.data.flag==1){
+                     //temp=temp.replace("../../icon/a.png","../../icon/b.png");
+                     //alert(document.getElementsByName('cnm')[i-1]);
+                     document.getElementsByName('cnm')[z].src="../../icon/b.png";
+                     document.getElementsByName('cnmtext')[z].style.color="#F381A3";
+                     //getElementsByName('name')
+                   }
+               });
+
+
+               $api.append($api.dom('#one'),temp2);
+             }(z));
+             lock =true;
+           }
+           if(j>=endIndex){
+            startIndex = startIndex+10;
+            endIndex = endIndex+10;
+            getpost(startIndex,endIndex);
+           }
+        }
+            if(i >= img_url_num.length){
+                setTimeout(function(){
+                    $api.css(loadingImg, "display:none");
+                    $api.css(loadingPage, "display:block");
+                }, 1000);
+            };
+            });
+            return;
+        };
+
+        // 点击关闭个人信息页
+    function fnCloseHomeWin() {
+        api.closeWin();
+    }
+
+    function changeHead(){//定义换头像函数
+        if(api.systemType=="ios"){
+          //打开相册修改头像
+           openAndsetAvater();
+      }else{
+        //安卓的请求权限，如果已有的话不会影响
+        api.requestPermission({
+              list: ["storage"],
+                    },
+                      function(ret, err) {
+                if(ret.list[0].granted){
+                  //打开相册修改头像
+                  openAndsetAvater();
+                }
+             });
+
+      }
+
+
+
+    };
+    function openAndsetAvater(){
+      //打开相册并更改头像
+      api.getPicture({
+          sourceType: "library",
+          mediaValue: "pic",
+          destinationType: "url",
+          saveToPhotoAlbum: true,
+          quality: 70,
+          targetWidth: 1200,
+          targetHeight: 1200,
+      }, function(ret, err){
+          if(ret){
+              if(ret.data){
+                  var data = ret.data,
+                      myDate = new Date(),
+                      avatar = data;
+                  var obj = api.require('qiniuUpfile');
+                  obj.upfile({
+                      file: avatar,
+                      name: myDate.getTime() + Math.random()
+                  }, function(ret, err) {
+                      if(ret.status) {
+                          if(ret.oper == "complete") {
+                              var qiniuKey = ret.info.key;
+                              api.ajax({
+                                  url: "http://api.baopinghui.com/app_tinUserinfoControllerC/setting?",
+                //url: "http://112.74.20.66:18098/app_tinUserinfoControllerC/setting?",
+                                  method: "post",
+                                  data: {
+                                          values: {
+                                              uiId: $api.getStorage('id'),
+                                              avatarUrl: qiniuKey
+                                          }
+                                      }
+                              }, function(ret, err){
+                                  if(ret){
+                                      if(ret.status){
+                                          api.openFrame({
+                                              name: "tip",
+                                              url: "widget://html/nav/out.html",
+                                              rect: {
+                                                  x: 0,
+                                                  y: 0,
+                                                  w: "auto",
+                                                  h: "auto"
+                                              },
+                                              pageParam: {
+                                                  head: true
+                                              }
+                                          });
+                                          $api.setStorage("avatar", qiniuKey);
+                                          head.src = data;
+                                          return;
+                                      };
+                                      return;
+                                  };
+                                  console.log(JSON.stringify(err));
+                              });
+                          }
+                          return;
+                      }
+                      alert("上传失败");
+                      return;
+                  });
+              };
+              return;
+          };
+          console.log(err);
+      });
+    }
+
+    function getRefreshTime(){//定义刷新时间函数
+        var currentTime = new Date();
+        var year = currentTime.getFullYear(),
+            month = currentTime.getMonth() + 1 > 9 ? currentTime.getMonth() + 1 : "0" + (currentTime.getMonth() + 1),
+            today = currentTime.getDate() > 9 ? currentTime.getDate() : "0" + currentTime.getDate(),
+            hour = currentTime.getHours() > 9 ? currentTime.getHours() : "0" + currentTime.getHours(),
+            minute = currentTime.getMinutes() > 9 ? currentTime.getMinutes() : "0" + currentTime.getMinutes(),
+            second = currentTime.getSeconds() > 9 ? currentTime.getSeconds() : "0" + currentTime.getSeconds();
+        currentTime = year + "-" + month + "-" + today + " " + hour + ":" + minute + ":" + second;
+        return currentTime;
+    };
+    // 个人瀑布流
+    function getpost(startIndex,endIndex){
+        api.ajax({
+            url: "http://api.baopinghui.com/app_dynamicCover/findPostByUiId?uiId=" + otherId + "&startIndex=" + startIndex + "&maxResult="+endIndex+"&refreshTime=" + resTime,
+            method: "post"
+        }, function(ret, err) {
+            if (ret) {
+               if(!ret["status"]){
+                    if(startIndex === 0){
+                        $api.css(loading, "display:none;");
+                        $api.css(empty, "display:block;");
+                        return;
+                    }
+                setTimeout(function(){
+                    $api.css(loadingImg, "display:none");
+                    $api.css(loadingPage, "display:block");
+                }, 1000);
+                return;
+                };
+                // startIndex += 10;//每执行一次，获取帖子的初index加10
+                // endIndex+=10;
+                var data = ret["data"]["list"];
+                var length = data.length;
+                for (let i=0;i<length;i++){
+                    var urll = data[i].cover_url;
+                    if(urll !== null){
+                        img_url_num.push(data[i].cover_url.split(",")[0]);//贴子首照片
+                        dyn_id_num.push(data[i].dyn_id);//帖子ID
+                        post_type.push(data[i].post_type);//帖子类型
+                        pop_num.push(data[i].pop);//帖子热度
+                        title_num.push(data[i].title);//帖子标题
+                        like_num.push(data[i].likeNum);//帖子點贊数
+                        comment_num.push(data[i].commentNum);//帖子评论数
+                    }
+
+                }
+                o=6;
+                o>img_url_num.length?o=img_url_num.length:o=o;
+                for(i=0;i<o;i++){
+                    (function(i){
+                    temp=`<div class="boxs"><div class="boxs1"  style="background-image:url(${img_qian+img_url_num[j++]+`${img_suo}`})" onclick="openDetail(dyn_id_num[${i}],pop_num[${i}],cover_num[${i}])"><img src="../../icon/touming.png"></div>
+                    <p><span>${title_num[`${i}`]}</span></p><div class="icon1"><span><img src="../../icon/c.png" alt="" /><samp>  `+(Number(`${pop_num[`${i}`]}`)> 1000 ? (`${pop_num[`${i}`]}`/ 1000).toFixed(1) + 'k' : `${pop_num[`${i}`]}`)+`</samp></span><span><img src="../../icon/d.png" alt="" /><samp>${comment_num[`${i}`]}</samp></span><span><img name="cnm"  ui_id="`+ui_id_num[`${i}`]+`" dyn_id="`+dyn_id_num[`${i}`]+`" src="../../icon/a.png" alt="" onclick="dianzan(this)"/><samp name="cnmtext">${like_num[`${i}`]}</samp></span></div></div>
+                    `;
+                    if(post_type[i]=="imgs"){
+                        temp=temp.replace("touming.png","imgs.png")
+                    }else if(post_type[i]=="Video"){
+                        temp=temp.replace('touming.png',"Video.png");
+                        temp=temp.replace(`${img_suo}`,`${img_video}`);
+                    }
+                    api.ajax({
+                        url: 'http://api.baopinghui.com/app_dynamicCover/checkPraise',
+                        method: 'post',
+                        data: {
+                            values: {
+                                praiseUid: testId,
+                                dynId:dyn_id_num[i]
+                            }
+                        }
+                    }, function(ret, err) {
+                        if (ret) {
+                            if(ret.data.flag==1){
+                            document.getElementsByName('cnm')[i].src="../../icon/b.png";
+                            document.getElementsByName("cnmtext")[i].style.color="#F381A3";
+                        };
+                        }
+                    });
+                    $api.append($api.dom("#one"),temp);
+                    }(i));
+                    if(data.length < 10){
+                        setTimeout(function(){
+                            $api.css(loadingImg, "display:none");
+                            $api.css(loadingPage, "display:block");
+                        }, 1000);
+                    };
+                    lock = true;//加载完成后才允许实行下一次加载函数
+    //             return;
+                }
+            }else{
+                console.log(JSON.stringify(err));
+            }
+
+        });
+    }
+    // function getMorePost(){//定义获取帖子并自动执行瀑布流布局的函数
+    //     api.ajax({
+    //         url: "http://api.baopinghui.com/app_dynamicCover/findPostByUiId?uiId=" + otherId + "&startIndex=" + startIndex + "&maxResult=10&refreshTime=" + resTime,
+    //   //url: "http://112.74.20.66:18098/app_dynamicCover/findPostByUiId?uiId=" + otherId + "&startIndex=" + startIndex + "&maxResult=10&refreshTime=" + resTime,
+    //         method: "post",
+    //         //method: "post"
+    //     }, function(ret, err){
+    //         if(ret){
+    //             if(!ret["status"]){
+    //                 if(startIndex === 0){
+    //                     $api.css(loading, "display:none;");
+    //                     $api.css(empty, "display:block;");
+    //                     return;
+    //                 };
+    //                 setTimeout(function(){
+    //                     $api.css(loadingImg, "display:none");
+    //                     $api.css(loadingPage, "display:block");
+    //                 }, 1000);
+    //                 return;
+    //             };
+    //             startIndex += 10;//每执行一次，获取帖子的初index加10
+    //             var data = ret["data"]["list"];
+    //             for(var i = 0, len = data.length; i < len; i++){
+    //                 ~(function(i){
+    //                     var curEle = data[i];
+    //                     var tempType;
+    //                     if(curEle.post_type === "imgs"){//多图
+    //                         tempType = postType[0];
+    //                         curEle.cover_url += "?imageView2/0/w/300";
+    //                     }else if(curEle.post_type === "Video"){//视频
+    //                         tempType = postType[1];
+    //                         curEle.cover_url += "?vframe/jpg/offset/1/w/350";
+    //                     }else if(curEle.post_type === "text"){
+    //                         return;
+    //                     }else{//其他
+    //                         tempType = postType[2];
+    //                         curEle.cover_url += "?imageView2/0/w/300";
+    //                     };
+    //                     var tarSrc = "",
+    //                         isText = true;
+    //                     if(curEle.post_type !== "text"){
+    //                         tarSrc = "http://bin.baopinghui.com/" + curEle["cover_url"].split(",")[0];
+    //                         isText = "";
+    //                     };
+    //                     var div_loadmore = {//doT模版的每一个数据格式
+    //                         src: tarSrc,
+    //                         type:tempType,
+    //                         postId: curEle.dyn_id,
+    //                         // imgStyle: tarImgStyle,
+    //                         isText: isText
+    //                     };
+    //                     var $elems = $(loadMore_cont(div_loadmore));
+    //                     $grid.append($elems).masonry('appended', $elems).masonry();//重新插入图片时，自动实行瀑布流布局
+    //                 })(i);
+    //             };
+    //             $grid.imagesLoaded().progress(function(){//瀑布流imagesLoaded事件
+    //                 $grid.masonry('layout');
+    //             });
+    //             if(data.length < 10){
+    //                 setTimeout(function(){
+    //                     $api.css(loadingImg, "display:none");
+    //                     $api.css(loadingPage, "display:block");
+    //                 }, 1000);
+    //             };
+    //             lock = true;//加载完成后才允许实行下一次加载函数
+    //             return;
+    //         };
+    //         console.log(err);
+    //     });
+    // };
+
+    function followOne(focus){//定义关注他人函数
+        isFollow.onclick = null;//每次点击关注按钮时，取消按钮所绑定的关注事件，防止快速点击出现的BUG
+        api.ajax({
+            url: "http://api.baopinghui.com/app_tinUserinfoControllerC/focus?uiId=" + testId + "&otherUiId=" + otherId + "&type=" + focus,
+        //url: "http://112.74.20.66:18098/app_tinUserinfoControllerC/focus?uiId=" + testId + "&otherUiId=" + otherId + "&type=" + focus,
+            method: "post"
+        }, function(ret, err){
+            if(ret){
+                if(ret["status"]){
+                    if(ret["msg"] === "关注成功"){//关注成功则为按钮绑定取消关注事件，取消关注则为按钮绑定关注事件，并根据情况设置按钮样式
+                        followChange("cancel");
+                        followTrans("cancel");
+                        followNumberTran(true);
+                        return;
+                    };
+                    followChange("focus");
+                    followTrans("focus");
+                    followNumberTran(false);
+                };
+                return;
+            };
+            console.log(err);
+        });
+    };
+
+   //  function run(){//模拟跳转到别人的主页
+   //   api.openWin({
+   //       name: "otherDetail/大霸王",
+   //       url: "widget://html/home/home.html",
+   //       reload: true,
+   //       vScrollBarEnabled: false,
+   //       slidBackEnabled: false,
+   //       pageParam:{
+            //  otherId: "f8cc5f9956df68260156dffa4e9b0014"
+            // }
+   //   });
+   //  };
+
+    function bigImg(){//查看头像大图
+        var imageBrowser = api.require("imageBrowser");
+        imageBrowser.openImages({
+            imageUrls: headImg,
+            showList: false,
+            bg: "#000",
+            tapClose: true
+        });
+    };
+
+    function openMore(){//打开更多选项
+        api.openFrame({
+            name: "more",
+            url: "widget://html/nav/more.html",
+            rect: {
+                x: 0,
+                y: 0,
+                w: "auto",
+                h: "auto"
+            },
+            pageParam: {
+                tempFollow: tempFollow,
+                user: user,
+                uiId: otherId,
+                avatar: headImg[0].slice(33)
+            }
+        });
+        api.bringFrameToFront({
+            from: "more"
+        });
+    };
+
+    function openSetting(){//打开设置页
+        api.openWin({
+            name: "setting",
+            url: "widget://html/set-up/setting.html",
+            reload: true,
+            vScrollBarEnabled: false,
+            slidBackEnabled: false
+        });
+    };
+
+    function openDetail(postId, isText){//打开帖子详情页
+        var otherId = api.pageParam['otherId'] || testId;
+        api.openWin({
+            name: "detail",
+            url: "widget://html/details/detail.html",
+            reload: true,
+            vScrollBarEnabled: false,
+            slidBackEnabled: false,
+            softInputMode:'resize',
+            pageParam:{
+                postId: postId,
+                popNum: popNum,
+                tinNum: tinNum,
+                summary: summary,
+                text: isText,
+                otherId:otherId
+            }
+        });
+    };
+
+    function followChange(focus){//定义别的页面点击关注按钮时，改变本页面关注按钮的样式的函数
+        if(focus === "focus"){
+            tempFollow = false;
+            $api.addCls(isFollow, 'isfollow');
+            $api.removeCls(isFollow, 'isfollowing');
+            $api.css($api.dom('#chat'), 'display:none;');
+            $api.css($api.dom('#btn'), 'margin-left:-'+ $('#btn').width()/2 +'px;');
+            if(language == "zho"){
+                $api.html(isFollow, "關&nbsp;註");
+            }else{
+                $api.html(isFollow, "FOLLOW");
+            };
+            isFollow.onclick = function(){
+                followOne.call($api.dom('#isFollow'), "focus");
+            };
+            return;
+        };
+        tempFollow = true;
+        $api.html(isFollow, "");
+        $api.addCls(isFollow, 'isfollowing');
+        $api.removeCls(isFollow, 'isfollow');
+        $api.css($api.dom('#chat'), 'display:block;');
+        $api.css($api.dom('#btn'), 'margin-left:-'+ $('#btn').width()/2 +'px;');
+        $api.dom('.isfollowing').onclick = function(){
+                                            // followOne.call(this, "cancel");
+                                            api.openFrame({
+                                                name: 'out',
+                                                url: 'widget://html/nav/out.html',
+                                                rect: {
+                                                    x: 0,
+                                                    y: 0,
+                                                    w: 'auto',
+                                                    h: 'auto'
+                                                },
+                                                pageParam: {
+                                                    follow: 1
+                                                }
+                                            });
+                                        };
+    };
+
+    function followTrans(focus){//定义点击关注按钮时，执行别的页面的改变关注按钮样式的函数
+        var jsfun = "followChange('" + focus + "')";
+        api.execScript({
+            name: "detail",
+            script: jsfun
+        });
+    };
+
+    function followNumber(plus){//别的页面点击关注或者取消关注时，修改本页上关注的人数
+        var num = $api.html(followDom);
+        num = num.indexOf("k") > 0 ? parseFloat(num) * 1000 : parseFloat(num);
+        if(plus === "true"){
+            num ++;
+            num = num >= 1000 ? (num / 1000).toFixed(1) + "k" : num;
+            $api.html(followDom, num);
+            return;
+        };
+        num --;
+        num = num >= 1000 ? (num / 1000).toFixed(1) + "k" : num;
+        $api.html(followDom, num);
+    };
+
+    function followNumberTran(plus){//点击关注或者取消关注时，执行主页上修改关注人数的函数
+        var jsfun = "followNumber('" + plus + "')";
+        api.execScript({
+            name: "home",
+            script: jsfun
+        });
+    };
+
+    function openChat(){
+        api.ajax({
+            url: 'http://api.baopinghui.com/app_dynamicCover/CheckFirstTin',
+            method: 'post',
+            data: {
+                values: {
+                    uiId:$api.getStorage('id')
+                }
+            }
+        }, function(ret, err) {
+            if (ret) {
+                if(ret.data==0){
+                    api.openFrame({
+                        name: 'out',
+                        url: 'widget://html/nav/out.html',
+                        rect: {
+                            x: 0,
+                            y: 0,
+                            w: 'auto',
+                            h: 'auto'
+                        },
+                        pageParam: {
+                            chatlimit: 1
+                        }
+                    });
+                }else{
+                    //发送事务监听，是通过群聊页面打开Home窗口，如果要进行单聊就要关闭群聊页面
+      if( api.pageParam['pathisGroupchat']==1){
+
+        api.closeWin({
+            name: 'group_chat'
+        });
+      }
+        api.openWin({
+            name: testId,
+            url: "widget://html/chat/chat2.html",
+            slidBackEnabled: false,
+            animation: {
+                type: "fade", //动画类型（详见动画类型常量）
+                subType: "fade", //动画子类型（详见动画子类型常量）
+                duration: 250 //动画过渡时间，默认300毫秒
+            },
+            pageParam: {
+                uiId: otherId,
+                nickname: user,
+                avatar: headImg[0].slice(33)
+            }
+        });
+                }
+
+            }
+        });
+
+    };
+    //打开群列表
+    function openGroup(){
+        api.openWin({
+            name: 'group_list',
+            url: "widget://html/group/group-list.html",
+            slidBackEnabled: false,
+            animation: {
+                type: "fade", //动画类型（详见动画类型常量）
+                subType: "fade", //动画子类型（详见动画子类型常量）
+                duration: 250 //动画过渡时间，默认300毫秒
+            },
+            pageParam: {
+                uiId: otherId,
+                nickname: nickname,
+                avatar: headImg[0]
+            }
+        });
+    }
+
+
+    // 點擊打開粉絲頁面
+    function OpenFollowsWin(){
+        api.openWin({
+            name: 'followers',
+            url: "widget://html/home/followers.html",
+            slidBackEnabled: false,
+            pageParam: {
+                uiid:otherId
+            }
+        });
+    }
+
+    // 點擊打開關注頁面
+    function OpenFollowingWin(){
+        api.openWin({
+            name: 'following',
+            url: "widget://html/home/following.html",
+            slidBackEnabled: false,
+            pageParam: {
+                uiid:otherId
+            }
+        });
+    }
+    function dianzan(e) {
+  //alert(e.src);
+  if(e.src.substr(-5)=="b.png"){
+    api.toast({
+        msg: '你已赞过啦',
+        duration: 1000,
+        location: 'middle'
+    });
+  }else{
+    e.src="../../icon/b.png";
+    e.nextSibling.innerHTML=Number(e.nextSibling.innerHTML)+1;
+    e.setAttribute("class","rubberBand");
+    e.nextSibling.style.color="#F381A3";
+  }
+  api.ajax({
+      url: 'http://api.baopinghui.com/app_dynamicCover/praiseDyn_cover',
+      method: 'post',
+      data: {
+          values: {
+              uiId:testId,
+              praiseUid:$api.getStorage('id'),
+              dynId:e.getAttribute("dyn_id")
+          }
+      }
+  },function(ret, err){
+      if (ret) {
+          //alert( "成功"+JSON.stringify( ret ) );
+      } else {
+          //alert( "失败"+JSON.stringify( err ) );
+      }
+  });
+}
+function testt(){
+    api.openWin({
+        name: 'login_function',
+        url: 'widget://html/logon-register/login_function.html',
+        pageParam: {
+            name: 'value'
+        }
+    });
+}
+function openmoree(){
+console.log($api.text($api.dom('#nickname')));
+    api.openFrame({
+        name: 'more(new)',
+        url: 'widget://html/nav/more(new).html',
+        rect: {
+            x: 0,
+            y: 0,
+            w: 'auto',
+            h: 'auto'
+        },
+        pageParam: {
+            otherId:otherId,
+            home:1,
+            nickname_home:$api.text($api.dom('#nickname'))
+        }
+    });
+}
+</script>
+
+</html>

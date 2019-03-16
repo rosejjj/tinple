@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>post</title>
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <style>
+		html, body{
+			background-color: #efefef;
+			font-family: Arial;
+			font-style: italic;
+		}
+		img[src=""]{
+			visibility: hidden;/*将src不存在的img隐藏*/
+		}
+		img{
+			display: block;
+		}
+		.wrap{
+			padding-top: 18.7vw;
+		}
+		.input{
+			margin: 10.67vw auto 0;
+			width: 89.3vw;
+			position: relative;
+		}
+		textarea, input{
+			display: block;
+			border-radius: 2.67vw;
+			background-color: #ffffff;
+			color: #484848;
+			font-size: 4vw;
+			line-height: 5.87vw;
+			font-weight: bold;
+			outline: none;
+			opacity: 0.5;
+		}
+		textarea{
+			height: 44vw;
+			resize: none;
+			padding: 2.6vw 5.3vw;
+			width: 78.7vw;
+		}
+		.tags{
+			margin-top: 5.33vw;
+		}
+		.tags span{
+			display: inline-block;
+			border-radius: 2.67vw;
+			background-color: #efefef;
+			color: #484848;
+			font-size: 4vw;
+			line-height: 5.87vw;
+			font-weight: bold;
+			opacity: 0.5;
+			padding: 2.6vw 5.3vw;
+			margin: 0 2.67vw 2.67vw 0;
+		}
+		input{
+			padding: 2.6vw 15.9vw 2.6vw 5.3vw;
+			width: 68.1vw;
+		}
+		a{
+			display: block;
+			position: absolute;
+			bottom: 2.8vw;
+			right: 5.3vw;
+			color: #36A5B2;
+			font-size: 4vw;
+			font-weight: bold;
+			visibility: hidden;
+		}
+		i{
+			font-style: normal;
+		}
+		.list{
+			width: 89.3vw;
+			margin: 10.67vw auto;
+			overflow: hidden;
+			visibility: hidden;
+		}
+		.list li{
+			width: 28vw;
+			height: 28vw;
+			float: left;
+			border-radius: 2.67vw;
+			margin-right: 2.65vw;
+			overflow: hidden;
+			margin-bottom: 2.67vw;
+			position: relative;
+		}
+		.list li:nth-child(3n){
+			margin-right: 0;
+		}
+		.list img{
+			width: 100%;
+		}
+		.loading{
+			width: 100%;
+			height: 100%;
+			background-color: rgba(37, 37, 37, .6);
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+		.loading img{
+			width: 13.33vw;
+			height: 13.33vw;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			margin-left: -6.67vw;
+			margin-top: -6.67vw;
+			opacity: 0.8;
+		}
+		.list img.delete{
+			width: 5.33vw;
+			height: 5.33vw;
+			position: absolute;
+			left: 2.67vw;
+			bottom: 2.67vw;
+			visibility: hidden;
+			z-index: 10;
+		}
+    </style>
+</head>
+<body>
+	<div class="wrap">
+		<div class="input">
+			<textarea name="des" id="des" placeholder="Click here to enter a description of the post"></textarea>
+			<div class="tags" id="tags">
+				<!-- <span>✦ sunny</span><span>✦ motion graphics</span><span>✦ design</span><span>✦ abstract</span> -->
+				<input type="text" id="tag-content" placeholder="✦ Enter the tag">
+			</div>
+			<a href="javascript:;" id="add">Add</a>
+		</div>
+		<ul class="list" id="list">
+
+			<li id="select">
+				<img src="../../icon/details/addimage.png">
+			</li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+		var des,
+			tags,
+			tip = "Description cannot be empty",
+			language,
+			type,
+			list,
+			tagContent,
+			oLi,
+			select,
+			pathAry = [];
+		apiready = function(){
+			api.addEventListener({
+				name: 'swiperight'
+			}, function() {
+				api.closeWin({
+					animation: {
+						type: "push", //动画类型（详见动画类型常量）
+						subType: "from_left", //动画子类型（详见动画子类型常量）
+						duration: 300 //动画过渡时间，默认300毫秒
+					}
+				});
+			});//右滑关闭win
+			api.openFrame({
+				name: "header",
+				url: "widget://html/nav/header.html",
+				rect: {
+					x: 0,
+					y: 0,
+					w: "auto",
+					h: Number(window.screen.width) * 0.187 + 10
+				},
+				pageParam: {
+					post: true
+				}
+			});//打开通用头部
+			list = $api.dom("#list");
+			language = $api.getStorage("language");
+			tags = $api.dom("#tags");
+			des = $api.dom("#des");
+			tagContent = $api.dom("#tag-content");
+			select = $api.dom("#select");
+			oLi = list.getElementsByTagName("li");
+			var oInput = $api.last(tags),
+				add = $api.dom("#add");
+			type = api.pageParam["type"];
+
+			if(type !== "text"){
+				$api.css(list, "visibility:visible");
+			};
+			if(language == "zho"){
+				des.placeholder = "點擊此處輸入該帖子的描述";
+				tagContent.placeholder = "✦ 輸入標簽";
+				$api.html(add, "添加");
+				tip = "描述不能為空";
+			};
+			if(type === "Topimg"){
+				if(language == "zho"){
+					tip = "描述or標簽不能都爲空";
+				}else{
+					tip = "Description or tag cannot be empty";
+				};
+			};
+			$api.addEvt(tagContent, "input", function(){
+				$api.val(this) !== "" ? $api.css(add, "visibility:visible") : $api.css(add, "visibility:hidden")
+			});
+			$api.addEvt(add, "click", function(){
+				var val = $api.val(tagContent),
+					str = "",
+					ary = val.split(",");
+				for(var i = 0, len = ary.length; i < len; i++){
+					ary[i] !== "" ? str += "<span>✦ <i>" + ary[i] + "</i></span>" : null;
+				};
+				$api.before(oInput, str);
+				$api.val(tagContent, "");
+				$api.css(add, "visibility:hidden");
+//				输入框继续获取焦点
+				document.getElementById('tag-content').focus();
+			});
+			$api.addEvt(select, "click", selectImgs);
+		};
+
+		function sendPost(){
+			var oSpan = $api.domAll(tags, "span"),
+				tagName = "",
+				tarI;
+			if(type === "text"){
+				if($api.val(des) === ""){
+					openFrame();
+					return;
+				};
+			};
+			if(type === "Topimg"){
+				if($api.val(des) === "" && oSpan.length === 0){
+					openFrame();
+					return;
+				};
+				if(oLi.length === 1){
+					if(language == "zho"){
+						tip = "至少上傳一張圖片";
+					}else{
+						tip = "Upload at least one picture";
+					};
+					openFrame();
+					return;
+				};
+				for(var i = 0, len = oLi.length - 1; i < len; i++){
+					if(oLi[i].getAttribute("update") === "false"){
+						if(language == "zho"){
+							tip = "請等待圖片上傳完成";
+						}else{
+							tip = "please wait for the picture to be uploaded";
+						};
+						openFrame();
+						return;
+					};
+				};
+			};
+			if(oSpan.length > 0){
+				for(var i = 0, len = oSpan.length; i < len; i++){
+					tarI = $api.dom(oSpan[i], "i");
+					tagName += i === 0 ? tarI.innerHTML : "," + tarI.innerHTML;
+				};
+			};
+			oLi.length >= 3 ? type = "imgs" : null;
+			var values;
+			if(type === "text"){
+				values = {
+					uiId: $api.getStorage("id"),
+					title: $api.val(des),
+					tagName: tagName,
+					postType: type,
+					address: "NA",
+					isTimer: "no"
+				};
+			}else{
+				values = {
+					uiId: $api.getStorage("id"),
+					title: $api.val(des),
+					tagName: tagName,
+					postType: type,
+					address: "NA",
+					isTimer: "no",
+					qiniuyunKey: pathAry.toString()
+				};
+			}
+			api.ajax({
+				url: "http://api.baopinghui.com/app_dynamicCover/v12/createLifePost",
+				method: "post",
+				data: {
+					values: values
+				}
+			}, function(ret, err){
+				if(ret){
+					if(ret["status"]){
+						if(language == "zho"){
+							tip = "發布成功";
+						}else{
+							tip = "Issued successfully";
+						};
+						openFrame(true, ret["data"]);
+						return;
+					};
+					return;
+				};
+				console.log(err);
+			});
+		};
+
+		function openFrame(postSuccess, postId){
+			api.openFrame({
+				name: "out",
+				url: "widget://html/nav/out.html",
+				rect: {
+					x: 0,
+					y: 0,
+					w: "auto",
+					h: "auto"
+				},
+				pageParam: {
+					postTip: tip,
+					isSuccess: postSuccess,
+					postType: type,
+					postId: postId
+				}
+			});
+		};
+
+		function openDetail(){//打开主页
+	    	api.openWin({
+	    		name: "home",
+	    		url: "widget://html/home/home.html",
+	    		reload: true,
+	    		vScrollBarEnabled: false,
+	    		slidBackEnabled: false
+	    	});
+	    	api.closeWin();
+	    };
+
+	    function selectImgs(){
+	    	var UIMediaScanner = api.require('UIMediaScanner'),
+	    		imgsNum = 10 - oLi.length,
+	    		selectTip = "*/" + imgsNum,
+	    		cancelTip = "cancel",
+	    		finishTip = "finish";
+	    	if(language == "zho"){
+	    		cancelTip = "取消";
+	    		finishTip = "完成";
+	    	};
+				xiangjitype="";
+				if(api.pageParam.type=="Video"){
+					xiangjitype="video";
+				}else if(api.pageParam.type=="Topimg"){
+					xiangjitype="picture"
+				}
+			UIMediaScanner.open({
+			    type: xiangjitype,
+			    column: 3,
+			    max: imgsNum,
+			    sort: {
+			        key: 'time',
+			        order: 'desc'
+			    },
+			    texts: {
+			        stateText: selectTip,
+			        cancelText: cancelTip,
+			        finishText: finishTip
+			    }
+			}, function(ret) {
+			    if (ret) {
+			    	if(ret["eventType"] === "confirm"){
+			    		if(ret["list"].length > 0){
+			    			var str = "",
+			    				temp = oLi.length - 1;
+//				    		setTimeout(function(){console.log(JSON.stringify(ret["list"]))},2000);//<img src='" + ret["list"][j]["path"] + "'>
+				    		for(var j = 0; j < ret["list"].length; j++){
+									//alert(ret["list"][j]["path"]);
+									if(api.pageParam.type=="Video"){
+										str += "<li update='false' index='" + (temp + j) + "'><video controls autoplay><source src='"+ret["list"][j]["path"]+"'></video><div class='loading'><img src='../../icon/loading.gif'></div><img src='../../icon/details/delete.png' class='delete' onclick=\"deleteParent('" + (temp + j) + "')\"></li>";
+									}else if(api.pageParam.type=="Topimg"){
+										str += "<li update='false' index='" + (temp + j) + "'><img src='" + ret["list"][j]["path"] + "'><div class='loading'><img src='../../icon/loading.gif'></div><img src='../../icon/details/delete.png' class='delete' onclick=\"deleteParent('" + (temp + j) + "')\"></li>";
+									}
+				    			pathAry.push(ret["list"][j]["path"]);
+				    		};
+				    		$api.before(select, str);
+				    		var obj = api.require('qiniuUpfile');
+				    		var myDate = new Date();
+				    		for(i = temp; i < pathAry.length; i++){
+				    			(function(i){
+
+				    				//转化IOS本地能用的图片
+									UIMediaScanner.transPath({
+										path: pathAry[i]
+									}, function(ret_, err_) {
+//										console.log(ret_['path']);
+//										图片上传
+						    			obj.upfile({
+											file: ret_['path'],
+											name: myDate.getTime() + Math.random() + i
+										}, function(ret, err) {
+											if(ret.status) {
+												if(ret.oper == "complete") {
+													pathAry[i] = ret.info.key;
+													$api.css($api.domAll(oLi[i], "img")[2], "visibility:visible");
+													$api.css($api.dom(oLi[i], "div"), "visibility:hidden");
+													oLi[i].setAttribute("update", true);
+												}
+												return;
+											}
+											console.log("上传失败");
+											return;
+										});
+						    		});
+
+				    			})(i);
+				    		};
+			    		};
+			    	};
+			    }
+			});
+	    };
+
+	    function deleteParent(num){
+	    	for(var i = 0, len = oLi.length - 1; i < len; i++){
+	    		if(oLi[i].getAttribute("index") == num){
+					list.removeChild(oLi[i]);
+					pathAry.splice(i, 1);
+					break;
+	    		};
+	    	};
+	    };
+	</script>
+</body>
+</html>

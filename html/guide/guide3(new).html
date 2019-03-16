@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+	<title>guide3(new)</title>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+		}
+		body{
+			width:100vw;
+			/*height:100vh;*/
+			/*visibility: hidden;*/
+		}
+		.bg{
+			position: fixed;
+			top:0;
+			width:100vw;
+			height:100vh;
+			background-color:#000;
+			opacity: 0.8;
+			animation:bganimation 1s linear 0s 1 normal;
+			-webkit-animation: bganimation 1s linear 0s 1 normal;
+			-ms-animation: bganimation 1s linear 0s 1 normal;
+			-o-animation: bganimation 1s linear 0s 1 normal;
+			-moz-animation: bganimation 1s linear 0s 1 normal;
+			z-index: -1;
+		}
+		.box{
+			width:100vw;
+			margin-top: 21.28vw;
+		}
+		.avatar_box{
+			position: relative;
+			width:94.41vw;
+			height:18.62vw;
+			border-radius: 1.33vw;
+			margin:0 auto;
+			background-color:#fff;
+		}
+		.avatar_box>div{
+			position: relative;
+			width:13.3vw;
+			height:13.3vw;
+			border-radius: 50%;
+			display: inline-block;
+			margin-top:2.66vw;
+			margin-left:2.66vw;
+			background-color:#efefef;
+		}
+		.avatar_box>div:nth-of-type(1){
+			background:url(http://bin.baopinghui.com/1.5405697275349363E12) no-repeat center;
+			background-size: cover;
+		}
+		.avatar_box>div:nth-of-type(2){
+			background:url(http://bin.baopinghui.com/1.5381874670915425E12) no-repeat center;
+			background-size: cover;
+		}
+		.avatar_box>div:nth-of-type(3){
+			background:url(http://bin.baopinghui.com/1528512142452.032) no-repeat center;
+			background-size: cover;
+		}
+		.avatar_box>div:nth-of-type(4){
+			background:url(http://bin.baopinghui.com/1538621915457.721) no-repeat center;
+			background-size: cover;
+		}
+		.avatar_box>div>span{
+			position: absolute;
+			bottom:0;
+			right:0;
+			width:10px;
+			height:10px;
+			border-radius: 50%;
+			background-color:#9dda57;
+			border:2px solid #fff;
+		}
+		.avatar_box>span{
+			position: absolute;
+			top:0;
+			right:1.33vw;
+			width:auto;
+			height:18.62vw;
+			font:3.12vw/18.62vw Arial;
+			color:#aaa;
+		}
+		.avatar_box>span>img{
+			margin-left:1.33vw;
+			width:3.99vw;
+			height:3.99vw;
+			transform:rotate(-90deg);
+			vertical-align: text-top;
+		}
+		.arrow{
+			width:10.64vw;
+			height:10.64vw;
+			background:url(../../icon/guide/arrow1.png) no-repeat;
+			background-size:contain;
+			transform: rotate(-13deg);
+			margin-left:10.64vw;
+			margin-top:3.99vw;
+			display: inline-block;
+			vertical-align: top;
+		}
+		p{
+			display: inline-block;
+			font:3.99vw/5.85vw Arial;
+			font-weight: bold;
+			color:#fff;
+			margin-top:11.97vw;
+			margin-left:3.99vw;
+		}
+		p>span{
+			color:#F381A3;
+		}
+		.button{
+			position: fixed;
+			bottom:10.64vw;
+			left:50%;
+			margin-left:-29.655vw;
+			width:59.31vw;
+			height:10.64vw;
+			border:2px solid rgba(255,255,255,1);
+			border-radius: 7.99vw;
+			font:3.99vw/10.64vw Arial;
+			font-weight: bold;
+			text-align: center;
+			color:#fff;
+		}
+		@keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 0.8;
+			}
+		}
+		@-webkit-keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 0.8;
+			}
+		}
+		@-ms-keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 0.8;
+			}
+		}
+		@-o-keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 0.8;
+			}
+		}
+		@-moz-keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 0.8;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="bg"></div>
+	<div class="box">
+		<div class="avatar_box">
+			<div><span></span></div>
+			<div><span></span></div>
+			<div><span></span></div>
+			<div><span></span></div>
+			<span>all <img src="../../icon/search/toright2.png" alt=""></span>
+		</div>
+		<div class="arrow"></div>
+		<p class="text"><span>Friends</span> are randomly recommended <br>Green dots represent online ~</p>
+	</div>
+	<div class="button">N E X T</div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript">
+	var www = window.screen.width;
+	var hhh = window.screen.height;
+	apiready = function(){
+		if(hhh/www > 2){
+			$api.css($api.dom('.box'), 'margin-top:27vw');
+			$api.css($api.dom('.buttom'), 'bottom:19.64vw');
+		}
+		// setTimeout(function(){
+		// 	$api.css($api.dom('body'), 'visibility:visible;');
+		// },1100);
+		if($api.getStorage('language')=='zho'){
+			$api.html($api.dom('.text'), '<span>推 荐 好 友</span> 随 机 匹 配 <br>绿 点 代 表 在 线 噢 ~');
+			$api.html($api.dom('.button'), '下一步');
+		}
+		$api.addEvt($api.dom('.button'), 'click', function(){
+			api.openFrame({
+			    name: 'guide3.5(new)',
+			    url: 'widget://html/guide/guide3.5(new).html',
+			    rect: {
+			        x: 0,
+			        y: 0,
+			        w: 'auto',
+			        h: 'auto'
+			    },
+			    pageParam: {
+			        name: 'value'
+			    }
+			});
+			api.closeFrame({
+	    	    name: 'guide3(new)'
+	    	});
+		});
+	}
+</script>
+</html>

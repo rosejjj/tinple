@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>detail</title>
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <script type="text/javascript" src="../../script/md5.js"></script>
+    <style>
+		html, body{
+			background-color: transparent;
+			font-family: Arial;
+			font-style: italic;
+		}
+		img[src=""]{
+			visibility: hidden;/*将src不存在的img隐藏*/
+		}
+		img{
+			display: block;
+		}
+		video{
+			width: 100vw;
+		}
+		.wrap{
+			padding-top: 18.7vw;/*使导航出现在最上方，并且不遮挡到内容*/
+			width: 100vw;
+		}
+		.container{
+			margin-bottom: 2.67vw;
+		}
+		.loading{
+			width: 100vw;
+			padding: 13.3vw 0;
+		}
+		.loading img{
+			width: 13.3vw;
+			margin: 0 auto;
+		}
+		.box{
+			position: relative;
+			margin-bottom: 1px;
+		}
+		.box > img{
+			width: 100%;
+		}
+		.screen{
+			position: absolute;
+			width: 8vw;
+			height: 8vw;
+			bottom: 2.67vw;
+			right: 2.67vw;
+			background: url("../../icon/details/screen.png") no-repeat;
+			background-size: 100% 100%;
+			z-index: 9;
+		}
+		.page{
+			width: 89.3vw;
+			margin: 5.33vw 2.66vw;
+			font-weight: bold;
+		}
+		.des{
+			font-size: 4.79vw;
+			color: #000;
+			line-height: 5.86vw;
+			margin-bottom: 2.67vw;
+
+			/*内容超过宽度自动换行，不带空格的全英文和全数字也都可以*/
+			white-space: pre-line;
+            word-wrap: break-word;
+		}
+		.trans{
+			font-size: 3.19vw;
+			color: #F381A3;
+			line-height: 5.86vw;
+			margin-bottom: 4vw;
+
+			/*字体渐变*/
+			background: #F381A3;
+		    -webkit-background-clip: text;
+		    -webkit-text-fill-color: transparent;
+
+		    /*内容超过宽度自动换行，不带空格的全英文和全数字也都可以*/
+		    white-space: pre-line;
+            word-wrap: break-word;
+		}
+		.tags, .popular{
+			color: #aaa;
+			font-size: 3.2vw;
+			line-height: 4.53vw;
+			margin-bottom: 2.67vw;
+		}
+		.tags span{
+			margin-right: 1.33vw;
+		}
+		.detail{
+			position: relative;
+			width:100%;
+			display: inline-block;
+		}
+		.detail-container{
+			background-color: #EFEFEF;
+			width:100%;
+			padding: 2.66vw 2.66vw;
+			box-sizing: border-box;
+		}
+		.detail img{
+			float: left;
+			width: 13.33vw;
+			height: 13.33vw;
+			border-radius: 50%;
+			margin-right: 2.66vw;
+			/*margin-bottom: 2vw;*/
+			object-fit: cover;
+		}
+		.info{
+			float: left;
+			/*margin-top: 1.33vw;*/
+		}
+		.info h1{
+			width: 71.5vw;
+			color: #484848;
+			font-size: 4vw;
+			line-height: 5.86vw;
+
+			/*内容超过宽度自动换行，不带空格的全英文和全数字也都可以*/
+			white-space: pre-line;
+			word-wrap: break-word;
+		}
+		.info p{
+			font-size: 3.2vw;
+			color: #aaa;
+			line-height: 3vw;   /*4.53vw*/
+			font-weight: bold;
+			margin-top:1.9vw;
+			/*opacity: 0.8;*/
+		}
+		.info span{
+			margin-right: 1.33vw;
+		}
+		.detail-des{
+			display:block;
+			width: 75vw;
+			margin-left:16vw;
+			font-size: 3.2vw;
+			color: #aaa;
+			font-weight: bold;
+			line-height: 4.53vw;
+			clear: both;
+
+			/*内容超过宽度自动换行，不带空格的全英文和全数字也都可以*/
+			white-space: pre-line;
+			word-wrap: break-word;
+		}
+		.btn{/*按钮的容器*/
+			/*position: absolute;*/
+			/*top:-3vw;*/
+			/*right: -5vw;*/
+			width: 20vw;
+			margin-top:-15vw;
+
+			display: -webkit-box;
+		    display: -webkit-flex;
+		    display: flex;
+		    display: inline-block;
+		    float:right;
+		    /*设置容器为弹性盒子*/
+		}
+		.btn a{/*按钮*/
+			display:inline-block;
+			/*margin: 0 auto;*//*自适应分布*/
+			/*height: 8vw;*/
+			/*border-radius: 5px;*/
+			/*text-align: center;*/
+			/*font-family: Arial;*/
+			/*color: #fff;*/
+			/*font-size: 3.4vw;*/
+			/*line-height: 9vw;*/
+			/*font-weight: bold;*/
+		}
+		.isfollow {
+            /*position: absolute;*/
+        	/*right:0;*/
+            width: 18.09vw;
+            /*68px*/
+            height: 7.98vw;
+            /*30x*/
+            background-color: #F381A3;
+            text-align: center;
+            border-radius: 5px;
+            font: 3.19vw/7.98vw Arial;
+            font-weight: 700;
+            color: #fff;
+            float:right;
+        }
+		.isfollowing{
+			/*position: absolute;*/
+			/*right:1.2vw;*/
+            width:7.98vw;
+            height:7.98vw;
+            background:url(../../image/icon-followed@3x2.png) no-repeat;
+            background-size: cover !important;
+            background-position: center !important;
+            background-color: #aaa;
+            border-radius:5px;
+            float:right;
+        }
+
+		.list{
+			width: 100%;
+		}
+		.list li{
+			position: relative;
+			overflow: hidden;
+			line-height: 4.53vw;
+			min-height: 18.7vw;
+			padding-top: 3.2vw;
+		}
+		.list img{
+			width: 13.33vw;
+			height: 13.33vw;
+			float: left;
+			margin: 0 2.66vw 0 2.66vw;
+			border-radius: 50%;
+			object-fit: cover;
+		}
+		.comment-container{
+			float: left;
+			width: 71.5vw;
+		}
+		.comment-container h2{
+			color: #484848;
+			margin: 0 0 1.06vw 0;
+
+			/*内容超过宽度自动换行，不带空格的全英文和全数字也都可以*/
+			white-space: pre-line;
+			word-wrap: break-word;
+
+			font-size: 3.2vw;
+		}
+		.comment-container p{
+			width: 100%;
+			color: #aaa;
+			margin: 0 0 1.06vw 0;
+			/*内容超过宽度自动换行，不带空格的全英文和全数字也都可以*/
+			white-space: pre-line;
+			word-wrap: break-word;
+
+			font-size: 3.2vw;
+		}
+		.comment-container a{
+			color: #F381A3;
+			font-size: 3.2vw;
+		}
+		.comment-time{
+			position: absolute;
+			right: 2.66vw;
+			top: 1.33vw;
+			margin-top:4vw;
+			color: #aaa;
+			font-size: 3.2vw;
+		}
+		.read-all{
+			width: 100%;
+			text-align: center;
+			background-color: #efefef;
+			color: #aaa;
+			font-size: 4vw;
+			font-weight: bold;
+			height: 13.33vw;
+			line-height: 13.33vw;
+			display: none;
+		}
+		.details_pic {
+			width:100%;
+			height:100%;
+			background-position: center center;
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+		.video_box{
+			position:relative;
+		}
+		.video_box img{
+			width: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+		.imgplay{
+			position: absolute;
+			top:50%;
+			left:50%;
+			margin-left:-8vw;
+			margin-top:-8vw;
+			width:15.96vw;
+			height:15.96vw;
+			background:url(../../icon/play@3x2.png) no-repeat;
+			background-size: cover;
+			z-index:999;
+		}
+		.video_pic {
+			position: relative;
+		}
+		.playBtn {
+			display:block;
+			width: 36.1111vw;
+			height: 11.1111vw;
+			position: absolute;
+			top:50%;
+			left:50%;
+			margin-top:-5.55vw;
+			margin-left:-18vw;
+			background: url(../../image/details/play.png)no-repeat center center;
+			background-size: cover;
+			z-index: 10;
+		}
+		.no-comment{
+			padding: 16vw 0;
+			display: none;
+		}
+		.no-comment p{
+			text-align: center;
+			color: #AAC1D3;
+			font-size: 4vw;
+			line-height: 6vw;
+			font-weight: bold;
+
+			/*字体渐变*/
+			background: #AAA;
+		    -webkit-background-clip: text;
+		    -webkit-text-fill-color: transparent;
+		}
+    </style>
+</head>
+<body>
+	<!-- <div style="margin-top:100px;">啊啊啊啊啊</div>
+	<div>caonima</div> -->
+	<div class="wrap">
+		<div class="container" id="container">
+
+		</div>
+		<div id="list">
+
+		</div>
+		<div class="read-all" id="read-all">Read More</div>
+		<div class="loading" id="loading">
+			<img src="../../icon/loading.gif" id="loadingImg">
+		</div>
+		<div class="no-comment" id="empty">
+			<p>No Comments Yet (๑•́ ₃ •̀๑)</p>
+			<p>Waiting For You！</p>
+		</div>
+		<div class="no-comment" id="noMore">
+			<p>No More Dataヽ(✿ﾟ▽ﾟ)ノ</p>
+			<p>You Can Try Refreshing The Page</p>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var shijian='';
+		var picAry = [],
+			isFollow,
+			testId,
+			otherId,
+			language,
+			postId,
+			replyTip,
+			readAll,
+			tempType,
+			empty,
+			noMore,
+			username,
+			list,
+			avatar;
+		var	startIndex = 0,
+			resTime = getRefreshTime();
+		apiready = function(){
+			api.addEventListener({
+				name: 'swiperight'
+			}, function() {
+				api.closeWin({
+					animation: {
+						type: "push", //动画类型（详见动画类型常量）
+						subType: "from_left", //动画子类型（详见动画子类型常量）
+						duration: 300 //动画过渡时间，默认300毫秒
+					}
+				});
+			});//右滑关闭win
+			api.openFrame({
+				name: "header",
+				url: "widget://html/nav/header.html",
+				rect: {
+					x: 0,
+					y: 0,
+					w: "auto",
+					h: Number(window.screen.width) * 0.187 + 10
+				},
+				pageParam:{
+					detail: true
+				}
+			});//打开通用头部
+
+			var popNum = api.pageParam["popNum"],
+				tinNum = api.pageParam["tinNum"],
+				summary = api.pageParam["summary"],
+				isText = api.pageParam["isText"],
+				container = $api.dom("#container"),
+				tinTip = "Tins",
+				popTip = "Popular",
+				popularTip = "Popular",
+				followTip = "FOLLOW",
+				chatTip = "C&nbsp;H&nbsp;A&nbsp;T",
+				loading = $api.dom("#loading");
+			!summary ? summary = "This person has left nothing (｡ŏ_ŏ)" : null;
+			list = $api.dom("#list");
+			empty = $api.dom("#empty");
+			noMore = $api.dom("#noMore");
+			replyTip = "Reply";
+			readAll = $api.dom("#read-all");
+			postId = api.pageParam["postId"];
+			language = $api.getStorage("language");
+			testId = $api.getStorage("id");
+			emptyP = $api.domAll(empty, "p");
+			noMorep = $api.domAll(noMore, "p");
+			console.log(postId+'----------'+testId);
+			if(language == "zho"){
+				if(summary == "This person has left nothing (｡ŏ_ŏ)"){
+					summary = "這個人什麽都沒有留下 (｡ŏ_ŏ)";
+				};
+				tinTip = "帖子";
+				popTip = "帖子熱度";
+				popularTip = "熱度";
+				followTip = "關&nbsp;註";
+				chatTip = "聊&nbsp;天";
+				replyTip = "回 復";
+				$api.html(readAll, "讀取更多");
+				$api.html(emptyP[0], "還沒有評論 (๑•́ ₃ •̀๑)");
+				$api.html(emptyP[1], "就等你了！");
+				$api.html(noMorep[0], "沒有更多信息了ヽ(✿ﾟ▽ﾟ)ノ");
+				$api.html(noMorep[1], "你可以嘗試刷新頁面");
+			};
+			$api.addEvt(readAll, "click", getMoreComment);
+			//点击加载更多评论
+			$api.addEvt(list, "touchstart", function(e){//点击li有背景变化
+				var tar = e.target;
+				var tarTag = e.target.tagName.toLowerCase();
+				if(tarTag !== "div" && tarTag !== "ul"){
+					if(tarTag !== "li"){
+						if(tarTag !== "span" && tarTag !== "img"){
+							tar = tar.parentNode.parentNode;
+						}else{
+							tar = tar.parentNode;
+						};
+					};
+					$api.css(tar, "background-color:#efefef");
+				};
+			});
+			$api.addEvt(list, "touchend", function(e){//点击li有背景变化
+				var tar = e.target;
+				var tarTag = e.target.tagName.toLowerCase();
+				if(tarTag !== "div" && tarTag !== "ul"){
+					if(tarTag !== "li"){
+						if(tarTag !== "span" && tarTag !== "img"){
+							tar = tar.parentNode.parentNode;
+						}else{
+							tar = tar.parentNode;
+						};
+					};
+					$api.css(tar, "background-color:#fff");
+				};
+			});
+			api.ajax({
+				url: "http://api.baopinghui.com/app_dynamicCover/findPostInfo?id=" + postId,
+				method: "post"
+			}, function(ret, err){
+				if(ret){
+					if(ret.status){
+						var data = ret["data"],
+							tagAry,
+							str = "";
+						username = data["nickname"];
+						avatar = data["avatar_url"];
+						if(data.post_type !== "text"){
+							var imgAry = data.cover_url.split(",");//获取帖子的图片
+						};
+						if(data.tag_name.length > 0){
+							tagAry = data.tag_name.split(",");//获取帖子的标签
+						};
+						if(data.post_type === "Video"){//类型为video则插入以下片段
+							str += "<div class='video_box'><video id='video_play' onclick='playVideo()' style='object-fit: cover;' src='http://bin.baopinghui.com/" + imgAry[0] + "' class='details_pic video_pic'  webkit-playsinline='true' playsinline='true'x-webkit-airplay='true' x5-video-player-type='h5' x5-video-player-fullscreen='true'x5-video-ignore-metadata='true'  width='100%' height='100%'loop='loop' tapmode webkit-playsinline playsinline tapmode></video><div id='playVideo_img' class='playBtn' onclick='playVideo()' tapmode></div><img id='video_bg' src='http://bin.baopinghui.com/" + imgAry[0] + "?vframe/jpg/offset/1/w/350'  onclick='playVideo()'></img><label class='imgplay' for='video_bg' onclick='playVideo()'></label></div>";
+						}else if(data.post_type !== "text"){//除了video和text类型，其他的类型插入以下片段
+							for(var i = 0, len = imgAry.length; i < len; i++){
+								var curEle = imgAry[i];
+								picAry.push("http://bin.baopinghui.com/" + curEle);
+								str += "<div class='box'><img src='http://bin.baopinghui.com/" + curEle + "'><div class='screen' onclick='showPic(" + i + ")'></div></div>";
+							};
+						};
+						str += '<div class="page"><p class="des">' + data.title + '</p><p class="trans" id="trans"></p><div class="tags">';
+						if(!!tagAry){
+							for(i = 0, len = tagAry.length; i < len; i++){
+								str += '<span class="tag-item">✦' + tagAry[i] + '</span>'
+							};
+						};
+						str += '</div><div class="popular">★' + popTip + '：' + (Number(data.pop) > 1000 ? (data.pop / 1000).toFixed(1) + 'k' : data.pop) + '</div></div>';
+						str += "<div class='detail-container'><div class='detail'><img onclick=\"openHome('" + data.ui_id + "','" + data.nickname + "')\" src='http://bin.baopinghui.com/" + data.avatar_url + "?imageView2/0/w/100'><div class='info'><h1>" + data.nickname + "</h1><p><span>" + popularTip + " : " + popNum + "</span>&nbsp;<span>" + tinTip + " : " + tinNum + "</span></p></div><p class='detail-des'>" + summary + "</p><div class='btn' id='btn'><a href='javascript:;' id='isFollow' class='isfollow isfollowing'>" + followTip + "</a></div></div></div>";
+						$api.html(container, str);//插入
+						var chat = $api.dom("#chat");
+						$api.addEvt(chat, "click", openChat);
+						if(!!data.title){
+							translateTitle(data.title);//翻译帖子描述
+						};
+						otherId = data.ui_id;
+						tempType = data.post_type;
+						getMoreComment();//第一次加载10条评论
+						if(otherId === testId){//本人界面的话不显示关注和聊天按钮
+							var btn = $api.dom("#btn");
+							$api.css(btn, "display:none;");
+							return;
+						};
+						isFollow = $api.dom("#isFollow");
+						api.ajax({//如果不是登录用户的主页的话，判断是否关注了该用户
+							//url: "http://api.baopinghui.com/app_tinUserinfoControllerC/userinfo?uiId=" + testId + "&pageUiId=" + otherId,
+							url: "http://api.baopinghui.com/app_tinUserinfoControllerC/userinfo?uiId=" + testId + "&pageUiId=" + otherId,
+							method: "post"
+						}, function(ret, err){
+							if(ret){
+								if(ret["status"]){
+
+									if(ret["data"]["isFocus"]){
+										$api.html(isFollow, "");
+                                		$api.addCls(isFollow, 'isfollowing');
+                                		$api.removeCls(isFollow, 'isfollow');
+
+										isFollow.onclick = function(){
+											followOne.call(this, "cancel");
+										};//关注成功后，为按钮绑定取消关注的事件
+					    				return;
+									};
+									$api.addCls(isFollow, 'isfollow');
+                            		$api.removeCls(isFollow, 'isfollowing');
+									isFollow.onclick = function(){
+										followOne.call(this, "focus");
+									};//没有关注的话，为按钮绑定关注事件
+								};
+								return;
+							};
+							console.log(err);
+						});
+					};
+				};
+			});
+			function openChat(){
+		    	api.openWin({
+					name: $api.getStorage("id"),
+					url: "widget://html/chat/chat2.html",
+					slidBackEnabled: false,
+					animation: {
+						type: "fade", //动画类型（详见动画类型常量）
+						subType: "fade", //动画子类型（详见动画子类型常量）
+						duration: 250 //动画过渡时间，默认300毫秒
+					},
+					pageParam: {
+						uiId: otherId,
+						nickname: username,
+						avatar: avatar
+					}
+				});
+		    };
+		};
+
+		function showPic(i){//定义查看大图函数
+			var imageBrowser = api.require("imageBrowser");
+	    	imageBrowser.openImages({
+	    		imageUrls: picAry,
+	    		showList: false,
+	    		bg: "#000",
+	    		activeIndex: i,
+	    		tapClose: true
+	    	});
+		};
+
+		function playVideo(){//定义播放暂停视频函数
+			var videoPlay = $api.dom("#video_play"),
+				videoBg = $api.dom("#video_bg"),
+				playVideoImg = $api.dom("#playVideo_img");
+			if(videoPlay.paused){
+				videoPlay.play();
+				$api.css(videoBg, "display:none");
+				$api.css(playVideoImg, "display:none");
+				$api.css($api.dom(".imgplay"), "display:none");
+				return;
+			};
+			videoPlay.pause();
+			$api.css(playVideoImg, "display:block");
+			$api.css($api.dom(".imgplay"), "display:block");
+		};
+
+		function followOne(focus){//定义关注他人函数
+	    	isFollow.onclick = null;//每次点击关注按钮时，取消按钮所绑定的关注事件，防止快速点击出现的BUG
+	    	api.ajax({
+	    		url: "http://api.baopinghui.com/app_tinUserinfoControllerC/focus?uiId=" + testId + "&otherUiId=" + otherId + "&type=" + focus,
+	    		method: "post"
+	    	}, function(ret, err){
+	    		if(ret){
+	    			if(ret["status"]){
+	    				if(ret["msg"] === "关注成功"){//关注成功则为按钮绑定取消关注事件，取消关注则为按钮绑定关注事件，并根据情况设置按钮样式
+		    				followChange("cancel");
+							followTrans("cancel", username);
+							followNumberTran(true);
+							return;
+	    				};
+	    				followChange("focus");
+						followTrans("focus", username);
+						followNumberTran(false);
+						//点击关注或者点击取消关注，会触发另一个页面的关注按钮样式改变的函数
+	    			};
+	    			return;
+	    		};
+	    		console.log(err);
+	    	});
+	    };
+
+	    function translateTitle(title){//翻译描述函数
+	    	var transLanguage,
+	    		languageTip,
+	    		trans = $api.dom("#trans");
+	    	if(language == "zho"){
+	    		transLanguage = "zh";
+	    		languageTip = "[ 翻譯 ] ";
+	    	}else{
+	    		transLanguage = "en";
+	    		languageTip = "[ Translation ] ";
+	    	};
+	    	var content_no = title.replace(/\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDE4F]/g, "");
+	    	var salt = (new Date).getTime();
+	    	var str1 = "20161226000034707" + content_no + salt + "i1XmNFcDa7_Z4i6jUSZA";
+	    	var sign = MD5(str1);
+	    	api.ajax({
+				url: 'http://api.fanyi.baidu.com/api/trans/vip/translate',
+				method: 'post',
+				data: {
+					values: {
+						q: content_no,
+						appid: "20161226000034707",
+						salt: salt,
+						from: "auto",
+						to: transLanguage,
+						sign: sign
+					}
+				}
+			},
+			function(data, err) {
+				if(data){
+					if(data['trans_result']) {
+						if(data['from'] != data['to']){
+							var t_text = data['trans_result'][0]['dst'];
+							$api.html(trans, languageTip + t_text);
+						}
+					} else {
+						if(transLanguage == 'zh'){
+							$api.text(trans, "无法翻译");
+						}else{
+							$api.text(trans, "Unable to translate");
+						}
+					}
+				}else{
+					if(transLanguage == 'zh'){
+						$api.text(trans, "无法翻译");
+					}else{
+						$api.text(trans, "Unable to translate");
+					}
+				}
+			});
+	    };
+
+	    function openHome(tarId, user){//点击评论头像进入主页面
+	    	var winName = tarId === testId ? "home" : "otherDetail/" + user;//如果为本人，窗口名字为home，不是则为otherDetail + user，当打开的窗口的name与已经打开过的窗口的name相同时，会关闭之前的页面
+	    	api.openWin({
+	    		name: winName,
+	    		url: "widget://html/home/home.html",
+	    		reload: true,//页面打开过时重新打开执行刷新操作
+	    		vScrollBarEnabled: false,
+	    		slidBackEnabled: false,
+	    		pageParam:{
+					otherId: tarId//其他用户的ID
+				}
+	    	});
+	    };
+
+	    function getRefreshTime(){//定义刷新时间函数
+	    	var currentTime = new Date();
+	    	var year = currentTime.getFullYear(),
+	    		month = currentTime.getMonth() + 1 > 9 ? currentTime.getMonth() + 1 : "0" + (currentTime.getMonth() + 1),
+	    		today = currentTime.getDate() > 9 ? currentTime.getDate() : "0" + currentTime.getDate(),
+	    		hour = currentTime.getHours() > 9 ? currentTime.getHours() : "0" + currentTime.getHours(),
+	    		minute = currentTime.getMinutes() > 9 ? currentTime.getMinutes() : "0" + currentTime.getMinutes(),
+	    		second = currentTime.getSeconds() > 9 ? currentTime.getSeconds() : "0" + currentTime.getSeconds();
+	    	currentTime = year + "-" + month + "-" + today + " " + hour + ":" + minute + ":" + second;
+	    	return currentTime;
+	    };
+
+	    function getMoreComment(){//获取评论
+	    	$api.css(readAll, "display:none");
+			$api.css(loading, "display:block");
+	    	api.ajax({
+				url: "http://api.baopinghui.com/app_topicComment/findTopicCommentByTopicIdAndTopicType",
+				method: "post",
+				data: {
+					values: {
+						topicId: postId,
+						topicType: tempType,
+						startIndex: startIndex,
+						maxResult: 10,
+						refreshTime: resTime
+					}
+				}
+			}, function(ret, err){
+				if(ret){
+					if(ret.status){
+						var data = ret.data,
+							str = "",
+							newUl;
+						newUl = document.createElement("ul");
+						newUl.className = "list";
+						for(var i = 0, len = data.length; i < len; i++){
+							var replySomeone = "";
+							if(!!data[i]["reply_nickname"]){
+								replySomeone = "@" + data[i]["reply_nickname"] + " : ";
+							};
+							var shijianaa=data[i]["create_time"].slice(0,10);
+							// 获取当前时间
+							var currentTime = new Date();
+	    					var year = currentTime.getFullYear(),
+	    						month = currentTime.getMonth() + 1 > 9 ? currentTime.getMonth() + 1 : "0" + (currentTime.getMonth() + 1),
+	    						today = currentTime.getDate() > 9 ? currentTime.getDate() : "0" + currentTime.getDate();
+	    					if(year == data[i]["create_time"].slice(0,4) && month == data[i]["create_time"].slice(5,7) && today == data[i]["create_time"].slice(8,10)){
+	    						str += "<li><img onclick=\"openHome('" + data[i]["from_uid"] + "','" + data[i]["from_nickname"] + "')\" src='http://bin.baopinghui.com/" + data[i]["from_avatar"] + "?imageView2/0/w/100'><div class='comment-container' onclick=\"openReply('" + data[i]["from_nickname"] + "','" + data[i]["id"] + "')\"><h2>" + data[i]["from_nickname"] + "</h2><p>" + replySomeone + data[i]["content"] + "</p><a href='javascript:;'>" + replyTip + "</a></div><span class='comment-time'>" + data[i]["create_time"] + "</span></li>";
+	    					}else{str += "<li><img onclick=\"openHome('" + data[i]["from_uid"] + "','" + data[i]["from_nickname"] + "')\" src='http://bin.baopinghui.com/" + data[i]["from_avatar"] + "?imageView2/0/w/100'><div class='comment-container' onclick=\"openReply('" + data[i]["from_nickname"] + "','" + data[i]["id"] + "')\"><h2>" + data[i]["from_nickname"] + "</h2><p>" + replySomeone + data[i]["content"] + "</p><a href='javascript:;'>" + replyTip + "</a></div><span class='comment-time'>" + shijianaa + "</span></li>";
+	    					}
+
+						};
+						$api.html(newUl, str);
+						$api.append(list, newUl.outerHTML);
+						if(data.length < 10){//这种情况就显示没有更多内容的提示
+							$api.css(loading, "display:none");
+							$api.css(noMore, "display:block");
+							return;
+						};
+						$api.css(readAll, "display:block");
+						$api.css(loading, "display:none");
+						startIndex += 10;
+						//这种情况就显示读取更多的按钮
+						return;
+					};
+					if(startIndex === 0){//这种情况就显示暂时没有评论的提示
+						$api.css(loading, "display:none");
+						$api.css(empty, "display:block");
+						return;
+					};
+					$api.css(loading, "display:none");
+					$api.css(noMore, "display:block");
+					//这种情况就显示没有更多内容的提示
+					return;
+				};
+				console.log(err);
+			});
+	    };
+
+	    function followTrans(focus, username){//当点击关注按钮时，会触发另一个窗口的关注按钮的样式改变函数
+	    	var jsfun = "followChange('" + focus + "')";
+	    	api.execScript({
+	    		name: "otherDetail/" + username,
+			    script: jsfun
+			});
+	    };
+
+	    function followChange(focus){//另一个窗口点击关注按钮时，会触发本窗口的关注按钮样式改变的函数
+	    	if(focus === "focus"){
+	    		$api.addCls(isFollow, 'isfollow');
+            	$api.removeCls(isFollow, 'isfollowing');
+	    		if(language == "zho"){
+					$api.html(isFollow, "關&nbsp;註");
+				}else{
+					$api.html(isFollow, "FOLLOW");
+				};
+	    		isFollow.onclick = function(){
+					followOne.call(this, "focus");
+				};
+	    		return;
+	    	};
+	    	$api.html(isFollow, "");
+        	$api.addCls(isFollow, 'isfollowing');
+        	$api.removeCls(isFollow, 'isfollow');
+	    	isFollow.onclick = function(){
+				followOne.call(this, "cancel");
+			};
+	    };
+
+	    function followNumberTran(plus){//点击关注或者取消关注，将会使主页面的关注人数发生变化
+	    	var jsfun = "followNumber('" + plus + "')";
+	    	api.execScript({
+	    		name: "home",
+			    script: jsfun
+			});
+	    };
+
+	    function openReply(replyName, replyId){//打开回复帖子的frame，传了replyName和replyId的话就是@别人
+	    	api.openFrame({
+				name: "reply",
+				url: "widget://html/details/reply.html",
+				rect: {
+					x: 0,
+					y: 0,
+					w: "auto",
+					h: "auto"
+				},
+				pageParam:{
+					replyName: replyName,//评论人名字
+					replyId: replyId//评论表唯一id
+				}
+			});
+	    };
+
+	    function reply(replyId, content, replyName){//发表评论
+	    	var values = {
+	    		topicId: postId,//帖子id
+				topicType: tempType,//帖子类型
+				content: content,//回复内容
+				uiId: testId//评论人id
+	    	};
+	    	if(!!replyId){
+	    		values = {
+	    			topicId: postId,
+					topicType: tempType,
+					replyId: replyId,//回复评论的id
+					content: content,
+					uiId: testId
+	    		};
+	    	};
+	    	api.ajax({
+	    		url: "http://api.baopinghui.com/app_topicComment/createTopicComment",
+	    		method: "post",
+	    		data: {
+	    			values: values
+	    		}
+	    	}, function(ret, err){
+	    		if(ret){
+						//alert(ret["status"]);
+						api.sendEvent({
+						    name: 'echo',
+						    extra: {
+						        key1: 'value1',
+						        key2: 'value2'
+						    }
+						});
+
+	    			if(ret["status"]){
+	    				api.openFrame({//打开通用提示框
+							name: "out",
+							url: "widget://html/nav/out.html",
+							rect: {
+								x: 0,
+								y: 0,
+								w: "auto",
+								h: "auto"
+							},
+							pageParam:{
+								reply: true
+							}
+						});
+						var str = "",
+							newUl;
+						newUl = document.createElement("ul");
+						newUl.className = "list";
+						var replySomeone = "";
+						if(!!replyName){
+							replySomeone = "@" + replyName + " : ";
+						};
+						str += "<li><img onclick=\"openHome('" + testId + "')\" src='http://bin.baopinghui.com/" + $api.getStorage("avatar") + "?imageView2/0/w/100'><div class='comment-container' ><h2>" + $api.getStorage("nickname") + "</h2><p>" + replySomeone + content + "</p><a href='javascript:;'>" + replyTip + "</a></div><span class='comment-time'>" + getRefreshTime() + "</span></li>";
+
+						$api.html(newUl, str);
+						$api.prepend(list, newUl.outerHTML);
+	    			};
+	    			return;
+	    		};
+	    		console.log(err);
+	    	});
+	    };
+
+	    function openDelete(){
+	    	if(testId === otherId){
+	    		api.openFrame({
+					name: "more",
+					url: "widget://html/nav/more.html",
+					rect: {
+						x: 0,
+						y: 0,
+						w: "auto",
+						h: "auto"
+					},
+					pageParam:{
+						deletePost: true
+					}
+				});
+	    	};
+	    };
+
+	    function deleteAndEnter(){
+	    	api.ajax({
+	    		url: "http://api.baopinghui.com/app_dynamicCover/removePost?uiId=" + testId + "&dynId=" + postId,
+	    		method: "post"
+	    	}, function(ret, err){
+	    		if(ret){
+	    			if(ret["status"]){
+	    				api.openWin({
+				    		name: "home",
+				    		url: "widget://html/home/home.html",
+				    		reload: true,
+				    		vScrollBarEnabled: false,
+				    		slidBackEnabled: false
+				    	});
+				    	api.closeWin();
+	    			};
+	    			return;
+	    		};
+	    		console.log(err);
+	    	});
+	    };
+	</script>
+</body>
+</html>

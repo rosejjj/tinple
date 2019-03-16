@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<title>annoucement</title>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+		}
+		.bg{
+			background-color: #222222 ;
+			width: 100vw;
+			height:100vh;
+			opacity: 0.7;
+			z-index:-2;
+		}
+		.box{
+			position: fixed;
+			bottom:21vw;
+			left:50%;
+			margin-left:-41.225vw;
+			width: 82.45vw;
+			height: 110.64vw;
+			/*margin:0 auto;*/
+			background-color: #fff;
+			border-radius:20px;
+			box-sizing: border-box;
+		}
+		.top{
+			width: 100%;
+			height:13.3vw;
+			text-align: center;
+			line-height: 13.3vw;
+			font:3.99vw/13.3vw Arial;
+			font-weight: bold;
+			color:#101010;
+			position: relative;
+		}
+		.top img{
+			position: absolute;
+			top:-3.18vw;
+			right:4.13vw;
+			width:7.99vw;
+			height:7.99vw;
+		}
+		.contentimg{
+			width: 100%;
+			height:84.04vw;
+			background-color: #efefef;
+		}
+		.contenttext{
+			width: 100%;
+			height:13.3vw;
+			text-align: center;
+			font:3.19vw/13.3vw Arial;
+			font-weight: bold;
+			color:#aaa;
+			padding-right:5vw;
+			padding-left:5vw;
+			box-sizing: border-box;
+			position: relative;
+			z-index: 1;
+			display: -webkit-box;
+	        -webkit-line-clamp: 1;
+	        -webkit-box-orient: vertical;
+	        overflow: hidden;
+		}
+		.horn{
+			position: absolute;
+			top:8.4vw;
+			left:50%;
+			margin-left:9vw;
+			width: 6.65vw;
+			height:6.65vw;
+			background-color: #fff;
+			transform:rotate(45deg);
+			z-index: -1;
+		}
+	</style>
+</head>
+<body>
+	<div class="bg" onclick="closeaaa()"></div>
+	<div class="box">
+		<div class="top"><img src="../../icon/icon-delete@3x2.png" id="img"  onclick="closeaaa()">"Bling - Bling"</div>
+		<div class="contentimg" id="contentimg"></div>
+		<div style="position: relative;">
+			<div class="contenttext" id="contenttext">7.25 | SMS System Upgrade ... &gt;&gt;</div><div class="horn"></div>
+		</div>
+		
+	</div>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script>
+		apiready = function(){
+			var url='http://bin.baopinghui.com/';
+		    api.ajax({
+		        url: 'http://api.baopinghui.com/app_AnnouncementController/findAllAnnouncement',
+		        method: 'post'
+		    }, function(ret, err) {
+		        if (ret) {
+		        	if(ret.data[0].type=="user"){
+		        		$api.addEvt($api.dom('#contentimg'), 'click', function(){
+		        			openhome(ret.data[0].link);
+		        		});
+		        	}else{
+		        		$api.addEvt($api.dom('#contentimg'), 'click', function(){
+		        			openweb(ret.data[0].link);
+		        		});
+		        	}
+		            // $('#contentimg').attr('style', 'background:url(http://bin.baopinghui.com/'+ret.data[0].img_url+');background-size:cover;');
+		            $api.css($api.dom('#contentimg'), 'background:url(http://bin.baopinghui.com/'+ret.data[0].img_url+');background-size:cover;');
+		            if($api.getStorage('language')=="zho"){
+		            	$api.html($api.dom('#contenttext'), ret.data[0].content+'<div class="horn"></div>');
+		            }else{
+		            	$api.html($api.dom('#contenttext'), ret.data[0].title+'<div class="horn"></div>');
+		            }
+		            
+		        }
+		    });
+		    // $api.addEvt($api.dom('.bg'), 'click',function(){
+		    // 	closeaaa();
+		    // });
+		    // $api.addEvt($api.dom('#img'), 'click',function(){
+		    // 	closeaaa();
+		    // });
+		}
+	function closeaaa(){
+		api.closeFrame({
+		    name: 'announcement'
+		});
+	}
+		  // 點擊公告打開網頁
+  function openweb(url){
+  	 var urll=url;
+    if($api.getStorage('language')=='zho'){
+      urll=url.split(",")[0];
+    }else{
+      urll=url.split(",")[1];
+    }
+    // alert(1);
+    api.openWin({
+        name: 'announcement_web',
+        url: 'widget://html/announcement/announcement_web.html',
+        pageParam: {
+            url: urll
+        }
+    });
+  }
+  function openhome(id){
+    // alert(2);
+    api.openWin({
+          name: 'home1/'+id,
+          url: "widget://html/home/home1.html",
+          reload: true,//页面打开过时重新打开执行刷新操作
+          vScrollBarEnabled: false,
+          slidBackEnabled: false,
+          pageParam:{
+          otherId: id//其他用户的ID
+        }
+    });
+  }
+	</script>
+</body>
+</html>

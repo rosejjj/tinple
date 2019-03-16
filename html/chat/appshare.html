@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+  	<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+	<title>chatshare</title>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+		}
+		html{
+			background-color:#efefef;
+		}
+		header{
+			position: fixed;
+			top:0;
+			width: 100vw;
+			height:auto;
+			background-color: #fff;
+			border-bottom:1px solid #efefef;
+			z-index:20;
+		}
+		.headertop{
+			width: 100vw;
+			height:20px;
+		}
+		.headercontent{
+			widows: 100%;
+			height:45px;
+			position: relative;
+		}
+		.return{
+			position: absolute;
+			left:2.66vw;
+			top:2.1vw;
+			width:7.98vw;
+			height:7.98vw;
+			background: url(../../image/icon-back@3x2.png) no-repeat;
+			background-size: cover;
+		}
+		.headercontent-center{
+			width: 100vw;
+			height:7.98vw;
+			line-height: 11.97vw;
+			font:4.26vw/11.97vw Arial;
+			font-weight: bold;
+			text-align: center;
+			padding-top: 1px;
+		}
+		.contentbox{
+			margin-top:66px;
+			/*padding-bottom:3.99vw;*/
+			width: 100vw;
+			height:auto;
+			background-color: #fff;
+		}
+		.user,.group{
+			width: 100vw;
+			height:13.3vw;
+			/*margin-top: 3.99vw;*/
+			position: relative;
+			/*background-color: #efefef;*/
+			border-bottom:1px solid #efefef;
+		}
+		.avatar{
+			position: absolute;
+			left:5.32vw;
+			top:50%;
+			margin-top:-3.99vw;
+			width: 7.98vw;
+			height:7.98vw;
+			border-radius: 50%;
+			background-size: cover;
+			background-color: #aaa;
+		}
+		.group .avatar{
+			border-radius: 1.33vw;
+		}
+		.nickname{
+			position: absolute;
+			top:50%;
+			left:17.29vw;
+			margin-top:-2.26vw;
+			width: 53.19vw;
+			/*height:4.52vw;*/
+			/*line-height: 4.52vw;*/
+			font:3.19vw/4.52vw Arial;
+			font-weight: bold;
+		}
+		.qianjin{
+			position: absolute;
+			top:50%;
+			right:5.32vw;
+			margin-top: -3.99vw;
+			width:7.98vw;
+			height:7.98vw;
+			background:url(../../icon/search/toright2.png) no-repeat center;
+			background-size:3.99vw 3.99vw;
+			transform:rotate(-90deg);
+		}
+/*		.groupicon{
+			position: absolute;
+			bottom:0;
+			left:0;
+			width:5.32vw;
+			height:5.32vw;
+			border-radius: 50%;
+			background:url(../../icon/qunzu.png);
+			background-size: cover;
+		}*/
+	</style>
+</head>
+<body>
+	<header>
+		<div class="headertop"></div>
+		<div class="headercontent">
+			<div class="return" onclick="closeWin();"></div>
+			<div class="headercontent-center">S E L E C T</div>
+		</div>
+	</header>
+	<div class="contentbox">
+		<!-- <div class="user">
+			<div class="avatar" style="background-image:url()"></div>
+			<div class="nickname">12312312</div>
+			<div class="qianjin" ></div>
+		</div>
+		<div class="group">
+			<div class="avatar" style="background-image:url()"><div class="groupicon"></div></div>
+			<div class="nickname">12312312</div>
+			<div class="qianjin" ></div>
+		</div> -->
+	</div>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script src="../../script/jmessage-sdk-web.2.5.0.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../script/md5.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var hhh =window.screen.height;
+    	var www =window.screen.width;
+			var chatList;
+	apiready = function(){
+		chatList = $api.getStorage('chatList');
+		var groupBox=[];//用来存群组
+		var share = api.pageParam['share'];
+		var type = api.pageParam['type'];
+		if(hhh/www > 2){
+				$api.css($api.dom('.headertop'), 'height:44px;');
+				$api.css($api.dom('.contentbox'), 'margin-top:90px;');
+			}
+		var postId = api.pageParam["postId"],
+			otherId = api.pageParam["otherId"],
+			title = api.pageParam['title'],
+			postUsername=api.pageParam['postUsername'],
+			img=api.pageParam['img'];
+			var myshare=1;
+
+			//排除私聊的，获取群组
+			for(var i=0;i<chatList.length;i++){
+				if(chatList[i].gid!=null){
+					groupBox.push(chatList[i]);
+				}
+			}
+		if($api.getStorage('language')=='zho'){
+			$api.html($api.dom('.headercontent-center'), '轉 發 選 擇');
+		}
+		// 右滑关闭页面
+   	    api.addEventListener({
+   	        name: 'swiperight'
+   	    }, function() {
+   	    	api.closeWin();
+   	    });
+
+
+					console.log(title+postUsername+postId+img);
+   	    // console.log(JSON.stringify($api.getStorage('chatList')));
+
+   	    	str = "";
+   	    	console.log(JSON.stringify(chatList));
+   	    	// alert(chatList[0].nickname.replace(/ /g,"1"));
+			if(share=='sharePost'){
+   	    for(var i=0;i<chatList.length;i++){
+   	    	if(chatList[i].type == 3){
+   	    		str +='<div class="user" onclick=openTips("'+chatList[i].nickname.replace(/ /g,"&nbsp;")+'",1,"'+i+'")><div class="avatar" style="background-image:url(http://bin.baopinghui.com/'+chatList[i].avatar_url+')"></div><div class="nickname">'+chatList[i].nickname+'</div><div class="qianjin" ></div></div>';
+   	    	}else{
+   	    		str +='<div class="group" onclick=openTips("'+chatList[i].nickname.replace(/ /g,"&nbsp;")+'",2,"'+i+'")><div class="avatar" style="background-image:url(http://bin.baopinghui.com/'+chatList[i].avatar_url+')"></div><div class="nickname">'+chatList[i].nickname+'</div><div class="qianjin"></div></div>';
+   	    	}
+   	   	}
+   	   	$api.html($api.dom('.contentbox'), str);
+   	   	// $api.append($api.dom('.contentbox'), str);
+			}else if(share=='shareGroup'){
+				for(var i=0;i<groupBox.length;i++){
+					str +='<div class="group" onclick=shareGro("'+groupBox[i].nickname.replace(/ /g,"&nbsp;")+'","'+groupBox[i].gid+'","'+type+'","'+groupBox[i].avatar_url+'")><div class="avatar" style="background-image:url(http://bin.baopinghui.com/'+groupBox[i].avatar_url+')"><div class="groupicon"></div></div><div class="nickname">'+groupBox[i].nickname+'</div><div class="qianjin"></div></div>';
+				}
+				$api.html($api.dom('.contentbox'), str);
+				if($api.getStorage('language')=='zho'){
+						$api.html($api.dom('.headercontent-center'), '选 择 群 组');
+				}
+			}
+	}
+		function closeWin(){
+			api.closeWin();
+		}
+
+		//分享群主 type:chat2 代表单聊的 ；group:群聊的
+		function shareGro(nickname,gid,type,avatar_url){
+			var	otherId = api.pageParam["otherId"];
+			if($api.getStorage('language')=='zho'){
+				var text = '[群组]';
+			}else{
+				var text = '[Group]'
+			}
+			if(type=='chat2'){
+				api.sendEvent({
+						name: 'ChatListExec',
+						extra: {
+								content: text,
+								targetType: "single",  //来源的类型单聊类型 另外一种是群聊类型group
+								target_username: otherId,  //单聊的对象极光的username既tinkle的uiid
+								avatar_url: avatar_url,  //分享的群的头像
+								nickname: nickname,  //分享的群的名字
+								gid: gid, //分享的群的gid
+								type: 'shareGroup',     //发送的自定义的消息类型
+						}
+				});
+				//监听chat_list 极光发送消息发送成功
+				api.addEventListener({
+						name: 'ChatListExecReturn'
+				}, function(ret, err){
+						if( ret ){
+								if(ret.value.state == 1){
+									api.toast({
+											msg: '分享成功',
+											duration: 2000,
+											location: 'bottom'
+									});
+										 setTimeout(function(){
+												api.closeWin({
+														name: 'appshare'
+												});
+										 },300)
+								}
+						}
+				});
+			}else{
+				// 群聊
+				api.sendEvent({    //发给 chat_list 页面
+						name: 'ChatListExec',
+						extra: {
+								targetType: "group",  //来源的类型单聊类型 另外一种是群聊类型single
+								target_gid:api.pageParam['ggid'],  //往这个群分享
+								target_gname:api.pageParam['gname'],
+								content: text,
+								avatar_url: avatar_url,  //分享的群的头像
+								nickname: nickname,  //分享的群的名字
+								gid: gid, //要分享的 那个群的 gid
+								type: 'shareGroup' ,    //发送的自定义的消息类型
+								key:'inside', //内分享
+								txt:'邀请你进入群组，一起玩耍吧~'
+
+						}
+				});
+				//监听chat_list 极光发送消息发送成功
+				api.addEventListener({
+						name: 'ChatListExecReturn'
+				}, function(ret, err){
+						if( ret ){
+								if(ret.value.state == 1){
+									api.toast({
+											msg: '分享成功',
+											duration: 2000,
+											location: 'bottom'
+									});
+										 setTimeout(function(){
+												api.closeWin({
+														name: 'appshare'
+												});
+										 },300)
+								}
+						}
+				});
+			}
+		}
+		//type 1代表单聊对象 2代表群聊
+
+		function openTips(nickname,type,index){
+			// alert(JSON.stringify(chatList[index]));
+
+			// alert(nickname+""+type);
+			var postId = api.pageParam["postId"],
+				otherId = api.pageParam["otherId"],
+				title = api.pageParam['title'],
+				postUsername=api.pageParam['postUsername'],
+				img=api.pageParam['img'];
+				// alert(img);
+			api.openFrame({
+			    name: 'out',
+			    url: 'widget://html/nav/out.html',
+			    rect: {
+			        x: 0,
+			        y: 0,
+			        w: 'auto',
+			        h: 'auto'
+			    },
+			    pageParam: {
+			        reprint:true,
+			        postId:postId,
+			        nickname:nickname,
+			        postUsername:postUsername,
+							img:img,
+							type:type,
+							chat:chatList[index],
+							title:title
+			    }
+			});
+		}
+
+
+
+	</script>
+</body>
+</html>

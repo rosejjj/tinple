@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>guide12</title>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+		}
+		body{
+			width:100vw;
+			height:100vh;
+		}
+		.bg{
+			width:100vw;
+			height:100vh;
+			background-color:#000;
+			opacity: 0.8;
+			/*animation:bganimation 0.3s linear 0s 1 normal;
+			-webkit-animation: bganimation 0.3s linear 0s 1 normal;
+			-ms-animation: bganimation 0.3s linear 0s 1 normal;
+			-o-animation: bganimation 0.3s linear 0s 1 normal;
+			-moz-animation: bganimation 0.3s linear 0s 1 normal;*/
+		}
+		.box{
+			position: fixed;
+			bottom:0;
+			width:100vw;
+		}
+		.content{
+			position: absolute;
+			bottom:22.07vw;
+			left:30vw;
+			width:80vw;
+			height:auto;
+			font:3.99vw/5.85vw Arial;
+			font-weight: bold;
+			color:#fff;
+		}
+		.content>p:nth-child(1)>span{
+			color:#f381a3;
+		}
+		.content>p:nth-child(2)>span{
+			border-bottom:2px solid #fff;
+		}
+		.arrow{
+			position: absolute;
+			bottom:11vw;
+			left:65vw;
+			width:10.64vw;
+			height:10.64vw;
+			background:url(../../icon/guide/arrow1.png) no-repeat;
+			background-size:contain;
+			transform: rotate(-102deg);
+		}
+		.window{
+			position: absolute;
+			bottom:1.33vw;
+			left:50%;
+			margin-left:-11.435vw;
+			width:22.87vw;
+			height:10.64vw;
+			border-radius: 1.33vw;
+			background-color: #fff;
+		}
+		.buttom{
+			position: absolute;
+			top:50%;
+			left:50%;
+			margin-left:-6.65vw;
+			margin-top: -3.99vw;
+			width:13.3vw;
+			height:7.98vw;
+			border-radius: 1.33vw;
+			background:url(../../image/jia.png) no-repeat center;
+			background-size:7.98vw 7.98vw;
+			background-color: #000;
+		}
+		@keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 0.8;
+			}
+		}
+		@-webkit-keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 0.8;
+			}
+		}
+		@-ms-keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 0.8;
+			}
+		}
+		@-o-keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 0.8;
+			}
+		}
+		@-moz-keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 0.8;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="bg"></div>
+	<div class="box">
+		<div class="content">
+			<p>Next <span>click here</span>,</p>
+			<p>Let's see how to <span>Post</span>.</p>
+		</div>
+		<div class="arrow"></div>
+		<div class="window"><div class="buttom"></div></div>
+	</div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript">
+	var www = window.screen.width;
+	var hhh = window.screen.height;
+	apiready = function(){
+		if(hhh/www > 2){
+			$api.css($api.dom('.box'), 'bottom:34px;');
+		}
+	    if($api.getStorage('language')=='zho'){
+	    	$api.html($api.dom('.content'), '<p>接 下 來 <span>點 擊 這 裏</span>,</p><p>我 們 看 看 怎 麽 <span>發 帖</span></span>.</p>');
+	    }
+	    $api.addEvt($api.dom('.buttom'), 'click',function(){
+	    	api.sendEvent({
+	    	    name: 'postbuttom'
+	    	});
+	    	setTimeout(function(){
+	    	api.openFrame({
+	    	    name: 'guide13',
+	    	    url: 'widget://html/guide/guide13.html',
+	    	    rect: {
+	    	        x: 0,
+	    	        y: 0,
+	    	        w: 'auto',
+	    	        h: 'auto'
+	    	    },
+	    	    pageParam: {
+	    	        name: 'value'
+	    	    }
+	    	});
+	    	api.closeFrame({
+	    	    name: 'guide12'
+	    	});	
+	    	},100);
+	    	
+	    });
+	}
+</script>
+</html>

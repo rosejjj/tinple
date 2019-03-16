@@ -1,0 +1,41 @@
+.tins-tag {
+	/*color: #52A2CC;
+	默认为live
+	width: 16.6666vw;
+	height: 10vw;
+	
+	line-height: 10.555vw;
+	font-size: 3.3333vw;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	background-color: #fff;
+	border-radius: 5px;
+	font-weight: bold;
+	box-shadow: 0 2px 4px rgba(34, 34, 34, 0.18), 0 4px 4px rgba(34, 34, 34, 0.25);*/
+	
+	display: block;
+	width: 25vw;			/*25vw;*/
+	height: 25vw;		/*25vw;*/
+	border-top-right-radius: 5px;
+	background: url(../image/personal/live.png)no-repeat center center;
+	background-size: cover;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.tins_video {
+	/*color: #088f82 !important;*/
+	
+	background-image: url(../image/personal/video.png);
+}
+
+.tins_Praise {
+	color: #e8b730 !important;
+	text-indent: 6.9444vw;
+	font-size: 3.3333vw;
+	background: url(../image/search/top1-yellow.png)no-repeat 2.777vw center;
+	background-size: 5.555vw;
+}
+

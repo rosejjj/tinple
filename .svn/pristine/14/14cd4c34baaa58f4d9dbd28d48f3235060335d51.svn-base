@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+	<title>privacy</title>
+	<link rel="stylesheet" type="text/css" href="../../css/api.css" />
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<style>
+		html,body {
+			background-color: transparent;
+			font-family: Arial;
+			font-style: italic;
+			color: #aaa;
+			font-size: 3.2vw;
+			line-height: 4.53vw;
+		}
+		.bg{
+			position: fixed;
+			top:0;
+			width: 100vw;
+			height:70px;
+			background-color:#efefef;
+			
+		}
+		.eng-privacy,
+		.zho-privacy{
+			position: relative;
+			border-top:65px solid #efefef;
+			padding:5.32vw 5.35vw 0 5.35vw;
+			width: 100vw;
+			margin: 0 auto;
+			margin-top: 5px;
+			z-index: -1;
+			background-color:#fff;
+			box-sizing: border-box;
+		}
+		.my-title{
+			color: #484848;
+			font-size: 5.33vw;
+			line-height: 7.73vw;
+			margin-bottom: 5.33vw;
+		}
+		.container,
+		.title-common,
+		.title-color{
+			margin-bottom: 5.33vw;
+		}
+		.common,
+		.common-weight{
+			margin-bottom: 1.33vw;
+		}
+		.title-color{
+			color: #484848;
+			font-weight: bold;
+		}
+		.common-weight{
+			font-weight: bold;
+			color: #484848;
+		}
+		.zho-privacy{
+			display: none;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="bg"></div>
+	<div class="eng-privacy" id="eng">
+		<h1 class="my-title">Privacy Policy</h1>
+		<div class="container">
+			<p class="common">Tinkle, come here to play, dynamically understand the latest hot news around, LIVE is another form of reading. You can also understand the characteristics of the experience around the service and participation. Also comes with real-time voice or literal translation function. Smart art redraw and magazine collection is the core of LIFE, three-dimensional layout Immersion design makes you feel novel, explore life, get inspiration, contact with different cultures, more surprises waiting for you to find.</p>
+			<p class="common">When you use these services—and any others we in the Guangzhou Baopinghui Network Technology Co., Ltd. corporate family roll out, whether in the Tinkle app or elsewhere—you'll share some information with us.We get that that can affect your privacy.So we want to be upfront about the information we collect, how we use it, whom we share it with, and the choices we give you to control, access, and update your information.</p>
+			<p class="common">That's why we've written this Privacy Policy.And it's why we've tried to write it in a way that's blissfully free of the legalese that often clouds these documents.Of course, if you still have questions about anything in our Privacy Policy, just contact us .</p>
+		</div>
+		<h1 class="my-title">Information We Collect</h1>
+		<p class="title-common">Here’s a little more detail on each of these categories.</p>
+		<p class="title-color">Information You Choose to Give Us</p>
+		<div class="container">
+			<p class="common">When you interact with our services, we collect the information that you choose to share with us.For example, most of our services require you to set up a basic Tinkle account, so we need to collect a few important details about you, such as: a unique username you'd like to go by, a password, an email address, a phone number, and your date of birth.To make it easier for others to find you, we may also ask you to provide us with some additional information that will be publicly visible on our services, such as profile pictures, a name, or other useful identifying information.Other services, such as commerce products, may also require you to provide us with a debit or credit card number and its associated account information.</p>
+			<p class="common">Of course, you'll also provide us whatever information you send through the services, Such as sending messages and pictures to your friends.Keep in mind that the users you send messages, pictures, and any other content to can always save that content or copy it outside the app.So, the same common sense that applies to the internet at large applies to Tinkle as well: Don't send messages or share content that you wouldn't want someone to save or share.</p>
+			<p class="common">It probably goes without saying, but we’ll say it anyway: When you contact Tinkle Support or communicate with us in any other way, we’ll collect whatever information you volunteer.</p>
+		</div>
+		<p class="title-color">Information We Get When You Use Our Services</p>
+		<div class="container">
+			<p class="common">When you use our services, we collect information about which of those services you've used and how you've used them.We might know, for instance, that you watched a particular Live , saw a specific ad for a certain period of time, and sent a few messages to friends.Here's a fuller explanation of the types of information we collect when you use our services :</p>
+			<p class="common-weight">● Usage Information.</p>
+			<p class="common">We collect information about your activity through our services.For example, we may collect information about:</p>
+			<p class="common">○ how you interact with the services, such as which filters you view or apply to Tinkle, which channels you watch on LIVE, or which search queries you submit.</p>
+			<p class="common">○ how you communicate with other user, such as their names, the time and date of your communications, the number of messages you exchange with your friends, which friends you exchange messages with the most, and your interactions with messages (such as when you open a message or capture a screenshot).</p>
+			<p class="common-weight">● Content Information.</p>
+			<p class="common">We collect information about the content you provide, such as if the recipient has viewed the content and the metadata that is provided with the content.</p>
+			<p class="common-weight">● Device Information.</p>
+			<p class="common">We collect device-specific information, such as the hardware model, operating system version, advertising identifier, unique application identifiers, unique device identifiers, browser type, language, wireless network, and mobile network information (including the mobile phone number).</p>
+			<p class="common-weight">● Device Phonebook.</p>
+			<p class="common">Because Tinkle is all about communicating with friends, we may—with your consent—collect information from your device's phonebook.</p>
+			<p class="common-weight">● Camera and Photos.</p>
+			<p class="common">Many of our services require us to collect images and other information from your device's camera and photos.For example, you won't be able to send Snaps or upload photos from your camera roll unless we can access your camera or photos.</p>
+			<p class="common-weight">● Location Information.</p>
+			<p class="common">When you use our services we may collect information about your location.With your consent, we may also collect information about your precise location using methods that include GPS, wireless networks, cell towers, Wi-Fi access points, and other sensors, such as gyroscopes, accelerometers, and compasses.</p>
+			<p class="common-weight">● Information Collected by Cookies and Other Technologies.</p>
+			<p class="common">Like most online services and mobile applications, we may use cookies and other technologies, such as web beacons, web storage, and unique advertising identifiers, to collect information about your activity, browser, and device.We may also use these technologies to collect information when you interact with services we offer through one of our partners, such as advertising and commerce features .If you prefer, you can usually remove or reject browser cookies through the settings on your browser or device.Keep in mind, though, that removing or rejecting cookies could affect the availability and functionality of our services.To learn more about how we use cookies and your choices,please check out our Cookie Policy .To learn more about how third parties use these technologies on our services, be sure to read the Analytics and Advertising Services Provided by Others section of our common Policy.</p>
+			<p class="common-weight">● Log Information.</p>
+			<p class="common">We also collect log information when you use our website.<br>
+			○ details about how you’ve used our services.<br>
+			○ device information, such as your web browser type and language.<br>
+			○ access times.<br>
+			○ pages viewed.<br>
+			○ IP address.<br>
+			○ identifiers associated with cookies or other technologies that may uniquely identify your device or browser.<br>
+			○ pages you visited before or after navigating to our website.</p>
+		</div>
+		<p class="title-color">Information We Collect from Third Parties</p>
+		<div class="container">
+			<p class="common">We may collect information that other users provide about you when they use our services.For example, if another user allows us to collect information from their device phonebook—and you're one of that user's contacts—we may combine the information we collect from that user's phonebook with other information we have collected about you.We may also obtain information from other companies that are owned or operated by us, or any other third-party sources, and combine that with the information we collect through our services.</p>
+		</div>
+		<h1 class="my-title">How We Use Information</h1>
+		<div class="container">
+			<p class="common">What do we do with the information we collect?The short answer is: Provide you with an amazing set of products and services that we relentlessly improve.Here are some of the ways we do that:<br>
+			● develop, operate, improve, deliver, maintain, and protect our products and services.<br>
+			● send you communications, including by email.For example, we may use email to respond to support inquiries or to share information about our products, services, and promotional offers that we think may interest you.<br>
+			● monitor and analyze trends and usage.<br>
+			● personalize the services by, among other things, suggesting friends or profile information, or customizing the content we show you, including ads.<br>
+			● contextualize your experience by, among other things, tagging your Memories content using your precise location data (if, of course, you’ve consented to us collecting that data) and applying other labels based on the content.<br>
+			● improve ad targeting and measurement, including through the use of your precise location data (again, if you've consented to us collecting that data).See the Control Over Your Information section below for more information about Tinkle advertising practices and your choices.<br>
+			● enhance the safety and security of our products and services.<br>
+			● verify your identity and prevent fraud or other unauthorized or illegal activity.<br>
+			● use information we’ve collected from cookies and other technology to enhance the services and your experience with them.<br>
+			● enforce our Terms of Service and other usage policies.</p>
+		</div>
+		<div class="container">
+			<p class="common">We may also store some information locally on your device.For example, we may store information as local cache so that you can open the app and view content faster.</p>
+		</div>
+		<h1 class="my-title">How We Share Information</h1>
+		<div class="container">
+			<p class="common">We may share information about you in the following ways:</p>
+			<p class="common-weight">● With other users.</p>
+			<p class="common">We may share the following information with other users:<br>
+			○ information about you, such as your username, name, and head portrait.<br>
+			○ information about how you have interacted with the services, Such as your friend's user name, and other information that will help other users understand your connections with others using the services.For example, because it may not be clear whether a new friend request comes from someone you actually know, we may share whether you and the requestor have Tinkle friends in common.<br>
+			○ any additional information you have consented for us to share.For example, when you let us access your device phonebook, we may share information about you with other users who have your phone number in their device phonebook.<br>
+			○ content you post or send will be shared with other users; how widely your content is shared depends on your personal settings and the type of service you are using.For example, a message may be sent to just a single friend you select, But your LIVE / LIFE content may be seen by all your followers.</p>
+			<p class="common-weight">● With all users, our business partners, and the general public.</p>
+			<p class="common">We may share the following information with all users as well as with our business partners and the general public:<br>
+			○ public information like your name, username and profile pictures.<br>
+			○ any content that you submit to LIVE/LIFE or any other crowd-sourced service.If an LIFE/LIFE or any other crowd-sourced service is streamed on the web or broadcast in some other media, it may be viewed by the public at large or rebroadcast by our business partners.</p>
+			<p class="common-weight">● With our affiliates.</p>
+			<p class="common">We may share information with entities within the Guangzhou Baopinghui Network Technology Co., Ltd. family of companies.</p>
+			<p class="common-weight">● With third parties.</p>
+			<p class="common">We may share your information with the following third parties:</p>
+			<p class="common-weight">○ With service providers, sellers, and partners.</p>
+			<p class="common">We may share information about you with service providers who perform services on our behalf, sellers that provide goods through our services, and business partners that provide services and functionality.</p>
+			<p class="common-weight">○ With third parties for legal reasons.</p>
+			<p class="common">We may share information about you if we reasonably believe that disclosing the information is needed to:</p>
+			<p class="common">■ comply with any valid legal process, governmental request, or applicable law, rule, or regulation.<br>
+			■ investigate, remedy, or enforce potential Terms of Service violations.<br>
+			■ protect the rights, property, and safety of us, our users, or others.<br>
+			■ detect and resolve any fraud or security concerns.</p>
+			<p class="common-weight">○ With third parties as part of a merger or acquisition.</p>
+			<p class="common">If Guangzhou Baopinghui Network Technology Co., Ltd. gets involved in a merger, asset sale, financing, liquidation or bankruptcy, or acquisition of all or some portion of our business to another company, we may share your information with that company before and after the transaction closes.</p>
+			<p class="common">We may also share with third parties—such as advertisers—aggregated, non-personally identifiable, or de-identified information.</p>
+		</div>
+		<h1 class="my-title">Third-Party Content and Integrations</h1>
+		<div class="container">
+			<p class="common">The services may also contain third-party links and search results, include third-party integrations, or offer a co-branded or third-party-branded service.Through these links, third-party integrations, and co-branded or third-party-branded services, you may be providing information (including personal information) directly to the third party, us, or both.You acknowledge and agree that we are not responsible for how those third parties collect or use your information.As always, we encourage you to review the privacy policies of every third-party website or service that you visit or use, including those third parties you interact with through our services.</p>
+		</div>
+		<h1 class="my-title">Analytics and Advertising Services Provided by Others</h1>
+		<div class="container">
+			<p class="common">We may let other companies use cookies, web beacons, and similar tracking technologies on our services.These companies may collect information about how you use our services and other websites and online services over time and across different services.This information may be used to, among other things, analyze and track data, determine the popularity of certain content, and better understand your online activity.Additionally, some companies may use information collected on our services to deliver targeted advertisements on behalf of us or other companies, including on third-party websites and apps.</p>
+		</div>
+		<h1 class="my-title">How Long We Keep Your Content</h1>
+		<div class="container">
+			<p class="common">In addition to art redraw filters, our remaining services may use longer content, which means that these services may follow different removal protocols. We permanently retain your LIVE / LIFE until your means are deleted or the content is suspected of violating the mandatory removal.</p>
+			<p class="common">Finally—and this is important—you should understand that users who see the content you provide can always save it using any number of techniques: screenshots, in-app functionality, or any other image-capture technology.It's also possible, as with any digital information, that someone might be able to access messages forensically or find them in a device's temporary storage.Keep in mind that, while our systems are designed to carry out our deletion practices automatically, we cannot promise that deletion will occur within a specific timeframe.And we may need to suspend those deletion practices if we receive valid legal process asking us to preserve content or if we receive reports of abuse or other Terms of Service violations. Finally, we may also retain certain information in backup for a limited period of time or as required by law.</p>
+		</div>
+		<h1 class="my-title">Control over Your Information</h1>
+		<div class="container">
+			<p class="common">We want you to be in control of your information, so we provide you with the following tools.</p>
+			<p class="common-weight">● Access and Updates.</p>
+			<p class="common">We strive to let you access and update most of the personal information that we have about you.There are limits though to the requests we'll accommodate.We may reject a request for a number of reasons, including, for example, that the request risks the privacy of other users, requires technical efforts that are disproportionate to the request, is repetitive, or is unlawful.You can access and update most of your basic account information right in the app by visiting the app's Settings page.If you need to access, update, or delete other personal information that we may have, you can put in a request here .Because your privacy is important to us, we may ask you to verify your identity or provide additional information before we let you access or update your personal information.We will try to update and access your information for free, but if it would require a disproportionate effort on our part, we may charge a fee.We will of course disclose the fee before we comply with your request.</p>
+			<p class="common-weight">● Revoking Permissions.</p>
+			<p class="common">If you change your mind about our ongoing ability to collect information from certain sources that you have already consented to, such as your phonebook or location services, you can simply revoke your consent by changing the settings on your device if your device offers those options.Of course, if you do that, certain services may lose full functionality.</p>
+			<p class="common-weight">● Account Deletion.</p>
+			<p class="common">While we hope you'll remain a lifelong user, if for some reason you ever want to delete your account, just go here .If you ask to delete your account, you will have up to 30 days to restore your account before we delete your information from our servers.During this period, your account will not be visible to other users.</p>
+			<p class="common-weight">● Advertising Preferences.</p>
+			<p class="common">We try to show you ads that we think will be relevant to your interests.If you would like to modify the information we and our advertising partners use to select these ads, go here to learn about the choices available to you.</p>
+			<p class="common-weight">● Communicating with other users.</p>
+			<p class="common">It's also important to us that you stay in control over whom you communicate with.That's why we've built a number of tools in Settings that let you indicate, among other things, who you want to see your LIVE/LIFE, whether you'd like to receive message from just your friends or all users, and whether you'd like to block another message from contacting you again.</p>
+		</div>
+		<h1 class="my-title">Users Outside of China</h1>
+		<div class="container">
+			<p class="common">Although we welcome users from all over the world, keep in mind that no matter where you live or where you happen to use our services, your information may be shared within the Guangzhou Baopinghui Network Technology Co., Ltd. family of companies.This means that we may collect your personal information from, transfer it to, and store and process it in the China and other countries outside of where you live.</p>
+		</div>
+		<h1 class="my-title">Children</h1>
+		<div class="container">
+			<p class="common">Our services are not intended for—and we don’t direct them to—anyone under 13. And that’s why we do not knowingly collect personal information from anyone under 13.</p>
+		</div>
+		<h1 class="my-title">Revisions to the Privacy Policy</h1>
+		<div class="container">
+			<p class="common">We may change this Privacy Policy from time to time.But when we do, we'll let you know one way or another.Sometimes, we'll let you know by revising the date at the top of the Privacy Policy that's available on our website and mobile application.Other times, we may provide you with additional notice (such as adding a statement to our websites' homepages or providing you with an in-app notification).</p>
+		</div>
+	</div>
+	<div class="zho-privacy" id="zho">
+		<h1 class="my-title">隱私協議</h1>
+		<div class="container">
+			<p class="common">Tinkle，來這裏玩起來，動態了解各地最新最熱資訊，LIVE是另一種閱讀形式。還可以了解各地的特色體驗服務，並參與。另外還附帶了即時語音or文字直譯功能。智能藝術重繪和雜志式歸集整理是LIFE的核心，立體佈局沈浸式設計讓你感到新奇，探索生活，獲取靈感，接觸不同文化，更多驚喜等待你去發現。</p>
+			<p class="common">當您使用這些服務時，以及寶瓶匯企業家族中的任何其他服務，無論是在Tinkle應用程序還是其他地方，您都可以與我們分享一些信息。我們得到這可能會影響您的隱私。因此，我們希望了解我們收集的信息，我們如何使用它們，我們分享這些信息，以及我們爲您提供控制，訪問和更新信息的選擇。</p>
+			<p class="common">這就是爲什麽我們寫了這個隱私政策。這就是爲什麽我們試圖用一種幸福的方式來寫這些文件的經驗，當然，如果您仍然對我們的隱私政策有任何疑問，請聯系我們。</p>
+		</div>
+		<h1 class="my-title">我們收集的信息</h1>
+		<p class="title-common">以下是每個類別的更多細節。</p>
+		<p class="title-color">選擇給我們的信息</p>
+		<div class="container">
+			<p class="common">當您與我們的服務進行互動時，我們會收集您選擇與我們分享的信息。例如，我們的大部分服務都需要您設置一個基本的Tinkle帳戶，因此我們需要收集一些關于您的重要信息，例如：您要訪問的唯一用戶名，密碼，電子郵件地址，電話號碼和您的出生日期。爲了讓其他人更容易找到您，我們也可能會要求您向我們提供一些額外的信息，這些信息將在我們的服務中公開顯示，例如個人資料圖片，名稱或其他有用的識別信息。其他服務，如商業産品，也可能要求您向我們提供借記卡或信用卡號碼及其相關帳戶信息。</p>
+			<p class="common">當然，您還可以向我們提供您通過服務發送的任何信息，例如發送私信和圖片給您的朋友。請記住，您發送圖片，聊天和其他內容的用戶可以隨時保存該內容或將其複制到應用程序之外。所以，適用于互聯網的同樣常識也適用于Tinkle：不要發送消息或分享您不希望有人保存或共享的內容。</p>
+			<p class="common">可能不用說，但是我們會說：當您聯系Tinkle支持或以任何其他方式與我們溝通時，我們會收集您所志願的任何信息。</p>
+		</div>
+		<p class="title-color">使用我們的服務時獲得的信息</p>
+		<div class="container">
+			<p class="common">當您使用我們的服務時，我們會收集有關您使用的哪些服務以及您如何使用這些服務的信息。例如，我們可能會知道，你觀看了一個特定的LIVE故事，在一段時間內看到了一個特定的廣告，並向朋友發送了一些信息。以下是使用我們的服務時收集的信息類型的更全面的解釋：</p>
+			<p class="common-weight">● 使用信息。</p>
+			<p class="common">我們通過我們的服務收集您的活動信息。例如，我們可能會收集以下信息：</p>
+			<p class="common">○ 您如何與服務進行互動，例如您查看或應用于Tinkle的哪些過濾器，您在LIVE上觀看的渠道或您提交的搜索查詢。</p>
+			<p class="common">○ 如何與其他用戶進行通信，例如他們的名字，通信的時間和日期，與朋友交換的消息數量，您最多交換消息的朋友以及與消息的交互（例如，當您打開消息或捕獲屏幕截圖）。</p>
+			<p class="common-weight">● 內容信息。</p>
+			<p class="common">我們收集有關您提供的內容的信息，例如收件人是否查看了內容提供的內容和元數據。</p>
+			<p class="common-weight">● 設備信息。</p>
+			<p class="common">我們收集設備特定信息，如硬件型號，操作系統版本，廣告標識符，唯一應用程序標識符，唯一設備標識符，浏覽器類型，語言，無線網絡和移動網絡信息（包括手機號碼）。</p>
+			<p class="common-weight">● 設備電話簿。</p>
+			<p class="common">因爲Tinkle是關于與朋友交流的所有信息，所以我們可能會在您同意的情況下從設備的電話簿收集信息。</p>
+			<p class="common-weight">● 相機和照片。</p>
+			<p class="common">我們的許多服務都要求我們從設備的相機和照片中收集圖像和其他信息。例如，除非我們可以訪問您的相機或照片，否則您無法從相機膠卷發送快照或上傳照片。</p>
+			<p class="common-weight">● 地點信息。</p>
+			<p class="common">使用我們的服務時，我們可能會收集有關您的位置的信息。在您同意的情況下，我們還可能使用包括GPS，無線網絡，單元塔，Wi-Fi接入點和其他傳感器（如陀螺儀，加速度計和羅盤）的方法收集有關您的精確位置的信息。</p>
+			<p class="common-weight">● Cookie和其他技術收集的信息。</p>
+			<p class="common">Cookie和其他技術收集的信息。像大多數在線服務和移動應用程序一樣，我們可能會使用Cookie和其他技術，如網絡信標，網絡存儲和唯一的廣告標識符來收集有關您的活動，浏覽器和設備的信息。當我們通過我們的合作夥伴提供的服務（如廣告和商業功能）進行互動時，我們也可以使用這些技術來收集信息。默認情況下，大多數Web浏覽器都設置爲接受Cookie。如果您願意，通常可以通過浏覽器或設備上的設置刪除或拒絕浏覽器Cookie。但請注意，刪除或拒絕Cookie可能會影響我們的服務的可用性和功能。要了解我們如何使用Cookie和您的選擇的更多信息，請查看我們的Cookie政策。要詳細了解第三方如何在我們的服務中使用這些技術，請務必閱讀我們隱私政策中的其他人提供的Google Analytics（分析）和廣告服務。</p>
+			<p class="common-weight">● 日志信息。</p>
+			<p class="common">當您使用我們的網站時，我們也會收集日志信息。該信息包括：<br>
+			○ 有關您如何使用我們的服務的詳細信息。<br>
+			○ 設備信息，如您的Web浏覽器類型和語言。<br>
+			○ 訪問時間。<br>
+			○ 浏覽的網頁。<br>
+			○ IP地址。<br>
+			○ 與Cookie或其他可能唯一標識您的設備或浏覽器的技術相關聯的標識符。<br>
+			○ 浏覽我們網站之前或之後訪問過的網頁。</p>
+		</div>
+		<p class="title-color">我們從第三方收集的信息</p>
+		<div class="container">
+			<p class="common">我們可能收集其他用戶在使用我們的服務時提供的信息。例如，如果另一個用戶允許我們從他們的設備電話簿中收集信息，而您是該用戶的聯系人之一，我們可能將從該用戶電話簿收集的信息與我們收集的關于您的其他信息相結合。我們也可以從我們或任何其他第三方來源擁有或經營的其他公司獲取信息，並將其與通過我們的服務收集的信息相結合。</p>
+		</div>
+		<h1 class="my-title">我們如何使用信息</h1>
+		<div class="container">
+			<p class="common">我們收集的信息如何處理？簡短的答案是：爲您提供一系列令人驚歎的産品和服務。這裏有一些我們這樣做的方式：<br>
+			● 開發，運營，改進，交付，維護和保護我們的産品和服務。<br>
+			● 通過電子郵件發送給您通信。例如，我們可以使用電子郵件回複支持查詢或分享有關我們認爲可能感興趣的我們的産品，服務和促銷優惠的信息。<br>
+			● 監測和分析趨勢和用法。<br>
+			● 個性化服務，其中包括建議朋友或個人資料信息，或自定義我們向您展示的內容，包括廣告。<br>
+			● 通過使用您的精確位置數據標記您的記憶內容（如果您同意我們收集該數據）以及根據內容應用其他標簽，則將您的體驗情境化。<br>
+			● 改善廣告定位和衡量標准，包括通過使用您的精確位置數據（如果您同意我們收集數據的話）。有關Tinkle的廣告實踐和您的選擇的更多信息，請參閱下面的“ 控制您的信息”部分。<br>
+			● 提升産品和服務的安全性。<br>
+			● 驗證您的身份，防止欺詐或其他未經授權或非法活動。<br>
+			● 使用從Cookie和其他技術收集的信息來增強服務和您的體驗。<br>
+			● 執行我們的服務條款和其他使用政策。</p>
+			<p class="common">我們還可能在您的設備上本地存儲一些信息。例如，我們可能會將信息存儲爲本地緩存，以便您可以更快地打開應用程序和查看內容。</p>
+		</div>
+		<h1 class="my-title">我們如何分享信息</h1>
+		<div class="container">
+			<p class="common">我們可以通過以下方式分享有關您的信息：</p>
+			<p class="common-weight">● 與其他用戶。</p>
+			<p class="common">我們可能會與其他用戶共享以下信息：<br>
+			○ 有關您的信息，例如您的用戶名，姓名和頭像。<br>
+			○ 有關您如何與服務進行互動的信息，例如您朋友的用戶名稱，以及其他有助於其他用戶了解您與其他人使用該服務的聯繫的信息。例如，由於可能不清楚新朋友的請求是否來自您實際知道的人，我們可能會分享您和請求者是否具有共享的通信錄朋友。<br>
+			○ 您同意我們分享的任何其他信息。例如，當您讓我們訪問您的設備電話簿時，我們可能會在其設備電話簿中與其他用戶共享有關您的信息。<br>
+			○ 您發布或發送的內容將與其他用戶共享; 您的內容的共享程度取決於您的個人設置和您正在使用的服務類型。例如，私信可以發送給您選擇的單個朋友，但您的LIVE/LIFE內容可能被您所有的跟隨者看到。</p>
+			<p class="common-weight">● 與所有用戶，我們的業務夥伴和一般公眾。</p>
+			<p class="common">我們可能會與所有用戶以及我們的業務夥伴和公眾分享以下信息：<br>
+			○ 公共信息，如您的姓名，用戶名和個人資料圖片。<br>
+			○ 您提交給我們的LIVE/LIFE或任何其他人群來源的服務的任何內容。如果LIFE/LIFE或任何其他人群來源的服務在網絡上傳播或在其他媒體播放，可能被廣大公眾觀看或由我們的業務合作夥伴進行轉播。</p>
+			<p class="common-weight">● 與我們的關聯公司。</p>
+			<p class="common">我們可能會與寶瓶匯系列公司的實體共享信息。</p>
+			<p class="common-weight">● 與第三方。</p>
+			<p class="common">我們可能會與以下第三方分享您的信息：</p>
+			<p class="common-weight">○ 與服務提供商，賣家和合作夥伴。</p>
+			<p class="common">我們可能會與代表我們服務的服務提供商，通過我們的服務提供商品的賣家以及提供服務和功能的商業夥伴分享有關您的信息。</p>
+			<p class="common-weight">○ 出於法律原因與第三方。</p>
+			<p class="common">如果我們合理地認為需要披露信息，我們可能會分享有關您的信息：</p>
+			<p class="common">■ 遵守任何有效的法律程序，政府要求或適用的法律，法規或法規。<br>
+			■ 遵調查，補救或執行潛在服務條款違規。<br>
+			■ 保護我們，我們的用戶或其他人的權利，財產和安全。<br>
+			■ 檢測並解決任何欺詐或安全問題。</p>
+			<p class="common-weight">○ 作為兼併或收購的第三方。</p>
+			<p class="common">如果寶瓶匯公司參與合併，資產出售，融資，清算或破產，或將所有或部分業務收購給另一家公司，我們可能會在交易結束之前和之後與該公司分享您的信息。</p>
+			<p class="common">我們也可能與第三方分享，例如廣告客戶 - 聚合的，非個人身份的或未識別的信息。</p>
+		</div>
+		<h1 class="my-title">第三方內容和集成</h1>
+		<div class="container">
+			<p class="common">這些服務還可能包含第三方鏈接和搜索結果，包括第三方集成，或提供聯合品牌或第三方品牌服務。通過這些鏈接，第三方整合以及聯合品牌或第三方品牌服務，您可能會直接向第三方，我們或兩者提供信息（包括個人信息）。您承認並同意我們對第三方如何收集或使用您的信息概不負責。一如往常，我們鼓勵您查看您訪問或使用的每個第三方網站或服務的隱私政策，包括通過我們的服務與您進行互動的第三方。</p>
+		</div>
+		<h1 class="my-title">其他人提供的分析和廣告服務</h1>
+		<div class="container">
+			<p class="common">我們可能會讓其他公司在我們的服務中使用cookies，網絡信標和類似的跟踪技術。這些公司可能會隨著時間的推移和不同的服務收集有關您如何使用我們的服務和其他網站和在線服務的信息。此信息可用於分析和跟踪數據，確定某些內容的受歡迎程度，並更好地了解您的在線活動。此外，一些公司可能會使用我們服務收集的信息，代表我們或其他公司（包括第三方網站和應用）提供有針對性的廣告。</p>
+		</div>
+		<h1 class="my-title">我們保留您的內容多久</h1>
+		<div class="container">
+			<p class="common">除了藝術重繪濾鏡之外，我們的其餘服務可能會使用更長時間的內容，這意味著這些服務可能會遵循不同的刪除協議。我們永久保留您的LIVE/LIFE直到您手段刪除或者內容涉嫌違規強制刪除。</p>
+			<p class="common">最後，這很重要，您應該明白，看到您提供的內容的用戶可以使用任何數量的技術來進行保存：屏幕截圖，應用內功能或任何其他圖像捕獲技術。與任何數字信息一樣，也可能有人可以通過法律訪問消息或者在設備的臨時存儲中找到它們。請記住，雖然我們的系統旨在自動執行我們的刪除操作，但我們不能保證在特定時間段內刪除。如果我們收到有效的法律程序，要求我們保留內容，或者我們收到濫用或其他違反服務條款的報告，我們可能需要暫停這些刪除操作。最後，我們還可以在有限的時間內或法律要求的情況下保留備份中的某些信息。</p>
+		</div>
+		<h1 class="my-title">控制您的信息</h1>
+		<div class="container">
+			<p class="common">我們希望您控制您的信息，因此我們為您提供以下工具。</p>
+			<p class="common-weight">● 訪問和更新。</p>
+			<p class="common">我們努力讓您訪問和更新我們對您的大部分個人信息。對於我們將要適應的要求有限制。我們可能會拒絕一些請求，其中包括，例如，該請求會影響其他用戶的隱私，需要與該請求不成比例的技術性工作重複或非法。您可以訪問應用程序的“設置”頁面，直接在應用程序中訪問和更新大部分的基本帳戶信息。如果您需要訪問，更新或刪除我們可能擁有的其他個人信息，您可以在此處提出請求。由於您的隱私對我們很重要，因此我們可能會要求您驗證您的身份或提供其他信息，才能讓您訪問或更新您的個人信息。我們將嘗試免費更新和訪問您的信息，但如果我們需要不成比例的工作，我們可能會收取費用。我們當然會在遵守您的要求之前披露費用。</p>
+			<p class="common-weight">● 撤銷權限 。</p>
+			<p class="common">如果您改變主意，我們正在從您已經同意的某些來源（例如您的電話簿或位置服務）收集信息的能力，只要您的設備提供這些選項，您可以通過更改設備上的設置來撤銷同意。當然，如果這樣做，某些服務可能會失去完整的功能。</p>
+			<p class="common-weight">● 帳戶刪除 。</p>
+			<p class="common">雖然我們希望您仍然是一個終身用戶，如果由於某些原因您想要刪除您的帳戶，只需到這裡。如果您要求刪除您的帳戶，則在我們從我們的服務器中刪除您的信息之前，您最多需要30天時間才能恢復帳戶。在此期間，您的帳戶將不會顯示給其他用戶。</p>
+			<p class="common-weight">● 廣告偏好 。</p>
+			<p class="common">我們會嘗試向您展示我們認為與您的興趣相關的廣告。如果您想修改我們和我們的廣告合作夥伴用於選擇這些廣告的信息，請點擊此處了解可用的選項。</p>
+			<p class="common-weight">● 與其他用戶通信 。</p>
+			<p class="common">對我們來說，您對於與您溝通的人員保持控制也很重要。這就是為什麼我們在“設置”中建立了一些工具，讓您可以指出，您希望看到自己的帖子，您是否希望從您的朋友或所有用戶接收消息，以及是否希望阻止另一個用戶再次與您聯繫。</p>
+		</div>
+		<h1 class="my-title">中國以外的用戶</h1>
+		<div class="container">
+			<p class="common">雖然我們歡迎來自世界各地的用戶，但請記住，無論您居住地點或何地使用我們的服務，您的信息可能在寶瓶匯家族公司內共享。這意味著我們可能會收集您的個人信息，將其轉移到中國和其他居住國以外的其他國家/地區，並將其存儲和處理。</p>
+		</div>
+		<h1 class="my-title">孩子</h1>
+		<div class="container">
+			<p class="common">我們的服務不是為了 - 我們不會將他們引導到13歲以下的任何人。這就是為什麼我們不會故意從13歲以下的任何人收集個人信息的原因。</p>
+		</div>
+		<h1 class="my-title">修訂隱私政策</h1>
+		<div class="container">
+			<p class="common">我們可能會不時更改本隱私政策。但是，當我們這樣做的時候，我們會以某種方式讓你知道。有時，我們會通過修改我們網站和移動應用程序上提供的隱私政策頂部的日期來通知您。其他時候，我們可能會向您提供其他通知（例如向我們網站的主頁添加聲明或向您提供應用內通知）。</p>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var hhh = window.screen.height,
+			www = window.screen.width;
+		var headerH = '65px';
+		apiready = function(){
+			// 刘海屏适配
+			if(hhh/www > 2){
+				$api.css($api.dom('.eng-privacy'), 'border-top:89px solid #efefef;');
+				$api.css($api.dom('.zho-privacy'), 'border-top:89px solid #efefef;');
+				headerH = 89+'px';
+				$api.css($api.dom('.bg'), 'height:94px');
+			}
+			api.addEventListener({
+				name: 'swiperight'
+			}, function() {
+				api.closeWin({
+					animation: {
+						type: "push", //动画类型（详见动画类型常量）
+						subType: "from_left", //动画子类型（详见动画子类型常量）
+						duration: 300 //动画过渡时间，默认300毫秒
+					}
+				});
+			});
+			api.openFrame({
+				name: "header",
+				url: "widget://html/nav/header.html",
+				rect: {
+					x: 0,
+					y: 0,
+					w: "auto",
+					h: headerH 
+				},
+				pageParam: {
+					onlyLeft: true
+				}
+			});
+			var language = $api.getStorage("language"),
+				chinese = $api.dom("#zho"),
+				english = $api.dom("#eng");
+			if(language == "zho"){
+				$api.css(english, "display:none");
+				$api.css(chinese, "display:block");
+			};
+		};	
+	</script>
+</body>
+</html>

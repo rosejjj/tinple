@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>guide3</title>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+		}
+		body{
+			width:100vw;
+			height:100vh;
+			animation:bganimation 1s linear 1s 1 normal;
+			-webkit-animation: bganimation 1s linear 1s 1 normal;
+			-ms-animation: bganimation 1s linear 1s 1 normal;
+			-o-animation: bganimation 1s linear 1s 1 normal;
+			-moz-animation: bganimation 1s linear 1s 1 normal;
+			visibility: hidden;
+		}
+		.bg{
+			width:100vw;
+			height:100vh;
+			background-color:#000;
+			opacity: 0.8;
+		}
+		.box{
+			width:100vw;
+			position: fixed;
+			top:0;
+		}
+		.window{
+			width:23.94vw;
+			height:13.3vw;
+			position: absolute;
+			top:4.52vw;
+			left:15.69vw;
+			background-color:#fff;
+			border-radius: 1.33vw;
+			font:3.99vw/13.3vw Arial;
+			font-weight: bold;
+			text-align: center;
+		}
+		.window span{
+			border-bottom:2px solid #f381a3;
+		}
+		.arrow{
+			position: absolute;
+			top:20.4vw;
+			left:7.45vw;
+			width:10.64vw;
+			height:10.64vw;
+			background:url(../../icon/guide/arrow1.png) no-repeat;
+			background-size:contain;
+			transform: rotate(40deg);
+		}
+		.content{
+			position: absolute;
+			left:16.22vw;
+			top:33.24vw;
+			width:auto;
+			font:3.99vw/5.85vw Arial;
+			font-weight: bold;
+			color:#fff;
+		}
+		.content>p>span{
+			color:#f381a3;
+		}
+		.buttom{
+			position: fixed;
+			bottom:10.64vw;
+			left:50%;
+			margin-left:-29.655vw;
+			width:59.31vw;
+			height:10.64vw;
+			border:2px solid rgba(255,255,255,1);
+			border-radius: 7.99vw;
+			font:3.99vw/10.64vw Arial;
+			font-weight: bold;
+			text-align: center;
+			color:#fff;
+		}
+		@keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 1;
+			}
+		}
+		@-webkit-keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 1;
+			}
+		}
+		@-ms-keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 1;
+			}
+		}
+		@-o-keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 1;
+			}
+		}
+		@-moz-keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 1;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="bg"></div>
+	<div class="box">
+		<div class="window"><span>Function</span></div>
+		<div class="arrow"></div>
+		<div class="content">
+			<p><span>Function list </span>page：</p>
+			<p>（ Here are a variety of special functions ）</p>
+			<p><span>·Translation System</span></p>
+			<p><span>·Numerology</span></p>
+			<p><span>·Daily Divination</span></p>
+			<p><span>·Tarot Dating</span> (Open daily from 20:00-23:00)</p>
+		</div>
+	</div>
+	<div class="buttom">G E T</div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript">
+	var hhh=window.screen.height;
+    var www=window.screen.width;
+	apiready = function(){
+		// 适应刘海屏
+		if(hhh/www > 2){
+			$api.css($api.dom('.box'), 'top:25px;');
+			$api.css($api.dom('.buttom'), 'bottom:19.64vw');
+		}
+		setTimeout(function(){
+			$api.css($api.dom('body'), 'visibility:visible;');
+		},1100);
+	    if($api.getStorage('language')=='zho'){
+	    	$api.html($api.dom('.content'), '<p><span>特 色 功 能 列 表 </span>頁：</p><p>（ 各 種 特 色 功 能 都 會 在 這 裏 ）</p><p><span>· 内 置 的 即 時 翻 譯 系 統</span></p><p><span>· 數 秘 術</span></p><p><span>· 每 日 一 占</span></p><p><span>· 塔 羅 匹 配</span>（ 每 天 20 -  23 点 开 放 ）</p>');
+	    	$api.html($api.dom('.buttom'), '好 的');
+	    	$api.html($api.dom('.window'), '<span>功 能</span>');
+	    }
+	    $api.addEvt($api.dom('.buttom'), 'click',function(){
+	    	api.openFrame({
+	    	    name: 'guide4',
+	    	    url: 'widget://html/guide/guide4.html',
+	    	    rect: {
+	    	        x: 0,
+	    	        y: 0,
+	    	        w: 'auto',
+	    	        h: 'auto'
+	    	    },
+	    	    pageParam: {
+	    	        name: 'value'
+	    	    }
+	    	});
+	    	api.closeFrame({
+	    	    name: 'guide3'
+	    	});
+	    });
+	}
+	    
+</script>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style type="text/css">
+  *{
+    margin: 0;
+    padding: 0;
+  }
+  .mask{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(34, 34, 34, .7);
+    /*opacity: 1;*/
+    z-index: 2;
+  }
+  #pop{
+    position: relative;
+    top: 30%;
+    margin: 0 auto;
+    height: 250px;
+    width: 78.46vw;
+    background: white;
+    border-radius: 20px;
+    z-index: 3;
+  }
+  #pop-p{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height:250px;
+    width: 78.46vw;
+    text-align: center;
+    font-weight: bold;
+    /*visibility: hidden;*/
+    z-index: 999;
+  }
+  .error{
+    background: #EFEFEF;
+    height: 100px;
+    font-size: 15px;
+    color: #AAA;
+
+  }
+  .second,.third{
+    font-size: 25px;
+    border-top: 1px solid #D0D0D0;
+  }
+  .first{
+    height: 40px;
+    color: #AAA;
+  }
+  .again{
+    position: relative;
+    top: 10px;
+    font-weight: bold;
+    height: 40px;
+    width: 66%;
+    background: #F381A3;
+    border-radius: 35px;
+    color: white;
+    outline: none;
+    border: none;
+    font-size: 15px;
+  }
+  .need{
+    position: relative;
+    top: -5px;
+    color: #AAA;
+    font-size: 12px;
+  }
+  .head{
+    height: 50px;
+  }
+  </style>
+</head>
+<div class="mask">
+  <div id="pop" class="alert-focus" >
+      <table id="pop-p" >
+          <tr>
+            <td class="head">(°ー°〃)</td>
+          </tr>
+          <tr>
+            <td class="error">
+            <span class="note">There seems to be a little problem:</span><br/>
+            <span class="alert-focus-text"></span>
+            </td>
+          </tr>
+          <tr>
+            <td><button class="again" type="submit"></button></td>
+          </tr>
+          <tr>
+            <td><span class="need">Cancel</span></td>
+          </tr>
+      </table>
+    </div>
+  </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/md5.js"></script>
+<script type="text/javascript" src="../../script/jmessage-sdk-web.2.5.0.min.js"></script><!--极光SDK-->
+<script type="text/javascript" src="../../json/api.json"></script>
+<script type="text/javascript" src="../../json/router.json"></script>
+<script type="text/javascript" src="../../json/global.json"></script>
+<script type="text/javascript" src="../../script/jquery-3.1.0.min.js"></script>
+<script src="../../script/public.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../script/StackBlur.js" type="text/javascript" charset="utf-8"></script>
+<script  type="text/javascript">
+if($api.getStorage("language") == "zho") {
+  $api.text($api.dom(".note"), "好 像 出 現 了 一 點 小 問 題 :");
+  $api.text($api.dom(".need"), "取 消");
+}
+     apiready=function(){
+          $api.html($api.dom(".alert-focus-text"), api.pageParam.data);
+          $api.text($api.dom(".again"), api.pageParam.value);
+          $api.text($api.dom(".need"), api.pageParam.none);
+          $('.again').click(function(event) {
+            // alert(api.pageParam.statu);
+            if(api.pageParam.statu==1){
+              //接受来至群聊页面的弹出警告，是不再该群的警告，并发送事务通知聊天列表，并关掉群聊页面
+              api.sendEvent({
+                  name: 'loginIM3',
+                  extra: {
+                      key1: api.pageParam.gid
+                  }
+              });
+            api.closeWin({
+            });
+            }
+                  api.closeFrame({
+
+                  });
+
+
+          });
+          $('.need').click(function(event) {
+
+                  api.closeFrame({
+
+                  });
+
+
+          });
+
+
+
+
+
+     }
+
+
+</script>
+</html>

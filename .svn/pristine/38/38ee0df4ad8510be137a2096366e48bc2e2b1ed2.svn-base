@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>guide7</title>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+		}
+		body{
+			width:100vw;
+			height:100vh;
+			animation:bganimation 1s linear 1s 1 normal;
+			-webkit-animation: bganimation 1s linear 1s 1 normal;
+			-ms-animation: bganimation 1s linear 1s 1 normal;
+			-o-animation: bganimation 1s linear 1s 1 normal;
+			-moz-animation: bganimation 1s linear 1s 1 normal;
+			visibility: hidden;
+		}
+		.bg{
+			width:100vw;
+			height:100vh;
+			background-color:#000;
+			opacity: 0.8;
+		}
+		.box{
+			position: fixed;
+			top:0;
+			width:100vw;
+		}
+		.window{
+			position: absolute;
+			top:4.52vw;
+			right:16.76vw;
+			width:23.94vw;
+			height:13.3vw;
+			background-color:#fff;
+			border-radius: 1.33vw;
+			font:3.99vw/13.3vw Arial;
+			font-weight: bold;
+			text-align: center;
+			color:#000;
+		}
+		.window>span{
+			border-bottom:2px solid #f381a3;
+		}
+		.arrow{
+			position: absolute;
+			top:20.21vw;
+			left:52.93vw;
+			width:10.64vw;
+			height:10.64vw;
+			background:url(../../icon/guide/arrow2.png) no-repeat;
+			background-size:contain;
+			transform: rotate(96deg);
+		}
+		.content{
+			width:65vw;
+			font:3.99vw/5.85vw Arial;
+			font-weight: bold;
+			color:#fff;
+			margin:0 auto;
+			margin-top:28vw;
+		}
+		.content>p:nth-child(2){
+			width:75vw;
+		}
+		.content>p:nth-child(1)>span{
+			color:#f381a3;
+		}
+		.content>p:nth-child(2)>span{
+			border-bottom:2px solid #fff;
+		}
+		.content>p:nth-child(3){
+			margin-top:56vw;
+		}
+		.arrow2{
+			position: absolute;
+			bottom:18vw;
+			right:9.33vw;
+			width:10.64vw;
+			height:10.64vw;
+			background:url(../../icon/guide/arrow1.png) no-repeat;
+			background-size:contain;
+			transform: rotate(-147deg);
+		}
+		.joinbox{
+			margin-left:31.94vw;
+			margin-top:17.64vw;
+			width:65.16vw;
+			height:13.3vw;
+			background-color: #fff;
+			border-radius: 1.33vw;
+			text-align: center;
+			padding-top:2.66vw;
+			box-sizing: border-box;
+		}
+		.join{
+			margin-left:3.06vw;
+			width:59.04vw;
+			height:7.98vw;
+			font:3.19vw/7.98vw Arial;
+			font-weight: bold;
+			color:#fff;
+			text-align: center;
+			background-color:#000;
+			border-radius: 13.3vw;
+		}
+		.buttom{
+			position: fixed;
+			bottom:10.64vw;
+			left:50%;
+			margin-left:-29.655vw;
+			width:59.31vw;
+			height:10.64vw;
+			border:2px solid rgba(255,255,255,1);
+			border-radius: 7.99vw;
+			font:3.99vw/10.64vw Arial;
+			font-weight: bold;
+			text-align: center;
+			color:#fff;
+		}
+		@keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 1;
+			}
+		}
+		@-webkit-keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 1;
+			}
+		}
+		@-ms-keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 1;
+			}
+		}
+		@-o-keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 1;
+			}
+		}
+		@-moz-keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 1;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="bg"></div>
+	<div class="box">
+		<div class="window"><span>Groups</span></div>
+		<div class="arrow"></div>
+		<div class="content">
+			<p><span>Open Groups</span> list：</p>
+			<p>（ <span>Free to enter</span> any of the groups ~ ）</p>
+			<p>Click on "JOIN IN" to join the group</p>
+			<div class="arrow2"></div>
+		</div>
+		<div class="joinbox"><div class="join">J O I N &nbsp; I N</div></div>
+		
+	</div>
+	<div class="buttom">G E T</div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript">
+	var www = window.screen.width;
+	var hhh = window.screen.height;
+	apiready = function(){
+		if(hhh/www > 2){
+			$api.css($api.dom('.box'), 'top:25px;');
+			$api.css($api.dom('.buttom'), 'bottom:19.64vw');
+		}
+		setTimeout(function(){	
+			$api.css($api.dom('body'), 'visibility:visible;');
+		},1100);
+	    if($api.getStorage('language')=='zho'){
+	    	$api.html($api.dom('.window'), '<span>群 組</span>');
+	    	$api.html($api.dom('.buttom'), '知 道 了');
+	    	$api.html($api.dom('.join'), '立 即 參 與');
+	    	$api.html($api.dom('.content'), '<p><span>開 放 性 群 組</span> 列 表：</p><p>（ 全 部 群 都 可 以 <span>任 意 進</span> 喔 ~ ）</p><p>點 擊 “ 加 入 ” 即 可 進 入 群 組 噢</p><div class="arrow2"></div>');
+	    }
+	    $api.addEvt($api.dom('.buttom'), 'click', function(){
+	    	api.openFrame({
+	    	    name: 'guide8',
+	    	    url: 'widget://html/guide/guide8.html',
+	    	    rect: {
+	    	        x: 0,
+	    	        y: 0,
+	    	        w: 'auto',
+	    	        h: 'auto'
+	    	    },
+	    	    pageParam: {
+	    	        name: 'value'
+	    	    }
+	    	});
+	    	api.closeFrame({
+	    	    name: 'guide7'
+	    	});
+	    });
+	}
+</script>
+</html>

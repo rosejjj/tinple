@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+  <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+  <style type="text/css">
+  html{
+    background: #EFEFEF;
+  }
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    #wrap{
+      position: relative;
+      height: 100%;
+      width: 100%;
+      background: #EFEFEF;
+    }
+    .top{
+      position: absolute;
+      top: 0;
+      height: 65px;
+      width: 100%;
+      background: white;
+      text-align: center;
+      line-height: 87px;
+      letter-spacing: 4px;
+      font-weight: bold;
+      font-size: 15px;
+    }
+    .top img{
+      position: absolute;
+      top: 28px;
+      left: 10px;
+      height: 30px;
+      width: 30px;
+    }
+    #middle{
+      position: absolute;
+      top: 30px;
+      width: 100%;
+      height: 20%;
+      margin: 40px auto;;
+      text-align: center;
+    }
+   input[type=password]{
+      height: 50px;
+      width: 100%;
+      /*border-radius: 10px;*/
+      outline: none;
+      background: white;
+      margin: 0 auto;
+      color: black;
+      /*text-align: center;*/
+      font-weight: bold;
+      text-indent:20px;
+    }
+
+
+    .next{
+      margin-top: 10%;
+      background: #F381A3;
+    }
+    .save{
+      height: 50px;
+      width: 100%;
+      /*border-radius: 35px;*/
+      color: #F381A3;
+      outline: none;
+      font-weight: bold;
+      letter-spacing: 3px;
+      background: white;
+      margin-top: 5px;
+    }
+    .save:active{
+     opacity: 0.5
+   }
+   :input-placeholder{
+       font-size:15px;
+       font-weight: bold;
+       color: #aaa;
+   }
+   .zhuangtailan{
+    position: fixed;
+    top:0;
+    width:100vw;
+    height:25px;
+    background-color: #fff;
+    z-index: 20;
+   }
+   .zhe{
+     position: absolute;
+     top: 0px;
+     left: 5.3%;
+     height: 1px;
+     width: 89.4%;
+     background: #efefef;
+   }
+  </style>
+</head>
+<body>
+    <div class="zhuangtailan"></div>
+    <div id="wrap">
+      <div class="top right_text"><p class="hel">ACCOUNT</p>
+        <img src="../../icon/left.png" class="back">
+      </div>
+      <div class="content">
+              <table id="middle">
+                <tr>
+                  <td><input type="password" class="pass newPassA" placeholder="Please enter a new password"></td>
+                </tr>
+                <tr>
+                  <td style="position:relative;"><span class="zhe"></span><input type="password" class="pass newPassB" placeholder="Again"></td></td>
+                </tr>
+                <tr>
+                  <td><button class="save save_login"  type="submit">SAVE &amp; LOGIN</button></td>
+                </tr>
+              </table>
+     </div>
+   </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script src="../../script/jquery-3.1.0.min.js" type="text/javascript"></script>
+<script src="../../json/router.json" type="text/javascript"></script>
+<script src="../../script/public.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="../../json/api.json"></script>
+
+<script type="text/javascript">
+//点击关闭
+$(".back").click(function(){
+  api.closeFrame();
+})
+
+  var pas1,//密碼一
+    pas2,//密碼二
+    username;//賬戶
+  var warn_text = {
+    text1: "Please enter the password",
+    text2: "Inconsistency of ciphers",
+    text3: "The password should not be less than 6 bits",
+    text4: "<p class='toast-content'>“Server Connection Failed, <br/> Tinkle Service May Not Cover Your Area”</p>",
+    text5: "<p class='toast-content'>-1-<br/>“Please Check The Network Is Normal”</p><p class='toast-content'>-2-<br/>“Please Check Whether Tinkle Network Permission Is Disabled”</p>",
+    text8: "C H A N G E",
+    text9:"Two inputs need to be the same"
+  }
+  if($api.getStorage("language") == "zho") {
+    $api.attr($api.domAll(".pass")[0], "placeholder", "設 定 新 密 碼 ");
+    $api.attr($api.domAll(".pass")[1], "placeholder", "再 次 輸 入");
+    $api.text($api.dom(".hel"), "重 設 密 碼");
+    $api.text($api.dom(".save_login"), "保  存  & 登  陸");
+
+    var warn_text = {
+      text1: "請 輸 入 密 碼",
+      text2: "兩 次 輸 入 的 密 碼 不 一 樣？",
+      text3: "密 碼 不 能 少 於 6 位",
+      text4: "<p class='toast-content'>“服 務 器 連 接 失 敗 ，<br/> T i n k l e 的 服 務 可 能 還 沒 覆 蓋 您 所 在 的 地 區 ”</p>",
+      text5: "<p class='toast-content'>-1-<br/>“請 檢 查 網 絡 是 否 正 常”</p><p class='toast-content'>-2-<br/>“請 檢 查 是 否 禁 用 了 T i n k l e 的 網 絡 權 限”</p>",
+      text6 : "密 碼 修 改 成 功",
+      text7 : "密 碼 修 改 失 敗",
+      text8:"檢 查 下",
+      text9: "必 須 得 一 樣 噢"
+    }
+  }
+  var hhh = window.screen.height;
+  var www = window.screen.width;
+  apiready = function(){
+    if(hhh/www>2){
+      $api.css($api.dom('.top'), 'top:25px;');
+      $api.css($api.dom('#middle'), 'top:55px;');
+    }
+    // alert(api.pageParam['username']);
+    username = api.pageParam['username'];//賬戶
+    //向右滑关闭页面
+    api.addEventListener({
+      name: 'swiperight'
+    }, function(ret, err) {
+      back();
+    });
+    //隐藏register_index的Fram组
+    api.setFrameGroupAttr({
+      name: 'register',
+      hidden: true
+    });
+//			openPopup(warn_text.text1);
+  };
+
+  //彈窗
+  // function openPopup(data){
+  //   $api.html($api.dom(".alert-focus-text"), data);
+  //   $api.css($api.dom(".alert-focus"), "display:block");
+  //   $api.css($api.dom(".mask"), "display:block");
+  //   setTimeout(function(){
+  //     $api.css($api.dom(".alert-focus"), "display:none");
+  //     $api.css($api.dom(".mask"), "display:none");
+  //   },1000);
+  // }
+  function openPopup(data,value,none){
+    var UIChatBox = api.require('UIChatBox');
+    api.openFrame({
+        name: 'pop',
+        url: './pop.html',
+        rect: {
+            x: 0,
+            y: 0,
+            w: 'auto',
+            h: 'auto'
+        },
+        pageParam: {
+            data:data,
+            value:value,
+            none:none
+        }
+    }, function(ret, err) {});
+
+  }
+
+  //提示确认框
+  function openToast(data){
+    $api.html($api.dom(".toast-text"), data);
+    $('.toast').css('margin-top','-' + Number($(".toast").innerHeight()) / 2 +'px');
+    $api.css($api.dom(".toast"), "display:block");
+    $api.css($api.dom(".mask"), "display:block");
+  }
+
+
+    //修改密碼
+    $('.save_login').click(function(){
+//				alert(api.pageParam['username']);
+      pas1 = $('.newPassA').val();
+      pas2 = $('.newPassB').val();
+      if(pas1.length == 0 || pas2.length == 0){//密碼為空
+        openPopup(warn_text.text1,warn_text.text8,warn_text.text9);
+        return;
+      }
+      if(pas1 != pas2){//密碼不一致
+        openPopup(warn_text.text2,warn_text.text8,warn_text.text9);
+        return;
+      }
+      if(pas1.length < 6 ){//密碼少於6位
+        openPopup(warn_text.text3,warn_text.text8,warn_text.text9);
+        return;
+      }
+
+      api.ajax({
+        url:'http://api.baopinghui.com/app_tinUserinfoControllerC/forgetPassword',
+        method: 'post',
+        data: {
+          values: {
+            username: username,
+            password: pas2
+          }
+        }
+      }, function(ret, err) {
+        if(ret) {
+          if(ret['status']) {
+            openPopup(warn_text.text6,warn_text.text8,warn_text.text9);//修改密碼成功
+            login();
+          } else {
+            console.log('我是668行：'+JSON.stringify(ret));
+          }
+        } else {
+          openPopup(warn_text.text7,warn_text.text8,warn_text.text9);//修改密碼失敗
+          uploadError(err);
+        }
+      });
+    });
+
+    function login(){
+
+      open_loading();
+      api.ajax({
+        url: json['http'] + json['Login']['logon'],
+        method: 'post',
+        timeout : 15000,
+        data: {
+          values: {
+            "username": username,
+            "password": pas2,
+          }
+        },
+      }, function(ret, err) {
+      console.log(JSON.stringify(ret));
+        if(ret["status"] == 1) {
+          $api.setStorage('username',username);
+          ok_login();
+
+
+          $api.setStorage('id', ret["data"]['uiId']);
+
+          api.setFullScreen({
+            fullScreen : true
+          });
+          $api.setStorage('user_name', ret["data"]['username']);
+          $api.setStorage('token', ret["data"]['token']);
+
+          setTimeout(function() {
+            enterWin('index', 'chat/index.html');
+            api.closeWin({});
+          }, 3000);
+          return;
+        }
+
+        close_loading();
+        //错误码，数字类型。（0：连接错误、1：超时、2：授权错误、3：数据类型错误）
+        if(err.code == 0){
+          openToast(warn_text.text4,warn_text.text8,warn_text.text9);
+        }else if(err.code == 1){
+           openToast(warn_text.text4,warn_text.text8,warn_text.text9);
+        }
+
+        if(err["statusCode"] == 0) {//離線了~~~
+          console.log(JSON.stringify(err));
+          openPopup(warn_text.text6,warn_text.text8,warn_text.text9);
+        }
+
+        $api.css($api.dom("#logining"), "display:none");
+
+      });
+    }
+  function ok_login() {
+    // 重新清空缓存
+    $api.rmStorage('id');
+    $api.rmStorage('apId');
+    $api.rmStorage('avatar')
+    $api.rmStorage('fans')
+    $api.rmStorage('follwer')
+    $api.rmStorage('summary')
+    $api.rmStorage('popular')
+    $api.rmStorage('active')
+    $api.rmStorage('nickname')
+    $api.rmStorage('my_message')
+    $api.rmStorage('focus_message')
+    $api.rmStorage('user_name');
+    $api.rmStorage('beginDate');
+    $api.rmStorage('cover');
+
+    api.setFullScreen({
+      fullScreen: true
+    });
+
+  }
+
+
+//		打开loading页
+  function open_loading(){
+    api.openFrame({
+      name: 'loading',
+      url: 'widget://html/logon-register/loading.html',
+      vScrollBarEnabled: false,
+      slidBackEnabled: false,
+      animation: {
+        type: "fade", //动画类型（详见动画类型常量）
+        subType: "fade", //动画子类型（详见动画子类型常量）
+        duration: 900 //动画过渡时间，默认300毫秒
+      }
+    });
+  }
+//		关闭loading页
+  function close_loading(){
+    api.closeFrame({
+        name: 'loading'
+    });
+  }
+        //关闭Frame
+  function back(){
+    api.closeWin({
+
+    });
+
+
+  }
+</script>
+</html>

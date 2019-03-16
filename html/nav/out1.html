@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>主頁</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <script type="text/javascript" src="../../script/api.js"></script>
+	<script src="../../script/jquery-3.1.0.min.js"></script><!-- 引入jQuery -->
+	<script src="../../script/doT.min.js"></script><!-- 引入doT模板引擎 -->
+	<script src="../../script/masonry.pkgd.min.js"></script><!-- 引入jQuery瀑布流插件 -->
+	<script src="../../script/imagesloaded.pkgd.min.js"></script><!-- 引入瀑布流imagesloaded事件 -->
+  <script src="../../script/md5.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../script/nav.js"></script><!-- 引入通用导航栏 -->
+	<script src="../../script/public.js"></script><!-- 引入通用导航栏 -->
+	<style>
+  /*.box :nth-of-type(2n-1) {width: 10.81rem;height: 10.81rem;margin-left: 3.3%;margin-top: 3.3%;display: inline-block;float: left;
+  background-size: cover;background-position: center;}
+  .box :nth-of-type(2n) {width: 10.81rem;height: 10.81rem;margin-right: 3.3%;margin-top: 3.3%;display: inline-block;float: right;}*/
+  /*.box img{width: 200%;height:200%; }*/
+  html,body{
+    background: #efefef;
+  }
+
+  .box{height: 20.81rem;background-size: cover;background-position: center;width: 100%;
+  background-color:#EFEFEF;border-radius: 8px 8px 0px 0px;display: inline-block;}
+  /*.box:nth-of-type(2n+1){transform: translateY(-3.00rem);}*/
+  /*.box:nth-of-type(2n+1){transform: translateY(-3.00rem);}*/
+  /*.box:nth-of-type(1){width: 46%;height: 9.81rem;transform: translateY(0%);margin-top: 3.3%;}*/
+
+
+  .box>img{width: 30px;height: 30px;display: inline-block;margin: 5% 0% 0% 86%;}
+  /*.box:nth-of-type(7n+1){width: 93%;height: 21.62rem;margin-left:3.3%;}*/
+  /*.box:nth-of-type(7n+1)>img{width: 10%;height: 10%;margin: 5% 0% 0% 85%;}*/
+
+  .loading{
+    width: 18.62vw;
+    text-align: center;
+    height: 13.30vw;
+    position: fixed;
+    bottom: 2.66vw;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fff;
+    border-radius:2.66vw;
+    opacity: 0.5;
+  }
+  .loading img{
+    position: absolute;
+    bottom:2.66vw;
+    left:50%;
+    margin-left:-4vw;
+    width:8vw;
+    height:8vw;
+  }
+  .boxs{background: #ffffff;width: 94.1%;margin:2.6% -1.6% 0 2.9%;
+  border-radius: 8px;padding-bottom: 20px;position: relative;}
+  .touxiang{
+    width: 46px;
+    height: 46px;
+    background: #eeeeee;
+    border-radius: 50%;
+    border: 2.8px solid white;
+    position: relative;
+    left: 10px;
+    top: -2.75rem;
+    background-position: center;
+    background-size: cover;
+  }
+  .boxs >.title{font-size: 12px;display: block; margin:-32px 0 0 5.2%;
+  width:90%;}
+  .boxs >.title>p{    display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;}
+  .boxs >.title p:nth-of-type(2){color: #AAAAAA;font-weight: bold;margin-top: 8px;}
+  .boxs >.title p span{display: inline;}
+  .boxs >.title span:nth-of-type(1){font-weight: bold;}
+  .boxs .comments{margin: 3px 0 0 5.2%;font-size: 12px;}
+  .boxs .comments p{line-height: 26px;
+    display: -webkit-box;
+           -webkit-line-clamp: 1;
+           -webkit-box-orient: vertical;
+           overflow: hidden;}
+  .boxs .comments p span{display: inline;}
+  .boxs .comments p span:nth-of-type(1){font-weight: bold;display: inline;}
+  .boxs .comments .fanyi{color:#F381A3;font-weight: bold;margin-top: 5px;}
+  .boxs .huifu{margin-left: 5.2%;width:90%;height: 30px;display: flex;align-items: center;justify-content: space-between;margin-top: 8px;}
+  .boxs .huifutouxiang{background: #aaaaaa;background-position: center;background-size: cover;width: 20px;height: 20px;border-radius: 50%;margin-left: 10px;}
+  .boxs .huifu >div{width: 72%;background:#efefef ;border-radius: 35px;height: 30px;display: flex;align-items: center;}
+  .boxs .huifu >div input{width: 75%;margin-left: 10px;line-height: 26px;height: 26px;vertical-align: middle;margin-bottom: 3px;border:0;outline:0;}
+  .boxs .huifu span{display: inline-block;width: 30px;height: 30px;border-radius: 50%;display: flex;align-items: center;justify-content: center;
+  background: #efefef;}
+  .boxs .huifu span>img{width: 15px;height: 15px;display: inline-block;}
+  input::-webkit-input-placeholder{color:#aaaaaa;font-size: 12px;}
+  .boxs .bounceInUp{width: 30px!important;height: 20px!important;line-height: 20px;color: #F381A3;background: #efefef;text-align: center!important;font-weight: bold;font-size: 12px;
+  border-radius: 10px;position: absolute;left:0px;bottom: 35px;display: inline-block!important;}
+  /*.boxs .comments p span:nth-of-type(2){color: }*/
+  @keyframes rubberBand {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+
+  30% {
+    transform: scale3d(1.25, 0.75, 1);
+  }
+
+  40% {
+    transform: scale3d(0.75, 1.25, 1);
+  }
+
+  50% {
+    transform: scale3d(1.15, 0.85, 1);
+  }
+
+  65% {
+    transform: scale3d(0.95, 1.05, 1);
+  }
+
+  75% {
+    transform: scale3d(1.05, 0.95, 1);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.rubberBand {
+  animation: rubberBand 1.5s;
+}
+
+
+@keyframes bounceInUp {
+  from,
+  60%,
+  75%,
+  90%,
+  to {
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 1000px, 0);
+    transform: translate3d(0, 1000px, 0);
+  }
+
+  60% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, -20px, 0);
+    transform: translate3d(0, -20px, 0);
+  }
+
+  75% {
+    -webkit-transform: translate3d(0, 10px, 0);
+    transform: translate3d(0, 10px, 0);
+  }
+
+  90% {
+    -webkit-transform: translate3d(0, -5px, 0);
+    transform: translate3d(0, -5px, 0);
+  }
+
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.bounceInUp {
+  -webkit-animation: bounceInUp 1.0s;
+  animation: bounceInUp 1.0s;
+}
+
+@keyframes bounceIn {
+  from,
+  20%,
+  40%,
+  60%,
+  80%,
+  to {
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+
+  20% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1);
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+
+  40% {
+    -webkit-transform: scale3d(0.9, 0.9, 0.9);
+    transform: scale3d(0.9, 0.9, 0.9);
+  }
+
+  60% {
+    opacity: 1;
+    -webkit-transform: scale3d(1.03, 1.03, 1.03);
+    transform: scale3d(1.03, 1.03, 1.03);
+  }
+
+  80% {
+    -webkit-transform: scale3d(0.97, 0.97, 0.97);
+    transform: scale3d(0.97, 0.97, 0.97);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+ .bounceIn1{
+  -webkit-animation: bounceIn 2.0s;
+  animation: bounceIn 2.0s;
+}
+
+.bounceIn2 {
+  -webkit-animation: bounceIn 2.0s;
+  animation: bounceIn 2.0s;
+}
+
+
+
+	</style>
+</head>
+<body>
+  <div id="loadings" class="loading" style="z-index:-1;"><img src="../../icon/loading.gif" alt=""></div>
+  <div id="continer" style="background-color: #efefef;z-index:10;width:100vw;height:auto;">
+    <!-- <div class="box" onclick="" style="background-image:url('http://bin.baopinghui.com/?imageView2/0/w/1200')"></div>
+    <div class="box" onclick="" style="background-image:url('http://bin.baopinghui.com/?imageView2/0/w/1200')"></div>
+    <div class="box" onclick="" style="background-image:url('http://bin.baopinghui.com/?imageView2/0/w/1200')"></div>
+    <div class="box" onclick="" style="background-image:url('http://bin.baopinghui.com/?imageView2/0/w/1200')"></div>
+    <div class="box" onclick="" style="background-image:url('http://bin.baopinghui.com/?imageView2/0/w/1200')"></div>
+    <div class="box" onclick="" style="background-image:url('http://bin.baopinghui.com/?imageView2/0/w/1200')"></div>
+    <div class="box" onclick="" style="background-image:url('http://bin.baopinghui.com/?imageView2/0/w/1200')"></div>
+    <div class="box" onclick="" style="background-image:url('http://bin.baopinghui.com/?imageView2/0/w/1200')"></div> -->
+  </div>
+  <!-- <div class="" style="background-color:black;top:200px;width:10px;height:10px;position:absolute;right:0px;">
+  </div>
+  <div class="" style="background-color:black;top:200px;width:10px;height:10px;position:absolute;left:0px;"></div> -->
+  <div id class="loading" style="opacity:0">
+    <img src="../../icon/loading.gif"/ >
+  </div>
+</body>
+<script type="text/javascript">
+var img_url_num=[];
+var dyn_id_num=[];
+var post_type=[];
+var pop_num=[];
+var cover_num=[];
+var title_num=[];
+var avatar_num=[];
+var nickname_num=[];
+var comment_num=[];
+var ui_id_num=[];
+var from_nickname1=[];
+var from_nickname2=[];
+var from_nickname3=[];
+var content1=[];
+var content2=[];
+var content3=[];
+var kaiguan=true;
+var djj;
+
+//var num_i=[];
+var str="";
+var j=0;
+var k=0;
+var i;
+var z;
+var img_qian="http://bin.baopinghui.com/";
+var img_suo="?imageView2/0/w/350";
+var img_video="?vframe/jpg/offset/1/w/350";
+var restime=getRefreshTime();
+var rubberBand=document.getElementsByClassName('rubberBand')[0];
+
+// function abc(str){
+// 	if(str.indexOf(",")!=-1){
+// 		return str.substring(0,str.indexOf(","))
+// 	}else {
+// 		return str;
+// 	}
+// };
+
+apiready=function () {
+  var continer=$api.dom('#continer');
+  var loading=$api.dom('.loading');
+
+  // api.cancelAjax({
+  //     tag: 'publish'
+  // });
+  //删除帖子后传来修改信息成功-刷新页面
+        api.addEventListener({
+            name: 'pubuliu1_loader'
+        }, function(ret, err) {
+            window.location.reload();
+        });
+
+  api.ajax({
+      url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/userinfo',
+      method: 'post',
+      data: {
+          values: {
+              uiId: $api.getStorage('id'),
+              pageUiId: $api.getStorage('id')
+
+          }
+      }
+  },function(ret, err){
+      if (ret) {
+          //alert( JSON.stringify( ret ) );
+          me_ava=ret.data.avatar_url;
+          //alert(me_ava);
+      } else {
+          alert( JSON.stringify( err ) );
+      }
+  });
+
+
+  jiazai(0,500);
+  //定义下拉事件
+  api.setRefreshHeaderInfo({
+          visible: true,
+          loadingImg: 'widget://image/refresh.png',
+          bgColor: '#efefef',
+          textColor: '#aaa',
+          textDown: 'Ready to refresh',
+          textUp: 'Ready to refresh',
+          textLoading:'Ready to refresh',
+          showTime: false
+  }, function(ret, err){
+        setTimeout(function(){
+          window.location.reload();
+          api.refreshHeaderLoadDone();
+        },500)
+  // api.ajax({
+  //     url: "http://api.baopinghui.com/app_dynamicCover/findPostByMyFocusAndMeAll",
+  //     method: 'POST',
+  //     data: {
+  //         values: {
+  //           uiId:$api.getStorage("id")
+  //         }
+  //     },
+  // },function(ret, err){
+  //   length=ret.data.list.length;
+  //   for(let i=0;i<length;i++){
+  //     api.ajax({
+  //       url: "http://api.baopinghui.com/app_dynamicCover/findPostInfo?id=" + ret.data.list[i].dyn_id,
+  //           method: 'post',
+  //       }, function(ret, err) {
+  //               console.log(1);
+  //       });
+  //   }
+  // });
+
+  });
+// 监听out传过来删除信号
+  api.addEventListener({
+      name: 'deletett'
+  }, function(ret, err) {
+      deletepostt(ret.value.testId,ret.value.postId);
+  });
+  
+  //定义左滑事件
+  api.addEventListener({
+      name:'swipeleft'
+  }, function(ret, err){
+    api.closeFrame({
+        name: 'pubuliu_'
+    });
+    api.sendEvent({
+        name: 'toright'
+    });
+
+  });
+  //alert('进来了')
+  api.addEventListener({
+      name: 'scrolltobottom',
+      extra:{
+        threshold:0
+      }
+  }, function(ret, err){
+           $api.css(loading,'opacity:0.8;z-index:20;');
+           setTimeout(function(){
+             $api.css(loading,'opacity:0');
+           },2000);
+           //alert(i);
+           jiazai(i,500)
+          //  if(j>=length-6){
+          //    alert('全部内容加载完毕！~');
+          //   //  api.removeEventListener({
+          //   //      name: 'scrolltobottom'
+          //   //  });
+           //
+          //  }
+  });
+
+
+};
+
+function jiazai(x,y){
+  //alert("ssss"+x);
+  api.ajax({
+      url: "http://api.baopinghui.com/app_dynamicCover/findPostByMyFocusAndComment",
+      method: 'POST',
+      data: {
+          values: {
+            uiId:$api.getStorage("id"),
+            startIndex:x,
+            maxResult:5
+          }
+      },
+  },function(ret, err){
+    //img_url_num=[];
+    length=ret.data.list.length;
+    //alert(JSON.stringify(ret.data.list[0].commentlist[0].from_nickname));
+    for(let i=0;i<5;i++){
+
+      img_url_num.push(ret.data.list[i].cover_url.split(",")[0]);//
+      dyn_id_num.push(ret.data.list[i].dyn_id);
+      post_type.push(ret.data.list[i].post_type);
+      pop_num.push(ret.data.list[i].pop);
+      cover_num.push(ret.data.list[i].coverNum);
+       title_num.push(ret.data.list[i].title);
+       nickname_num.push(ret.data.list[i].nickname);
+       avatar_num.push(ret.data.list[i].avatar_url);
+       comment_num.push(ret.data.list[i].commentNum);
+       ui_id_num.push(ret.data.list[i].ui_id);
+       if(ret.data.list[i].commentlist.length==0){
+         from_nickname1.push("");
+         from_nickname2.push("");
+         from_nickname3.push("");
+         content1.push("");
+         content2.push("");
+         content3.push("");
+       }else if(ret.data.list[i].commentlist.length==1){
+         from_nickname1.push(ret.data.list[i].commentlist[0].from_nickname+' : ');
+         from_nickname2.push("");
+         from_nickname3.push("");
+         content1.push(ret.data.list[i].commentlist[0].content);
+         content2.push("");
+         content3.push("");
+       }else if(ret.data.list[i].commentlist.length==2){
+         from_nickname1.push(ret.data.list[i].commentlist[0].from_nickname+' : ');
+         from_nickname2.push(ret.data.list[i].commentlist[1].from_nickname+' : ');
+         from_nickname3.push("");
+         content1.push(ret.data.list[i].commentlist[0].content);
+         content2.push(ret.data.list[i].commentlist[1].content);
+         content3.push("");
+       }else{
+         from_nickname1.push(ret.data.list[i].commentlist[0].from_nickname+' : ');
+         from_nickname2.push(ret.data.list[i].commentlist[1].from_nickname+' : ');
+         from_nickname3.push(ret.data.list[i].commentlist[2].from_nickname+' : ');
+         content1.push(ret.data.list[i].commentlist[0].content);
+         content2.push(ret.data.list[i].commentlist[1].content);
+         content3.push(ret.data.list[i].commentlist[2].content);
+       }
+      //  if(ret.data.list[i].commentlist.length>0){
+       //
+      //   }
+          //  alert(JSON.stringify(ret.data.list[i].commentlist[0].from_nickname));
+
+      //  from_nickname2.push(ret.data.list[i].commentlist[1].from_nickname);
+      //  from_nickname3.push(ret.data.list[i].commentlist[2].from_nickname);
+
+      //  (function(i){
+       //
+       //
+      //    api.ajax({
+      //        url: 'http://api.baopinghui.com/app_topicComment/findTopicCommentByTopicIdAndTopicType',
+      //        method: 'post',
+      //        data: {
+      //            values: {
+      //                topicId: dyn_id_num[i],
+      //                topicType:post_type[i],
+      //                startIndex:0,
+      //                maxResult:3,
+      //                refreshTime:restime,
+      //            }
+      //        }
+      //    },function(ret, err){
+      //        if (ret.status==1) {
+      //            //alert( "成功"+JSON.stringify( ret ) );
+      //            comment_num.push(ret.data.commentNum);
+      //            //$api.append($api.dom('#continer'),temp);
+      //           //  console.log(dyn_id_num[i]);
+      //            //console.log(post_type[i]);
+      //            //console.log(restime);
+       //
+      //        } else {
+      //          //alert(JSON.stringify())
+      //            comment_num.push(0);
+       //
+       //
+       //
+      //        }
+      //    });
+      //  }(i));
+    }
+    //alert(JSON.stringify(pop_num));
+    setTimeout(function(){
+      for(let i=x;i<x+5;i++){
+        //alert(JSON.stringify(pop_num)
+          (function(i){
+            var temp=`
+            <div class="boxs"><div class="box"  style="background-image:url(${img_qian+img_url_num[`${i}`]+`${img_suo}`})" onclick="openDetail(dyn_id_num[${i}],pop_num[${i}],cover_num[${i}])"><img src="../../icon/touming.png"></div>
+            <div class="touxiang" style="background-image:url(${img_qian+avatar_num[`${i}`]+`${img_suo}`})"></div>
+            <div class="title">
+            <p ><span class="cnm">${nickname_num[`${i}`]}</span> <span > : ${title_num[`${i}`]}</span></p>
+            <p >View all <span class="shengyu">${comment_num[`${i}`]}</span> comments</p>
+            </div>
+            <div class="comments">
+            <p ><span>${from_nickname1[`${i}`]}</span><span >${content1[`${i}`]}</span></p>
+            <p ><span>${from_nickname2[`${i}`]}</span><span >${content2[`${i}`]}</span></p>
+            <p ><span>${from_nickname3[`${i}`]}</span><span >${content3[`${i}`]}</span></p>
+            <p class="fanyi" onclick="nmb(this)">Translation</p>
+            </div>
+
+            <div class="huifu" >
+            <div>
+              <div class="huifutouxiang" style="background-image:url(${img_qian+`${me_ava}`+`${img_suo}`})"></div>
+              <form action="#">
+                <input type="number" style="display:none;"/>
+                <input type="text" name="" id="" dyn_id="${dyn_id_num[`${i}`]}" post_type="${post_type[`${i}`]}" placeholder="Add comment ..." onchange="diaonihei(this)">
+              </form>
+            </div>
+              <span onclick="openshare(ui_id_num[${i}],dyn_id_num[${i}],pop_num[${i}]);"><img src="../../icon/icon-more@3x2.png" alt="" /></span>
+              <span style="position:relative;"><img name="cnm" ui_id="${ui_id_num[`${i}`]}" dyn_id="${dyn_id_num[`${i}`]}" src="../../icon/a.png" alt="" onclick="dianzan(this)" /><div name="likenumm" style="display:none;">${pop_num[`${i}`]}</div></span>
+            </div>
+            </div>
+            `;
+            if($api.getStorage('language')=='zho'){
+              temp=temp.replace('placeholder="Add comment ..."','placeholder="添加评论 ..."');
+              temp=temp.replace('Translation','翻译');
+            }
+            if(post_type[i]=="imgs"){
+              temp=temp.replace("touming.png","imgs.png")
+            }else if(post_type[i]=="Video"){
+              temp=temp.replace('touming.png',"Video.png");
+              temp=temp.replace(`${img_suo}`,`${img_video}`);
+            };
+            api.ajax({
+                url: 'http://api.baopinghui.com/app_dynamicCover/checkPraise',
+                method: 'post',
+                data: {
+                    values: {
+                        praiseUid: $api.getStorage('id'),
+                        dynId:dyn_id_num[i]
+                    }
+                }
+            },function(ret, err){
+              document.getElementsByName('likenumm')[i].innerHTML=ret.data.like_num;
+              //alert(JSON.stringify(ret));
+                if(ret.data.flag==1){
+
+                  //temp=temp.replace("../../icon/a.png","../../icon/b.png");
+                  //alert(document.getElementsByName('cnm')[i-1]);
+                  document.getElementsByName('cnm')[i].src="../../icon/b.png";
+                  document.getElementsByName('cnm')[i].nextSibling.setAttribute("class","bounceInUp");
+                  //getElementsByName('name')
+                }
+            });
+
+            $api.append($api.dom('#continer'),temp);
+            if($api.html($api.dom('#continer'))!==""){
+              $api.css($api.dom("#loading"), 'opacity:0;z-index:-10;');
+            }
+            api.sendEvent({
+                name: 'yincangp',
+            });
+
+          }(i));
+
+      }
+    },1500)
+
+
+  });
+    api.addEventListener({
+        name: 'yincangp'
+    }, function(ret, err){
+      var shengyus=$('.shengyu').length;
+      var num=$('p').length;
+      // var zans=$('.cnm').length;
+      // //alert(zans);
+      // for(let i=0;i<zans;i++){
+      //   //alert($('.cnm').text());
+      //   if($(".cnm:eq("+i+")").text()=='undefined'){
+      //     //alert('zhixing');
+      //     $(".cnm:eq("+i+")").parent(".boxs").hide();
+      //   }
+      //
+      // }
+      for (let i = 0; i <shengyus; i++) {
+        //alert($(".shengyu:eq("+i+")").text());
+        if($(".shengyu:eq("+i+")").text()<3){
+
+          $(".shengyu:eq("+i+")").parent().hide();
+        }
+      }
+       for(let i=0;i<num;i++){
+
+         if($("p:eq("+i+")").text()===''){
+      //  alert( $("p:eq("+i+")").text());
+           $("p:eq("+i+")")[0].display="none";
+         }
+       }
+    });
+
+
+
+
+if(!i){i=5}else{i=i+5};
+}
+
+function openDetail(dyn_id,pop_num,cover_num){//打开帖子详情页
+
+  api.openWin({
+    name: "detail",
+    url: "widget://html/details/detail.html",
+    reload: true,
+    vScrollBarEnabled: false,
+    slidBackEnabled: false,
+    pageParam:{
+    postId: dyn_id,
+    //postId: "ce73f170a2d14d579514357d5327557a",
+    popNum: pop_num,
+    // tinNum: cover_num,
+    // summary: summary,
+    text: true
+  }
+  });
+};
+
+function getRefreshTime(){//定义刷新时间函数
+  var currentTime = new Date();
+  var year = currentTime.getFullYear(),
+    month = currentTime.getMonth() + 1 > 9 ? currentTime.getMonth() + 1 : "0" + (currentTime.getMonth() + 1),
+    today = currentTime.getDate() > 9 ? currentTime.getDate() : "0" + currentTime.getDate(),
+    hour = currentTime.getHours() > 9 ? currentTime.getHours() : "0" + currentTime.getHours(),
+    minute = currentTime.getMinutes() > 9 ? currentTime.getMinutes() : "0" + currentTime.getMinutes(),
+    second = currentTime.getSeconds() > 9 ? currentTime.getSeconds() : "0" + currentTime.getSeconds();
+  currentTime = year + "-" + month + "-" + today + " " + hour + ":" + minute + ":" + second;
+  return currentTime;
+};
+
+function dianzan(e) {
+  //alert(e.src);
+  if(e.src.substr(-5)=="b.png"){
+    api.toast({
+        msg: '你已赞过啦',
+        duration: 1000,
+        location: 'middle'
+    });
+  }else{
+    e.src="../../icon/b.png";
+    e.setAttribute("class","rubberBand");
+    //e.nextSibling.innerHTML=Number(e.nextSibling.innerHTML)+1;
+    //alert(JSON.stringify(e.parentNode.nextSibling));
+    e.parentNode.nextSibling.setAttribute("class","bounceInUp");
+  }
+
+
+  //alert(e.getAttribute("ui_id"));
+  //alert(e.getAttribute("dyn_id"));
+  api.ajax({
+      url: 'http://api.baopinghui.com/app_dynamicCover/praiseDyn_cover',
+      method: 'post',
+      data: {
+          values: {
+              uiId:e.getAttribute("ui_id"),
+              praiseUid:$api.getStorage('id'),
+              dynId:e.getAttribute("dyn_id")
+          }
+      }
+  },function(ret, err){
+      if (ret) {
+          //alert( "成功"+JSON.stringify( ret ) );
+      } else {
+          alert( "失败"+JSON.stringify( err ) );
+      }
+  });
+  setTimeout(function(){
+    api.ajax({
+              url: 'http://api.baopinghui.com/app_dynamicCover/checkPraise',
+              method: 'post',
+              data: {
+                  values: {
+                      praiseUid: $api.getStorage('id'),
+                      dynId:e.getAttribute("dyn_id")
+                  }
+              }
+          }, function(ret, err) {
+              if (ret) {
+                  e.parentNode.nextSibling.innerHTML=ret.data.like_num;
+              } else {
+                  console.log(JSON.stringify(err));
+              }
+          });
+  },500)
+  //alert(e.nextSibling);
+}
+
+function nmb(e) {
+  // if(kaiguan==false){
+  //   return
+  // }
+  pinglun_box=$api.closest(e,'.comments');
+  pinglun_boxs=$(e).parents(".comments");
+
+  pinglun1=$api.text($api.eq($api.eq(pinglun_box,1),2));
+ //var pinglun2=$api.text($api.eq(pinglun_box,2));
+  pinglun2=$(e).prev().prev().text();
+  pinglun3=$api.text($api.eq($api.eq(pinglun_box,3),2));
+  fabu=$api.text($api.eq($api.prev(pinglun_box),2));
+ $(e).parents(".comments").prev().children().eq(0).addClass('bounceIn1');
+ $(e).parents(".comments").children().addClass('bounceIn1');
+ $(e).parents(".comments").children().eq(3).removeClass('bounceIn1');
+ //$(e).parents(".comments").removeClass('bounceIn1');
+ setTimeout(function(){
+   $(e).parents(".comments").prev().children().eq(0).removeClass('bounceIn1');
+   $(e).parents(".comments").children().removeClass('bounceIn1');
+ },2200)
+ //alert(e.getAttribute('name'));
+ if(e.getAttribute('name')==null){
+   e.innerHTML="Original";
+   e.setAttribute('name','djb');
+   fanyis=[];
+   fanyihous=[];
+  fanyis.push(fabu,pinglun1,pinglun2,pinglun3);
+  var fanyyisbubian=[];
+
+  //  kaiguan=false;
+    for (let i = 0; i < 4; i++) {
+        let salt = (new Date).getTime();
+        let query= fanyis[i];
+        let q = encodeURIComponent(query);
+        let str1 ="20161226000034707"+query+salt+"i1XmNFcDa7_Z4i6jUSZA";
+        let sign = MD5(str1);
+
+          (function(i){
+            $.ajax({
+              url: 'http://api.fanyi.baidu.com/api/trans/vip/translate',
+              async:false,
+              type: 'POST',
+              data: {
+                q: query,
+                //appid: "20170419000045193",
+                appid: "20161226000034707",
+                salt: salt,
+                from: "auto",
+                to: "auto",
+                sign: sign
+              }
+            })
+            .done(function(data) {
+              //  alert(JSON.stringify(data));
+              if(data.error_code!="54001"&&data.error_code!="54000"){
+                fanyihous[i]=data.trans_result[0].dst;
+                // fanyihous[i]=data.trans_result[0].dst;
+              }else{
+                fanyihous[i]='';
+
+              }
+
+                //  fanyihous.push(data.trans_result[0].dst);
+            })
+            .fail(function(err) {
+              console.log(JSON.stringify(err));
+            })
+
+          })(i)
+  }
+}else{
+  for(let i = 0; i < 4; i++){fanyihous[i]=fanyis[i]}
+  e.removeAttribute('name');
+  if($api.getStorage('language')){
+    e.innerHTML="恢复原文";
+  }else{
+    e.innerHTML="Translation";
+  }
+
+}
+  // if(kaiguan==true){
+  //
+  //
+  // //kaiguan=false;
+  // }else{
+  //
+  //
+  // }
+
+
+//alert(JSON.stringify(fanyihous));
+
+if(fanyihous[1]!='')
+$api.text($api.eq($api.eq(pinglun_box,1),2),fanyihous[1]);
+  if(fanyihous[2]!='')
+$(e).prev().prev().html(fanyihous[2]);
+if(fanyihous[3]!='')
+$api.text($api.eq($api.eq(pinglun_box,3),2),fanyihous[3]);
+if(fanyihous[0]!='')
+$api.text($api.eq($api.prev(pinglun_box),2),fanyihous[0]);
+}
+
+//发布评论
+function pinglun(e){
+  var values = {
+    topicId: postId,//帖子id
+  topicType: tempType,//帖子类型
+  content: content,//回复内容
+  uiId: $api.getStorage('id')//评论人id
+  };
+  api.ajax({
+    url: "http://api.baopinghui.com/app_topicComment/createTopicComment",
+    method: "post",
+    data: {
+      values: values
+    }
+  }, function(ret, err){
+    if(ret){
+      //alert(ret["status"]);
+      api.sendEvent({
+          name: 'echo',
+          extra: {
+              key1: 'value1',
+              key2: 'value2'
+          }
+      });
+
+      if(ret["status"]){
+  // 			api.openFrame({//打开通用提示框
+      // 	name: "out",
+      // 	url: "widget://html/nav/out.html",
+      // 	rect: {
+      // 		x: 0,
+      // 		y: 0,
+      // 		w: "auto",
+      // 		h: "auto"
+      // 	},
+      // 	pageParam:{
+      // 		reply: true
+      // 	}
+      // });
+      var str = "",
+        newUl;
+      newUl = document.createElement("ul");
+      newUl.className = "list";
+      var replySomeone = "";
+      str += "<li><img onclick=\"openHome('" + testId + "')\" src='http://bin.baopinghui.com/" + $api.getStorage("avatar") + "?imageView2/0/w/100'><div class='comment-container' onclick=\"openReplyy('" +$api.getStorage("nickname") + "','" + testId + "')\"><h2>" + $api.getStorage("nickname") + "</h2><p>" + replySomeone + content + "</p></div><span class='comment-time'>" + getRefreshTime().slice(11,19) + "</span></li>";
+
+      $api.html(newUl, str);
+      $api.prepend(list, newUl.outerHTML);
+      };
+      return;
+    };
+    console.log(err);
+  });
+}
+//
+function diaonihei(e){
+  //alert($api.getStorage('nickname'));
+  //alert($(e));
+  $("input").keydown(function(event){
+    //alert(event.keyCode);
+     djj=event.keyCode;
+
+     if(djj==13&&e.value!=""){
+       e.blur();
+       var pinglun_boxs=$(e).parents('.huifu').prev();
+       //var pinglun_box=$api.closest(e,'.comments');
+       var values = {
+         topicId: e.getAttribute("dyn_id"),//帖子id
+       topicType: e.getAttribute("post_type"),//帖子类型
+       content: e.value,//回复内容
+       uiId: $api.getStorage('id')//评论人id
+       };
+       api.ajax({
+         url: "http://api.baopinghui.com/app_topicComment/createTopicComment",
+         method: "post",
+         data: {
+           values: values
+         }
+       }, function(ret, err){
+         if (ret) {
+           pinglun_boxs.children().eq(2).html(pinglun_boxs.children().eq(1).html())
+           pinglun_boxs.children().eq(1).html(pinglun_boxs.children().eq(0).html())
+           pinglun_boxs.children().eq(0).html('<p><span>'+$api.getStorage('nickname')+' : </span> <span> '+e.value+'</span></p>')
+           //alert('评论成功');
+           e.value="";
+         }else{
+           alert('shibaile')
+         }
+       });
+     }
+  });
+
+
+}
+function openshare(otherId,postId,popNum){
+  var testId = $api.getStorage('id');
+  var tinNum = 0;
+        if(testId === otherId){
+          api.openFrame({
+          name: "more",
+          url: "widget://html/nav/more(new).html",
+          rect: {
+            x: 0,
+            y: 0,
+            w: "auto",
+            h: "auto"
+          },
+          pageParam:{
+            deletePost: true,
+            otherId:otherId,
+            postId:postId,
+            popNum:popNum,
+            tinNum:tinNum,
+            pubuliu:1
+          }
+        });
+        }else{
+          api.openFrame({
+          name: "more",
+          url: "widget://html/nav/more(new).html",
+          rect: {
+            x: 0,
+            y: 0,
+            w: "auto",
+            h: "auto"
+          },
+          pageParam:{
+            otheridshare: true,
+            otherId:otherId,
+            postId:postId,
+            popNum:popNum,
+            tinNum:tinNum
+          }
+        });
+        };
+}
+function deletepostt(testId,postId){
+ api.ajax({
+   url: 'http://api.baopinghui.com/app_dynamicCover/removePost',
+   method: 'post',
+   data:{
+     values:{
+       uiId:testId,
+       dynId:postId
+     }
+   }
+ }, function(ret, err){
+   if(ret){
+     console.log("刪除成功");
+                 // return;
+   }else{
+     console.log(1);
+   }
+   console.log(123);
+   return;
+ });
+}
+</script>
+</html>

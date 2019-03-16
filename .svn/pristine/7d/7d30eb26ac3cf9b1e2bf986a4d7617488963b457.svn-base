@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+	    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+	    <title>title</title>
+	    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+	    <script src="../../json/api.json" type="text/javascript" charset="utf-8"></script>
+	    <script src="../../json/router.json" type="text/javascript" charset="utf-8"></script>
+
+	    <style>
+			/*通用样式*/
+	    	*{
+	    		margin: 0;
+	    		padding: 0;
+	    		box-sizing: border-box;
+				}
+	    	html,body {
+				width: 100%;
+				height: 100%;
+				background: #EFEFEF;
+			}
+			/*头部*/
+				header{
+					font-size: 15px;
+					position: fixed;
+					top:0;
+					left:0;
+					display:inline-block;
+					width:100vw;
+					height:18.67vw;
+					background: #efefef;
+					color:#101010;
+					/*box-shadow: 0 0 10px #36A5B2;*/
+					z-index:10000;
+					/*margin-bottom: 2*/
+				}
+				header .left{
+					position: absolute;
+					/*bottom:1vw;
+					left:8vw;*/
+					left: 35%;
+					bottom: 18%;
+					/*left:20px;*/
+					display:inline-block;
+					width:9vw;
+					height:9vw;
+					z-index:2;
+				}
+				/*header .center{
+					position: absolute;
+					bottom: 22%;
+					left: 50%;
+				transform:translate(-50%);
+
+					display:inline-block;
+					z-index:2;
+					font-weight: bold;
+				}*/
+				header .right{
+					position: absolute;
+					/*bottom:1vw;
+					right:8vw;*/
+					right: 40%;
+					bottom: 18%;
+					/*right: 20px;*/
+					display:inline-block;
+					width:9vw;
+					height:9vw;
+					z-index:2;
+				}
+
+			/*个人列表*/
+			/*.list{
+				position: relative;
+				margin: 24px auto;
+				width: 90%;
+				height: 120px;
+				line-height: 20px;
+				border-radius: 10px;
+				color: rgba(16, 16, 16, 1);
+				font-size: 14px;
+
+				box-shadow: 0px 0px 10px 3px rgba(170, 170, 170, 0.3);
+				font-family: Arial;
+			}
+			.list >h3{
+				position: absolute;
+				left:36%;
+				top: 12%;
+				width: 191px;
+				height: 26px;
+				line-height: 22px;
+				color: rgba(72, 72, 72, 1);
+				font-size: 15px;
+				text-align: left;
+				font-family: Arial;
+			}
+			.list >.miaoshu{
+				position: absolute;
+				left: 36%;
+				top: 35%;
+				width: 193px;
+				height: 26px;
+				line-height: 17px;
+				color: rgba(170, 170, 170, 0.5);
+				font-size: 12px;
+				text-align: left;
+				font-family: Arial;
+			}
+			.list_logo{
+				display: inline-block;
+				width: 29%;
+				margin: 12px 10px;
+				overflow: hidden;
+				height: 79%;
+				border-radius: 50%;
+				background-size: 100% 100%;
+			}
+
+			.list >.touxiang .personal {
+				position: absolute;
+				top: 65%;
+				width: 30px;
+				height: 30px;
+				border-radius: 80px;
+
+				border: 1px solid rgba(255, 255, 255, 1);
+				background-position:center;
+
+			}
+
+			.list >.touxiang .personal img{
+			}
+
+			.list >.touxiang .click_personal_list {
+				position: absolute;
+				left: 77%;
+				top: 70%;
+				width: 20px;
+				height: 20px;
+				transform: translateX(140%);
+			}*/
+
+			/*群组列表*/
+			.qun{
+				position: relative;
+				margin: 10px auto;
+				width: 94.6%;
+				height: 174px;
+				line-height: 20px;
+				border-radius: 10px;
+				color: rgba(16, 16, 16, 1);
+				font-size: 14px;
+				background: #ffffff;
+				/*text-align: center;*/
+				box-shadow: 0px 0px 10px 3px rgba(170, 170, 170, 0.3);
+				font-family: Arial;
+			}
+			.qun>.qun_logo{
+				display: inline-block;
+				width: 28%;
+				height: 88%;
+				margin-top: 3.1%;
+				border-radius: 10px;
+				margin-left: 15px;
+				background-color: #EFEFEF;
+				background-size: cover;
+				background-position: center;
+			}
+			.qun>h3{
+				position: absolute;
+				left:37%;
+				top: 8%;
+				width: 191px;
+				height: 26px;
+				line-height: 22px;
+				color: rgba(72, 72, 72, 1);
+				font-size: 15px;
+				text-align: left;
+				font-family: Arial;
+				color: #101010;
+			}
+			.qun .hot{
+				position: absolute;
+				left: 83%;
+				top: 6.5%;
+				width: 55px;
+				display: none;
+			}
+			.qun:nth-child(1) .hots{
+				color: #F381A3;
+			}
+			.qun:nth-child(2) .hots{
+				color: #F381A3;
+			}
+			.qun:nth-child(3) .hots{
+				color: #F381A3;
+			}
+			/*活动*/
+			/*.qun:nth-child(1){
+				position: relative;
+				background-color:#000;
+				color:#fff;
+			}*/
+			.imghot{
+				/*content: "";*/
+				position: absolute;
+				top:4vw;
+				left:5.32vw;
+				width:7.98vw;
+				height:5.32vw;
+				background:url(../../icon/guide/hot.gif) no-repeat;
+				background-size: contain;
+				display: none;
+			}
+/*			.qun:nth-child(1) h3{
+				position: relative;
+				color:#fff;
+			}*/
+			.hottt{
+				position: absolute;
+				/*right:0vw;*/
+				bottom:5px;
+				/*content: "";*/
+				width:6.65vw;
+				height:6.65vw;
+				background:url(../../image/fire.gif) no-repeat center;
+				background-size:contain;
+				/*vertical-align: middle;*/
+				background-color: #000;
+			}
+			.qun>p:nth-of-type(1){
+				position: absolute;
+				left: 38%;
+				top: 23%;
+				width: 193px;
+				height: 26px;
+				line-height: 17px;
+				color: rgba(170, 170, 170, 0.5);
+				font-size: 12px;
+				text-align: left;
+				font-family: Arial;
+			}
+			.qun>p:nth-of-type(2){
+				position: absolute;
+				left: 37%;
+				top: 33%;
+				width: 193px;
+				height: 26px;
+				line-height: 17px;
+				color: rgba(170, 170, 170, 0.5);
+				font-size: 12px;
+				text-align: left;
+				font-family: Arial;
+			}
+			.qun>p:nth-of-type(1) span{
+				width: 50px;
+				height: 26px;
+				line-height: 17px;
+				/*color: rgba(170, 170, 170, 0.5);*/
+				color:#aaaaaa;
+				font-size: 12px;
+				text-align: left;
+				font-family: Arial;
+			}
+			.qun>p:nth-of-type(2) span{
+				width: 50px;
+				height: 26px;
+				line-height: 22px;
+				color: #101010;
+				font-size: 15px;
+				text-align: left;
+				font-family: Arial;
+				font-weight: bold;
+			}
+			.qun >.touxiang .personal {
+				position: absolute;
+				left: 38%;
+				top: 53%;
+				width: 30px;
+				height: 30px;
+				overflow: hidden;
+				border-radius: 80px;
+				border: 1px solid rgba(255, 255, 255, 1);
+				display: inline-block;
+				background: black;
+				background-size: cover;
+				background-position: center;
+
+			}
+			.qun>p:nth-of-type(4) {
+				display: inline-block;
+				/*background:linear-gradient(to right, #d9afd9 0%,#97d9e1 100%);*/
+				background: #fff;
+				position: absolute;
+				left: 39%;
+				line-height: 26px;
+				text-align: center;
+				top: 77%;
+				width: 60%;
+				height: 30px;
+				border-radius: 50px;
+				/*box-shadow: 0px 2px 10px 1px rgba(170, 170, 170, 0.5);*/
+				font-size: 12px;font-family: Arial;
+				color:#000;
+				border:2px solid #000;
+				box-sizing: border-box;
+				font-weight: bold;
+				/*letter-spacing:5px;*/
+			}
+			/*活动*/
+			/*.qun:nth-child(1)>p:nth-of-type(4){
+				background-color:#000;
+				color:#fff;
+				border:2px solid #fff;
+			}*/
+			.loading{
+			    width: 18.62vw;
+			    text-align: center;
+			    height: 13.30vw;
+			    position: fixed;
+			    bottom: 2.66vw;
+			    left: 50%;
+			    transform: translateX(-50%);
+			    background: #fff;
+			    border-radius:2.66vw;
+			    opacity: 0.5;
+			  }
+			  .loading img{
+			    position: absolute;
+			    bottom:2.66vw;
+			    left:50%;
+			    margin-left:-4vw;
+			    width:8vw;
+			    height:8vw;
+			  }
+			.touxiang>div:nth-child(1){left:36%!important;}
+			.touxiang>div:nth-child(2){left:43%!important;}
+			.touxiang>div:nth-child(3){left: 50%!important;}
+			.touxiang>div:nth-child(4){left:57%!important;}
+			.touxiang>div:nth-child(5){left: 64%!important;}
+			.touxiang>div:nth-child(6){left: 71%!important;}
+			.touxiang>div:nth-child(7){left: 78%!important;}
+
+			.touxiang>span:nth-child(1){left:36%!important;}
+			.touxiang>span:nth-child(2){left:43%!important;}
+			.touxiang>span:nth-child(3){left: 50%!important;}
+			.touxiang>span:nth-child(4){left:57%!important;}
+			.touxiang>span:nth-child(5){left: 64%!important;}
+			.touxiang>span:nth-child(6){left: 71%!important;}
+			.touxiang>span:nth-child(7){left: 78%!important;}
+
+			/*.touxiang>span:nth-child(1){left:38.5%!important;}
+			.touxiang>span:nth-child(2){left:45.5%!important;}
+			.touxiang>span:nth-child(3){left: 52.5%!important;}
+			.touxiang>span:nth-child(4){left:59.5%!important;}
+			.touxiang>span:nth-child(5){left: 66.5%!important;}
+			.touxiang>span:nth-child(6){left: 73.5%!important;}
+			.touxiang>span:nth-child(7){left: 80.5%!important;}*/
+			.search_box{width: 100%;height: 40px;padding:0px 10px 10px 10px;background: #ffffff;position: fixed;z-index: 999;border-bottom:1px solid #efefef;}
+			.search_box p{background:#efefef;width:100%;height:30px;color: #aaaaaa;display:block;
+			border-radius: 5px;}
+			.search_box p img,.search_box p span{display: inline-block;}
+			.search_box p img{width: 15px;height: 15px;margin-top: 7.5px;margin-left: 10px;}
+			.search_box p span{font-size: 12px;transform: translate(12px,-3px);font-weight: bold;}
+
+
+
+
+	    </style>
+	</head>
+	<body>
+		<!-- <header>
+			<span class="left">Online</span>
+			<span class="right">groups</span>
+		</header> -->
+		<!-- <div class="list" onclick="click_personal_list()">
+			<div style="background:#EFEFEF;" class="list_logo">
+			</div>
+			<h3 id="wel">Chat Online</h3>
+			<p class="miaoshu">They are waiting for you say hello</p>
+			<p class="touxiang" id="touxiang">
+		  </p>
+		</div> -->
+		<!-- <input type="" name="" value="" placeholder=""> -->
+		<div class="search_box">
+			<p onclick="jump_search()"><img src="../../icon/search/search.png" alt=""><span class="serach">Search group name</span></p>
+		</div>
+		<div style="height:40px;"></div>
+		<section id="qun_list">
+		<div class="qun" v-for="(site,index) in sites"  tapmode="" v-bind:id="index">
+				<!-- <img :src="site.avatar" alt="asdassa" class="qun_logo"> -->
+				<div class="qun_logo" :style="{backgroundImage:'url(' + site.avatar + ')'}" ><span class="imghot"></span></div>
+
+			<div class="partytitle1"></div>
+			<h3 style="position:absolute;left:36%;" id="h3">#{{site.name}}</h3>
+			<img src="../../img/hot2.png" alt="" class="hot">
+			<div style="position:absolute;left:36%;top:25%" class="textt"></div>
+			<p style="position:absolute;left:36%;top:25%;" class="text1">
+				<span style="font-weight:700;">{{people}}</span>
+				<span style="font-weight:700;">{{Discussions}}</span>
+				<span style="display:inline-block;margin-left:29px;font-weight:700;" v-if="index<=9">{{Rank}}</span>
+			</p>
+			<p style="position:absolute;left:36%;margin-top:0.7vw;" class="text2">
+				<span>{{site.membersNumber}}</span>
+				<span class="discussions_num">{{site.active}}</span>
+				<span style="display:inline-block;margin-left:29px" class="hots" v-if="index<=9">{{count}}</span>
+			</p>
+			<p  class="touxiang" id="touxiang" >
+
+				<span :style="{backgroundImage:'url(' + sita.avatar + ')'}" class="personal"    v-for="sita in sitas[index]" :alt="sita" ></span>
+				<!-- <div style="background:red;" class="personal"    v-for="sita in sitas[index]" :alt="sita" ></div> -->
+				<!-- :src="sita.avatar+'?imageView2/0/w/100'" -->
+
+
+<!--
+				<img class="personal abc1"  src="../../img/test.png" alt="" v-for>
+				<img class="personal abc2"  src="../../img/test.png" alt="">
+				<img class="personal abc3"  src="../../img/test.png" alt="">
+				<img class="personal abc4"  src="../../img/test.png" alt="">
+				<img class="personal abc5"  src="../../img/test.png" alt=""> -->
+			</p>
+			<p v-if="site.membersNumber=='500+'" style="position:absolute;left:36%;font-size:12px;background:#000;color:#fff;" @click="openwin(site,index)" ref="openWinP" class="join">{{site.canjias}}</p>
+			<p v-if="site.membersNumber!='500+'" style="position:absolute;left:36%;font-size:12px;" @click="openwin(site,index)" ref="openWinP" class="join">{{site.canjias}}</p>
+		</div>
+		<div id class="loading" v-show="isLoading">
+			<img src="../../icon/loading.gif"/>
+		</div>
+		</section>
+
+
+
+
+	</body>
+	<script src="../../json/router.json"></script>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script src="../../script/md5.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../script/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../script/jquery-3.1.0.min.js" type="text/javascript"></script>
+	<!-- <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script> -->
+	<script src="../../script/base64.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../script/jmessage-sdk-web.2.5.0.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../script/public.js" type="text/javascript" charset="utf-8"></script>
+
+	<script type="text/javascript">
+
+	</script>
+	<script type="text/javascript">
+			var text1="Is entering the group";
+			var db;
+		apiready = function() {
+			db=api.require("db");
+			if ($api.getStorage("language") == "zho") {
+					// $api.text($api.dom("#wel"), "  在 线 找 人 聊");
+					// $api.text($api.dom(".miaoshu"), " 他 们 等 待 着 你 的 问 候 ");
+					qun_list.people="人 數";
+					qun_list.Discussions="討 論 數";
+					qun_list.Rank="排 名";
+					qun_list.JOININ="立 即 參 與";
+					$api.html($api.dom(".serach"), "搜 索 群 名");
+					text1="正在进入群组";
+			}
+			api.addEventListener({
+			    name: 'shuaxin'
+			}, function(ret, err){
+				window.location.reload();
+			});
+
+			api.setRefreshHeaderInfo({
+					visible: true,
+					loadingImg: 'widget://image/refresh.png',
+					bgColor: '#fff',
+					textColor: '#aaa',
+					textDown: 'Ready to refresh',
+					textUp: 'Ready to refresh',
+					textLoading:'Ready to refresh',
+					showTime: false
+			}, function(ret, err){
+				setTimeout(function(){
+					window.location.reload();
+					api.refreshHeaderLoadDone();
+				},500)
+			});
+
+
+			api.parseTapmode();
+			//绑定下拉是刷新群组事件
+			api.addEventListener({
+					name:'scrolltobottom',
+					extra:{
+							threshold:50//设置距离底部多少距离时触发，默认值为0，数字类型
+					}
+			}, function(ret, err){
+			  //j=j+2;
+				qun_list.isLoading=true;
+				setTimeout(function(){
+					qun_list.isLoading=false;
+				},800);
+				qunload();
+				qun_list.isLoading=true;
+
+			});
+
+
+			//进入页面是加载个人用户在线列表点击窗口
+		// 	jQuery.ajax({
+		// 		url: 'http://api.baopinghui.com/app_IntegrationController/userInfoList',
+		// 		type: 'post',
+		// 		async: true,
+		// 		data: {
+		// 				startIndex:0,
+		// 				maxResult:8
+		// 	 },
+		// 	 success:function (data) {
+		// 		 $(".list_logo").css("background-image",'url(http://bin.baopinghui.com/'+data.data[1].avatar_url+')');
+		// 		 $(".list_logo").css("background-size",'cover');
+		// 		 var avatar1=data.data[1].avatar_url;
+		// 		 var avatar2=data.data[2].avatar_url;
+		// 		 var avatar3=data.data[3].avatar_url;
+		// 		 var avatar4=data.data[4].avatar_url;
+		// 		 var avatar5=data.data[5].avatar_url;
+		// 		 var avatar6=data.data[6].avatar_url;
+		// 		 var suolue="?imageView2/0/w/100";
+		// 		 //alert(avatar1+  "gg"  +avatar2);
+  	// 				 $("#touxiang").append('<div class="personal" style="left:35%;background: url('+"http://bin.baopinghui.com/"+avatar1+"?imageView2/0/w/500"+');background-size:cover;"></div><div class="personal" style="left:42%;background: url('+"http://bin.baopinghui.com/"+avatar2+"?imageView2/0/w/100"+') ;background-size:cover;"></div>'+
+		// 			 												 '<div class="personal" style="left:35%;background: url('+"http://bin.baopinghui.com/"+avatar3+"?imageView2/0/w/500"+') ;background-size:cover;"></div><div  class="personal" style="left:42%;background: url('+"http://bin.baopinghui.com/"+avatar4+"?imageView2/0/w/100"+') ;background-size:cover;"></div>'+
+		// 														 	 '<div class="personal" style="left:35%;background: url('+"http://bin.baopinghui.com/"+avatar5+"?imageView2/0/w/500"+') ;background-size:cover;"></div><div class="personal" style="left:42%;background: url('+"http://bin.baopinghui.com/"+avatar6+"?imageView2/0/w/100"+') ;background-size:cover;"></div><img class="click_personal_list" src="../../icon/logon-page/ht2.png" alt="">');
+		// 	 },
+		// 	 error:function () {
+		// 		 console.log('失败')
+		// 	 }
+		//  });
+		  qunload();
+
+			//JIM_init();
+		};
+
+		//跳转搜索页
+		function jump_search(){
+			api.openWin({
+					name: 'serach',
+					url: '../search/search2.html',
+					pageParam: {
+							name: 'test'
+					}
+			});
+		};
+
+
+
+
+
+		var nickname_length;
+		var nicknameobj=[];
+		var z="a";
+		var j=0;
+		var k=0;
+
+
+
+		//$api.addEvt($api.dom('.list'), 'click', click_qun_list);
+
+		//点击跳进个人列表事件
+		function click_personal_list(){
+			api.openWin({
+					name: 'recommend_list',
+					url: 'recommend_list.html',
+					bgColor: 'transparent'
+			});
+		}
+
+		//点击跳进群组列表事件
+		// function click_qun_list(){
+		// 	api.openWin({
+		// 			name: 'group_chat',
+		// 			url: router['widget'] + router['group']['group_chat'],
+		// 			slidBackEnabled: false,
+		// 			animation: {
+		// 					type: "fade", //动画类型（详见动画类型常量）
+		// 					subType: "fade", //动画子类型（详见动画子类型常量）
+		// 					duration: 250 //动画过渡时间，默认300毫秒
+		// 			},
+		// 			pageParam: {
+		// 					gid: item.gid,
+		// 					gname: item.name,
+		// 			}
+		// 	});
+		// 	alert('执行事件');
+		// }
+
+
+		var qun_list=new Vue({
+			el:"#qun_list",
+			data:{
+				people:"people",
+				Discussions:"Discussions",
+				Rank:"Rank",
+				JOININ:"JOIN IN",
+				count:"top ten",
+				sites: [],
+				isShow:false,
+				isLoading:false,
+				sitas:[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],
+								[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],
+								[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],
+							[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],
+						[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],
+					[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],
+				[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],
+			[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],
+		[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],
+	[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
+			},
+			computed:{
+				// ajon(){
+				// 	if(this.JOININ=="cnm"){
+				// 		if($api.getStorage('language')=="zho"){
+				// 			return "該 群 已 滿 人";
+				// 		}else{
+				// 			return 'THE GROUP IS FULL';
+				// 		}
+				// 	}else{
+				// 		if($api.getStorage('language')=="zho"){
+				// 			return "立 即 參 與";
+				// 		}else{
+				// 			return 'JOIN IN';
+				// 		}
+				// 	}
+				//
+				// }
+			},
+			methods:{
+				// ceshi:function(){
+				//
+				// 	this.$refs.openWinP.click();
+				// 	//alert(JSON.stringify(this));
+
+				// },
+
+
+				openwin:function(site,index){
+					$('.join').eq(index).css({
+						 		'color': '#fff',
+								'background-color': '#000'
+						 	});
+						 	setTimeout(function(){
+								$('.join').eq(index).css({
+									'color': '#000',
+									'background-color': '#fff'
+								});
+							},100);
+							// 活动显示
+						      var party_date1 = new Date(),
+						          party_hour1 = party_date1.getHours();
+						        console.log(party_hour1);
+						        if(party_hour1>=20 && party_hour1<=22){
+						            if(index == 0){
+						            	$('.join').eq(index).css({
+									 		'color': '#000',
+											'background-color': '#fff'
+									 	});
+									 	setTimeout(function(){
+											$('.join').eq(index).css({
+												'color': '#fff',
+												'background-color': '#000'
+											});
+										},100);
+						            }
+
+						        }
+					// alert("执行操作");
+					// alert(JSON.stringify(ppid));
+					jQuery.ajax({
+						url: 'http://api.baopinghui.com/jpushim/findnewbin3',
+						type: 'POST',
+						async: true,
+						data:{
+							gid:site.gid,
+							uiid:$api.getStorage('id')
+						},
+					 success:function (data) {
+						 if(data.data){
+							//  api.toast({
+							// 			msg: '正在进入;请稍等',
+							// 			duration: 2000,
+							// 			location: 'center'
+							// 	});
+							 //alert("543成功"+JSON.stringify(data));
+							 api.openWin({
+									 name: 'group_chat',
+									 url: router['widget'] + router['group']['group_chat'],
+									 slidBackEnabled: false,
+									 animation: {
+											 type: "fade", //动画类型（详见动画类型常量）
+											 subType: "fade", //动画子类型（详见动画子类型常量）
+											 duration: 250 //动画过渡时间，默认300毫秒
+									 },
+									 pageParam: {
+											 gid: site.gid,
+											 gname: site.name,
+									 }
+							 });
+						 }else{
+							 api.toast({
+										msg: text1,
+										duration: 1000,
+										location: 'middle'
+								});
+								api.ajax({
+								    url: 'http://api.baopinghui.com/jpushim/findnewbin8',
+								    method: 'get',
+								    data: {
+								        values: {
+								            gid:site.gid,
+														uiid:$api.getStorage("id")
+
+								        }
+								    }
+								},function(ret, err){
+								    if (ret) {
+
+											api.ajax({
+								url: "http://api.baopinghui.com/tin_Groups/updateGroupsActive?operation=join&gid=" + site.gid,
+								method: "post"
+							}, function(ret, err){
+							});
+							var jointime=new Date().getTime().toString();
+							db.executeSql({
+									name: 'tinkle',
+									sql: "insert into joingroup(userid,gid,jointime) values('"+$api.getStorage("id")+"','"+site.gid+"','"+jointime+"')"
+							}, function(ret, err){
+									if( ret.status ){
+												 console.log("被别人拉入新群,把进群时间添加进入的群组表");
+									}else{
+													// alert(JSON.stringify(err));
+									}
+							});
+							// alert(groupMember);
+							var groupfirst=site.gid+'first';
+							 var groupTime=site.gid+'time';
+
+
+							var jointime= new Date().getTime();
+							// alert(jointime);
+							//添加进入该群组的时间和记录第一次到缓存中
+								$api.setStorage(groupTime,jointime);
+								$api.setStorage(groupfirst, groupfirst);
+
+							 api.openWin({
+									 name: 'group_chat',
+									 url: router['widget'] + router['group']['group_chat'],
+									 slidBackEnabled: false,
+									 animation: {
+											 type: "fade", //动画类型（详见动画类型常量）
+											 subType: "fade", //动画子类型（详见动画子类型常量）
+											 duration: 250 //动画过渡时间，默认300毫秒
+									 },
+									 pageParam: {
+											 gid: site.gid,
+											 gname: site.name,
+									 }
+							 });
+
+
+								    } else {
+								    	if($api.getStorage('language')=='zho'){
+								    		api.toast({
+											    msg: '群组满人',
+											    duration: 1000,
+											    location: 'middle'
+											});
+								    	}else{
+								    		api.toast({
+											    msg: 'THE GROUP IS FULL',
+											    duration: 1000,
+											    location: 'middle'
+											});
+								    	}
+
+
+
+								    }
+								});
+
+
+						 }
+					 },
+					 error:function () {
+						 alert("你被禁止进群");
+						//  alert($api.getStorage('id'));
+					 }
+				 });
+
+				}
+
+
+			}
+		});
+
+		//定义加载群函数
+		function qunload(){
+			//qunbianli();
+			if(z=="a"){
+				z=0;
+			}else if(z==0){
+				z=z+3;
+			}else{
+				z=z+3
+			}
+			//z=z+5;
+
+			jQuery.ajax({
+				url: 'http://api.baopinghui.com/jpushim/findnewbin',
+				type: 'GET',
+				async: true,
+				data:{
+					index:z,
+					count:3
+				},
+			 success:function (data) {
+				 //alert(JSON.stringify(data));
+				 qun_num=data.data;
+				 qun_num_length=data.data.length;
+				 for(var i=0;i<qun_num_length;i++){
+					  if(qun_num[i].avatar==""){
+					 	 xxjb=qun_num[i].list[0].avatar_url;
+					  }else{
+					 	 xxjb=qun_num[i].avatar;
+					  }
+						qunrenshu=qun_num[i].membersNumber==500?"500+":qun_num[i].membersNumber;
+						taolunshu=(Number(qun_num[i].active)> 1000 ? (qun_num[i].active/ 1000).toFixed(1) + 'k' : qun_num[i].active);
+						if($api.getStorage('language')=="zho"){
+							canjia=qun_num[i].membersNumber==500?"群 组 已 满":"立 刻 参 与";
+						}else{
+							canjia=qun_num[i].membersNumber==500?" T H E   G R O U P   I S   F U L L":"J O I N   I N";
+						}
+
+						// if(qunrenshu=="500+"){
+						// 	qun_list.JOININ="cnm";
+
+						// }else{
+						// 	qun_list.JOININ="nmb";
+						// };
+					 qun_list.sites.push({gid:qun_num[i].gid,name:qun_num[i].groupname,avatar:'http://bin.baopinghui.com/'+xxjb,active:taolunshu,membersNumber:qunrenshu,canjias:canjia});//,redu:qun_num[i].active,renshu:qun_num[i].membersNumber}
+					 for ( var j=0;  j < qun_num[i].list.length; j++) {
+						 qun_list.sitas[i+k][j]='http://bin.baopinghui.com/'+qun_num[i].list[j].avatar_url;
+							  qun_list.sitas[i+k][j]={avatar:'http://bin.baopinghui.com/'+qun_num[i].list[j].avatar_url,id:qun_num[i].list[j].id}
+					 }
+				 }
+				 k=k+3;
+				 // 活动显示
+      	var party_date = new Date(),
+            party_time_now = party_date.getTime(),
+            party_year = party_date.getFullYear(),
+            party_month = party_date.getMonth()+1,
+            party_day = party_date.getDate(),
+            party_time_start = new Date(party_year+'/'+party_month+'/'+party_day+' '+'20:00:01').getTime(),
+            party_time_end = new Date(party_year+'/'+party_month+'/'+party_day+' '+'23:00:01').getTime(),
+            party_hour = party_date.getHours();
+        if(party_time_now>=party_time_start && party_time_now<party_time_end){
+				setTimeout(function(){
+					var dis=$('.discussions_num').eq(0).text();
+					var partytitle = $api.html($api.dom('#h3'));
+					$api.css($api.dom('.qun'), 'position: relative;background-color:#000;color:#fff;');
+					$api.css($api.dom('.imghot'), 'display:block;');
+					$api.css($api.dom('.partytitle1'),'position:absolute;top: 8%;left:36%;color:#fff;width:auto;height: 26px;line-height: 22px;font-size: 15px;z-index:10;font-weight:bold;');
+					$api.html($api.dom('.partytitle1'), partytitle+'<span class="hottt"></span>');
+					$api.html($api.dom('.textt'), "The group will be hidden at 23:00 <br><span style='color:#f381a3'>"+dis+"</span> Number of discussion");
+					$('.textt').eq(0).css({
+						'position':'absolute',
+						'width':'53.19vw',
+						'font':'3.19vw/5.85vw Arial',
+						'font-weight':'bold',
+						'color':'#aaa',
+						'z-index':'10'
+					});
+					$('.text1').eq(0).css({
+						'display': 'none'
+					});
+					$('.text2').eq(0).css({
+						'display': 'none'
+					});
+					$('.touxiang').eq(0).css({
+						'display': 'none'
+					});
+					$api.css($api.dom('.join'), 'background-color:#000;color:#fff;border:2px solid #fff;');
+				},100);
+			}
+			if(party_time_start-party_time_now>=0){
+				setTimeout(function(){
+					window.location.reload();
+				},party_time_start-party_time_now);
+			}else if(party_time_end-party_time_now>=0){
+				setTimeout(function(){
+					window.location.reload();
+				},party_time_end-party_time_now);
+			}
+
+				 //alert(j);
+
+					//alert(JSON.stringify(qun_list.sitas))
+				  //qun_list.sites.push({gid:data.data[0].gid,name:data.data[0].groupname,avatar:'http://bin.baopinghui.com/'+data.data[0].avatar+"?imageView2/0/w/100"});
+				//alert(JSON.stringify(qun_num));
+			 },
+			 error:function () {
+				 console.log('失败')
+			 }
+		 });
+		}
+
+
+
+
+		// function qunbianli(){
+		// 	jQuery.ajax({
+		// 		url: 'http://api.baopinghui.com/jpushim/findnewbin',
+		// 		type: 'GET',
+		// 		async: true,
+		// 		data:{
+		// 			index:z,
+		// 			count:2
+		// 		},
+		// 	 success:function (data) {
+		// 		 //alert(JSON.stringify(data));
+		// 		 qun_num=data.data;
+		// 		 qun_num_length=data.data.length;
+		// 		 for(var i=0;i<qun_num_length;i++){
+		// 			 qun_list.sites.push({gid:qun_num[i].gid,name:qun_num[i].groupname,avatar:'http://bin.baopinghui.com/'+qun_num[i].avatar+"?imageView2/0/w/100"});
+		// 			 for (var j = 0; j < qun_num[i].list.length; j++) {
+		// 				 qun_list.sitas[i][j]='http://bin.baopinghui.com/'+qun_num[i].list[j].avatar_url;
+		// 			 }
+		// 		 }
+		// 		 z=z+2;
+		//
+		// 														//alert(JSON.stringify(qun_list.sitas))
+		// 			//qun_list.sites.push({gid:data.data[0].gid,name:data.data[0].groupname,avatar:'http://bin.baopinghui.com/'+data.data[0].avatar+"?imageView2/0/w/100"});
+		// 		//alert(JSON.stringify(qun_num));
+		// 	 },
+		// 	 error:function () {
+		// 		 console.log('失败')
+		// 	 }
+		//  });
+		// }
+
+
+
+	</script>
+	<script type="text/javascript">
+	</script>
+</html>

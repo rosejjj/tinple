@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>more</title>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+		}
+		#bg{
+			width: 100vw;
+			height: 100vh;
+			background-color: transparent;
+		}
+		html,body{
+			background-color:rgba(34, 34, 34, 0.6);
+			font-family: Arial;
+			font-style: normal;
+			animation:bganimation 0.3s linear 0s 1 normal;
+			-webkit-animation: bganimation 0.3s linear 0s 1 normal;
+			-ms-animation: bganimation 0.3s linear 0s 1 normal;
+			-o-animation: bganimation 0.3s linear 0s 1 normal;
+			-moz-animation: bganimation 0.3s linear 0s 1 normal;
+			/*-khtml-animation: bganimation 0.3s linear 0s 1 normal;*/
+		}
+		ul{
+			width: 100%;
+			min-height:7.98vw;
+			margin-top:3.19vw;
+			margin-bottom:3.99vw;
+		}
+		ul li{
+			list-style: none;
+		}
+		.box{
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+			height: auto;
+			padding-left:5.32vw;
+			padding-top:4.26vw;
+			padding-bottom:6.65vw;
+			background-color: #fff;
+			box-sizing: border-box;
+			animation:winanimation 0.3s linear 0s 1 normal;
+			-webkit-animation: winanimation 0.3s linear 0s 1 normal;
+			-ms-animation: winanimation 0.3s linear 0s 1 normal;
+			-o-animation: winanimation 0.3s linear 0s 1 normal;
+			-moz-animation: winanimation 0.3s linear 0s 1 normal;
+			/*-khtml-animation: winanimation 0.3s linear 0s 1 normal;*/
+		}
+		p{
+			font:3.19vw Arial;
+			line-height: 4.52vw;
+			font-weight: bold;
+		}
+		ul li{
+			float:left;
+			margin-right:5.32vw;
+		}
+		.sharebtn li{
+			width: 7.98vw;
+			height: 7.98vw;
+		}
+		.sharebtn li:nth-child(1){
+			background:url(../../image/share/icon-share-wechat@3x2.png);
+			background-size: cover;
+		}
+		.sharebtn li:nth-child(2){
+			background:url(../../image/share/icon-share-pengyouquan@3x2.png);
+			background-size: cover;
+		}
+		.sharebtn li:nth-child(3){
+			background:url(../../image/share/icon-share-qq@3x2.png);
+			background-size: cover;
+		}
+		.sharebtn li:nth-child(4){
+			background:url(../../image/share/icon-share-QQsquare@3x2.png);
+			background-size: cover;
+			margin-right:42vw;
+		}
+		.sharebtn li:nth-child(5),.sharebtn li:nth-child(6),.sharebtn li:nth-child(7),.sharebtn li:nth-child(8),.sharebtn li:nth-child(9){
+			margin-top:5.32vw;
+			/*background-color:#efefef;*/
+		}
+		.sharebtn li:nth-child(5){
+			background:url(../../image/share/whatsapp@3x2.png);
+			background-size: cover;
+		}
+		.sharebtn li:nth-child(6){
+			background:url(../../image/share/FaceBook@3x.png);
+			background-size: cover;
+		}
+		.sharebtn li:nth-child(7){
+			background:url(../../image/share/instagram@3x2.png);
+			background-size: cover;
+		}
+		.sharebtn li:nth-child(8){
+			background:url(../../image/share/twitter@3x2.png);
+			background-size: cover;
+		}
+		#report{
+			width:auto;
+			padding:0 2.66vw;
+			box-sizing: border-box;
+		}
+		.oprationbtn{
+			margin-top:4.26vw;
+		}
+		.oprationbtn li{
+			width: 21.28vw;
+			height:7.98vw;
+			color:#fff;
+			text-align: center;
+			font:3.19vw Arial;
+			font-weight: bold;
+			line-height: 7.98vw;
+			border-radius: 1.06vw;
+		}
+		.oprationbtn li:nth-child(1),.oprationbtn li:nth-child(2){
+			background-color: #000;
+		}
+		.oprationbtn li:nth-child(3){
+			background-color: #F381A3;
+			display: none;
+		}
+		@keyframes bganimation{
+			0%{
+				background-color: rgba(250,250,250,0.6);
+			}
+			100%{
+				background-color:rgba(34, 34, 34, 0.6);
+			}
+		}
+		@-webkit-keyframes bganimation{
+			0%{
+				background-color: rgba(250,250,250,0.6);
+			}
+			100%{
+				background-color:rgba(34, 34, 34, 0.6);
+			}
+		}
+		@-ms-keyframes bganimation{
+			0%{
+				background-color: rgba(250,250,250,0.6);
+			}
+			100%{
+				background-color:rgba(34, 34, 34, 0.6);
+			}
+		}
+		@-o-keyframes bganimation{
+			0%{
+				background-color: rgba(250,250,250,0.6);
+			}
+			100%{
+				background-color:rgba(34, 34, 34, 0.6);
+			}
+		}
+		@-moz-keyframes bganimation{
+			0%{
+				background-color: rgba(250,250,250,0.6);
+			}
+			100%{
+				background-color:rgba(34, 34, 34, 0.6);
+			}
+		}
+		/*@-khtml-keyframes bganimation{
+			0%{
+				background-color: rgba(250,250,250,0.6);
+			}
+			100%{
+				background-color:rgba(34, 34, 34, 0.6);
+			}
+		}*/
+		@keyframes winanimation{
+			0%{
+				margin-bottom:-28vh;
+			}
+			100%{
+				margin-bottom:0;
+			}
+		}
+		@-webkit-keyframes winanimation{
+			0%{
+				margin-bottom:-28vh;
+			}
+			100%{
+				margin-bottom:0;
+			}
+		}
+		@-ms-keyframes winanimation{
+			0%{
+				margin-bottom:-28vh;
+			}
+			100%{
+				margin-bottom:0;
+			}
+		}
+		@-o-keyframes winanimation{
+			0%{
+				margin-bottom:-28vh;
+			}
+			100%{
+				margin-bottom:0;
+			}
+		}
+		@-moz-keyframes winanimation{
+			0%{
+				margin-bottom:-28vh;
+			}
+			100%{
+				margin-bottom:0;
+			}
+		}
+		/*@-khtml-keyframes winanimation{
+			0%{
+				margin-bottom:-28vh;
+			}
+			100%{
+				margin-bottom:0;
+			}
+		}*/
+		.clearfix:after{
+            content: "";
+            height: 0;
+            line-height: 0;
+            visibility: hidden;
+            display: block;
+            clear:both;
+        }
+        .clearfix{
+            zoom:1;
+        }
+	</style>
+</head>
+<body>
+	<div id="bg">
+	<div class="box" id="box">
+		<p id="sharetext">S H A R E</p>
+		<ul class="sharebtn clearfix">
+			<li id="wechat"></li>
+			<li id="circle"></li>
+			<li id="qfriends"></li>
+			<li id="qspace"></li>
+<!-- 			<li id="test1"></li>
+			<li id="test2"></li>
+			<li id="test3"></li>
+			<li id="test4"></li>
+			<li id="test5"></li> -->
+
+		</ul>
+		<p id="moretext">M O R E</p>
+		<ul class="oprationbtn">
+			<li id="reprint" >REPRINT</li>
+			<li id="report">COMPLAINTS</li>
+			<li id="delete">DELETE</li>
+		</ul>
+	</div>
+	</div>
+</body>
+<script src="../../script/jquery-3.1.0.min.js"></script>
+<script type="text/javascript" src="../../json/api.json"></script>
+<script type="text/javascript">
+	var boof = true;
+	var imgpath;
+	var tinkle;
+	apiready = function(){
+		console.log(json["wx_key"]);
+	    var wechat = $api.dom("#wechat"),
+	    	circle = $api.dom("#circle"),
+	    	qfriends = $api.dom("#qfriends"),
+	    	qspace = $api.dom("#qspace"),
+	    	otherId = api.pageParam["otherId"],
+	    	postId = api.pageParam["postId"],
+	    	popNum = api.pageParam["popNum"],
+		    tinNum = api.pageParam["tinNum"],
+		    home = api.pageParam["home"],
+		    star = api.pageParam["star"],
+		    nickname_home = api.pageParam["nickname_home"],
+		    testId = $api.getStorage('id'),
+		    reprintbtn = $api.dom("#reprint"),
+		    reportbtn = $api.dom("#report"),
+		    deletebtn = $api.dom("#delete"),
+		    bg = $api.dom("#bg"),
+		    themeId = api.pageParam["themeId"],
+		    themeTitle = api.pageParam["themeTitle"],
+		    themeImg = api.pageParam["themeImg"],
+		    themeContent = api.pageParam["themeContent"],
+		    language = $api.getStorage('language');
+		var pubuliu = api.pageParam["pubuliu"];
+		var wechatshareimg = api.pageParam["wechatshareimg"];
+		var QQshareimg = api.pageParam["QQshareimg"];
+		var avatarpath = api.pageParam["avatarpath"];
+		var numerology_number = api.pageParam['numerology_number'];
+		var nickname = api.pageParam['nickname'];
+
+		var title,
+			content,
+			img,
+			postUsername,
+			avatarurl,
+			avatarpath,
+			summary;
+			var outShare = api.pageParam['outShare'];//对外分享群组，group_chat传过来的
+			tinkle = 'I am participating in Tinkle Christmas Photograph competition for huge cash present, would you like to join with me?(http://parttime.baopinghui.com/chat/bin/share.html?ID='+$api.getStorage('id')+') \n\n';
+		// 判断是否中文版本,中英切换
+		if(language == "zho"){
+			$api.text($api.dom("#sharetext"), '分 享');
+			$api.text($api.dom("#moretext"), '更 多');
+			$api.text(reprintbtn, '轉 載');
+			$api.text(reportbtn, '投 訴');
+			$api.text(deletebtn, '刪 除');
+			$api.css($api.dom('#report'), 'width:21.28vw;');
+		}
+		setInterval(function(){
+		    	$api.css(wechat, 'opacity:1');
+		    	$api.css(circle, 'opacity:1');
+		    	$api.css(qfriends, 'opacity:1');
+		    	$api.css(qspace, 'opacity:1');
+		    	$api.css(reprintbtn, 'opacity:1');
+		    	$api.css(reportbtn, 'opacity:1');
+		    	$api.css(deletebtn, 'opacity:1');
+		},500);
+		// 点击空白处,关掉当前窗口
+		bg.onclick=function(e){
+			var tar = e.target;
+			if(tar.id === "bg"){
+				api.closeFrame();
+			}
+		};
+		if(outShare){
+			var gid = api.pageParam['gid'];
+			var group_name = api.pageParam['group_name'];
+			var group_describe = api.pageParam['group_describe'];
+			var group_avatar = 'http://bin.baopinghui.com/'+api.pageParam['group_avatar']+'?imageView2/0/w/250';
+			var path=api.cacheDir + "/pic/" + api.pageParam['group_avatar'] + '.png';
+			var group_url='http://parttime.baopinghui.com/chat/bin/group(en).html';
+			if($api.getStorage('language')=='zho'){
+				group_url='http://parttime.baopinghui.com/chat/bin/group(cn).html';
+			}
+			api.download({
+			    url: group_avatar,
+			    savePath: path,
+			    report: true,
+			    cache: true,
+			    allowResume: true
+			}, function(ret, err) {
+			    if(ret.state == 1){
+			        console.log(1);
+			    } else {
+			        console.log(2);
+			    }
+			});
+			$api.html($api.dom('.sharebtn'), '<li id="wechat"></li><li id="circle"></li><li id="qfriends"></li><li id="qspace"></li><li id="test1"></li><li id="test2"></li><li id="test3"></li><li id="test4"></li>');
+			// alert(group_name+','+group_describe+','+group_avatar);
+			$api.css($api.dom('#moretext'),'display:none');
+			$api.css($api.dom('.oprationbtn'),'display:none');
+			if($api.getStorage('language')=='zho'){
+				tinkle = '加入我的tinkle群聊吧！请访问：\n\n';
+			}else{
+				tinkle = 'Join my tinkle group chat ! Please visit：\n\n ';
+			}
+			//复制链接
+			function copy(){
+				// 文本复制
+				var clipBoard = api.require('clipBoard');
+			clipBoard.set({
+					// value: $api.html($api.dom('.text')).replace(/<br>/g,'').replace(/<span>/g,'').replace(/<\/span>/g,'')
+					value: tinkle+'http://parttime.baopinghui.com/chat/bin/group_wy.html?gid='+gid
+
+			}, function(ret, err) {
+					if (ret) {
+						api.toast({
+								msg: '成功复制分享链接',
+								duration: 2000,
+								location: 'bottom'
+						});
+					} else {
+							console.log(JSON.stringify(err));
+					}
+			});
+			}
+			$api.addEvt($api.dom('#test1'), 'click', function(){
+							copy();
+			});
+			$api.addEvt($api.dom('#test2'), 'click', function(){
+							copy();
+
+			});
+			$api.addEvt($api.dom('#test3'), 'click', function(){
+							copy();
+			});
+			$api.addEvt($api.dom('#test4'), 'click', function(){
+							copy();
+			});
+			if(group_describe=='' || group_describe=='null' || group_describe==undefined){
+				if($api.getStorage('language')=='zho'){
+					group_describe='快來加入我們的群組吧~';
+				}else{
+					group_describe='Come and join our group~';
+				}
+			}
+			// 微信好友
+			$api.addEvt($api.dom('#wechat'), 'click',function(){
+				// console.log(avatarpath);
+				// $api.css($api.dom('#wechat'), 'opacity:0.5');
+				setTimeout(function(){
+					var wx = api.require('wx');
+				wx.shareWebpage({
+						apiKey: '',
+						scene: 'session',
+						title: group_name,
+						description: group_describe,
+						thumb: path,
+						contentUrl: group_url+'?gid='+gid,
+						// contentUrl: img
+				}, function(ret, err) {
+						if (ret.status) {
+								console.log('分享成功');
+						} else {
+								console.log('分享失敗');
+						}
+				});
+				},500);
+			});
+			// 微信分享朋友圈
+			$api.addEvt($api.dom('#circle'),"click",function(){
+
+				setTimeout(function(){
+					var wx = api.require('wx');
+				wx.shareWebpage({
+						apiKey: '',
+						scene: 'timeline',
+						title: group_name,
+						description: group_describe,
+						thumb: path,
+						contentUrl: group_url+'?gid='+gid,
+				}, function(ret, err) {
+						if (ret.status) {
+								console.log('分享成功');
+						} else {
+								console.log('分享失敗');
+						}
+				});
+				},500);
+				// $api.css($api.dom('#circle'), 'opacity:0.5');
+
+			});
+			// QQ分享好友
+			$api.addEvt($api.dom('#qfriends'), 'click', function(){
+				// $api.css($api.dom('#qfriends'), 'opacity:0.5');
+				var qq = api.require('qq');
+			qq.shareNews({
+					url: group_url+'?gid='+gid,
+					title: group_name,
+					description: group_describe,
+					imgUrl: group_avatar,
+					type: "QFriend"
+			});
+			});
+			// QQ分享空间
+			$api.addEvt($api.dom('#qspace'), 'click', function(){
+
+				// $api.css($api.dom('#qspace'), 'opacity:0.5');
+				var qq = api.require('qq');
+			qq.shareNews({
+					url: group_url+'?gid='+gid,
+					title: group_name,
+					description: group_describe,
+					imgUrl: group_avatar,
+					type: "QZone"
+			});
+			});
+			return;
+		}
+		// 专题分享
+		if(themeId){
+			$('.sharebtn').append('<li id="test1" onclick="copyurl(\'theme\',\''+themeId+'\')"></li><li id="test2" onclick="copyurl(\'theme\',\''+themeId+'\')"></li><li id="test3" onclick="copyurl(\'theme\',\''+themeId+'\')"></li><li id="test4" onclick="copyurl(\'theme\',\''+themeId+'\')"></li>');
+			avatarpath= "http://bin.baopinghui.com/"+themeImg+"?imageView2/0/w/250";
+			imgpath=api.cacheDir + "/pic/" + themeImg + '.png';
+			api.download({
+			    url: avatarpath,
+			    savePath: imgpath,
+			    report: true,
+			    cache: true,
+			    allowResume: true
+			}, function(ret, err) {
+			    if(ret.state == 1){
+			        console.log(1);
+			    } else {
+			        console.log(2);
+			    }
+			});
+			$api.css($api.dom('#moretext'), 'display:none');
+			$api.css($api.dom('.oprationbtn'), 'display:none');
+			title = themeTitle;
+			if(themeContent.length>30){
+				themeContent=themeContent.slice(0,30);
+			}
+			content= themeContent.replace(/<br>/g,'')+'...';
+
+		    	// 微信好友
+		    	$api.addEvt(wechat, 'click',function(){
+		    		// console.log(avatarpath);
+		    		$api.css(wechat, 'opacity:0.5');
+			    	setTimeout(function(){
+			    		var wx = api.require('wx');
+						wx.shareWebpage({
+						    apiKey: '',
+						    scene: 'session',
+						    title: title,
+						    description: content,
+						    thumb:imgpath,
+						    contentUrl: 'http://parttime.baopinghui.com/chat/bin/theme.html?themeId='+ themeId + '&ID='+$api.getStorage('id')+'&shareclick=1'
+						    // contentUrl: img
+						}, function(ret, err) {
+						    if (ret.status) {
+						        console.log('分享成功');
+						    } else {
+						        console.log('分享失敗');
+						    }
+						});
+			    	},500);
+		    	});
+		    	// 微信分享朋友圈
+			    $api.addEvt(circle,"click",function(){
+
+				   	setTimeout(function(){
+				   		var wx = api.require('wx');
+						wx.shareWebpage({
+						    apiKey: '',
+						    scene: 'timeline',
+						    title: title,
+						    description: content,
+						    thumb: imgpath,
+						    contentUrl: 'http://parttime.baopinghui.com/chat/bin/theme.html?themeId='+ themeId + '&ID='+$api.getStorage('id')+'&shareclick=1'
+						}, function(ret, err) {
+						    if (ret.status) {
+						        console.log('分享成功');
+						    } else {
+						        console.log('分享失敗');
+						    }
+						});
+				   	},500);
+			    	$api.css(circle, 'opacity:0.5');
+
+			    });
+			    // QQ分享好友
+			    $api.addEvt(qfriends, 'click', function(){
+
+			    	$api.css(qfriends, 'opacity:0.5');
+			    	var qq = api.require('qq');
+					qq.shareNews({
+					    url: 'http://parttime.baopinghui.com/chat/bin/theme.html?themeId='+ themeId + '&ID='+$api.getStorage('id')+'&shareclick=1',
+					    title: title,
+					    description: content,
+					    imgUrl: avatarpath,
+					    type: "QFriend"
+					});
+			    });
+			    // QQ分享空间
+			    $api.addEvt(qspace, 'click', function(){
+
+			    	$api.css(qspace, 'opacity:0.5');
+			    	var qq = api.require('qq');
+					qq.shareNews({
+					    url: 'http://parttime.baopinghui.com/chat/bin/theme.html?themeId='+ themeId + '&ID='+$api.getStorage('id')+'&shareclick=1',
+					    title: title,
+					    description: content,
+					    imgUrl: avatarpath,
+					    type: "QZone"
+					});
+			    });
+			    return;
+		}
+		// 自测分享
+		if(wechatshareimg){
+			$api.css($api.dom('#moretext'), 'display:none');
+			$api.css($api.dom('.oprationbtn'), 'display:none');
+			$api.html($api.dom('.sharebtn'), '<li id="wechat"></li><li id="circle"></li><li id="qfriends"></li><li id="qspace"></li><li id="test1"></li><li id="test2"></li><li id="test3"></li><li id="test4"></li>');
+			var wechat = $api.dom("#wechat"),
+		    	circle = $api.dom("#circle"),
+		    	qfriends = $api.dom("#qfriends"),
+		    	qspace = $api.dom("#qspace");
+			// 微信分享好友
+			$api.addEvt(wechat, 'click', function(){
+				$api.css(wechat, 'opacity:0.5');
+			  	var wx = api.require('wx');
+				wx.shareImage({
+				    apiKey: '',
+				    scene: 'session',
+			    	thumb: wechatshareimg+'?imageView2/0/w/200',
+				    contentUrl: wechatshareimg
+				}, function(ret, err) {
+				    if (ret.status) {
+				        console.log('分享成功');
+				    } else {
+				        console.log(err.code);
+				    }
+				});
+			});
+			// 微信分享朋友圈
+			$api.addEvt(circle, 'click', function(){
+				$api.css(circle, 'opacity:0.5');
+			  	var wx = api.require('wx');
+				wx.shareImage({
+				    apiKey: '',
+				    scene: 'timeline',
+			    	thumb: wechatshareimg+'?imageView2/0/w/200',
+				    contentUrl: wechatshareimg
+				}, function(ret, err) {
+				    if (ret.status) {
+				        console.log('分享成功');
+				    } else {
+				        console.log(err.code);
+				    }
+				});
+			});
+			// QQ分享好友
+			title = '原本'+star+'和我的性格最相似！！快來測測你的性格吧~';
+		    	content = '测测你的今日好运气·找寻你的有缘人·玩出万众瞩目的星光路';
+		    $api.addEvt(qfriends, 'click', function(){
+		    	$api.css(qfriends, 'opacity:0.5');
+		  //   	var qq = api.require('qq');
+				// qq.shareImage({
+				//     title: 'Tinkle',
+				//     description: 'Tinkle',
+				//     imgPath: QQshareimg,
+				//     type: "QFriend"
+				// }, function(ret, err) {
+				//     if (ret.status) {
+				//         console.log('分享成功');
+				//     } else {
+				//         console.log(err.code);
+				//     }
+				// });
+		    	var qq = api.require('qq');
+				qq.shareNews({
+				    url: 'https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=101414137&redirect_uri=http%3a%2f%2fparttime.baopinghui.com%2fchat%2fbin%2fnumerology(share)%2fhtml%2fcover.html%3fID%3d'+$api.getStorage('id')+'&state=state&scope=get_user_info',
+				    title: title,
+				    description: content,
+				    imgUrl: 'http://bin.baopinghui.com/shareqq.png?imageView2/0/w/200',
+				    type: "QFriend"
+				});
+		    });
+
+		    // QQ分享空间
+		    $api.addEvt(qspace, 'click', function(){
+		    	$api.css(qspace, 'opacity:0.5');
+		    	var qq = api.require('qq');
+				qq.shareNews({
+				    url: 'https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=101414137&redirect_uri=http%3a%2f%2fparttime.baopinghui.com%2fchat%2fbin%2fnumerology(share)%2fhtml%2fcover.html%3fID%3d'+$api.getStorage('id')+'&state=state&scope=get_user_info',
+				    title: title,
+				    description: content,
+				    imgUrl: 'http://bin.baopinghui.com/shareqq.png?imageView2/0/w/200',
+				    type: "QZone"
+				}, function(ret, err) {
+				    if (ret.status) {
+				        console.log('分享成功');
+				    } else {
+				        console.log(err.code);
+				    }
+				});
+		    });
+		    $api.addEvt($api.dom('#test1'), 'click',function(){
+		    	api.openWin({
+		    	    name: 'abroad_share',
+		    	    url: 'widget://html/logon-register/abroad_share.html',
+		    	    pageParam: {
+		    	        numerology_number:numerology_number,
+		    	        nickname:nickname,
+		    	        avatarpath:avatarpath
+		    	    }
+		    	});
+		    });
+		    $api.addEvt($api.dom('#test2'), 'click',function(){
+		    	api.openWin({
+		    	    name: 'abroad_share',
+		    	    url: 'widget://html/logon-register/abroad_share.html',
+		    	    pageParam: {
+		    	        numerology_number:numerology_number,
+		    	        nickname:nickname,
+		    	        avatarpath:avatarpath
+		    	    }
+		    	});
+		    });
+		    $api.addEvt($api.dom('#test3'), 'click',function(){
+		    	api.openWin({
+		    	    name: 'abroad_share',
+		    	    url: 'widget://html/logon-register/abroad_share.html',
+		    	    pageParam: {
+		    	        numerology_number:numerology_number,
+		    	        nickname:nickname,
+		    	        avatarpath:avatarpath
+		    	    }
+		    	});
+		    });
+		    $api.addEvt($api.dom('#test4'), 'click',function(){
+		    	api.openWin({
+		    	    name: 'abroad_share',
+		    	    url: 'widget://html/logon-register/abroad_share.html',
+		    	    pageParam: {
+		    	        numerology_number:numerology_number,
+		    	        nickname:nickname,
+		    	        avatarpath:avatarpath
+		    	    }
+		    	});
+		    });
+			return;
+		}
+
+		// 获取分享帖子信息
+		$.ajax({
+		    	// async: false,
+		    	url: 'http://api.baopinghui.com/app_dynamicCover/findPostInfo',
+		    	type: 'post',
+		    	dataType: 'json',
+		    	data: {
+		    		id: postId
+		    	},
+		    })
+		    .done(function(ret) {
+		    	if(ret){
+		    		title=ret.data.title;
+		    		if(title.length>=50){
+		    			title=title.slice(0, 50);
+		    			title+="...";
+		    		}
+
+		    		content="來自 "+ret.data.nickname+ " 的創作 | TINKLE國際交友社區，更多精彩等待你去發現";
+		    		if(ret.data.post_type == "Video"){
+		    			img='http://bin.baopinghui.com/'+ret.data.cover_url+'?vframe/jpg/offset/1/w/200';
+		    		}else{
+		    			img='http://bin.baopinghui.com/'+ret.data.cover_url.replace(/;/g,",").split(",")[0]+'?imageView2/0/w/200';
+		    		}
+		    	}
+		    	imgpath=api.cacheDir + "/pic/" + ret.data.cover_url + '.png';
+		    	postUsername = ret.data.nickname;
+		    	return;
+		    });
+
+
+		   if(boof){
+		   	if(!home){
+				$('.sharebtn').append('<li id="test1" onclick="copyurl(\'detail\',\''+postId+'\')"></li><li id="test2" onclick="copyurl(\'detail\',\''+postId+'\')"></li><li id="test3" onclick="copyurl(\'detail\',\''+postId+'\')"></li><li id="test4" onclick="copyurl(\'detail\',\''+postId+'\')"></li>');
+		   	}
+		   	
+		    // 微信分享好友
+		    $api.addEvt(wechat,"click",function(){
+		    	api.download({
+			       url: img,
+			       savePath: imgpath,
+			       report: true,
+			       cache: true,
+			       allowResume: true
+			   	}, function(ret, err) {
+			       if(ret.state == 1){
+			          console.log(1);
+			      } else {
+			          console.log(2);
+			      }
+			   	});
+		    	$api.css(wechat, 'opacity:0.5');
+		    	setTimeout(function(){
+		    		var wx = api.require('wx');
+					wx.shareWebpage({
+					    apiKey: '',
+					    scene: 'session',
+					    title: title,
+					    description: content,
+					    thumb:imgpath,
+					    contentUrl: 	'http://parttime.baopinghui.com/chat/bin/detail.html?popNum='+popNum+'&tinNum='+tinNum+'&postId='+postId + '&ID='+$api.getStorage('id')+'&shareclick=1'
+					    // contentUrl: img
+					}, function(ret, err) {
+					    if (ret.status) {
+					        console.log('分享成功');
+					    } else {
+					        console.log('分享失敗');
+					    }
+					});
+		    	},500);
+
+		    });
+		    // 微信分享朋友圈
+		    $api.addEvt(circle,"click",function(){
+		    	api.download({
+			       url: img,
+			       savePath: imgpath,
+			       report: true,
+			       cache: true,
+			       allowResume: true
+			   	}, function(ret, err) {
+			       if(ret.state == 1){
+			          console.log(1);
+			      } else {
+			          console.log(2);
+			      }
+			   	});
+			   	setTimeout(function(){
+			   		var wx = api.require('wx');
+					wx.shareWebpage({
+					    apiKey: '',
+					    scene: 'timeline',
+					    title: title,
+					    description: content,
+					    thumb: imgpath,
+					    contentUrl: 'http://parttime.baopinghui.com/chat/bin/detail.html?popNum='+popNum+'&tinNum='+tinNum+'&postId='+postId + '&ID='+$api.getStorage('id')+'&shareclick=1'
+					}, function(ret, err) {
+					    if (ret.status) {
+					        console.log('分享成功');
+					    } else {
+					        console.log('分享失敗');
+					    }
+					});
+			   	},500);
+		    	$api.css(circle, 'opacity:0.5');
+
+		    });
+		    // QQ分享好友
+		    $api.addEvt(qfriends, 'click', function(){
+		    	$api.css(qfriends, 'opacity:0.5');
+		    	var qq = api.require('qq');
+				qq.shareNews({
+				    url: 'http://parttime.baopinghui.com/chat/bin/ma.html?popNum='+popNum+'&tinNum='+tinNum+'&postId='+postId + '&ID='+$api.getStorage('id')+'&shareclick=1',
+				    title: title,
+				    description: content,
+				    imgUrl: img,
+				    type: "QFriend"
+				});
+		    });
+		    // QQ分享空间
+		    $api.addEvt(qspace, 'click', function(){
+		    	$api.css(qspace, 'opacity:0.5');
+		    	var qq = api.require('qq');
+				qq.shareNews({
+				    url: 'http://parttime.baopinghui.com/chat/bin/detail.html?popNum='+popNum+'&tinNum='+tinNum+'&postId='+postId + '&ID='+$api.getStorage('id')+'&shareclick=1',
+				    title: title,
+				    description: content,
+				    imgUrl: img,
+				    type: "QZone"
+				});
+		    });
+		    }
+		    // 點擊舉報
+		    $api.addEvt(reportbtn, 'click', function(){
+		    	$api.css(reportbtn, 'opacity:0.5');
+		    	api.openWin({
+		    	    name: 'report_choose',
+		    	    url: 'widget://html/report/report_choose.html',
+		    	    pageParam: {
+		    	        name: 'value'
+		    	    }
+		    	});
+		    });
+		    // 判断是否登陆ID,添加删除功能
+		    if(testId == otherId){
+		    	$api.css(reportbtn, 'display:none;');
+		    	$api.css(deletebtn, 'display:block');
+		    	$api.addEvt(deletebtn, 'click', function(){
+		    		$api.css(deletebtn, 'opacity:0.5');
+		    		api.openFrame({
+						name: "out",
+						url: "widget://html/nav/out.html",
+						rect: {
+							x: 0,
+							y: 0,
+							w: "auto",
+							h: "auto"
+						},
+						pageParam:{
+							deletePost: true,
+							postId:postId,
+							otherId:otherId,
+							pubuliu:pubuliu
+						}
+					});
+		    	});
+		    }
+		    // 下载头像
+		    // var summary = '';
+		    api.ajax({
+			    url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/userinfo',
+			    method: 'post',
+			    data: {
+			        values: {
+			            uiId: otherId,
+			            pageUiId:otherId
+			        }
+			    }
+			}, function(ret, err) {
+			    if (ret) {
+			    	summary = ret.data.summary;
+			    	avatarpath = api.cacheDir + "/pic/" + ret.data.avatar_url.replace(/\./g,'1') + ".png";
+			    	avatarurl = 'http://bin.baopinghui.com/'+ret.data.avatar_url;
+			    	// nickname = ret.data.nickname;
+			    	api.download({
+				       url: avatarurl+'?imageView2/0/w/800',
+				       savePath: avatarpath,
+				       report: true,
+				       cache: true,
+				       allowResume: true
+				   	}, function(ret, err) {
+				   		if(ret.state == 1){
+				   			console.log('下载头像');
+
+				   			// var avatar = document.getElementById('avatar');
+							// avatar.setAttribute('src',avatarpath);
+							return;
+				   		}
+				   	});
+				   	return;
+			    };
+			    return;
+			});
+		    // 判断是否主页打开
+		    if(home){
+		    	if($api.getStorage('id')==otherId){
+		    		$api.css(moretext, 'display:none');
+		    		$api.css($api.dom('.oprationbtn'), 'display:none');
+		    	}
+		    	$('.sharebtn').append('<li id="test1" onclick="copyurl(\'home\',\''+otherId+'\')"></li><li id="test2" onclick="copyurl(\'home\',\''+otherId+'\')"></li><li id="test3" onclick="copyurl(\'home\',\''+otherId+'\')"></li><li id="test4" onclick="copyurl(\'home\',\''+otherId+'\')"></li>');
+		    	$api.css(deletebtn, 'display:none');
+
+		    	$api.css($api.dom('#reprint'), 'display:none;');
+		    	title = nickname_home+' Tinkle的主页';
+		    	// 微信好友
+		    	$api.addEvt(wechat, 'click',function(){
+		    		summary=summary==''||summary==undefined?'這個人什麽都沒有留下 (｡ŏ_ŏ)':summary;
+		    		content = summary+ " | TINKLE國際交友社區，更多精彩等待你去發現";
+		    		// console.log(avatarpath);
+		    		$api.css(wechat, 'opacity:0.5');
+			    	setTimeout(function(){
+			    		var wx = api.require('wx');
+						wx.shareWebpage({
+						    apiKey: '',
+						    scene: 'session',
+						    title: title,
+						    description: content,
+						    thumb:avatarpath,
+						    contentUrl: 'http://parttime.baopinghui.com/chat/bin/home.html?otherId='+ otherId + '&ID='+$api.getStorage('id')+'&shareclick=1'
+						    // contentUrl: img
+						}, function(ret, err) {
+						    if (ret.status) {
+						        console.log('分享成功');
+						    } else {
+						        console.log('分享失敗');
+						    }
+						});
+			    	},500);
+		    	});
+		    	// 微信分享朋友圈
+			    $api.addEvt(circle,"click",function(){
+			    	summary=summary==''||summary==undefined?'這個人什麽都沒有留下 (｡ŏ_ŏ)':summary;
+		    		content = summary+ " | TINKLE國際交友社區，更多精彩等待你去發現";
+				   	setTimeout(function(){
+				   		var wx = api.require('wx');
+						wx.shareWebpage({
+						    apiKey: '',
+						    scene: 'timeline',
+						    title: title,
+						    description: content,
+						    thumb: avatarpath,
+						    contentUrl: 'http://parttime.baopinghui.com/chat/bin/home.html?otherId='+ otherId + '&ID='+$api.getStorage('id')+'&shareclick=1'
+						}, function(ret, err) {
+						    if (ret.status) {
+						        console.log('分享成功');
+						    } else {
+						        console.log('分享失敗');
+						    }
+						});
+				   	},500);
+			    	$api.css(circle, 'opacity:0.5');
+
+			    });
+			    // QQ分享好友
+			    $api.addEvt(qfriends, 'click', function(){
+			    	summary=summary==''||summary==undefined?'這個人什麽都沒有留下 (｡ŏ_ŏ)':summary;
+		    		content = summary+ " | TINKLE國際交友社區，更多精彩等待你去發現";
+			    	$api.css(qfriends, 'opacity:0.5');
+			    	var qq = api.require('qq');
+					qq.shareNews({
+					    url: 'http://parttime.baopinghui.com/chat/bin/home.html?otherId='+ otherId + '&ID='+$api.getStorage('id')+'&shareclick=1',
+					    title: title,
+					    description: content,
+					    imgUrl: avatarpath,
+					    type: "QFriend"
+					});
+			    });
+			    // QQ分享空间
+			    $api.addEvt(qspace, 'click', function(){
+			    	summary=summary==''||summary==undefined?'這個人什麽都沒有留下 (｡ŏ_ŏ)':summary;
+		    		content = summary+ " | TINKLE國際交友社區，更多精彩等待你去發現";
+			    	$api.css(qspace, 'opacity:0.5');
+			    	var qq = api.require('qq');
+					qq.shareNews({
+					    url: 'http://parttime.baopinghui.com/chat/bin/home.html?otherId='+ otherId + '&ID='+$api.getStorage('id')+'&shareclick=1',
+					    title: title,
+					    description: content,
+					    imgUrl: avatarpath,
+					    type: "QZone"
+					});
+			    });
+
+			    boof = false;
+		    	return;
+		    }
+		    	// 点进转发功能
+				$api.addEvt(reprintbtn, 'click', function(){
+						api.openWin({
+							name: 'appshare',
+							url: 'widget://html/chat/appshare.html',
+							pageParam: {
+									postId:postId,
+									otherId:otherId,
+									postUsername:postUsername,
+									title:title,
+									img:img,
+									share:'sharePost'
+							}
+						});
+					setTimeout(function(){
+						api.closeFrame({
+								name: 'more'
+						});
+
+					},300);
+					return;
+				});
+	}
+function copyurl(type,otherId){
+	console.log(type);
+	var copyvalue;
+	if(type=='home'){
+		copyvalue='http://parttime.baopinghui.com/chat/bin/home.html?otherId='+ otherId + '&ID='+$api.getStorage('id')+'&shareclick=1';
+	}else if(type=='detail'){
+		copyvalue='http://parttime.baopinghui.com/chat/bin/detail.html?postId='+otherId + '&ID='+$api.getStorage('id')+'&shareclick=1';
+	}else if(type=='theme'){
+		copyvalue=tinkle+'http://parttime.baopinghui.com/chat/bin/theme.html?themeId='+ otherId + '&ID='+$api.getStorage('id')+'&shareclick=1';
+	}
+	// 文本复制
+	var clipBoard = api.require('clipBoard');
+	clipBoard.set({
+	    // value: $api.html($api.dom('.text')).replace(/<br>/g,'').replace(/<span>/g,'').replace(/<\/span>/g,'')
+	    value:copyvalue
+	}, function(ret, err) {
+	    if (ret) {
+	    	if($api.getStorage('language')=='zho'){
+	    		api.toast({
+			        msg: '已複製鏈接',
+				    duration: 1000,
+				    location: 'middle'
+			    });
+	    	}else{
+	    		api.toast({
+			        msg: 'Already Copied Link',
+				    duration: 1000,
+				    location: 'middle'
+			    });
+	    	}
+	        
+		} else {
+		    console.log(JSON.stringify(err));
+	    }
+	});
+}
+</script>
+</html>

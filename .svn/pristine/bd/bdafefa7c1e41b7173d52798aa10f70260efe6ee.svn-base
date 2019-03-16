@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+	<title>numeroloy</title>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+		}
+		.bg{
+			position: fixed;
+			top:0;
+			width: 100vw;
+			min-height:100vh;
+			background:url(../../icon/logon-page2/bg.jpg);
+			background-size:contain;
+		}
+		.top{
+			position: relative;
+			width:100vw;
+			height:7.29vw;
+		}
+		.return{
+			position: absolute;
+			top:7.31vw;
+			left:5.32vw;
+			width:7.98vw;
+			height:7.98vw;
+			background:url(../../icon/logon-page2/return.png);
+			background-size: cover;
+		}
+		/*.title{
+			position: absolute;
+			bottom:-1vw;
+			right:5.32vw;
+			width:34.04vw;
+			height:12.77vw;
+			background:url(../../icon/logon-page2/choice-function-eng@3x2.png);
+			background-size: contain;
+		}*/
+		.content{
+			position: relative;
+			top: 16vw;
+			width: 90vw;
+			height:150vw;
+			background: #7512F7;
+			margin: 0 auto;
+			border-radius: 60px;
+		}
+		.sex,.bir,.location{
+			width:82vw;
+			height:13.3vw;
+			background-color: #2D075C;
+			margin:2.66vw auto 0;
+			border-radius: 2.66vw;
+			padding:2.66vw 2.66vw 2.66vw 5.32vw;
+			box-sizing: border-box;
+		}
+		.content span{
+			font:3.99vw/8.2vw Arial;
+			font-weight: bold;
+			color:#fff;
+			float:left;
+			vertical-align: bottom;
+		}
+		#seximg{
+			width:5.32vw;
+			height:5.32vw;
+			object-fit: cover;
+			vertical-align: middle;
+			margin-left:1.33vw;
+		}
+		.sex>span:nth-child(2),.bir>span:nth-child(2),.location>span:nth-child(2){
+			width:7.98vw;
+			height:7.98vw;
+			background:url(../../icon/function/icon-back-white.png);
+			background-size: cover;
+			transform: rotate(180deg);
+			float:right;
+		}
+		.explain{
+			width: 89.1vw;
+			height:auto;
+			margin:5.32vw auto 0;
+			background-color: #000;
+			padding:5.32vw 5.32vw 5.8vw 5.32vw;
+			box-sizing: border-box;
+			border-radius: 2.66vw;
+		}
+		.explain>p{
+			font:3.19vw/4.52vw Arial;
+			font-weight: bold;
+			color:#E29842;
+		}
+		.explain>div{
+			font:3.19vw/4.52vw Arial;
+			font-weight: bold;
+			color:#F381A3;
+		}
+		.button{
+			position: relative;
+			/*left:16.755vw;*/
+			bottom:5vw;
+			width:66.49vw;
+			height:10.64vw;
+			background-color: #C42D8E;
+			border-radius: 7.98vw;
+			margin:0 auto;
+			font: 3.72vw/11.64vw Arial;
+			font-weight: bold;
+			color:#fff;
+			text-align: center;
+		}
+		.button2{
+			position: relative;
+			/*left:16.755vw;*/
+			bottom:13vw;
+			width:66.49vw;
+			height:10.64vw;
+			background-color: #C42D8E;
+			border-radius: 7.98vw;
+			margin:0 auto;
+			font: 3.72vw/11.64vw Arial;
+			font-weight: bold;
+			color:#fff;
+			text-align: center;
+		}
+		.message{
+			position: relative;
+			top: 0;
+		}
+		.title_img,.title_img2{
+			position: relative;
+			margin:0 auto;
+			width: 100%;
+			height: 256px;
+			margin-bottom: 0px;
+		}
+		.headImg{
+			position: absolute;
+			top: 33%;
+			left: 50%;
+			margin-left:-50px;
+			width: 90px;
+			height: 90px;
+			border-radius: 50px;
+			border: 2px solid rgba(45,7,92,1);
+		}
+		.name{
+			position: absolute;
+			top: 57%;
+			left: 38.9vw;
+			color: white;
+			font-weight: bold;
+			font-size: 15px;
+		}
+		.loading{
+			width:249px;
+			height:10px;
+			background-color: #2D075C;
+			margin:5vw auto 0;
+			border-radius: 10px;
+			box-sizing: border-box;
+			animation: change 1s infinite;
+		}
+		.time{
+				position: relative;
+				top: -10vw;
+				height: 23px;
+				width: 197px;
+				margin: 0 auto;
+				color: #2D075C;
+				font-size: 12px;
+				text-align: center;
+				font-weight: bold;
+		}
+		@keyframes change{0% {opacity: 1;}50%{opacity: 0.5;}100% {opacity: 1;}}
+		.photo{
+			height: 90px;
+			width: 90px;
+			background-size:cover;
+			border-radius: 50px;
+			/*animation: light 1s infinite;*/
+		}
+		/*@keyframes light{0% {box-shadow:0 0 5px #FFEC8B;}15%{box-shadow:0 0 7px #FFEC8B;}25% {box-shadow:0 0 10px #FFEC8B;}35% {box-shadow:0 0 13px #FFEC8B;}50% {box-shadow:0 0 16px #FFEC8B;}65% {box-shadow:0 0 20px #FFEC8B;}}*/
+		.slider{
+			list-style: none;
+		}
+		/*.loadingBox{
+			position: absolute;
+			top: 70%;
+		}*/
+	</style>
+</head>
+<body>
+	<div class="bg"></div>
+	<div class="top">
+		<div class="return" onclick="closewin()"></div>
+		<!-- <div class="title"></div> -->
+	</div>
+	<div class="content" id="content">
+		<div class="message">
+			<img class="title_img" src="../../icon/logon-page2/title-en.png" style="display:none;">
+			<img class="title_img2" src="../../icon/logon-page2/tlpy.png">
+			<div class="headImg">
+				<ul class="slider" v-for="user in matchs">
+					<li class="slider_li"><img class="photo" :src="'http://bin.baopinghui.com/'+user.avatar_url"></li>
+				</ul>
+			</div>
+			<p class="name">？？？</p>
+			<div class="loadingBox">
+				<div class="loading"></div>
+				<div class="loading"></div>
+				<div class="loading"></div>
+				<div class="loading"></div>
+				<div class="loading"></div>
+			</div>
+			<div class="selectBox" style="display:none;">
+				<div class="sex" id="sex"><span id="sexnum">CHOOSE GENDER</span><span></span></div>
+				<div class="bir" id="bir"><span id="birnum">CHOOSE DATE OF BIRTH</span><span></span></div>
+				<div class="location" id="location"><span id="locationnum">CHOOSE LOCATION</span><span></span></div>
+			</div>
+		</div>
+	</div>
+	<div class="button2" id="button2">S T A R T</div>
+	<div class="button" id="button" style="display:none;">V I E W   R E S U L T S</div>
+	 <div class="time">Every day 20:00 - 23:00 open</div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="../../script/vue.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var myyear,
+		mymonth,
+		myday,
+		mylocation,
+		x,y,z,x1,y1;
+	var sexx;
+	apiready = function(){
+		getHead();
+		setTimeout(function(){
+				$('.slider_li:not(:first)').hide();
+		},300)
+		setTimeout(function(){
+				$('.slider_li:not(:first)').hide();
+		},500)
+		setTimeout(function(){
+				$('.slider_li:not(:first)').hide();
+		},800)
+		setTimeout(function(){
+				$('.slider_li:not(:first)').hide();
+		},3000)
+		// 监听关闭自己
+		api.addEventListener({
+		    name: 'numerology_new'
+		}, function(ret, err) {
+		   api.closeWin({
+		       name: 'numerology_new'
+		   });
+		});
+		var function1 = api.pageParam['function1'];
+		// 明星数据
+		var star={"1":{starnum:9},"2":{starnum:6},"3":{starnum:9},"4":{starnum:5},"5":{starnum:11},"6":{starnum:6},"7":{starnum:10},"8":{starnum:5},"9":{starnum:7}};
+		setTimeout(function(){
+			lunbo();
+		},1000)
+		var key = api.pageParam.key;
+		if(key==1){
+			$(".title_img").css("display","block");
+			$(".selectBox").css("display","block");
+			$(".button").css("display","block");
+			$(".title_img2").css("display","none");
+			$(".loadingBox").css("display","none");
+			$(".button2").css("display","none");
+			$(".headImg").css("display","none");
+			$(".time").css("display","none");
+			$(".name").css("display","none");
+			// 判断是否进行过自测
+		    api.ajax({
+		        url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/userinfo',
+		        method: 'post',
+		        data: {
+		            values: {
+		                uiId:$api.getStorage('id'),
+			       		pageUiId:$api.getStorage('id')
+		            }
+		        }
+		    }, function(ret, err) {
+		        if(ret.data.augury!==0){
+		        	console.log(1);
+
+		        	setTimeout(function(){
+						api.openWin({
+					        name: 'numerology_result_new',
+					        url: 'widget://html/logon-register/numerology_result_new.html',
+					        pageParam: {
+					            numerology_number:ret.data.augury,
+					            random:ret.data.star,
+					            function1:function1
+					        }
+					   	});
+					},500);
+			    }
+		    });
+		}else if(key==2){
+			$(".title_img").css("display","none");
+			$(".selectBox").css("display","none");
+			$(".button").css("display","none");
+			$(".title_img2").css("display","block");
+			$(".loadingBox").css("display","block");
+			$(".button2").css("display","block");
+			$(".headImg").css("display","block");
+			$(".time").css("display","block");
+			$(".name").css("display","block");
+		}
+	    if($api.getStorage('language')=='zho'){
+	    	// $api.css($api.dom('.title'), 'background:url(../../icon/logon-page2/choice-function@3x2.png);background-size:cover;right:0vw;bottom:-1vw;');
+				$('.title').css('background','url(../../icon/logon-page2/choice-function@3x2.png);background-size:cover;right:0vw;bottom:-1vw;');
+	    	// $api.html($api.dom('.sex'), '<span id="sexnum">選 擇 性 別</span><span></span>');
+				$('.sex').html('<span id="sexnum">選 擇 性 別</span><span></span>');
+	    	// $api.html($api.dom('.bir'), '<span id="birnum">選 擇 出 生 日 期</span><span></span>');
+				$('.bir').html('<span id="birnum">選 擇 出 生 日 期</span><span></span>');
+	    	// $api.html($api.dom('.location'), '<span id="locationnum">選 擇 所 在 國 家</span><span></span>');
+				$('.location').html('<span id="locationnum">選 擇 所 在 國 家</span><span></span>');
+	    	$(".title_img2").attr("src","../../icon/logon-page2/tlpz.png");
+	    	$(".title_img").attr("src","../../icon/logon-page2/title.png");
+
+	    	// $api.html($api.dom('.explain'), '<p>P.S</p><p>數 秘 術 是 從 約 2500 年 前 流 傳 下 來 的 一 種</p><p>運 用 數 字 解 讀 命 運 的 方 法</p><p>其 創 始 者 據 說 是 提 出</p><p>“ 壹 切 事 物 的 根 源 來 自 數 字 ”  的 畢 達 哥 拉 斯</p><br /><p>人 自 誕 生 於 這 世 上 便 開 始 了</p><p>由 數 字 支 配 的 壹 生</p><p>若 能 夠 破 解 這 些 數 字 的 秘 密</p><p>也 就 能 找 到 我 們 人 生 的 使 命 了 吧</p><br /><div>“ 命 運 數 ” 與 出 生 年 月 有 關</div><div>請 填 寫 真 實 的 日 期 以 保 證 準 確 性</div>');
+	    	// $api.html($api.dom('.button'), '查 看 結 果');
+				// $api.html($api.dom('.button2'), '開 始 匹 配');
+				// $api.html($api.dom('.time'), '每 天 20:00 - 23:00 开 启');
+				$('.button').html('查 看 結 果');
+				$('.button2').html('開 始 匹 配');
+				$('.time').html('每 天 20:00 - 23:00 开 启');
+	    }
+
+	    // 點擊選擇性别
+	    $api.addEvt($api.dom('.sex'), 'click', function(){
+	    	api.openFrame({
+				name: "dateBg",
+				url: "widget://html/set-up/selectDateBg.html",
+				rect: {
+					x: 0,
+					y: 0,
+					w: "auto",
+					h: "auto"
+				},
+			    pageParam: {
+			    	sex:1,
+				    numerology:1
+			    }
+			});
+	    });
+	    // 點擊選擇日期
+	    $api.addEvt($api.dom('#bir'), 'click', function(){
+	    	openselecty();
+	    });
+	    // 点击选择国家
+	    $api.addEvt($api.dom('#location'), 'click', function(){
+	    	api.openFrame({
+				name: "dateBg",
+				url: "widget://html/set-up/selectDateBg.html",
+				rect: {
+					x: 0,
+					y: 0,
+					w: "auto",
+					h: "auto"
+				},
+			    pageParam: {
+			    	location:1,
+				    numerology:1
+			    }
+			});
+	    });
+	    // 点击查看结果
+	    $api.addEvt($api.dom('#button'), 'click',function(){
+	    	api.sendEvent({
+	    	    name: 'recommend_reload'
+	    	});
+	    	if($api.html($api.dom('#birnum'))=='選 擇 出 生 日 期'||$api.html($api.dom('#birnum'))=='CHOOSE DATE OF BIRTH' ||$api.html($api.dom('#sexnum'))=='CHOOSE GENDER' ||$api.html($api.dom('#sexnum'))=='選 擇 性 別'||$api.html($api.dom('#locationnum'))=='CHOOSE LOCATION'||$api.html($api.dom('#locationnum'))=='選 擇 所 在 國 家'){
+		    	console.log(1);
+		    }else{
+		    	myyear=$api.text($api.dom('#birnum')).slice(0,4);
+		    	mymonth=$api.text($api.dom('#birnum')).slice(5,7);
+		    	myday=$api.text($api.dom('#birnum')).slice(8,10);
+		    	console.log(2);
+		    do{
+		    	while(myyear.length>1){
+		    		x=0;
+		    		x1=0;
+		    		for(var i=0;i<myyear.length;i++){
+		    			x1=parseInt(myyear.charAt(i));
+			    		x=x+x1;
+			    		console.log(x);
+			    	}
+			    	myyear=x.toString();
+			    	console.log(myyear);
+		    	}
+		    	while(mymonth.length>1){
+		    		x=0;
+		    		x1=0;
+		    		for(var i=0;i<mymonth.length;i++){
+		    			x1=parseInt(mymonth.charAt(i));
+			    		x=x+x1;
+			    		console.log(x);
+			    	}
+			    	mymonth=x.toString();
+			    	console.log(mymonth);
+		    	}
+		    	while(myday.length>1){
+		    		x=0;
+		    		x1=0;
+		    		for(var i=0;i<myday.length;i++){
+		    			x1=parseInt(myday.charAt(i));
+			    		x=x+x1;
+			    		console.log(x);
+			    	}
+			    	myday=x.toString();
+			    	console.log(myday);
+		    	}
+		    	z=parseInt(myyear)+parseInt(mymonth)+parseInt(myday);
+		    	while(z.toString().length>1){
+		    		y=0;
+		    		y1=0;
+		    		for(var i=0;i<z.toString().length;i++){
+		    			y1=parseInt(z.toString().charAt(i));
+		    			y=y+y1;
+		    		}
+		    		z=y;
+		    	}
+		    }while(z.toString().length>1)
+				var random = parseInt(Math.random()*star[z].starnum);
+				var beginTime = $api.text($api.dom('#birnum'));
+				if($api.getStorage('language')=='zho'){
+					if($api.text($api.dom('#sexnumm')) == '男性'){
+						sexx = '男';
+					}else{
+						sexx = '女';
+					}
+				}else{
+					if($api.text($api.dom('#sexnumm')) == 'Male'){
+						sexx = '男';
+					}else{
+						sexx = '女';
+					}
+				}
+				console.log(beginTime);
+				console.log(sexx);
+				console.log($api.text($api.dom('#locationnum')));
+				// 判断是否进行过自测
+			    api.ajax({
+			        url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/userinfo',
+			        method: 'post',
+			        data: {
+			            values: {
+			                uiId:$api.getStorage('id'),
+				       		pageUiId:$api.getStorage('id')
+			            }
+			        }
+			    }, function(ret, err) {
+			    	console.log(1);
+			        if(ret.data.augury!==0){
+			        	setTimeout(function(){
+							api.openWin({
+						        name: 'numerology_result_new',
+						        url: 'widget://html/logon-register/numerology_result_new.html',
+						        pageParam: {
+						            numerology_number:ret.data.augury,
+						            random:ret.data.star,
+						            function1:function1
+						        }
+						   	});
+						},500);
+				    }else{
+
+				    	// alert($api.text($api.dom('#sexnumm')));
+				    	// alert($api.text($api.dom('#locationnum')));
+					// 将占卜数据存到后台
+						api.ajax({
+								url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/setAugury',
+								method: 'post',
+								data: {
+									values: {
+										uiId: $api.getStorage('id'),
+										beginTime: beginTime,
+										sex:  sexx,
+										location:  $api.text($api.dom('#locationnum')),
+										auguryNum: z,
+										starNum:random
+									}
+								}
+						}, function(ret, err) {
+								// alert('储存成功');
+						});
+						api.openWin({
+					    	    name: 'numerology_result_new',
+					    	    url: 'widget://html/logon-register/numerology_result_new.html',
+					    	    pageParam: {
+					    	        numerology_number:z,
+					    	        random:random,
+					    	        function1:function1
+					    	    }
+					    	});
+				    }
+			    });
+
+		    }
+	    });
+			var match = $api.dom("#button2");
+			$api.addEvt(match, 'click', openChat);
+			// openChat();
+			function openChat(){
+				// var number =  Math.floor(Math.random()*9+1);
+				//  alert(number);
+				 api.ajax({
+				     url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/getUiidByAugury',
+				     method: 'get',
+				     data: {
+				         values: {
+				             augury: 0
+				         }
+				     }
+				 },function(ret, err){
+				     if (ret) {
+							//  alert(ret.data.length);
+							//  var dataLen = ret.data.length;
+							//  	var number =  Math.floor(Math.random()*dataLen+1);
+							// 	var otherId = ret["data"][number-1]["ui_id"];
+							var dataLen, //获取的匹配用户列表的长度
+										number,//匹配时生成的随机数
+										otherId;//匹配到的用户ID
+							var matching = true;//打开弹窗
+								// alert(number);
+								var noRepeat=0;//为0时 表示匹配到的不是重复用户 为 1 时 表示匹配到重复的用户 不发送匹配信息
+
+								//判断是否有匹配ID数组缓存 ，有直接拿取，没有重新var 数组
+								// if($api.getStorage("sbId")==undefined||$api.getStorage("sbId")==null){
+								// 	// alert("?");
+								// 		var sbId=[{'uiId':$api.getStorage('id'),'otherId':[]}];
+								// }else{
+								// 	// alert("??");
+								// 		var sbId=$api.getStorage("sbId");
+								// }
+								//打开弹窗
+								api.openFrame({
+									name: 'loading',
+									url: 'widget://html/logon-register/loading.html',
+									vScrollBarEnabled: false,
+									slidBackEnabled: false,
+									animation: {
+										type: "fade", //动画类型（详见动画类型常量）
+										subType: "fade", //动画子类型（详见动画子类型常量）
+										duration: 900 //动画过渡时间，默认300毫秒
+									},
+									pageParam:{
+										matching: matching
+									}
+								});
+
+										//拿取匹配用户列表，防止拿取时间太长只取 前10个用户
+										var data = ret.data;
+										match.users = data.slice(0,10);
+										// alert(JSON.stringify(users));
+										//当拿取到的 匹配用户没有登陆过APP ，移除出匹配用户列表
+										 for(var i=0;i<match.users.length;i++){
+											 (function(i){
+													api.ajax({
+															url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/getUserOnlinetime',
+															method: 'get',
+															data: {
+																	values: {
+																			uiid: match.users[i].ui_id
+																	}
+															}
+													},function(ret, err){
+															if (ret) {
+																var date=ret.data;
+															if(date.length==0||date==null){
+																// console.log(match.users[i].ui_id+","+i);
+																var name=match.users.splice(i,1);
+																// console.log(name[0].ui_id+':::'+name[0].nickname+"：长度："+match.users.length);
+															}
+															}
+													});
+												})(i);
+									}
+										// alert(JSON.stringify(users)+','+users.length);
+											setTimeout(function(){
+												dataLen = match.users.length;
+												console.log("匹配用户列表："+dataLen+"个用户");
+										 		number =  Math.floor(Math.random()*dataLen+1);
+												otherId = match.users[number-1]['ui_id'];
+										//如果匹配到自己，重新生成随机数匹配
+	 								 if(otherId==$api.getStorage('id')){
+	  									 number =  Math.floor(Math.random()*dataLen+1);
+	 											otherId=match.users[number-1]['ui_id'];
+	 								 }
+
+										//判断匹配ID 是否匹配过，匹配过的 设置noRepeat 为1，表示不重复发信息，否则为默认值0
+											api.ajax({
+													url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/selectMatched',
+													method: 'post',
+													data: {
+															values: {
+																	uiid: $api.getStorage('id')
+															}
+													}
+											},function(ret, err){
+													if (ret) {
+														if(ret.data.matched!=null){
+															match.sbId=ret.data.matched.split(",");
+															// alert(JSON.stringify(ret));
+														}else{
+															match.sbId=[];
+														}
+											var exist = match.sbId.indexOf(otherId);
+											if(exist==-1){
+												api.ajax({
+												    url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/addMatched',
+												    method: 'post',
+												    data: {
+												        values: {
+												            uiid:$api.getStorage('id'),
+																		str:otherId
+												        }
+												    }
+												},function(ret, err){
+												    if (ret) {
+																match.sbId.push(otherId);
+												        console.log("已将该用户存入匹配用户列表，下次匹配到该用户不会再发消息");
+												    } else {
+												        alert( JSON.stringify( err ) );
+												    }
+												});
+
+											}else{
+												console.log("匹配到了重复的ID："+otherId);
+												noRepeat=1;
+											}
+								 var username = match.users[number-1].nickname;
+								 var avatar = match.users[number-1].avatar_url;
+								console.log(otherId+","+username+","+avatar);
+								api.ajax({
+								    url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/userinfo',
+								    method: 'post',
+								    data: {
+								        values: {
+								            uiId: otherId,
+														pageUiId: otherId
+								        }
+								    }
+								},function(ret, err){
+								    if (ret) {
+											// alert(JSON.stringify(ret));
+											var age=parseInt(ret.data.begin_date.substring(0,4));
+											// var month= parseInt(ret.data.begin_date.substring(5,7));
+											var area=ret.data.location;
+											var fate=ret.data.augury;
+											// alert(age+","+area+","+month);
+											var sex=ret.data.sex;
+											if(sex=='男'||sex=='男性'||sex=="Male"){
+												if($api.getStorage('language')=='zho'){
+													sex='他';
+												}else{
+													sex='He';
+												}
+											}else if(sex=='女'||sex=='女性'||sex=="Female"){
+												if($api.getStorage('language')=='zho'){
+													sex='她';
+												}else{
+													sex='She';
+												}
+											}
+														api.openWin({
+														name: $api.getStorage("id"),
+														url: "widget://html/chat/chat2.html",
+														slidBackEnabled: false,
+														animation: {
+															type: "fade", //动画类型（详见动画类型常量）
+															subType: "fade", //动画子类型（详见动画子类型常量）
+															duration: 250 //动画过渡时间，默认300毫秒
+														},
+														pageParam: {
+															uiId: otherId,
+															nickname: username,
+															avatar: avatar,
+															matching: true,
+															area: area,
+															age: age,
+															fate: fate,
+															sex: sex,
+															noRepeat: noRepeat
+														}
+													});
+													api.closeFrame({
+															name: 'loading'
+													});
+											    }
+											});
+											}else {
+												alert( JSON.stringify( err ) );
+										}
+								});
+							},2300)
+				     }
+				 });
+			}
+	}
+
+	var match = new Vue({
+		el:'#content',
+		data:{
+			matchs:[],
+			users:[],
+			sbId:[],
+		},
+	})
+	//获取匹配用户头像
+	function getHead(){
+api.ajax({
+		url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/getUiidByAugury',
+		method: 'get',
+		data: {
+				values: {
+						augury: 0
+				}
+		}
+},function(ret, err){
+		if (ret) {
+				match.matchs=ret.data;
+				$('.slider_li:not(:first)').hide();
+		}
+});
+}
+// setTimeout(function(){
+// 	lunbo();
+// },500)
+ function lunbo(){
+	// 头像轮播
+	var currentIndex=0,
+			hasStarted = false, //是否已经开始轮播
+			t = 100,
+			length = $('.slider_li').length,
+			interval;
+			if(length>=10){
+				length=10;
+			}
+	$('.slider_li:not(:first)').hide();
+	function next() {
+		var preIndex = currentIndex;
+		currentIndex = ++currentIndex % length;
+		// alert(preIndex+","+currentIndex);
+		play(preIndex, currentIndex);
+	}
+	function play(preIndex, currentIndex) {
+	$('.slider_li').eq(preIndex).fadeOut(0);
+	$('.slider_li').eq(currentIndex).fadeIn(0);
+	}
+	function start() {
+	if(!hasStarted) {
+		hasStarted = true;
+		interval = setInterval(next,t);
+	}
+	}
+	start();
+	//
+}
+	// 打開日期選擇器
+function openselecty(){
+	api.openFrame({
+		name: "dateBg",
+		url: "widget://html/set-up/selectDateBg.html",
+		rect: {
+			x: 0,
+			y: 0,
+			w: "auto",
+			h: "auto"
+		},
+	    pageParam: {
+		    numerology:1
+	    }
+	});
+}
+function setDate(val){//定义设置生日函数，使拿到的数据为年-月-日
+	if(!!val){
+		var ary = val.split(",");
+		$api.html($api.dom('#bir'),'<span id="birnum">'+ary[0]+'-'+ary[1]+'-'+ary[2]+'</span><span></span>');
+	};
+};
+function setLocation(val){
+	if(!!val){
+		$api.html($api.dom('#location'),'<span id="locationnum">'+ val +'</span><span></span>');
+	};
+}
+function setSex(val){
+	if(!!val){
+		if(val == '男性' || val == 'Male'){
+			$api.html($api.dom('#sex'),'<span><span id="sexnumm">'+ val +'</span><img src="../../icon/match/icon-match-man2@3x2.png" id="seximg"></span><span></span>');
+		}else{
+			$api.html($api.dom('#sex'),'<span><span id="sexnumm">'+ val +'</span><img src="../../icon/match/icon-match-girl2@3x2.png" id="seximg"></span><span></span>');
+		}
+
+	};
+}
+
+function closeFra(){
+	api.closeFrame({
+		name: "dateBg"
+	});
+	api.closeFrame({
+		name: "date"
+	});
+};
+function closewin(){
+	api.closeWin();
+}
+</script>
+</html>

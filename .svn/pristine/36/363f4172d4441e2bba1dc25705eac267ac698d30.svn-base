@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>会话列表</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <script src="../../script/jquery-3.1.0.min.js" type="text/javascript"></script>
+    <style>
+    	html,body{
+    		padding:0;
+    		margin:0;
+    		width:100vw;
+    		height:100vw;
+    	}
+    	p{
+    		/*height:6.7vw;*/
+    		height:4.2vw;
+    		line-height:5vw;
+    		margin:1.8vw 0 0 0;
+    	}
+    	#chatList{
+    		padding-bottom: 2.66vw;
+    	}
+    	.message_box{
+    		position: relative;
+				top: 65px;
+    		width:89.33vw;
+    		height:13.33vw;
+    		line-height:13.33vw;
+    		margin: 0 auto;
+    		padding: 2.66vw 5.33vw;
+    		font-size:3.5vw;
+				overflow: auto;
+    	}
+    	.message_box:nth-child(1){
+    		margin-top: 2.66vw;
+    	}
+    	.message_box:active{
+    		background: #EFEFEF;
+    	}
+    	.portrait{
+    		position:relative;
+    		display:inline-block;
+    		float:left;
+    		width:13.33vw;
+    		height:13.33vw;
+    		background: no-repeat center center;
+			background-size: cover;
+    	}
+			.portrait{
+				border-radius:13.33vw;
+			}
+    	.news{
+	    	position:absolute;
+	    	right:0;
+	    	top:0;
+    		display:inline-block;
+    		/*width:3.5vw;
+    		height:3.5vw;*/
+				width: 11px;
+				height: 11px;
+			  border-radius:50%;
+    		border:2px solid #FFF;
+    		background-color:#F381A3;
+    	}
+    	.content{
+    		display:inline-block;
+    		float:left;
+    		margin:0 0 0 4vw;
+    	}
+    	.nickname{
+    		/*单行省略*/
+    		display: -webkit-box;
+    		-webkit-box-orient: vertical;
+    		-webkit-line-clamp: 1;
+    		/*width:50vw;*/
+    		display:inline-block;
+    		width:36vw;
+    		color:#484848;
+				overflow: hidden;
+				text-overflow:ellipsis;
+				white-space: nowrap;
+    		/*background: red;*/
+    	}
+    	.time{
+    		display:inline-block;
+    		float:right;
+    		width:36vw;
+    		text-align:right;
+    		color:#AAAAAA;
+    	}
+    	.message{
+    		color:#AAAAAA;
+    		width:50vw;
+    		padding-bottom: 3px;
+    		/*height:5vw;*/
+    		/*font-size:4vw;*/
+    		/*单行省略*/
+    		display: -webkit-box;
+    		-webkit-box-orient: vertical;
+    		-webkit-line-clamp: 1;
+    		text-overflow: ellipsis;
+    		overflow: hidden;
+    		/*background-color:red;*/
+    	}
+    	.msg_status{
+    		width: 3.5vw;
+    		height: 3.5vw;
+    		vertical-align: middle;
+    	}
+    	.jiao{
+    		position: relative;
+    		/*box-sizing: border-box;*/
+    		height: 0px;
+  			width: 0px;
+  			/*border-top: 1.5vw solid transparent;
+			border-left: 3vw solid #F381A3;
+			border-bottom: 1.5vw solid transparent;*/
+
+			/*box-shadow: 0 0 10px #F381A3;*/
+    	}
+			.jiao2{
+				position: relative;
+				width: 12px;
+				height: 12px;
+			}
+
+		/*空白頁面*/
+    	.empty{
+			position:absolute;
+			top:10.37vw;
+			width: 100%;
+			margin:0 auto;
+		}
+		.empty p{
+			font:3.99vw Arial;
+			font-weight: 700;
+			color:#aaa;
+			line-height: 5.85vw;
+			text-align: center;
+		}
+		.empty p span{
+			color:#F381A3;
+		}
+		.emptyimg{
+			position: absolute;
+			top:41.76vw;
+			left:5.32vw;
+			width:89.1vw;
+			height:45.48vw;
+		}
+		.empty-bottom{
+			position: absolute;
+			top:122.87vw;
+			width:100%;
+		}
+		.empty-bottom-left{
+			position: absolute;
+			left:11.17vw;
+			width:36.97vw;
+			height:22.07vw;
+			font:3.99vw Arial;
+			font-weight: 700;
+			color:#aaa;
+			line-height: 5.85vw;
+			text-align: center;
+			white-space: pre-line;
+            word-wrap: break-word;
+            /*内容超过宽度自动换行，不带空格的全英文和全数字也可以*/
+		}
+		.empty-bottom-right{
+			position: absolute;
+			top:7.18vw;
+			left:51.33vw;
+			width:36.97vw;
+			height:14.1vw;
+			font:3.99vw Arial;
+			font-weight: 700;
+			color:#aaa;
+			line-height: 5.85vw;
+			text-align: center;
+			white-space: pre-line;
+            word-wrap: break-word;
+            /*内容超过宽度自动换行，不带空格的全英文和全数字也可以*/
+
+		}
+			#qunzu{
+				position: absolute;
+				left: 4.5vw;top: 10.5vw;
+				width: 20px;
+				height: 20px;
+				display: inline;
+			}
+/*			.shadow{border:0px solid #efefef;position: fixed;top:0px;z-index: 9999;width: 100%;height:66px;
+			box-shadow: 0px 0px 2px .9px #efefef; }*/
+			.header{
+				position: fixed;
+				top: 0;
+				height: 65px;
+				width: 100%;
+				/*margin-top:25px;*/
+				background: white;
+				box-shadow: 0px 1px 0px .4px #efefef;
+			}
+			.once{
+				text-align: center;
+				line-height: 65px;
+				font-weight: bold;
+			}
+			.back{
+				position: absolute;
+				top: 26px;
+				left: 9.5px;
+				width: 30px;
+				height: 30px;
+			}
+			.recent{
+				display: inline-block;
+				position: absolute;
+				margin-left: 10px;
+				margin-top: -2.7px;
+				padding: 0 3.3vw;
+				color: white;
+				background: #F381A3;
+				border-radius: 30px;
+				height: 20px;
+				font-size:12px;
+				text-align: center;
+				line-height: 20px;
+			}
+			.zhuangtailan{
+				position: fixed;
+				top:0;
+				width:100vw;
+				height:25px;
+				background-color: #fff;
+				z-index: 888;
+			}
+			.boxxx{
+				width: auto;
+				height:auto;
+				/*margin-top:25px;*/
+			}
+    </style>
+</head>
+
+<body>
+	<!-- <header>
+		hahahahahahahahahahah
+	</header> -->
+
+	<div class="zhuangtailan">
+	</div>
+	<div id="chatList">
+		<div class="header" style="z-index:9999;">
+			<img src="../../image/back.png" class="back" @click="closed()">
+			<p class="once">O N C E</p>
+		</div>
+		<template v-if='chatList.length > 0'>
+			<div class="boxxx">
+			<div id="message_box" class="message_box" v-for='(message , index) in chatList' @click="openChat(message)" v-if="message.nickname!=''&&message.nickname!=null">
+
+				<span class="portrait" :style='getPic(message)'><span class="news" v-show='message.unread_msg_count > 0' ></span></span>
+				<img src="../../icon/qunzu.png" id='qunzu' v-if="message.gid!=null">
+				<div class="content">
+					<p class="text"><b class="nickname" :style='getColor(message)'>{{message.nickname}}<b class="recent" v-if='message.islogin==1' v-html='language=="zho"?"最近登陸":"Recently Login"'></b></b><span class="time">{{message.time}}</span></p>
+					<p style="float: right; margin-top: -5px;" v-if="!message.msg_ctime">
+						<img src="../../icon/messages/toright.png" style="width: 5.3vw;height: 5.3vw;"/>
+					</p>
+					<p  v-if='message.messages_text!=undefined||message.messages_text==null' class="text message" :style='getColor(message)'>
+						<!-- <img v-if="message.unread_msg_count > 0" src="../../icon/messages/send.png" class="jiao" /> -->
+						<img v-if="message.unread_msg_count > 0" src="../../icon/messages/du.png" class="jiao2" />
+						<img v-else-if="message.unread_msg_count==0&&message.from_id==ownId" src="../../icon/messages/send2.png" class="msg_status" />
+					  <span v-html='language=="zho"?"點擊開始聊天":"Click to start the chat"'></span>
+
+					</p>
+				</div>
+			</div>
+			</div>
+		</template>
+		<!--内容空白页 -->
+		<!-- <template v-else>
+			<div class="empty">
+				<p id="empty-p1">Congratulations ~</p>
+				<p id="empty-p2">Your discovery of the New World !</p>
+				<p>o(*<span>////</span>▽<span>////</span>*)q</p>
+			</div>
+			<img src="../../image/chat-nothing-picture-gif.gif" class="emptyimg">
+			<div class="empty-bottom">
+				<div class="empty-bottom-left">Interesting person Popular groups <p>↓</p></div>
+				<div class="empty-bottom-right">Featured Posts <p>&nbsp;↓</p></div>
+			</div>
+		</template> -->
+	</div>
+</body>
+	<script src="../../script/jmessage-sdk-web.2.6.0.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../script/base64.min.js" type="text/javascript"></script>
+	<script src="../../script/md5.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../json/api.json"></script>
+	<script type="text/javascript" src="../../json/router.json"></script>
+	<script src="../../script/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../script/jquery-3.1.0.min.js" type="text/javascript"></script>
+	<script src="../../script/public.js" type="text/javascript"></script>
+
+	<script type="text/javascript">
+
+
+    var	now = new Date();
+    var	cmtime = now.getTime() -  6 * 24 *3600 * 1000;
+		var uiid;//临时会话对象的id
+		var Object_type='';//用来存储当前聊天的对象类型3代表单聊4代表群聊
+		var Object_username='';//用来存储当前聊天对象的uiid或群组的gid
+		var	messageList = [];//列表所有会话消息
+		var lists=[];
+		var hhh = window.screen.height;
+		var www = window.screen.width;
+		apiready = function(){
+			if(hhh/www > 2){
+				$api.css($api.dom('.header'), 'margin-top:25px');
+				setTimeout(function(){
+					$api.css($api.dom('.boxxx'), 'margin-top:25px');
+				},500);
+
+			}
+			var tou='新朋友';
+			wenben={
+			 text1:'Your network is disconnected( •̥́ ˍ •̀ू )',
+			 text2: 'Pretend not to care',
+			 text3:'⚆_⚆？I can\'t help it'
+
+		 };
+		 if($api.getStorage("language")=="zho"){
+			 var wenben={
+				 text1:'您的网络已经断开( •̥́ ˍ •̀ू )',
+				 text2: '假装不在意',
+				 text3:'⚆_⚆？我也帮不了'
+
+			 };
+
+			weidu="收到一條新消息，快去查看吧！";
+		 $("#empty-p1").html("恭 喜 ~");
+		 $("#empty-p2").html("你 發 現 了 新 大 陸 ！");
+		 $(".empty-bottom-left").html("有 趣 的 人 <br>熱 門 群 組 <p>↓</p>");
+		 $(".empty-bottom-right").html("精 選 帖 子 <p>&nbsp;↓</p>");
+		 }else{
+			weidu="You receive a new chat, go and receive it!";
+		 }
+			 lists=api.pageParam.lists;
+				// alert(JSON.stringify(api.pageParam.lists));
+				// $api.setStorage("listonce",list);
+			// alert(JSON.stringify(chatList.chatList[0]));
+			var title=api.pageParam['title'];
+			var nickname=api.pageParam['nickname'];
+			var img=api.pageParam['img'];
+  var lists2=lists;
+	// alert(JSON.stringify(chatList.chatList));
+			for(var i=0;i<lists2.length;i++){
+				(function(i){
+
+
+			api.ajax({
+					url:'http://api.baopinghui.com/app_tinUserinfoControllerC/findonline7byuiid',
+					method:'GET',
+					data:{
+						values:{
+							uiid:lists[i].username
+						}
+					}
+			},function(ret,err){
+
+
+			if(ret.status==1){
+				if(ret.data==1){
+					console.log(lists2[i].nickname+"   ****登陆了");
+							Vue.set(chatList.chatList[i],'islogin',1);
+					// chatList.chatList
+					lists2[i].islogin=1;
+				}else if(ret.data==0){
+					lists2[i].islogin=0;
+				}
+
+			}
+			});
+			})(i)
+		}
+
+		// setTimeout(function(){
+		// // alert(JSON.stringify(lists2));
+		// 	chatList.chatList=[];
+		// 	chatList.chatList=lists2;
+		// },4000)
+			api.addEventListener({
+	    name:'swiperight'
+			}, function(ret, err){
+	   			api.closeWin();
+		 });
+			//监听网络的情况是否没网
+									api.addEventListener({
+								name:'offline'
+						}, function(ret, err){
+							api.openFrame({
+									name: 'duanwang',
+									url: '../logon-register/pop.html',
+
+									pageParam: {
+											data: wenben.text1,
+											value: wenben.text2,
+											 none: wenben.text3
+									},
+									bounces: true,
+									bgColor: 'rgba(0,0,0,0)',
+									vScrollBarEnabled: true,
+									hScrollBarEnabled: true
+							});
+
+						});
+						//监听是否来网了
+					api.addEventListener({
+					    name:'online'
+					}, function(ret, err){
+						//重新刷新页面
+						if(Object_type==''){
+						    history.go(0);
+								}
+					    api.closeFrame({
+					        name: 'duanwang'
+					    });
+
+					});
+
+			// api.setRefreshHeaderInfo({
+			// 		visible: true,
+			// 		loadingImg: 'widget://image/refresh.png',
+			// 		bgColor: '#efefef',
+			// 		textColor: '#aaa',
+			// 		textDown: 'Ready to refresh',
+			// 		textUp: 'Ready to refresh',
+			// 		textLoading:'Ready to refresh',
+			// 		showTime: false
+			// }, function(ret, err){
+			// 	setTimeout(function(){
+			// 		window.location.reload();
+			// 		api.refreshHeaderLoadDone();
+			// 	},500)
+			// });
+
+
+    setTimeout(function(){
+				// 	msg_time();//刷新时间
+		},100);
+			//极光初始化
+
+			api.setStatusBarStyle({
+				style: 'dark'
+			});
+
+
+
+
+
+
+
+
+
+
+
+			// setInterval('msg_time();',1*60*1000);//定时刷新一分钟
+
+
+
+
+		var chatList = new Vue({
+			el: '#chatList',
+			data: {
+				ownId:$api.getStorage('id'),
+				chatList:lists,  //$api.getStorage('listonce') || [], //会话列表
+				group1_my_group: $api.getStorage('group1_my_group')||[],//我的群组
+				language:$api.getStorage("language")
+	//			chatList: [] //会话列表
+
+	//			hasNews: 0, //总的未读数
+			},
+			methods: {
+				closed: function(){
+					api.closeWin({
+					    name: 'chat_list_once'
+					});
+				chatList.chatList=[];
+				},
+				//设置头像
+				getPic: function(item) {
+					return {
+						backgroundImage: 'url(' + json['qiniu'] + item['avatar_url'] + '?imageView2/0/w/100)',
+						backgroundColor: item['avatarBg']
+					}
+				},
+				getColor: function(item) {
+					if(item['unread_msg_count'] > 0){
+						return {
+							color: '#F381A3'
+						}
+					}
+
+				},
+
+
+				////saaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+				openChat: function(message) { //打开聊天界面
+					// console.log("进行退出登录当前窗口的极光");
+
+
+					// console.log(JSON.stringify(message));
+					var num = Number($api.getStorage('hasNews')) - message.unread_msg_count;
+					//functionList.hasNews = num;//更改消息总未读数
+					$api.setStorage('hasNews',num);//设置缓存--消息总未读数message.unread_msg_count
+					console.log($api.getStorage('hasNews'))
+					// alert("当前的未读数"+$api.getStorage('hasNews'));
+
+					message.unread_msg_count = 0;
+					uiid = message['name'];
+						// 	for(i=0;i<chatList.chatList.length;i++){
+						// 	alert(chatList.chatList[i].from_id);
+						// }
+				//			alert(num);
+				//			message.messages_text = '';
+	       if(message.gid!=null&&message.gid!=''){
+					  // alert(JSON.stringify(message.nickname));
+						// 打开群聊页面
+						api.openWin({
+
+					name: 'group_chat',
+						url:router['widget']+"group/group_chat.html",
+					slidBackEnabled: false,
+					animation: {
+						type: "fade", //动画类型（详见动画类型常量）
+						subType: "fade", //动画子类型（详见动画子类型常量）
+						duration: 250 //动画过渡时间，默认300毫秒
+					},
+					pageParam: {
+						// //  avatar: message['avatar_url'],
+						gid: message.gid,
+						gname: message.nickname
+						}
+					});
+
+				 }
+				else {
+					    api.openWin({
+
+
+						name: 'chat2',
+						url: router['widget'] + router['chat']['chat'],
+						   // "chat/chat2.html"
+						  // url:router['widget']+"group/group_chat.html",
+						slidBackEnabled: false,
+						animation: {
+							type: "fade", //动画类型（详见动画类型常量）
+							subType: "fade", //动画子类型（详见动画子类型常量）
+							duration: 250 //动画过渡时间，默认300毫秒
+						},
+						pageParam: {
+							uiId: message['name'],
+							nickname: message['nickname'],
+							avatar: message['avatar_url']
+
+							// gid:'11512702',
+							// gname: '666892的群組2'
+
+
+					   	}
+					  });
+
+
+					}
+				}
+			}
+
+		});
+	};
+
+
+		//----------------------极光初始化登录-------------------------------------------------------------------------------
+			//极光初始化需要的数据
+
+		var		toggle=true,//判断是否是刷新页面还是从单聊群聊退出的
+
+				//用于获取数据
+				sj,//获取当前日期
+				sj2,//获取7天前的日期
+				sj3,//获取半天前的日期
+				cursor = "",//获取消息的回执
+				login_lock = 0;
+
+			var	hasNews = 0,//总未读数
+				chatlist = {},//会话列表
+
+				lock = true;
+
+				//生成随机字符串
+				function random(length) {
+					var str = Math.random().toString(36).substr(2);
+					if(str.length >= length) {
+						return str.substr(0, length);
+					}
+					str += random(length - str.length);
+					return str;
+				}
+
+				//获取当前时间，格式YYYY-MM-DD
+			    function getNowFormatDate() {
+			        var date = new Date();
+			        var seperator1 = "-";
+			        var year = date.getFullYear();
+			        var month = date.getMonth() + 1;
+			        var strDate = date.getDate();
+			        if (month >= 1 && month <= 9) {
+			            month = "0" + month;
+			        }
+			        if (strDate >= 0 && strDate <= 9) {
+			            strDate = "0" + strDate;
+			        }
+			        var currentdate = year + seperator1 + month + seperator1 + strDate;
+			        return currentdate;
+			    }
+
+			    //求出当前时间的7天前是几号
+			    function getNowFormatDate2(){
+			    	var now = new Date();
+					var date = new Date(now.getTime() - 6 * 24 * 3600 * 1000);
+					var year = date.getFullYear();
+					var month = date.getMonth() + 1;
+					var day = date.getDate();
+					if (month >= 1 && month <= 9) {
+			            month = "0" + month;
+			        }
+			        if (day >= 0 && day <= 9) {
+			            day = "0" + day;
+			        }
+	//				alert(year + '-' + month + '-' + day  + ' ' + hour + ':' + minute + ':' + second);
+					return year + '-' + month + '-' + day;
+			    }
+					//求出当前时间的半天天前是几号
+					function getNowFormatDate3() {
+						var now = new Date();
+						var date = new Date(now.getTime() - 0.15* 24 * 3600 * 1000);
+						var year = date.getFullYear();
+						var month = date.getMonth() + 1;
+						var day = date.getDate();
+					var	h = date.getHours() + ':';
+					var	m = date.getMinutes() + ':';
+					var		s = date.getSeconds();
+						if(month >= 1 && month <= 9) {
+							month = "0" + month;
+						}
+						if(day >= 0 && day <= 9) {
+							day = "0" + day;
+						}
+						return year + '-' + month + '-' + day+" "+h+m+s;
+					}
+
+
+
+				//用于时间戳转换成日期格式
+				function change1(number,b){
+
+	           var timebin='';
+	          var number1=(number+"").substring(0,10);
+	            b= parseInt(number1)+b;
+	        function timestampToTime(b) {
+	                var date = new Date(b*1000);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+	                Y = date.getFullYear() + '-';
+	                M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+	                D = date.getDate() + ' ';
+	                h = date.getHours() + ':';
+	                m = date.getMinutes() + ':';
+	                s = date.getSeconds();
+	                timebin=Y+M+D+h+m+s;
+	                // alert(timebin+h+m+s);
+								//  alert(timebin);
+	            }
+
+	             timestampToTime(b);
+	             return timebin;
+	            // alert(timebin);
+
+	      }
+
+
+
+	</script>
+<!-- <script src="../../script/jiguang.js" type="text/javascript" charset="utf-8"></script> -->
+</html>

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>新手引导页面</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+    <link rel="stylesheet" type="text/css" href="./../css/mystyle.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css">
+    <style type="text/css">
+	*{
+		padding: 0;
+		margin:0;
+	}
+	.bg{
+		width:100vw;
+		height:100vh;
+		background:url(../../icon/language-select-backg.png);
+		background-size:contain;
+		/*border:1px solid #fff;*/
+		/*box-sizing: border-box;*/
+		padding-top:18.62vw;
+		box-sizing: border-box;
+		animation-delay:0.8s;
+	}
+	.logo{
+		width:13.3vw;
+		height:13.3vw;
+		background:url(../../icon/login-logo-pink@3x.png);
+		background-size: cover;
+		margin:0 auto 0;
+	}
+	.box1,.box2,.box3{
+		width:100vw;
+		height:26.6vw;
+		margin-top:2.66vw;
+	}
+	.box1{
+		margin-top:29.52vw;
+	}
+	.left{
+		float:left;
+		width:auto;
+		height:2.66vw;
+		/*background:url(../../icon/logon-page2/icon-sanjiao-pink@3x2.png) left;*/
+		margin-top:10.64vw;
+	}
+	.left>div{
+		width:2.66vw;
+		height:2.66vw;
+		margin-left:1.33vw;
+		background:url(../../icon/logon-page2/icon-sanjiao-pink@3x2.png)no-repeat;
+		background-size:cover;
+		display: inline-block;
+		vertical-align: text-top;
+	}
+	.left>span{
+		width:2.66vw;
+		height:2.66vw;
+		margin-left:1.33vw;
+		background:url(../../icon/logon-page2/icon-sanjiao-aaa@3x2.png)no-repeat;
+		background-size:cover;
+		display: inline-block;
+		vertical-align: text-top;
+	}
+	.right{
+		float:right;
+		/*width:10.64vw;*/
+		height:2.66vw;
+		/*background-color: #F381A3;*/
+		margin-top:10.64vw;
+	}
+	.right>div{
+		width:2.66vw;
+		height:2.66vw;
+		margin-right:1.33vw;
+		background:url(../../icon/logon-page2/icon-sanjiao-pink@3x2.png)no-repeat;
+		background-size:cover;
+		transform:rotate(180deg);
+		display: inline-block;
+		vertical-align: text-top;
+	}
+	.right>span{
+		width:2.66vw;
+		height:2.66vw;
+		margin-right:1.33vw;
+		background:url(../../icon/logon-page2/icon-sanjiao-aaa@3x2.png)no-repeat;
+		background-size:cover;
+		transform:rotate(180deg);
+		display: inline-block;
+		vertical-align: text-top;
+	}
+	.img1,.img2,.img3{
+		width:66.49vw;
+		height:23.94vw;
+		margin:0 auto;
+	}
+	.img1{
+		background:url(../../icon/logon-page2/choice-function-eng@3x2.png);
+		background-size:cover;
+		animation-delay:0.5s;
+	}
+	.img2{
+		background:url(../../icon/logon-page2/choice-function-eng2@3x2.png);
+		background-size:cover;
+		opacity: 0.4;
+		animation-delay:0.25s;
+	}
+	.img3{
+		background:url(../../icon/logon-page2/choice-function-eng4@3x2.png);
+		background-size:cover;
+		opacity: 0.4;
+		animation-delay:0s;
+	}
+	.content{
+		width:auto;
+		height:6.12vw;
+		font:3.19vw/6.12vw Arial;
+		font-weight: bold;
+		color:#aaa;
+		text-align: center;
+		margin:-2.66vw auto 0;
+		animation-delay:0.9s;
+	}
+	.bottom{
+		width:auto;
+		height:6.12vw;
+		font:3.19vw/6.12vw Arial;
+		font-weight: bold;
+		color:#aaa;
+		text-align: center;
+		margin:11.97vw auto 0 ;
+	}
+	</style>
+</head>
+<body>
+	<div class="bg">
+		<div class="logo animated 1 bounceInDown delay-5s"></div>
+		<div id="box">
+		<div class="box1">
+			<span class="left" id="left1"><div></div><div></div><div></div></span>
+			<span class="right" id="right1"><div></div><div></div><div></div></span>
+			<div class="img1 animated 1 bounceInDown delay-5s"></div>
+			<div class="content animated 1 fadeIn delay-5s" id="content1">Decipher your " Destiny Number "</div>
+		</div>
+		<div class="box2">
+			<span class="left" id="left2"><span></span><span></span><span></span></span>
+			<span class="right" id="right2"><span></span><span></span><span></span></span>
+			<div class="img2 animated 1 bounceInDown delay-5s"></div>
+			<div class="content  animated 1 fadeIn delay-5s" id="content2">How are your luck today ?</div>
+		</div>
+		<div class="box3">
+			<span class="left" id="left3"><span></span><span></span><span></span></span>
+			<span class="right" id="right3"><span></span><span></span><span></span></span>
+			<div class="img3 animated 1 bounceInDown delay-5s"></div>
+			<div class="content  animated 1 fadeIn delay-5s" id="content3">Into the software</div>
+		</div>
+		</div>
+		<div class="bottom" onclick="jump()">■ Click here to skip the novice guide tutorial ■</div>
+	</div>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/jquery-3.1.0.min.js"></script>
+	<script type="text/javascript">
+		
+		apiready = function(){
+			// 监听关闭自己
+		api.addEventListener({
+		    name: 'login_function_close'
+		}, function(ret, err) {
+			api.closeWin({
+			    name: 'login_function'
+			});
+		});
+		setTimeout(function(){
+			console.log('关闭多余页面');
+			
+			api.closeWin({
+			    name: 'numerology_new'
+			});
+			api.closeWin({
+			    name: 'numerology_result_new'
+			});
+			api.closeWin({
+			    name: 'associated_user'
+			});
+			api.closeWin({
+			    name: 'numerology_follow'
+			});
+			api.closeWin({
+			    name: 'divination_new'
+			});
+			api.closeWin({
+			    name: 'divination_result_new'
+			});
+
+		},100);
+				
+				
+				
+			// 刷新
+	        api.addEventListener({
+	            name: 'login_function_load'
+	        }, function(ret, err) {
+	            window.location.reload();
+	        });
+			var indexx = api.pageParam['indexx'];
+		    if(indexx == 2){
+		    	$api.html($api.dom('#box'), '<div class="box1"><span class="left" id="left1"><span></span><span></span><span></span></span><span class="right" id="right1"><span></span><span></span><span></span></span><div class="img1 animated 1 bounceInDown delay-5s" style="opacity:0.4;"></div><div class="content animated 1 fadeIn delay-5s" id="content1">Decipher your " Destiny Number "</div></div><div class="box2" onclick="opendivination()"><span class="left" id="left2"><div></div><div></div><div></div></span><span class="right" id="right2"><div></div><div></div><div></div></span><div class="img2 animated 1 bounceInDown delay-5s" style="opacity:1;"></div><div class="content  animated 1 fadeIn delay-5s" id="content2">How are your luck today ?</div></div><div class="box3"><span class="left" id="left3"><span></span><span></span><span></span></span><span class="right" id="right3"><span></span><span></span><span></span></span><div class="img3 animated 1 bounceInDown delay-5s"></div><div class="content  animated 1 fadeIn delay-5s" id="content3">Into the software</div></div>');
+		    }else if(indexx == 3){
+		    	$api.html($api.dom('#box'), '<div class="box1"><span class="left" id="left1"><span></span><span></span><span></span></span><span class="right" id="right1"><span></span><span></span><span></span></span><div class="img1 animated 1 bounceInDown delay-5s" style="opacity:0.4;"></div><div class="content animated 1 fadeIn delay-5s" id="content1">Decipher your " Destiny Number "</div></div><div class="box2"><span class="left" id="left2"><span></span><span></span><span></span></span><span class="right" id="right2"><span></span><span></span><span></span></span><div class="img2 animated 1 bounceInDown delay-5s"></div><div class="content  animated 1 fadeIn delay-5s" id="content2">How are your luck today ?</div></div><div class="box3" onclick="jump()"><span class="left" id="left3"><div></div><div></div><div></div></span><span class="right" id="right3"><div></div><div></div><div></div></span><div class="img3 animated 1 bounceInDown delay-5s" style="opacity:1;"></div><div class="content  animated 1 fadeIn delay-5s" id="content3">Into the software</div></div>');
+		    }else{
+		    	$api.html($api.dom('#box'), '<div class="box1" onclick="opennumerology()"><span class="left" id="left1"><div></div><div></div><div></div></span><span class="right" id="right1"><div></div><div></div><div></div></span><div class="img1 animated 1 bounceInDown delay-5s" ></div><div class="content animated 1 fadeIn delay-5s" id="content1">Decipher your " Destiny Number "</div></div><div class="box2"><span class="left" id="left2"><span></span><span></span><span></span></span><span class="right" id="right2"><span></span><span></span><span></span></span><div class="img2 animated 1 bounceInDown delay-5s" ></div><div class="content  animated 1 fadeIn delay-5s" id="content2">How are your luck today ?</div></div><div class="box3"><span class="left" id="left3"><span></span><span></span><span></span></span><span class="right" id="right3"><span></span><span></span><span></span></span><div class="img3 animated 1 bounceInDown delay-5s"></div><div class="content  animated 1 fadeIn delay-5s" id="content3">Into the software</div></div>');
+		    }
+		    if($api.getStorage('language')=='zho'){
+		    	$api.css($api.dom('.img1'), 'background:url(../../icon/logon-page2/choice-function@3x2.png);background-size:cover');
+		    	$api.css($api.dom('.img2'), 'background:url(../../icon/logon-page2/choice-function3@3x2.png);background-size:cover');
+		    	$api.css($api.dom('.img3'), 'background:url(../../icon/logon-page2/choice-function4@3x2.png);background-size:cover');
+		    	$api.text($api.dom('#content1'), '解 密 属 于 你 的 “ 命 运 数 ”');
+		    	$api.text($api.dom('#content2'), '今 天 會 抽 到 哪 張 牌 ？ 代 表 什 麽 ？');
+		    	$api.text($api.dom('#content3'), '完 成 特 色 功 能 介 紹');
+		    	$api.text($api.dom('.bottom'), '■  點 此 跳 過 新 手 引 導 教 程 ■');
+		    }  
+		}
+function opennumerology(){
+	api.openWin({
+	    name: 'numerology_new',
+	    url: 'widget://html/logon-register/numerology_new.html',
+		    pageParam: {
+    	    key: 1
+	    }
+	});
+}   
+function opendivination(){
+	api.openWin({
+	    name: 'divination_new',
+	    url: 'widget://html/logon-register/divination_new.html',
+		    pageParam: {
+    	    name: 'value'
+	    }
+	});
+}
+function jump(){
+	api.sendEvent({
+	    name: 'guide',
+	});
+	
+	// api.openWin({
+	//     name: 'index',
+	//     url: 'widget://html/chat/index.html',
+	//     pageParam: {
+	//         name: 'value'
+	//     }
+	// });	
+	api.closeWin({
+			    name: 'divination_result_new'
+			});
+			api.closeWin({
+			    name: 'numerology_new'
+			});
+			api.closeWin({
+			    name: 'numerology_result_new'
+			});
+			api.closeWin({
+			    name: 'associated_user'
+			});
+			api.closeWin({
+			    name: 'numerology_follow'
+			});
+			api.closeWin({
+			    name: 'divination_new'
+			});
+	api.sendEvent({
+	    name: 'login_function_close'
+	});
+	api.closeWin();		
+	
+}
+
+	</script>
+}
+</body>
+</html>

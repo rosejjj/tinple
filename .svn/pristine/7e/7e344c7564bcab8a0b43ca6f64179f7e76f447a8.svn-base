@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>选择发布帖子类型</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <style>
+		html,body{
+    		margin:0;
+    		padding:0;
+    		width:100%;
+    		height:100%;
+			background-color: rgba(0,0,0,0.65) !important;
+			opacity: 0.9;
+    	}
+    	.mark{
+    		position:absolute;
+			top: 0;
+			left: 0;
+			width: 100vw;
+			height:100vh;
+			z-index: 1;
+    	}
+		.more{/*点击更多弹出的弹框*/
+			position:absolute;
+			bottom: 0;
+			left: 0;
+			width: 100vw;
+			z-index: 1;
+		}
+		.moreList{/*弹框里的选项列表*/
+			width: 94.4vw;
+			text-align: center;
+			position: absolute;
+			left: 50%;
+			transform: translateX(-50%);
+			-webkit-transform: translateX(-50%);
+			bottom: 22.6vw;
+			border-radius: 3.46vw;
+			overflow: hidden;
+		}
+		.moreList li{/*选项列表的选项*/
+			background-color: #fff;
+			height: 13.57vw;
+			line-height: 13.57vw;
+			font-size: 5.3vw;
+			border-bottom: 1px solid #999;
+			color: #0076FF;
+		}
+		.moreList li:first-child{/*第一个选项*/
+			height: 9.6vw;
+			line-height: 9.6vw;
+			font-size: 4vw;
+			color: #8F8E94;
+		}
+		.cancel{/*取消按钮*/
+			position: absolute;
+			width: 94.4vw;
+			text-align: center;
+			position: absolute;
+			left: 50%;
+			margin-left: -47.2vw;
+			bottom: 5.33vw;
+			background-color: #fff;
+			color: #0076FF;
+			height: 15.2vw;
+			line-height: 15.2vw;
+			border-radius: 3.46vw;
+			font-size: 5.3vw;
+		}
+    </style>
+</head>
+<body>
+	<div class="mark" onclick='closeFrame()'></div>
+	<div class="more" id="more">
+   		<ul class="moreList">
+   			<li class="text">Post Type</li>
+   			<li class="text"  onclick="openPost('text')">Text Only</li>
+				<!--  style="color:#EFEFEF;" -->
+   			<li class="text" onclick="openPost('Topimg')">Picture & Gif</li>
+   		</ul>
+   		<p class="cancel" id="cancel" onclick='closeFrame()'>
+   			Cancel
+   		</p>
+   	</div>
+   	<!-- 更多选项弹框 -->
+	<script type="text/javascript">
+		apiready = function(){
+			if( $api.getStorage("language") == "zho") {
+				$api.text($api.domAll('.text')[0], '帖子類型');
+				$api.text($api.domAll('.text')[1], '純文字');
+				$api.text($api.domAll('.text')[2], '圖片 & 動圖');
+				$api.text($api.dom('.cancel'), '取消');
+			}
+
+		};
+		//關閉页面
+		function closeFrame(){
+			api.closeFrame({});
+		}
+
+		//跳转发帖子
+		function openPost(type){
+			api.openWin({
+				name: 'post',
+				url: 'widget://html/details/post.html',
+	    		reload: true,
+	    		vScrollBarEnabled: false,
+	    		slidBackEnabled: false,
+				animation: {
+					type: "fade", //动画类型（详见动画类型常量）
+					subType: "fade", //动画子类型（详见动画子类型常量）
+					duration: 500 //动画过渡时间，默认300毫秒
+				},
+				pageParam: {
+					type:type
+				}
+			});
+
+			setTimeout(function(){//加延迟是防止提前关闭页面而导致无法跳转页面
+//				关闭导航
+				api.sendEvent({
+				    name: 'colse_nav'
+				});
+//				关闭页面
+				api.closeFrame({});
+			},1000)
+		}
+	</script>
+</body>
+</html>

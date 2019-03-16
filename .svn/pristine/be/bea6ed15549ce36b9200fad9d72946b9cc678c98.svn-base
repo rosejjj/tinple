@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+	<title>guide5(new)</title>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+		}
+		.bg{
+			position: fixed;
+			top:0;
+			width:100vw;
+			height:100vh;
+			background-color:#000;
+			opacity: 0.8;
+			/*animation:bganimation 0.3s linear 0s 1 normal;*/
+			/*-webkit-animation: bganimation 0.3s linear 0s 1 normal;*/
+			/*-ms-animation: bganimation 0.3s linear 0s 1 normal;*/
+			/*-o-animation: bganimation 0.3s linear 0s 1 normal;*/
+			/*-moz-animation: bganimation 0.3s linear 0s 1 normal;*/
+			z-index: -1;
+		}
+		.box{
+			position: fixed;
+			bottom:0;
+			width: 100vw;
+			padding-bottom:10.64vw;
+		}
+		.box>p:nth-of-type(1),.box>p:nth-of-type(2){
+			font:3.99vw/5.85vw Arial;
+			font-weight: bold;
+			color:#fff;
+			position: relative;
+		}
+		p>span{
+			color:#f381a3;
+		}
+		p>b{
+			border-bottom:2px solid #fff;
+		}
+		.box>p:nth-of-type(1){
+			margin-top:2vw;
+			margin-left:3vw;
+			/*margin-right:22vw;*/
+			float:left;
+		}
+		.box>p:nth-of-type(2){
+			margin-left:3vw;
+			margin-right:3vw;
+			float:right;
+		}
+		.box>p:nth-of-type(1)::after,.box>p:nth-of-type(2)::after{
+			position: absolute;
+			content: '';
+			top:17vw;
+			right:2vw;
+			width:10.64vw;
+			height:10.64vw;
+			background:url(../../icon/guide/arrow1.png) no-repeat;
+			background-size:contain;
+			transform: rotate(230deg);
+			float:right;
+		}
+		.box>p:nth-of-type(1)::after{
+			background:url(../../icon/guide/arrow2.png) no-repeat;
+			background-size:contain;
+			transform: rotate(230deg);
+			float:left;
+			top:8vw;
+			left:0vw;
+		}
+		.group_title{
+			margin-top:27vw;
+			margin-left:2.66vw;
+			border-radius: 1.33vw;
+			width: 61.97vw;
+			height:10.64vw;
+			background-color:#fff;
+			font:3.99vw/10.64vw Arial;
+			text-align: center;
+			font-weight: bold;
+		}
+		.group_title>img{
+			width: 3.99vw;
+			height:3.99vw;
+			object-fit: cover;
+			vertical-align: middle;
+		}
+		.group-box{
+			width:94.41vw;
+			height:31.94vw;
+			border-radius: 2.66vw;
+			margin:1.33vw auto;
+			background-color:#FFF;
+			overflow: hidden;
+			box-shadow:0 0 2.66vw 0.8vw rgba(170,170,170,0.3);
+		}
+		.group-box>div:nth-of-type(1){
+			width:31.94vw;
+			height:31.94vw;
+			float:left;
+			background:url(http://bin.baopinghui.com/1.5285349622622905E12) no-repeat center;
+			background-size:cover;
+		}
+		.group-box>div:nth-of-type(2){
+			position: relative;
+			width:62vw;
+			height:31.94vw;
+			float:left;
+			padding-left:2.66vw;
+			box-sizing: border-box;
+		}
+		.group-box>div:nth-of-type(2)>p>span{
+			color:#000;
+		}
+		.group-box>div:nth-of-type(2)>p{
+			font:3.12vw/4.52vw Arial;
+			color:#aaa;
+			font-weight: bold;
+			margin-top:2.66vw;
+		}
+		.group-box>div:nth-of-type(2)>p:nth-of-type(1){
+			font:3.99vw/4.52vw Arial;
+			font-weight: bold;
+			color:#000;
+		}
+		.group-box>div:nth-of-type(2)>p:nth-of-type(1)>span{
+			padding: 0 1.33vw;
+			height:3.99vw;
+			border-radius: 2.66vw;
+			font:2.66vw/3.99vw Arial;
+			color:#fff;
+			background-color:#f381a3;
+			vertical-align: middle;
+			margin-left:1.33vw;
+		}
+		.group_button{
+			position: absolute;
+			bottom:2.66vw;
+			right:2.66vw;
+			width:15.96vw;
+			height:7.98vw;
+			border-radius: 13.3vw;
+			font:3.12vw/7.48vw Arial;
+			font-weight: bold;
+			color:#000;
+			text-align: center;
+			border:0.5vw solid #000;
+			box-sizing: border-box;
+		}
+		.button{
+			margin:0 auto;
+			margin-top:15.96vw;
+			width:59.31vw;
+			height:10.64vw;
+			border:2px solid rgba(255,255,255,1);
+			border-radius: 7.99vw;
+			font:3.99vw/10.64vw Arial;
+			font-weight: bold;
+			text-align: center;
+			color:#fff;
+		}
+	</style>
+</head>
+<body>
+	<div class="bg"></div>
+	<div class="box">
+		<p class="textt">Click to select <span>group type</span></p>
+		<p class="textt2">Click to select <span>group</span> type：<br>All groups <b>can enter</b></p>
+		<!-- <div class="arrow1"></div> -->
+		<!-- <div class="arrow2"></div> -->
+		<div class="group_title">G R O U P - P O P U L A R <img src="../../image/index/more.png" alt=""></div>
+		<div class="group-box">
+			<div></div>
+			<div>
+				<p>TATTOOFAMILY	<span>Lv5</span></p>
+				<p>#Just Chit Chat</p>
+				<p><span>341/500</span> People</p>
+				<p><span>12.4k</span> Discussions</p>
+				<div class="group_button">JOIN</div>
+			</div>
+		</div>
+		<div class="button">N E X T</div>
+	</div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript">
+	var www = window.screen.width;
+	var hhh = window.screen.height;
+	apiready = function(){
+	    if(hhh/www > 2){
+	    	$api.css($api.dom('.box'), 'padding-bottom:19.64vw');
+	    }
+	    if($api.getStorage('language')=='zho'){
+	    	$api.html($api.dom('.textt'), '點 擊 選 擇 <span>群 類 型</span>');
+	    	$api.html($api.dom('.textt2'), '<span>群 組</span> 列 表：<br>全 部 群 都 可 以 <br><b>任 意 進</b> 喔 ~ ');
+	    	$api.html($api.dom('.button'), '下一步');
+	    }
+	    $api.addEvt($api.dom('.button'), 'click',function(){
+	    	api.openFrame({
+			    name: 'guide6(new)',
+			    url: 'widget://html/guide/guide6(new).html',
+			    rect: {
+			        x: 0,
+			        y: 0,
+			        w: 'auto',
+			        h: 'auto'
+			    },
+			    pageParam: {
+			        name: 'value'
+			    }
+			});
+			api.closeFrame({
+	    	    name: 'guide5(new)'
+	    	});
+	    });
+	}
+	    
+</script>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+	<title>Tinkle·至ins国际交友体验</title>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+		}
+		.bg{
+			width:100vw;
+			min-height:100vh;
+			background:url(../../icon/logon-page2/bg.jpg);
+			background-size:contain;
+			padding:22.07vw 5.32vw 5.32vw 5.32vw;
+			box-sizing: border-box;
+		}
+		.return{
+			position: absolute;
+			top:7.31vw;
+			left:5.32vw;
+			width:7.98vw;
+			height:7.98vw;
+			background:url(../../icon/logon-page2/return.png);
+			background-size: cover;
+		}
+		.box{
+			width:89.1vw;
+			/*height:150.8vw;*/
+			background-color:#7512f7;
+			border-radius: 15.96vw;
+			padding-bottom:10.64vw;
+			box-sizing: border-box;
+		}
+		.title{
+			width:100%;
+			height:49.73vw;
+			font:7.98vw/11.7vw Arial;
+			font-weight: bold;
+			color:#fff;
+			text-align: center;
+			padding-top:13.03vw;
+			box-sizing: border-box;
+		}
+		.box-content{
+			width:81.12vw;
+			padding:5.85vw 5.32vw;
+			box-sizing: border-box;
+			font:2.7vw/4.52vw Arial;
+			font-weight: bold;
+			color:#fff;
+			margin:0 auto;
+			background-color:#2d075c;
+			border-radius: 2.66vw;
+		}
+		.button{
+			width:66.49vw;
+			height:10.64vw;
+			border-radius: 7.98vw;
+			background-color:#c42d8e;
+			margin:10.64vw auto 0;
+			font:3.72vw/10.64vw Arial;
+			font-weight: bold;
+			color:#fff;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div class="bg">
+		<div class="return" onclick="closewin()"></div>
+		<div class="box">
+			<div class="title">Has followed <br>the above users</div>
+			<div class="box-content">● Go to my homepage <br><br>● Click to enter the follow list <br><br>● See the above account (￣▽￣)" <br><br>● Go find them and chat ~ <br><br>● More exciting waiting to discover</div>
+			<div class="button" id="button">G E T & N E X T</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="../../script/vue.js"></script>
+<script type="text/javascript">
+	apiready = function(){
+		// 监听关闭自己
+		api.addEventListener({
+		    name: 'numerology_follow'
+		}, function(ret, err) {
+			api.closeWin({
+			    name: 'numerology_follow'
+			});
+		});
+		var function1 = api.pageParam['function1'];
+	    if($api.getStorage('language')=='zho'){
+	    	$api.html($api.dom('.title'), '已 關 註<br>上 述 用 戶');
+	    	$api.html($api.dom('.box-content'), '● 進 入 我 的 主 頁<br><br>● 點 擊 進 入 關 註 列 表<br><br>● 已 自 動 幫 妳 關 註 上 述 賬 號  (￣▽￣)"<br><qbr>● 快 去 撩 他 們 吧 ~<br><br>● 更 多 精 彩 等 待 妳 來 發 現');
+	    	$api.text($api.dom('#button'), '确 认 并 继 续');
+	    }
+		if(function1){
+			if($api.getStorage('language')=='zho'){
+				$api.text($api.dom('#button'), '返 回');
+			}else{
+				$api.text($api.dom('#button'), 'B A C K');
+			}
+			// return;
+		}
+	    $api.addEvt($api.dom('#button'), 'click', function(){
+	    	// alert(1);
+	    	console.log(function1);
+	    	if(function1){
+	   //  		api.openWin({
+				//     name: 'index',
+				//     url: 'widget://html/chat/index.html',
+				//     pageParam: {
+				//         name: 'value'
+				//     }
+				// });
+	    		api.sendEvent({
+	    		    name: 'numerology_new'
+	    		});
+	    		api.sendEvent({
+	    		    name: 'numerology_result_new'
+	    		});
+	    		api.sendEvent({
+	    		    name: 'associated_user'
+	    		});
+	    		api.sendEvent({
+	    		    name: 'numerology_follow'
+	    		});
+	    		
+	    	}else{
+
+		    	api.openWin({
+		    	    name: 'login_function',
+		    	    url: 'widget://html/logon-register/login_function.html',
+		    	    pageParam: {
+		    	        indexx:2
+		    	    }
+		    	});
+		    	api.sendEvent({
+		    	    name: 'login_function_load',
+		    	});
+		    	api.sendEvent({
+	    		    name: 'numerology_new'
+	    		});
+	    		api.sendEvent({
+	    		    name: 'numerology_result_new'
+	    		});
+	    		api.sendEvent({
+	    		    name: 'associated_user'
+	    		});
+		    	api.sendEvent({
+	    		    name: 'numerology_follow'
+	    		});
+	    	}
+
+	    });
+	}
+	function closewin(){
+		api.closeWin();
+	}
+</script>
+</html>

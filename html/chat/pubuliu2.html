@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>主頁</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <script type="text/javascript" src="../../script/api.js"></script>
+	<script src="../../script/jquery-3.1.0.min.js"></script><!-- 引入jQuery -->
+	<script src="../../script/doT.min.js"></script><!-- 引入doT模板引擎 -->
+	<script src="../../script/masonry.pkgd.min.js"></script><!-- 引入jQuery瀑布流插件 -->
+	<script src="../../script/imagesloaded.pkgd.min.js"></script><!-- 引入瀑布流imagesloaded事件 -->
+	<script src="../../script/nav.js"></script><!-- 引入通用导航栏 -->
+	<script src="../../script/public.js"></script><!-- 引入通用导航栏 -->
+	<style>
+  /*.box :nth-of-type(2n-1) {width: 10.81rem;height: 10.81rem;margin-left: 3.3%;margin-top: 3.3%;display: inline-block;float: left;
+  background-size: cover;background-position: center;}
+  .box :nth-of-type(2n) {width: 10.81rem;height: 10.81rem;margin-right: 3.3%;margin-top: 3.3%;display: inline-block;float: right;}*/
+  /*.box img{width: 200%;height:200%; }*/
+  html,body{
+    background: #fff;
+  }
+  #continer{
+    padding:0 1.33vw;
+    box-sizing: border-box;
+  }
+  .box{width: 29.79vw;height: 29.79vw;display: inline-block;background-size: cover;background-position: center;
+  margin:2.66vw 1.33vw 0 1.33vw;background-color:#EFEFEF;border-radius: 5px;box-shadow: 0px 2px 10px 5px rgba(170,170,170,0.5);float:right;position: relative;}
+  /*.box:nth-of-type(7n+1){width: 93%;height: 21.62rem;margin-left:3.3%;}*/
+  /*.box:nth-of-type(3n+1){transform: translateY(-2.00rem);}*/
+  /*.box:nth-of-type(3n){transform: translateY(-2.00rem);}*/
+  .box:nth-of-type(12n+1){width:62.23vw;height:62.23vw;}
+  .box:nth-of-type(12n+2){float:right;}
+  .box:nth-of-type(12n+3){float:right;}
+  .box:nth-of-type(12n+7){width:62.23vw;height:62.23vw;float:left;}
+  .box:nth-of-type(12n+8){float:left;}
+  .box:nth-of-type(12n+9){float:left;}
+  /*.box:nth-of-type(1),.box:nth-of-type(3){height: 6.81rem;transform: translateY(0.000rem);}*/
+  .box>img{width: 30px;height: 30px;position: absolute;top:2.66vw;right:2.66vw;}
+  /*.box:nth-of-type(7n+1)>img{width: 10%;height: 10%;margin: 5% 0% 0% 85%;}*/
+
+  .loading{
+    width: 18.62vw;
+    text-align: center;
+    height: 13.30vw;
+    position: fixed;
+    bottom: 2.66vw;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fff;
+    border-radius:2.66vw;
+    opacity: 0.5;
+  }
+  .loading img{
+    position: absolute;
+    bottom:2.66vw;
+    left:50%;
+    margin-left:-4vw;
+    width:8vw;
+    height:8vw;
+  }
+	</style>
+</head>
+<body>
+  <div id="loadings" class="loading" style="z-index:-1;"><img src="../../icon/loading.gif" alt=""></div>
+  <div id="continer">
+    <!-- <div class="box" onclick="" style="background-image:url('http://bin.baopinghui.com/?imageView2/0/w/1200')"></div>
+    <div class="box" onclick="" style="background-image:url('http://bin.baopinghui.com/?imageView2/0/w/1200')"></div>
+    <div class="box" onclick="" style="background-image:url('http://bin.baopinghui.com/?imageView2/0/w/1200')"></div>
+    <div class="box" onclick="" style="background-image:url('http://bin.baopinghui.com/?imageView2/0/w/1200')"></div>
+    <div class="box" onclick="" style="background-image:url('http://bin.baopinghui.com/?imageView2/0/w/1200')"></div>
+    <div class="box" onclick="" style="background-image:url('http://bin.baopinghui.com/?imageView2/0/w/1200')"></div>
+    <div class="box" onclick="" style="background-image:url('http://bin.baopinghui.com/?imageView2/0/w/1200')"></div>
+    <div class="box" onclick="" style="background-image:url('http://bin.baopinghui.com/?imageView2/0/w/1200')"></div> -->
+  </div>
+  <div id class="loading" style="opacity:0">
+    <img src="../../icon/loading.gif"/ >
+  </div>
+
+</body>
+<script type="text/javascript">
+var img_url_num = [];
+var dyn_id_num = [];
+var post_type = [];
+var pop_num = [];
+var cover_num = [];
+var ui_id_num = [];
+var str = "";
+var j = 0;
+var k = 0;
+var z;
+var img_qian = "http://bin.baopinghui.com/";
+var img_suo = "?imageView2/0/w/400";
+var img_video = "?vframe/jpg/offset/5/w/400";
+apiready = function() {
+  api.addEventListener({name: 'dingbu'}, function(ret, err) {
+    var osTop = document.documentElement.scrollTop || document.body.scrollTop;
+    document.documentElement.scrollTop = document.body.scrollTop = -200;
+  });
+  var continer = $api.dom('#continer');
+  var loading = $api.dom('.loading');
+  api.addEventListener({name: 'pubuliu2_loader'}, function(ret, err) {
+    window.location.reload();
+  });
+  jiazai(0, 250);
+  api.setRefreshHeaderInfo({
+    visible: true,
+    loadingImg: 'widget://image/refresh.png',
+    bgColor: '#efefef',
+    textColor: '#aaa',
+    textDown: 'Ready to refresh',
+    textUp: 'Ready to refresh',
+    textLoading: 'Ready to refresh',
+    showTime: false
+  }, function(ret, err) {
+    setTimeout(function() {
+      window.location.reload();
+      api.refreshHeaderLoadDone();
+    }, 500);
+  });
+  api.addEventListener({
+    name: 'scrolltobottom',
+    extra: {threshold: 0}
+  }, function(ret, err) {
+    $api.css(loading, 'opacity:0.8;z-index:20;');
+    setTimeout(function() {
+      $api.css(loading, 'opacity:0');
+    }, 1000);
+    if (z) {
+      i = z;
+    }
+    ;
+    temp = z;
+    for (z = i; z < i + 12; z++) {
+      var temp2 = ("\n             <div class=\"box\"  style=\"background-image:url(" + (img_qian + img_url_num[j++] + ("" + img_suo)) + ");\" onclick=\"openDetail(dyn_id_num[" + z + "],pop_num[" + z + "],cover_num[" + z + "],ui_id_num[" + z + "])\"><img src=\"../../icon/touming.png\"></div>\n             ");
+      if (post_type[z] == "imgs") {
+        temp2 = temp2.replace("touming.png", "imgs.png");
+      } else if (post_type[z] == "Video") {
+        temp2 = temp2.replace('touming.png', "Video.png");
+        temp2 = temp2.replace(("" + img_suo), ("" + img_video));
+      }
+      $api.append($api.dom('#continer'), temp2);
+    }
+    if (j >= 246) {
+      jiazai(246,500);
+    }
+  });
+};
+function jiazai(x, y) {
+  $.ajax({
+    url: 'http://api.baopinghui.com/app_dynamicCover/findpostBytime',
+    type: 'GET',
+    data: {numx: x,numy: y}
+  })
+  .done(function(ret) {
+    //alert("success");
+    var length=ret.data.length;
+    //alert(JSON.stringify(ret));
+    for(let i=0;i<length;i++){
+      img_url_num.push(ret.data[i].img_url.split(",")[0]);
+      dyn_id_num.push(ret.data[i].dyn_id);
+      post_type.push(ret.data[i].type);
+      pop_num.push(ret.data[i].popular);
+      cover_num.push(ret.data[i].coverNum);
+      ui_id_num.push(ret.data[i].ui_id);
+      //num_i.push(i);
+    }
+    for(i=0;i<12;i++){
+      temp=`
+      <div class="box"  style="background-image:url(${img_qian+img_url_num[j++]+`${img_suo}`})" onclick="openDetail(dyn_id_num[${i}],pop_num[${i}],cover_num[${i}],ui_id_num[${i}])"><img src="../../icon/touming.png"></div>
+      `;
+      //alert(post_type[i]);
+      if(post_type[i]=="imgs"){
+        temp=temp.replace("touming.png","imgs.png")
+      }else if(post_type[i]=="Video"){
+        temp=temp.replace('touming.png',"Video.png");
+        temp=temp.replace(`${img_suo}`,`${img_video}`);
+      }
+      //append('Some text')
+      //alert(temp);
+      //$('#continer').append(temp);
+      $api.append($api.dom('#continer'),temp);
+      //$api.append($api.domAll('.box')[i], '<img src="../../icon/Video.png">');
+      // if(post_type[i]=="imgs"){
+      //   $api.append($api.domAll('.box')[i], '<img src="../../icon/Video.png">');
+      // }
+      if($api.html($api.dom('#continer'))!==""){
+        $api.css($api.dom("#loading"), 'opacity:0;z-index:-10;');
+      }
+    }
+  })
+  .fail(function() {
+    console.log("error");
+  })
+  .always(function() {
+    console.log("complete");
+  });
+
+
+  // api.ajax({
+  //   url: "http://api.baopinghui.com/app_dynamicCover/findpostBytime",
+  //   method: 'GET',
+  //   data: {
+  //     values: {
+  //       numx: x,
+  //       numy: y
+  //     }
+  //   }
+  // }, function(ret, err) {
+  //   var length = ret.data.length;
+  //   for (var i = 0; i < length; i++) {
+  //     img_url_num.push(ret.data[i].img_url.split(",")[0]);
+  //     dyn_id_num.push(ret.data[i].dyn_id);
+  //     post_type.push(ret.data[i].type);
+  //     pop_num.push(ret.data[i].popular);
+  //     cover_num.push(ret.data[i].coverNum);
+  //     ui_id_num.push(ret.data[i].ui_id);
+  //   }
+  //   for (i = 0; i < 12; i++) {
+  //     temp = ("\n      <div class=\"box\"  style=\"background-image:url(" + (img_qian + img_url_num[j++] + ("" + img_suo)) + ")\" onclick=\"openDetail(dyn_id_num[" + i + "],pop_num[" + i + "],cover_num[" + i + "],ui_id_num[" + i + "])\"><img src=\"../../icon/touming.png\"></div>\n      ");
+  //     if (post_type[i] == "imgs") {
+  //       temp = temp.replace("touming.png", "imgs.png");
+  //     } else if (post_type[i] == "Video") {
+  //       temp = temp.replace('touming.png', "Video.png");
+  //       temp = temp.replace(("" + img_suo), ("" + img_video));
+  //     }
+  //     $api.append($api.dom('#continer'), temp);
+  //     if ($api.html($api.dom('#continer')) !== "") {
+  //       $api.css($api.dom("#loading"), 'opacity:0;z-index:-10;');
+  //     }
+  //   }
+  // });
+}
+function openDetail(dyn_id, pop_num, cover_num, otherId) {
+  api.openWin({
+    name: "detail",
+    url: "widget://html/details/detail.html",
+    reload: true,
+    vScrollBarEnabled: false,
+    slidBackEnabled: false,
+    softInputMode: 'resize',
+    pageParam: {
+      postId: dyn_id,
+      otherId: otherId,
+      popNum: pop_num,
+      tinNum: cover_num,
+      text: true
+    }
+  });
+}
+
+
+</script>
+</html>

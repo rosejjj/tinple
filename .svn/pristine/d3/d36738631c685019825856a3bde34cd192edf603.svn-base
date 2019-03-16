@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+	<title>DISCOVERY</title>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+		}
+		body{
+			background-color:#fff;
+		}
+		.line{
+			position: fixed;
+			top:0;
+			width:100vw;
+			height:1px;
+			background-color:#efefef;
+			box-shadow:0 0 5px 0 rgba(170,170,170,0.5);
+		}
+		.page_box{
+			width:100vw;
+			height:auto;
+		}
+		.theme_title,.square{
+			position: relative;
+			width:100%;
+			height:7.98vw;
+			font:3.99vw/7.98vw Arial;
+			font-weight: bold;
+			padding-left:5.32vw;
+			padding-right:5.32vw;
+			box-sizing: border-box;
+			margin-top:7.98vw;
+		}
+		.theme_title>span{
+			font-size:3.12vw;
+			float:right;
+			color:#aaa;
+			font-weight: normal;
+		}
+		.theme_title>span>img{
+			margin-left:1.33vw;
+			width:3.99vw;
+			height:3.99vw;
+			transform:rotate(-90deg);
+			vertical-align: middle;
+		}
+		.theme_box{
+			width:94.41vw;
+			height:29.52vw;
+			border-radius: 2.66vw;
+			margin:2.66vw auto 0;
+			box-shadow:0px 2px 10px 3px rgba(170,170,170,0.1);
+			overflow: hidden;
+		}
+		.theme_img{
+			float:left;
+			width:29.52vw;
+			height:29.52vw;
+			background-color:#efefef;
+			background-position: center;
+			background-size: cover;
+		}
+		.theme_content{
+			position: relative;
+			float:left;
+			width:64.5vw;
+			height:29.52vw;
+		}
+		.theme_content_title,.theme_content_text{
+			width: 60.18vw;
+			font:3.19vw/4.52vw Arial;
+			font-weight: bold;
+			margin:2.66vw 2.66vw 0 2.66vw;
+			display: inline-block;
+			display: -webkit-box;
+	        -webkit-line-clamp: 2;
+	        -webkit-box-orient: vertical;
+	        overflow: hidden;
+		}
+		.theme_content_text{
+			margin-top:1.33vw;
+		}
+		.theme_content_title>img{
+			margin-left:-0.7vw;
+			margin-top:-0.7vw;
+			width:5.32vw;
+			height:5.32vw;
+			object-fit: contain;
+			vertical-align:top;
+		}
+		.theme_content_text{
+			width:65%;
+			color:#aaa;
+		}
+		.theme_button{
+			position: absolute;
+			bottom:2.66vw;
+			right:2.66vw;
+			width:15.96vw;
+			height:7.98vw;
+			border:0.5vw solid #000;
+			border-radius: 26.6vw;
+			font:3.19vw/7.48vw Arial;
+			font-weight: bold;
+			text-align: center;
+			box-sizing: border-box;
+		}
+		.square>img{
+			width:3.99vw;
+			height:3.99vw;
+			vertical-align:text-top;
+			margin-left:2.66vw;
+			object-fit: contain;
+		}
+		.square_content{
+			/*margin-top:2.66vw;*/
+			padding:0 1.33vw;
+    		box-sizing: border-box;
+		}
+		.box{width: 29.79vw;height: 29.79vw;display: inline-block;background-size: cover;background-position: center;
+  margin:2.66vw 1.33vw 0 1.33vw;background-color:#EFEFEF;border-radius: 5px;float:right;position: relative;}
+  .box:nth-of-type(12n+1){width:62.23vw;height:62.23vw;}
+  .box:nth-of-type(12n+2){float:right;}
+  .box:nth-of-type(12n+3){float:right;}
+  .box:nth-of-type(12n+7){width:62.23vw;height:62.23vw;float:left;}
+  .box:nth-of-type(12n+8){float:left;}
+  .box:nth-of-type(12n+9){float:left;}
+  .box>.post_type{width: 30px;height: 30px;position: absolute;top:1.33vw;right:1.33vw;}
+  	.box_cf{
+        position: absolute;
+        right:2.66vw;
+        bottom:-1.5vw;
+        width:15vw;
+        height:5.32vw;
+    }
+    .crown,.fire{
+        display: inline-block;
+        width:5.32vw;
+        height:5.32vw;
+        float:right;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-left:1.33vw;
+    }
+  .loading{
+    width: 18.62vw;
+    text-align: center;
+    height: 13.30vw;
+    position: fixed;
+    bottom: 2.66vw;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fff;
+    border-radius:2.66vw;
+    opacity: 0.5;
+    z-index: 9999;
+  }
+  .loading img{
+    position: absolute;
+    bottom:2.66vw;
+    left:50%;
+    margin-left:-4vw;
+    width:8vw;
+    height:8vw;
+  }
+	</style>
+</head>
+<body>
+	<div class="line"></div>
+	<div class="page_box">
+		<div class="theme_title">T H E M E &nbsp;&nbsp;A C T I V I T Y <span id="theme_all">all <img src="../../icon/search/toright2.png" alt=""></span></div>
+		<div class="theme_box">
+			<div class="theme_img"></div>
+			<div class="theme_content">
+				<p class="theme_content_title"></p>
+				<p class="theme_content_text"></p>
+				<div class="theme_button">JOIN</div>
+			</div>
+		</div>
+		<div class="square">P O P U L A R <img src="../../image/index/more.png" alt=""></div>
+		<div class="square_content" id="square_content"></div>
+	</div>
+	<div id="loadings" class="loading"><img src="../../icon/loading.gif" alt=""></div>
+</body>
+<script src="../../script/jquery-3.1.0.min.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript">
+	var theme_popNum,
+		boof=true,
+		hot_yes='block',
+		rank_yes='block',
+		square_num=1,
+		j=0,
+		x=0,
+		y=12,
+		square_url='http://api.baopinghui.com/app_dynamicCover/findpostBytimeAndhot';
+	var img_url_num=[],
+		dyn_id_num=[],
+		post_type=[],
+		ui_id_num=[],
+		rank_num=[],
+		hot_num=[];
+	var img_qian = "http://bin.baopinghui.com/";
+	var img_suo = "?imageView2/0/w/400";
+	var img_video = "?vframe/jpg/offset/5/w/400";
+	apiready = function(){
+		if($api.getStorage('language')=='zho'){
+			$api.html($api.dom('.theme_title'), '主 題 活 動 <span id="theme_all">全 部 <img src="../../icon/search/toright2.png" alt=""></span>');
+			$api.html($api.dom('.square'), '熱 門 帖 子 <img src="../../image/index/more.png" alt="">');
+			$api.html($api.dom('.theme_button'), '参 加');
+		}
+	    // 下拉刷新
+        api.setRefreshHeaderInfo({
+            visible: true,
+            loadingImg: 'widget://image/refresh.png',
+            bgColor: '#efefef',
+            textColor: '#aaa',
+            textDown: 'Ready to refresh',
+            textUp: 'Ready to refresh',
+            textLoading:'Ready to refresh',
+            showTime: false
+        }, function(ret, err){
+            setTimeout(function(){
+	            window.location.reload();
+                api.refreshHeaderLoadDone();
+            },500)
+    	});
+
+	    // 加载第一条专题
+	    api.ajax({
+	        url: 'http://api.baopinghui.com/app_dynamicCover/getAllActivityTheme',
+	        method: 'post'
+	    }, function(ret, err) {
+	        if (ret) {
+	        	theme_popNum=Number(ret.data[0].popNum)>1000?(ret.data[0].popNum/1000).toFixed(1)+'k':ret.data[0].popNum==null?0:ret.data[0].popNum;
+	            $api.css($api.dom('.theme_img'), 'background-image:url('+img_qian+ret.data[0].img+');background-size:cover;');
+	            if($api.getStorage('language')=='zho'){
+	            	$api.html($api.dom('.theme_content_title'), '<img src="../../image/fire1.gif" alt="" />'+ret.data[0].title_CN);
+	            	$api.html($api.dom('.theme_content_text'), ret.data[0].areaNum+' 個國家的人參與<br />'+theme_popNum+' 個參與人次');
+	            }else{
+	            	$api.html($api.dom('.theme_content_title'), '<img src="../../image/fire1.gif" alt="" />'+ret.data[0].title_EN);
+	            	$api.html($api.dom('.theme_content_text'), 'People from '+ret.data[0].areaNum+' countries <br /> '+theme_popNum+' participants');
+	            }
+	            $api.addEvt($api.dom('.theme_button'), 'click', function(){
+	            	$api.css($api.dom('.theme_button'), 'background-color:#000;color:#fff;');
+	            	setTimeout(function(){
+	            		$api.css($api.dom('.theme_button'), 'background-color:#fff;color:#000;');
+	            	},100);
+	            	api.openWin({
+				          name: 'huodong',
+				          url: 'widget://html/nav/huodong.html',
+				          pageParam: {
+				              the_me_obj:ret.data[0]
+				          }
+			      	});
+	            });
+	        } else {
+	            console.log(JSON.stringify(err));
+	        }
+	    });
+	    $api.addEvt($api.dom('.square'), 'click',function(){
+	    	if(square_url=='http://api.baopinghui.com/app_dynamicCover/findpostBytimeAndhot'){
+	    		square_num=1;
+	    	}else if(square_url=='http://api.baopinghui.com/app_dynamicCover/findpostBytime'){
+	    		square_num=3;
+	    	}else{
+	    		square_num=2;
+	    	}
+	    	boof=true;
+	    	api.openFrame({
+	    	    name: 'discovery_selected',
+	    	    url: 'widget://html/details/discovery_selected.html',
+	    	    rect: {
+	    	        x: 0,
+	    	        y: 0,
+	    	        w: 'auto',
+	    	        h: 'auto'
+	    	    },
+	    	    pageParam: {
+	    	        square_num:square_num
+	    	    }
+	    	});
+	    });
+	    // 监听选择广场模式
+	    api.addEventListener({
+	        name: 'popular'
+	    }, function(ret, err) {
+	    	if($api.getStorage('language')=='zho'){
+	    		$api.html($api.dom('.square'), '熱 門 帖 子 <img src="../../image/index/more.png" alt="">');
+	    	}else{
+	    		$api.html($api.dom('.square'), 'P O P U L A R <img src="../../image/index/more.png" alt="">');
+	    	}
+	        square_url='http://api.baopinghui.com/app_dynamicCover/findpostBytimeAndhot';
+	        $api.html($api.dom('#square_content'), '');
+	        x=0;
+	        y=12;
+	        img_url_num=[],
+			dyn_id_num=[];
+			post_type=[];
+			ui_id_num=[];
+			rank_num=[];
+			hot_num=[];
+	        square_loading();
+	    });
+	    api.addEventListener({
+	        name: 'myfocus'
+	    }, function(ret, err) {
+	    	if($api.getStorage('language')=='zho'){
+	    		$api.html($api.dom('.square'), '我 的 關 注 <img src="../../image/index/more.png" alt="">');
+	    	}else{
+	    		$api.html($api.dom('.square'), 'M Y   F O C U S <img src="../../image/index/more.png" alt="">');
+	    	}
+	        square_url='http://api.baopinghui.com/app_dynamicCover/findPostByMyFocus';
+	        $api.html($api.dom('#square_content'), '');
+	        x=0;
+	        y=12;
+	        img_url_num=[],
+			dyn_id_num=[];
+			post_type=[];
+			ui_id_num=[];
+			rank_num=[];
+			hot_num=[];
+	        square_myfocus_loading();
+	    });
+	    api.addEventListener({
+	        name: 'latestpost'
+	    }, function(ret, err) {
+	    	if($api.getStorage('language')=='zho'){
+	    		$api.html($api.dom('.square'), '最 新 發 佈 <img src="../../image/index/more.png" alt="">');
+	    	}else{
+	    		$api.html($api.dom('.square'), 'L A T E S T   P O S T <img src="../../image/index/more.png" alt="">');
+	    	}
+	        square_url='http://api.baopinghui.com/app_dynamicCover/findpostBytime';
+	        $api.html($api.dom('#square_content'), '');
+	        x=0;
+	        y=12;
+	        img_url_num=[],
+			dyn_id_num=[];
+			post_type=[];
+			ui_id_num=[];
+			rank_num=[];
+			hot_num=[];
+	        square_loading();
+	    });
+	    square_loading();
+	    //下拉加载
+		api.addEventListener({
+		    name: 'scrolltobottom'
+		}, function(ret, err){
+			$api.css($api.dom("#loadings"), 'display:block;');
+			
+			if(square_url=='http://api.baopinghui.com/app_dynamicCover/findPostByMyFocus'){
+				square_myfocus_loading();
+			}else{
+				square_loading();
+			}	
+		});
+
+		$api.addEvt($api.dom('#theme_all'), 'click',function(){
+			api.openWin({
+			    name: 'pubuliu_',
+			    url: 'widget://html/nav/pubuliu_.html',
+			    pageParam: {
+			        name: 'value'
+			    }
+			});
+		});
+	}
+	function square_loading(){
+		
+		$api.css($api.dom("#loadings"), 'display:block;');
+		if(boof){
+		console.log(x);
+		boof=false;
+		$.ajax({
+			url: square_url,
+			type: 'GET',
+			dataType: 'json',
+			data: 
+			{ 
+			   numx: x,
+		       numy:y
+		   },
+		})
+		.done(function(ret,err) {
+			
+		    if (ret) {
+		        for(var i=0;i<ret.data.length;i++){
+		        	img_url_num.push(ret.data[i].img_url.split(",")[0]);
+				    dyn_id_num.push(ret.data[i].dyn_id);
+				    post_type.push(ret.data[i].type);
+				    ui_id_num.push(ret.data[i].ui_id);
+				    rank_num.push(ret.data[i].rank);
+				    hot_num.push(ret.data[i].hot);
+		        }
+		        
+		        for(var i=0;i<ret.data.length;i++){
+		        	hot_yes='block';
+               	 	rank_yes='block';
+		        	if(rank_num[i+x]==null){
+                        rank_yes='none';
+                    }
+                    if(hot_num[i+x]==0 || hot_num[i+x]==2 || hot_num[i+x]==null || hot_num[i+x]==undefined){
+                        hot_yes='none';
+                    }
+		        	temp=`
+				      <div class="box"  style="background-image:url(`+img_qian+img_url_num[i+x]+img_suo+`)" onclick="openDetail(dyn_id_num[${i+x}],ui_id_num[${i+x}])"><img class="post_type" src="../../icon/touming.png"><div class="box_cf"><img class="fire" style="display:`+hot_yes+`" src="../../icon/f.gif"><img class="crown" style="display:`+rank_yes+`" src="../../icon/g.gif"></div></div>
+				      `;
+				    if(rank_num[i+x]=='2'){
+                        temp=temp.replace('g.gif',"h.gif");
+                    }else if(rank_num[i+x]=='3'){
+                        temp=temp.replace('g.gif',"i.gif");
+                    }
+				    if(post_type[i+x]=="imgs"){
+				        temp=temp.replace("touming.png","imgs.png")
+				    }else if(post_type[i+x]=="Video"){
+				        temp=temp.replace('touming.png',"Video.png");
+				        temp=temp.replace(`${img_suo}`,`${img_video}`);
+				    }
+				    $api.append($api.dom('#square_content'),temp);
+			        if(i==ret.data.length-1){
+			        	$api.css($api.dom("#loadings"), 'display:none;');
+			        	x=x+12;
+	        			setTimeout(function(){boof=true;},300);
+	    			}
+
+		        }	
+		    } else {
+		        console.log(JSON.stringify(err));
+		    }
+			
+			
+		})
+		.fail(function() {
+			console.log("error");
+		});
+		
+		
+		}
+	}
+	function square_myfocus_loading(){
+		$api.css($api.dom("#loadings"), 'display:block;');
+		if(boof){
+			boof=false;
+		// api.ajax({
+		//     url: square_url,
+		//     method: 'post',
+		//     data: {
+		//         values: { 
+		//         	uiId:$api.getStorage('id'),
+		//             startIndex: x,
+		//             maxResult:y
+		//         }
+		//     }
+		// }, function(ret, err) {
+		$.ajax({
+			url: square_url,
+			type: 'post',
+			dataType: 'json',
+			data: 
+			{ 
+			   	uiId:$api.getStorage('id'),
+		        startIndex: x,
+		        maxResult:y
+		   },
+		})
+		.done(function(ret,err) {
+			
+		    if (ret) {
+		        for(var i=0;i<ret.data.length;i++){
+		        	img_url_num.push(ret.data[i].cover_url.split(",")[0]);
+				    dyn_id_num.push(ret.data[i].dyn_id);
+				    post_type.push(ret.data[i].post_type);
+				    ui_id_num.push(ret.data[i].ui_id);
+				    rank_num.push(ret.data[i].rank);
+				    hot_num.push(ret.data[i].hot);
+		        }
+		        for(var i=0;i<ret.data.length;i++){
+		        	hot_yes='block';
+               	 	rank_yes='block';
+		        	if(rank_num[i+x]==null){
+                        rank_yes='none';
+                    }
+                    if(hot_num[i+x]==0 || hot_num[i+x]==2 || hot_num[i+x]==undefined){
+                        hot_yes='none';
+                    }
+		        	temp=`
+				      <div class="box"  style="background-image:url(${img_qian+img_url_num[i+x]+`${img_suo}`})" onclick="openDetail(dyn_id_num[${i+x}],ui_id_num[${i+x}])"><img class="post_type" src="../../icon/touming.png"><div class="box_cf"><img class="fire" style="display:`+hot_yes+`" src="../../icon/f.gif"><img class="crown" style="display:`+rank_yes+`" src="../../icon/g.gif"></div></div>
+				      `;
+				    if(rank_num[i+x]=='2'){
+                        temp=temp.replace('g.gif',"h.gif");
+                    }else if(rank_num[i+x]=='3'){
+                        temp=temp.replace('g.gif',"i.gif");
+                    }
+				    if(post_type[i+x]=="imgs"){
+				        temp=temp.replace("touming.png","imgs.png")
+				    }else if(post_type[i+x]=="Video"){
+				        temp=temp.replace('touming.png',"Video.png");
+				        temp=temp.replace(`${img_suo}`,`${img_video}`);
+				    }
+				    $api.append($api.dom('#square_content'),temp);
+			     	if(i==ret.data.length-1){
+			        	$api.css($api.dom("#loadings"), 'display:none;');
+			        	x=x+12;
+	        			setTimeout(function(){boof=true;},300);
+	    			}
+		        }
+		    } else {
+		        console.log(JSON.stringify(err));
+		    }
+		});
+		}
+	}
+	function openDetail(dyn_id,otherId) {
+	  api.openWin({
+	    name: "detail",
+	    url: "widget://html/details/detail.html",
+	    reload: true,
+	    vScrollBarEnabled: false,
+	    slidBackEnabled: false,
+	    softInputMode: 'resize',
+	    pageParam: {
+	      postId: dyn_id,
+	      otherId: otherId,
+	      text: true
+	    }
+	  });
+	}
+</script>
+</html>

@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style media="screen">
+  html{font-size: 12px;}
+  *{margin: 0px;padding: 0px;}
+  /*header{width: 100%;height: 80px;background: #ffffff;}*/
+  body{
+    background: #efefef;
+  }
+  section{padding: 20px;}
+  .language_choice{
+    width: 100%;height: 70px;background: #ffffff;border-radius: 0px 20px 20px 20px;
+    display: flex;align-items: center;
+  }
+  .language_choice>span:nth-of-type(1){width: 35%;margin-left: 20px;background: #F381A3;border-radius: 5px;
+    text-align: center;height: 27px;line-height: 27px;color: #ffffff;font-weight: bold;}
+  .language_choice>span:nth-of-type(2){margin: 0 6%;}
+  .language_choice>span:nth-of-type(3){width: 35%;margin-right: 20px;background: #F381A3;text-align: center;border-radius: 5px;
+    height: 27px;line-height: 27px;color: #ffffff;font-weight: bold;}
+  .right{float: right;clear: both;margin-top: 20px;padding: 10px 15px;border-radius:20px 0px 20px 20px;font-size: 15px;background: black;
+  color: #ffffff;font-weight: bold;display: none;}
+  .left{float: left;clear: both;margin-top: 20px;padding: 10px 33px 10px 15px; border-radius:0px 20px 20px 20px;font-size: 15px;background: #ffffff;
+  color: #101010;font-weight: bold;display: none;position: relative;}
+  .luyin{display: flex;justify-content: center;align-items: center;bottom:80px ;clear: both;width: 90%;position: absolute;}
+  .luyin>img{width: 80px;height: 80px;display: block;}
+  #center{
+    width:90%;
+    height:27px;
+    margin:0 auto;
+    background-color:#f381a3;
+    font-size:3.19vw;
+  }
+  .bottom{
+    position:absolute;
+    left:0;
+    bottom:20px;
+    width:100%;
+    margin:0 auto;
+  }
+  .bottom div{
+    margin-bottom:1.33vw;
+    text-align: center;
+    font:3.19vw/4.52vw Arial;
+    color:#aaa;
+  }
+  .again_img{
+    position: absolute;
+    bottom:-3vw;
+    right:1vw;
+    width:7.98vw;
+    height:7.98vw;
+    background: url(../../image/function-translation-play@3x2.png);
+    background-size: cover;
+  }
+  .loading{
+    position: relative;
+    margin:10vw auto 0;
+    width: 18.62vw;
+    text-align: center;
+    height: 13.30vw;
+    background: #fff;
+    border-radius:2.66vw;
+    opacity: 0.5;
+    display: none;
+  }
+  .loading img{
+    position: absolute;
+    bottom:2.66vw;
+    left:50%;
+    margin-left:-4vw;
+    width:8vw;
+    height:8vw;
+    object-fit: cover;
+  }
+</style>
+</style>
+<body>
+  <header>
+
+  </header>
+  <section id="chat">
+    <div class="language_choice">
+      <span ref="city_left">中 文</span>
+      <span>&gt;&gt;&gt;</span>
+      <span ref="city_right">E N G L I S H</span>
+      <!-- <span id="center">Automatic Identification 【 China &lt;&gt; English 】</span> -->
+    </div>
+    <div class="right">
+    </div>
+    <!-- <div style="position: relative;"> -->
+      <div class="left"></div>
+    <div class="loading"><img src="../../icon/loading.gif" alt=""></div>
+    <!-- </div> -->
+
+    <div class="luyin" id="luyin" ref="xjb">
+      <img src="../../img/luyin.png" alt="" >
+    </div>
+    <!-- <form action="RequestServlet" method="post" enctype="multipart/form-data">   -->
+      <!-- <input type="file" name="FileUpload" id="FileUpload"> -->
+    <!-- </form> -->
+    <div class="bottom">
+      <div>Long Press The Icon To Speak</div>
+      <div>Please Choose A Translation Language</div>
+    </div>
+  </section>
+
+</body>
+<script src="../../json/api.json"></script>
+<script src="../../script/md5.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../script/jquery-3.1.0.min.js" type="text/javascript"></script>
+<script src="../../script/vue.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript">
+
+apiready = function() {
+  if($api.getStorage('language')=='zho'){
+    $api.html($api.dom('#center'), '自 動 識 別 翻 譯【 中 文 <> 英 語 】');
+    $api.html($api.dom('.bottom'), '<div>長 按 圖 標</div><div>進 行 語 音 錄 入</div>');
+  }
+            // 右滑關閉頁面
+        api.addEventListener({
+            name: 'swiperight'
+        }, function() {
+           api.closeWin();
+        });
+    var iflyRecognition = api.require('iflyRecognition');
+    iflyRecognition.createUtility({
+        ios_appid: '5b769ee2',      // 填写讯飞平台上获得的appid
+        android_appid: '5b6d4135'   // 填写讯飞平台上获得的appid
+    }, function(ret, err) {
+    //  alert('cnm');
+        if (ret.status) {
+            // api.alert({
+            //     msg: '创建成功'
+            // });
+            //fnread();
+        } else {
+            api.alert({
+                msg: "创建失败"
+            });
+        }
+    });
+
+    var chat=new Vue({
+      el:"#chat",
+      data:{
+
+      },
+      mounted:function(){
+        var luyin = this.$refs.xjb;
+        var city_left=this.$refs.city_left;
+        var city_right=this.$refs.city_right;
+        //var right =
+        //alert('aaaa');
+        luyin.addEventListener("touchstart",function(e){
+          e.stopImmediatePropagation();
+          e.preventDefault();
+          //alert(city_left.innerHTML);
+
+          if(api.systemType=="ios"){
+
+            if(city_left.innerHTML=="中 文"){
+              fnrecord();
+            }else{
+
+              api.startRecord({     //开始录音
+                  //path: 'fs://a.amr'
+              });
+            }
+
+          }else{
+            //安卓申请录音权限
+            api.requestPermission({
+                list: ["microphone","storage"],
+            }, function(ret, err) {
+                  if(ret.list[0].granted){
+                    if(city_left.innerHTML=="中 文"){
+                      fnrecord();
+                    }else{
+                      api.startRecord({
+                          //path: 'fs://a.amr'
+                      });
+                    }
+                  }
+            });
+
+          }
+
+
+          //
+          luyin.style.opacity=0.6;
+          luyin.style.transform="scale(1.2,1.2)";
+        });
+        luyin.addEventListener("touchend",function(e){
+          api.stopRecord(function(ret, err){
+              if(ret){
+                   var path = ret.path;
+                   var duration = ret.duration;
+                   console.log(path);
+                   var obj = api.require('qiniuUpfile');
+                   var lan_name=new Date().getTime()+'.amr';
+                  obj.upfile({
+                      file: path,
+                      name: lan_name
+                  }, function(ret, err) {
+                      if (ret.status) {
+                          if (ret.oper == "complete") {
+                              //上传成功后组装访问路径，或直接访问文档
+                              //alert(JSON.stringify(ret));
+                              console.log(JSON.stringify(ret));
+                              //$api.text(b, baseUrl + ret.info.key);
+                              var url='http://bin.baopinghui.com/'+lan_name;
+                              api.ajax({
+                                  url: 'http://api.baopinghui.com/app_upload/baiduSpeechRecognition',
+                                  method: 'post',
+                                  data: {
+                                      values: {
+                                          url: url
+                                      }
+                                  }
+                              },function(ret, err){
+                                  if (ret) {
+                                      //alert( JSON.stringify( ret ) );
+                                      var right=document.getElementsByClassName('right')[0];
+                                      $api.css($api.dom('.loading'), 'display:none;');
+                                      right.style.display="block";
+                                      right.innerHTML=ret.result[0];
+                                      fanyi(ret.result[0]);
+                                  } else {
+                                      alert( JSON.stringify( err ) );
+                                  }
+                              });
+
+                          } else if (ret.oper == "progress") {
+                              //上传过程中获取进度数据
+                              //$api.text(a, ret.percent);
+                          }
+                      }
+                  });
+                   //alert(duration)
+                   //var fileObj = document.getElementById("FileUpload").value(path); // js 获取文件对象
+                   //var fileObj=new File(path,'dadasd.amr');
+                   //$('#FileUpload').eq(0).val(path);
+                  //  var fileObj = document.getElementById("FileUpload").files[0];
+                  //  alert(JSON.stringify(fileObj));
+                  //  if (typeof (fileObj) == "undefined" || fileObj.size <= 0) {
+                  //      alert("请选择图片");
+                  //      return;
+                  //  };
+                  //  var formFile = new FormData();
+                  //  formFile.append("action", "UploadVMKImagePath");
+                  //  formFile.append("file", fileObj); //
+                   //
+                  //  var data = formFile;
+                  //  $.ajax({
+                  //      url: "http://api.baopinghui.com/app_upload/baiduSpeechRecognition",
+                  //      data: data,
+                  //      type: "Post",
+                  //      dataType: "json",
+                  //      cache: false,//上传文件无需缓存
+                  //      processData: false,//用于对data参数进行序列化处理 这里必须false
+                  //      contentType: false, //必须
+                  //      success: function (res) {
+                  //          alert(JSON.stringify(res.data));
+                  //      },
+                  //      error: function (err){
+                  //        alert(JSON.stringify(err));
+                  //      },
+                  //  })
+              }
+          });
+
+
+
+
+          luyin.style.opacity=1.0;
+          luyin.style.transform="scale(1.0,1.0)";
+          $api.css($api.dom('.loading'), 'display:block;');
+        })
+        city_left.addEventListener('click',function(e){
+          //alert('aaaaa')
+          opencity_lan('left');
+        });
+        city_right.addEventListener('click',function(e){
+          opencity_lan('right');
+        });
+        api.addEventListener({
+            name: 'sets_lan'
+        }, function(ret, err){
+          if(ret){
+            //alert(JSON.stringify(ret));
+            city_left.innerHTML=ret.value.lan;
+          }
+        });
+        api.addEventListener({
+            name: 'sets_lans'
+        }, function(ret, err){
+          if(ret){
+            //alert(JSON.stringify(ret));
+            city_right.innerHTML=ret.value.lan;
+          }
+        });
+
+      }
+      // methods:{
+      //   luyin:function(e){
+      //     alert('zhengzailuyin');
+      //     console.log(e);
+      //   }
+      // },
+
+
+    })
+
+
+};
+
+
+
+function fnrecord() {
+
+    var flag = true;
+    var iflyRecognition = api.require('iflyRecognition');
+    iflyRecognition.record({
+        vadbos: 3000,
+        vadeos: 3000,
+        rate: 16000,
+        asrptt: 0,
+        audioPath: 'fs://speechRecogniser/speech.pcm'
+    }, function(ret, err) {
+      //alert(JSON.stringify(ret))
+        if (ret.status&&ret.wordStr!="。"&&ret.wordStr!="？"&&ret.wordStr!="！") {
+            //api.alert({ msg: ret.wordStr });
+            if(flag){
+              //alert(JSON.stringify(ret));
+              var right=document.getElementsByClassName('right')[0];
+              $api.css($api.dom('.loading'), 'display:none;');
+              right.style.display="block";
+              right.innerHTML=ret.wordStr;
+              fanyi(ret.wordStr);
+
+              flag=false;
+            }
+            //api.parseTapmode();
+        } else {
+            //api.alert({ msg: err.msg });
+        }
+    });
+};
+//朗读文字
+function fnread(text) {
+    var iflyRecognition = api.require('iflyRecognition');
+
+    iflyRecognition.read({
+        readStr: text,
+        speed: 60,
+        volume: 60,
+        voice: 1,
+        rate: 16000,
+        audioPath: 'fs://speechRecogniser/read.mp3'
+    }, function(ret, err) {
+        if (ret.status) {
+          //alert('nmb');
+            ret.speakProgress
+        } else {
+            api.alert({
+                msg: err.msg
+            });
+        }
+    });
+}
+//打开城市选择页
+function opencity_lan(direction){
+  api.openFrame({
+    name: "dateBg",
+    url: "widget://html/set-up/selectLanguageBg_chat3.html",
+    rect: {
+      x: 0,
+      y: 0,
+      w: "auto",
+      h: "auto"
+    },
+    pageParam: {
+    name: direction
+    }
+    });
+  }
+//翻译
+function fanyi(text){
+ var salt = (new Date).getTime();
+ var query= text;
+ var q = encodeURIComponent(query);
+ var str1 ="20161226000034707"+query+salt+"i1XmNFcDa7_Z4i6jUSZA";
+ var sign = MD5(str1);
+    $.ajax({
+      url: 'http://api.fanyi.baidu.com/api/trans/vip/translate',
+      async:false,
+      type: 'POST',
+      data: {
+        q: query,
+        //appid: "20170419000045193",
+        appid: "20161226000034707",
+        salt: salt,
+        from: "auto",
+        to: "auto",
+        sign: sign
+      }
+    })
+    .done(function(data) {
+        //alert(JSON.stringify(data));
+
+      if(data.error_code!="54001"&&data.error_code!="54000"){
+       var left=document.getElementsByClassName('left')[0];
+        left.style.display="block";
+        left.innerHTML=data.trans_result[0].dst+'<div class="again_img"></div>';
+        fnread(data.trans_result[0].dst);
+        $api.addEvt($api.dom('.left'), 'click', function(){
+          fnread(data.trans_result[0].dst);
+          $api.css($api.dom('.again_img'), 'opacity:0.5;');
+          setTimeout(function(){
+            $api.css($api.dom('.again_img'), 'opacity:1;');
+          },500);
+        });
+
+      }else{
+
+      }
+
+    })
+    .fail(function(err) {
+      alert(JSON.stringify(err));
+    })
+}
+</script>
+</html>

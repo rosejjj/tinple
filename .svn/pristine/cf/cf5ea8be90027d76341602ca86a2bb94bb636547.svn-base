@@ -1,0 +1,3826 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<link rel="stylesheet" type="text/css" href="../../css/api.css" />
+		<style type="text/css">
+		* {
+			/*border:0px solid blue!important;*/
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+			-webkit-user-select: auto;
+		}
+
+		/*li{
+			border: 0px solid red!important;
+		}*/
+
+		header {
+			width: 100%;
+			height: 18.7vw;
+			padding:15px 2.66vw;
+			display: -webkit-flex;
+			display: flex;
+			-webkit-justify-content: space-between;
+			justify-content: space-between;
+			position: relative;
+			z-index: 4;
+			background: #ffffff;
+			/*box-shadow: 0 0 10px #36A5B2;linear-gradient(to right, #d9afd9 0%, #97d9e1 100%)*/
+			/*margin-bottom:3px;*/
+			z-index: 100;
+			box-shadow: 0px 0px 2px .9px #efefef;
+		}
+		body,html{
+			background: white;
+
+		}
+		.back {
+			width: 30px;
+			height: 30px;
+			margin-top: 3.3vw;
+			background: url(../../image/back.png)no-repeat center center;
+			background-size: cover;
+		}
+
+		.info {
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+		}
+
+		.info .nickname {
+			position: relative;
+			top: 4px;
+			width:50vw;
+			height: 100%;
+			line-height:14vw;
+			color: #101010;
+			font-size: 4.8vw;
+			font-weight: bold;
+			text-align: center;
+			text-shadow: 0 0 1px 0 #36A5B2;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				/*background: red;*/
+		}
+
+		.more {
+			width: 8.3333vw;
+			height: 8.3333vw;
+			margin-top: 3.16666vw;
+			background: url(../../image/more.png) no-repeat center center;
+			background-size: cover;
+		}
+
+		.main {
+			padding-top:0;
+			/*height: 145vw;*/
+			height: 83vh;
+			padding-bottom: 7vw;
+			overflow-y: scroll;
+			-webkit-overflow-scrolling: touch;
+			position: relative;
+			z-index: 4;
+		}
+
+		.message-date {
+			width: 100%;
+			padding: 0 5.5555vw;
+			background: white;
+		}
+
+		.tips {
+			display: inline-block;
+			position: relative;
+			z-index: 4;
+			/*margin-left: 25%;*/
+			left: 50%;
+			transform: translateX(-50%);
+			padding: 0vw 3.7777vw;
+			color:white;
+			font-weight: bold;
+			font-size:11px;
+			text-align: center;
+			background-color: #d5d5d5;
+			border-radius: 10px;
+			height: 25px;
+			line-height: 25px;
+		}
+		/*.tips p{
+			display: inline-block;
+			padding: 2.7777vw 1.7777vw;
+
+			line-height: 25px;
+			background: black!important;
+			height: 25px;
+		}*/
+
+
+		.message-date .message-wrap {
+			display: flex;
+			flex-direction: column;
+			/*background: white;*/
+		}
+
+		.message-date .message-wrap::after {
+			content: '';
+			display: block;
+			clear: both;
+		}
+
+		.message-date .message {
+			max-width: 70.8333vw;
+			color: #fff;
+			padding: 8px 15px;
+			border-radius: 5.555vw;
+			font-weight: bold;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-flow: row wrap;
+			text-shadow: 0 0 1px 0 #36A5B2;
+			position: relative;
+			word-break: break-all;
+			/*box-shadow: 0 1px 2px rgba(0, 0, 0, 0.18), 0 2px 2px rgba(0, 0, 0, 0.25);*/
+		}
+
+		.message-date .message-left {
+			font-size: 12px;
+			background-color: #efefef;
+			color: #484848;
+			align-self: flex-start;
+			/*box-shadow: 0px 0px 0px 0px rgba(54, 165, 178, .4);*/
+			margin-top: 5.55vw;
+			border-top-left-radius: 0 !important;
+			font-weight: normal;
+		}
+
+		.message-date .message-right {
+			font-size: 12px;
+			/*background: linear-gradient(to right, #d9afd9 0%, #97d9e1 100%);*/
+			background: #484848;
+			/*box-shadow: 0px 0px 0px 0px rgba(54, 165, 178, 1);*/
+			align-self: flex-end;
+			margin-top: 5.55vw;
+			border-top-right-radius: 0;
+			font-weight: normal;
+		}
+
+		.message-date .msg_img {
+			max-width: 55.5555vw;
+			max-height: 40vw;
+			display: block;
+			border-radius: 8px;
+			object-fit: cover;
+			/*border: 5px solid blue;*/
+		}
+		.message-date .msg_img2 {
+			width: 8.33vw;
+			height: 8.33vw;
+			position: absolute;
+			bottom: 2vw;
+			right: 2vw;
+			opacity: .6;
+		}
+
+		.send {
+			position: absolute;
+			left: -5.77vw;
+			bottom: 0;
+			width: 15px;
+			height: 15px;
+
+			outline: none;
+			margin: 0;
+			padding: 0;
+		}
+
+		.loading {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			z-index: 5;
+		}
+
+		.more-list {
+			width: 100%;
+			height: 100vh;
+			position: fixed;
+			top: 0;
+			left: 0;
+			background-color: rgba(34, 34, 34, .7);
+			z-index: 10;
+		}
+
+		.list-content {
+			width: 94.4vw;
+			text-align: center;
+			position: absolute;
+			left: 50%;
+			bottom: 6.93vw;
+			transform: translateX(-50%);
+		}
+
+		.list-content .list-title {
+			width: 100%;
+			height: 9.6vw;
+			line-height: 9.6vw;
+			background:#FFF;
+			color: #8F8E94;
+			font-size: 3.46vw;
+			border-bottom: 1px solid #999;
+			border-top-left-radius: 13px;
+			border-top-right-radius: 13px;
+		}
+
+		.list-content .btn {
+			width: 100%;
+			height: 15.2vw;
+			line-height: 15.2vw;
+			background:#FFF;
+			color: #0076FF;
+			font-size: 5.33vw;
+			border-bottom: 1px solid #999;
+		}
+
+		.list-content .cancel {
+			width: 100%;
+			height: 15.2vw;
+			line-height: 15.2vw;
+			background: white;
+			border-radius: 13px;
+			margin-top: 2.13vw;
+			color: #0076FF;
+			font-size: 5.33vw;
+			border: 1px solid #9EA6B7;
+		}
+
+		.translated {
+			max-width: 70.8333vw;
+			color: #aaa;
+			padding: 2.77vw 5.55vw 0 5.55vw;
+			font-size: 12px;
+			/*font-weight: bold;*/
+			text-shadow: 0 0 1px 0 #36A5B2;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-flow: row wrap;
+			position: relative;
+			word-break: break-all;
+		}
+
+		.translated-left {
+			align-self: flex-start;
+		}
+
+		.translated-right {
+			align-self: flex-end;
+		}
+		.bin1{
+			display: none;
+			position: fixed;
+			top: 40%;
+			transform: translateY(-50%);
+			left: 50%;
+			transform: translateX(-50%);
+			background: rgba(0,0,0,.6);
+			/*opacity: 0.6;*/
+			width: 200px;
+			height: 150px;
+			z-index: 9999999999999;
+			background-image: url('../../icon/luzhi.gif');
+			background-size: cover;
+			background-position: center;
+			border-radius: 20px;
+		}
+		.abin1{
+				display: none;
+				width: 50px;
+				height: 20px;
+				/*text-align: center;*/
+				position: relative;
+		}
+
+		.abin3{
+				display: block;
+				width: 40px;
+				 height: 20px;
+				/*text-align: center;*/
+				position: relative;
+
+				/*vertical-align: bottom;*/
+		}
+	.binimg{
+			float: right;
+			width: 20px;
+			height:20px;
+			margin: -0px -10px -10px -10px;
+		}
+		.binimg_left{
+				float: left;;
+				width: 20px;
+				height:20px;
+				margin: 0px -10px -10px -10px;
+			}
+			.send1 {
+				position: absolute;
+				top: 2.66vw;
+				left: 5vw;
+				font-size: 12px;
+				color: white;
+				width: 40px;
+				height: 30px;
+				/*margin-right: 100px;*/
+				margin-left: -15px;
+				/*font-style:italic;*/
+				/*margin-top: 3px;*/
+				text-align:center;
+			}
+			.send2{
+				position: absolute;
+				top:2.6vw;
+				left: -20vw;
+				/*margin-left: 210px;*/
+			/*float: right;*/
+			/*font-style:italic;*/
+				font-size: 12px;
+				color: black;
+				width: 30px;
+				height: 30px;
+				text-align:center;
+			}
+
+		[v-cloak] {
+			display: none !important;
+		}
+		.send_time{
+	display: inline-block;
+	position: relative;
+	z-index: 4;
+	left: 50%;
+	transform: translateX(-50%);
+	padding: 0vw 3.7777vw;
+	color:#aaa;
+	/*font-weight: bold;*/
+	font-size:10px;
+	text-align: center;
+	/*background-color:white;*/
+	border-radius: 10px;
+	/*height: 25px;*/
+	line-height: 25px;
+}
+#shareMessage,#shareMessage2{
+	position: relative;
+	display: inline-block;
+	height: 70px;
+	width: 210px;
+	border-radius: 10px;
+}
+.sharePic,.sharePic2{
+	position: absolute;
+	top:10px;
+	/*bottom:10px;*/
+	right:10px;
+	height: 50px;
+	width: 50px;
+	border-radius: 10px;
+	background: no-repeat center center;
+	background-size: cover;
+}
+.sharePic{
+	border-top-right-radius: 0;
+}
+.sharePic2{
+	border-top-left-radius: 0;
+}
+.title{
+	/*display: inline-block;*/
+	position: absolute;
+	top:10px;
+	left:17px;
+	/*margin-left: -5px;
+	margin-top: 2px;*/
+	max-height: 40px;
+	width: 105px;
+	font-size: 10px;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	/*white-space: nowrap;*/
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.content{
+	position: absolute;
+	bottom:10px;
+	left:17px;
+	/*margin-top:5px;*/
+	font-size: 10px;
+	height: 15px;
+	width: 130px;
+	color:#aaa;
+	/*font-weight: normal;*/
+}
+.box{
+	height: 50px;
+}
+		/*li {
+	border: solid 0px red !important;
+	border-bottom-width: 0px !important;
+}*/
+	.matching{
+		width: 88.9%;
+		height: 170px;
+		background: #efefef;
+		margin: -10px auto 20px;
+		border-radius: 10px;
+		/*display: none;*/
+	}
+	.box{
+		position: relative;
+		top: 20px;
+		width: 88%;
+		background: #efefef;
+		height: 50px;
+		margin: 0 auto;
+		text-align: center;
+	}
+	.avatar{
+		position:relative;
+		display:inline-block;
+		float:left;
+		width:13.33vw;
+		height:13.33vw;
+		background: no-repeat center center;
+		background-size: cover;
+		border-radius: 25px;
+	}
+	.progress{
+		display: inline-block;
+		/*width: 56%;*/
+		width:160px;
+		height: 8px;
+		margin: 20px auto;
+		border-radius: 25px;
+		background: white;
+	}
+	.progressBar{
+		height: 8px;
+		/*width:20%;*/
+		background: #F381A3;
+		border-radius: 25px;
+	}
+	.percentage{
+		position: relative;
+		bottom: 3px;
+		font-size: 12px;
+		color: #F381A3;
+		font-weight: bold;
+	}
+	.pipeidu{
+		margin-top: 3px;
+		font-size: 12px;
+		color: #F381A3;
+		font-weight: bold;
+	}
+	.circle_box .circle{
+		border-radius: 2px;
+		width: 8px;
+		height: 8px;
+		background: #81B2F3;
+		margin-top: 8px;
+	}
+	.circle_box{
+		margin-top: 38px;
+		margin-left: 23px;
+	}
+	.circle2{
+		color: #AAA;
+		font-size: 12px;
+		margin-left: 8px;
+		font-weight: bold;
+	}
+	.video{
+		position: absolute;
+		right: 20px;
+		top: 20px;
+		height: 30px;
+		width: 30px;
+		z-index: 999;
+	}
+	.ma{
+		font-size: 12px;
+		position: relative;
+		top: 1px;
+	}
+	.redBox{
+		position: fixed;
+		right: 50%;
+		bottom: 70px;
+		margin-right:-25px;
+		background-color: #F381A3;
+		height: 25px;
+		line-height: 23px;
+		width: 50px;
+		border-radius: 15px;
+		padding: 0.5vw 1.9vw;
+		color:white;
+		z-index: 999;
+		text-align: center;
+		font-size: 12px;
+		font-weight: bold;
+		/*-webkit-transform: translateY(0);*/
+		/*-webkit-overflow-scroll:touch;*/
+	}
+	.jiantou{
+		transform:rotate(90deg);
+		position: relative;
+		bottom:0.5vw;
+	}
+	.sanjiaoxing{
+		position: absolute;
+		left:20px;
+		bottom:-6.666px;
+		height: 6.666px;
+		width: 10px;
+	}
+	.tips1 {
+		/*top:-8px;*/
+		display: inline-block;
+		left: 50%;
+		transform: translateX(-50%);
+		position: relative;
+		z-index: 4;
+		/*padding: 0vw 3.7777vw;*/
+		/*margin-bottom: 10px;*/
+		color: white;
+		font-weight: bold;
+		font-size: 11px;
+		text-align: center;
+		/*background-color: #d5d5d5;*/
+		border-radius: 10px;
+		height:30px;
+		line-height: 25px;
+		/*margin-bottom: 8px;*/
+
+	}
+		</style>
+	</head>
+
+	<body>
+		<div class="bin1">
+		</div>
+		<div id="chat" v-cloak>
+
+			<header id="head" @touchstart="closeEmo()">
+				<span class="back" @click="closed"></span>
+				<div class="info">
+					<span class="nickname">{{nickname}}</span>
+				</div>
+				<span class="more"  style="opacity:1;"  @click='clcikHeader'></span>
+				<!-- @click='moreList("open")' -->
+			</header>
+
+			<div class="loading" v-show="isLoading">
+				<img src="../../icon/messages/loading.gif" style="width: 13.33vw;height: 13.33vw;" />
+			</div>
+			<!-- 未读消息红点 v-if='redBoxVal>0'-->
+			<div class="redBox" @click='zhiding()' v-if='redBoxVal>0'><img class="sanjiaoxing" src="../../icon/sanjiaoxing.png">NEW</div>
+
+			<div class="main" id="main" @touchstart="closeEmo()">
+				<div class="matching" v-if="matching">
+					<div class="box">
+							<span :style="getPic(avatar)" class="avatar" style="float:left;" @click="openHome(targetId)"></span>
+							<div class="progress">
+								<div style="margin-top:-19px;">
+									<span class="percentage">{{match}}%</span>
+									<div class="progressBar"></div>
+									<span class="pipeidu">Matching Degree</span>
+								</div>
+							</div>
+							<span :style="getPic(avatar_mine)" class="avatar" style="float:right;"></span>
+					</div>
+					<div class="circle_box">
+							<span class="circle"></span><span class="circle2">{{sex}} {{adjective}}</span><br />
+							<span class="circle"></span><span class="circle2">{{sex}} <span class="circle3">is from</span> <span class="spacing">{{area}}</span></span><br />
+							<span class="circle"></span><span class="circle2">{{sex}} <span class="circle4">is Destiny number</span> {{fate}}<span class="circle5">, Cancer</span> <span class="spacing">{{constellation2}}</span></span><br />
+					</div>
+				</div>
+				<div class="message-date">
+					<div class="dingwei" style="margin-top:10px;margin-bottom:0;display:none">
+						<!--<span>Chat Content Will Be Deleted After 7 Days</span>-->
+						<img class="tips1" src="../../icon/messages/loading.gif"/>
+
+					</div>
+					<ul class="message-wrap" v-for="(msg,index) in messageArr">
+						<!--  -->
+					<!-- 时间显示 v-show="showMessagetime(msg.create_time,index)!=''&&msg.msg_body.extras.type!=matchs&&msg.msg_body.extras.type!='txt2'"-->
+					<li style="margin-top:10px;" v-show="showMessagetime(msg.create_time,index)!=''&&msg.msg_body.extras.type!=matchs&&msg.msg_body.extras.type!='txt2'"><div class="send_time" v-if="msg.from_id==targetId||msg.from_id==ownId" style="text-align:center;" v-html='showMessagetime(msg.create_time,index)'></div></li>
+						<!-- 别人看到的匹配 msg.from_id==targetId-->
+					<li class="matching" style="width:100%;margin-top:11px;margin-bottom:-4px;" v-if="msg.from_id==targetId&&msg.msg_body.extras.type==matchs">
+						<div class="box">
+								<span :style="getPic(avatar)" class="avatar" style="float:left;" @click="openHome(targetId)"></span>
+								<div class="progress">
+									<div style="margin-top:-19px;">
+										<span class="percentage">{{msg.msg_body.extras.match}}%</span>
+										<div class="progressBar" :style="{width:(msg.msg_body.extras.match)+'%'}"></div>
+										<span class="pipeidu">Matching Degree</span>
+									</div>
+								</div>
+									<span :style="getPic(avatar_mine)" class="avatar" style="float:right;"></span>
+						</div>
+						<div class="circle_box">
+								<span class="circle"></span><span class="circle2">{{sexJudge(msg.msg_body.extras.sex_me)}}{{adjJudge(msg.msg_body.extras.adjective_me)}}</span><br />
+								<span class="circle"></span><span class="circle2">{{sexJudge(msg.msg_body.extras.sex_me)}} <span class="circle3">is from</span> <span class="spacing">{{translate(msg.msg_body.extras.area_me,1,index)}}</span></span><br />
+								<span class="circle"></span><span class="circle2">{{sexJudge(msg.msg_body.extras.sex_me)}} <span class="circle4">is Destiny number</span> {{msg.msg_body.extras.fate_me}}<span class="circle5">, Cancer</span> <span class="spacing">{{translate(msg.msg_body.extras.constellation1,2,index)}}</span></span><br />
+						</div>
+					</li>
+						<!-- 自己看到的匹配 -->
+					<li class="matching" style="width:100%;margin-top:11px;margin-bottom:-4px;" v-if="msg.from_id==ownId&&msg.msg_body.extras.type==matchs&&!matching">
+						<div class="box">
+								<span :style="getPic(avatar)" class="avatar" style="float:left;" @click="openHome(targetId)"></span>
+								<div class="progress">
+									<div style="margin-top:-19px;">
+										<span class="percentage">{{msg.msg_body.extras.match}}%</span>
+										<div class="progressBar" :style="{width:(msg.msg_body.extras.match)+'%'}"></div>
+										<span class="pipeidu">Matching Degree</span>
+									</div>
+								</div>
+								<span :style="getPic(avatar_mine)" class="avatar" style="float:right;"></span>
+						</div>
+						<div class="circle_box">
+								<span class="circle"></span><span class="circle2">{{sexJudge(msg.msg_body.extras.sex)}}{{adjJudge(msg.msg_body.extras.adjective)}}</span><br />
+								<span class="circle"></span><span class="circle2">{{sexJudge(msg.msg_body.extras.sex)}}<span class="circle3">is from</span> <span class="spacing">{{translate(msg.msg_body.extras.area,1,index)}}</span></span><br />
+								<span class="circle"></span><span class="circle2">{{sexJudge(msg.msg_body.extras.sex)}} <span class="circle4">is Destiny number</span> {{msg.msg_body.extras.fate}}<span class="circle5">, Cancer</span> <span class="spacing">{{translate(msg.msg_body.extras.constellation2,2,index)}}</span></span><br />
+						</div>
+					</li>
+				<!-- 文本 -->
+				<!-- 匹配后信息颠倒 -->
+						<li v-if="msg.from_id==targetId&&msg.target_id==ownId&&msg.msg_body.extras.type=='txt2'" style="margin-top:16px;margin-bottom:1px;" @click="translateLang3(index)" class="message message-left" v-html='showMessage(msg)' @touchstart="gtouchstart(event,index,1)" @touchmove="gtouchmove()" @touchend="gtouchend(index)" ></li>
+						<li v-if="msg.from_id==targetId&&msg.target_id==ownId&&msg.msg_body.extras.type=='txt2'&&msg.translated" class="translated translated-left" v-html='showMessage2(msg)'  @click="copy(event,index)"></li>
+						<li v-if="msg.from_id==ownId&&msg.target_id==targetId&&msg.msg_body.extras.type=='txt2'" style="margin-top:16px;margin-bottom:1px;" @click="translateLang3(index)" class="message message-left" v-html='showMessage(msg)' @touchstart="gtouchstart(event,index,1)" @touchmove="gtouchmove()" @touchend="gtouchend(index)" ></li>
+						<li v-if="msg.from_id==ownId&&msg.target_id==targetId&&msg.msg_body.extras.type=='txt2'&&msg.translated" class="translated translated-left" v-html='showMessage2(msg)'  @click="copy(event,index)"></li>
+				 <!-- 别人发的文字 -->
+						<li v-if="msg.from_id==targetId&&msg.target_id==ownId&msg.msg_body.extras.type=='txt'" @click="translateLang3(index)" class="message message-left" v-html='showMessage(msg)' @touchstart="gtouchstart(event,index,1)" @touchmove="gtouchmove()" @touchend="gtouchend(index)" style="margin-top:10px;"></li>
+			 <!-- 别人发的 语音 以前版本的图片发送格式extras中是没有 url字段的-->
+						<li v-if="msg.from_id==targetId&&msg.target_id==ownId&msg.msg_body.extras.type=='voice'&&msg.msg_body.extras.url==null"  class="message message-left"  @click="xiazai(msg.msg_body.text,index,msg.msg_body.extras.duration)"  @touchstart="gtouchstart(event,index,2)" @touchmove="gtouchmove()" @touchend="gtouchend(index)" style="margin-top:10px;padding:6px 15px !important;">
+															<p class="send2"  v-html='msg.msg_body.extras.duration+"\""' :style="{marginLeft:(msg.msg_body.extras.duration>=10)?(205+'px'):((msg.msg_body.extras.duration)*10+95+'px')}"></p><!--: -->
+																<div class="abin1" :style="{width:(msg.msg_body.extras.duration>=10)?140+'px':(msg.msg_body.extras.duration)*10+30+'px'}">
+																	<img class="binimg_left" src='../../icon/icon-chat-voice-GIF-black.gif'></img>
+																</div>
+																<div class="abin3" :style="{width:(msg.msg_body.extras.duration>=10)?140+'px':(msg.msg_body.extras.duration)*10+30+'px'}">
+															<img class="binimg_left" src='../../icon/icon-chat-voice-black@3x2.png'></img>
+																</div>
+
+
+						</li>
+			<!-- 别人发的 语音 当前前版本的图片发送格式extras中是没有 url字段的-->
+						<li v-if="msg.from_id==targetId&&msg.target_id==ownId&msg.msg_body.extras.type=='voice'&&msg.msg_body.extras.url!=null"  class="message message-left"  @click="xiazai(msg.msg_body.extras.url,index,msg.msg_body.extras.duration)"  @touchstart="gtouchstart(event,index,2)" @touchmove="gtouchmove()" @touchend="gtouchend(index)" style="padding:6px 15px !important;">
+															<p class="send2"  v-html='msg.msg_body.extras.duration+"\""' :style="{marginLeft:(msg.msg_body.extras.duration>=10)?(205+'px'):((msg.msg_body.extras.duration)*10+95+'px')}"></p>
+																<div class="abin1" :style="{width:(msg.msg_body.extras.duration>=10)?140+'px':(msg.msg_body.extras.duration)*10+30+'px'}">
+																	<img class="binimg_left" src='../../icon/icon-chat-voice-GIF-black.gif'></img>
+																</div>
+																<div class="abin3" :style="{width:(msg.msg_body.extras.duration>=10)?140+'px':(msg.msg_body.extras.duration)*10+30+'px'}">
+															<img class="binimg_left" src='../../icon/icon-chat-voice-black@3x2.png'></img>
+																</div>
+
+
+						</li>
+						<!-- 别人发的 分享链接 -->
+						<li @click="openDetail(msg.msg_body.extras.postId,msg.msg_body.extras.otherId)" v-if="msg.from_id==targetId&&msg.target_id==ownId&msg.msg_body.extras.type=='share'" id="shareMessage" class="message message-left" style="margin-top:10px;">
+								<img class="video" src="../../icon/Video.png" v-if="msg.msg_body.extras.post_type=='Video'">
+								<img class="sharePic2" :src=msg.msg_body.extras.img></img>
+									<p class="title">{{msg.msg_body.extras.title}}</p>
+									<p class="content" style="font-weight:normal"><span class="ma">©</span>{{msg.msg_body.extras.postUsername}}</p>
+						</li>
+					<!-- 翻译 -->
+						<li v-if="msg.from_id==targetId&&msg.target_id==ownId&&msg.msg_body.extras.type==txt&&msg.translated" class="translated translated-left" v-html='showMessage2(msg)'  @click="copy(event,index)" ></li>
+				 <!--  别人发的 图片 以前版本的图片发送格式extras中是没有 url字段的-->
+						<li v-else-if="msg.from_id==targetId&&msg.target_id==ownId&&msg.msg_body.extras.type==img&&msg.msg_body.extras.url==null" class="message message-left" style="padding: 0px;border-radius:8px;margin-top:10px;">
+							<img class="msg_img" :src='msg.msg_body.text+"?imageView2/0/w/250/auto-orient"' @click='sacnImage(msg.msg_body.text)' style="border-top-left-radius: 0;" @touchstart="gtouchstart(event,index,3)" @touchmove="gtouchmove()" @touchend="gtouchend(index)"/>
+							<!-- <img class="msg_img2" src="../../icon/messages/enlarge.png" /> -->
+						</li>
+				<!-- 别人发的  图片 当前版本的图片发送格式和原生IOS一样extras中是没有 url字段的-->
+						<li v-else-if="msg.from_id==targetId&&msg.target_id==ownId&&msg.msg_body.extras.type==img&&msg.msg_body.extras.url!=null" class="message message-left" style="padding: 0px;border-radius:8px;margin-top:10px;" >
+							<img class="msg_img" :src='msg.msg_body.extras.url+"?imageView2/0/w/250/auto-orient"' @click='sacnImage(msg.msg_body.extras.url)' style="border-top-left-radius: 0;" @touchstart="gtouchstart(event,index,3)" @touchmove="gtouchmove()" @touchend="gtouchend(index)"/>
+
+						</li>
+						<!-- 自己发的群分享 -->
+						<li @click="openGroup(msg.msg_body.extras.gid)" v-if="msg.from_id==ownId&&msg.target_id==targetId&&msg.msg_body.extras.type=='shareGroup'" id="shareMessage" class="message message-right" style="margin-top:10px;border-top-right-radius:0;">
+								<span class="sharePic" :style="getPic(msg.msg_body.extras.avatar_url)"></span>
+									<p class="title">邀请你进入群组，一起玩耍吧~</p>
+									<p class="content" style="font-weight:normal;">#{{msg.msg_body.extras.nickname}}</p>
+						</li>
+						<!-- 别人发的群分享 -->
+						<li @click="openGroup(msg.msg_body.extras.gid)" v-if="msg.from_id==targetId&&msg.target_id==ownId&msg.msg_body.extras.type=='shareGroup'" id="shareMessage" class="message message-left" style="margin-top:10px;border-top-left-radius:0;">
+								<span class="sharePic2" :style="getPic(msg.msg_body.extras.avatar_url)"></span>
+									<p class="title">邀请你进入群组，一起玩耍吧~</p>
+									<p class="content" style="font-weight:normal">#{{msg.msg_body.extras.nickname}}</p>
+						</li>
+						<!--自己发的 消息-->
+
+						<!--自己发的分享链接-->
+						<li @click="openDetail(msg.msg_body.extras.postId,msg.msg_body.extras.otherId)" v-if="msg.from_id==ownId&&msg.target_id==targetId&&msg.msg_body.extras.type==share" id="shareMessage" class="message message-right" style="margin-top:10px;">
+								<img class="video" src="../../icon/Video.png" v-if="msg.msg_body.extras.post_type=='Video'">
+								<img class="sharePic"	 :src=msg.msg_body.extras.img></img>
+									<p class="title">{{msg.msg_body.extras.title}}</p>
+									<p class="content" style="font-weight:normal;"><span class="ma">©</span>{{msg.msg_body.extras.postUsername}}</p>
+						</li>
+					<!-- 自己发的 文字  -->
+							<li v-if="msg.from_id==ownId&&msg.target_id==targetId&&msg.msg_body.extras.type=='txt'" @click="translateLang3(index)" class="message message-right" v-html='showMessage(msg)' @touchstart="gtouchstart(event,index,1)" @touchmove="gtouchmove()" @touchend="gtouchend(index)" style="margin-top:10px;"></li>
+					<!--  自己发的语音 以前版本的图片发送格式extras中是没有 url字段的- -->
+							<li v-if="msg.from_id==ownId&&msg.target_id==targetId&&msg.msg_body.extras.type=='voice'&&msg.msg_body.extras.url==null"  @click="xiazai(msg.msg_body.text,index,msg.msg_body.extras.duration)" class="message message-right"  @touchstart="gtouchstart(event,index,2)" @touchmove="gtouchmove()" @touchend="gtouchend(index)" style="margin-top:10px;padding:6px 15px !important;">
+								<!-- <img class="send" src="../../image/emotion/Expression_1.png" /> -->
+								<p class="send1"  v-html='msg.msg_body.extras.duration+"\""'>	</p>
+									<img class="send" style="border: none;" :src="(msg.msg_body.extras.fail!='1')?('../../icon/touming.png'):('../../icon/messages/loading.gif')" />
+									<!-- <img class="hong" src="../../icon/3.png" /> -->
+									<div class="abin1 " :style="{width:(msg.msg_body.extras.duration>=10)?140+'px':(msg.msg_body.extras.duration)*10+30+'px'}">
+									<img class="binimg" src='../../icon/icon-chat-voice-GIF2.gif'></img>
+									</div>
+									<div class="abin3" :style="{width:(msg.msg_body.extras.duration>=10)?140+'px':(msg.msg_body.extras.duration)*10+30+'px'}">
+								<img  class="binimg" src='../../icon/icon-chat-voice-white3x2.png'></img>
+									</div>
+							</li>
+						<!--自己发的语音  当前前版本的图片发送格式extras中是没有 url字段的- -->
+						<li v-if="msg.from_id==ownId&&msg.target_id==targetId&&msg.msg_body.extras.type=='voice'&&msg.msg_body.extras.url!=null"  @click="xiazai(msg.msg_body.extras.url,index,msg.msg_body.extras.duration)" class="message message-right"  @touchstart="gtouchstart(event,index,2)" @touchmove="gtouchmove()" @touchend="gtouchend(index)" style="margin-top:10px;">
+
+							<p class="send1"  v-html='msg.msg_body.extras.duration+"\""'>	</p>
+								<img class="send" style="border: none;" :src="(msg.msg_body.extras.fail!='1')?('../../icon/touming.png'):('../../icon/messages/loading.gif')" />
+
+								<div class="abin1 " :style="{width:(msg.msg_body.extras.duration>=10)?140+'px':(msg.msg_body.extras.duration)*10+30+'px'}">
+								<img class="binimg" src='../../icon/icon-chat-voice-GIF2.gif'></img>
+								</div>
+								<div class="abin3" :style="{width:(msg.msg_body.extras.duration>=10)?140+'px':(msg.msg_body.extras.duration)*10+30+'px'}">
+							<img  class="binimg" src='../../icon/icon-chat-voice-white3x2.png'></img>
+								</div>
+						</li>
+
+					<!-- 翻译 -->
+						<li v-if="msg.from_id==ownId&&msg.target_id==targetId&&msg.msg_body.extras.type==txt&&msg.translated" class="translated translated-right" v-html='showMessage2(msg)'  @click="copy(event,index)"></li>
+					<!-- 自己发的 图片 以前版本的图片发送格式extras中是没有 url字段的-->
+						<li v-else-if="msg.from_id==ownId&&msg.target_id==targetId&&msg.msg_body.extras.type==img&&msg.msg_body.extras.url==null" class="message message-right" style="padding: 0px;border-radius:8px;margin-top:10px;">
+							<img class="msg_img" :src='msg.msg_body.text+"?imageView2/0/w/250/auto-orient"' @click='sacnImage(msg.msg_body.text)' style="border-top-right-radius: 0;" @touchstart="gtouchstart(event,index,3)" @touchmove="gtouchmove()" @touchend="gtouchend(index)"/>
+					<img class="send" :src="(msg.msg_body.extras.fail!='1')?('../../icon/messages/send2.png'):('../../icon/messages/loading.gif')" />
+						</li>
+					<!-- 自己发的 图片 当前版本的图片发送格式和原生IOS一样extras中是没有 url字段的-->
+					<li v-else-if="msg.from_id==ownId&&msg.target_id==targetId&&msg.msg_body.extras.type==img&&msg.msg_body.extras.url!=null" class="message message-right" style="padding: 0px;border-radius:8px;margin-top:10px;">
+						<img class="msg_img" :src='msg.msg_body.extras.url+"?imageView2/0/w/250/auto-orient"' @click='sacnImage(msg.msg_body.extras.url)' style="border-top-right-radius: 0;" @touchstart="gtouchstart(event,index,3)" @touchmove="gtouchmove()" @touchend="gtouchend(index)"/>
+				<img class="send" :src="(msg.msg_body.extras.fail!='1')?('../../icon/messages/send2.png'):('../../icon/messages/loading.gif')"/>
+					</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="more-list" @click="dispnone()" v-show="moreListShow">
+				<ul class="list-content">
+					<li class="list-title">Automatic Translation</li>
+					<li class="btn" @click='selectLang("zh")'>繁体中文</li>
+					<li class="btn" @click='selectLang("en")'>English</li>
+					<li class="btn" @click='selectLang("kor")'>한국의</li>
+					<li class="btn" @click='selectLang("th")'>ภาษาไทย</li>
+					<li class="btn" @click='selectLang("jp")' style="border-bottom-left-radius:13px;border-bottom-right-radius:13px;">
+						日本語
+					</li>
+					<li class="cancel">Cancel</li>
+				</ul>
+
+			</div>
+
+		</div>
+	</body>
+	<script src="../../json/api.json"></script>
+	<script src="../../json/router.json"></script>
+	<script src="../../script/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../script/api.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../script/public.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../script/jquery-3.1.0.min.js" type="text/javascript"></script>
+	<script src="../../script/md5.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../image/emotion/emotion.json" charset="utf-8"></script>
+	<script src="../../image/emotion/emotion2.json" charset="utf-8"></script>
+	<script src="../../script/base64.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../script/jmessage-sdk-web.2.6.0.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../script/nav.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+	var start=new Date();
+	var toggle8=true;//代表还有历史消息的存在。
+	var toggle10=true; //用来代表下拉加载历史消息是否触发事件
+  var db;
+	var	SMessages="singleIM2";//用存储单人历史信息
+	var failS=[];//用来储存未登录极光发送信息失败是发送失败的信息消息
+	var failtoggle=true; //用于分辨是否开启失败消息重发功能；
+	var toggle6=0;//记录时间显示的的上一条先显示的坐标；
+	var toggle3='';//作为IOS的语音播放状态的判断，因为ios的语音个模块不兼容
+	var chat;
+	var invalidvoice=false; //语音发送无效
+		var tempMs=(typeof($api.getStorage("tempMs"))!="undefined")?$api.getStorage("tempMs"):[]; //临时历史消息储存
+	var warn_text = {
+	  luzhi: '../../icon/luzhiE.gif',
+	  quxiao: '../../icon/quxiaoE.gif',
+		tingtong:'receiver',
+		yangshengqi:'loudspeaker',
+		yuzhuanwen:'Phonetic transcribing',
+		short:'The recording time is too short',
+		long:'The recording was too long',
+	  shuohua: 'HOLD DOWN THE TALK',
+		songkai:'Loosen the end',
+		send:'send',
+	  tishiyu: 'Your operation is a little fast, please slow down and try again',
+		text1:'Your network is disconnected( •̥́ ˍ •̀ू )',
+ 	  text2: 'Pretend not to care',
+ 	  text3:'⚆_⚆？I can\'t help it',
+		text4:'Revocation of failure',
+		text5:'Revocation of success',
+		text6: 'I am a friend who was found by Tarot，you can click on my avatar to view the information and find more interesting things ~ (●ˇ∀ˇ●)',
+		text7: 'I followed the Tarot guide to find you，you can click on my avatar to view the information to find out more interesting me ~ (●ˇ∀ˇ●)'
+	};
+	adjective_text = {
+		oneZero: 'was born in the 2010s',
+		zeroFive: 'was born in the 2005s',
+		zeroZero: 'was born in the 2000s',
+		nineFive: 'was born in the 1995s',
+		nineZero: 'was born in the 1990s',
+		eightFive: 'was born in the 1985s',
+		eightZero: 'was born in the 1980s',
+		sevenFive: 'was born in the 1975s',
+		sevenZero: 'was born in the 1970s',
+		sixFive: 'was born in the 1965s',
+		sixZero: 'was born in the 1960s',
+		other: 'was born in  Mars'
+	}
+	if($api.getStorage("language") == "zho") {
+		$(".circle3").html("來 自");
+		$(".circle4").html("是 命 運 數");
+		$(".circle5").html("&nbsp;的");
+		$(".pipeidu").html("匹 配 度");
+		$('.spacing').css('letter-spacing','2px');
+	    warn_text = {
+	      luzhi: '../../icon/luzhi.gif',
+	      quxiao: '../../icon/quxiao.gif',
+				tingtong:'听筒',
+				short:'录制时间太短',
+				long:'录制时间过长',
+				yangshengqi:'扬声器',
+				yuzhuanwen:'语音转文字',
+	      shuohua: '按住 说话',
+	      songkai: '松开 结束',
+				send:'发送',
+	      tishiyu: '您的操作有点快,麻烦慢点再试 一下',
+				text1:'您的网络已经断开( •̥́ ˍ •̀ू )',
+				text2: '假装不在意',
+				text3:'⚆_⚆？我也帮不了',
+				text4:'撤销失败',
+				text5:'撤销成功',
+				text6: '我是塔羅指引找到的小夥伴，可以點擊我的頭像查看資料瞭解更有趣的我喔~(●ˇ∀ˇ●)',
+				text7: '我跟隨塔羅指引找到你，可以點擊我的頭像查看資料瞭解更有趣的我喔~(●ˇ∀ˇ●)'
+	    };
+			adjective_text = {
+				oneZero: '是 可 愛 活 潑 的 10 后',
+				zeroFive: '是 天 真 浪 漫 的 05 后',
+				zeroZero: '是 富 有 創 造 力 的 00 后',
+				nineFive: '是 熱 情 年 輕 的 95 后',
+				nineZero: '是 個 性 鮮 明 的 90 后',
+				eightFive: '是 積 極 向 上 的 85 后',
+				eightZero: '是 渴 望 自 由 的 80 后',
+				sevenFive: '是 樂 觀 豁 達 的 75 后',
+				sevenZero: '是 獨 立 不 羁 的 70 后',
+				sixFive: '是 成 熟 穩 重 的 65 后',
+				sixZero: '是 沈 著 冷 靜 的 60 后',
+				other: '是 邊 緣 人 士'
+			}
+	  }
+	  var hhh =window.screen.height;
+    	var www =window.screen.width;
+			function openDetail(postId,otherId){//打开帖子详情页
+					api.openWin({
+							name: "detail",
+							url: "widget://html/details/detail.html",
+							reload: true,
+							vScrollBarEnabled: false,
+							slidBackEnabled: false,
+							pageParam:{
+									postId: postId,
+									otherId: otherId
+									// popNum: popNum,
+									// tinNum: tinNum,
+									// summary: summary,
+									// text: isText
+							}
+					});
+			};
+		apiready = function() {
+			db=api.require("db");//导入数据库模块
+		//监听群分享成功后同步更新chat.messageArr
+		 api.addEventListener({
+		     name: 'chatMessage'
+		 }, function(ret, err){
+		     if( ret ){
+					 //获取群分享成功后群的信息
+					 var msg = ret.value.msg;
+		          chat.failSendMessageBody(msg.text,'shareGroup',1,"",msg.extras.gid,msg.extras.avatar_url,msg.extras.nickname);
+		     }
+		 });
+
+			//语音IOS的间距和安卓的不一样
+			if(api.systemType=='ios'){
+				$('.send1').css('top','2.2vw');
+				$('.send2').css('top','2.2vw');
+				$('.send2').css('left','-18vw');
+			}
+			var matching=api.pageParam["matching"];//为true时表示从匹配页面打开的聊天
+			var avatar=api.pageParam["avatar"];
+			var otherId=api.pageParam["uiId"];
+			var area=api.pageParam["area"];
+			var constellation=api.pageParam["constellation"];
+			var noRepeat=api.pageParam['noRepeat'];//匹配页面传过来的，等于1时表示匹配到之前已经匹配到的用户，不重复发送匹配条
+			var emotion;
+			var exist;
+			setTimeout(function(){
+				chat.translate(area,3);
+			},1500)
+			// setTimeout(function(){
+			// 	//进来就获取表情包
+			// 	getEmo();
+			// },50)
+			// console.log($api.getStorage('avatar'));
+			//从匹配页面进来的时候执行
+			if(matching){
+				//匹配成功后查询与匹配用户之间的匹配度
+				api.ajax({
+						url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/getUserMatch',
+						method: 'get',
+						data: {
+								values: {
+										uiid1: $api.getStorage('id'),
+										uiid2: otherId
+								}
+						}
+				},function(ret, err){
+						if (ret) {
+							// alert("进来了");
+							// alert(JSON.stringify(ret));
+								chat.constellation2=ret.data.constellation2;
+								// var constellation=ret.data.constellation2;
+								chat.constellation1=ret.data.constellation1;
+								chat.match=ret.data.matching;
+								var width=ret.data.matching;
+								$(".progressBar").css("width",width+'%');
+								chat.translate(chat.constellation2,4);
+						}
+				});
+				api.ajax({
+						url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/userinfo',
+						method: 'post',
+						data: {
+								values: {
+										uiId: $api.getStorage('id'),
+										pageUiId: $api.getStorage('id')
+								}
+						}
+				},function(ret, err){
+						if (ret) {
+							// alert(JSON.stringify(ret));
+							var age_me=parseInt(ret.data.begin_date.substring(0,4));
+							// var month= parseInt(ret.data.begin_date.substring(5,7));
+							var area_me=ret.data.location;
+							var fate_me=ret.data.augury;
+							var sex_me=ret.data.sex;
+							if(sex_me=='男'||sex_me=='男性'||sex_me=="Male"){
+								if($api.getStorage('language')=='zho'){
+									chat.sex_me='他';
+								}else{
+									chat.sex_me='He';
+								}
+							}else if(sex_me=='女'||sex_me=='女性'||sex_me=="Female"){
+								if($api.getStorage('language')=='zho'){
+									chat.sex_me='她';
+								}else{
+									chat.sex_me='She';
+								}
+							}
+							// alert(age+","+area+","+month);
+							chat.age_me=age_me;
+							chat.area_me=area_me;
+							chat.fate_me=fate_me;
+							judge2();
+						}
+				});
+				setTimeout(function(){
+					judge();
+				},50)
+				console.log(noRepeat);
+				if(noRepeat!=1){
+					setTimeout(function(){
+						sendMatch();
+					},50)
+					setTimeout(function(){
+						sendMatchMessage(warn_text.text7);
+					},1500)
+				}
+			}
+			if(hhh/www>2){
+				$api.css($api.dom('header'), 'margin-top:25px');
+				$('.redBox').css('bottom','104px');
+			}
+			var sj = getNowFormatDate(); //获取当前日期
+			var sj2 = getNowFormatDate2(); //获取7天前的日期
+			var par = Base64.encode('c46c8bc128f41299334ec8e3:269e7aa2881b1a8767f16ce6'); //base64加密
+			UIChatBox = api.require('UIChatBox'); //输入框模块
+			imageBrowser = api.require('imageBrowser');
+      // photoBrowser = api.require('photoBrowser');不用了
+			audioStreamer = api.require('audioStreamer');
+			qiniu = api.require('qiniuUpfile'); //七牛云模块
+
+			continuegain=false;
+
+			var singlesendtext=api.pageParam['uiId']+'Text';//用于存储未发送的草稿
+			//  bubbleMenu = api.require('bubbleMenu');//气泡按钮菜单模块
+				bin1=$api.dom(".bin1");
+				toggle1=-1;
+			var iosH = 0;
+			var moveLock = true;
+			var msgContent = "";
+			var time = "";
+			var from_id = "";
+			var timeOutEvent;
+				// alert();
+			setTimeout(function(){
+
+				chat.created();
+
+			},100);
+
+
+//			alert(api.pageParam['avatar']);
+//			alert(api.pageParam['nickname']);
+
+			if(api.systemType == 'ios') {
+				iosH = 20;
+			}
+			if($api.getStorage("language")=="zho"){
+			 	$api.text($api.dom(".tips"),"聊 天 記 錄 僅 保 留 7 天") ;
+				$api.text($api.dom(".tips2"),"直 接 點 擊 聊 天 内 容 即 可 翻 譯") ;
+			}
+
+//			var header = $api.dom('header');
+//			$api.fixStatusBar(header);
+			api.setFullScreen({
+				fullScreen: false
+			});
+			api.setStatusBarStyle({
+				style: 'dark'
+			});
+    api.sendEvent({
+        name: 'CObject',
+        extra: {
+            key1: '3',
+            key2: api.pageParam['uiId']
+        }
+    });
+				// setInterval('timer1()',3*60*1000);//定时确定是否要登录极光
+				//
+				// api.addEventListener({   //监听是不是滚到顶部或底部 到底部隐藏红点
+				// 		name:'scrolltobottom',
+				// 		extra:{
+				// 				threshold:180           //设置距离底部多少距离时触发，默认值为0，数字类型
+				// 		}
+				// }, function(ret, err){
+				// 	var main=$api.dom('.main'); //scrollTop滚动现在的顶部位置  clientHeight这个dom的高度 scrollHeight可以滚动的总长度
+				// 	if(main.scrollTop+main.clientHeight>main.scrollHeight-160){  //判断是否接近底部
+				// 		chat.redBoxVal=0; //未读数红点隐藏
+				// 	}
+				//
+				// });
+
+			// 安卓返回键
+		api.addEventListener({
+				name: 'keyback'
+		}, function(ret, err) {
+			// //alert("laji");
+			chat.closed();
+		});
+		// 右滑事件
+		api.addEventListener({
+					name:'swiperight'
+			}, function(ret, err){
+				 chat.closed();
+			});
+			//监听网络的情况是否没网
+									api.addEventListener({
+								name:'offline'
+						}, function(ret, err){
+							api.openFrame({
+									name: 'duanwang',
+									url: '../logon-register/pop.html',
+
+									pageParam: {
+											data: warn_text.text1,
+											value: warn_text.text2,
+											 none: warn_text.text3
+									},
+									bounces: true,
+									bgColor: 'rgba(0,0,0,0)',
+									vScrollBarEnabled: true,
+									hScrollBarEnabled: true
+							});
+
+						});
+						//监听是否来网了
+					api.addEventListener({
+							name:'online'
+					}, function(ret, err){
+						//重新刷新页面
+								history.go(0);
+							api.closeFrame({
+									name: 'duanwang'
+							});
+
+					});
+       api.addEventListener({
+           name: 'onMsgReceive'
+       }, function(ret, err){
+           if( ret ){
+						     var data=ret.value.databody;
+								 //如果是当前会话对象的消息才保存
+								 if(data.messages[0].content.from_id == chat.targetId&&data.messages[0].msg_type=='3'){
+									 if(data.messages[0].content.msg_body.extras.type=='img'){
+										 if($api.getStorage('language')=='zho'){
+											 msgContent="[圖片]";
+										 }else{
+											 msgContent="[Picture]";
+										 }
+									 }else if(data.messages[0].content.msg_body.extras.type=='voice'){
+										 if($api.getStorage('language')=='zho'){
+											 msgContent="[語音]";
+										 }else{
+											 msgContent="[Voice]";
+										 }
+									 }else{
+											msgContent = data.messages[0].content.msg_body.text;
+									 }
+									 time = data.messages[0].ctime_ms;
+									 from_id = data.from_id;
+
+
+								 data.messages[0].content.translated = '';
+								 // if(chat.translateLang !== "") {
+								 // 	translate(data.messages[0].content.msg_body.text, data.messages[0].content);
+								 // }
+								 var main=$api.dom('.main');
+								 var redBoxToggle=true; //用来判断是否置顶的
+								if(main.scrollTop+main.clientHeight<main.scrollHeight-180){  //scrollTop滚动现在的顶部位置  clientHeight这个dom的高度 scrollHeight可以滚动的总长度
+									redBoxToggle=false;
+									chat.redBoxVal=chat.redBoxVal+1;
+								}else{
+									chat.redBoxVal=0;
+								}
+								 chat.messageArr.push(data.messages[0].content);
+								 //让新获取的数据往上顶
+								 if(redBoxToggle){
+									 msgToTop();
+								 }
+
+								 if(data.messages[0].content.msg_body.extras.type=="img"){
+									//  alert("进来 了");
+									 setTimeout(function() {
+										 if(redBoxToggle){
+											msgToTop();
+										}
+									 },1300)
+								 }
+								}
+
+           }else{
+                alert( JSON.stringify( err ) );
+           }
+       });
+
+
+			// bubbleMenu2();
+			//生成随机字符串
+			function random(length) {
+				var str = Math.random().toString(36).substr(2);
+				if(str.length >= length) {
+					return str.substr(0, length);
+				}
+				str += random(length - str.length);
+				return str;
+			}
+			//获取当前时间，格式YYYY-MM-DD
+			function getNowFormatDate() {
+				var date = new Date();
+				var seperator1 = "-";
+				var year = date.getFullYear();
+				var month = date.getMonth() + 1;
+				var strDate = date.getDate();
+				if(month >= 1 && month <= 9) {
+					month = "0" + month;
+				}
+				if(strDate >= 0 && strDate <= 9) {
+					strDate = "0" + strDate;
+				}
+				var currentdate = year + seperator1 + month + seperator1 + strDate;
+				return currentdate;
+			}
+			//求出当前时间的7天前是几号
+			function getNowFormatDate2() {
+				var now = new Date();
+				var date = new Date(now.getTime() - 6 * 24 * 3600 * 1000);
+				var year = date.getFullYear();
+				var month = date.getMonth() + 1;
+				var day = date.getDate();
+				if(month >= 1 && month <= 9) {
+					month = "0" + month;
+				}
+				if(day >= 0 && day <= 9) {
+					day = "0" + day;
+				}
+				//alert(year + '-' + month + '-' + day  + ' ' + hour + ':' + minute + ':' + second);
+				return year + '-' + month + '-' + day;
+			}
+
+			function  sendMatch(){
+						 setTimeout(function(){
+							 var text="[匹配]";
+							 var cdate=new Date().getTime();
+									// alert(cdate);
+									// msgContent = text;
+									time = cdate;
+									from_id = $api.getStorage("id");
+									var Cindex=chat.messageArr.length;
+								//  chat.failSendMessageBody(text,"match",1);
+								 //发送事务通知聊天列表发送消息
+								 api.sendEvent({    //发给 chat_list 页面
+										 name: 'ChatListExec',
+										 extra: {
+												 targetType: "single",  //来源的类型单聊类型 另外一种是群聊类型group
+												 target_username:chat.targetId,  //单聊的对象极光的username既tinkle的uiid
+												 type: 'match' ,    //发送的自定义的消息类型
+												 content: text,
+												 adjective_me: chat.adjective_me,
+												 fate_me: chat.fate_me,
+												 constellation1: chat.constellation1,
+												 area_me: chat.area_me,
+												 match: chat.match,
+												 adjective: chat.adjective,
+												 fate: chat.fate,
+												 constellation2: chat.constellation2,
+												 area: chat.area,
+												 sex_me: chat.sex_me,
+												 sex: chat.sex
+
+										 }
+								 });
+								 //接受上面发送的给chat_list事务执行结果的回调
+								 api.addEventListener({
+										 name: 'ChatListExecReturn'
+								 }, function(ret, err){
+										 if( ret ){
+												 if(ret.value.state==1){ //发送成功返回
+														console.log("发送消息成功");
+												 }else if(ret.value.state==2){  //发送失败，对方极光账户不存在进行注册
+
+														history.go(0);
+														 msgToTop();
+												 }
+										 }else{
+													alert( JSON.stringify( err ) );
+										 }
+								 });
+						 },1200)
+				}
+					//匹配成功后发送消息 自己看不到 别人看得到
+			function  sendMatchMessage(content1,cotent2){
+						 setTimeout(function(){
+							 var text=content1;
+							 var cdate=new Date().getTime();
+									// alert(cdate);
+									msgContent = text;
+									time = cdate;
+									from_id = $api.getStorage("id");
+									var Cindex=chat.messageArr.length;
+								 chat.failSendMessageBody(text,"txt2",1);
+								 //发送事务通知聊天列表发送消息
+								 api.sendEvent({    //发给 chat_list 页面
+										 name: 'ChatListExec',
+										 extra: {
+												 targetType: "single",  //来源的类型单聊类型 另外一种是群聊类型group
+												 target_username:chat.targetId,  //单聊的对象极光的username既tinkle的uiid
+												 content: text,  //要发送的消息体内容
+												 type: 'txt2'     //发送的自定义的消息类型
+										 }
+								 });
+								 //接受上面发送的给chat_list事务执行结果的回调
+								 api.addEventListener({
+										 name: 'ChatListExecReturn'
+								 }, function(ret, err){
+										 if( ret ){
+												 if(ret.value.state==1){ //发送成功返回
+														console.log("发送消息成功");
+														if(chat.messageArr[Cindex-1] != null){                          //这是防止用户点击发送消息过快前面的还在转圈
+															chat.messageArr[Cindex-1].msg_body.extras.fail="0"
+														}
+														if(chat.messageArr[Cindex-2] != null){
+															chat.messageArr[Cindex-2].msg_body.extras.fail="0"
+														}
+
+															 chat.messageArr[Cindex].msg_body.extras.fail="0";   //发送消息成功是消息的加载转圈去掉
+
+
+												 }else if(ret.value.state==2){  //发送失败，对方极光账户不存在进行注册
+
+														history.go(0);
+														 msgToTop();
+												 }
+										 }else{
+													alert( JSON.stringify( err ) );
+										 }
+								 });
+						 },1200)
+				}
+      //上传图片到七牛云云储存并发送图片消息
+			function uploadPic(picurl) {
+
+        var Cindex;
+      ///发送图片
+				
+				var cdate=new Date().getTime();
+					 // alert(cdate);
+					 if($api.getStorage('language')=='zho'){
+						 msgContent = "[圖片]";
+					 }else{
+						 msgContent = "[Picture]";
+					 }
+					 time = cdate;
+					 from_id = $api.getStorage("id");
+					 Cindex=chat.messageArr.length;
+					chat.failSendMessageBody(picurl,"img",1);
+// }
+
+				console.log(picurl);
+				qiniu.upfile({
+					file: picurl,
+					name: "f8cc5f9956df68260156dffa4e9b0014" + (new Date).getTime(),
+				}, function(ret, err) {
+					// console.log("上传中");
+					// alert(JSON.stringify(ret.info.key));
+					if(ret.status == 1) {
+						if(ret.oper == "complete") {
+							// console.log(JSON.stringify(ret));
+
+							qinniuKey = json['qiniu'] + ret.info.key;
+							console.log("成功"+qinniuKey);
+											 // 发送消息
+
+											//发送事务通知聊天列表发送消息
+											api.sendEvent({    //发给 chat_list 页面
+													name: 'ChatListExec',
+													extra: {
+															targetType: "single",  //来源的类型单聊类型 另外一种是群聊类型group
+															target_username:chat.targetId,  //单聊的对象极光的username既tinkle的uiid
+															content: qinniuKey,  //要发送的消息体内容
+															type: 'img'     //发送的自定义的消息类型
+													}
+											});
+
+											//接受上面发送的给chat_list事务执行结果的回调
+											api.addEventListener({
+													name: 'ChatListExecReturn'
+											}, function(ret, err){
+													if( ret ){
+															if(ret.value.state==1){ //发送成功返回
+																 console.log("发送消息成功");
+																if(chat.messageArr[Cindex-1] != null){                          //这是防止用户点击发送消息过快前面的还在转圈
+																	chat.messageArr[Cindex-1].msg_body.extras.fail="0"
+																}
+																if(chat.messageArr[Cindex-2] != null){
+																	chat.messageArr[Cindex-2].msg_body.extras.fail="0"
+																}
+
+																	 chat.messageArr[Cindex].msg_body.extras.fail="0";   //发送消息成功是消息的加载转圈去掉
+																	chat.messageArr[Cindex].msg_body.text=ret.value.text;
+																	 setTimeout(function() {
+																		 msgToTop();   //回到最底部，因为发送图的大小要点时间获取
+																	 }, 500)
+															}else if(ret.value.state==2){  //发送失败，对方极光账户不存在进行注册
+
+		 													  history.go(0);
+		 													 	 msgToTop();
+		 												 }
+													}else{
+															 alert( JSON.stringify( err ) );
+													}
+											});
+
+
+						}
+					} else {
+						alert("发送图片失败");
+					}
+				});
+
+			}
+
+			//翻译文字   word:翻译的文本   target:信息对象
+	    function translate(word, target, context_type) {
+	      //				if(target.context_type == 'audio' || target.context_type == 'video') {
+	      //					return;
+	      //				}
+	      // var content_no = word.replace(/\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDE4F]|\[(.*?)\]/g, "");
+	      var content_no = word.replace(/\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDE4F]/g, " ");
+	          // content_no = content_no.replace(/\r|\n|&nbsp;/g," ");
+	      var salt = (new Date).getTime();
+
+	      // var str1 = json['baidu_appid'] + word + salt + json['baidu_key'];
+	      var str1 = "20161226000034707" + content_no + salt + "i1XmNFcDa7_Z4i6jUSZA"; //最后这个签名的字符串这个可让国际表情进行忽略后翻译的
+	      var sign = MD5(str1);
+	      api.ajax({
+	        url: 'http://api.fanyi.baidu.com/api/trans/vip/translate',
+	        method: 'post',
+	        data: {
+	          values: {
+	            q: content_no,
+	            //appid: "20170419000045193",
+	            appid: "20161226000034707",
+	            salt: salt,
+	            from: "auto",
+	            to: chat.translateLang,
+	            sign: sign
+	          }
+	        }
+	      }, function(data, err) {
+	        // alert(JSON.stringify(data));
+	        if(data && data['trans_result']) {
+	          // target.translated = "" + data['trans_result'][0]['dst'] + "";
+	          var strings='';
+	          for(var i=0;i<data['trans_result'].length;i++){  //因为翻译的文本遇到换行或者空很格就会分段翻译
+	                strings=strings+data['trans_result'][i]['dst'];
+	          }
+	          target.translated=strings;
+	        } else {
+	          console.log(JSON.stringify(err) + '===翻译函数这里');
+	        }
+	        // msgToTop();
+	      });
+	    }
+
+
+				// onDis();
+				//关闭表情包
+				function closeEmo(){
+					api.closeFrame({
+					    name: 'ownEmotion'
+					});
+				}
+				UIChatBox.open({     //打开输入法的模块
+					placeholder: '',
+					maxRows: 4,
+					emotionPath: 'widget://image/emotion',
+					texts: {
+						recordBtn: {
+							normalTitle: warn_text.shuohua,
+							activeTitle: warn_text.songkai
+						},
+						sendBtn: {
+							title: warn_text.send
+						}
+					},
+					styles: {
+						recordBtn: {                        //JSON对象；“按住 录音”按钮的样式
+		        normalBg: '#000000',            //（可选项）字符串类型；按钮常态的背景，支持 rgb，rgba，#，图片路径（本地路径，fs://、widget://）；默认：'#c4c4c4'
+		        activeBg: '#999999',            //（可选项）字符串类型；按钮按下时的背景，支持 rgb，rgba，#，图片路径（本地路径，fs://、widget://）；默认：'#999999'；normalBg 和 activeBg 必须保持一致，同为颜色值，或同为图片路径
+		        color: '#000',                  //（可选项）字符串类型；按钮标题文字的颜色，支持 rgb，rgba，#，默认：'#000000'
+		        size: 14                        //（可选项）数字类型；按钮标题文字的大小，默认：14
+		   },
+						topDivider:{
+			          width:2,
+			          color:'#efefef',
+			        },
+							inputBar: {
+			          borderColor: '#efefef',
+			          bgColor: '#FFFFFF'
+			        },
+			        inputBox: {
+			          borderColor: '#B3B3B3',
+			          bgColor: '#FFFFFF',
+			          boardBgColor: '#FFFFFF',
+			          topMargin:5
+			        },
+						emotionBtn: {
+							normalImg: 'widget://image/emotion/aIcon/expression.png'
+						},
+						extrasBtn: {
+							normalImg: 'widget://image/emotion/aIcon/plus.png'
+						},
+						keyboardBtn: {
+							normalImg: 'widget://image/emotion/aIcon/keyboard.png'
+						},
+						speechBtn: {
+							normalImg: 'widget://image/emotion/aIcon/microphone.png'
+						},
+						recordBtn: {
+							normalBg: '#f2f2f2',
+							activeBg: '#c4c4c4',
+							color: '#aaa',
+							size: 14
+						},
+						indicator: {
+							target: 'both',
+							color: '#c4c4c4',
+							activeColor: '#9e9e9e'
+						},
+						sendBtn: {
+							titleColor: '#fff',
+							bg: '#e8b730',
+							activeBg: '#c76f16',
+							titleSize: 14
+						}
+					},
+					extras: {
+						titleSize: 10,
+						titleColor: '#a3a3a3',
+						btns: [{
+								title: '圖片',
+								normalImg: 'widget://image/emotion/aIcon/pic.png',
+							},
+							{
+								title: '拍照',
+								normalImg: 'widget://image/emotion/aIcon/camera.png',
+							},
+							{
+								title: '自定義表情',
+								normalImg: 'widget://image/emotion/aIcon/emo.png',
+							},
+							{
+								title: '分享群組',
+								normalImg: 'widget://image/emotion/aIcon/group.png',
+							}
+						]
+					}
+				}, function(ret, err) {
+					if(ret) {
+											// alert(JSON.stringify(ret));
+						// 发送文本消息
+						if(ret.eventType === "send" && ret.msg !== "") {
+					  var	errhistory=ret.msg;
+				       var cdate=new Date().getTime();
+							    // alert(cdate);
+								  msgContent = ret.msg;
+									time = cdate;
+									from_id = $api.getStorage("id");
+									var Cindex=chat.messageArr.length;
+                 chat.failSendMessageBody(ret.msg,"txt",1);
+								 //发送事务通知聊天列表发送消息
+								 api.sendEvent({    //发给 chat_list 页面
+								     name: 'ChatListExec',
+								     extra: {
+								         targetType: "single",  //来源的类型单聊类型 另外一种是群聊类型group
+												 target_username:chat.targetId,  //单聊的对象极光的username既tinkle的uiid
+								         content: ret.msg,  //要发送的消息体内容
+												 type: 'txt'     //发送的自定义的消息类型
+								     }
+								 });
+
+								 //接受上面发送的给chat_list事务执行结果的回调
+								 api.addEventListener({
+								     name: 'ChatListExecReturn'
+								 }, function(ret, err){
+								     if( ret ){
+								         if(ret.value.state==1){ //发送成功返回
+													  console.log("发送消息成功");
+														if(chat.messageArr[Cindex-1] != null){                          //这是防止用户点击发送消息过快前面的还在转圈
+															chat.messageArr[Cindex-1].msg_body.extras.fail="0"
+														}
+														if(chat.messageArr[Cindex-2] != null){
+															chat.messageArr[Cindex-2].msg_body.extras.fail="0"
+														}
+
+															 chat.messageArr[Cindex].msg_body.extras.fail="0";   //发送消息成功是消息的加载转圈去掉
+
+
+												 }else if(ret.value.state==2){  //发送失败，对方极光账户不存在进行注册
+
+													  history.go(0);
+													 	 msgToTop();
+												 }
+								     }else{
+								          alert( JSON.stringify( err ) );
+								     }
+								 });
+
+
+			}
+						//打开相册
+						if(ret.index == 0) {
+								UIMediaScanner = api.require('UIMediaScanner');
+								if(api.systemType=="ios"){
+										//打开相册并发送图片
+										openAndsendPic();
+								}else{
+									//申请相册权限
+								api.requestPermission({
+										list: ["storage"],
+								}, function(ret, err) {
+											if(ret.list[0].granted){
+												//打开相册并发送图片
+												openAndsendPic();
+
+											}
+
+
+								});
+
+						}
+
+
+						}
+						//打开相机
+						if(ret.index == 1) {
+
+						// fnrequestPermission("camera");
+
+					// 		var resultList = api.hasPermission({
+					//     list:['camera']
+					// });
+					// if(resultList[0].granted==false){
+					// 	return;
+					// }
+
+					if(api.systemType=="ios"){
+
+														api.getPicture({
+															sourceType: 'camera',
+															encodingType: 'jpg',
+															mediaValue: 'pic',
+															destinationType: 'url',
+															allowEdit: true,
+															preview: true, //描述：（可选项）是否选择图片后进行预览，只支持iOS。
+															quality: 50,
+															saveToPhotoAlbum: true
+														}, function(ret, err) {
+															if(ret) {
+																								// alert(JSON.stringify(ret.data));
+																	if(ret.data!=""){
+																			uploadPic(ret.data);
+																	}
+
+															} else {
+																alert(JSON.stringify(err));
+															}
+														});
+
+
+					}else{
+
+							//请求相机的权限
+						api.requestPermission({
+								list: ["camera"],
+						}, function(ret, err) {
+							//允许后才可以打开相机
+						if(ret.list[0].granted==true){
+														api.getPicture({
+															sourceType: 'camera',
+															encodingType: 'jpg',
+															mediaValue: 'pic',
+															destinationType: 'url',
+															allowEdit: true,
+															preview: true, //描述：（可选项）是否选择图片后进行预览，只支持iOS。
+															quality: 50,
+															saveToPhotoAlbum: true
+														}, function(ret, err) {
+															if(ret) {
+																								// alert(JSON.stringify(ret.data));
+																	if(ret.data!=""){
+																			uploadPic(ret.data);
+																	}
+
+															} else {
+																alert(JSON.stringify(err));
+															}
+														});
+											}
+
+
+								});
+
+
+
+
+
+					}
+
+
+						}
+						// 打开表情包页面
+					   if(ret.index==2){
+							 var chat2=$api.dom("#chat");
+							 var maxHeight = window.innerHeight;
+								var height = maxHeight-chat.panelHeight;
+								if(hhh/www>2){
+									height = height-34;
+								}
+								// alert(JSON.stringify(chat.emotion));
+							 	api.openFrame({
+							 	    name: 'ownEmotion',
+							 	    url: './ownEmotion.html',
+							 	    rect: {
+							 	        x: 0,
+							 	        y: height,
+							 	        w: 'auto',
+							 	        h: chat.panelHeight
+							 	    },
+							 	    pageParam: {
+							 	        emotion: chat.emotion,
+												type: 1,   //1代表 单聊页面打开表情包  2代表群聊页面打开的
+												height: height
+							 	    },
+							 	    bounces: false,
+							 	    bgColor: '#efefef',
+							 	    vScrollBarEnabled: false,
+							 	    hScrollBarEnabled: false
+							 	});
+
+						 }
+						 if(ret.index==3){
+							 api.openWin({
+							     name: 'appshare',
+							     url: 'widget://html/chat/appshare.html',
+							     pageParam: {
+							         share: "shareGroup",
+											 type: "chat2",
+											 otherId: chat.targetId
+							     }
+							 });
+
+						 }
+					} else {
+						alert(JSON.stringify(err));
+					}
+
+				});
+				if($api.getStorage('language')!='zho'){
+					UIChatBox.reloadExtraBoard({
+						    extras: {
+						        titleSize: 10,
+						        titleColor: '#a3a3a3',
+						        btns: [{
+						            title: 'Picture',
+						            normalImg: 'widget://image/emotion/aIcon/pic.png'
+						      	  }, {
+						            title: 'Camera',
+						            normalImg: 'widget://image/emotion/aIcon/camera.png'
+						        	}, {
+											title: 'Custom Picture',
+											normalImg: 'widget://image/emotion/aIcon/emo.png'
+										},
+												{
+											 title: 'Share Group',
+											 normalImg: 'widget://image/emotion/aIcon/group.png'
+											 }
+										]
+						    }
+						});
+				}
+				//点击输入框 左右的 表情，录音，附加功能图标 时  关闭表情包页面
+				UIChatBox.addEventListener({
+				    target: 'inputBar',
+				    name: 'showExtras'
+				}, function(ret, err){
+				    if( ret ){
+				      closeEmo();
+				    }
+				});
+				UIChatBox.addEventListener({
+				    target: 'inputBar',
+				    name: 'showEmotion'
+				}, function(ret, err){
+				    if( ret ){
+						closeEmo();
+				    }
+				});
+				UIChatBox.addEventListener({
+				    target: 'inputBar',
+				    name: 'showRecord'
+				}, function(ret, err){
+				    if( ret ){
+				        closeEmo();
+
+				    }
+				});
+
+			// 监听 inputBar  改变聊天界面高度
+			// coding...
+			UIChatBox.addEventListener({
+				target: 'inputBar',
+				name: 'move'
+			}, function(ret, err) {
+				if(ret) {
+					console.log(JSON.stringify(ret));
+					chat.panelHeight=ret.panelHeight;//获取你附加功能按钮时键盘的高度，打开表情页面时用到
+					// alert(chat.panelHeight);
+					chat.h=chat.panelHeight+70;
+					if(api.systemType=='ios'){
+						// alert("???");
+						$(".redBox").css({
+							'position':'fixed',
+							'right':'50%',
+							'bottom':chat.h,
+							'margin-left':'35px'
+						});
+					}
+					var main = $api.dom('.main');
+					var mainH = $api.offset(main).h;
+					// console.log(mainH);
+					//因为ios下键盘弹出 会触发两次
+					if(moveLock && ret['panelHeight'] > 0) {
+						$api.css(main, 'height:' + (mainH - ret['panelHeight'] - iosH) + 'px');
+												setTimeout(function() {
+													main.scrollTop = main.scrollHeight;
+												}, 50);
+						msgToTop();
+						moveLock = false;
+					} else if(!moveLock && ret['panelHeight'] === 0) {
+						$api.css(main, 'height:83vh');
+						moveLock = true;
+						msgToTop();
+					}
+				} else {
+					console.log(JSON.stringify(err) + '输入框模块有误');
+				}
+			});
+
+			//监听录音按钮按下事件，进行录音
+						UIChatBox.addEventListener({
+					target: 'recordBtn',
+					name: 'press'
+			}, function(ret, err) {
+					if (ret) {
+						audioStreamer.stop();
+						api.startRecord({
+
+				});
+				//  bin=$api.dom(".bin");
+				 $api.css(bin1, "display:block");
+				 $api.css(bin1, "background-image:url("+warn_text.luzhi+")");
+
+				//  bin1.css('display', 'block');
+				//  bin1.css('background-image', 'url("../../image/emotion/Expression_4.png")');
+
+				// api.toast({
+				// 		msg: '录音按钮按下',
+				// 		duration: 2000,
+				// 		location: 'bottom'
+				// });
+					} else {
+
+
+					}
+			});
+			//松开按钮事件监听
+
+							UIChatBox.addEventListener({
+						target: 'recordBtn',
+						name: 'press_cancel'
+				}, function(ret, err) {
+						if (ret) {
+
+									if(api.systemType=="android"){  //申请录音权限
+										     fnrequestPermission("microphone");
+							        }
+								$api.css(bin1, "display:none");
+								// alert(invalidvoice);
+								if(!invalidvoice){ //不是无效语音及可发送
+
+
+
+							api.stopRecord(function(ret, err) {
+								// alert(JSON.stringify(ret));
+														if (ret) {
+															if(ret.duration<1){
+																api.toast({
+																		msg: warn_text.short,
+																		duration: 2000,
+																		location: 'bottom'
+																});
+																return;
+															}
+															if(ret.duration>60){
+																	api.toast({
+																			msg: warn_text.long,
+																			duration: 2000,
+																			location: 'bottom'
+																	});
+																	return;
+
+															}
+												var path = ret.path;
+												var duration = ret.duration;
+			console.log("即将开始上传");
+												qiniu.upfile({
+													file: path,
+													name: ""+$api.getStorage('id') + (new Date).getTime()+".amr",
+												}, function(ret, err) {
+
+													if(ret.status == 1) {
+														if(ret.oper == "complete") {
+															console.log(ret['info']['key']);
+															qinniuKey =ret.info.key;
+																var cdate=new Date().getTime();
+																	 // alert(cdate);
+																	 if($api.getStorage('language')=='zho'){
+																		 msgContent = "[語音]";
+																	 }else{
+																		 msgContent = "[Voice]";
+																	 }
+																	 time = cdate;
+																	 from_id = $api.getStorage("id");
+																	 var Cindex=chat.messageArr.length;
+																	chat.failSendMessageBody(qinniuKey,"voice",1,duration);
+
+
+																console.log("上传图片成功:"+qinniuKey);
+																//发送事务通知聊天列表发送消息
+																api.sendEvent({    //发给 chat_list 页面
+																		name: 'ChatListExec',
+																		extra: {
+																				targetType: "single",  //来源的类型单聊类型 另外一种是群聊类型group
+																				target_username:chat.targetId,  //单聊的对象极光的username既tinkle的uiid
+																				content: qinniuKey,  //要发送的消息体内容
+																				type: 'voice',    //发送的自定义的消息类型
+																				duration: duration
+																		}
+																});
+
+																//接受上面发送的给chat_list事务执行结果的回调
+																api.addEventListener({
+																		name: 'ChatListExecReturn'
+																}, function(ret, err){
+																		if( ret ){
+																				if(ret.value.state==1){ //发送成功返回
+																					 console.log("发送消息成功");
+																					 if(chat.messageArr[Cindex-1] != null){                          //这是防止用户点击发送消息过快前面的还在转圈
+																						 chat.messageArr[Cindex-1].msg_body.extras.fail="0"
+																					 }
+																					 if(chat.messageArr[Cindex-2] != null){
+																						 chat.messageArr[Cindex-2].msg_body.extras.fail="0"
+																					 }
+
+																							chat.messageArr[Cindex].msg_body.extras.fail="0";   //发送消息成功是消息的加载转圈去掉
+
+
+																				}else if(ret.value.state==2){  //发送失败，对方极光账户不存在进行注册
+
+							 													  history.go(0);
+							 													 	 msgToTop();
+							 												 }
+																		}else{
+																				 alert( JSON.stringify( err ) );
+																		}
+																});
+											      	}
+											    	} else {
+												alert("图片上传过程失败，无法发送");
+											  	}
+												});
+										}
+									});
+
+								}
+                 	invalidvoice=false;//让语音可以发送
+						} else {
+
+
+						}
+				});
+				//按下录音按钮后，从按钮移出
+								UIChatBox.addEventListener({
+							target: 'recordBtn',
+							name: 'move_out'
+					}, function(ret, err) {
+							if (ret) {
+								$api.css(bin1, "background-image:url("+warn_text.quxiao+")");
+								// api.toast({
+								// 		msg: '按下录音按钮后,从按钮移出',
+								// 		duration: 2000,
+								// 		location: 'bottom'
+								// });
+
+							} else {
+
+
+							}
+					});
+					//按下录音按钮后，从按钮移出并松开按钮
+					UIChatBox.addEventListener({
+				target: 'recordBtn',
+				name: 'move_out_cancel'
+		}, function(ret, err) {
+				if (ret) {
+					//停止录音
+					invalidvoice=true; //true 代表语音不发送
+					// alert("你好");
+						$api.css(bin1, "display:none");
+					api.stopRecord(function(ret, err) {});
+
+
+
+				} else {
+
+
+				}
+		});
+		//按下录音按钮后，从按钮移出
+						UIChatBox.addEventListener({
+					target: 'recordBtn',
+					name: 'move_in'
+			}, function(ret, err) {
+					if (ret) {
+						$api.css(bin1, "background-image:url("+warn_text.luzhi+")");
+					} else {
+
+
+					}
+			});
+			//判断匹配页面传过来的
+				function judge(){
+					if(chat.age>=2010){
+						chat.adjective=adjective_text.oneZero;
+					}else if(chat.age>=2005&&chat.age<2010){
+						chat.adjective=adjective_text.zeroFive;
+					}else if(chat.age>=2000&&chat.age<2005){
+						chat.adjective=adjective_text.zeroZero;
+					}else if(chat.age>=1995&&chat.age<2000){
+						chat.adjective=adjective_text.nineFive;
+					}else if(chat.age>=1990&&chat.age<1995){
+						chat.adjective=adjective_text.nineZero;
+					}else if(chat.age>=1985&&chat.age<1990){
+						chat.adjective=adjective_text.eightFive;
+					}else if(chat.age>=1980&&chat.age<1985){
+						chat.adjective=adjective_text.eightZero;
+					}else if(chat.age>=1975&&chat.age<1980){
+						chat.adjective=adjective_text.sevenFive;
+					}else if(chat.age>=1970&&chat.age<1975){
+						chat.adjective=adjective_text.sevenZero;
+					}else if(chat.age>=1965&&chat.age<1970){
+						chat.adjective=adjective_text.sixFive;
+					}else if(chat.age>=1960&&chat.age<1965){
+						chat.adjective=adjective_text.sixZero;
+					}else {
+						chat.adjective=adjective_text.other;
+					}
+				}
+				function judge2(){
+					if(chat.age_me>=2010){
+						chat.adjective_me=adjective_text.oneZero;
+					}else if(chat.age_me>=2005&&chat.age_me<2010){
+						chat.adjective_me=adjective_text.zeroFive;
+					}else if(chat.age_me>=2000&&chat.age_me<2005){
+						chat.adjective_me=adjective_text.zeroZero;
+					}else if(chat.age_me>=1995&&chat.age_me<2000){
+						chat.adjective_me=adjective_text.nineFive;
+					}else if(chat.age_me>=1990&&chat.age_me<1995){
+						chat.adjective_me=adjective_text.nineZero;
+					}else if(chat.age_me>=1985&&chat.age_me<1990){
+						chat.adjective_me=adjective_text.eightFive;
+					}else if(chat.age_me>=1980&&chat.age_me<1985){
+						chat.adjective_me=adjective_text.eightZero;
+					}else if(chat.age_me>=1975&&chat.age_me<1980){
+						chat.adjective_me=adjective_text.sevenFive;
+					}else if(chat.age_me>=1970&&chat.age_me<1975){
+						chat.adjective_me=adjective_text.sevenZero;
+					}else if(chat.age_me>=1965&&chat.age_me<1970){
+						chat.adjective_me=adjective_text.sixFive;
+					}else if(chat.age_me>=1960&&chat.age_me<1965){
+						chat.adjective_me=adjective_text.sixZero;
+					}else {
+						chat.adjective_me=adjective_text.other;
+					}
+				}
+			 chat = new Vue({
+				el: "#chat",
+				data: {
+					ownId: $api.getStorage('id'), //自己的id
+					targetId: api.pageParam['uiId'], //别人的id
+					nickname: api.pageParam['nickname'], //聊天对象的名字
+					cursor: "", //标识
+					messageArr: [], //消息数组
+					SmessageArr:(typeof($api.getStorage(SMessages))!="undefined")?$api.getStorage(SMessages):[],
+					// SmessageArr:[],
+					redBoxVal:0,//设置未读数
+					number:50,//起步加载的信息数50，后面逐渐加上 number_stage
+					number_stage:50,//每次加载的信息数
+					img: "img",
+					txt: "txt",
+					share: "share",
+					matchs: 'match',
+					translateLang: '', //选择翻译的语言
+					isLoading: true, //是否加载中
+					moreListShow: false, //翻译功能显示已现在已不用
+					age: api.pageParam['age'],//发送给别人看的
+					age_me:0,//别人看到的年龄默认0
+					area: api.pageParam['area'],
+					constellation2: '',//匹配用户对象的星座
+					constellation1: '',//自己的星座
+					avatar: avatar,//匹配页面过来的头像
+					avatar_mine: $api.getStorage('avatar'),//自己的头像
+					fate: api.pageParam['fate'],//匹配的命运数
+					adjective: '',	//发送给别人看到的匹配信息
+					adjective_me: '',//别人看到的匹配性格年龄
+					area_me: '',	//匹配后别人看到自己的地区
+					fate_me:'',//别人看到的名运数字
+					matching: api.pageParam["matching"],//匹配页面传过来的参数，默认true时 显示匹配信息
+					match:0,//匹配的百分数
+					sex_me:'',//别人看到的性别
+					sex: api.pageParam["sex"],//自己看到的性别
+					adjText:{'zho':['是 可 愛 活 潑 的 10 后','是 天 真 浪 漫 的 05 后','是 富 有 創 造 力 的 00 后','是 熱 情 年 輕 的 95 后','是 個 性 鮮 明 的 90 后','是 積 極 向 上 的 85 后','是 渴 望 自 由 的 80 后','是 樂 觀 豁 達 的 75 后','是 獨 立 不 羁 的 70 后','是 成 熟 穩 重 的 65 后','是 沈 著 冷 靜 的 60 后','是 邊 緣 人 士'],
+				'en':['was born in the 2010s','was born in the 2005s','was born in the 2000s','was born in the 1995s','was born in the 1990s', 'was born in the 1985s','was born in the 1980s','was born in the 1975s','was born in the 1970s','was born in the 1965s','was born in the 1960s','was born in  Mars']},
+					emotion:[],
+					panelHeight:0,//表情包页面适应高度
+					h:0,//未读消息的高度，ios和安卓在定位上位置不同，打开键盘的时候需要根据情况去更改高度，不然会被遮住
+			},
+			mounted(){
+	    	window.addEventListener('scroll',this.huadong,true);
+							},
+				watch: {
+					translateLang: function(lang, oldLang) { //翻译语言
+						// if(lang) {
+						// 	for(var i = 0, len = this.messageArr.length; i < len; i++) {
+						// 		translate(this.messageArr[i].msg_body.text, this.messageArr[i]);
+						// 	}
+						// }
+					}
+				},
+
+				methods: {
+					openGroup: function(ggid){
+							api.openWin({
+							    name: 'group-setting',
+							    url: 'widget://html/group/group-setting.html',
+							    pageParam: {
+							        gid: ggid,
+											shareGroup: 'shareGroup'
+							    }
+							});
+
+					},
+					//用于把窗口定位在原历史消息的头部
+					dingwei:function(){
+						// return;
+						var main=$api.dom('.main');
+
+						// var $bin= $("#bin").css('display', 'none');
+						var height_old=main.scrollHeight-main.scrollTop;
+						chat.number+=chat.number_stage;
+						var uuid=$api.getStorage('id'); //自己的id
+						var otherId=api.pageParam['uiId'];//当前聊天对象的id
+						var aa=new Date().getTime();
+							var msgs=db.selectSqlSync({
+									name: 'tinkle',
+									sql: "select * from tin_im_message where userid in ('"+uuid+"','"+otherId+"') and from_id in ('"+uuid+"','"+otherId+"') and target_id in ('"+uuid+"','"+otherId+"') order by ctime_ms desc limit "+(chat.number-chat.number_stage)+","+chat.number_stage
+									// sql:"select * from tin_im_message where userid='sdfasdfasdf'"
+
+							});
+
+							console.log(":::::::::::::::::::::"+((new Date().getTime())-aa));
+									 msgs.data.reverse();//倒序
+							// alert(JSON.stringify(msgs));
+							for(var i=0;i<msgs.data.length;i++){
+									 msgs.data[i].msg_body=JSON.parse(msgs.data[i].msg_body);
+									 msgs.data[i].create_time=Number(msgs.data[i].create_time);
+									 msgs.data[i].translated="";
+							}
+						chat.messageArr=msgs.data.concat(chat.messageArr);
+						setTimeout(function(){
+							if(toggle8){  //必须是有历史消息才有效
+								// alert("a");
+									main.scrollTop=main.scrollHeight-height_old;
+							}
+							if(msgs.data.length<chat.number_stage){
+								toggle8=false; //表示已经没有消息了
+							}
+					 },10)
+								// msgToTop();
+
+						// alert("aa");
+				},
+					huadong:function(){
+						var main=$api.dom('.main'); //scrollTop滚动现在的顶部位置  clientHeight这个dom的高度 scrollHeight可以滚动的总长度
+							var dingwei=$('.dingwei');
+					//  console.log("到顶");
+				 if(main.scrollTop<50){
+					 if(toggle10){
+						 toggle10=false;
+
+						 if(toggle8){     //如果已没有历史消息了就不显示转圈加载
+									$(".dingwei").css('display', 'block');
+								}
+						// dingwei.html("<img class='tips1' src=''../../icon/messages/loading.gif'/>");
+							 // alert("aaa");
+							//  alert("a");
+							 setTimeout(function(){
+								 chat.dingwei();
+									 // alert("2");
+									$(".dingwei").css('display', 'none');
+									// dingwei.html("<p >   Chat Content Will Be Deleted After 7 Days   </p>");
+									toggle10=true;
+							 },40)
+					 }
+				 }
+					 if(main.scrollTop+main.clientHeight>main.scrollHeight-50){  //判断是否接近底部
+						 chat.redBoxVal=0; //未读数红点隐藏
+				//  console.log("到底了");
+					 }
+					},
+					//关闭表情包
+					closeEmo: function(){
+						api.closeFrame({
+						    name: 'ownEmotion'
+						});
+
+					},
+					//新消息置顶
+					zhiding: function(){
+						chat.redBoxVal=0;
+						msgToTop();
+					},
+					//添加表情
+					addEmotion: function(imgUrl){
+						//判断要添加的表情是不是存在表情包中
+						// exist=chat.emotion.indexOf(imgUrl);
+						api.ajax({
+								url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/selectEmoji',
+								method: 'post',
+								data: {
+										values: {
+												uiid: chat.ownId
+										}
+								}
+						},function(ret, err){
+								if (ret) {
+									var emoji;
+									if(ret.data.emoji!=""){
+										emoji=ret.data.emoji.split(",");
+										// chat.emotion=emoji;
+										emoji.reverse();//翻转表情包数组，让新添加的那个表情放在第一个位置
+									}else{
+										emoji=[];
+									}
+										for(var i=0;i<emoji.length;i++){
+											if(emoji[i]==imgUrl){
+											console.log("表情已存在");
+												return;
+											}
+										}
+										api.ajax({
+												url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/addEmoji',
+												method: 'post',
+												data: {
+														values: {
+																uiid:chat.ownId,
+																str:imgUrl
+														}
+												}
+										},function(ret, err){
+												if (ret) {
+													console.log("添加表情成功");
+													console.log(JSON.stringify(emoji));
+												} else {
+														alert( JSON.stringify( err ) );
+												}
+										});
+								}
+						});
+					},
+					//设置头像
+					getPic: function(avatar) {
+						return {
+							backgroundImage: 'url('+'http://bin.baopinghui.com/'+ avatar+ '?imageView2/0/w/100)',
+						}
+					},
+					//匹配判断性格年龄描述中英翻译
+					adjJudge: function(word){
+							for(var i=0;i<chat.adjText.zho.length;i++){
+								if(word==chat.adjText.zho[i]){
+									if($api.getStorage('language')=='zho'){
+										return chat.adjText.zho[i];
+									}else{
+										return chat.adjText.en[i];
+									}
+								}else if(word==chat.adjText.en[i]){
+									if($api.getStorage('language')=='zho'){
+										return chat.adjText.zho[i];
+									}else{
+										return chat.adjText.en[i];
+									}
+								}
+							}
+					},
+					//判断匹配的性别中英翻译
+					sexJudge : function(a){
+						if ($api.getStorage("language") == "zho") {
+								if(a=='He'){
+									return '他 ';
+								}else if(a=='She'){
+									return '她 ';
+								}else if(a=='他'){
+									return '他 ';
+								}else if(a=='她'){
+									return '她 ';
+								}
+						 }else{
+							 if(a=='他'){
+				 				return 'He ';
+				 			}else if(a=='她'){
+				 				return 'She ';
+				 			}else if(a=='He'){
+								return 'He ';
+							}else if(a=='She'){
+								return 'She ';
+							}
+		}
+					},
+				//匹配翻译星座，地区
+		 		translate: function(word,num,index) {
+					if ($api.getStorage("language") == "zho") {
+					chat.translateLang='zh';
+					 }else{
+					chat.translateLang='en';
+				}
+					if(word!=null&&word!=undefined){
+					var content_no = word.replace(/\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDE4F]/g, " ");
+					var salt = (new Date).getTime();
+					var str1 = "20161226000034707" + content_no + salt + "i1XmNFcDa7_Z4i6jUSZA"; //最后这个签名的字符串这个可让国际表情进行忽略后翻译的
+					var sign = MD5(str1);
+						$.ajax({
+								url: 'http://api.fanyi.baidu.com/api/trans/vip/translate',
+								type: 'post',
+								dataType: 'json',
+								async:true,
+								data: {
+									q: content_no,
+									appid: "20161226000034707",
+									salt: salt,
+									from: "auto",
+									to: chat.translateLang,
+									sign: sign
+								}
+							})
+							.done(function(data,err) {
+								// alert(JSON.stringify(data));
+								if(data && data['trans_result']) {
+									if(num == 1){
+										chat.messageArr[index].msg_body.extras.area=data.trans_result[0].dst;
+									}else if(num == 2){
+											chat.messageArr[index].msg_body.extras.constellation2=data.trans_result[0].dst;
+									}else if(num == 3){
+											chat.area=data.trans_result[0].dst;
+										}else if(num == 4){
+											chat.constellation2=data.trans_result[0].dst;
+										}
+								}
+							})
+							if(num == 1){
+									return chat.messageArr[index].msg_body.extras.area;
+							}else if(num ==2){
+									return chat.messageArr[index].msg_body.extras.constellation2;
+							}
+			}else{
+					return '';
+				}
+				// alert(chat.wenbenfanyi);
+		},
+
+					// 去他的个人主页
+						openHome: function(targetId) {
+							var this_ = this;
+						// var winName =  "otherDetail/" + this_.members_int.nickname;
+							api.openWin({
+								name: "home",
+								url: "widget://html/home/home.html",
+								reload: true,
+								vScrollBarEnabled: false,
+								slidBackEnabled: false,
+								pageParam:{
+								otherId: targetId
+							}
+							});
+							// api.closeFrame();
+						},
+					// test: function(a,index){
+					// 	api.imageCache({
+					// 	    url: a,
+					// 	}, function(ret, err){
+					// 	    if( ret ){
+					// 				// alert(JSON.stringify(ret));
+					// 	      chat.url = ret.url;
+					// 	    }
+					// 	});
+					// 	// alert("test()的赋值"+url);
+					// 			return chat.url;
+					// },
+					//点击播放语音
+					xiazai:function(key,index,size){
+
+						// console.log("key值");
+						// alert("点击了语音");
+						// toggle2='';
+       if(api.systemType == 'ios'){
+				 audioStreamer.getVolume(function(ret) {
+
+							if(ret.volume==0.0){
+								api.toast({
+										msg: '您当前为静音模式哦',
+										duration: 2000,
+										location: 'bottom'
+								});
+							}
+					});
+		// 					audioStreamer.addEventListener({
+		// }, function(ret) {
+		// 		alert(JSON.stringify(ret));
+		// 	toggle2=ret.state;
+		// });
+
+
+		 var	abin1=$(".message-wrap:eq("+index+") .abin1")[0];
+		// alert(abin1);
+		var		abin3=$(".message-wrap:eq("+index+") .abin3")[0];
+		var  	lastabin1=$(".message-wrap:eq("+toggle1+") .abin1")[0]
+		var		lastabin3=$(".message-wrap:eq("+toggle1+") .abin3")[0];
+
+			if(toggle1!=index&&toggle1!=-1){
+
+			$api.css(lastabin1,"display:none");
+			$api.css(lastabin3,"display:block");
+			}
+			if(toggle1==index){
+              api.stopPlay();
+							// alert("到");
+							//如果语音是在播放中的话就立马关掉，并跳出方法，不执行下面的 播发语音
+								if(toggle3=='prepare'){
+									// alert("到2");
+									$api.css(lastabin1,"display:none");
+									$api.css(lastabin3,"display:block");
+
+									api.stopPlay();
+									toggle3='';
+									return;
+								}
+
+
+			}
+	  	toggle1=index;
+
+
+				// alert("aa");
+				api.download({
+					url: 'http://bin.baopinghui.com/'+key,
+					savePath: 'fs://media/'+key,
+					cache: true,
+					allowResume: true
+				}, function(ret, err) {
+					// alert(JSON.stringify(ret));
+					if (ret.state == 1) {
+						setTimeout(function(){
+							$api.css(abin1,"display:none");
+							$api.css(abin3,"display:block");
+
+
+						},size*1000+500)
+						$api.css(abin1,"display:block");
+						$api.css(abin3,"display:none");
+								toggle3='prepare';
+						api.startPlay({
+									path: 'fs://media/'+key
+							}, function(ret, err) {
+									if (ret) {
+								 toggle3='';
+										$api.css(abin1,"display:none");
+										$api.css(abin3,"display:block");
+
+									} else {
+											// alert(JSON.stringify(err));
+									}
+							});
+
+	}
+});
+
+
+
+
+
+
+			 }else{
+				 //申请获取访问资源权限，如果已有不会有影响
+				//  if(api.systemType=="android"){
+					 	 fnrequestPermission("storage");
+				//  }
+
+				 audioStreamer.getVolume(function(ret) {
+
+							if(ret.volume==0.0){
+								api.toast({
+										msg: '您当前为静音模式哦',
+										duration: 2000,
+										location: 'bottom'
+								});
+							}
+					});
+
+							audioStreamer.addEventListener({
+		}, function(ret) {
+				// alert(JSON.stringify(ret));
+			toggle2=ret.state;
+		});
+
+
+		 var	abin1=$(".message-wrap:eq("+index+") .abin1")[0];
+		// alert(abin1);
+		var		abin3=$(".message-wrap:eq("+index+") .abin3")[0];
+		var  	lastabin1=$(".message-wrap:eq("+toggle1+") .abin1")[0]
+		var		lastabin3=$(".message-wrap:eq("+toggle1+") .abin3")[0];
+
+			if(toggle1!=index&&toggle1!=-1){
+
+			$api.css(lastabin1,"display:none");
+			$api.css(lastabin3,"display:block");
+			}
+			if(toggle1==index){
+
+     //这次点击的的信息跟上一次点击的信息是同一条信息,关掉播放
+							audioStreamer.stop();
+					//如果语音是在播放中的话就立马关掉，并跳出方法，不执行下面的 播发语音
+						if(toggle2=='prepare'){
+							$api.css(lastabin1,"display:none");
+							$api.css(lastabin3,"display:block");
+
+							audioStreamer.stop();
+							toggle2='';
+							return;
+						}
+
+
+			}
+		toggle1=index;
+
+		 setTimeout(function(){
+			 $api.css(abin1,"display:none");
+			 $api.css(abin3,"display:block");
+
+
+		 },size*1000+200)
+
+		api.download({
+			url: 'http://bin.baopinghui.com/'+key,
+			savePath: 'fs://media/'+key,
+			cache: true,
+			allowResume: true
+		}, function(ret, err) {
+			if (ret.state == 1) {
+
+							audioStreamer.openPlayer({
+				path:'fs://media/'+key,
+				// path:'http://bin.baopinghui.com/'+key,
+	}, function(ret) {
+			if (ret.status) {
+				$api.css(abin1,"display:block");
+				$api.css(abin3,"display:none");
+					// api.alert({ msg: JSON.stringify(ret) });
+			}
+	});
+
+}
+});
+
+
+
+
+			 }
+
+
+					},
+					//复制翻译的文本
+					copy:function(event,index){
+						 var pagex=event.clientX;
+						 var pagey=event.clientY;
+						 // var pagey=event.pageY;
+						 // alert(pagex);
+
+						var fuzhi="";
+						var fanyi="";
+						var wangcheng="";
+
+					//	chat.translateLang='en';
+					if ($api.getStorage("language") == "zho") {
+						fuzhi="复制";
+						fanyi="翻译";
+						fanyiyuyan="翻译语言";
+						wangcheng="复制完成";
+
+						if(typeof($api.getStorage('translateLangStorage')) != "undefined"){
+
+							 chat.translateLang=$api.getStorage('translateLangStorage');
+
+						 }else {
+								 chat.translateLang='zh';
+						 }
+						// //alert("中");
+
+					}else{
+						fuzhi="copy";
+						fanyi="translate";
+						wangcheng="Copy complete";
+						fanyiyuyan="translation language";
+
+						if(typeof($api.getStorage('translateLangStorage')) != "undefined"){
+
+							 chat.translateLang=$api.getStorage('translateLangStorage');
+
+						 }else {
+								 chat.translateLang='en';
+						 }
+					}
+
+
+
+ // 使用apiCloud冒泡按钮插件
+						var bubbleMenu = api.require('bubbleMenu');
+
+						bubbleMenu.open({
+						style: {
+									//  mask: '#FFF',
+							maskColor:'rgba(0,0,0,0)',
+							bgColor:'#000',
+					lightColor:'#009acd',
+					borderColor:'#000',
+					cutLineColor:'#636363',
+								// titleColor'#00':  //(可选项)字符串类型；遮罩层题色，支持 rgb,rgba,#；默认：rgba(0,0,0,0)
+					cornerRadius: 8,  //(可选项)数字类型；圆角大小；默认：8
+					arrowSize: 10,    //(可选项)数字类型；尖角大小；默认：12
+					titleSize: 14,    //(可选项)数字类型；标题大小：默认：14
+					height: 50        //(可选项)数字类型；菜单高度；默认：50
+					},
+								centerX: pagex,
+								centerY: pagey-10,
+								btnArray: [{
+										title: fuzhi
+								}],
+								fixedOn: api.frameName
+						}, function(ret, err) {
+								if (ret.index==0) {
+									var clipBoard = api.require('clipBoard');
+							 clipBoard.set({
+									 value: chat.messageArr[index].translated
+							 }, function(ret, err) {
+									 if (ret) {
+											api.toast({
+													msg: wangcheng,
+													duration: 1000,
+													location: 'center'
+											});
+									 } else {
+											//  MNtoast('操作失败')
+									 }
+							 });
+
+						 }
+						});
+
+
+
+
+					},
+					//点击聊天信息进行翻译，获取缓存中的要求翻译语言，如果没有则使用缓存中使用的版本语言
+					translateLang3:function(index){
+
+
+
+						if(typeof($api.getStorage('translateLangStorage')) != "undefined"){
+
+							 chat.translateLang=$api.getStorage('translateLangStorage');
+
+							}else{
+
+										if ($api.getStorage("language") == "zho") {
+										chat.translateLang='zh';
+
+										 }else{
+							// alert("英");
+							chat.translateLang='en';
+						}
+					}
+							 //调用百度翻译的接口
+							translate(chat.messageArr[index].msg_body.text, chat.messageArr[index]);
+
+
+				},
+
+					gtouchstart:function gtouchstart(event,index,type){
+						// var touch=event.touch[0];
+						var centerX=event.changedTouches[0].pageX;
+						var centerY=event.changedTouches[0].pageY;
+						// alert(centerX);
+					// 	// alert("厉害");
+
+					timeOutEvent = setTimeout(function(){
+		 chat.longPress(index,centerX,centerY,type);
+	 },500);//这里设置定时器，定义长按500毫秒触发长按事件，时间可以自己改，个人感觉500毫秒非常合适
+	//  alert(timeOutEvent);
+						return false;
+			},
+						gtouchend:function gtouchend(index,event){
+										clearTimeout(timeOutEvent);//清除定时器
+										if(timeOutEvent!=0){
+												//这里写要执行的内容（尤如onclick事件）
+												// vm.goChat(item);
+										}
+										return false;
+								},
+								//如果手指有移动，则取消所有事件，此时说明用户只是要移动而不是长按
+								gtouchmove:function gtouchmove(){
+										clearTimeout(timeOutEvent);//清除定时器
+										timeOutEvent = 0;
+
+								},
+
+								//真正长按后应该执行的内容
+								longPress:function longPress(index,centerX,centerY,type){
+									// alert("厉害吧");
+                 if(type==1){
+			 			        	 chat.translateLang2(index,centerX,centerY);
+			 					}else if(type==2){
+			 						     chat.yuyin(index,centerX,centerY);
+
+			 					}else if(type==3){
+									//添加表情
+										chat.emotion2(index,centerX,centerY);
+								}
+
+
+
+										timeOutEvent = 0;
+										//执行长按要执行的内容，如弹出菜单
+										// $api.css($api.dom('.Popup'), 'display:block');
+								},
+								emotion2: function(index,centerX,centerY){
+									// 使用apiCloud冒泡按钮插件
+														 var x=centerX;
+														 var y=centerY-10;
+														 var title;
+														 var imgUrl;
+														 if($api.getStorage('language')=='zho'){
+															 title="添加到表情包";
+														 }else{
+															 title="Add to warehouse";
+														 }
+														 var bubbleMenu = api.require('bubbleMenu');
+
+														 bubbleMenu.open({
+														 style: {
+																	 //  mask: '#FFF',
+															 maskColor:'rgba(0,0,0,0)',
+															 bgColor:'#000',
+													 lightColor:'#009acd',
+													 borderColor:'#000',
+													 cutLineColor:'#636363',
+																 // titleColor'#00':  //(可选项)字符串类型；遮罩层题色，支持 rgb,rgba,#；默认：rgba(0,0,0,0)
+													 cornerRadius: 8,  //(可选项)数字类型；圆角大小；默认：8
+													 arrowSize:8,    //(可选项)数字类型；尖角大小；默认：12
+													 titleSize: 14,    //(可选项)数字类型；标题大小：默认：14
+													 height: 50        //(可选项)数字类型；菜单高度；默认：50
+													 },
+																 centerX: x,
+																 centerY: y,
+																 btnArray: [{title:title,length:120}]
+																//  fixedOn: api.frameName
+														 }, function(ret, err) {
+															//  alert(JSON.stringify(ret))
+																 if (ret.index==0) {
+																	imgUrl=chat.messageArr[index].msg_body.text;
+																		// alert(JSON.stringify(imgUrl));
+																		if(chat.messageArr[index].msg_body.extras.fail=="1"){
+																			api.toast({
+																			    msg: '图片未发送成功，不能添加',
+																			    duration: 2000,
+																			    location: 'bottom'
+																			});
+																			return;
+																		}else{
+																			console.log(imgUrl);
+																	chat.addEmotion(imgUrl);
+																}
+															}
+														 });
+								},
+								yuyin:function(index,centerX,centerY){
+			 // 使用apiCloud冒泡按钮插件
+									var bubbleMenu = api.require('bubbleMenu');
+									var btn=[{title: warn_text.tingtong},{title: warn_text.yangshengqi}];
+
+									bubbleMenu.open({
+									style: {
+												//  mask: '#FFF',
+										maskColor:'rgba(0,0,0,0)',
+										bgColor:'#000',
+								lightColor:'#009acd',
+								borderColor:'#000',
+								cutLineColor:'#636363',
+											// titleColor'#00':  //(可选项)字符串类型；遮罩层题色，支持 rgb,rgba,#；默认：rgba(0,0,0,0)
+								cornerRadius: 8,  //(可选项)数字类型；圆角大小；默认：8
+								arrowSize: 10,    //(可选项)数字类型；尖角大小；默认：12
+								titleSize: 11,    //(可选项)数字类型；标题大小：默认：14
+								height: 50        //(可选项)数字类型；菜单高度；默认：50
+								},
+											centerX: centerX,
+											centerY: centerY-10,
+											btnArray:btn ,
+											fixedOn: api.frameName
+									}, function(ret, err) {
+											if (ret.index==0) {
+												audioStreamer.onCall();
+
+
+								} else if(ret.index==1){
+
+											 audioStreamer.onNormal();
+
+
+											}
+									});
+
+
+
+						},
+							translateLang2:function(index,centerX,centerY){
+								var fuzhi="";
+								var fanyi="";
+								var wangcheng="";
+								var fanyiyuyan="";
+								var chexiao="";
+							//	chat.translateLang='en';
+							if ($api.getStorage("language") == "zho") {
+								fuzhi="复制";
+								fanyi="翻译";
+								fanyiyuyan="翻译语言";
+								wangcheng="复制完成";
+								chexiao="撤销";
+								if(typeof($api.getStorage('translateLangStorage')) != "undefined"){
+
+									 chat.translateLang=$api.getStorage('translateLangStorage');
+
+								 } else {
+										 chat.translateLang='zh';
+								 }
+								// alert("中");
+
+							}else{
+								fuzhi="copy";
+								fanyi="translate";
+								wangcheng="Copy complete";
+								fanyiyuyan="translation language";
+								chexiao="backout";
+
+
+								if(typeof($api.getStorage('translateLangStorage')) != "undefined"){
+
+									 chat.translateLang=$api.getStorage('translateLangStorage');
+
+								 }else {
+										 chat.translateLang='en';
+								 }
+							}
+							var tbn=[];
+							var x=centerX;
+							var y=centerY-10;
+							// if(type2==1){
+							//   tbn=[{title: fuzhi},{title: chexiao},{title: fanyiyuyan}];
+							// 	x=centerX-30;
+							// }else{
+								tbn=[{title: fuzhi},{title: fanyiyuyan}];
+							// }
+
+ // alert(tbn.length);
+
+		 // 使用apiCloud冒泡按钮插件
+								var bubbleMenu = api.require('bubbleMenu');
+
+								bubbleMenu.open({
+								style: {
+											//  mask: '#FFF',
+									maskColor:'rgba(0,0,0,0)',
+									bgColor:'#000',
+							lightColor:'#009acd',
+							borderColor:'#000',
+							cutLineColor:'#636363',
+										// titleColor'#00':  //(可选项)字符串类型；遮罩层题色，支持 rgb,rgba,#；默认：rgba(0,0,0,0)
+							cornerRadius: 8,  //(可选项)数字类型；圆角大小；默认：8
+							arrowSize:8,    //(可选项)数字类型；尖角大小；默认：12
+							titleSize: 14,    //(可选项)数字类型；标题大小：默认：14
+							height: 50        //(可选项)数字类型；菜单高度；默认：50
+							},
+										centerX: x,
+										centerY: y,
+										btnArray: tbn,
+										fixedOn: api.frameName
+								}, function(ret, err) {
+									// alert(JSON.stringify(ret))
+										if (ret.index==0) {
+											// alert(tbn.length);
+											//复制消息文本
+															var clipBoard = api.require('clipBoard');
+													 clipBoard.set({
+															 value: chat.messageArr[index].msg_body.text
+													 }, function(ret, err) {
+															 if (ret) {
+																	api.toast({
+																			msg: wangcheng,
+																			duration: 1000,
+																			location: 'center'
+																	});
+															 } else {
+																	//  MNtoast('操作失败')
+															 }
+													 });
+
+								 } else if(ret.index==1&&tbn.length==3) { //点击了消息撤回
+
+																			// translate(chat.messageArr[index].msg_body.text, chat.messageArr[index]);
+										}else if((ret.index==1&&tbn.length==2)||(ret.index==2&&tbn.length==3)){
+
+
+											api.openWin({
+
+										name:'recommend_list3',
+										url: '../chat/recommend_list3.html',
+											 // "chat/chat2.html"
+											// url:router['widget']+"group/group_chat.html",
+										slidBackEnabled: false,
+										animation: {
+											type: "fade", //动画类型（详见动画类型常量）
+											subType: "fade", //动画子类型（详见动画子类型常量）
+											duration: 250 //动画过渡时间，默认300毫秒
+										},
+										pageParam: {
+
+									translateLang:chat.translateLang
+
+
+											}
+										});
+
+
+										}
+								});
+
+
+
+					},
+					//进入个人页
+					clcikHeader: function() {
+					//translate(this.messageArr[index].msg_body.text, this.messageArr[index]);
+					openPersonal(api.winName, this.targetId);
+					},
+					//更多
+					moreList: function(isClsoe) {
+						alert("i love baopinghui");
+						// if(isClsoe == 'close') {
+						// 	this.moreListShow = false;
+						// 	UIChatBox.show();
+						// } else {
+						// 	this.moreListShow = true;
+						// 	UIChatBox.hide();
+						// }
+					},
+					//选择语言
+					selectLang: function(lang) {
+						this.translateLang = lang;
+						this.moreListShow = false;
+						UIChatBox.show();
+						msgToTop();
+					},
+					dispnone: function() {
+						this.moreListShow = false;
+						UIChatBox.show();
+					},
+					//返回键
+					closed: function() {
+						UIChatBox.value(function(ret, err) {
+						if (ret) {
+							//设置缓存草稿
+
+								$api.rmStorage(singlesendtext);
+								$api.setStorage(singlesendtext, ret.msg);
+
+						}
+				});
+				api.sendEvent({
+					name: 'loginIM',
+					extra: {
+						key1: api.pageParam['uiId'], //别人的id
+						key2: msgContent, //
+						key3: time,
+						key4: from_id,
+						key5:api.pageParam['avatar'],
+						key6:api.pageParam['nickname']
+
+
+					}
+				});
+						api.closeWin({
+							animation: {
+								type: "push", //动画类型（详见动画类型常量）
+								subType: "from_left", //动画子类型（详见动画子类型常量）
+								duration: 300 //动画过渡时间，默认300毫秒
+							}
+						});
+
+
+
+	// api.openWin({
+	//     name: 'index',
+	//     url: './index.html',
+	//
+	// });
+
+
+
+						//发送广播，重新登录
+
+					},
+					showMessage: function(mess) {
+						return chat.transEmotion(mess);
+					},
+					showMessage2: function(mess) {
+						return mess.translated;
+					},
+					showMessagetime:function(time,index){
+
+					return	chat.change2(time,index);
+
+					},
+					//打开图片
+					sacnImage: function(imageUrl) {
+						// var img=new Image();
+						// img.src=imageUrl;
+						// alert(img.width+"::"+img.height);
+
+						// imageBrowser.openImages({
+						// 	showList: false,
+						// 	imageUrls: [
+						// 		imageUrl
+						// 	]
+						// });
+							api.openWin({
+									name: 'im',
+									url: './imgBrowser.html',
+									pageParam: {
+											isrc: imageUrl
+									}
+							});
+					},
+					//转换emotion 把带表情标识的文本消息解析成表情加文本
+					transEmotion: function(mess) {
+						var reg = /\[(.*?)\]/gm;
+						var transMsg = mess.msg_body.text.replace(reg, function(match) {
+							for(var i = 0, len = emotionArr.length; i < len; i++) {
+								if(match == emotionArr[i]['text']) {
+									var path = api.wgtRootDir + '/image/emotion/' + emotionArr[i]['name'] + '.png';
+									return '<img width="20" height="20" src="' + path + '" />'
+								}
+							}
+						});
+						if(mess.from_id == this.ownId&&mess.msg_body.extras.type!="txt2") { //匹配的时候别人的消息会出现打钩 去掉
+							if(mess.msg_body.extras.fail!=null&&mess.msg_body.extras.fail=="1"){
+								return transMsg + '<img width="20" height="20" class="send" src="../../icon/messages/loading.gif" />';
+							}else{
+							return transMsg + '<img width="15" height="15" class="send" src="../../icon/messages/send2.png" />';
+							}
+						} else {
+							return transMsg;
+						}
+
+					},
+
+					//获取历史消息
+					getHistroy: function() {
+						// chat.SmessageArr=chat.SmessageArr.concat(chat.SmessageArr);
+					var this_ = this;
+					var sj3=(typeof($api.getStorage(SMessages))!="undefined"&&JSON.stringify(chat.SmessageArr) != '[]')?change1((chat.SmessageArr[chat.SmessageArr.length-1].msg_ctime),1000):(sj2+" 00:00:00");
+						api.ajax({
+							url: 'https://report.im.jpush.cn/v2/users/' + this_.ownId + '/messages?count=1000&begin_time=' + sj3 + ' 00:00:00&end_time=' + sj + ' 23:59:59',
+							encode: true,
+							method: 'get',
+							headers: {
+								'Authorization': 'Basic ' + par,
+								'Content-Type': 'application/json;charset=utf-8'
+							}
+						}, function(ret, err) {
+                // alert(JSON.stringify(ret.messages));
+							if(ret) {
+
+							// alert(JSON.stringify(chat.SmessageArr.length));
+								if(sj3==(sj2+" 00:00:00")){
+									  continuegain=true;
+    console.log("没有缓冲进行拿信息￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥");
+
+                chat.SmessageArr=ret.messages;
+
+
+
+
+								}else{
+									var a,b,c;
+                  // console.log("aaass"+chat.SmessageArr[0]);
+									if(chat.SmessageArr[chat.SmessageArr.length-1]!=null){
+											a=chat.SmessageArr[chat.SmessageArr.length-1].msgid;
+									}
+									if(chat.SmessageArr[chat.SmessageArr.length-2]!=null){
+										b=chat.SmessageArr[chat.SmessageArr.length-2].msgid;
+									}
+									if(chat.SmessageArr[chat.SmessageArr.length-3]!=null){
+											c=chat.SmessageArr[chat.SmessageArr.length-3].msgid;
+									}
+									// console.log("所发生的"+chat.SmessageArr);
+		console.log("已有缓冲进行拿新信息￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥");
+											for(var i = 0; i < ret.messages.length; i++) {
+															 if(ret.messages[i].msgid==b||ret.messages[i].msgid==a||ret.messages[i].msgid==c){
+																//  alert("aa");
+																 continue;
+															 }
+														chat.SmessageArr.push(ret.messages[i]);
+
+											}
+
+
+								}
+
+
+								// var a=JSON.stringify(chat.SmessageArr);
+								if(chat.SmessageArr.length>3000){
+									chat.SmessageArr.splice(0,chat.SmessageArr.length-3000);
+								}
+
+						         $api.setStorage(SMessages, chat.SmessageArr);
+									// console.log("设置缓存"+JSON.stringify(chat.SmessageArr));
+					for(var i = 0; i < chat.SmessageArr.length; i++) {
+						if((chat.SmessageArr[i].from_id == chat.targetId && chat.SmessageArr[i].target_id == chat.ownId) || (chat.SmessageArr[i].from_id == chat.ownId && chat.SmessageArr[i].target_id == chat.targetId)) {
+							Vue.set(chat.SmessageArr[i],'translated',"");
+
+							chat.messageArr.push(chat.SmessageArr[i]);
+						}
+					}
+
+								// for(var i = 0; i < ret.messages.length; i++) {
+								// 	if((ret.messages[i].from_id == chat.targetId && ret.messages[i].target_id == chat.ownId) || (ret.messages[i].from_id == chat.ownId && ret.messages[i].target_id == chat.targetId)) {
+								// 		ret.messages[i].translated = '';
+								// 		chat.messageArr.push(ret.messages[i]);
+								// 	}
+								// }
+					                 //  msg_body.extras.type
+								this_.cursor = ret.cursor; //拿到标识
+
+								if(this_.cursor !== "" && ret.count == 1000) {
+									//继续获取消息
+					            	chat.Continue_getHistroy(this_.ownId,this_.cursor);
+
+								}
+								msgToTop();
+								chat.isLoading = false;
+								//加载历史后，显示在最底部
+								setTimeout(function(){
+									msgToTop();
+								},1000);
+								//把草稿添加到输入框
+								UIChatBox.value({
+						 msg: $api.getStorage(singlesendtext)
+
+		 });
+							} else {
+								//加载历史后，显示在最底部
+								  if(err.code==899002){
+										//该用户不在极光的用户表中，进行自动注册
+										api.ajax({
+												url: 'http://api.baopinghui.com/jpushim/findnewbin11',
+												method: 'get',
+												data: {
+														values: {
+																user: api.pageParam['uiId']
+														}
+												}
+										},function(ret1, err){
+												if (ret1) {
+														// alert("成功");
+												//成功自动刷新当前页面
+													history.go(0);
+
+												} else {
+
+												}
+										});
+
+									}
+										msgToTop();
+								chat.isLoading = false;
+								// api.alert({
+								// 	msg: JSON.stringify(err)
+								// });
+							}
+						});
+
+					},
+					Continue_getHistroy: function(ownId,cursor) {
+						var this_ = this;
+						api.ajax({
+							url: 'https://report.im.jpush.cn/v2/users/' + ownId + '/messages?cursor=' + cursor,
+							method: 'get',
+							headers: {
+								'Authorization': 'Basic ' + par,
+								'Content-Type': 'application/json;charset=utf-8'
+							}
+						}, function(ret, err) {
+							if(ret) {
+								//api.alert({ msg: JSON.stringify(ret) });
+								if(ret.count === 0) {
+									return;
+								}
+								for(var i = 0; i < ret.messages.length; i++) {
+									// if((ret.messages[i].from_id == chat.targetId && ret.messages[i].target_id == chat.ownId) || (ret.messages[i].from_id == chat.ownId && ret.messages[i].target_id == chat.targetId)) {
+									// 	ret.messages[i].translated = '';
+										// chat.messageArr.push(ret.messages[i]);
+										chat.SmessageArr.push(ret.messages[i]);
+									// }
+								}
+								  //  console.log("*******************lalalalal******"+chat.SmessageArr.length);
+                    // var a=JSON.stringify(chat.SmessageArr);
+										if(chat.SmessageArr.length>3000){
+											chat.SmessageArr.splice(0,chat.SmessageArr.length-3000);
+										}
+              	$api.setStorage(SMessages, chat.SmessageArr);
+									// console.log("设置缓存"+JSON.stringify(chat.SmessageArr));
+								for(var i = 0; i < chat.SmessageArr.length; i++) {
+									if((chat.SmessageArr[i].from_id == chat.targetId && chat.SmessageArr[i].target_id == chat.ownId) || (chat.SmessageArr[i].from_id == chat.ownId && chat.SmessageArr[i].target_id == chat.targetId)) {
+
+				          	Vue.set(chat.SmessageArr[i],'translated',"");
+										chat.messageArr.push(chat.SmessageArr[i]);
+									}
+								}
+
+								this_.cursor = ret.cursor; //拿到标识
+								//如果还有未拿完的数据-那就继续拿
+										if(this_.cursor !== "" && ret.count == 1000) {
+
+		            				chat.Continue_getHistroy(this_.ownId,this_.cursor);
+								}
+								setTimeout(function(){
+									msgToTop();
+								},50);
+							} else {
+								// api.alert({
+								// 	msg: JSON.stringify(err)
+								// });
+							}
+						});
+					},
+					getHistroy2: function(){
+
+					var uuid=$api.getStorage('id'); //自己的id
+					var otherId=api.pageParam['uiId'];//当前聊天对象的id
+					var aa=new Date().getTime();
+					console.log("时间开始:::::::::::::::"+(aa-start));
+					var selectSql="from tin_im_message where userid in ('"+uuid+"','"+otherId+"') and from_id in ('"+uuid+"','"+otherId+"') and target_id in ('"+uuid+"','"+otherId+"')";
+						var msgs=db.selectSqlSync({
+								name: 'tinkle',
+								sql: "select * "+selectSql+" order by ctime_ms desc limit "+(chat.number-chat.number_stage)+","+chat.number_stage
+								// sql:"select * from tin_im_message where userid='sdfasdfasdf'"
+
+						});
+
+						console.log(":::::::::::::::::::::"+((new Date().getTime())-aa));
+						// alert(JSON.stringify(msgs));
+						     msgs.data.reverse();//倒序
+						// alert(JSON.stringify(msgs));
+						for(var i=0;i<msgs.data.length;i++){
+								 msgs.data[i].msg_body=JSON.parse(msgs.data[i].msg_body.replace(/&prime;/g,"'"));
+								 msgs.data[i].create_time=Number(msgs.data[i].create_time);
+								 msgs.data[i].translated="";
+						}
+						chat.messageArr=msgs.data;
+							msgToTop();
+							// return;
+				var lastMessage=db.selectSqlSync({
+						name: 'tinkle',
+						sql: "select *,(select count(userid) "+selectSql+") as count from tin_im_message where userid='"+uuid+"' order by ctime_ms desc limit 0,1 "
+				});
+			// alert(JSON.stringify(lastMessage));
+
+							chat.isLoading = false; //关闭加载转圈
+							var	count=0;
+				var sj3=(lastMessage.data.length>0)?change1((Number(lastMessage.data[0].ctime_ms)),1000):(sj2+" 00:00:00");
+			     if(lastMessage.data.length>0){
+						 count=lastMessage.data[0].count;
+					 }
+				// alert(sj3);
+				console.log("获取前:::::::::::::::::::"+(new Date-aa));
+				var aa2=new Date();
+				api.ajax({
+					url: 'https://report.im.jpush.cn/v2/users/' + uuid + '/messages?count=1000&begin_time=' + sj3 + ' 00:00:00&end_time=' + sj + ' 23:59:59',
+					encode: true,
+					method: 'get',
+					headers: {
+						'Authorization': 'Basic ' + par,
+						'Content-Type': 'application/json;charset=utf-8'
+					}
+				},function(ret, err){
+						if (ret) {
+						  // alert(JSON.stringify(ret));
+							// alert(JSON.stringify(ret.messages.length));
+							// return;
+							 var tempMessages=[];
+							if(ret.messages.length>chat.number){
+
+					var  bb= new Date();
+					console.log("获取消息结束:::::::::"+(bb-aa2));
+
+								// alert(JSON.stringify(ret.messages));
+								for(var i =0; i < ret.messages.length; i++) {
+									if((ret.messages[i].from_id == chat.targetId && ret.messages[i].target_id == chat.ownId) || (ret.messages[i].from_id == chat.ownId && ret.messages[i].target_id == chat.targetId)) {
+										// Vue.set(ret.messages[i],'translated',"");
+									  ret.messages[i].translated="";
+										tempMessages.push(ret.messages[i]);
+
+									}
+								}
+						console.log("耗时::::"+(new Date()-bb));
+                          if(tempMessages.length>=chat.number){
+														chat.messageArr=tempMessages.slice(tempMessages.length-chat.number, tempMessages.length);
+													}else{
+														chat.messageArr=tempMessages;
+													}
+													msgToTop();
+
+					 console.log("总耗时::::"+(new Date()-start));
+
+
+									}
+									// return;
+							ret.messages=ret.messages.concat(tempMs);
+
+							if(ret.messages.length>0){
+					          setTimeout(function(){
+											console.log("单聊消息加入数据库");
+
+											insermessage(ret.messages,db);
+                     if(tempMessages.length<chat.number&&tempMessages.length>0){
+											 console.log("进入直接覆盖查询");
+											 	chat.addMessage(uuid,otherId,count,2);//传入2代表直接覆盖历史消息
+										 }else{
+											 chat.addMessage(uuid,otherId,count);
+										 }
+
+
+										},10)
+
+							}
+							api.sendEvent({ //发送清空chatlist 页面中的tempMs
+									name: 'clear_tempMs',
+									extra: {
+											statu: "tempMs",
+									}
+							});
+							$api.setStorage('tempMs', []);
+
+
+							if(ret.cursor !== "" && ret.count == 500){
+								chat.Continue_getHistroy2(ret.cursor,uuid,otherId,count);
+							}
+
+					 } else {
+
+				}
+		});
+},
+					Continue_getHistroy2:function(cursor,uuid,otherId,count){
+						api.ajax({
+							url: 'https://report.im.jpush.cn/v2/users/' + uuid + '/messages?cursor=' + cursor,
+							method: 'get',
+							headers: {
+								'Authorization': 'Basic ' + par,
+								'Content-Type': 'application/json;charset=utf-8'
+							}
+						},function(ret, err){
+								if (ret) {
+									var tempMessages=[];
+								 if(ret.messages.length>chat.number){
+									 // alert(JSON.stringify(ret.messages));
+														 for(var i =0; i < ret.messages.length; i++) {
+															 if((ret.messages[i].from_id == chat.targetId && ret.messages[i].target_id == chat.ownId) || (ret.messages[i].from_id == chat.ownId && ret.messages[i].target_id == chat.targetId)) {
+																 // Vue.set(ret.messages[i],'translated',"");
+																 ret.messages[i].translated="";
+																 tempMessages.push(ret.messages[i]);
+
+															 }
+														 }
+
+														 if(tempMessages.length>=chat.number){
+															 chat.messageArr=tempMessages.slice(tempMessages.length-chat.number, tempMessages.length);
+														 }else{
+															 chat.messageArr=tempMessages;
+														 }
+														 msgToTop();
+
+										 }
+										 // return
+
+								 if(ret.messages.length>0){
+											 setTimeout(function(){
+												 console.log("单聊消息加入数据库");
+
+												 insermessage(ret.messages,db);
+												if(tempMessages.length<chat.number&&tempMessages.length>0){
+													console.log("进入直接覆盖查询");
+													 chat.addMessage(uuid,otherId,count,2);//传入2代表直接覆盖历史消息
+												}else{
+													chat.addMessage(uuid,otherId,count);
+												}
+
+
+											 },10)
+
+								 }
+											if(ret.cursor !== "" && ret.count == 1000){
+										chat.Continue_getHistroy2(ret.cursor,uuid,otherId,count);
+									}
+								} else {
+										alert( JSON.stringify( err ) );
+								}
+						});
+
+
+					},
+					addMessage:function(uuid,otherId,count,statu){
+						// var indexValue=chat.messageArr.length;
+						db.selectSql({
+											name: 'tinkle',
+											sql: "select * from tin_im_message where userid in ('"+uuid+"','"+otherId+"') and from_id in ('"+uuid+"','"+otherId+"') and target_id in ('"+uuid+"','"+otherId+"') order by ctime_ms asc limit "+count+",10000"
+						}, function(msgs2,err){
+								if( msgs2.status ){
+									console.log("更新数据成功");
+									// console.log("数据内容"+JSON.stringify(ret));
+											// alert(JSON.stringify(msgs2));
+										var 	this_number=chat.number;
+                        chat.number+=msgs2.data.length;
+											for(var i=0;i<msgs2.data.length;i++){
+													 msgs2.data[i].msg_body=JSON.parse(msgs2.data[i].msg_body.replace(/&prime;/g,"'"));
+													 msgs2.data[i].create_time=Number(msgs2.data[i].create_time);
+													 msgs2.data[i].translated="";
+											}
+											// alert(JSON.stringify(msgs2));
+
+											setTimeout(function(){
+												if(statu == 2){  //直接覆盖
+													// console.log("覆盖消息执行"+msgs2.data.length);
+													chat.messageArr=msgs2.data;
+												}else{
+													// alert("aa");
+														chat.messageArr= chat.messageArr.concat(msgs2.data);
+												}
+
+												if(chat.messageArr.length>this_number){  //如果消息太多则剪切到规定的长度
+														chat.messageArr=chat.messageArr.slice(chat.messageArr.length-this_number, chat.messageArr.length);
+														chat.number=this_number;
+												}
+													msgToTop();
+											},100)
+
+
+									}else{
+										alert( JSON.stringify( err ) );
+								}
+						});
+					},
+					created: function() {
+						this.getHistroy2();
+					},
+
+			//消息发送失败时信息存储重发的实体
+			failSendMessageBody:function(msgContext,type,state,duration,gid,avatar_url,nickname){
+				//封装成原先消息体的格式这样才可以让vue 渲染出来
+				               var create_time=new Date();
+
+												var contentfail={};
+													 contentfail.target_type="single";
+													 contentfail.from_id=$api.getStorage('id');
+													 contentfail.target_id=chat.targetId;
+													 contentfail.msg_type="text";
+													 contentfail.create_time=create_time.getTime();
+													var msg_body={};
+														msg_body.text=msgContext;
+														var extras={};
+														extras.type=type;
+														extras.fail="1";
+														extras.duration=duration;
+														extras.gid=gid;
+														extras.avatar_url=avatar_url;
+														extras.nickname=nickname;
+														msg_body.extras=extras;
+													 contentfail.msg_body=msg_body;
+													 contentfail.translated="";
+
+												var failMessages={};
+														failMessages.type=type;
+														failMessages.duration=duration;
+														failMessages.text=msgContext;
+														failMessages.index=chat.messageArr.length;
+														chat.messageArr.push(contentfail);
+														failS.push(failMessages);
+														// setTimeout(function(){
+															msgToTop();
+														// },200);
+
+
+			},
+			//用于转换判断显示时间
+		change2:function(number,index){
+				// alert(number);
+				// number1= parseInt(number);
+        // var toggle5=true;//用来判断8分钟内的时间是是否显示
+					var msg_time;
+					if(number.toString().length<13){
+						number=number*1000;
+					}
+					// var realTime;
+					var now=new Date();
+
+					if((number-chat.messageArr[toggle6].create_time)<=8*60*1000&&index!=0&&index!=toggle6){
+						return "";
+					}else{
+	         toggle6=index;
+					}
+
+				function timestampToTime(realTime,nowTime) {
+								var date = new Date(realTime);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+
+								Y = date.getFullYear() + '-';
+								M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+								D = date.getDate() + ' ';
+								h = date.getHours() + ':';
+								m = date.getMinutes() < 10 ? ('0'+date.getMinutes()) : (date.getMinutes()+'');
+								s = date.getSeconds();
+								Y1 = nowTime.getFullYear() + '-';
+								M1 = (nowTime.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+								D1 = nowTime.getDate() + ' ';
+								D2 = nowTime.getDate()-1 + ' ';
+
+								if((Y+M+D)==(Y1+M1+D1)){
+									return h+m;
+								}
+								// else if((Y+M+D)==(Y1+M1+D2)){
+								// 	return "昨天 "+h+m;
+								// }
+								else{
+									return Y+M+D+h+m;
+								}
+
+
+
+						}
+							return timestampToTime(number,now);
+
+
+
+			}
+
+				}
+
+
+			})
+			//进来直接获取用户表情包
+			// function getEmo(){
+			// 	api.ajax({
+			// 	    url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/selectEmoji',
+			// 	    method: 'post',
+			// 	    data: {
+			// 	        values: {
+			// 	            uiid: chat.ownId
+			// 	        }
+			// 	    }
+			// 	},function(ret, err){
+			// 	    if (ret) {
+			// 					var emoji=ret.data.emoji.split(",");
+			// 	        chat.emotion=emoji;
+			// 					chat.emotion.reverse();//翻转表情包数组，让新添加的那个表情放在第一个位置
+			// 					// alert(JSON.stringify(chat.emotion));
+			// 	    } else {
+			// 	        alert( JSON.stringify( err ) );
+			// 	    }
+			// 	});
+			//
+			// }
+			//重点申请权限
+			function fnrequestPermission(string) {
+
+				api.requestPermission({
+						list: [string,"storage"],
+				}, function(ret, err) {
+							// if(ret.list[0].granted){
+							//
+							// }
+
+
+				});
+		}
+		//打开相册并发送
+     function openAndsendPic(){
+			 UIMediaScanner.open({
+						type: 'picture',
+						column: 4,
+						classify: false,
+						max: 2,
+						sort: {
+								key: 'time',
+								order: 'desc'
+						},
+						texts: {
+								stateText: '已选择*项',
+								cancelText: '取消',
+								finishText: '完成'
+						},
+						exchange: true,
+						rotation: false,
+						// showPreview:true
+				}, function(ret) {
+						if (ret) {
+								// alert(JSON.stringify(ret.list[0].path));
+
+								if(ret.eventType=='confirm'){
+									// alert("进了");
+									for(var i=0;i<ret.list.length;i++){
+											(function(i){
+												UIMediaScanner.transPath({
+																			path:ret.list[i].path
+																	}, function(ret_, err) {
+																			if (ret) {
+																						// alert(JSON.stringify(ret_));
+																					uploadPic(ret_.path);
+																			} else {
+
+																			}
+																	});
+
+
+											})(i)
+
+
+									}
+
+
+								}
+
+						}
+				});
+		 }
+
+		}
+
+		    // function funActionSheet(){
+		    //     api.actionSheet({
+		    //         title: '底部弹出框',
+		    //         cancelTitle: '取消',
+		    //         destructiveTitle: '红色警告按钮',
+		    //         buttons: ['按钮1','按钮2','按钮3']
+		    //     },function(ret,err){
+		    //         // api.alert({
+		    //         //     msg: '你刚点击了'+ret.buttonIndex
+		    //         // });
+		    //     });
+		    // }
+				function change1(number,b){
+
+						var msg_time;
+						var realTime;
+						var now=new Date();
+					 var date=(now.getTime() - 6 * 24 * 3600 * 1000)/1000;
+					//  alert("date"+JSON.stringify(date));
+
+
+						 var timebin='';
+
+						var number1=(number+"").substring(0,10);
+							msg_time= parseInt(number1);
+
+
+						//  alert("msg_time"+JSON.stringify(msg_time));
+						realTime=(msg_time>=date)?msg_time:date;
+
+					function timestampToTime(realTime) {
+									var date = new Date(realTime*1000);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+									Y = date.getFullYear() + '-';
+									M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+									D = date.getDate() + ' ';
+									h = date.getHours() + ':';
+									m = date.getMinutes() + ':';
+									s = date.getSeconds();
+									timebin=Y+M+D+h+m+s;
+								 //  //alert(timebin+h+m+s);
+							}
+
+							 timestampToTime(realTime);
+							 return timebin;
+							// alert(timebin);
+
+				}
+
+		//	用于定时器调用
+			function sendEmo(emo){
+				var cdate=new Date().getTime();
+				 // alert(cdate);
+				 if($api.getStorage('language')=='zho'){
+					 msgContent = "[表情]";
+				 }else{
+					 msgContent = "[Picture]";
+				 }
+				 time = cdate;
+				 from_id = $api.getStorage("id");
+				 var Cindex=chat.messageArr.length;
+				chat.failSendMessageBody(emo,"img",1);
+				//发送事务通知聊天列表发送消息
+				api.sendEvent({    //发给 chat_list 页面
+						name: 'ChatListExec',
+						extra: {
+								targetType: "single",  //来源的类型单聊类型 另外一种是群聊类型group
+								target_username:chat.targetId,  //单聊的对象极光的username既tinkle的uiid
+								content: emo,  //要发送的消息体内容
+								type: 'img'     //发送的自定义的消息类型
+						}
+				});
+
+				api.sendEvent({
+					name: 'loginIM',
+					extra: {
+						key1: api.pageParam['uiId'], //别人的id
+						key2: msgContent, //
+						key3: time,
+						key4: from_id,
+						key5:api.pageParam['avatar'],
+						key6:api.pageParam['nickname']
+					}
+				});
+				//接受上面发送的给chat_list事务执行结果的回调
+				api.addEventListener({
+						name: 'ChatListExecReturn'
+				}, function(ret, err){
+						if( ret ){
+								if(ret.value.state==1){ //发送成功返回
+									 console.log("发送消息成功");
+									if(chat.messageArr[Cindex-1] != null){                          //这是防止用户点击发送消息过快前面的还在转圈
+										chat.messageArr[Cindex-1].msg_body.extras.fail="0"
+									}
+									if(chat.messageArr[Cindex-2] != null){
+										chat.messageArr[Cindex-2].msg_body.extras.fail="0"
+									}
+
+										 chat.messageArr[Cindex].msg_body.extras.fail="0";   //发送消息成功是消息的加载转圈去掉
+										chat.messageArr[Cindex].msg_body.text=ret.value.text;
+										 setTimeout(function() {
+											 msgToTop();   //回到最底部，因为发送图的大小要点时间获取
+										 }, 500)
+								}else if(ret.value.state==2){  //发送失败，对方极光账户不存在进行注册
+
+									history.go(0);
+									 msgToTop();
+							 }
+						}else{
+								 alert( JSON.stringify( err ) );
+						}
+				});
+			}
+
+			//生成随机字符串
+			function random(length) {
+				var str = Math.random().toString(36).substr(2);
+				if(str.length >= length) {
+					return str.substr(0, length);
+				}
+				str += random(length - str.length);
+				return str;
+			}
+			//让新获取的数据往上顶
+			function msgToTop() {
+				Vue.nextTick(function() {
+					$api.dom('.main').scrollTop = $api.dom('.main').scrollHeight;
+				});
+			}
+	</script>
+	<!-- <script src="../../script/jiguang.js" type="text/javascript" charset="utf-8"></script> -->
+
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+	<title>guide6(new)</title>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+		}
+		body{
+			width:100vw;
+			height:100vh;
+			/*visibility: hidden;*/
+		}
+		.bg{
+			width:100vw;
+			height:100vh;
+			background-color:#000;
+			opacity: 0.8;
+			animation:bganimation 1s linear 0s 1 normal;
+			-webkit-animation: bganimation 1s linear 0s 1 normal;
+			-ms-animation: bganimation 1s linear 0s 1 normal;
+			-o-animation: bganimation 1s linear 0s 1 normal;
+			-moz-animation: bganimation 1s linear 0s 1 normal;
+		}
+		.textbox{
+			position: fixed;
+			bottom:0;
+			width:100vw;
+		}
+		.arrow{
+			position: absolute;
+			bottom:15.29vw;
+			left:61.86vw;
+			width:10.64vw;
+			height:10.64vw;
+			background:url(../../icon/guide/arrow1.png) no-repeat;
+			background-size:contain;
+			transform: rotate(-153deg);
+		}
+		.textbox p{
+			margin-left:17.36vw;
+			font:3.99vw/5.85vw Arial;
+			font-weight: bold;
+			color:#fff;
+		}
+		.textbox p:nth-child(2)>span{
+			color:#f381a3;
+		}
+		.textbox p:nth-child(3){
+			margin-bottom:22.85vw;
+		}
+		.textbox p:nth-child(3) span{
+			border-bottom:2px solid #fff;
+		}
+		.window{
+			position: absolute;
+			bottom:1.33vw;
+			right:26.6vw;
+			width:21.28vw;
+			height:10.64vw;
+			border-radius: 1.33vw;
+			/*background:url(../../image/bottombtn0202.png) no-repeat top center;*/
+			/*background-size:30px 30px;*/
+			
+			font:2.66vw/16.64vw Arial;
+			font-weight: bold;
+			text-align: center;
+			color:#aaa;
+			background: url(../../image/index/discovery.png) no-repeat 0px; 
+			background-position:center 1vw;
+			background-size:5.32vw 5.32vw;
+			background-color:#fff;
+		}
+		@keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 0.8;
+			}
+		}
+		@-webkit-keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 0.8;
+			}
+		}
+		@-ms-keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 0.8;
+			}
+		}
+		@-o-keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 0.8;
+			}
+		}
+		@-moz-keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 0.8;
+			}
+		}
+		.bigbox{
+			position: fixed;
+			top:27.66vw;
+		}
+		.box{			
+			width:100vw;
+			height:50.53vw;
+			/*border:2.66vw solid #fff;*/
+			
+			background-color:#fff;
+			padding:2.66vw;
+			box-sizing: border-box;
+		}
+		.boxbox{
+			width:94.41vw;
+			height:45.21vw;
+			/*margin:0 auto;*/
+			background-color:#000;
+			border-radius: 2.66vw;
+			position: relative;
+		}
+		.img{
+			position: absolute;
+			top:2.66vw;
+			left:2.66vw;
+			width:26.6vw;
+			height:39.89vw;
+			background:url(../../icon/guide/simone-hutsch-1079722-unsplash.jpg);
+			background-size:cover;
+			border-radius: 2.66vw;
+		}
+		.img>div{
+			position: absolute;
+			top:1.33vw;
+			left:1.33vw;
+			width:7.98vw;
+			height:5.32vw;
+			background:url(../../icon/guide/hot.gif) no-repeat;
+			background-size: contain;
+		}
+		.imgtitle{
+			position: absolute;
+			top:2.66vw;
+			left:31.91vw;
+			font:3.98vw/5.85vw Arial;
+			font-weight: bold;
+			color:#fff;
+			vertical-align: center;
+		}
+		.imgtitle>span{
+			display: inline-block;
+			width:6.65vw;
+			height:6.65vw;
+			background:url(../../image/fire.gif) no-repeat center;
+			background-size:contain;
+			vertical-align: text-top;
+			background-color: #000;
+			margin-top:-1.5vw;
+		}
+		.imgcontent{
+			position: absolute;
+			top:10.64vw;
+			left:31.91vw;
+			font:3.19vw/5.52vw Arial;
+			color:#aaa;
+		}
+		.imgcontent>span{
+			color:#F381A3;
+			font-weight: bold;
+		}
+		.imgbutton{
+			position: absolute;
+			top:34.57vw;
+			left:31.91vw;
+			width:59.04vw;
+			height: 7.98vw;
+			background-color: #fff;
+			border-radius: 13.3vw;
+			font:3.19vw/7.98vw Arial;
+			font-weight: bold;
+			text-align: center;
+		}
+		.arrow1{
+			/*position: absolute;
+			bottom:15.29vw;
+			left:65.86vw;*/
+			margin:5.32vw 0 2.66vw 47.87vw;
+			width:10.64vw;
+			height:10.64vw;
+			background:url(../../icon/guide/arrow2.png) no-repeat;
+			background-size:contain;
+			transform: rotate(-274deg);
+		}
+		.text1{
+			font:3.98vw/5.85vw Arial;
+			font-weight: bold;
+			color:#fff;
+			width:90vw;
+			margin:0 auto;
+		}
+		.text1>span{
+			color:#F381A3;
+		}
+	</style>
+</head>
+<body>
+	<div class="bg"></div>
+<!-- 	<div class="bigbox">
+	<div class="box">
+		<div class="boxbox">
+		<div class="img"><div></div></div>
+		<div class="imgtitle">Time-limited Open Group <span></span></div>
+		<div class="imgcontent">The group was dissolved after 23:00 <br>People from <span>10</span> countries <br><span>3.1k</span> Number of discussion</div>
+		<div class="imgbutton">J O I N   I N</div>
+		</div>
+	</div>
+	<div class="arrow1"></div>
+	<div class="text1"><span>Time-limited group</span>（ 20:00 - 23:00 ）：<br>You can enter the group every day during this time period.</div>
+	</div> -->
+	<div class="textbox">
+		<div class="arrow"></div>
+		<p>Next <span>click here</span>,</p>
+		<p>Let's go to the <span>Discovery</span>.</p>
+		<div class="window">DISCOVERY</div>
+	</div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript">
+	var www = window.screen.width;
+	var hhh = window.screen.height;
+	apiready = function(){
+		if(hhh/www > 2){
+			$api.css($api.dom('.textbox'), 'bottom:34px;');
+			// $api.css($api.dom('.bigbox'), 'top:32.66vw');
+		}
+	    if($api.getStorage('language')=='zho'){
+	    	$api.html($api.dom('.textbox'), '<div class="arrow"></div><p>接 下 來 <span>點 擊 這 裏</span></p><p>我 們 去 <span>發 現</span> 頁 面 看 看</p><div class="window">發現</div>');
+	    	// $api.html($api.dom('.text1'), '<span>限 时 开 放 群 組</span> （ 20:00 - 23:00 ）: <br>每 天 只 有 在 这 个 时 间 段 才 可 以 进 入 噢 ~');
+	    }
+	 //    setTimeout(function(){
+		// 	$api.css($api.dom('body'), 'visibility:visible;');
+		// },1100);
+	    $api.addEvt($api.dom('.window'), 'click',function(){
+	    	// 发送点击发现按钮事件
+	    	api.sendEvent({
+	    	    name: 'square'
+	    	});
+	    	setTimeout(function(){
+	    	api.openFrame({
+	    	    name: 'guide7(new)',
+	    	    url: 'widget://html/guide/guide7(new).html',
+	    	    rect: {
+	    	        x: 0,
+	    	        y: 0,
+	    	        w: 'auto',
+	    	        h: 'auto'
+	    	    },
+	    	    pageParam: {
+	    	        name: 'value'
+	    	    }
+	    	});	
+	    	api.closeFrame({
+	    	    name: 'guide6(new)'
+	    	});
+	    	},100);
+	    	
+	    	
+	    });
+	}
+</script>
+</html>

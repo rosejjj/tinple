@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>群列表</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <script src="../../json/api.json"></script>
+    <script src="../../json/router.json"></script>
+
+    <style>
+        /*头部*/
+        html,body{
+          background: #efefef;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: inline-block;
+            width: 100vw;
+            height: 18.67vw;
+            /*height: 80px;*/
+            background: #ffffff;
+            /*box-shadow: 0 0 10px #36A5B2;*/
+            z-index: 2;
+        }
+
+        header .left {
+            position: absolute;
+            /*bottom: 1vw;*/
+            /*left: 8vw;*/
+            bottom: 17%;
+            left:20px;
+            display: inline-block;
+            /*width: 9vw;
+            height: 9vw;*/
+            width: 30px;
+            height: 30px;
+            z-index: 2;
+        }
+
+        header .center {
+            font-size: 15px;
+            font-weight: bold;
+            position: absolute;
+            /*bottom: 2vw;*/
+            bottom: 21%;
+            left: 50%;
+            transform: translate(-50%);
+            color: #fff;
+            display: inline-block;
+            z-index: 2;
+        }
+
+        header .right {
+            position: absolute;
+            /*bottom: 1vw;*/
+            /*right: 8vw;*/
+            bottom: 17%;
+            right: 20px;
+            display: inline-block;
+            /*width: 9vw;
+            height: 9vw;*/
+            width: 30px;
+            height: 30px;
+            z-index: 2;
+            font-weight: bold;
+        }
+
+        .group1 {
+            position: absolute;
+            top: 18.67vw;
+            left: 0;
+            z-index: 1;
+        }
+
+        .group2 {
+            position: absolute;
+            top: 18.67vw;
+            left: 0;
+            z-index: 1;
+        }
+        /*标题*/
+
+        .title {
+            width: 100vw;
+            height: 18vw;
+            line-height: 18vw;
+
+            text-align: center;
+            /*color: #B6BBD3;*/
+            background: -webkit-linear-gradient(left, #d9afd9 , #97d9e1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+
+        }
+        .my_group .title:nth-of-type(1){
+          margin-top: 5vw;
+          /*color:-webkit-linear-gradient( #d9afd9 , #97d9e1);*/
+        }
+        /*群组列表*/
+
+        .group_list {
+            width: 89.33vw;
+            height: 18vw;
+            margin: 3vw 5.33vw;
+            /*margin: 4vw;*/
+            text-align: left;
+        }
+
+        .group_list .left {
+            display: inline-block;
+            float: left;
+            width: 15vw;
+            height: 15vw;
+            background-size: cover;
+            background-position: center;
+            border-radius: 50%;
+        }
+
+        .group_list .center {
+            font-size: 12px;
+            font-weight: bold;
+            display: inline-block;
+            float: left;
+            width: 53.33vw;
+            height: 15vw;
+            padding: 0 3vw;
+            font-size: 4vw;
+            color: #aaa 100%;
+        }
+        .group_list .center P{
+          font-size: 12px;
+        }
+
+        .group_list .right {
+            display: inline-block;
+            float: left;
+            width: 8vw;
+            height: 8vw;
+            margin: 3.5vw 0 3.5vw 7vw;
+        }
+
+        .group_list p {
+            height: 7.5vw;
+            line-height: 7.5vw;
+        }
+        /*遮罩层*/
+
+        .mark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000000;
+            opacity: 0.5;
+            z-index: 3;
+            display: none;
+        }
+        /*创建群组*/
+
+        .add_box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 69.33vw;
+            padding: 10vw;
+            text-align: center;
+            background-color: #FFF;
+            border-radius: 5vw;
+            z-index: 4;
+            display: none;
+        }
+
+        .add_box .prompt {
+            margin: 5vw 0;
+            font-size: 4vw;
+            color: #BBBBBB;
+        }
+
+        .add_box .add {
+            font-size: 4vw;
+            width: 100%;
+            height: 10.67vw;
+            font-weight: bold;
+            line-height: 10.67vw;
+            margin: 8vw 0 5vw 0;
+            color: #FFF;
+            background: linear-gradient(to right, #d9afd9 0%, #97d9e1 100%);
+            /*box-shadow: 0 0 10px #36A5B2;*/
+            border-radius: 5vw;
+        }
+
+        .add_box .cancel {
+            font-size: 4vw;
+            color: #BBBBBB;
+            font-weight: bold;
+        }
+        /*群组空白显示*/
+
+        .null {
+            width: 89.6vw;
+            height: 44.8vw;
+            line-height: 44.8vw;
+            margin: 3vw auto;
+            border-radius: 3.75vw;
+            background-color: rgba(248, 248, 248, 1);
+            text-align: center;
+            color: #AAC1D3;
+        }
+
+        .null .null_text {
+            display: inline-block;
+            line-height: 20px;
+        }
+        .openadd{
+          font-size: 12px;
+          font-weight: bold;
+          color: white;
+          width: 68px!important;
+          height: 30px;
+          line-height: 30px;
+          text-align: center;
+          border-radius: 5px;
+          background: #f381a3;
+        }
+    </style>
+</head>
+
+<body>
+    <!--创建群组弹窗-->
+    <!--群列表-->
+    <main id="group">
+
+        <div class="mark"></div>
+        <div class="add_box">
+            <h2 style="font-size:8vw;">{{Create}}</h2>
+            <p class="prompt">{{One}}（{{group1_my_group.length}} / 5）</p>
+            <span class="add" @click="add()">{{create}}</span>
+            <p class="cancel" @click="cancel()">{{Cancel}}</p>
+        </div>
+        <form action="" id="formServerUpdate" style="display:none;">
+            <img v-bind:src="avatar" alt="" name="avatar" />
+        </form>
+        <!--头部-->
+        <header>
+            <img class="left" src="../../icon/messages/back.png" @click="back()">
+            <span class="center">R e l a t e d&nbsp;&nbsp;&nbsp;G r o u p s<span class="group_num"></span></span><!-- {{groupNum}} -->
+
+            <!-- <img v-if="ismy" class="right openadd" @click="openadd()" src="../../icon/group/add.png"> -->
+            <span v-if="ismy" class="right openadd" @click="openadd()" >CREATE</span>
+        </header>
+        <!--我的群组-->
+        <div v-if="ismy" class="group1">
+            <div class="my_group">
+                <p class="title">{{wodequnzu}}</p>
+                <template v-if="group1_my_group.length > 0">
+					<div v-for="group1_my in group1_my_group" class="group_list" @click="enterGroup_chat(group1_my)">
+						<!-- <img class="left" v-bind:src="'http://bin.baopinghui.com/'+group1_my.desc" alt="" /> -->
+            <div class="left" :style="{backgroundImage:'url(' + 'http://bin.baopinghui.com/'+group1_my.desc + ')'}"></div>
+						<div class="center">
+							<p>{{group1_my.name}}</p>
+							<p style="color:#AAAAAA;">群 組 人 數 ：{{group1_my.number}}</p>
+						</div>
+						<img class="right" src="../../icon/group/leader.png" alt="" />
+					</div>
+				</template>
+                <template v-else>
+					<div class="null"><span class="null_text">Nothing <br />Σ(*ﾟдﾟﾉ)ﾉ</span></div>
+				</template>
+            </div>
+            <div class="other_group">
+                <p class="title">{{xiangguanqunzu}}</p>
+                <template v-if="group1_other_group.length > 0">
+					<div v-for="group1_other in group1_other_group" class="group_list" @click="enterGroup_chat(group1_other)">
+						<!-- <img class="left" v-bind:src="'http://bin.baopinghui.com/'+group1_other.desc" alt="" /> -->
+            <div class="left" :style="{backgroundImage:'url(' + 'http://bin.baopinghui.com/'+group1_other.desc + ')'}"></div>
+						<div class="center">
+							<p>{{group1_other.name}}</p>
+							<p style="color:#AAAAAA;">群 組 人 數 ：{{group1_other.number}}</p>
+						</div>
+						<img v-if="group1_other.flag == 1" class="right" src="../../icon/group/leader.png" alt="" /><!--群主-->
+						<img v-else-if="group1_other.flag == 2" class="right" src="../../icon/group/administrators.png" alt="" /><!--管理员-->
+					</div>
+				</template>
+                <template v-else>
+					<div class="null"><span class="null_text">Nothing <br />Σ(*ﾟдﾟﾉ)ﾉ</span></div>
+				</template>
+            </div>
+        </div>
+        <!--其他人的群组-->
+        <div v-else class="group2">
+            <template v-if="group2.length > 0">
+				<div v-for="group_ in group2" class="group_list">
+					<img class="left" v-bind:src="group_.avatar" alt="" />
+					<div class="center">
+						<p>{{group_.name}}</p>
+						<p style="color:#AAAAAA;">群 組 人 數 ：{{group_.number}}</p>
+					</div>
+					<img v-if="group_.flag == 1" class="right" src="../../icon/group/leader.png" alt="" /><!--群主-->
+					<img v-else-if="group_.flag == 2" class="right" src="../../icon/group/administrators.png" alt="" /><!--管理员-->
+				</div>
+			</template>
+            <template v-else>
+				<div class="null" style="height:100vw;line-height:100vw;margin:0 5.2vw"><span class="null_text">Nothing <br />Σ(*ﾟдﾟﾉ)ﾉ</span></div>
+			</template>
+        </div>
+    </main>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/jquery-3.1.0.min.js"></script>
+<script type="text/javascript" src="../../script/vue.js"></script>
+
+<script src="../../script/jmessage-sdk-web.2.5.0.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../script/base64.min.js" type="text/javascript"></script>
+<script src="../../script/md5.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+    var uiid = '', //用户id
+        nickname = '', //用户名
+        avatar = '', //用户用户id
+        GroupName = ' the Group ',
+        lock = false;
+    //	var avatar = new FormData();
+
+    apiready = function() {
+      $api.text($api.dom('.center')," 相 關 群 組 ");
+        uiid = api.pageParam["uiId"];
+        nickname = api.pageParam["nickname"];
+        //		avatar.append("avatar", api.pageParam["avatar"]);
+        group.avatar = api.pageParam["avatar"];
+        avatar = api.pageParam["avatar"];
+        //		alert(group.avatar)
+        Vue.set(group, 'avatar', api.pageParam["avatar"]);
+        if (uiid == $api.getStorage("id")) { //如果是自己的群组
+            group.ismy = true;
+            //			Vue.set(group,'ismy',true);
+        }
+        if ($api.getStorage("language") == "zho") {
+            GroupName = '的群組';
+            $api.text($api.dom('.member')," 当 前 人 数 ");
+            group.wodequnzu="我 的 群 組";
+            group.xiangguanqunzu="其 他 群 組";
+            group.Create="創 建 群 組";
+            group.One="每 個 人 可 以 免 費 創 建 5 個 群 組 ";
+            group.create="創 建";
+            group.Cancel="取 消";
+        }
+        //		获取群组列表
+        jim_init();
+
+        //向右滑关闭页
+        api.addEventListener({
+            name: 'swiperight'
+        }, function(ret, err) {
+            // 广播-聊天列表重新登录极光
+            // api.sendEvent({
+            //     name: 'loginIM'
+            // });
+            api.closeWin({});
+        });
+        //安卓返回键关闭页
+        api.addEventListener({
+            name: 'keyback'
+        }, function(ret, err) {
+            //广播-聊天列表重新登录极光
+            // api.sendEvent({
+            //     name: 'loginIM'
+            // });
+            api.closeWin({});
+        });
+
+        api.addEventListener({
+            name: 'shuaAll'
+        }, function(ret, err){
+          // alert("执行刷新");
+                      var jsfun = 'window.location.reload();';
+              api.execScript({
+                  script: jsfun
+              });
+
+
+        });
+
+    };
+
+    var group = new Vue({
+        el: '#group',
+        data: {
+            group1_my_group: $api.getStorage('group1_my_group') || [], //我的群组
+            group1_other_group: $api.getStorage('group1_other_group') || [], //我的群组
+            group2: [], //别人的群组
+            ismy: false, //是否是从我的主页进来的-是-显示我的群组-不是-显示别人的群组
+            groupNum: 0, //群的个数
+            avatar: '',
+            wodequnzu:"M Y   G R O U P",
+            xiangguanqunzu:"O T H E R   G R O U P",
+            Create:"Create a Group",
+            One:"One person can create 5 groups for free",
+            create:"C R E A T E",
+            Cancel:"Cancel"
+        },
+        methods: {
+            //打开创建弹窗
+            openadd: function(item) {
+                $('.mark').css('display', 'block');
+                $('.add_box').css('display', 'block');
+            },
+            //创建群组
+            add: function(item) {
+                // alert("行");
+                var this_ = this;
+                if (!lock) {
+                    console.log('未拿到群数据，请稍后');
+                    return;
+                }
+                if (this.group1_my_group.length >= 5) {
+                    console.log('群数目(' + this.group1_my_group.length + '/5)');
+                    return;
+                }
+                var group_name = nickname + GroupName + (Number(this.group1_my_group.length) + 1);
+                //	  		console.log('获取头像');
+                //	  		api.getPicture({
+                //	    		sourceType: "library",
+                //	    		mediaValue: "pic",
+                //	    		destinationType: "url",
+                //	    		saveToPhotoAlbum: true,
+                //	    		quality: 70,
+                //	    		targetWidth: 1200,
+                //	    		targetHeight: 1200,
+                //	    	}, function(ret, err){
+                //	    	console.log(JSON.stringify(ret));
+                //	    		if(ret){
+                //	    			if(ret.data){
+                //	    				var avatar = ret.data;
+                //	  	console.log(group_name+'-----'+avatar);
+                //						console.log(JSON.stringify(avatar));
+
+                //						var avatar1 = new FormData($("#formServerUpdate")[0] );
+                //						alert(JSON.stringify(avatar1));
+
+                var form = new FormData();
+                form.append("avatar", avatar);
+
+                //var timestamp = (new Date()).valueOf(); //当前时间戳
+                //var random_str = random(30); //生成随机字符串
+                //var signature = MD5("appkey=c46c8bc128f41299334ec8e3&timestamp=" + timestamp + "&random_str=" + random_str + "&key=269e7aa2881b1a8767f16ce6")
+                //初始化
+                JIM.init({
+                  "appkey": "c46c8bc128f41299334ec8e3",
+                  "random_str": random_str,
+                  "signature": signature,
+                  "timestamp": timestamp,
+                  "flag": 0
+                }).onSuccess(function(data) {
+                  //alert('正在登陆');
+                  //登录
+                  JIM.login({
+                    'username': $api.getStorage('id'),
+                    'password': 123456
+                  }).onSuccess(function(data) {
+                    //重置未读数
+                    JIM.createGroup({
+                        'group_name': group_name, //群名
+                        'group_description': '', //群描述
+                        //					          'avatar' : form,//群头像
+                        'is_limit': true //是否设为公开群
+                    }).onSuccess(function(data) {
+                        console.log('群组创建成功！' + JSON.stringify(data));
+                        //重新获取数据
+                        getGroupList();
+                        //关闭弹窗
+                        this_.$options.methods.cancel();
+                        creat_gid=data.gid;
+                        creat_name=data.group_name;
+                        alert(creat_gid+creat_name);
+                        api.ajax({
+                            url: 'http://api.baopinghui.com/tin_Groups/AddGroups',
+                            method: 'post',
+                            data: {
+                                values: {
+                                    gid:creat_gid,
+                                    name:creat_name
+                                },
+                            }
+                        },function(ret, err){
+                            if (ret) {
+                              //alert('创建成功1');
+                              api.sendEvent({
+                                  name: 'shuaxin',
+                              });
+
+                              api.openWin({
+                                  name: 'group_chat',
+                                  url: router['widget'] + router['group']['group_chat'],
+                                  slidBackEnabled: false,
+                                  animation: {
+                                      type: "fade", //动画类型（详见动画类型常量）
+                                      subType: "fade", //动画子类型（详见动画子类型常量）
+                                      duration: 250 //动画过渡时间，默认300毫秒
+                                  },
+                                  pageParam: {
+                                      gid: creat_gid,
+                                      gname: creat_name,
+                                  }
+                              });
+
+                                //alert( "385创建群成功"+JSON.stringify( ret ) );
+                            } else {
+                                //alert( "387创建群失败"+JSON.stringify( err ) );
+                            }
+                        });
+
+                    }).onFail(function(data) {
+                        //alert('392群组创建失败！');
+                        console.log('393群组创建失败！' + JSON.stringify(data));
+                    });
+
+                  }).onFail(function(data) {
+                    if(data.code==880107){
+
+
+                      JIM.createGroup({
+                          'group_name': group_name, //群名
+                          'group_description': '', //群描述
+                          //					          'avatar' : form,//群头像
+                          'is_limit': true //是否设为公开群
+                      }).onSuccess(function(data) {
+                          console.log('群组创建成功！' + JSON.stringify(data));
+                          //重新获取数据
+                          getGroupList();
+                          //关闭弹窗
+                          this_.$options.methods.cancel();
+                          creat_gid=data.gid;
+                          creat_name=data.group_name;
+                          //alert(creat_gid+creat_name);
+                          api.ajax({
+                              url: 'http://api.baopinghui.com/tin_Groups/AddGroups',
+                              method: 'post',
+                              data: {
+                                  values: {
+                                      gid:creat_gid,
+                                      name:creat_name
+                                  },
+                              }
+                          },function(ret, err){
+                              if (ret) {
+                                //alert("创建成功2");
+                                api.sendEvent({
+                                    name: 'shuaxin',
+                                });
+
+                                api.openWin({
+                                    name: 'group_chat',
+                                    url: router['widget'] + router['group']['group_chat'],
+                                    slidBackEnabled: false,
+                                    animation: {
+                                        type: "fade", //动画类型（详见动画类型常量）
+                                        subType: "fade", //动画子类型（详见动画子类型常量）
+                                        duration: 250 //动画过渡时间，默认300毫秒
+                                    },
+                                    pageParam: {
+                                        gid: creat_gid,
+                                        gname: creat_name,
+                                    }
+                                });
+                                  //alert( "385创建群成功"+JSON.stringify( ret ) );
+                              } else {
+                                  //alert( "387创建群失败"+JSON.stringify( err ) );
+                              }
+                          });
+
+                      }).onFail(function(data) {
+                          //alert('392群组创建失败！');
+                          console.log('393群组创建失败！' + JSON.stringify(data));
+                      });
+
+
+                    }
+
+                  });
+
+                  JIM.isConnect(); // 无回调函数，调用则成功
+                  JIM.isInit(); // 无回调函数，调用则成功
+                  JIM.isLogin(); // 无回调函数，调用则成功
+                }).onFail(function(data) {
+                  alert("2" + data.code);
+                  alert("2" + data.message);
+                });
+                //						return;
+
+                //	    			}
+                //	    			return;
+                //	    		}
+                //				console.log(err);
+                //	    	});
+
+
+            },
+            //关闭创建弹窗
+            cancel: function(item) {
+                $('.mark').css('display', 'none');
+                $('.add_box').css('display', 'none');
+            },
+            //关闭页面
+            back: function(item) {
+                //广播-聊天列表重新登录极光
+                // api.sendEvent({
+                //     name: 'loginIM'
+                // });
+                api.closeWin({});
+            },
+            enterGroup_chat: function(item) {
+                //alert(JSON.stringify(item));
+                //	  		return;
+                api.openWin({
+                    name: 'group_chat',
+                    url: router['widget'] + router['group']['group_chat'],
+                    slidBackEnabled: false,
+                    animation: {
+                        type: "fade", //动画类型（详见动画类型常量）
+                        subType: "fade", //动画子类型（详见动画子类型常量）
+                        duration: 250 //动画过渡时间，默认300毫秒
+                    },
+                    pageParam: {
+                        gid: item.gid,
+                        gname: item.name,
+                    }
+                });
+            },
+            //打开群设置页面
+            openGroup_serring: function(item) {
+                //	  	alert(JSON.stringify(item));
+                api.openWin({
+                    name: 'group_setting',
+                    url: "widget://html/group/group-setting.html",
+                    slidBackEnabled: false,
+                    animation: {
+                        type: "fade", //动画类型（详见动画类型常量）
+                        subType: "fade", //动画子类型（详见动画子类型常量）
+                        duration: 250 //动画过渡时间，默认300毫秒
+                    },
+                    pageParam: {
+                        gid: item.gid
+
+                    }
+                });
+            }
+
+        }
+    })
+
+
+
+
+
+
+    //----------------------极光初始化登录-------------------------------------------------------------------------------
+    //极光初始化需要的数据
+    var JIM = new JMessage(), //极光登录
+        timestamp, //当前时间戳
+        random_str, //生成随机字符串
+        signature;
+
+    //生成随机字符串
+    function random(length) {
+        var str = Math.random().toString(36).substr(2);
+        if (str.length >= length) {
+            return str.substr(0, length);
+        }
+        str += random(length - str.length);
+        return str;
+    }
+
+    //获取当前时间，格式YYYY-MM-DD
+    function getNowFormatDate() {
+        var date = new Date();
+        var seperator1 = "-";
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        var strDate = date.getDate();
+        if (month >= 1 && month <= 9) {
+            month = "0" + month;
+        }
+        if (strDate >= 0 && strDate <= 9) {
+            strDate = "0" + strDate;
+        }
+        var currentdate = year + seperator1 + month + seperator1 + strDate;
+        return currentdate;
+    }
+
+    //极光初始化
+    function jim_init() {
+
+        timestamp = (new Date()).valueOf(); //当前时间戳
+        random_str = random(30); //生成随机字符串
+        signature = MD5("appkey=c46c8bc128f41299334ec8e3&timestamp=" + timestamp + "&random_str=" + random_str + "&key=269e7aa2881b1a8767f16ce6");
+
+        console.log("初始化极光");
+        JIM.init({
+            "appkey": "c46c8bc128f41299334ec8e3",
+            "random_str": random_str,
+            "signature": signature,
+            "timestamp": timestamp,
+            "flag": 0
+        }).onSuccess(function(data) {
+            console.log('初始化请求成功回调' + JSON.stringify(data));
+            console.log("登录极光");
+            var login_lock = 0;
+
+            JIM.login({
+                'username': uiid,
+                'password': 123456
+            }).onSuccess(function(data) {
+                console.log("登录成功" + JSON.stringify(data));
+                //获取群列表
+                getGroupList();
+            }).onFail(function(data) {
+                console.log("登录失败" + JSON.stringify(data));
+            }).onTimeout(function(data) {
+                console.log('登录请求超時回调' + JSON.stringify(data));
+            }).onAck(function(data) {
+                console.log('登录请求應答回调' + JSON.stringify(data));
+            });
+        }).onFail(function(data) {
+            console.log('初始化请求失败回调' + JSON.stringify(data));
+        }).onTimeout(function(data) {
+            console.log('初始化请求超時回调' + JSON.stringify(data));
+        }).onAck(function(data) {
+            console.log('初始化请求應答回调' + JSON.stringify(data));
+        });
+    }
+
+    //获取列表
+    function getGroupList() {
+        JIM.getGroups().onSuccess(function(data) {
+            console.log('群列表：' + JSON.stringify(data));
+            group.groupNum = data.group_list.length;
+            //获取群信息
+            lock = true;
+            if (data.group_list.length > 0) {
+                getGroupInformation(data.group_list);
+            }
+
+            //data.code 返回码
+            //data.message 描述
+            //data.group_list[] 群组列表，如下示例
+            //data.group_list[0].gid 群id
+            //data.group_list[0].name 群名
+            //data.group_list[0].desc 群描述
+            //data.group_list[0].appkey 群所属appkey
+            //data.group_list[0].ctime 群创建时间
+            //data.group_list[0].mtime 最近一次群信息修改时间
+            //data.group_list[0].avatar 群头像
+            //data.group_list[0].group_type 公开群:2,私有群:0或者1
+        }).onFail(function(data) {
+            console.log('获取列表失败');
+        }).onTimeout(function(data) {
+            console.log('登录请求超時回调' + JSON.stringify(data));
+        }).onAck(function(data) {
+            console.log('登录请求應答回调' + JSON.stringify(data));
+        });
+    }
+    //		获取'我'在群内的身份和群人数
+    function getGroupInformation(group_list) {
+        var group_list = group_list;
+        var len = group_list.length;
+        for (var i = 0; i < group_list.length; i++) {
+
+            (function(m) {
+                JIM.getGroupMembers({
+                    'gid': group_list[i].gid
+                }).onSuccess(function(data) {
+                    //             		群成员长度
+                    var number = data.member_list.length;
+                    for (var j = 0; j < number; j++) {
+                        if (data.member_list[j].username == uiid) { //匹配ID-确认为当前用户
+                            console.log(data.member_list[j].flag)
+                            console.log(m)
+                            group_list[m].flag = data.member_list[j].flag; //0：普通成员 1：群主 2：管理员
+                            group_list[m].number = number; //群人数
+                            len--;
+                        }
+                    }
+                    if (len == 0) {
+                        if (group.ismy) { //我的群组
+                            var group1_my = [],
+                                group1_other = [];
+                            for (var t = 0; t < group_list.length; t++) {
+                                if (group_list[t].flag == 1) { //我是群主
+                                    group1_my.push(group_list[t]);
+                                } else { //我不是群主
+                                    group1_other.push(group_list[t]);
+                                }
+
+                            }
+                            group.group1_my_group = group1_my;
+                            group.group1_other_group = group1_other;
+                            $api.setStorage('group1_my_group', group1_my);
+                            $api.setStorage('group1_other_group', group1_other);
+                        } else { //别人的群组
+                            group.group2 = group_list;
+                        }
+                    }
+                    //data.code 返回码
+                    //data.message 描述
+                    //data.member_list[] 成员列表，如下示例
+                    //data.member_list[0].username 用户名
+                    //data.member_list[0].appkey 用户所属 appkey
+                    //data.member_list[0].nickname 用户昵称
+                    //data.member_list[0].avatar 用户头像 id
+                    //data.member_list[0].flag  0：普通成员 1：群主 2：管理员
+                    //data.member_list[0].keep_silence 是否被禁言true|false
+                }).onFail(function(data) {
+                    console.log('获取群成员错误');
+                }).onTimeout(function(data) {
+                    console.log('登录请求超時回调' + JSON.stringify(data));
+                }).onAck(function(data) {
+                    console.log('登录请求應答回调' + JSON.stringify(data));
+                });
+            })(i)
+        }
+    }
+    //断线了~~~~
+    JIM.onDisconnect(function() {
+        console.log('断线了~~~~');
+        jim_init(); //重新初始化登录
+    });
+</script>
+
+</html>

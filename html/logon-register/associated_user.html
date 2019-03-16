@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+	<title>numeroloy</title>
+	<style type="text/css">
+	*{
+		padding:0;
+		margin:0;
+	}
+	.bg{
+		position: relative;
+		/*width:100vw;
+		height:auto;*/
+		height: 100%;
+		width: 100%;
+		background:url(../../icon/logon-page2/bg3.jpg);
+		background-size:contain;
+		padding:5.32vw;
+		box-sizing: border-box;
+	}
+	.return{
+		position: absolute;
+		top:7.31vw;
+		left:5.32vw;
+		width:7.98vw;
+		height:7.98vw;
+		background:url(../../icon/logon-page2/return.png);
+		background-size: cover;
+	}
+	.box{
+		margin-top: 13vw;
+		width:89.1vw;
+		/*height:150.8vw;*/
+		background-color:#7512f7;
+		border-radius: 15.96vw;
+		padding-bottom:10.64vw;
+		box-sizing: border-box;
+	}
+	.title{
+		width:100%;
+		height:68.09vw;
+		background:url(../../icon/logon-page2/title2-en.png) center;
+		background-size:cover;
+	}
+	.transition{
+		width:100%;
+		height:2.66vw;
+		margin:10.64vw 0 10.64vw 0;
+	}
+	.box>div:nth-child(2){
+		margin:6.38vw 0 5.32vw 0;
+	}
+	.transition span{
+		display: inline-block;
+		/*float:left;*/
+		width:9.31vw;
+		height:2.66vw;
+		border-radius: 2.66vw;
+		background-color: #2d075c;
+		vertical-align: top;
+		margin-right:5.85vw;
+	}.transition span:nth-child(1){
+		margin-left:10.37vw;
+	}
+	.transition span:nth-child(5){
+		margin-right:0vw;
+	}
+	.box_content{
+		width:100%;
+		height:auto;
+		padding:0 0vw 0 10.37vw;
+		box-sizing: border-box;
+	}
+	.user{
+		width:18.62vw;
+		height:0 auto;
+		display: inline-block;
+		margin-right:6.25vw;
+		margin-top:5.32vw;
+	}
+	.avatar{
+		position: relative;
+		width:18.62vw;
+		height:18.62vw;
+		border-radius: 50%;
+		border:2px solid rgba(45,7,92,1);
+		background-color: #efefef;
+		box-sizing: border-box;
+		background-size:cover;
+	}
+	.avatar>span{
+		position: absolute;
+		bottom:0;
+		left:-3px;
+		width:5.32vw;
+		height:5.32vw;
+		border-radius: 50%;
+		border:2px solid rgba(45,7,92,1);
+		background:url(../../icon/logon-page2/true.png) no-repeat center;
+		background-size:2.66vw 2.66vw;
+		background-color:#ff39a6;
+		font:3.19vw/5.32vw Arial;
+		font-weight: bold;
+		text-align: center;
+	}
+	.user-name{
+		width:100%;
+		font:3.19vw/4.52vw Arial;
+		font-weight: bold;
+		color:#fff;
+		text-align: center;
+		display: -webkit-box;
+        -webkit-line-clamp:1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        margin-top:1.33vw;
+        margin-bottom:1.33vw;
+	}
+	.user-num{
+		width:10.64vw;
+		height:5.32vw;
+		margin:0 auto;
+		border-radius: 7.98vw;
+		background-color: #2d075c;
+		font:3.19vw/5.32vw Arial;
+		font-weight: bold;
+		/*color:rgba(255,243,33,1);*/
+		color: #aaa;
+		text-align: center;
+	}
+	.user:nth-child(1) .user-num,.user:nth-child(2) .user-num,.user:nth-child(3) .user-num{
+		color:rgba(255,243,33,1);
+	}
+	.button,.share{
+		width:66.49vw;
+		height:10.64vw;
+		border-radius: 7.98vw;
+		background-color:#c42d8e;
+		margin:0 auto 0vw;
+		font:3.72vw/10.64vw Arial;
+		font-weight: bold;
+		color:#fff;
+		text-align: center;
+	}
+	.share{
+		background-color:#2D075C;
+		margin:0 auto;
+	}
+</style>
+</head>
+<body>
+<div class="bg">
+	<div class="return" onclick="closewin()"></div>
+	<div class="box">
+		<div class="title"></div>
+		<div class="transition"><span></span><span></span><span></span><span></span><span></span></div>
+		<div class="box_content" id="box_content" v-if="users.length > 0">
+			<div class="user" v-for="(user,index) in users" @click="follow(index)">
+				<div class="avatar"  v-bind:style="{backgroundImage: 'url(http://bin.baopinghui.com/' + user.avatar_url + '?imageView2/0/w/100)'}" ><span class="yes"></span></div>
+				<div class="user-name">{{user.nickname}}</div>
+				<div class="user-num">{{number[index]}}</div>
+			</div>
+		</div>
+		<div class="transition"><span></span><span></span><span></span><span></span><span></span></div>
+		<div class="button" id="button" @click="guanzhu()">F O L L O W</div>
+		<!-- <div class="share" id="share">S H A R E</div> -->
+	</div>
+</div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script src="../../script/jquery-3.1.0.min.js"></script>
+<script type="text/javascript" src="../../script/vue.js"></script>
+<script type="text/javascript">
+	var function1;
+	var boof = false;
+		apiready=function(){
+			// 监听关闭自己
+			api.addEventListener({
+			    name: 'associated_user'
+			}, function(ret, err) {
+				api.closeWin({
+				    name: 'associated_user'
+				});
+			});
+			function1 = api.pageParam['function1'];
+			getGroupMember();
+			var numerology_number = api.pageParam['numerology_number'];
+			var QQshareimg = api.pageParam["QQshareimg"];
+			var wechatshareimg = api.pageParam["wechatshareimg"];
+			var nickname = api.pageParam['nickname'];
+			var avatarpath = api.pageParam["avatarpath"];
+			if($api.getStorage('language')=='zho'){
+				$api.css($api.dom('.title'), 'background:url(../../icon/logon-page2/title2.png) center;background-size:cover;');
+				$api.html($api.dom('#button'), '关 注');
+				$api.html($api.dom('#share'), '分 享');
+			}
+			var numm1 = [20	,21	,22	,23	,24	,25	,26	,27	,28	,29	,30	,31	,32	,33	,34	,35	,36	,37	,38	,39	,40	,41	,42	,43	,44	,45	,46	,47	,48	,49	,50	,51	,52	,53	,54	,55	,56	,57	,58	,59	,60	,61	,62	,63	,64	,65	,66	,67	,68	,69	];
+			var numm2 = [70	,71	,72	,73	,74	,75	,76	,77	,78	,79	,80	,81	,82	,83	,84	,85	,86	,87	,88	,89	,90	,91	,92	,93	,94	,95	,96	,97	,98	,99	,100];
+		var box = new Vue({
+			el: '#box_content',
+			data: {
+				users: [],
+				yes: true,
+				number: [],
+				id:$api.getStorage('id')
+			},
+			methods: {
+		    follow:	function(i){
+				// console.log(ui_id_arr);
+				if(box.yes){
+					$('.yes').eq(i).css('background',"url()");
+					$(".yes").eq(i).css("background-color","#7512F7");
+					Vue.set(box.users[i],'selected',0);
+					// $(".yes").eq(i).html("");
+					box.yes=false;
+					
+					// console.log(ui_id_arr);
+					return;
+				}else{
+					$('.yes').eq(i).css('background',"url(../../icon/logon-page2/true.png) no-repeat center");
+					$('.yes').eq(i).css('background-size',"2.66vw 2.66vw");
+					$(".yes").eq(i).css("background-color","#FF39A6");
+					Vue.set(box.users[i],'selected',1);
+					// $(".yes").eq(i).html("✔");
+					box.yes=true;
+					console.log(JSON.stringify(box.users[i]));
+					// console.log(ui_id_arr);
+					return;
+				}
+			},
+			guanzhu: function(){
+				console.log(function1);
+				console.log(JSON.stringify(box.users));
+				for(var i=0;i<box.users.length;i++){
+					
+					if(box.users[i].selected==0){
+						// alert("没被选中")	
+					}else{
+						$.ajax({
+							url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/focus',
+							type: 'post',
+							dataType: 'json',
+							data: {
+								uiId:$api.getStorage('id'),
+								otherUiId:box.users[i].ui_id,
+								type:'focus',
+							},
+						})
+						.done(function(ret,err) {
+							console.log("success");
+							// api.openWin({
+							//     name: 'numerology_follow',
+							//     url: 'widget://html/logon-register/numerology_follow.html',
+							//     pageParam: {
+							//         function1:function1
+							//     }
+							// });
+						})
+						.fail(function() {
+							console.log("error");
+						});
+					}
+					console.log(box.users[i].ui_id);
+					if(i==box.users.length-1){
+						api.openWin({
+						    name: 'numerology_follow',
+						    url: 'widget://html/logon-register/numerology_follow.html',
+						    pageParam: {
+						        function1:function1
+						    }
+						});
+					}
+				}
+				
+			}
+			}
+		})
+		$api.addEvt($api.dom('#share'), 'click', function(){
+			api.openFrame({
+				    name: 'more(new)',
+				    url: 'widget://html/nav/more(new).html',
+				    rect: {
+				        x: 0,
+				        y: 0,
+				        w: 'auto',
+				        h: 'auto'
+				    },
+				    pageParam: {
+				        wechatshareimg: wechatshareimg,
+				        QQshareimg:QQshareimg,
+				        avatarpath: avatarpath,
+				        numerology_number:numerology_number,
+				        nickname:nickname
+				    }
+				});
+		});
+		$("#button").click(function(){
+				box.guanzhu();
+		})
+		function getGroupMember(){
+			var numerology_number = api.pageParam['numerology_number'];
+					api.ajax({
+							url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/getUiidByAugury',
+							method: 'get',
+							data: {
+									values: {
+										augury: 0
+									}
+							}
+					},function(ret, err){
+							if (ret) {
+								var lengthh = ret.data.length>12?13:ret.data.length;
+									box.users=[];
+									// 不显示自己
+									for(var i=0;i<lengthh;i++){
+										if(ret.data[i].ui_id == $api.getStorage('id')){
+										}else{
+											box.users.push(ret.data[i]);
+										}
+									}
+									if(box.users.length>12){
+										box.users.pop();
+									}
+									// console.log(box.users);
+									// box.ui_id_arrpushbox.users;
+									for (var i = 0; i < box.users.length; i++) {
+										// box.number.push(Math.floor(Math.random()*99+1)+'%');
+										// Vue.set(box.users[i],'selected',0);
+										// box.ui_id_arr.push(ret.data[i].ui_id);
+										// box.uiId_arr.push(ret.data[i].ui_id);
+										// console.log(JSON.stringify(box.users[i]));
+
+
+										if(i<=2){
+											box.number.push(numm2[parseInt(Math.random()*numm2.length)]+'%');
+										}else{
+											box.number.push(numm1[parseInt(Math.random()*numm1.length)]+'%');
+										}
+										Vue.set(box.users[i],'selected',1);
+									}
+					}
+				})
+		}
+	}
+	function closewin(){
+		api.closeWin();
+	}
+</script>
+</html>

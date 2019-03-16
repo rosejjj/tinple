@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+	<title>guide7(new)</title>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+		}
+		body{
+			width:100vw;
+			height:100vh;
+			/*visibility: hidden;*/
+		}
+		.bg{
+			position: fixed;
+			top:0;
+			width:100vw;
+			height:100vh;
+			background-color:#000;
+			opacity: 0.8;
+			animation:bganimation 1s linear 0s 1 normal;
+			-webkit-animation: bganimation 1s linear 0s 1 normal;
+			-ms-animation: bganimation 1s linear 0s 1 normal;
+			-o-animation: bganimation 1s linear 0s 1 normal;
+			-moz-animation: bganimation 1s linear 0s 1 normal;
+			z-index: -1;
+		}
+		.box{
+			margin-top:0vw;
+			width: 100vw;
+			position: relative;
+		}
+		.window{
+			position: absolute;
+			top:6.65vw;
+			right:2.66vw;
+			width:23.4vw;
+			height:10.64vw;
+			border-radius: 1.33vw;
+			background-color:#fff;
+			padding:0 1.33vw;
+			box-sizing: border-box;
+		}
+		.window>img{
+			width:7.98vw;
+			height:7.98vw;
+			margin-top:1.33vw;
+			float:right;
+		}
+		.window>img:nth-of-type(1){
+			position: relative;
+			float:left;
+		}
+		.window>div{
+			position: absolute;
+			top:1.33vw;
+			left:6.65vw;
+			width:2.66vw;
+			height:2.66vw;
+			border-radius: 50%;
+			background-color:#f381a3;
+		}
+		.arrow{
+			width:10.64vw;
+			height:10.64vw;
+			background:url(../../icon/guide/arrow1.png) no-repeat;
+			background-size:contain;
+			transform: rotate(82deg);
+			float:right;
+			margin-right:30.59vw;
+			margin-top:10.96vw;
+		}
+		p{
+			margin-top:2.66vw;
+			margin-left:5vw;
+			margin-right:5.32vw;
+			float:right;
+			font:3.99vw/5.85vw Arial;
+			font-weight: bold;
+			color:#fff;
+		}
+		p>span{
+			color:#f381a3;
+		}
+		.button{
+			position: fixed;
+			bottom:10.64vw;
+			left:50%;
+			margin-left:-29.655vw;
+			width:59.31vw;
+			height:10.64vw;
+			border:2px solid rgba(255,255,255,1);
+			border-radius: 7.99vw;
+			font:3.99vw/10.64vw Arial;
+			font-weight: bold;
+			text-align: center;
+			color:#fff;
+		}
+		@keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 0.8;
+			}
+		}
+		@-webkit-keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 0.8;
+			}
+		}
+		@-ms-keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 0.8;
+			}
+		}
+		@-o-keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 0.8;
+			}
+		}
+		@-moz-keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 0.8;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="bg"></div>
+	<div class="box">
+		<div class="window">
+			<img src="../../image/index/bell.png" alt="">
+			<img src="../../image/index/discovery-post.png" alt="">
+			<div></div>
+		</div>
+		<div class="arrow"></div>
+		<p class="textt"><span>Echo</span> :<br>Received various system messages and comments, likes, concerns, etc.  <br><span>Post a post</span> :<br>You can choose to publish the image o r video post.</p>
+	</div>
+	<div class="button">N E X T</div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript">
+	var www = window.screen.width;
+	var hhh = window.screen.height;
+	apiready = function(){
+		if(hhh/www >2){
+			$api.css($api.dom('.box'), 'margin-top:27.28vw');
+			$api.css($api.dom('.buttom'), 'bottom:19.64vw');
+		}
+		// setTimeout(function(){
+		// 	$api.css($api.dom('body'), 'visibility:visible;');
+		// },1100);
+		if($api.getStorage('language')=='zho'){
+			$api.html($api.dom('.textt'), '<span>迴 響</span> 入 口 ：<br>收 到 的 各 種 系 統 消 息 和 <br>評 論 ， 點 讚 ， 關 注 等 ··· <br><span>發 佈 帖 子</span> 入 口 ：<br>可  以 選 擇 發 佈 圖 片 o r 視 頻<br> 帖 子');
+			$api.html($api.dom('.button'), '下一步');
+		}
+		$api.addEvt($api.dom('.button'), 'click', function(){
+			api.openFrame({
+			    name: 'guide8(new)',
+			    url: 'widget://html/guide/guide8(new).html',
+			    rect: {
+			        x: 0,
+			        y: 0,
+			        w: 'auto',
+			        h: 'auto'
+			    },
+			    pageParam: {
+			        name: 'value'
+			    }
+			});
+			api.closeFrame({
+	    	    name: 'guide7(new)'
+	    	});
+		});
+	}
+</script>
+</html>

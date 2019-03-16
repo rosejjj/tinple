@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>通用头部</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <style>
+    	html,body{
+    		margin:0;
+    		padding:26.67vw 0 0 0;
+    		background-color:rgba(0,0,0,0);
+    		color:#FFF;
+    		font-weight:bold;
+    		font-size:4vw;
+    	}
+    	header{
+	    	position: fixed;
+	    	left:0;
+	    	top:0;
+    		display:inline-block;
+    		width:100vw;
+    		height:18.67vw;
+    		background: linear-gradient(to right, #d9afd9 0%,#97d9e1 100%);
+    		/*box-shadow: 0 0 10px #36A5B2;*/
+    		background-color: red;
+				z-index: 9999999999999;
+    	}
+			section{
+				position: fixed;
+				left:0;
+				top:30;
+				display:inline-block;
+				width:100vw;
+				height:18.67vw;
+				background:green;
+			}
+    	.head_box{
+    		position: absolute;
+	    	bottom:0;
+	    	left:calc(100% / 2 - 100% * 0.28);
+    		width:56vw;
+    		height:12vw;
+    		line-height:15vw;
+    		text-align:center;
+    		/*background:url(../../icon/nav/head_box.png)no-repeat bottom center;*/
+    		background-size : 100%;
+    		z-index:1000;
+    		display:none;
+    	}
+    	.head_box_text{
+    		/*position: absolute;*/
+				/*bottom: 1.5vw;*/
+				transform: translateY(-1.5vw);
+    		display:inline-block;
+    		font-size:4.5vw;
+    		font-weight:bold;
+    		/*文字颜色渐变*/
+    		/*background-image: -webkit-gradient(linear, 0 0, 100% bottom, from(#d9afd9), to(#97d9e1));
+		    -webkit-background-clip: text;
+		    -webkit-text-fill-color: transparent;*/
+				color: #ffffff;
+		    word-spacing:5px;
+		    letter-spacing: 3px;
+    	}
+    	.nav{
+	    	position: absolute;
+	    	bottom:0;
+	    	left:8vw;
+    		width:84vw;
+    		height:12vw;
+    		z-index:999;
+    	}
+    	.nav .left{
+    		position: absolute;
+				left:-2vw;
+    		display:inline-block;
+				bottom: 1.2vw;
+    		/*float:left;*/
+    		width:14vw;
+    		height:12vw;
+				/*width: 30px;
+				height: 30px;*/
+    		line-height:12vw;
+    		text-align:center;
+				/*background-size: 5px 5px;
+				background-position: center;*/
+				/*background: url(../../icon/nav/aft2s.png);*/
+    	}
+    	.nav .center{
+    		position: absolute;
+				left: 14vw;
+    		display:inline-block;
+				bottom: 1.2vw;
+				/*opacity: 0;*/
+    		/*float:left;*/
+    		width:56vw;
+    		height:12vw;
+    		line-height:12vw;
+    		text-align:center;
+				/*background: url(../../icon/nav/aft2s.png);*/
+    	}
+    	.nav .right{
+				position: absolute;
+				right: -2vw;
+    		display:inline-block;
+				bottom: 1.2vw;
+				/*width: 30px;
+				height: 30px;*/
+    		/*float:left;*/
+    		width:14vw;
+    		height:12vw;
+    		line-height:12vw;
+    		text-align:center;
+				boe
+				/*background: url(../../icon/nav/aft2s.png);*/
+    	}
+
+			.dingding{
+				width: 30px;
+				height: 30px;
+				position: relative;
+				right: 7.3px;
+				top: 2.2px;
+			}
+
+			.new_bg{/*新粉丝通知的背景*/
+				/*width: 7px;
+				height: 7px;
+				background-color: #E51C23 ;
+				position: absolute;
+				top: 0.8vw;
+				left: 3.3vw;
+				border-radius: 50%;
+				border: 1.5px solid rgba(255, 255, 255, 1);*/
+				/*display: block;/*没有新粉丝隐藏*/
+			}
+
+    </style>
+</head>
+<body>
+	<header>
+		<div class="head_box"><span class="head_box_text"></span></div>
+		<div class="nav">
+			<div class="nav_list left" onclick="nav_list('left','win')"></div>
+			<!-- <img class="dingding" src="../../icon/nav/dingding.png" alt="" onclick="jump_echo()"> -->
+			<div class="new_bg" id="new_bg"></div>
+			<div class="nav_list center" onclick="nav_list('center','win')"></div>
+			<div class="nav_list right" onclick="nav_list('right','win')"></div>
+		</div>
+	</header>
+	<section>
+		<div class="one">
+			M Y F O C U S
+		</div>
+		<div class="two">
+			T O D A Y ' S   P O P U L A R
+		</div>
+		<div class="three">
+			L A T E S T   P O S T S
+		</div>
+	</section>
+</body>
+
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script src="../../script/jquery-3.1.0.min.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+	var head_Information;//初始化信息
+	var button=true;
+
+	//绑定回响跳转事件
+	function jump_echo(){
+		//alert('diaonbi');
+		// api.openWin({
+		//     name: 'echo',
+		//     url: "widget://html/details/",
+		//     pageParam: {
+		//         name: 'test'
+		//     }
+		// });
+		api.openWin({
+			name: "echo",
+			url: "widget://html/details/echo.html",
+			reload: true,
+			vScrollBarEnabled: false,
+			slidBackEnabled: false,
+			pageParam:{
+			//postId: dyn_id,
+			postId: "ce73f170a2d14d579514357d5327557a",
+			popNum: 233,
+			tinNum: 233,
+			// summary: summary,
+			text: true
+		}
+		});
+	};
+
+	apiready = function(){
+
+
+
+		head_Information =api.pageParam['head_Information'];//初始化信息
+
+		if(head_Information.left){
+			$('.left').css('background','url(' + head_Information.left.Icon + ')no-repeat left center');		//左邊Icon
+			$('.left').text(head_Information.left.text);		//左邊文字
+//			$api.html($api.dom('.left'), head_Information.left.text);
+		}
+		if(head_Information.center){
+		 $('.center').css('background','url(' + head_Information.center.Icon + ')no-repeat center center');		//左邊Icon
+			$('.center').text(head_Information.center.text);		//中间文字
+		}
+		if(head_Information.right){
+			$('.right').css('background','url(' + head_Information.right.Icon + ')no-repeat right center');		//左邊Icon
+			$('.right').text(head_Information.right.text);		//右邊文字
+		}
+		$('.nav_list').css('background-size','29px');//设置ICON的大小
+
+		//判读是否显示点击状态
+		if(head_Information.current_location){
+			$('.head_box').css('display','block');
+			nav_list(head_Information.current_location);//设置ICON的初始化位置
+		}
+
+
+
+
+		//监听发送过来的关闭页面事件
+		api.addEventListener({
+		    name: 'closeframe'
+		}, function(ret, err) {
+			if($api.getStorage("language") == "zho"){
+				$('.head_box_text').text("广场▼");
+			}else{
+				$('.head_box_text').text("LATEST POSTS▼");
+			}
+
+			api.closeFrame({
+					name: 'erjicaidan'
+			});
+			button=true;
+		});
+
+		//监听回响事件
+		api.addEventListener({
+		    name: 'echos'
+		}, function(ret, err) {
+		    //alert('mmp');
+		});
+
+
+
+
+		//监听发送过来的关闭页面事件(广场▼)
+		api.addEventListener({
+				name: 'closeguangchang'
+		}, function(ret, err) {
+			if($api.getStorage("language") == "zho"){
+				$('.head_box_text').text("广场▼");
+			}else{
+				$('.head_box_text').text("LATEST POSTS▼");
+			}
+			api.closeFrame({
+					name: 'pubuliu_'
+			});
+			api.closeFrame({
+					name: 'erjicaidan'
+			});
+			//window.location.reload();
+			// api.execScript({
+			// 	  frameName:"pubuliu2",
+			// 		script: window.location.reload()
+			// });
+			button=true;
+		});
+		//监听发送过来的打开页面事件
+		api.addEventListener({
+				name: 'openframe'
+		}, function(ret, err) {
+			if($api.getStorage("language") == "zho"){
+				$('.head_box_text').text("我的关注▼");
+			}else{
+				$('.head_box_text').text("MY FOCUS▼");
+			}
+			button=true;
+			api.closeFrame({
+					name: 'erjicaidan'
+			});
+			api.openFrame({
+					name: 'pubuliu_',
+					url: 'pubuliu_.html',
+					rect: {
+							x: 0,
+							y: Number(window.screen.width) * 0.1867,
+							w: 'auto',
+							h: 'auto'
+					},
+					pageParam: {
+							name: 'test'
+					}
+			});
+
+		});
+	};
+
+
+	//icon变动事件
+	function nav_list(location,win){
+//	alert(location);
+		var jsfun;
+		if(location == 'left' && head_Information.left.click_text){									//左邊icon點擊事件
+			$('.nav_list').css('width','14vw');
+			$('.left').css('width','56vw');				//當前容器寬度改變
+			$('.left').css('display','none');
+			// $('.left').css('background','blue');
+			// $('.left').css('background-image','../../icon/nav/dingding.png');
+			//$('.head_box').animate({left:Number(window.screen.width) * 0.058 }, 200);
+			$('.right').css('display','none');
+			$('.dingding').css('display','inline');
+			$('.nav .center').css({"transform":"rotate(180deg)","left":"90%"});
+			$('.nav .center').css('opacity','1');
+			$('.head_box').animate({left:Number(window.screen.width) / 2 -  Number(window.screen.width) * 0.28}, 200);
+			$('.head_box_text').text(head_Information.left.click_text);
+			jsfun = "funcGoto('left');";
+		}else if(location == 'center' && head_Information.center.click_text){
+			api.closeFrame({
+					name: 'pubuliu_'
+			});
+			api.closeFrame({
+					name: 'erjicaidan'
+			});
+							//中間icon點擊事件
+			$('.dingding').css('display','none');
+			$('.nav_list').css('width','14vw');
+			$('.left').css('display','inline-block');
+			$('.right').css('display','inline-block');
+			// $('.new_bg').css('display','none');
+			$('.center').css('width','56vw');				//當前容器寬度改變
+			$('.nav .center').css({"left":"14%",'opacity':'0'});
+			//$('.nav .center').css('opacity','0');
+			$('.head_box').animate({left:Number(window.screen.width) / 2 -  Number(window.screen.width) * 0.28}, 200);
+			$('.head_box_text').text(head_Information.center.click_text);
+			jsfun = "funcGoto('center');";
+		}else if(location == 'right' && head_Information.right.click_text){
+			api.closeFrame({
+					name: 'pubuliu_'
+			});
+			api.closeFrame({
+					name: 'erjicaidan'
+			});												//右邊icon點擊事件
+			$('.nav_list').css('width','14vw');
+			$('.right').css('width','56vw');				//當前容器寬度改變
+			$('.right').css('display','none');
+			$('.left').css('display','none');
+			$('.nav .center').css({"transform":"rotate(0deg)","left":"-7%",'opacity':'1'});
+			//$('.nav .center').css('opacity','1');
+			// $('.nav .center').css('left','0%');
+			//$('.nav .left').css('display','none');
+			//$('.head_box').animate({left:Number(window.screen.width) -  Number(window.screen.width) * 0.62}, 200);
+			$('.head_box').animate({left:Number(window.screen.width) / 2 -  Number(window.screen.width) * 0.28}, 200);
+			$('.head_box_text').text(head_Information.right.click_text);
+			jsfun = "funcGoto('right');";
+		}
+		//如果是icon点击事件，则当前指向win的操作
+		if(win){
+			api.execScript({
+			    script: jsfun
+			});
+		}
+	}
+
+	//定义点击二级列表菜单事件
+	$(".head_box_text").click(function(){
+		//alert(JSON.stringify(this.innerHTML));
+		if(this.innerHTML=="LATEST POSTS▼" || this.innerHTML=="广场▼" || this.innerHTML=="▼" || this.innerHTML=="我的关注▼" || this.innerHTML=="MY FOCUS▼"){
+			if(button==true){
+				$('.head_box_text').text("▼");
+				api.openFrame({
+						name: 'erjicaidan',
+						url: 'erjicaidan.html',
+						rect: {
+								x: 0,
+								y: Number(window.screen.width) * 0.1867,
+								w: 'auto',
+								h: 'auto'
+						},
+						pageParam: {
+								name: 'test'
+						}
+				});
+			  button=false;
+			}else{
+				//$('.head_box_text').text("广场▼");
+				api.closeFrame({
+				    name: 'erjicaidan'
+				});
+				button=true;
+			}
+		}else{
+			return;
+		}
+	});
+
+</script>
+</html>

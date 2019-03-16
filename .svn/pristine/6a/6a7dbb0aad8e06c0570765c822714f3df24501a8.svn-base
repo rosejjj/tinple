@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+	<title>service</title>
+	<link rel="stylesheet" type="text/css" href="../../css/api.css" />
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<style>
+		html,body {
+			background-color: transparent;
+			font-family: Arial;
+			font-style: italic;
+			color: #aaa;
+			font-size: 3.2vw;
+			line-height: 4.53vw;
+		}
+		.bg{
+			position: fixed;
+			top:0;
+			width: 100vw;
+			height:70px;
+			background-color:#efefef;
+			
+		}
+		.eng-privacy,
+		.zho-privacy{
+			border-top:65px solid #efefef;
+			padding:5.32vw 5.35vw 0 5.35vw;
+			/*padding-top: 18.7vw;*/
+			width: 100vw;
+			margin: 0 auto;
+			margin-top: 5px;
+			z-index: -1;
+			background-color:#fff;
+			box-sizing: border-box;
+		}
+		.my-title{
+			color: #484848;
+			font-size: 5.33vw;
+			line-height: 7.73vw;
+			margin-bottom: 5.33vw;
+		}
+		.container,
+		.title-common,
+		.title-color{
+			margin-bottom: 5.33vw;
+		}
+		.common,
+		.common-weight{
+			margin-bottom: 1.33vw;
+		}
+		.title-color{
+			color: #484848;
+			font-weight: bold;
+		}
+		.common-weight{
+			font-weight: bold;
+			color: #484848;
+		}
+		.zho-privacy{
+			display: none;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="bg"></div>
+	<div class="eng-privacy" id="eng">
+		<h1 class="my-title">Terms of service</h1>
+		<h1 class="my-title">Welcome!</h1>
+		<div class="container">
+			<p class="common">We’re thrilled you’ve decided to use Tinkle and our other products and services, all of which we refer to simply as the “Services.”</p>
+			<p class="common">We've drafted these Terms of Service (which we call the “Terms”) so you'll know the rules that govern our relationship with you.Although we have tried our best to strip the legalese from the Terms, there are places where these Terms may still read like a traditional contract.There's a good reason for that: These Terms do indeed form a legally binding contract between you and Guangzhou Baopinghui Network Technology Co., Ltd.So please read them carefully.By using the Services, you agree to the Terms.Of course, if you don't agree with them, then don't use the Services.</p>
+			<p class="common">ARBITRATION NOTICE: IF YOU’RE USING THE SERVICES ON BEHALF OF A BUSINESS, THEN YOUR BUSINESS WILL BE BOUND BY THE ARBITRATION CLAUSE THAT APPEARS LATER IN THESE TERMS.</p>
+		</div>
+		<h1 class="my-title">1. Who Can Use the Services</h1>
+		<div class="container">
+			<p class="common">No one under 13 is allowed to create an account or use the Services.We may offer additional Services with additional terms that may require you to be even older to use them.So please read all terms carefully.</p>
+			<p class="common">By using the Services, you affirm that:</p>
+			<p class="common">● You can form a binding contract with Guangzhou Baopinghui Network Technology Co., Ltd.</p>
+			<p class="common">● You will comply with these Terms and all applicable local, state, national, and international laws, rules, and regulations.</p>
+			<p class="common">If you are using the Services on behalf of a business or some other entity, you affirm that you are authorized to grant all licenses set forth in these Terms and to agree to these Terms on behalf of the business or entity.</p>
+		</div>
+		<h1 class="my-title">2. Rights We Grant You</h1>
+		<div class="container">
+			<p class="common">Guangzhou Baopinghui Network Technology Co., Ltd. grants you a personal, worldwide, royalty-free, non-assignable, nonexclusive, revocable, and non-sublicensable license to access and use the Services.This license is for the sole purpose of letting you use and enjoy the Services' benefits in a way that these Terms and our usage policies, such as our Community Guidelines , allow.</p>
+			<p class="common">Any software that we provide you may automatically download and install upgrades, updates, or other new features.You may be able to adjust these automatic downloads through your device's settings.</p>
+			<p class="common">You may not copy, modify, distribute, sell, or lease any part of our Services.Nor may you reverse engineer or attempt to extract the source code of that software, unless laws prohibit these restrictions or you have our written permission to do so.</p>
+		</div>
+		<h1 class="my-title">3. Rights You Grant Us</h1>
+		<div class="container">
+			<p class="common">Many of our Services let you create, upload, post, send, receive, and store content.When you do that, you retain whatever ownership rights in that content you had to begin with.But you grant us a license to use that content.How broad that license is depends on which Services you use and the Settings you have selected.</p>
+			<p class="common">For all Services other than LIVE, LIFE, and any other crowd-sourced Service, you grant Guangzhou Baopinghui Network Technology Co., Ltd., and their affiliates a worldwide, royalty-free, sublicensable, and transferable license to host, store, use, display, reproduce, modify, adapt, edit, publish, and distribute that content for as long as you use the Services.This license is for the limited purpose of operating, developing, providing, promoting, and improving the Services and researching and developing new ones.</p>
+			<p class="common">Because LIVE, LIFE, and any other crowd-sourced Services are inherently public and chronicle matters of public interest, the license you grant us for content submitted to those Services is broader.In addition to granting us the rights mentioned in the previous paragraph, you also grant us a license to create derivative works from, promote, exhibit, broadcast, syndicate, sublicense, publicly perform, and publicly display content submitted to LIVE, LIFE, or any other crowd-sourced Services in any form and in any and all media or distribution methods (now known or later developed).To the extent it's necessary, when you appear in, create, upload, post, or send LIVE, LIFE, or other crowd-sourced content, you also grant Guangzhou Baopinghui Network Technology Co., Ltd., and our affiliates and business partners the unrestricted,This means, among other things, that you will not be entitled to any compensation from Guangzhou Baopinghui Network Technology Co., Ltd., or our affiliates and business partners if your name, likeness, or voice is conveyed through LIVE, LIFE, or other crowd-sourced Services, either on the Tinkle application or on one of our business partner's platforms.</p>
+			<p class="common">For more information about how to tailor who can watch your content, please take a look at our Privacy Policy and Support Site.</p>
+			<p class="common">While we're not required to do so, we may access, review, screen, and delete your content at any time and for any reason, including if we think your content violates these Terms.You alone, though, remain responsible for the content you create, upload, post, send, or store through the Services.</p>
+			<p class="common">The Services may contain advertisements.In consideration for Guangzhou Baopinghui Network Technology Co., Ltd.  letting you access and use the Services, you agree that we, Guangzhou Baopinghui Network Technology Co., Ltd., our affiliates, and our third-party partners may place advertising on the Services, including personalized advertising based upon the information you provide us or we collect or obtain about you.Because the Services contain content that you and other users provide us, advertising may sometimes appear near your content.</p>
+			<p class="common">We always love to hear from our users.But if you volunteer feedback or suggestions, just know that we can use your ideas without compensating you.</p>
+		</div>
+		<h1 class="my-title">4. The Content of Others</h1>
+		<div class="container">
+			<p class="common">Much of the content on our Services is produced by users, publishers, and other third parties.Whether that content is posted publicly or sent privately, the content is the sole responsibility of the person or organization that submitted it.Although Guangzhou Baopinghui Network Technology Co., Ltd. reserves the right to review all content that appears on the Services and to remove any content that violates these Terms, we do not necessarily review all of it.So we cannot—and do not—take responsibility for any content that others provide through the Services.</p>
+			<p class="common">Through these Terms and our Community Guidelines , we make clear that we do not want the Services put to bad uses.But because we do not review all content, we cannot guarantee that content on the Services will always conform to our Terms or Guidelines.</p>
+		</div>
+		<h1 class="my-title">5. Privacy</h1>
+		<div class="container">
+			<p class="common">Your privacy matters to us.You can learn how your information is handled when you use our Services by reading the Privacy Policy .We encourage you to give the Privacy Policy a careful look because, by using our Services, You agree that your information will be collected and processed by China Aquarius Network Technology Co., Ltd. and its affiliates, and transferred outside of the country in which you reside, including to countries that may not have the same data-protection laws as your country.</p>
+		</div>
+		<h1 class="my-title">6. Respecting Other People’s Rights</h1>
+		<div class="container">
+			<p class="common">Guangzhou Baopinghui Network Technology Co., Ltd. respects the rights of others.And so should you.You therefore may not use the Services in a manner that:<br>
+			● violates or infringes someone else’s rights of publicity, privacy, copyright, trademark, or other intellectual-property right.<br>
+			● bullies, harasses, or intimidates.<br>
+			● defames.<br>
+			● spams or solicits our users.</p>
+			<p class="common">You must also respect the rights of Guangzhou Baopinghui Network Technology Co., Ltd. and its affiliates, These Terms do not grant you any right to:<br>
+			● use branding, logos, designs, photographs, videos, or any other materials used in our Services.<br>
+			● copy, archive, download, upload, distribute, syndicate, broadcast, perform, display, make available, or otherwise use any portion of the Services or the content on the Services except as set forth in these Terms.<br>
+			● use the Services, any tools provided by the Services, or any content on the Services for any commercial purposes without our consent.<br>
+			In short: You may not use the Services or the content on the Services in ways that are not authorized by these Terms.Nor may you help anyone else in doing so.</p>
+		</div>
+		<h1 class="my-title">7. Respecting Copyright</h1>
+		<div class="container">
+			<p class="common">We respect copyright law.We therefore take reasonable steps to expeditiously remove from our Services any infringing material that we become aware of.And if Guangzhou Baopinghui Network Technology Co., Ltd. becomes aware that one of its users has repeatedly infringed copyrights, we will take reasonable steps within our power to terminate the user's account.</p>
+			<p class="common">We make it easy for you to report suspected copyright infringement.If you believe that anything on the Services infringes a copyright that you own or control, please fill out this.</p>
+			<p class="common">Or you may file a notice with our designated agent:<br>
+			Guangzhou Baopinghui Network Technology Co., Ltd.<br>
+			Tom: Copyright Agent<br>
+			email: qaz616672844@163.com</p>
+			<p class="common">If you file a notice with our Copyright Agent, it must:<br>
+			● contain the physical or electronic signature of a person authorized to act on behalf of the copyright owner.<br>
+			● identify the copyrighted work claimed to have been infringed.<br>
+			● identify the material that is claimed to be infringing or to be the subject of infringing activity and that is to be removed, or access to which is to be disabled, and information reasonably sufficient to let us locate the material.<br>
+			● provide your contact information, including your address, telephone number, and an email address.<br>
+			● provide a personal statement that you have a good-faith belief that the use of the material in the manner complained of is not authorized by the copyright owner, its agent, or the law.<br>
+			● provide a statement that the information in the notification is accurate and, under penalty of perjury, that you are authorized to act on behalf of the copyright owner.</p>
+		</div>
+		<h1 class="my-title">8. Safety</h1>
+		<div class="container">
+			<p class="common">We try hard to keep our Services a safe place for all users.But we can't guarantee it.That's where you come in. By using the Services, you agree that:<br>
+			● You will not use the Services for any purpose that is illegal or prohibited in these Terms.<br>
+			● You will not use any robot, spider, crawler, scraper, or other automated means or interface to access the Services or extract other user’s information.<br>
+			● You will not use or develop any third-party applications that interact with the Services or other users’ content or information without our written consent.<br>
+			● You will not use the Services in a way that could interfere with, disrupt, negatively affect, or inhibit other users from fully enjoying the Services, or that could damage, disable, overburden, or impair the functioning of the Services.<br>
+			● You will not use or attempt to use another user’s account, username, or password without their permission.<br>
+			● You will not solicit login credentials from another user.<br>
+			● You will not post content that contains pornography, graphic violence, threats, hate speech, or incitements to violence.<br>
+			● You will not attempt to circumvent any content-filtering techniques we employ, or attempt to access areas or features of the Services that you are not authorized to access.<br>
+			● You will not probe, scan, or test the vulnerability of our Services or any system or network.<br>
+			● You will not encourage or promote any activity that violates these Terms.<br>
+			We also care about your safety while using our Services.So do not use our Services in a way that would distract you from obeying traffic or safety laws.And never put yourself or others in harm's way just to capture a take pictures.</p>
+		</div>
+		<h1 class="my-title">9. Your Account</h1>
+		<div class="container">
+			<p class="common">You are responsible for any activity that occurs in your Tinkle account.So it's important that you keep your account secure.One way to do that is to select a strong password that you don't use for any other account.<br>
+			By using the Services, you agree that, in addition to exercising common sense:<br>
+			● You will not create more than one account for yourself.<br>
+			● You will not create another account if we have already disabled your account, unless you have our written permission to do so.<br>
+			● You will not buy, sell, rent, or lease access to your Tinkle account, LIVE, LIFE, a Tinkle username, or a friend link without our written permission.<br>
+			● You will not share your password.<br>
+			● You will not log in or attempt to access the Services through unauthorized third-party applications or clients.<br>
+			If you think that someone has gained access to your account, please immediately reach out to Tinkle Support.</p>
+		</div>
+		<h1 class="my-title">10. Data-storage service</h1>
+		<div class="container">
+			<p class="common">In Tinkle, all already released LIVE and LIFE, in the absence of user's own delete operation, will always be stored in the server.As long as you log in Tinkle application can browse history.Since we can not guarantee that your content is always available, it is recommended that you save the important information separately.</p>
+			<p class="common">We make no promise that Data-storage service will be able to accommodate your precise storage needs.We reserve the right to set storage limits for Data-storage service, and we may change these limits from time to time in our sole discretion.And just as with our other Services, your use of Data-storage service may take up space on your device and may incur mobile data charges.</p>
+		</div>
+		<h1 class="my-title">11. Data Charges and Mobile Phones</h1>
+		<div class="container">
+			<p class="common">You are responsible for any mobile charges that you may incur for using our Services, including text-messaging and data charges.If you're unsure what those charges may be, you should ask your service provider before using the Services.</p>
+			<p class="common">If you change or deactivate the mobile phone number that you used to create a Tinkle account, you must update your account information through Settings within 72 hours to prevent us from sending to someone else messages intended for you.</p>
+		</div>
+		<h1 class="my-title">12. Third-Party Services</h1>
+		<div class="container">
+			<p class="common">If you use a service, feature, or functionality that is operated by a third party and made available through our Services (including Services we jointly offer with the third party), each party's terms will govern the respective party's relationship with you.Guangzhou Baopinghui Network Technology Co., Ltd. is responsible or liable for a third party's terms or actions taken under the third party's terms.</p>
+		</div>
+		<h1 class="my-title">13. Modifying the Services and Termination</h1>
+		<div class="container">
+			<p class="common">We're relentlessly improving our Services and creating new ones all the time.That means we may add or remove features, products, or functionalities, and we may also suspend or stop the Services altogether.We may take any of these actions at any time, and when we do, we will try to notify you beforehand, but this won't always be possible.</p>
+			<p class="common">While we hope you remain a lifelong user, you can terminate these Terms at any time and for any reason by deleting your account.</p>
+			<p class="common">Guangzhou Baopinghui Network Technology Co., Ltd. may also terminate these Terms with you at any time, for any reason.And while we'll try to give you advance notice, we can't guarantee it.Our right to terminate these Terms means that we may stop providing you with any Services, or impose new or additional limits on your ability to use the Services.For example, we may deactivate your account due to prolonged inactivity, and we may reclaim your username at any time for any reason.</p>
+			<p class="common">Regardless of who terminates these Terms, both you and Guangzhou Baopinghui Network Technology Co., Ltd.  continue to be bound by Sections 3, 6, 9, 10, and 13-22 of the Terms.</p>
+		</div>
+		<h1 class="my-title">14. Indemnity</h1>
+		<div class="container">
+			<p class="common">You agree, to the extent permitted by law, to indemnify, defend, and hold harmless Guangzhou Baopinghui Network Technology Co., Ltd.  and our affiliates, directors, officers, stockholders, employees, licensors, and agents from and against any complaints, charges, claims, damages, losses, costs, liabilities, and expenses (including attorneys' fees) due to, arising out of, or relating in any way to: (a) your access to or use of the Services;(b) your content;and (c) your breach of these Terms.</p>
+		</div>
+		<h1 class="my-title">15. Disclaimers</h1>
+		<div class="container">
+			<p class="common">We try to keep the Services up and running and free of annoyances.But we make no promises that we will succeed.</p>
+			<p class="common">The Services are provided “as is” and “as available” and to the extent permitted by law without warranties of any kind, either express or implied, including, but not limited to, implied warranties, conditions, or other terms relating to merchantability, satisfactory quality, fitness for a particular purpose, title, quiet enjoyment, non-infringement, or arising from a course of dealing.In addition, while Guangzhou Baopinghui Network Technology Co., Ltd. attempts to provide a good user experience, we do not represent or warrant that: (a) the Services will always be secure, error-free, or timely;（(b) the Services will always function without delays, disruption, or imperfections;or (c) that any content or information you obtain through the Services will be timely or accurate.</p>
+			<p class="common">Guangzhou Baopinghui Network Technology Co., Ltd.  and their affiliates take no responsibility and assume no liability for any content that you, another user, or a third party creates, uploads, posts, sends, receives, or stores on or through our Services.You understand and agree that you may be exposed to content that might be offensive, illegal, misleading, or otherwise inappropriate, none of which Guangzhou Baopinghui Network Technology Co., Ltd. nor their affiliates will be responsible for.</p>
+		</div>
+		<h1 class="my-title">16. Limitation of Liability</h1>
+		<div class="container">
+			<p class="common">When permitted by law, Guangzhou Baopinghui Network Technology Co., Ltd.  and our affiliates, directors, officers, stockholders, employees, licensors, and agents, will not be liable for any indirect, incidental, special, consequential, punitive, or multiple damages, or any loss of profits or revenues, whether incurred directly or indirectly, or any loss of data, use, goodwill, or other intangible losses, resulting from: (a) your use of the Services or inability to use the Services;(b) your access to or inability to access the Services;(c) the conduct or content of other users or third parties on or through the Services;or (d) unauthorized access, use, or alteration of your content, even if Guangzhou Baopinghui Network Technology Co., Ltd. has been advised of the possibility of such damages.</p>
+			<div class="common">Some jurisdictions do not allow the exclusion or limitation of certain damages, so some or all of the exclusions and limitations in this section may not apply to you.</div>
+		</div>
+		<h1 class="my-title">17. Dispute Resolution, Arbitration</h1>
+		<div class="container">
+			<p class="common">If you have a concern, let's talk.Go ahead and contact us first and we'll do our best to resolve the issue.</p>
+			<p class="common">Some of our Services may have additional terms that contain dispute-resolution provisions unique to that Service or your residency.</p>
+			<p class="common">If you are using the Services on behalf of a business (rather than for your personal use), you and Guangzhou Baopinghui Network Technology Co., Ltd.  agree that to the extent permitted by law, all claims and disputes between us arising out of or relating to these Terms or the use of the Services will be finally settled under the LCIA Arbitration Rules , which are incorporated by reference into this clause.There will be one arbitrator (to be appointed by the LCIA), the arbitration will take place in GuangZzhou, and the arbitration will be conducted in Chinese.If you do not wish to agree to this clause, you must not use the Services.</p>
+		</div>
+		<h1 class="my-title">18. Exclusive Venue</h1>
+		<div class="container">
+			<p class="common">To the extent the parties are permitted under these Terms to initiate litigation in a court, both you and Guangzhou Baopinghui Network Technology Co., Ltd. agree that all claims and disputes (whether contractual or otherwise) arising out of or relating to the Terms or the use of the Services will be litigated exclusively in the courts in the China, unless this is prohibited by the laws of the country where you reside.You and Guangzhou Baopinghui Network Technology Co., Ltd. consent to the exclusive jurisdiction of those courts.</p>
+		</div>
+		<h1 class="my-title">19. Choice of Law</h1>
+		<div class="container">
+			<p class="common">The laws of China govern these Terms and any claims and disputes (whether contractual or otherwise) arising out of or relating to these Terms or their subject matter.The courts in some countries may not apply the laws of China to some disputes related to these Terms.If you reside in one of those countries, the laws of your home country may apply to those disputes.</p>
+		</div>
+		<h1 class="my-title">20. Severability</h1>
+		<div class="container">
+			<p class="common">If any provision of these Terms is found unenforceable, then that provision will be severed from these Terms and not affect the validity and enforceability of any remaining provisions.</p>
+		</div>
+		<h1 class="my-title">21. Additional Terms for Specific Services</h1>
+		<div class="container">
+			<p class="common">Given the breadth of our Services, we sometimes need to craft additional terms and conditions for specific Services.Those additional terms and conditions, which will be available with the relevant Services, then become part of your agreement with us if you use those Services.If any part of those additional terms and conditions conflicts with these Terms, the additional terms and conditions will prevail.</p>
+		</div>
+		<h1 class="my-title">22. Final Terms</h1>
+		<div class="container">
+			<p class="common">● These Terms (together with any additional terms applicable to specific Services you use) make up the entire agreement between you and Guangzhou Baopinghui Network Technology Co., Ltd. and supersede any prior agreements.<br>
+			● These Terms do not create or confer any third-party beneficiary rights.<br>
+			● If we do not enforce a provision in these Terms, it will not be considered a waiver.<br>
+			● We reserve all rights not expressly granted to you.<br>
+			● You may not transfer any of your rights or obligations under these Terms without our consent.</p>
+		</div>
+		<h1 class="my-title">Contact Us</h1>
+		<div class="container">
+			<p class="common">Guangzhou Baopinghui Network Technology Co., Ltd. welcomes comments, questions, concerns, or suggestions.</p>
+		</div>
+	</div>
+	<div class="zho-privacy" id="zho">
+		<h1 class="my-title">服務條款</h1>
+		<h1 class="my-title">歡迎！</h1>
+		<div class="container">
+			<p class="common">我們很高興您決定使用Tinkle和我們的其他產品和服務，我們所有這些都被稱為“服務”。</p>
+			<p class="common">我們已經草擬了這些服務條款（我們稱之為“條款”），以便您了解管理我們與您的關係的規則。儘管我們已盡力從條款中剝離法定代理人，但仍有一些這些條款仍然可以像傳統合同一樣被讀取。有一個很好的理由：這些條款確實構成了您與寶瓶匯網絡科技有限公司之間具有法律約束力的合約。所以請仔細閱讀。使用服務，即表示您同意本條款。當然，如果你不同意他們，那麼不要使用這些服務。</p>
+			<p class="common">仲裁通知：如果您在業務中使用服務，那麼您的業務將受到以下條款中的仲裁條款的約束。</p>
+		</div>
+		<h1 class="my-title">1. 誰可以使用服務</h1>
+		<div class="container">
+			<p class="common">不允許13歲以下的人創建帳戶或使用服務。我們可能會提供額外的服務，附加條款可能要求您更年長使用它們。所以請仔細閱讀所有條款。</p>
+			<p class="common">通過使用服務，您確認：</p>
+			<p class="common">● 您可以與寶瓶匯網絡科技有限公司形成具有約束力的合約。</p>
+			<p class="common">● 您將遵守這些條款和所有適用的地方，州，國家和國際法律，法規和法規。</p>
+			<p class="common">如果您代表企業或其他實體使用服務，您確認您有權授予本條款中規定的所有許可，並代表業務或實體同意本條款。</p>
+		</div>
+		<h1 class="my-title">2. 我們授予你的權利</h1>
+		<div class="container">
+			<p class="common">寶瓶匯網絡科技有限公司為您提供個人，全球免版稅，不可轉讓，非排他性，可撤銷和不可轉讓的許可證，以訪問和使用服務。本許可證的唯一目的是讓您以本條款和我們的使用政策（如我們的社區準則）允許的方式使用和享受服務的福利。</p>
+			<p class="common">我們提供的任何軟件可以自動下載並安裝升級，更新或其他新功能。您可以通過設備的設置調整這些自動下載。</p>
+			<p class="common">您不得複制，修改，分發，銷售或租賃我們服務的任何部分。除非法律禁止這些限制，或者您有我們的書面許可，否則您也不能反向工程或嘗試提取該軟件的源代碼。</p>
+		</div>
+		<h1 class="my-title">3. 你授予我們的權利</h1>
+		<div class="container">
+			<p class="common">我們的許多服務允許您創建，上傳，發布，發送，接收和存儲內容。當您這樣做時，您將保留對您必須開始的內容的所有權。但是您授予我們使用該內容的許可。許可證的廣泛程度取決於您使用的服務和您選擇的設置。</p>
+			<p class="common">對於除LIVE，LIFE和任何其他人力資源服務之外的所有服務，您可以向寶瓶匯網絡科技有限公司及其關聯公司授予全球免版稅，可再許可轉讓的許可證以託管，存儲，使用，顯示，只要您使用服務，即可複制，修改，修改，編輯，發布和分發該內容。該許可證的目的是為了開展，開發，提供，促進和改進服務，研究和開發新服務。</p>
+			<p class="common">因為LIVE，LIFE和任何其他大眾來源的服務本質上是公共和公眾利益的紀事，您授予我們提交給這些服務的內容的許可更廣泛。除了給予我們上一段所述的權利外，您還授予我們許可，可以從提交給LIVE，LIFE或任何其他方式的內容創建衍生作品，宣傳，展示，廣播，集合，再許可，公開演示和公開展示內容。任何形式和任何媒體或分發方式（現在已知或以後開發）的其他人群服務。在必要的範圍內，當您出現，創建，上傳，發布或發送LIVE，LIFE或其他人群來源的內容時，您還可以向寶瓶匯網絡科技有限公司以及我們的關聯公司和業務合作夥伴授予不受限制的，全球權利和許可使用您的名字，肖像和聲音。這意味著，如果您的姓名，肖像或聲音通過LIVE，LIFE或其他人群傳達，您將無權獲得寶瓶匯網絡科技有限公司或我們的關聯公司和業務合作夥伴的任何賠償。在Tinkle應用程序或我們的業務合作夥伴平台之間提供源服務。</p>
+			<p class="common">有關如何定制誰可以觀看您的內容的更多信息，請查看我們的隱私政策和支持網站。</p>
+			<p class="common">我們不需要這樣做，但是我們可以隨時訪問，查看，屏蔽和刪除您的內容，包括我們認為您的內容違反這些條款。所以，您需要保持對通過服務創建，上傳，發布，發送或存儲的內容負責。</p>
+			<p class="common">服務可能包含廣告。考慮到集團有限公司允許您訪問和使用服務，您同意我們，寶瓶匯網絡科技有限公司，我們的關聯公司和我們的第三方合作夥伴可以在服務上放置廣告，包括基於您提供給我們的信息的個性化廣告或我們收集或獲取關於你。由於服務包含您和其他用戶提供給我們的內容，因此有時可能會在您的內容附近刊登廣告。</p>
+			<p class="common">我們一直很樂意聽到用戶的意見。但是，如果您自願提供反饋或建議，只要知道我們可以在不補償的情況下使用您的想法。</p>
+		</div>
+		<h1 class="my-title">4. 其他內容</h1>
+		<div class="container">
+			<p class="common">我們服務中的大部分內容是由用戶，發行商和其他第三方生成的。無論該內容是公開發布還是私下發送，內容由提交的內容的個人或組織負責。雖然寶瓶匯網絡科技有限公司保留查看服務中出現的所有內容並刪除違反這些條款的任何內容的權利，但我們不一定會查看所有內容。因此，我們不能 - 也不負責對其他人通過服務提供的任何內容。</p>
+			<p class="common">通過這些條款和我們的社區準則，我們明確表示我們不希望該服務被用於不良用途。但是，由於我們不會檢查所有內容，我們不能保證服務中的內容始終符合我們的條款或準則。</p>
+		</div>
+		<h1 class="my-title">5. 隱私</h1>
+		<div class="container">
+			<p class="common">您的隱私對我們很重要。通過閱讀隱私政策，您可以了解您在使用我們的服務時如何處理您的信息。我們鼓勵您仔細閱讀隱私政策，因為使用我們的服務，您同意您的信息由在中國的寶瓶匯網絡科技有限公司及其附屬公司收集和處理，轉移到您居住的國家以外，包括與您所在國家可能沒有相同數據保護法的國家。</p>
+		</div>
+		<h1 class="my-title">6. 尊重其他人民的權利</h1>
+		<div class="container">
+			<p class="common">寶瓶匯網絡科技有限公司尊重他人的權利。你也應該這樣 因此，您不得以下列方式使用本服務：<br>
+			● 侵犯或侵犯他人的宣傳，隱私權，版權，商標或其他知識產權的權利。<br>
+			● 惡霸，騷擾或恐嚇。<br>
+			● 誹謗。<br>
+			● 垃圾郵件或索取我們的用戶。</p>
+			<p class="common">您還必須尊重寶瓶匯網絡科技有限公司及其附屬公司的權利。這些條款不授予您以下權利：<br>
+			● 使用我們服務中使用的品牌，標誌，設計，照片，視頻或任何其他材料。<br>
+			● 複製，存檔，下載，上傳，分發，聯合，廣播，執行，顯示，提供或以其他方式使用服務的任何部分或服務內容，除非本條款中規定。<br>
+			● 未經我們的同意，使用服務，服務提供的任何工具或服務中的任何內容，用於任何商業目的。<br>
+			簡而言之：您不得以未按本條款授權的方式使用服務或服務中的內容。你也不可以幫助別人這樣做。</p>
+		</div>
+		<h1 class="my-title">7. 尊重版權</h1>
+		<div class="container">
+			<p class="common">我們尊重版權法。因此，我們採取合理步驟，盡快將我們所知道的任何侵權材料從我們的服務中刪除。如果寶瓶匯網絡科技有限公司知道其中一個用戶已經多次侵犯版權，我們將在我們的權力下採取合理的步驟來終止用戶的帳戶。</p>
+			<p class="common">我們可以方便您舉報可疑的侵犯版權。如果您認為“服務”中的任何內容侵犯了您擁有或控制的版權，請填寫此表單。或者您可以向我們的指定代理人發送通知：</p>
+			<p class="common">寶瓶匯網絡科技有限公司<br>
+			Tom：版權代理<br>
+			電子郵件：qaz616672844@163.com</p>
+			<p class="common">如果您向我們的版權代理人發送通知，則必須：<br>
+			● 包含授權代表版權所有者行事的人的實際或電子簽名。<br>
+			● 確定聲稱侵權的受版權保護的作品。<br>
+			● 確定被聲稱是侵權的物品或被侵權的物品，被移除的物品，或被禁用的物品以及合理足夠讓我們找到物料的信息。<br>
+			● 提供您的聯繫信息，包括您的地址，電話號碼和電子郵件地址。<br>
+			● 提供個人陳述，表示您確信以投訴方式使用該材料未經版權所有者，其代理人或法律授權。<br>
+			● 提供聲明，通知中的信息是準確的，並且在偽證處罰的情況下，您有權代表版權所有者採取行動。</p>
+		</div>
+		<h1 class="my-title">8. 安全</h1>
+		<div class="container">
+			<p class="common">我們努力使我們的服務成為所有用戶的安全之地。但我們不能保證。這是你進來的地方。通過使用服務，您同意：<br>
+			● 您不會將本服務用於本條款中非法或禁止的任何目的。<br>
+			● 您不會使用任何機器人，蜘蛛，履帶，刮刀或其他自動化手段或界面來訪問服務或提取其他用戶的信息。<br>
+			● 未經書面許可，不得使用或開發與本服務或其他用戶內容或信息進行互動的第三方應用程序。<br>
+			● 您不會以可能干擾，破壞，不利影響或阻止其他用戶完全享受服務的方式使用服務，或者可能會損壞，禁用，覆蓋或損害服務的功能。<br>
+			● 未經許可，不得使用或嘗試使用其他用戶的帳戶，用戶名或密碼。<br>
+			● 您不會從其他用戶那裡申請登錄憑據。<br>
+			● 您不會發布包含色情內容，圖形暴力，威脅，仇恨言論或煽動暴力內容。<br>
+			● 您不會試圖規避我們使用的任何內容過濾技術，或嘗試訪問您無權訪問的服務的區域或功能。<br>
+			● 您不會探測，掃描或測試我們的服務或任何系統或網絡的漏洞。<br>
+			● 您不會鼓勵或宣傳任何違反這些條款的活動。<br>
+			我們也在使用我們的服務時關心您的安全。所以将让你分心违反交通或安全法规的方式的時候不要使用我们的服务。並且永遠不要把自己或其他人的傷害的方式只是為了拍照發佈。</p>
+		</div>
+		<h1 class="my-title">9. 你的賬戶</h1>
+		<div class="container">
+			<p class="common">您對您的Tinkle帳戶中發生的任何活動負責。所以重要的是保持您的帳戶安全。一種方法是選擇不用於任何其他帳戶的強密碼。<br>
+			通過使用服務，您同意，除了行使常識：<br>
+			● 您不會為自己創建多個帳戶。<br>
+			● 如果我們已經禁用了您的帳戶，您不會再創建另一個帳戶，除非您有我們的書面許可。<br>
+			● 未經我們的書面許可，您不會對Tinkle帳戶，LIVE，LIFE，Tinkle用戶名或朋友鏈接進行購買，出售或出租。<br>
+			● 您不會共享您的密碼。<br>
+			● 您不會登錄或嘗試通過未經授權的第三方應用程序或客戶端訪問服務。<br>
+			如果您認為有人可以訪問您的帳戶，請立即聯繫到Tinkle支持。</p>
+		</div>
+		<h1 class="my-title">10. 數據儲存服務</h1>
+		<div class="container">
+			<p class="common">在Tinkle裡面，所有已經發佈的LIVE和LIFE，在沒有用戶本人的刪除操作下，會一直儲存在服務器中。只要您登陸Tinkle應用就可以瀏覽歷史記錄。由於我們無法保證您的內容始終可用，所以建議您將重要的信息單獨保存。</p>
+			<p class="common">我們不承諾數據儲存服務將能夠滿足您的精確存儲需求。我們保留設置存儲限制的權利，我們可能會隨時自行更改這些限制。就像我們的其他服務一樣，您使用數據儲存服務可能會佔用您設備的空間，並可能招致移動數據費用。</p>
+		</div>
+		<h1 class="my-title">11. 數據收費和手機</h1>
+		<div class="container">
+			<p class="common">您負責使用我們的服務可能導致的任何移動費用，包括短信和數據費用。如果您不確定這些費用可能是什麼，您應該在使用服務之前詢問您的服務提供商。</p>
+			<p class="common">如果您更改或停用用於創建Tinkle帳戶的手機號碼，則必須在72小時內通過“設置”更新您的帳戶信息，以防止我們發送給您的其他用戶信息。</p>
+		</div>
+		<h1 class="my-title">12. 第三方服務</h1>
+		<div class="container">
+			<p class="common">如果您使用由第三方運營並通過我們的服務（包括我們與第三方共同提供的服務）提供的服務，功能或功能，則各方的條款將決定各方與您的關係。寶瓶匯網絡科技有限公司不對第三方根據第三方條款採取的條款或行為負責或承擔責任。</p>
+		</div>
+		<h1 class="my-title">13. 修改服務和終止</h1>
+		<div class="container">
+			<p class="common">我們一直在不斷改進服務，創造新的服務。這意味著我們可以添加或刪除功能，產品或功能，我們也可能會暫停或停止服務。我們可以隨時採取任何這些行動，當我們這樣做時，我們會盡快通知您，但這並不總是可能的。</p>
+			<p class="common">雖然我們希望您仍然是終身的用戶，但您可以隨時終止這些條款，並且出於任何原因刪除您的帳戶。</p>
+			<p class="common">由於任何原因，寶瓶匯網絡科技有限公司也可能隨時終止本條款。而我們會盡量給您提前通知，我們不能保證。我們終止這些條款的權利意味著我們可能會停止向您提供任何服務，或對您使用服務的能力施加新的或附加的限制。例如，由於長時間不活動，我們可能會停用您的帳戶，我們可能會因任何原因隨時收回您的用戶名。</p>
+			<p class="common">無論誰終止這些條款，您和寶瓶匯網絡科技有限公司都將繼續受條款第3,6,9,10和13-22條的約束。</p>
+		</div>
+		<h1 class="my-title">14. 賠償</h1>
+		<div class="container">
+			<p class="common">您同意，在法律允許的範圍內，寶瓶匯網絡科技有限公司及其關聯公司，董事，高級職員，股東，員工，許可人和代理人對任何投訴，收費，索賠，損害賠償，損失，費用，責任和費用（包括律師費），由於以下任何方式產生或相關：（a）您訪問或使用服務; （b）你的內容; 和（c）您違反這些條款。</p>
+		</div>
+		<h1 class="my-title">15. 免責聲明</h1>
+		<div class="container">
+			<p class="common">我們盡量保持服務的正常運行，免受煩惱。但我們沒有作出承諾，我們將會成功。</p>
+			<p class="common">服務按“原樣”和“可用”提供，在法律允許的範圍內，不提供任何明示或默示的保證，包括但不限於隱含的保證，條件或與適銷性相關的其他條款，滿意的質量，適用於特定目的，所有權，安靜享受，不侵權或由交易過程中產生。此外，寶瓶匯網絡科技有限公司盡力提供良好的用戶體驗，但我們並不代表或保證：（a）本服務始終是安全，無錯誤或及時的; （b）服務將始終運作，沒有延誤，中斷或不完善; 或（c）您通過服務獲得的任何內容或信息將是及時或準確的。</p>
+			<p class="common">寶瓶匯網絡科技有限公司及其附屬公司對您，其他用戶或第三方在本服務上或通過我們的服務創建，上傳，發布，發送，接收或存儲的任何內容不承擔任何責任。您理解並同意您可能會接觸到可能具有冒犯性，非法性，誤導性或其他不當之處的內容，寶瓶匯網絡科技有限公司及其關聯公司均不對其負責。</p>
+		</div>
+		<h1 class="my-title">16. 責任限制</h1>
+		<div class="container">
+			<p class="common">寶瓶匯網絡科技有限公司以及我們的關聯公司，董事，高級職員，股東，員工，許可人和代理人在法律允許的情況下，不會對任何間接的，偶然的，特殊的，相應的懲罰性或多重損害承擔責任，或直接或間接產生的任何利潤或收入損失，或由於以下原因導致的任何數據，使用，商譽或其他無形損失的損失：（a）您使用服務或無法使用服務; （b）您訪問或無法訪問服務; （c）通過或通過服務的其他用戶或第三方的行為或內容; 或（d）未經授權擅自訪問，使用或更改您的內容，即使寶瓶匯網絡科技有限公司被告知有可能發生此類損失。</p>
+			<div class="common">某些司法管轄區不允許排除或限制某些損害賠償，因此本節中的部分或全部排除和限制可能不適用於您。</div>
+		</div>
+		<h1 class="my-title">17. 爭議解決，仲裁</h1>
+		<div class="container">
+			<p class="common">如果你有個擔心，我們來談談。來吧，第一時間與我們聯繫，我們將盡最大努力解決這個問題。</p>
+			<p class="common">我們的一些服務可能有其他條款，包含該服務或您的居住地區特有的爭議解決條款。<br></p>
+			<p class="common">如果您代表業務使用服務（而不是為您的個人使用），您和寶瓶匯網絡科技有限公司同意，在法律允許的範圍內，我們之間產生或與本條款有關的所有索賠和爭議或使用服務將根據LCIA仲裁規則終止解決，該仲裁規則通過引用併入本條款。將有一名仲裁員（由LCIA任命），仲裁將在廣州進行，仲裁將以中文進行。如果您不希望同意本條款，則不得使用本服務。</p>
+		</div>
+		<h1 class="my-title">18. 獨家場地</h1>
+		<div class="container">
+			<p class="common">如果根據本條款允許雙方在法庭上提起訴訟，您和寶瓶匯網絡科技有限公司均同意，由本條款或與本服務使用相關的所有索賠和爭議（無論是合同的或其他原因）將由只能在中國的法院進行訴訟，除非這是您居住國家的法律所禁止的。您和寶瓶匯網絡科技有限公司同意這些法院的專屬管轄權。</p>
+		</div>
+		<h1 class="my-title">19. 選擇法律</h1>
+		<div class="container">
+			<p class="common">中國的法律管轄這些條款以及由本條款或其相關主題產生或與之有關的任何索賠和爭議（無論是合同或其他）。一些國家的法院可能不適用中國的法律與這些條款有關的一些爭議。如果你居住在這些國家之一，你所在的國家的法律可能適用於這些爭端。</p>
+		</div>
+		<h1 class="my-title">20. 可分割性</h1>
+		<div class="container">
+			<p class="common">如果這些條款的任何條款被發現不可執行，則該條款將被從這些條款中分離出來，而不影響任何剩餘條款的有效性和可執行性。</p>
+		</div>
+		<h1 class="my-title">21. 特定服務的附加條款</h1>
+		<div class="container">
+			<p class="common">鑑於我們服務的廣度，我們有時需要製定特定服務的附加條款和條件。如果您使用這些服務，這些附加條款和條件將與相關服務一起提供，然後成為與我們達成協議的一部分。如果這些附加條款和條件的任何部分與本條款相衝突，將以附加條款和條件為準。</p>
+		</div>
+		<h1 class="my-title">22. 最終條款</h1>
+		<div class="container">
+			<p class="common">● 這些條款（以及適用於您使用的特定服務的任何附加條款）構成您與寶瓶匯網絡科技有限公司之間的完整協議，並取代任何先前的協議。<br>
+			● 這些條款不會創建或賦予任何第三方受益權。<br>
+			● 如果我們不執行這些條款中的條款，也不會被視為放棄。<br>
+			● 我們保留最終解釋權。<br>
+			● 未經我們的同意，您不得轉讓本條款下的任何權利或義務。</p>
+		</div>
+		<h1 class="my-title">聯繫我們</h1>
+		<div class="container">
+			<p class="common">寶瓶匯網絡科技有限公司歡迎您的意見，問題，疑慮或建議。</p>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var hhh = window.screen.height,
+			www = window.screen.width;
+		var headerH = '65px';
+		apiready = function(){
+			// 刘海屏适配
+			if(hhh/www > 2){
+				$api.css($api.dom('.eng-privacy'), 'border-top:89px solid #efefef;');
+				$api.css($api.dom('.zho-privacy'), 'border-top:89px solid #efefef;');
+				headerH = 89+'px';
+				$api.css($api.dom('.bg'), 'height:94px');
+			}
+			api.addEventListener({
+				name: 'swiperight'
+			}, function() {
+				api.closeWin({
+					animation: {
+						type: "push", //动画类型（详见动画类型常量）
+						subType: "from_left", //动画子类型（详见动画子类型常量）
+						duration: 300 //动画过渡时间，默认300毫秒
+					}
+				});
+			});
+			api.openFrame({
+				name: "header",
+				url: "widget://html/nav/header.html",
+				rect: {
+					x: 0,
+					y: 0,
+					w: "auto",
+					h: headerH 
+				},
+				pageParam: {
+					onlyLeft: true
+				}
+			});
+			var language = $api.getStorage("language"),
+				chinese = $api.dom("#zho"),
+				english = $api.dom("#eng");
+			if(language == "zho"){
+				$api.css(english, "display:none");
+				$api.css(chinese, "display:block");
+			};
+		};	
+	</script>
+</body>
+</html>

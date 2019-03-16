@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>选择国家/城市</title>
+  <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+  <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+  <style type="text/css">
+  html{
+    background: #EFEFEF;
+  }
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    a{
+      color:#0076FF;
+    }
+    #wrap{
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      background: #EFEFEF;
+    }
+    .zhuangtailan{
+      position: fixed;
+      top:0;
+      width: 100vw;
+      height:25px;
+      background-color: #fff;
+      z-index: 20;
+    }
+    .top{
+      position: fixed;
+      top: 0;
+      /*margin-top:25px;*/
+      height: 65px;
+      width: 100%;
+      background: white;
+      text-align: center;
+      letter-spacing: 4px;
+      font-weight: bold;
+      line-height: 87px;
+      font-size:15px;
+      font-weight: bold;
+      z-index: 20;
+      box-shadow: 0px 1px 0px #efefef;
+    }
+    .top img{
+      position: absolute;
+      top: 28px;
+      left: 10px;
+      height: 30px;
+      width: 30px;
+    }
+    .contnet{
+      height: 100%;
+      width: 100%;
+    }
+    #middle{
+      position: absolute;
+      top: 65px;
+      width: 100%;
+      /*height: 100%;*/
+      margin: 0 auto;;
+      /*text-align: center;*/
+      background: #EFEFEF;
+      z-index: 0;
+    }
+    /*#middle tr{
+      height: 50px;
+    }*/
+    button[type=submit]{
+      /*position: relative;*/
+      height: 50px;
+      width: 100%;
+      background: white: ;
+      /*border-radius: 35px;*/
+      outline: none;
+      font-weight: bold;
+      /*letter-spacing: 3px;*/
+      text-align: left;
+      text-indent: 20px;
+      background: white;
+      color: black;
+      margin-top: 5px;
+    }
+    button:active{
+      opacity: 0.5;
+    }
+    .jiantou{
+      /*float: right;*/
+      /*position: relative;
+      top: 3px;*/
+      height: 17px;
+      width: 16px;
+      float: right;
+      margin-right:17px;
+    }
+  </style>
+</head>
+<body>
+    <div id="wrap">
+      <div id="rgb"></div>
+      <div class="zhuangtailan"></div>
+      <div class="top"><p class="hel">AREA CODE</p>
+          <img  src="../../icon/left.png" class="back">
+      </div>
+      <div class="content city">
+              <table id="middle">
+                <tr>
+                  <td><button type="submit" onclick="choose('中國 CN',86)">中國 CN +86<img class="jiantou" src="../../icon/jiantou.png"></button></td>
+                </tr>
+                <tr>
+                  <td><button type="submit" onclick="choose('澳門 MO',853)">澳門 MO +853<img class="jiantou" src="../../icon/jiantou.png"></button></td>
+                </tr>
+                <tr>
+                  <td><button type="submit" onclick="choose('香港 HK',852)">香港 HK +852<img class="jiantou" src="../../icon/jiantou.png"></button></td>
+                </tr>
+                <tr>
+                  <td><button type="submit" onclick="choose('Danmark DK',45)">Danmark DK +45<img class="jiantou" src="../../icon/jiantou.png"></button></td>
+                </tr>
+                <tr>
+                  <td><button type="submit" onclick="choose('Россия RU',7)">Россия RU +7<img class="jiantou" src="../../icon/jiantou.png"></button></td>
+                </tr>
+                <tr>
+                  <td><button type="submit" onclick="choose('Canada CA',1)">Canada CA +1<img class="jiantou" src="../../icon/jiantou.png"></button></td>
+                </tr>
+                <tr>
+                  <td><button type="submit" onclick="choose('북한 KP',850)">북한 KP +850<img class="jiantou" src="../../icon/jiantou.png"></button></td>
+                </tr>
+                <tr>
+                  <td><button type="submit" onclick="choose('대한민국 KR',82)">대한민국 KR +82<img class="jiantou" src="../../icon/jiantou.png"></button></td>
+                </tr>
+                <tr>
+                  <td><button type="submit" onclick="choose('Indonesia ID',62)">Indonesia ID +62<img class="jiantou" src="../../icon/jiantou.png"></button></td>
+                </tr>
+                <tr>
+                  <td><button type="submit" onclick="choose('India IN',91)">India IN +91<img class="jiantou" src="../../icon/jiantou.png"></button></td>
+                </tr>
+                <tr>
+                  <td><button type="submit" onclick="choose('台灣 TW',886)">台灣 TW +886<img class="jiantou" src="../../icon/jiantou.png"></button></td>
+                </tr>
+                <tr>
+                  <td><button type="submit" onclick="choose('Deutschland DE',49)">Deutschland DE +49<img class="jiantou" src="../../icon/jiantou.png"></button></td>
+                </tr>
+                <tr>
+                  <td><button type="submit" onclick="choose('日本 JP',81)">日本 JP +81<img class="jiantou" src="../../icon/jiantou.png"></button></td>
+                </tr>
+                <tr>
+                  <td><button type="submit" onclick="choose('France FR',33)">France FR +33<img class="jiantou" src="../../icon/jiantou.png"></button></td>
+                </tr>
+                <tr>
+                  <td><button type="submit" onclick="choose('Australia AU',61)">Australia AU +61<img class="jiantou" src="../../icon/jiantou.png"></button></td>
+                </tr>
+                <tr>
+                  <td><button type="submit" onclick="choose('England GB',44)">England GB +44<img class="jiantou" src="../../icon/jiantou.png"></button></td>
+                </tr>
+                <tr>
+                  <td><button type="submit" onclick="choose('Việt Nam VN',84)">Việt Nam VN +84<img class="jiantou" src="../../icon/jiantou.png"></button></td>
+                </tr>
+                <tr>
+                  <td><button type="submit" onclick="choose('USA US',1)">USA US +1<img class="jiantou" src="../../icon/jiantou.png"></button></td>
+                </tr>
+                <tr>
+                  <td><button type="submit" onclick="choose('Colombia CO',57)">Colombia CO +57<img class="jiantou" src="../../icon/jiantou.png"></button></td>
+                </tr>
+                <tr>
+                  <td><button type="submit" onclick="choose('Republik Indonesia RI',62)">Republik Indonesia RI +62<img class="jiantou" src="../../icon/jiantou.png"></button></td>
+                </tr>
+                <tr>
+                  <td><button type="submit" onclick="choose('Repubblica Italiana RI',39)">Repubblica Italiana RI +39<img class="jiantou" src="../../icon/jiantou.png"></button></td>
+                </tr>
+              </table>
+     </div>
+     <div class="content type" style="display:none;">
+             <table id="middle">
+               <tr>
+                 <td><button type="submit" onclick="choose2('閑 聊','gossip')"><span class="type1">閑 聊</span><img class="jiantou" src="../../icon/jiantou.png"></button></td>
+               </tr>
+               <tr>
+                 <td><button type="submit" onclick="choose2('動 漫','anime')"><span class="type2">動 漫</span><img class="jiantou" src="../../icon/jiantou.png"></button></td>
+               </tr>
+               <tr>
+                 <td><button type="submit" onclick="choose2('電 影','movie')"><span class="type3">電 影</span><img class="jiantou" src="../../icon/jiantou.png"></button></td>
+               </tr>
+               <tr>
+                 <td><button type="submit" onclick="choose2('音 樂','music')"><span class="type4">音 樂</span><img class="jiantou" src="../../icon/jiantou.png"></button></td>
+               </tr>
+               <tr>
+                 <td><button type="submit" onclick="choose2('遊 戲','game')"><span class="type5">遊 戲</span><img class="jiantou" src="../../icon/jiantou.png"></button></td>
+               </tr>
+             </table>
+    </div>
+   </div>
+</body>
+</html>
+<script type="text/javascript" src="../../script/jquery-3.1.0.min.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script>
+
+//关闭Frame
+function back(){
+api.sendEvent({
+    name: 'closeChoice_city'
+});
+}
+
+function choose(data,num,type){
+api.sendEvent({
+    name: 'choose',
+     extra: {
+        data: data,
+        num: num,
+        type: type
+    }
+});
+back();
+}
+function choose2(data,type){
+api.sendEvent({
+    name: 'choose',
+     extra: {
+        data: data,
+        type: type
+    }
+});
+back();
+}
+var hhh = window.screen.height;
+var www = window.screen.width;
+apiready=function(){
+  var type = api.pageParam['type'];
+  if(hhh/www>2){
+    $api.css($api.dom('.top'), 'top:25px');
+    $api.css($api.dom('#middle'), 'top:90px');
+  }
+  if(type=='city'){ //表示从register_mobile页面打开的
+  if($api.getStorage("language") == "zho") {
+      $api.text($api.dom(".hel"),"選 擇 地 區");
+    }
+  }else if(type=='groupType'){  //表示从groupcreate页面打开的
+    $('.city').css('display','none');
+    $('.type').css('display','block');
+    if($api.getStorage("language") == "zho") {
+        $api.text($api.dom(".hel"),"選 擇 類 型");
+      }else{
+        $api.text($api.dom(".hel"),"CHOOSE TYPE");
+        $api.text($api.dom(".type1"),"gossip");
+        $api.text($api.dom(".type2"),"anime");
+        $api.text($api.dom(".type3"),"movie");
+        $api.text($api.dom(".type4"),"music");
+        $api.text($api.dom(".type5"),"game");
+      }
+  }
+  //点击返回按钮关闭页面
+  $('.back').click(function(){
+     api.closeWin({
+         name: 'choice_city'
+     });
+
+  })
+//右划关闭.
+api.addEventListener({
+  name:'swiperight'
+}, function(ret, err){
+api.closeWin({
+    name: 'choice_city'
+});
+
+
+});
+}
+</script>

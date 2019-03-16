@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+	<title>abroad_share</title>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+		}
+		header{
+			position: fixed;
+			top:0;
+			width:100vw;
+			height:17.29vw;
+			z-index: 1;
+			background-color:#fff;
+			border:1px solid #efefef;
+		}
+		.header-content{
+			position: absolute;
+			bottom:0;
+			width:100%;
+			height:11.97vw;
+			font:3.99vw/11.97vw Arial;
+			font-weight: bold;
+			text-align: center;
+		}
+		header>.return{
+			position: absolute;
+			bottom:1.86vw;
+			left:2.66vw;
+			width:7.98vw;
+			height:7.98vw;
+			background:url(../../icon/search/toright.png) no-repeat center;
+			background-size:cover;
+			transform: rotate(180deg);
+			z-index: 99;
+		}
+		.box{
+			width:89.36vw;
+			height:auto;
+			margin:22.07vw auto 0;
+			box-shadow:0 0 10px 3px rgba(170,170,170,0.3);
+			border-radius: 2.66vw;
+			overflow: hidden;
+		}
+		.img{
+			position: relative;
+			width:100%;
+		}
+		.img>#shareimg{
+			/*position: absolute;*/
+			width:100%;
+			object-fit: cover;
+			z-index: 10;
+		}
+		.avatar{
+			position: absolute;
+			top:16.5vw;
+			left:50%;
+			margin-left:-16.5vw;
+			width:33vw;
+			height:33vw;
+			/*border-radius: 50%;*/
+			/*background-color:#efefef;*/
+			z-index: -1;
+			object-fit: cover;
+		}
+		.nickname{
+			position: absolute;
+			top:51.5vw;
+			left:0vw;
+			width:100%;
+			height:10.52vw;
+			font:6.79vw/5.52vw Arial;
+			font-weight: bold;
+			color:#fff422;
+			text-align: center;
+			z-index: 11;
+		}
+		.text{
+			width:100%;
+			padding:2.66vw 5.32vw 4vw;
+			box-sizing: border-box;
+			font:3.19vw/4.52vw Arial;
+			font-weight: bold;
+			margin-top:10px;
+/*			display: -webkit-box;
+            -webkit-line-clamp: 7;
+            -webkit-box-orient: vertical;
+            overflow: hidden;*/
+		}
+		.text>span{
+			vertical-align:top;
+			font:3.19vw/4.52vw Arial;
+			font-weight: bold;
+			display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+		}
+		.button{
+			margin: 9.31vw auto 2.66vw;
+			width:66.49vw;
+			height:10.64vw;
+			background-color:#c42d8e;
+			border-radius: 7.98vw;
+			font:3.72vw/10.64vw Arial;
+			font-weight: bold;
+			color:#fff;
+			text-align: center;
+		}
+		.tips{
+			width:100vw;
+			font:3.19vw/4.52vw Arial;
+			font-weight: bold;
+			text-align: center;
+			margin-bottom:6vw;
+			visibility: hidden;
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<div class="return" onclick="closewin()"></div>
+		<div class="header-content">S H A R E</div>
+	</header>
+	<div class="box">
+		<div class="jieping"><div class="img"><img src="../../icon/iloveimg-compressed/shareimg1.png" alt="" id="shareimg"><img src="" alt="" class="avatar" id="avatar"><div class="nickname">ID:</div></div></div>
+		
+		<div class="text">Hi!! My tinkle account is XXX.<br>I am No.1 personality. <br>What about you?<br>Do you want to meet your soulmate?<br>Click this link and find your perfect lover!!!<br><span>http://parttime.baopinghui.com/chat/bin/numerology(share)/html/cover.html?ID=</span></div>
+	</div>
+	<div class="button">C O P Y</div>
+	<div class="tips">Image saved to phone</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="../../script/html2canvas.min.js"></script>
+<script src="https://cdn.bootcss.com/dom-to-image/2.6.0/dom-to-image.min.js"></script>
+<script type="text/javascript" src="../../script/FileSaver.min.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript">
+	apiready = function(){
+		api.addEventListener({
+				name: 'swiperight'
+			}, function() {
+				api.closeWin({
+					animation: {
+						type: "push", //动画类型（详见动画类型常量）
+						subType: "from_left", //动画子类型（详见动画子类型常量）
+						duration: 300 //动画过渡时间，默认300毫秒
+					}
+				});
+			});//右滑关闭win
+	    var numerology_number = api.pageParam['numerology_number'],
+	    	nickname = api.pageParam['nickname'],
+	    	avatarpath = api.pageParam['avatarpath'];
+	    var shareimg = document.getElementById('shareimg');
+	    var imgpath = api.cacheDir + "/pic/";
+	    var imgname= nickname + numerology_number + '.png';
+	    shareimg.setAttribute('src','../../icon/iloveimg-compressed/shareimg'+numerology_number+'.png');
+	    // 给分享图片定义高度
+		var heightt = $('#shareimg').height()-10;
+		$api.css($api.dom('.jieping'), 'height:'+heightt+'px;');
+	    var avatar = document.getElementById('avatar');
+	    avatar.setAttribute('src',avatarpath);
+	    // $api.css($api.dom('.avatar'), 'background:url('+avatarpath+'?imageView2/0/w/800) no-repeat center;background-size:cover;');
+	    $api.html($api.dom('.nickname'), 'ID:'+nickname);
+	    $api.html($api.dom('.text'), 'Hi!! My tinkle account is '+nickname+'.<br>I am No.'+ numerology_number +' personality. <br>What about you?<br>Do you want to meet your soulmate?<br>Click this link and find your perfect lover!!!<br><span>http://parttime.baopinghui.com/chat/bin/numerology(share)foreign/html/emailregister.html?ID='+$api.getStorage('id'))+'</span>';
+	    $api.addEvt($api.dom('.button'), 'click',function(){
+	    if(api.systemType=='ios'){
+	    	$api.css($api.dom('.button'), 'background-color:#aaa');
+	    	$api.html($api.dom('.button'), 'C O P I E D');
+	    	$api.css($api.dom('.tips'), 'visibility:visible;');
+	    	html2canvas($('.jieping')[0]).then(canvas => {
+			   	var imgUri = canvas.toDataURL();
+				console.log('截屏成功');
+				// 调用base64转图片模块
+				var trans = api.require('trans');
+				trans.saveImage({
+					base64Str:imgUri.replace('data:image/png;base64,', ''),
+					imgPath:imgpath,
+					imgName:imgname,
+					album:true
+				}, function(ret, err) {
+		    		if (ret.status) {
+	    			//将截屏保存
+			        	console.log('截屏保存成功');
+		    		} else {
+	        			console.log(JSON.stringify(err));
+	    			}
+				});
+			});
+
+	    	// 文本复制
+	    	var clipBoard = api.require('clipBoard');
+			clipBoard.set({
+			    // value: $api.html($api.dom('.text')).replace(/<br>/g,'').replace(/<span>/g,'').replace(/<\/span>/g,'')
+			    value:'Hi!! My Tinkle account is '+nickname+'.【I am No.'+ numerology_number +' personality. 】【What about you? Do you want to meet your soulmate?】 Click this link and find your perfect lover!!!http://parttime.baopinghui.com/chat/bin/numerology(share)foreign/html/emailregister.html?ID='+$api.getStorage("id")
+
+			}, function(ret, err) {
+			    if (ret) {
+			        api.toast({
+					        msg: 'Copy success!',
+					        duration: 1000,
+					        location: 'middle'
+					    });
+			    } else {
+			        console.log(JSON.stringify(err));
+			    }
+			});
+		}else{
+			//安卓申请访问资源的权限
+	        api.requestPermission({
+	            list: ["storage"],
+	        }, function(ret, err) {
+	            if(ret.list[0].granted){
+	            	$api.css($api.dom('.button'), 'background-color:#aaa');
+	    	$api.html($api.dom('.button'), 'C O P I E D');
+	    	$api.css($api.dom('.tips'), 'visibility:visible;');
+	    	html2canvas($('.jieping')[0]).then(canvas => {
+			   	var imgUri = canvas.toDataURL();
+				console.log('截屏成功');
+				// 调用base64转图片模块
+				var trans = api.require('trans');
+				trans.saveImage({
+					base64Str:imgUri.replace('data:image/png;base64,', ''),
+					imgPath:imgpath,
+					imgName:imgname,
+					album:true
+				}, function(ret, err) {
+		    		if (ret.status) {
+	    			//将截屏保存
+	    				console.log(imgpath+imgname);
+			        	console.log('截屏保存成功');
+		    		} else {
+	        			console.log(JSON.stringify(err));
+	    			}
+				});
+			});
+	    	// 文本复制
+	    	var clipBoard = api.require('clipBoard');
+			clipBoard.set({
+			    // value: $api.html($api.dom('.text')).replace(/<br>/g,'').replace(/<span>/g,'').replace(/<\/span>/g,'')
+			    value:'Hi!! My Tinkle account is '+nickname+'.【I am No.'+ numerology_number +' personality. 】【What about you? Do you want to meet your soulmate?】 Click this link and find your perfect lover!!!http://parttime.baopinghui.com/chat/bin/numerology(share)foreign/html/emailregister.html?ID='+$api.getStorage("id")
+			}, function(ret, err) {
+			    if (ret) {
+			        api.toast({
+					        msg: 'Copy success!',
+					        duration: 1000,
+					        location: 'middle'
+					    });
+			    } else {
+			        console.log(JSON.stringify(err));
+			    }
+			});
+	            }
+	        })
+		}
+	    });
+	}
+function closewin(){
+	api.closeWin();
+}
+</script>
+</html>

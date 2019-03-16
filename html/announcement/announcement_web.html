@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<title>announcement_web</title>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+		}
+		header{
+			position: fixed;
+			top:0;
+			width: 100vw;
+			height:auto;
+			background-color:#fff;
+			border-bottom:1px solid #efefef;
+		}
+		.zhuangtailan{
+			width: 100vw;
+			height:20px;
+		}
+		.header-content{
+			width: 100vw;
+			height:11.97vw;
+			position: relative;
+		}
+		.return{
+			position: absolute;
+			left:2.66vw;
+			top:1.995vw;
+			width:7.98vw;
+			height:7.98vw;
+			background: url(../../image/icon-back@3x2.png);
+			background-size:cover;
+		}
+		.more{
+			position: absolute;
+			right:2.66vw;
+			top:1.995vw;
+			width:7.98vw;
+			height:7.98vw;
+			background: url(../../image/more.png);
+			background-size:cover;
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<div class="zhuangtailan"></div>
+		<div class="header-content">
+			<div class="return"></div>
+			<div class="more"></div>
+		</div>
+	</header>
+	<div class="content"></div>
+<script type="text/javascript">
+	var hhh =window.screen.height;
+   	var www =window.screen.width;
+   	var framey=65;
+   	apiready = function(){
+   	    if(hhh/www > 2){
+   	    	$api.css($api.dom('.zhuangtailan'), 'height:44px;');
+   	    	framey=89;
+   	    }
+   	    $api.addEvt($api.dom('.return'), 'click',function(){
+   	    	api.closeWin();
+   	    });
+   	    // 右滑关闭页面
+   	    api.addEventListener({
+   	        name: 'swiperight'
+   	    }, function() {
+   	    	api.closeWin();
+   	    });
+   	    var url = api.pageParam["url"];
+   	    api.openFrame({
+   	        name: 'web',
+   	        url: 'widget://html/announcement/web.html',
+   	        rect: {
+   	            x: 0,
+   	            y: framey+'px',
+   	            w: 'auto',
+   	            h: 'auto'
+   	        },
+   	        pageParam: {
+   	            url: url
+   	        }
+   	    });
+   	}
+   	    
+</script>
+</body>
+</html>

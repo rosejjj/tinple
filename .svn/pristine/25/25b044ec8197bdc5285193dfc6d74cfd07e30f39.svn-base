@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>登录页</title>
+<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<link rel="stylesheet" type="text/css" href="../css/api.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/aui2.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/alert.css" />
+<style>
+		    html,body{
+		    	margin:0;
+		    	padding:0;
+		    	width : 100%;
+		    	text-align:center;
+		    }
+			header {
+				width: 61.3333vw;
+				height: 55.7777vw;
+				background: url(../../img/tinklelogo3.png)no-repeat center center;
+				background-size: contain;
+				margin:18.2222vw 19.3333vw 5.2222vw 19.3333vw;
+				z-index: 3;
+			}
+			/*p{
+				display:inline-block;
+				width: 80vw;
+				color: #ffffff;
+				height:4vw;
+				line-height:5vw;
+				font-size: 12px;
+				font-weight:bold;
+				text-shadow: 0 0 1px #484848;
+				margin:5vw auto;
+				text-align: center;
+				opacity: 0.8;
+			}*/
+			input{border:0;outline:none;/*去除蓝色边框*/}
+			button{outline:none;/*去除蓝色边框*/}
+
+		    .bg{
+			    position:fixed;
+			    left:0;
+			    top:0;
+		    	width:100%;
+		    	height:100%;
+		    	margin:0;
+		    	padding:0;
+		    	background:url(../../img/bg.gif);
+		    	background-size:cover;
+		    	z-index: -9999;
+		    	/*object-fit: cover;*/
+		    }
+			/*遮罩层*/
+			.mask {
+				width: 100%;
+				height: 100%;
+				background-color: rgba(0,0,0,0.9);
+				/*opacity: 0.2;*/
+				position: fixed;
+				left: 0;
+				top: 0;
+				z-index: 999;
+				display:none;
+			}
+
+
+		/*登录*/
+			.login .login-con {
+				color: #fff;
+				font-size: 3.888888vw;
+				height: 11.111111vw;
+				width: 84vw;
+				padding: 0 5vw 0 0;
+				margin:auto;
+				border-radius: 8.3333vw;
+				background-color: rgba(239, 239, 239, 0.4);
+				text-align:center;
+				text-indent: 5.5555vw;
+				text-shadow: 0 0 2px #222222;
+				font-weight: bold;
+				border-width: 0;
+				box-shadow: 0 1px 2px rgba(0, 0, 0, 0.18), 0 2px 2px rgba(0, 0, 0, 0.25);
+			}
+
+			.login .login-con::-webkit-input-placeholder {
+				color: #fff;
+				font-size: 4.1666666vw;
+				font-weight: bold;
+				text-shadow: 0 0 2px #222222;
+				text-indent: 5.5555vw !important;
+				opacity: .5;
+			}
+
+			.login .user {
+				margin-bottom: 0;
+			}
+
+			.login .psw {
+				margin-top: 5.555555vw;
+			}
+			.text{
+				display:inline-block;
+				width: 80vw;
+				color: #ffffff;
+				height:4vw;
+				line-height:5vw;
+				font-size: 12px;
+				font-weight:bold;
+				text-shadow: 0 0 1px #484848;
+				margin:5vw auto;
+				text-align: center;
+				opacity: 0.8;
+			}
+
+			/*登录按钮*/
+			.signin {
+				height: 11.111111vw;
+				line-height: 10.111111vw;
+				width: 83.3333vw;
+				color: #ffffff;
+				font-size: 4vw;
+				font-weight: bold;
+				padding: 0 5vw 0 0;
+				position: relative;
+				text-align: center;
+				text-indent: 5.5555vw;
+				/*text-shadow: 0 0 2px #222222;*/
+				white-space: pre;
+				border-radius: 13.8888vw;
+				box-shadow: 0 1px 2px rgba(0, 0, 0, 0.18), 0 2px 2px rgba(0, 0, 0, 0.25);
+				/*background-color:#FF808A;*/
+				 background: linear-gradient(to right, #d9afd9 0%,#97d9e1 100%);
+			}
+			.top{
+				display:inline-block;
+				background: rgba(239,239,239,.6);
+				width:30vw;
+				height:3px;
+				border-radius: 3px;
+				overflow: hidden;
+				margin:0 0 0 0;
+			}
+			.Otherlogins{
+				text-align:center;
+				width:100%;
+				height:12vw;
+				margin:3vw 0;
+				overflow: hidden;
+			}
+			.logon{
+				display:inline-block;
+				width:12vw;
+				height:12vw;
+				margin:0 0.8vw;
+				border-radius: 12vw;
+				background-color:#999;
+			}
+			.fb{
+				background:url(../../icon/logon-page/f-hollow.png);
+				background-size:cover;
+			}
+			.wx{
+				background:url(../../icon/logon-page/wx-hollow.png);
+				background-size:cover;
+			}
+			.qq{
+				background:url(../../icon/logon-page/Q-hollow.png);
+				background-size:cover;
+			}
+			/*语言选择框*/
+			.language_box{
+				position: fixed;
+				left:50%;
+				top:50%;
+				width:314px;
+				height:314px;
+				margin:-157px 0 0 -157px;
+				text-align:center;
+				border-radius: 30px;
+				background-color:#FFF;
+				z-index: 1000;
+				display:none;
+			}
+			.language_box .language_text{
+				width:200px;
+				height:52px;
+				line-height:25px;
+				margin:60px 57px;
+				font-size: 18px;
+				font-weight:bold;
+				text-align:center;
+				background-color:#FFF;
+				z-index: 1000;
+				color:#484848;
+			}
+			.language_box .language_choice{
+				display:inline-block;
+				width:215px;
+				height:40px;
+				margin:0 0 19px 0;
+				line-height:40px;
+				font-size: 15px;
+				font-weight:bold;
+				text-align:center;
+				border-radius: 30px;
+				background-color:#52A2CC;
+				z-index: 1000;
+				color:#FFF;
+			}
+
+			.login-loading {
+				width: 83.3333vw;
+				height: 55.5555vw;
+				border-radius: 5.5555vw;
+				position: absolute;
+				top: 50%;
+				margin-top: -27.77775vw;
+				left: 50%;
+				margin-left: -41.665vw;
+				display: flex;
+				-webkit-justify-content: center;
+				justify-content: center;
+				z-index: 9999;
+				background: url(../../image/logon-page/loaader_circle.gif)no-repeat center 4.1666vw;
+				background-size: 41.6666vw;
+				background-color: #fff;
+				display: none;
+			}
+
+			.login-title {
+				font-size: 3.333vw;
+				text-align: center;
+				color: #484848;
+				font-weight: bold;
+				margin-top: 35.5555vw;
+			}
+
+	    	#logining{
+	    		width: 100vw;
+	    		height: 100vh;
+	    		background: url(../../image/logon-page/loading2.png)no-repeat center 97px;
+	    		background-size: 300px;
+	    		background-color: #282d35;
+	    		position: fixed;
+	    		top: 0;
+	    		left: 0;
+	    		display: none;
+	    		z-index: 9999;
+	    	}
+	    	#logining::after{
+	    		content: '';
+	    		display: block;
+	    		width: 100vw;
+	    		height: 270px;
+	    		position: absolute;
+	    		bottom: 0;
+	    		left: 0;
+	    		background: url(../../image/logon-page/danche.gif)no-repeat center center;
+	    		background-size: cover;
+	    	}
+	    	/*错误提示框*/
+	    	.unsign{
+	    		width: 55.555555vw;
+				height: 36.94444vw;
+				line-height:36.94444vw;
+				left: 50%;
+				margin-left: -27.7777775vw;
+				bottom: 63.055555vw;
+				text-align:center;
+	    		border-radius: 5.5555vw;
+	    		position: fixed;
+	    		display: -webkit-flex;
+				display: flex;
+				-webkit-align-items: center;
+				align-items: center;
+				justify-content: center;
+	    		background-color: #fff;
+	    		z-index: 10000;
+	    		display: none;
+	    	}
+	    	.unsign-text{
+	    		color: #484848;
+				font-size: 4.1666666vw;
+				font-weight: bold;
+				width:80%;
+	    	}
+	    	.signup{
+	    		width: 44.4444vw;
+	    		height: 11.1111vw;
+	    		line-height: 11.11111vw;
+	    		border-radius: 8.3333vw;
+	    		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.18), 0 2px 2px rgba(0, 0, 0, 0.25);
+	    		margin: 0 auto;
+	    		display: block;
+	    		color: #fff;
+    			font-size: 15px;
+    			font-weight: bold;
+    			white-space: pre;
+	    		text-align: center;
+	    		background: -webkit-linear-gradient(left, #EFBDBC , #ED7B85);
+				background: linear-gradient(left, #EFBDBC , #ED7B85);
+	    	}
+	    	.aui-toast{
+				line-height:36.94444vw;
+	    	}
+	    	.aui-text{
+		    	display:inline-block;
+		    	width:80vw;
+		    	height:20vw;
+	    		margin:30vw auto;
+	    		background-color:red;
+	    		line-height:36.94444vw;
+	    	}
+	    	.alert-focus{
+	    		line-height:35vw;
+	    		text-align:center;
+	    	}
+	    	.alert-focus-text{
+	    		display:inline-block;
+	    		line-height:5vw;
+	    	}
+	    	/*提示框*/
+
+			.toast {
+				width:84vw;
+				/*height: 66.6666666vw;*/
+				padding: 3.333333vw 13.888888vw 7.333333vw 13.888888vw;
+				border-radius: 20px;
+				background-color: #fff;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin-left: -41.6666665vw;
+				z-index: 99999;
+				text-align: center;
+				display: none;
+			}
+
+			.toast-title {
+				color: #484848;
+				font-size: 5.555555vw;
+				font-weight: bold;
+				margin-bottom: 3.333333vw;
+			}
+
+			.toast-line {
+				width: 100%;
+				height: 2px;
+				background-color: #efefef;
+				border-radius: 30px;
+			}
+
+			.toast-content {
+				width: 60vw;
+				color: #484848;
+				font-size: 4.1666666vw;
+				font-weight: bold;
+				line-height: 6.111111vw;
+				margin: 8.333333vw 0 0 -2vw;
+			}
+
+			.toast-define {
+				color: #fff;
+				font-size: 4.1666666vw;
+				font-weight: bold;
+				width: 44.444444vw;
+				background-color: #ff808a;
+				border-radius: 30px;
+				box-shadow: 0 1px 2px rgba(158, 158, 158, 0.18), 0 2px 2px rgba(158, 158, 158, 0.25);
+				font-size: 3.888888vw;
+				height: 11.111111vw;
+				line-height: 11.111111vw;
+				text-align: center;
+				margin: 8.333333vw auto 0;
+			}
+    </style>
+</head>
+<body>
+	<div class="bg"></div>
+
+	<header class="header"></header>
+
+	<div class="login">
+		<input class="login-con user" type="text" placeholder="Account Number" />
+		<input class="login-con psw" type="password" placeholder="Password" maxlength="15" />
+	</div>
+
+	<p class="text">Forget Password? Click Here For Help.</p>
+
+	<button class="signin">S I G N   I N</button>
+
+	<p class="text" style="margin-bottom: 2vw;">No Account? Click Here To Register!</p>
+
+	<span class="top"></span>
+
+	<div class="Otherlogins">
+		<span class="logon fb"></span>
+		<span class="logon wx"></span>
+		<span class="logon qq"></span>
+	</div>
+
+	<!--遮罩层-->
+	<div class="mask"></div>
+
+	<!--语言选择框-->
+	<div class="language_box">
+		<div class="language_text">Please Select The Software Language</div>
+		<div class="language_choice">繁 体 中 文</div>
+		<div class="language_choice">E N G L I S H</div>
+	</div>
+
+	<!--loading-->
+	<div id="logining"></div>
+
+	<!--提示确认框-->
+	<div class="toast">
+		<h1 class="toast-title">Note</h1>
+		<div class="toast-line"></div>
+		<div class="toast-text"></div>
+		<div class="toast-define" tapmode>D E F I N E</div>
+	</div>
+
+	<!--弹窗-->
+	<div class="alert-focus">
+		<div class="alert-focus-text"></div>
+	</div>
+</body>
+
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/md5.js"></script>
+	<script type="text/javascript" src="../../script/jmessage-sdk-web.2.5.0.min.js"></script><!--极光SDK-->
+	<script type="text/javascript" src="../../json/api.json"></script>
+	<script type="text/javascript" src="../../json/router.json"></script>
+	<script type="text/javascript" src="../../json/global.json"></script>
+	<script type="text/javascript" src="../../script/jquery-3.1.0.min.js"></script>
+	<script src="../../script/public.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../script/StackBlur.js" type="text/javascript" charset="utf-8"></script>
+
+	<script>
+
+		var JIM = new JMessage(); //极光对象
+		jMessage_init(); //极光初始化
+
+		var wx, qq, facebook,
+			loginMethod = 'Mobile',
+			focus_users = [];
+		var warn_text = {
+			text1: "Logged in",
+			text2: "Password error",
+			text3: "Network error",
+			text4: "Not enough password length",
+			text5: "The server did not respond",
+			text6: 'Account error',
+			text7: 'password error',
+			text8: 'Please enter the account number',
+			text9: 'Please enter the password',
+			text10: 'Getting Facebook data failure',
+			text11: "<p class='toast-content'>The Information Has Not Been Completed / Selected.</p>",
+			text12: "<p class='toast-content'>“Server Connection Failed, <br/> Tinkle Service May Not Cover Your Area”</p>",
+			text13: "<p class='toast-content'>-1-<br/>“Please Check The Network Is Normal”</p><p class='toast-content'>-2-<br/>“Please Check Whether Tinkle Network Permission Is Disabled”</p>"
+		}
+		language();
+
+		apiready = function(){
+			//显示状态栏
+			setTimeout(function() {
+				api.setFullScreen({
+					fullScreen: false
+				});
+			}, 1);
+
+			//状态栏透明
+			api.setStatusBarStyle({
+	            style: 'dark',
+	            color: 'balck'
+	        });
+
+			//实时监听断网
+			api.addEventListener({
+			    name:'offline'
+			}, function(ret, err){
+			    openToast(warn_text.text13);
+			});
+
+			//	来网了啊~~~~
+			api.addEventListener({
+			    name:'online'
+			}, function(ret, err){
+				openPopup(warn_text.text13);
+			});
+
+	        wx = api.require('wx');
+			qq = api.require('qq');
+			facebook = api.require('facebook');
+			//判断是否安装wx qq 否则隐藏
+			wx.isInstalled(function(ret, err) {
+				if(ret.installed) {} else {
+					$api.css($api.dom('.wx'), 'display:none');
+				}
+			});
+			qq.installed(function(ret, err) {
+				if(ret.status) {} else {
+					$api.css($api.dom('.qq'), 'display:none');
+				}
+			});
+			if(api.systemType == 'ios') {
+				facebook.isInstalled(function(ret, err) {
+					if(ret.installed) {
+						//			        alert("当前设备已安装facebook客户端");
+					} else {
+						//			        alert('当前设备未安装facebook客户端');
+						$api.css($api.dom('.fb'), 'display:none');
+					}
+				});
+			} else {
+				api.appInstalled({
+					appBundle: 'com.facebook.katana'
+				}, function(ret, err) {
+					if(ret.installed) {
+					} else {
+						//应用未安装
+						$api.css($api.dom('.fb'), 'display:none');
+					}
+				});
+			}
+
+			//暂时隐藏Facebook登录
+			$api.css($api.dom('.fb'), 'display:none');
+		}
+
+		//错误提示框 确定点击关闭
+		$api.dom(".toast-define").onclick = function() {
+			$api.css($api.dom(".toast"), "display:none");
+			$api.css($api.dom(".mask"), "display:none");
+		}
+
+		//提示确认框
+		function openToast(data){
+			$api.html($api.dom(".toast-text"), data);
+			$('.toast').css('margin-top','-' + Number($(".toast").innerHeight()) / 2 +'px');
+			$api.css($api.dom(".toast"), "display:block");
+			$api.css($api.dom(".mask"), "display:block");
+		}
+
+		//彈窗
+		function openPopup(data){
+			$api.html($api.dom(".alert-focus-text"), data);
+			$api.css($api.dom(".alert-focus"), "display:block");
+			$api.css($api.dom(".mask"), "display:block");
+			setTimeout(function(){
+				$api.css($api.dom(".alert-focus"), "display:none");
+				$api.css($api.dom(".mask"), "display:none");
+			},1000);
+		}
+		//判断选择的语种
+		function language(){
+			if($api.getStorage("language")){
+				if($api.getStorage("language") == "zho") {
+					$api.attr($api.dom(".user"),"placeholder","賬 號");
+					$api.attr($api.dom(".psw"),"placeholder","密 碼");
+					$api.text($api.dom(".signin"), "登  陸");
+					$api.text($api.domAll(".text")[0], "忘 記 密 碼 ？ 點 擊 這 裏 獲 取 幫 助  。");
+					$api.text($api.domAll(".text")[1], "沒 有 賬 號 ？ 點 擊 這 裏 馬 上 注 冊 ！");
+
+					warn_text = {
+						text1: "正 在 登 入",
+						text2: "密 碼 錯 誤",
+						text3: "網 絡 出 錯",
+						text4: "密 碼 長 度 不 夠",
+						text5: "服 務 器 沒 響 應",
+						text6: '賬 號 錯 誤',
+						text7: '密 碼 錯 誤',
+						text8: '請 輸 入 賬 號',
+						text9: '請 輸 入 密 碼',
+						text10: '获取Facebook数据失败',
+						text11: "<p class='toast-content'>资 料 还 没 完 成<br> 填 写/选 择</p>",
+						text12: "<p class='toast-content'>“服 務 器 連 接 失 敗 ，<br/> T i n k l e 的 服 務 可 能 還 沒 覆 蓋 您 所 在 的 地 區 ”</p>",
+						text13: "<p class='toast-content'>-1-<br/>“請 檢 查 網 絡 是 否 正 常”</p><p class='toast-content'>-2-<br/>“請 檢 查 是 否 禁 用 了 T i n k l e 的 網 絡 權 限”</p>"
+					};
+
+				}
+			}else{
+				$api.css($api.dom(".mask"), "display:block");
+				$('.language_box').css('display','block');
+			}
+		}
+
+		//语言选择
+		$('.language_choice').click(function(){
+			if(this == $('.language_choice')[0]){
+				$api.setStorage("language","zho");
+			}else{
+				$api.setStorage("language","en");
+			}
+			$api.css($api.dom(".mask"), "display:none");
+			$('.language_box').css('display','none');
+			language();
+		});
+
+		// facebook登录
+		$('.fb').click(function(){
+		 	console.log('fb 登录');
+			facebook.login({
+				appId: '121043455153956'
+			}, function(ret, err) {
+
+				if(ret.status){//成功返回数据
+
+					if(!ret.isCancelled) {
+						//登录后 获取用户信息
+						facebook.getUserInfo(function(ret, err) {
+							if(ret.status) {
+								$api.css($api.dom('#logining'), 'display:block');
+								//								alert(JSON.stringify(ret));
+								api.ajax({
+									url: json['http'] + json['fb']['check_bind'],
+									method: 'post',
+									timeout : 10,//单位为：秒
+									data: {
+										values: {
+											unionid: ret['result']['id']
+										}
+									}
+								}, function(ret, err) {
+									if(ret) {
+										if(ret['status']) {
+											//									alert('进入fb没登陆过');
+											//还没有fb登录过
+											facebook.getUserInfo(function(ret, err) {
+												if(ret.status) {
+
+													api.ajax({
+														url: json['http'] + json['fb']['save'],
+														method: 'post',
+														data: {
+															values: {
+																unionid: ret['result']['id'],
+																nickname: ret['result']['name'],
+																sex: '男',
+																headimgurl: ret['result']['picture']['data']['url']
+															}
+														}
+													}, function(ret, err) {
+														if(ret) {
+															//极光注册
+															JIM.register({
+																'username': ret["data"],
+																'password': '123456'
+															}).onSuccess(function(data) {
+																console.log('注册成功 ' + JSON.stringify(data));
+															}).onFail(function(data) {
+																console.log('注册失败 ' + JSON.stringify(data));
+															});
+
+															//alert('我要登录了');
+															ok_login();
+															$api.setStorage('id', ret["data"]);
+															//查詢關注數
+															concern_number();
+														} else {
+															//										alert(JSON.stringify(err) + '390');
+														}
+													})
+												} else {
+													api.alert({
+														msg: JSON.stringify(err)
+													});
+												}
+											});
+										} else {
+
+										//极光注册
+										//							alert('注册开始');
+											JIM.register({
+												'username': ret["data"],
+												'password': '123456'
+											}).onSuccess(function(data) {
+												console.log('注册成功 ' + JSON.stringify(data));
+											}).onFail(function(data) {
+												console.log('注册失败 ' + JSON.stringify(data));
+											});
+										//
+
+											//fb登录过了
+											var uiId = ret['data'];
+											ok_login();
+											$api.setStorage('id', ret["data"]);
+											//查詢關注數
+											concern_number();
+										}
+									} else {
+										$api.css($api.byId('logining'), 'display:none');
+									 	//错误码，数字类型。（0：连接错误、1：超时、2：授权错误、3：数据类型错误）
+										if(err.code == 0 || err.code == 1 || err.code == 2){
+											 openToast(warn_text.text12);
+										}
+									}
+								})
+
+							} else {
+								//没有成功返回数据
+								//返回内容：errMsg : an active access token must be used to query infomation about the current user
+								openPopup(warn_text.text10);
+							}
+						});
+					}
+				} else {
+				//code: -1：未知错误	1：config.xml 未配置 appId 2：用户未授权 3：出现错误，详情参考错误信息 msg
+    			//msg: ''  字符串类型；错误信息，当code 为 3 时有值
+					openPopup(warn_text.text10);
+				}
+			});
+		});
+
+		//微信登录
+		$('.wx').click(function() {
+			console.log('微信登录');
+			wx.auth({
+				apiKey: 'wx2ccebd109467df4c'
+			}, function(ret, err) {
+			console.log(JSON.stringify(ret));
+			console.log(JSON.stringify(err));
+				if(ret.status) {
+
+					wx.getToken({
+						apiKey: 'wx2ccebd109467df4c',
+						apiSecret: '2362da7382879554ed30006fb8f523d5',
+						code: ret.code
+					}, function(ret, err) {
+						if(ret.status) {
+							var accessToken = ret.accessToken;
+							var openId = ret.openId;
+							//							微信注册
+							wx.getUserInfo({
+								accessToken: accessToken,
+								openId: openId
+							}, function(ret, err) {
+							console.log('微信返回' + JSON.stringify(ret));
+								if(ret.status) {
+									if(accessToken){
+										$api.css($api.byId('logining'), 'display:block');
+										api.ajax({
+											url: json['http'] + "app_wx/save",
+											method: 'post',
+											timeout : 10,//单位为：秒
+											data: {
+												values: {
+													openid: ret['openid'],
+													nickname: ret['nickname'],
+													headimgurl: ret['headimgurl'],
+													unionid: ret['unionid'],
+													sex: ret['sex'],
+												}
+											}
+										}, function(ret, err) {
+										console.log('微信返回' + JSON.stringify(ret));
+//										return;
+											if(ret['status'] == '1') {
+												//极光注册
+												console.log('极光注册开始');
+												JIM.register({
+													'username': ret["data"],
+													'password': '123456'
+												}).onSuccess(function(data) {
+													console.log('注册成功 ' + JSON.stringify(data));
+												}).onFail(function(data) {
+													console.log('参数不合法（用户已注册） ' + JSON.stringify(data));
+												});
+												//
+												ok_login();
+												$api.setStorage('id', ret["data"]);
+												if(ret['otherData'] == null || ret['otherData'] == undefined || ret['otherData'] == "" || ret['otherData']['focusCount'] < 5) {
+
+													//查詢關注數
+													concern_number();
+
+												} else if(ret['otherData']['focusCount'] >= 5) {
+
+													enterWin('personal-page', router['personalPage']);
+												}
+
+											} else {
+												$api.css($api.byId('logining'), 'display:none');
+												//错误码，数字类型。（0：连接错误、1：超时、2：授权错误、3：数据类型错误）
+												if(err.code == 0 || err.code == 1 || err.code == 2){
+													 openToast(warn_text.text12);
+												}
+											}
+										})
+									}
+								}
+							});
+						}
+					});
+
+				} else {
+					if(api.systemType == 'android' && err.code == 3) {
+						alert("请安装微信客户端");
+					}
+				}
+			})
+		});
+		//qq登录
+		$('.qq').click(function(){
+			console.log('qq登录');
+			qq.login(function(ret, err) {
+			console.log('返回'+JSON.stringify(ret));
+			console.log('错误'+JSON.stringify(err));
+				if(ret) {
+					var openId = ret.openId;
+					var accessToken = ret.accessToken;
+					qq.getUserInfo(function(ret, err) {
+						setTimeout(console.log(accessToken+'--------------'+JSON.stringify(ret)),2000);
+						if(ret.status) {
+							if(accessToken){
+								$api.css($api.byId('logining'), 'display:block');
+								var nickname = ret['info']['nickname'];
+								var figureurl_2 = ret['info']['figureurl_2'];
+								var gender = ret['info']['gender'];
+
+								$.post(json['http'] + 'app_qq/get_unionid', //http://test.baopinghui.com/
+								{
+									accessToken: accessToken
+								},
+								function(ret, err) {
+									if(ret) {
+										var ret = ret.replace('callback(', "");
+										ret = ret.replace(');', "");
+
+										ret = JSON.parse(ret);
+										var unionid = ret['unionid'];
+										api.ajax({
+											url: json['http'] + 'app_qq/save',
+											method: 'post',
+											timeout : 10,//单位为：秒
+											data: {
+												values: {
+													openid: openId,
+													nickname: nickname,
+													headimgurl: figureurl_2,
+													unionid: unionid,
+													sex: gender,
+												}
+											}
+										}, function(ret, err) {
+											if(ret['status'] == '1') {
+												//极光注册
+												console.log('极光注册开始');
+												JIM.register({
+													'username': ret["data"],
+													'password': '123456'
+												}).onSuccess(function(data) {
+													console.log('注册成功 ' + JSON.stringify(data));
+												}).onFail(function(data) {
+													console.log('参数不合法（用户已注册） ' + JSON.stringify(data));
+												});
+												//												}
+												ok_login();
+												$api.setStorage('id', ret["data"]);
+												if(ret['otherData'] == null || ret['otherData'] == undefined || ret['otherData'] == "" || ret['otherData']['focusCount'] < 5) {
+
+													//查詢關注數
+													concern_number();
+
+												} else if(ret['otherData']['focusCount'] >= 5) {
+
+													enterWin('personal-page', router['personalPage']);
+												}
+
+											} else {
+												$api.css($api.byId('logining'), 'display:none');
+												//错误码，数字类型。（0：连接错误、1：超时、2：授权错误、3：数据类型错误）
+												if(err.code == 0 || err.code == 1 || err.code == 2){
+													 openToast(warn_text.text12);
+												}
+											}
+										})
+									} else {
+										alert(JSON.stringify(err));
+									}
+								});
+
+							}
+						} else {
+
+						}
+
+					});
+				}
+			});
+		});
+		// 用戶登录
+		$('.signin').click(function(){
+			var tel = $api.val($api.dom('input[type="text"]'));
+			var psw = $api.val($api.dom('input[type="password"]'));
+			if(tel == ''){//賬號為空
+				openPopup(warn_text.text8);
+				return;
+			}
+			if(psw == ''){//密碼為空
+				openPopup(warn_text.text9);
+				return;
+			}else if(psw.length < 5) {//密码长度不够
+				openPopup(warn_text.text4);
+				return;
+			}
+
+			$api.css($api.dom(".mask"), "display:block");
+			$api.css($api.dom("#logining"), "display:block");
+			api.ajax({
+				url: json['http'] + json['Login']['logon'],
+				method: 'post',
+				timeout : 10,//单位为：秒
+				data: {
+					values: {
+						"username": tel,
+						"password": psw,
+					}
+				},
+			}, function(ret, err) {
+				if(ret["status"] == 1) {
+					$api.setStorage('username',tel);
+					ok_login();
+					//极光注册
+					console.log('极光注册开始');
+					JIM.register({
+			        	'username' : ret['data']['uiId'],
+			        	'password' : 123456
+			       	}).onSuccess(function(data) {
+//					 	注册成功 {"code":0,"message":"success"}
+						console.log('注册成功 ' + JSON.stringify(data));
+					}).onFail(function(data) {
+						//参数不合法（用户已注册） {"code":882002,"event":"register","message":"user exit or not exits or password err or uid err or gid err or appkey err"}
+						if(data.code == 882002){
+							console.log('参数不合法（用户已注册） ' + JSON.stringify(data));
+						}else{
+							console.log('请求错误' + JSON.stringify(data));
+						}
+					}).onTimeout(function(data) {
+						console.log('请求超时 ' + JSON.stringify(data));
+					});
+
+	//			 	alert('注册结束');
+
+					$api.setStorage('id', ret["data"]['uiId']);
+
+					api.setFullScreen({
+						fullScreen : true
+					});
+					$api.setStorage('user_name', ret["data"]['username']);
+					$api.setStorage('token', ret["data"]['token']);
+
+					enterWin('chat_index', 'chat/chat_index.html');
+
+					setTimeout(function(){
+						api.closeWin({});
+					},1500);
+					return;
+				}else {
+					api.ajax({
+						url: json['http'] + json['Login']['findUserinfo'],
+						method: 'post',
+						data: {
+							values: {
+								"username": tel
+							}
+						},
+					}, function(ret, err) {
+						if(ret['data']){
+							//密码错误  ret['data']有值 则为用户存在
+							openPopup(warn_text.text7);
+						}else{
+							//ret['data']为null  用户不存在
+							openPopup(warn_text.text6);
+						}
+						$api.css($api.dom("#logining"), "display:none");
+					});
+				}
+				//错误码，数字类型。（0：连接错误、1：超时、2：授权错误、3：数据类型错误）
+				if(err.code == 0){
+					openToast(warn_text.text12);
+				}else if(err.code == 1){
+					 openToast(warn_text.text12);
+				}
+
+				if(err["statusCode"] == 0) {//離線了~~~
+					console.log(JSON.stringify(err));
+					openPopup(warn_text.text6);
+				}
+				$api.css($api.dom("#logining"), "display:none");
+			});
+		});
+
+		//查询关注数-跳轉myfollo頁面
+		function concern_number(){
+			api.ajax({
+				url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/baseCount',
+				method: 'post',
+				data: {
+					values: {
+						uiId: $api.getStorage("id")
+					}
+				}
+			}, function(ret, err) {
+				if(ret) {
+					if(ret["status"]) {
+						if(ret['data']['myFocusNum'] < 5) {
+							api.ajax({
+								url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/findRUlist',
+								method: 'post',
+								data: {
+									values: {
+
+									}
+								}
+							}, function(ret, err) {
+								if(ret) {
+									if(ret["status"]) {
+										ret['data'] = ret['data'].slice(0, 30);
+										for(var i = 0; i < 10; i++) {
+											//选中的对象
+											focus_users.push(ret['data'][i]['uid']);
+										}
+
+										for(var i = 0; i < focus_users.length; i++) {
+											(function(i) {
+												api.ajax({
+													url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/focus',
+													method: 'post',
+													data: {
+														values: {
+															uiId: $api.getStorage('id'),
+															otherUiId: focus_users[i],
+															type: 'focus'
+														}
+													}
+												}, function(ret, err) {
+													if(ret) {
+														if(ret['status']) {
+															if(i == focus_users.length - 1) {
+																setTimeout(function() {
+																	enterWin('chat_index', 'chat/chat_index.html','toRecommend_list');
+																	api.closeWin({});
+																}, 1);
+															}
+														} else {
+															console.log(JSON.stringify(ret));
+														}
+													} else {
+														uploadError(err);
+													}
+												});
+											})(i)
+										}
+									}
+								} else {
+									uploadError(err);
+								}
+							});
+							setTimeout(function() {
+								$api.css($api.byId('logining'), 'display:none');
+							}, 1000);
+						} else {
+							//												enterWin('personal-page',router['personalPage']);
+							enterWin('chat_index', 'chat/chat_index.html','toRecommend_list');
+							setTimeout(function() {
+								$api.css($api.byId('logining'), 'display:none');
+								api.closeWin({});
+							}, 1500);
+						}
+					} else {
+					//	alert(JSON.stringify(ret));
+					}
+				} else {
+					uploadError(err);
+				}
+			});
+		}
+
+		//注册--忘记密码
+		$('.text').click(function(){
+			var data;
+			if(this == $api.domAll('.text')[0]){
+				data = 1;
+			}else{
+				data = 2;
+			}
+			api.openFrame({
+				name: 'register',
+				url: 'widget://html/logon-page/register_index.html',
+				vScrollBarEnabled: false,
+				slidBackEnabled: false,
+				animation: {
+					type: "fade", //动画类型（详见动画类型常量）
+					subType: "fade", //动画子类型（详见动画子类型常量）
+					duration: 900 //动画过渡时间，默认300毫秒
+				},
+				pageParam: {
+					data: data
+				}
+			});
+//			api.sendEvent({
+//			    name: 'registerROreser',
+//			    extra: {
+//			        data: data
+//			    }
+//			});
+		});
+
+		function ok_login() {
+			// 重新清空缓存
+			$api.rmStorage('id');
+			$api.rmStorage('apId');
+			$api.rmStorage('avatar')
+			$api.rmStorage('fans')
+			$api.rmStorage('follwer')
+			$api.rmStorage('summary')
+			$api.rmStorage('popular')
+			$api.rmStorage('active')
+			$api.rmStorage('nickname')
+			$api.rmStorage('my_message')
+			$api.rmStorage('focus_message')
+			$api.rmStorage('user_name');
+			$api.rmStorage('beginDate');
+			$api.rmStorage('cover');
+
+
+			$api.rmStorage('hasNews')//总的未读数
+			$api.rmStorage('chatList');//会话列表
+
+		}
+
+		//生成随机字符串--用于极光注册
+		function random(length) {
+			var str = Math.random().toString(36).substr(2);
+			if(str.length >= length) {
+				return str.substr(0, length);
+			}
+			str += random(length - str.length);
+			return str;
+		}
+
+		//	极光初始化
+		function jMessage_init() {
+			console.log('极光初始化');
+			var appkey = 'c46c8bc128f41299334ec8e3';
+			var timestamp = (new Date()).valueOf(); //当前时间戳
+			var random_str = random(30); //生成随机字符串
+			var signature = MD5("appkey=" + appkey + "&timestamp=" + timestamp + "&random_str=" + random_str + "&key=269e7aa2881b1a8767f16ce6");
+			JIM.init({
+				"appkey": appkey,
+				"random_str": random_str,
+				"signature": signature,
+				"timestamp": timestamp,
+				"flag": 0
+			}).onSuccess(function(data) {
+				console.log('极光初始化成功');
+			}).onFail(function(data) {
+				console.log('错误，初始化失败');
+			}).onTimeout(function(data) {
+				openToast(warn_text.text12);
+				console.log('请求超时 ' + JSON.stringify(data));
+			});
+		}
+	</script>
+</html>

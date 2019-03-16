@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>post</title>
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <style>
+		html, body{
+			background-color: #efefef;
+			font-family: Arial;
+			font-style: italic;
+		}
+		img[src=""]{
+			visibility: hidden;/*将src不存在的img隐藏*/
+		}
+		img{
+			display: block;
+		}
+		.wrap{
+			padding-top: 18.7vw;
+		}
+		.input{
+			margin: 10.67vw auto 0;
+			width: 89.3vw;
+			position: relative;
+		}
+		textarea, input{
+			display: block;
+			border-radius: 2.67vw;
+			background-color: #ffffff;
+			color: #484848;
+			font-size: 4vw;
+			line-height: 5.87vw;
+			font-weight: bold;
+			outline: none;
+			opacity: 0.5;
+		}
+		textarea{
+			height: 44vw;
+			resize: none;
+			padding: 2.6vw 5.3vw;
+			width: 78.7vw;
+		}
+		.tags{
+			margin-top: 5.33vw;
+		}
+		.tags span{
+			display: inline-block;
+			border-radius: 2.67vw;
+			background-color: #efefef;
+			color: #484848;
+			font-size: 4vw;
+			line-height: 5.87vw;
+			font-weight: bold;
+			opacity: 0.5;
+			padding: 2.6vw 5.3vw;
+			margin: 0 2.67vw 2.67vw 0;
+		}
+		input{
+			padding: 2.6vw 15.9vw 2.6vw 5.3vw;
+			width: 68.1vw;
+		}
+		a{
+			display: block;
+			position: absolute;
+			bottom: 2.8vw;
+			right: 5.3vw;
+			color: #36A5B2;
+			font-size: 4vw;
+			font-weight: bold;
+			visibility: hidden;
+		}
+		i{
+			font-style: normal;
+		}
+		.list{
+			/*width: 89.3vw;*/
+			margin:5.37vw auto;
+			margin-left: 20px;
+			overflow: hidden;
+			visibility: hidden;
+			outline: none;
+		}
+		.list li{
+			/*width: 28vw;
+			height: 28vw;*/
+			float: left;
+			border-radius: 2.67vw;
+			margin-right: 2.65vw;
+			overflow: hidden;
+			margin-bottom: 4.67vw;
+			position: relative;
+			outline: none;
+			/*margin-top: -19px;*/
+		}
+		.list li:nth-child(3n){
+			margin-right: 0;
+		}
+		.list img{
+			width: 100%;
+			height: 100%;
+		}
+		.loading{
+			width: 100%;
+			height: 100%;
+			background-color: rgba(37, 37, 37, .6);
+			position: absolute;
+			top: 0;
+			left: 0;
+			border-radius: 2.67vw;
+		}
+		.loading img{
+			width: 13.33vw;
+			height: 13.33vw;
+			position: relative;
+			margin: 25% auto;
+			/*margin-left: -6.67vw;
+			margin-top: -6.67vw;*/
+			opacity: 0.8;
+		}
+		.list img.delete{
+			width: 5.33vw;
+			height: 5.33vw;
+			position: absolute;
+			left: 2.67vw;
+			bottom: 2.67vw;
+			visibility: hidden;
+			z-index: 10;
+		}
+		.note{
+			position: relative;
+			top: -40vw;
+			color: #aaa;
+			font-size:12px;
+			text-align: center;
+			font-weight: bold;
+			line-height: 17px;
+			display: none;
+		}
+
+    </style>
+</head>
+<body>
+	<div class="wrap">
+		<div class="input">
+			<textarea name="des" id="des" placeholder="Click here to enter a description of the post" style="margin-top:-23px;"></textarea>
+			<div class="tags" id="tags">
+				<!-- <span>✦ sunny</span><span>✦ motion graphics</span><span>✦ design</span><span>✦ abstract</span> -->
+				<input type="text" id="tag-content" placeholder="✦ Enter the tag">
+        <input type="text" id="tag-content2" placeholder="♔ Choose to participate theme" style="margin-top:18.5px;" readonly unselectable="on">
+			</div>
+			<a href="javascript:;" id="add">Add</a>
+		</div>
+		<ul class="list" id="list">
+
+			<li id="select" style="height:28vw;width:28vw;border-radius:30px;margin-top:-20px;left:-18px;">
+				<img src="../../icon/details/addimage.png">
+			</li>
+		</ul>
+		<p class='note'>Note: Please udload a video smaller than 50M</p>
+	</div>
+	<script type="text/javascript">
+		var des,
+			tags,
+			tip = "Description cannot be empty",
+			language,
+			type,
+			list,
+			tagContent,
+			oLi,
+			select,
+			pathAry = [];
+		var state;
+		var boof=true;
+		var hhh = window.screen.height;
+		var www = window.screen.width;
+		var frameh=Number(window.screen.width) * 0.187 + 10;
+		apiready = function(){
+			var content2=document.getElementById('tag-content2');
+		  //选择主题
+			content2.onclick=function(){
+				api.openWin({
+				    name: 'huodong2',
+				    url: '../logon-register/huodong2.html'
+				});
+
+			}
+			//监听选择到的主题
+			api.addEventListener({
+			    name: 'choice_theme'
+			}, function(ret, err){
+			    if( ret ){
+			         //alert( JSON.stringify( ret.value.id ) );
+							 themeId=ret.value.id;
+							 if(language == "zho"){
+								 content2.value='♔ '+ret.value.title_CN;
+							 }else{
+								 content2.value='♔ '+ret.value.title_EN;
+							 }
+			    }else{
+			         //alert( JSON.stringify( err ) );
+			    }
+			});
+
+
+
+			if(hhh/www > 2){
+				frameh='89px';
+			}
+			api.addEventListener({
+				name: 'swiperight'
+			}, function() {
+				api.closeWin({
+					animation: {
+						type: "push", //动画类型（详见动画类型常量）
+						subType: "from_left", //动画子类型（详见动画子类型常量）
+						duration: 300 //动画过渡时间，默认300毫秒
+					}
+				});
+			});//右滑关闭win
+			api.openFrame({
+				name: "header",
+				url: "widget://html/nav/header.html",
+				rect: {
+					x: 0,
+					y: 0,
+					w: "auto",
+					h: frameh
+				},
+				pageParam: {
+					post: true
+				}
+			});//打开通用头部
+			list = $api.dom("#list");
+			language = $api.getStorage("language");
+			tags = $api.dom("#tags");
+			des = $api.dom("#des");
+			tagContent = $api.dom("#tag-content");
+			select = $api.dom("#select");
+			oLi = list.getElementsByTagName("li");
+			var oInput = $api.last(tags),
+				add = $api.dom("#add");
+			type = api.pageParam["type"];
+
+			if(type !== "text"){
+				$api.css(list, "visibility:visible");
+			};
+			if(language == "zho"){
+				$api.text($api.dom(".note"),"註：請 上 傳 小 於 50m 的 視 頻");
+				des.placeholder = "點擊此處輸入該帖子的描述";
+				tagContent.placeholder = "✦ 輸入標簽";
+				$api.html(add, "添加");
+				tip = "描述不能為空";
+				content2.placeholder="♔ 选 择 参 与 主 题 "
+			};
+			if(type === "Topimg"){
+				if(language == "zho"){
+					tip = "描述or標簽不能都爲空";
+				}else{
+					tip = "Description or tag cannot be empty";
+				};
+			};
+			$api.addEvt(tagContent, "input", function(){
+				$api.val(this) !== "" ? $api.css(add, "visibility:visible") : $api.css(add, "visibility:hidden")
+			});
+			$api.addEvt(add, "click", function(){
+				var val = $api.val(tagContent),
+					str = "",
+					ary = val.split(",");
+				for(var i = 0, len = ary.length; i < len; i++){
+					ary[i] !== "" ? str += "<span>✦ <i>" + ary[i] + "</i></span>" : null;
+				};
+				$api.before(oInput, str);
+				$api.val(tagContent, "");
+				$api.css(add, "visibility:hidden");
+//				输入框继续获取焦点
+				document.getElementById('tag-content').focus();
+			});
+			$api.addEvt(select, "click", selectImgs);
+			//selectImgs();
+		};
+
+		function sendPost(){
+			if(boof){
+			var oSpan = $api.domAll(tags, "span"),
+				tagName = "",
+				tarI;
+			if(type === "text"){
+				if($api.val(des) === ""){
+					openFrame();
+					return;
+				};
+			};
+			if(type === "Topimg"){
+				if($api.val(des) === "" && oSpan.length === 0){
+					openFrame();
+					return;
+				};
+				if(oLi.length === 1){
+					if(language == "zho"){
+						tip = "至少上傳一張圖片";
+					}else{
+						tip = "Upload at least one picture";
+					};
+					openFrame();
+					return;
+				};
+				for(var i = 0, len = oLi.length - 1; i < len; i++){
+					if(oLi[i].getAttribute("update") === "false"){
+						if(language == "zho"){
+							tip = "請等待圖片上傳完成";
+						}else{
+							tip = "please wait for the picture to be uploaded";
+						};
+						openFrame();
+						return;
+					};
+				};
+			};
+			if(type === "Video"){
+				if($api.val(des) === "" && oSpan.length === 0){
+					openFrame();
+					return;
+				};
+				if(oLi.length === 1){
+					if(language == "zho"){
+						tip = "請上傳視頻";
+					}else{
+						tip = "Please upload the video";
+					};
+					openFrame();
+					return;
+				};
+				for(var i = 0, len = oLi.length - 1; i < len; i++){
+					if(oLi[i].getAttribute("update") === "false"){
+						if(language == "zho"){
+							tip = "請等待視頻上傳完成";
+						}else{
+							tip = "Please wait for the video to be uploaded";
+						};
+						openFrame();
+						return;
+					};
+				};
+				};
+			if(oSpan.length > 0){
+				for(var i = 0, len = oSpan.length; i < len; i++){
+					tarI = $api.dom(oSpan[i], "i");
+					tagName += i === 0 ? tarI.innerHTML : "," + tarI.innerHTML;
+				};
+			};
+			oLi.length >= 3 ? type = "imgs" : null;
+			var values;
+			if(type === "text"){
+				values = {
+					uiId: $api.getStorage("id"),
+					title: $api.val(des),
+					tagName: tagName,
+					themeId: themeId,
+					postType: type,
+					address: "NA",
+					isTimer: "no"
+				};
+			}else{
+				values = {
+					uiId: $api.getStorage("id"),
+					title: $api.val(des),
+					tagName: tagName,
+					themeId: themeId,
+					postType: type,
+					address: "NA",
+					isTimer: "no",
+					qiniuyunKey: pathAry.toString()
+				};
+			}
+			api.ajax({
+				url: "http://api.baopinghui.com/app_dynamicCover/v12/createLifePost",
+				method: "post",
+				data: {
+					values: values
+				}
+			}, function(ret, err){
+				if(ret){
+					if(ret["status"]){
+						var iddd=ret["data"]["dynId"];
+						// alert(iddd);
+						if(ret["data"]["state"] == "已推送精选"){
+							if(language == "zho"){
+								tip = "您 發 佈 的 第 一 個 帖 子 將 會 直 接 推 薦 上 熱 門 帖 子 請 注 意 噢 ~";
+							}else{
+								tip = "Your First Post Will Recommend the Popular Show Please Note";
+							};
+						}else{
+							if(language == "zho"){
+								tip = "發布成功";
+							}else{
+								tip = "Issued successfully";
+							};
+						}
+							// openFrame(true,ret["data"]["dynId"]);
+							openpostsuccess(ret["data"]["dynId"]);
+							boof=false;
+					};
+					return;
+				};
+				console.log(err);
+			});
+			}
+		};
+		function openpostsuccess(postId){
+			var testId = $api.getStorage('id');
+			api.openWin({
+			    name: 'postsuccess',
+			    url: 'widget://html/details/postsuccess.html',
+			    pageParam: {
+			        postId:postId,
+			        otherId:testId
+			    }
+			});
+			api.sendEvent({
+				name: 'home_loader'
+			});
+			api.sendEvent({
+				name: 'pubuliu1_loader'
+			});
+		}
+		function openFrame(postSuccess, postId){
+			api.openFrame({
+				name: "out",
+				url: "widget://html/nav/out.html",
+				rect: {
+					x: 0,
+					y: 0,
+					w: "auto",
+					h: "auto"
+				},
+				pageParam: {
+					postTip: tip,
+					isSuccess: postSuccess,
+					postType: type,
+					postId: postId,
+				}
+			});
+		};
+
+		function openDetail(){//打开主页
+	    	// api.openWin({
+	    	// 	name: "home",
+	    	// 	url: "widget://html/home/home.html",
+	    	// 	reload: true,
+	    	// 	vScrollBarEnabled: false,
+	    	// 	slidBackEnabled: false
+	    	// });
+	    	api.closeWin();
+	    };
+
+	    function selectImgs(){
+	    	var UIMediaScanner = api.require('UIMediaScanner'),
+					imgsNum = 10 - oLi.length,
+	    		selectTip = "*/" + imgsNum,
+	    		cancelTip = "cancel",
+	    		finishTip = "finish";
+	    	if(language == "zho"){
+	    		cancelTip = "取消";
+	    		finishTip = "完成";
+	    	};
+				xiangjitype="";
+				if(api.pageParam.type=="Video"){
+					xiangjitype="video";
+					imgsNum=2 - oLi.length;
+				}else if(api.pageParam.type=="Topimg"){
+					xiangjitype="picture"
+				}
+			UIMediaScanner.open({
+			    type: xiangjitype,
+			    column: 3,
+			    max: imgsNum,
+					rotation: true,
+			    sort: {
+			        key: 'time',
+			        order: 'desc'
+			    },
+			    texts: {
+			        stateText: selectTip,
+			        cancelText: cancelTip,
+			        finishText: finishTip
+			    }
+			}, function(ret) {
+				// alert(JSON.stringify(ret));
+			    if (ret) {
+			    	if(ret["eventType"] === "confirm"){
+
+			    		if(ret["list"].length > 0){
+			    			var str = "",
+			    				temp = oLi.length - 1;
+//				    		setTimeout(function(){console.log(JSON.stringify(ret["list"]))},2000);//<img src='" + ret["list"][j]["path"] + "'>
+				    		for(var j = 0; j < ret["list"].length; j++){
+									//alert(ret["list"][j]["path"]);
+									if(api.pageParam.type=="Video"){
+										str += "<li update='false' index='" + (temp + j) + "'style='background:rgba(0,0,0,0.9);width:320px;height:200px;'><video   poster='"+ret["list"][j]["thumbPath"]+"' style='width:320px;height:200px;' id='video_play' onclick='playVideo()'  src='"+ret["list"][j]["path"]+"'></video><div class='loading'><img src='../../icon/loading.gif'></div></li>";
+										$api.css(select, "visibility:hidden");
+										$api.css($api.dom(".note"), "display:block");
+										// alert(ret['list'][j]['path']);
+
+									}else if(api.pageParam.type=="Topimg"){
+										str += "<li update='false' index='" + (temp + j) + "' style='width:28vw;height:28vw;'><img src='" + ret["list"][j]["path"] + "'><div class='loading'><img src='../../icon/loading.gif'></div><img src='../../icon/details/delete.png' class='delete' onclick=\"deleteParent('" + (temp + j) + "')\"></li>";
+										// alert(ret['list'][j]['path']);
+									}
+				    			pathAry.push(ret["list"][j]["path"]);
+				    		};
+				    		$api.before(select, str);
+							// 	if(api.pageParam.type=="Video"){
+							// 	document.getElementById("video_play").pause();
+							// }
+				    		var obj = api.require('qiniuUpfile');
+				    		var myDate = new Date();
+				    		for(i = temp; i < pathAry.length; i++){
+				    			(function(i){
+
+				    				//转化IOS本地能用的图片
+									UIMediaScanner.transPath({
+										path: pathAry[i]
+									}, function(ret_, err_) {
+										// alert(JSON.stringify(ret));
+//										console.log(ret_['path']);
+//										图片上传
+						    			obj.upfile({
+											file: ret_['path'],
+											name: myDate.getTime() + Math.random() + i
+										}, function(ret, err) {
+											// alert(JSON.stringify(ret));
+											if(ret.status) {
+												// alert(JSON.stringify(ret))
+												if(ret.oper == "complete") {
+													pathAry[i] = ret.info.key;
+													$api.css($api.domAll(oLi[i], "img")[2], "visibility:visible");
+													$api.css($api.dom(oLi[i], "div"), "visibility:hidden");
+													oLi[i].setAttribute("update", true);
+												}
+												return;
+											}
+											console.log("上传失败");
+											return;
+										});
+						    		});
+
+				    			})(i);
+				    		};
+			    		};
+			    	}else{
+							// alert("可以了");
+							setTimeout(function(){
+								api.closeWin({
+										name: 'post'
+								});
+							},400);
+						}
+			    }
+			});
+	    };
+
+			function playVideo(){//定义播放暂停视频函数     维护的程序员  建议dom对象在一开始获取，不要每次触发的时候获取。
+				var videoPlay = $api.dom("#video_play"),
+					playVideoImg = $api.dom("#playVideo_img");
+				if(videoPlay.paused){
+					videoPlay.play();
+					return;
+				};
+				videoPlay.pause();
+			};
+
+	    function deleteParent(num){
+	    	for(var i = 0, len = oLi.length - 1; i < len; i++){
+	    		if(oLi[i].getAttribute("index") == num){
+					list.removeChild(oLi[i]);
+					pathAry.splice(i, 1);
+					$api.css(select, "visibility:visible");
+					$api.css($api.dom(".note"), "display:none");
+					break;
+	    		};
+	    	};
+	    };
+	</script>
+</body>
+</html>

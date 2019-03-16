@@ -1,0 +1,2155 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>群设置</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <style>
+		html{
+			background: #efefef;
+		}
+		/*头部*/
+			header{
+				position: fixed;
+				top:0;
+				left:0;
+				display:inline-block;
+				width:100vw;
+				height:18.67vw;
+				background: #ffffff;
+				/*box-shadow: 0 0 10px #efefef;*/
+				border-bottom: 1px solid #efefef;
+				z-index:9;
+			}
+			header .left{
+				position: absolute;
+				/*bottom:1vw;
+				left:8vw;*/
+				bottom: 11%;
+				left:10px;
+				display:inline-block;
+				width:9vw;
+				height:9vw;
+				z-index:2;
+			}
+			header .center{
+				position: absolute;
+				font-weight: bold;
+				font-size: 15px;
+				/*bottom:2vw;
+				left:50%;*/
+
+				bottom: 23%;
+				left: 50%;
+			transform:translate(-50%);
+			color:#fff;
+				display:inline-block;
+				z-index:2;
+			}
+			header .right{
+				position: absolute;
+				/*bottom:1vw;
+				right:8vw;*/
+				bottom: 17%;
+				right: 10px;
+				display:inline-block;
+				width:9vw;
+				height:9vw;
+				z-index:2;
+			}
+			/*遮罩层*/
+			.mark{
+				position:absolute;
+				top:0;
+				left:0;
+				width:100%;
+				height:100%;
+				background-color:#000000;
+				opacity: 0.5;
+				z-index: 3;
+				display: none;
+			}
+			/*群信息*/
+			.group_information{
+				position: relative;
+				/*margin:18.67vw 5.33vw 0 5.33vw;*/
+				display: inline-block;
+				margin-top: 19vw;
+				width:100%;
+				/*height: 300px;*/
+				text-align:center;
+				background: white;
+			}
+			.group_information .group_avatar{
+				position: absolute;
+				top:20px;
+				left:5.8vw;
+				display:inline-block;
+				width: 22.1vw;
+				height: 22.1vw;
+				/*margin:5vw auto;*/
+				border-radius: 10px;
+				background-size: cover;
+				background-position: center;
+			}
+			.group_information .group_name{
+				position: relative;
+				top: 1px;
+				left:20px;
+				margin-top: 15px;
+				font-size:25px;
+				color:#101010;
+				font-weight: bold;
+				text-align: left;
+				/*width: 200px !important;*/
+				width: 90vw !important;
+				overflow: hidden;
+				/*background: yellow;*/
+			}
+			.group_information .group_describe{
+				/*background: blue;*/
+				/*display: inline-block;*/
+				/*position: absolute;*/
+				margin-top: 6px;
+				margin-left: 20px;
+				font-size: 12px;
+				font-weight: bold;
+				color:#AAAAAA;
+				text-align:left;
+				overflow: hidden;
+				word-wrap:break-word;
+				word-break:break-all;
+				max-height: 500px;
+				width: 90%;
+				margin-bottom:11px;
+				/*background: red;*/
+			}
+
+			/*群设置*/
+			.group_setting{
+				margin:0;
+				width:100vw;
+				text-align:center;
+				background: white;
+				border-top:5px solid #efefef;
+			}
+			.group_setting .group_setting_list{
+			width: 100%;
+			height: 50px;
+				margin:0;
+			line-height: 100px;
+			/*border-radius: 10px;*/
+			background-color: white;
+			text-align: center;
+			border-bottom: 1px solid #efefef;
+			}
+			.group_setting_list .left{
+				font-weight: bold;
+				margin:auto 5vw;
+				color:#484848;
+				font-size:4vw;
+				display:inline-block;
+				float:left;
+				line-height: 51.5px;
+			}
+			.group_setting_list .right{
+				display:inline-block;
+				float:right;
+				width:16px;
+				height:17px;
+				margin:4.5vw 5vw 0;
+				/*line-height: 53px;*/
+			}
+
+			/*群成员*/
+			.group_member{
+				padding:2.7vw;
+			background-color: #EFEFEF;
+			overflow: hidden;
+			}
+			.group_member .group_member_list{
+				display:inline-block;
+				float:left;
+				width:18.25vw;
+				margin:2.7vw;
+			}
+			.group_member_list .member_avatar{
+				position:relative;
+				width:18.25vw;
+				height:18.25vw;
+			border-radius: 18.25vw;
+			background-size:cover;
+			}
+			.group_member_list .member_avatar .identity{
+				position:absolute;
+				right:0;
+				bottom:0;
+				width:6.67vw;
+				height:6.67vw;
+			}
+			.group_member_list .member_nickname{
+				position: relative;
+				width:100%;
+				height:5vw;
+				line-height:7vw;
+				color:#484848;
+				font-size:12px;
+				text-align:center;
+				font-weight: bold;
+
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
+				-webkit-line-clamp: 1;
+				text-overflow: ellipsis;
+				overflow: hidden;
+			}
+			.messageButton{
+				 height: 30px;
+				 width: 50px;
+				 background: #F381A3;
+				 opacity: 0.8;
+				 border-radius: 20px;
+				 float: right;
+				 margin: 10px 10px 3px 0;
+			}
+			.button{
+				height: 30px;
+				width: 30px;
+				border-radius: 100%;
+				background: white;
+				float:right;
+			}
+		 .member{
+				color: #AAA;
+				font-size: 10px;
+				font-weight: bold;
+				/*text-align: center;*/
+				display: block;
+				margin-top:1px;
+			}
+			.head{
+				color:#101010;
+				font-weight: bold;
+				font-size: 15px;
+			}
+			.green{
+				/*position: relative;*/
+				float: left;
+				background-color: #9DDA57;
+				height: 10px;
+				width: 10px;
+				border-radius: 50%;
+				margin-top: 7px;
+			}
+			.people,.rank,.discus,.lv{
+				height: 35px;
+				width: 28.9vw;
+				/*line-height: 35px;*/
+				background: #efefef;
+				/*color: white;*/
+				font-size: 10px;
+				border-radius: 5px;
+			}
+			.people{
+				position: absolute;
+				top: 0;
+				left:0;
+			}
+			.rank{
+				position: absolute;
+				top: 0;
+				right:0;
+			}
+			.discus{
+				position: absolute;
+				bottom: 0;
+				left: 0;
+			}
+			.lv{
+				position: absolute;
+				bottom: 0;
+				right: 0;
+			}
+			.len{
+				color:black;
+				font-size:12px;
+				font-weight: bold;
+				margin-top:5px;
+			}
+			.fenlei{
+				height: 20px;
+				width: 20px;
+				margin-right: 7px;
+				/*line-height: 25px;*/
+			}
+			.mask{
+				position: absolute;
+				height: 100%;
+				width: 100vw;
+				background: #efefef;
+				z-index: -1;
+			}
+			.portrait{
+				height: 30px;
+				width: 30px;
+				float: left;
+				margin-right: 5px;
+			}
+			.photo{
+				height: 30px;
+				width: 30px;
+				border-radius: 55px;
+				background: no-repeat center center;
+				background-size: cover;
+			}
+			.member_list{
+				margin-left:20px;
+			}
+			.num{
+				position: absolute;
+				right: 13vw;
+				bottom:-10px;
+				z-index:2;
+				font-size: 15px;
+				color: #aaa;
+			}
+			.lead{
+				position: absolute;
+				bottom:2.5vw;
+				margin-left: 0.45vw;
+				height: 15px;
+				width: 15px;
+				z-index: 5;
+			}
+			.qunleixing{
+				margin-top: 6px;
+				margin-left: 20px;
+				font-weight: bold;
+				font-size: 12px;
+				font-weight: bold;
+				color:#F381A3;
+				text-align:left;
+				overflow: hidden;
+				word-wrap:break-word;
+				word-break:break-all;
+				max-height: 500px;
+				width: 90%;
+				/*background: blue;*/
+			}
+			.num2{
+				position: absolute;
+				right: 13vw;
+				bottom:-7vw;
+				z-index:2;
+				font-size: 15px;
+				color: #aaa;
+			}
+			.ma{
+				position: relative;
+				top:-7vw;
+				font-weight: bold;
+				/*margin:auto 5vw;*/
+				color:#484848;
+				font-size:4vw;
+				/*display:inline-block;*/
+				text-align: center;
+				/*line-height: 0px;*/
+				margin-bottom:5vw;
+			}
+			.buttom{
+				position: fixed;
+				/*left: 5%;*/
+				bottom:60px;
+				z-index: 100;
+				display: none;
+			}
+			.buttom li{
+				height: 50px;
+				width: 90vw;
+				background: white;
+				margin-left: 5vw;
+				border-top: 1px solid #D0D0D0;
+				z-index: 1000;
+				text-align: center;
+				line-height: 50px;
+			}
+			.cancel{
+				position: fixed;
+				bottom: 5px;
+				left: 5%;
+				width: 90%;
+				height: 50px;
+				border-radius: 10px;
+				background: white;
+				z-index: 1000;
+				display: none;
+				text-align: center;
+				line-height: 50px;
+				font-weight: bold;
+			}
+			/*遮罩层*/
+			.zhe{
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				z-index: 99;
+				background: black;
+				opacity: 0.7;
+				display: none;
+			}
+			.bg{
+				width: 100vw;
+				height: 100%;
+				background-color: rgba(34, 34, 34, .7);
+				position: fixed;
+				top: 0;
+				left: 0;
+				z-index: 99999999;
+				display: none;
+			}
+			.des{
+				width: 100%;
+				min-height: 17.6vw;
+				margin: 0 auto 4.53vw ;
+				padding:4.52vw ;
+				box-sizing: border-box;
+				text-align: center;
+				font-size: 4vw;
+				color: #aaa;
+				line-height: 5.87vw;
+				font-weight: bold;
+				background-color: #efefef;
+				/*min-height: 25vw;*/
+			}
+			.yes{
+				width: 52.19vw;
+				height: 10.64vw;
+				line-height: 10.64vw;
+				border-radius: 5.34vw;
+				background: #F381A3;
+				/*box-shadow: 0 0 10px #FFAFBD;*/
+				color: #fff;
+				font-weight: bold;
+				font-size: 4vw;
+				margin: 0 auto;
+			}
+			.no{
+				width: 42.4vw;
+				margin: 2.39vw auto 0;
+				font-size: 3.19vw;
+				line-height: 4.53vw;
+				font-weight: bold;
+				background: #aaa;
+			    -webkit-background-clip: text;
+			    -webkit-text-fill-color: transparent;
+			}
+			.box{
+				/*position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;*/
+				margin:31.93vh auto 0;
+				border-radius: 5.33vw;
+				padding-bottom:4.52vw;
+				background-color: #fff;
+				width: 78.46vw;
+				height: auto;
+				text-align: center;
+			}
+			.title{
+				margin: 0 auto;
+				width: 53.3vw;
+				height: 15.2vw;
+				font-size: 4vw;
+				line-height: 15.2vw;
+				/*border-bottom: 1px solid #efefef;*/
+			}
+    </style>
+</head>
+<body>
+	<div class="mask"></div>
+	<!--创建群组弹窗-->
+	<!--群列表-->
+	<main id="group_setting">
+
+
+		<!--<div class="mark"></div>-->
+
+		<!--头部-->
+		<header>
+			<img class="left" src="../../icon/messages/back.png" @click="back()">
+			<span class="center" style="color: #101010;"><span class="head">{{details}}</span>
+			<!-- <img class="right openadd" @click="openadd()" src="../../icon/more.png"> -->
+		</header>
+		<!--群信息-->
+		<div class="group_information">
+			<!--群头像-->
+			<div class="group_avatar"  :style="{backgroundImage:'url(' + 'http://bin.baopinghui.com/'+group.avatar + ')'}"  ></div>
+			<!-- :src="'http://bin.baopinghui.com/'+group.desc" -->
+
+			<!-- {{group.avatar}} -->
+			<div style="position:relative;width:120px;margin-left:33.4vw;margin-top:20px;height:80px;width:60.5vw;">
+					<p class="people"><span class="len">{{members.length}}</span><span class="member">{{people}}</span></p>
+					<p class="rank" ><span  class="len">{{group.rank}}</span><span class="member">{{rank}}</span></p>
+					<p class="discus"><span class="len">{{group.Discussion}}</span><span class="member">{{discussions}}</span></p>
+					<!-- <p class="lv"><span class="len">0</span><span class="member">lv</span></p> -->
+			</div>
+			<!--群名字-->
+			<p class="group_name"><img class="fenlei" :src="getP(group.group_type)">{{group.groupname}}</p>
+		   <!-- 群类型 -->
+			 <p class="qunleixing"># <span v-html="getT(group.group_type)"></span></p>
+			<!--群描述-->
+			<p class="group_describe" v-if="group.descriptio!=null&&group.descriptio!=''">{{group.descriptio}}</p>
+			<p class="group_describe" v-else-if="group.descriptio==null||group.descriptio==''">{{fun}}</p>
+		</div>
+		<!--群设置-->
+		<div class="group_setting">
+			<!-- 群主和管理员列表 -->
+			<div class="group_setting_list" style="line-height:70px;position:relative;" @click="openMember(1)">
+				<ul class="member_list" v-for="(lead,index) in leadId">
+					<li class="portrait" v-if="index<6">
+						<span class="photo" :style="getPic(lead.avatar_url)"></span>
+						<!-- <img class="photo" :src="'http://bin.baopinghui.com/' + lead.avatar_url + '?imageView2/0/w/100'"> -->
+						<img v-if="lead.flag == 1"class="lead" src="../../icon/group/leader.png" alt="" />
+						<img v-else-if="lead.flag == 2"class="lead" src="../../icon/group/administrators.png" alt="" />
+					</li>
+				</ul>
+				<span class="num">{{leadId.length}}</span>
+				<img class="right" src="../../icon/jiantou.png" alt="" />
+			</div>
+			<!-- 普通成员列表 -->
+			<div  class="group_setting_list" style="border-bottom:0;line-height:70px;position:relative;" @click="openMember(2)">
+				<ul class="member_list" v-for="(member,index) in memberId">
+					<li class="portrait" v-if="index<6"><span class="photo" :style="getPic(member.avatar_url)"></span></li>
+				</ul>
+				<span class="num">{{memberId.length}}</span>
+				<img class="right" src="../../icon/jiantou.png" alt="" />
+			</div>
+			<!--修改群名称--><!--群主&管理员特权-->
+			<!-- <div v-if="my_identity == 1 || my_identity == 2" @click="modify_the_groupName()" class="group_setting_list" style="border-top:5px solid #efefef;">
+				<span class="left abcd">{{qunming}}</span>
+				<img class="right" src="../../icon/jiantou.png" alt="" />
+			</div> -->
+
+			<!--修改群资料--><!--群主&管理员特权-->
+			<!-- <div v-if="my_identity == 1 || my_identity == 2" @click="modify_the_groupPorfile()" class="group_setting_list">
+				<span class="left">Modify The Group Profile</span>
+				<img class="right" src="../../icon/search/toright.png" alt="" />
+			</div> -->
+			<!--消息 提醒-->
+			<div class="group_setting_list miandarao" style="border-top:5px solid #efefef;border-bottom:0;">
+				<span class="left xiaoxi">{{notification}}</span>
+				<!-- <img class="right getMessage" src="../../icon/search/toright.png" alt="" /> -->
+				<div class="messageButton"><div class="button"></div></div>
+			</div>
+			<!-- 分享群组 -->
+			<div class="group_setting_list share" style="border-bottom:0;border-top:1px solid #efefef;">
+				<span class="left qunziliao">{{share}}</span>
+				<img class="right" src="../../icon/jiantou.png" alt="" />
+			</div>
+
+			<!--显示二维码-->
+			<div @click="display_or_code()" class="group_setting_list" style="display:none;">
+				<span class="left erweima">Display QR Code</span>
+				<img class="right" src="../../icon/jiantou.png" alt="" />
+			</div>
+
+			<!--添加成员-->
+			<div v-if="my_identity == 1 || my_identity == 2" @click="addMembers()" class="group_setting_list add" style="border-bottom:0;border-top:1px solid #efefef;">
+				<span class="left tianjia">{{jiaren}}</span>
+				<img class="right" src="../../icon/jiantou.png" alt="" />
+			</div>
+
+			<!-- 修改群信息 -->
+			<div v-if="my_identity == 1 || my_identity == 2" class="group_setting_list modify" style="border-bottom:0;border-top:5px solid #efefef;" @click="modify()">
+				<span class="left tianjia">{{xiugai}}</span>
+				<img class="right" src="../../icon/jiantou.png" alt="" />
+			</div>
+
+			<!-- 升级群组 -->
+			<!-- <div v-if="my_identity == 1" class="group_setting_list" style="border-top:1px solid #efefef;position:relative;">
+				<span class="left tianjia">{{shengji}}</span>
+				<span class="num2">Lv1</span>
+				<img class="right" src="../../icon/jiantou.png" alt="" />
+			</div> -->
+			<!-- 修改群描述 -->
+			<!-- <div v-if="my_identity == 1 || my_identity == 2" @click="modify_the_groupPorfile()" class="group_setting_list" >
+				<span class="left qunziliao">{{qunjieshao}}</span>
+				<img class="right" src="../../icon/jiantou.png" alt="" />
+			</div> -->
+
+			<!--修改群组头像--><!--群主&管理员特权-->
+			<!-- <div v-if="my_identity == 1 || my_identity == 2" @click="modify_the_groupImage()" class="group_setting_list">
+				<span class="left quntouxiang">{{quntouxiang}}</span>
+				<img class="right" src="../../icon/jiantou.png" alt="" />
+			</div> -->
+			<!-- 进去群组 -->
+			<div @click="joinGroup()" class="group_setting_list leave join" style="border-top:5px solid #efefef;display:none;">
+				<span class="ma" style="color:#F381A3;letter-spacing:5px;">{{join}}</span>
+				<!-- <img class="right" src="../../icon/jiantou.png" alt="" /> -->
+			</div>
+			<!--离开群组--><!--管理员%普通成员-->
+			<div v-if="my_identity != 1 " @click="leave_group_chat()" class="group_setting_list leave" style="border-top:5px solid #efefef;">
+				<span class="ma likai" style="color:#F381A3;letter-spacing:5px;">{{tuiqun}}</span>
+				<!-- <img class="right" src="../../icon/jiantou.png" alt="" /> -->
+			</div>
+
+			<!--解散群组--><!--群主特权-->
+			<div v-if="my_identity == 1 " @click="leave_the_group()" class="group_setting_list leave" style="border-top:5px solid #efefef;background:white;">
+				<span class="ma jiesan" style="color:#F381A3;letter-spacing:5px;">{{jiequn}}</span>
+				<!-- <img class="right" src="../../icon/jiantou.png" alt="" /> -->
+			</div>
+		</div>
+		<!--群成员-->
+		<!-- <div class="group_member" v-if="members.length > 0">
+			<div v-for="member in members" class="group_member_list" @click="management(member)">
+				<div class="member_avatar" v-bind:style="{backgroundImage: 'url(http://bin.baopinghui.com/' + member.avatar_url + '?imageView2/0/w/100)'}">
+					<img v-if="member.flag == 1"class="identity" src="../../icon/group/leader.png" alt="" />
+					<img v-else-if="member.flag == 2"class="identity" src="../../icon/group/administrators.png" alt="" />
+				</div>
+					<span class="member_nickname"><span class="green" v-if="member.state==1&&my_identity==1||member.state==1&&my_identity==2"></span>{{member.nickname}}</span>
+			</div>
+		</div> -->
+		<div class="zhe" id="zhe"></div>
+		<ul class="buttom" style="">
+			<li class="first" style="height:40px;border-top-left-radius:10px;border-top-right-radius:10px;color:#aaa;font-size:12px;line-height:40px;">Selection type</li>
+			<li class="qq" style="font-size:15px;font-weight:bold;">Share yourself</li>
+			<li class="invite" style="border-bottom-left-radius:10px;border-bottom-right-radius:10px;font-weight:bold;font-size:15px;">Invitation to share</li>
+		</ul>
+		<p class="cancel" id="cancel">Cancel</p>
+		<div class="bg">
+			<div class="box">
+				<h1 class="title">Exit the group?</h1>
+				<p class="des">Are You Sure To Log Out Of the group, Which Means You Will Not Receive All ECHO !</p>
+				<p class="yes">D E F I N E</p>
+				<p class="no">Cancel</p>
+			</div>
+		</div>
+	</main>
+</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/jquery-3.1.0.min.js"></script>
+	<script type="text/javascript" src="../../script/vue.js"></script>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../json/api.json"></script>
+	<script type="text/javascript" src="../../json/router.json"></script>
+
+	<script src="../../script/jmessage-sdk-web.2.6.0.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../script/base64.min.js" type="text/javascript"></script>
+	<script src="../../script/md5.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var gid = '',//群ID
+		uiid = '',//我的ID
+		nickname = '',//用户名
+		avatar = '',//用户用户id
+		lock = true;
+
+		// alert(gid);
+		uiid = $api.getStorage("id");
+  	var shieldMS=(typeof($api.getStorage("shieldMS"))!="undefined")?$api.getStorage("shieldMS"):{}; //用来判断是否群消息提醒
+    var shieldMS_child=shieldMS[uiid]!=null?shieldMS[uiid]:{};   //以当前的用户id为对象名以
+	apiready = function(){
+
+		//点击背景和取消按钮关闭退群解散群的弹窗
+		$('.bg').click(function(){
+			$('.bg').css('display','none');
+		});
+		$('.no').click(function(){
+			$('.bg').css('display','none');
+		});
+		$('.share').click(function(){
+			$('.buttom').css('display','block');
+			$('.zhe').css('display','block');
+			$('.cancel').css('display','block');
+		});
+		$('.cancel').click(function(){
+			$('.buttom').css('display','none');
+			$('.zhe').css('display','none');
+			$('.cancel').css('display','none');
+		});
+		var zhe = $api.dom('#zhe');
+		zhe.onclick = function(e){//点击黑色背景关闭
+			var tar = e.target;
+			if(tar.id === "zhe" || tar.id === "cancel"){
+				$('.buttom').css('display','none');
+				$('.zhe').css('display','none');
+				$('.cancel').css('display','none');
+			};
+		};
+		// $api.rmStorage('shieldMS');
+	var shareGroup = api.pageParam['shareGroup'];//从群分享链接进来的
+	gid = api.pageParam["gid"];
+		qiniu = api.require('qiniuUpfile');
+		head = $api.dom("#head");
+		button = $api.dom(".button");
+		messageButton = $api.dom(".messageButton");
+	  var mbutton = true;
+				console.log(gid+"进来是"+JSON.stringify(shieldMS_child));
+    if(shieldMS_child[gid]!=null){
+		console.log("进来是2"+JSON.stringify(shieldMS));
+			if(shieldMS_child[gid]==true){
+				$(messageButton).css("background","#F381A3");
+				$(button).css("float","right");
+				mbutton=true;
+			}else{
+				$(messageButton).css("background","#aaa");
+				$(button).css("float","left");
+				mbutton=false;
+
+			}
+
+		}
+		//用户是从群分享链接进来的
+		if(shareGroup=='shareGroup'){
+			onGroup();
+
+		}
+		// var groupMember=api.pageParam['gid']+'Member';
+		// 	group.members=$api.getStorage(groupMember);
+		//
+		setTimeout(function(){
+			getGroup();
+			getStor();
+		},50)
+		//判断是否有群成员缓存，有直接拿取，没有重新添加，这样就不用每次点开群设置就请求拿数据，
+		function getStor(){
+			//getGroupMember(1)：新应用，未查看过群设置页面，重新赋值缓存，getGroupMember(2)：判断给群成员增减变化；getGroupMember(3)该群还没有进去获取过缓存，push进去
+		if($api.getStorage("groupgid")==null||$api.getStorage("groupgid")==undefined||$api.getStorage("groupgid")=='undefined'){
+				// alert("1");
+			// group.groupgid = [{'gid':gid,'members':[]}];
+			getGroupMember(1);
+		}else{
+			group.groupgid = $api.getStorage("groupgid");
+			for(var i=0;i<group.groupgid.length;i++){
+				if(group.groupgid[i].gid==gid){
+					// alert("???");
+					getGroupMember(2);
+					// alert("2");
+					group.members = group.groupgid[i].members;
+					group.my_identity = group.groupgid[i].my_identity;
+					for(var i=0;i<group.members.length;i++){
+						if(group.members[i].flag==1||group.members[i].flag==2){
+							group.leadId.push(group.members[i]);
+						}else{
+							group.memberId.push(group.members[i]);
+						}
+					}
+					return;
+				}
+			}
+				// alert(JSON.stringify(group.groupgid));
+				getGroupMember(3);
+		}
+	}
+		//监听groupcreate页面的群描述修改并同步改变
+		api.addEventListener({
+		    name: 'groupType'
+		}, function(ret, err){
+		    if( ret ){
+		         group.group.group_type = ret.value.groupT;
+		    }
+		});
+
+		//监听member页面那边做了添加或移除管理员操作同步变化列表
+		api.addEventListener({
+		    name: 'member'
+		}, function(ret, err){
+		    if( ret ){
+					var aa = ret.value.aa;
+		      if(aa[0].flag==0){
+						 for(var i=0;i<group.leadId.length;i++){
+							 if(group.leadId[i].id==aa[0].id){
+							  group.leadId.splice(i,1);
+								group.memberId.push(aa[0]);
+								// alert(JSON.stringify(group.memberId));
+								return;
+							 }
+						 }
+					}else if(aa[0].flag==2){
+						for(var i=0;i<group.memberId.length;i++){
+								if(group.memberId[i].id==aa[0].id){
+								group.memberId.splice(i,1);
+								group.leadId.push(aa[0]);
+								// window.location.reload();
+								return;
+							}
+						}
+					}
+					// alert(JSON.stringify(group.leadId));
+		    }
+		});
+			//监听member页面那边做了踢成员操作同步变化列表
+			api.addEventListener({
+			    name: 'member2'
+			}, function(ret, err){
+				// alert(JSON.stringify(ret.value.bb[0].flag));
+			    if( ret ){
+			         var bb = ret.value.bb;
+							 if(bb[0].flag==2){
+		 						for(var i=0;i<group.leadId.length;i++){
+		 							if(group.leadId[i].id==bb[0].id){
+		 								group.leadId.splice(i,1);
+		 								return;
+		 							}
+		 						}
+		 					}else{
+							 for(var i=0;i<group.memberId.length;i++){
+								 if(group.memberId[i].id==bb[0].id){
+									 group.memberId.splice(i,1);
+									 return;
+								 }
+							 }
+						 }
+			    }
+			});
+
+
+		// var close_notification;
+		$(messageButton).click(function(){
+			console.log(gid+"点击开始"+JSON.stringify(shieldMS));
+
+				if(shieldMS_child[gid]==null){
+
+				shieldMS_child[gid]=false;
+				api.sendEvent({
+						name: 'shieldMS',
+						extra: {
+								bell: true,
+								gid: gid
+						}
+				});
+
+				console.log("进入了"+shieldMS[gid]);
+			}else{
+				shieldMS_child[gid]=shieldMS_child[gid]==true?false:true;
+				if(shieldMS_child[gid]==false){
+					api.sendEvent({
+					    name: 'shieldMS',
+					    extra: {
+					        bell: true,
+									gid: gid
+					    }
+					});
+
+				}else{
+					api.sendEvent({
+							name: 'shieldMS',
+							extra: {
+									bell: false,
+									gid: gid
+							}
+					});
+				}
+			}
+				console.log("点击结束"+JSON.stringify(shieldMS));
+				shieldMS[uiid]=shieldMS_child;
+		  $api.setStorage("shieldMS",shieldMS);
+			// api.sendEvent({
+			//     name: 'shieldMS',
+			//     extra: {
+			//         key1: 'value1',
+			//         key2: 'value2'
+			//     }
+			// });
+
+
+			if(mbutton==false){   //开
+			$(messageButton).css("background","#F381A3");
+			$(button).css("float","right");
+			mbutton=true;
+
+
+		//  close_notification = true
+	// getSwitchBtn();
+
+}else if(mbutton){ //关
+			$(messageButton).css("background","#aaa");
+			$(button).css("float","left");
+			mbutton=false;
+		}
+		return;
+		});
+		//向右滑关闭页面
+		api.addEventListener({
+			name: 'swiperight'
+		}, function(ret, err) {
+			group.back();
+
+			// api.closeWin({});
+		});
+		//安卓返回键关闭页面
+		api.addEventListener({
+		    name: 'keyback'
+		}, function(ret, err){
+			  group.back();
+
+		});
+		//点击分享到QQ
+			var qqShare = $api.dom('.qq');
+		$api.addEvt(qqShare, 'click', function(){
+		// 	var qq = api.require('qq');
+		// 	// alert("???");
+		// qq.shareNews({
+		// 		url: 'http://a.app.qq.com/o/simple.jsp?pkgname=com.qaz616672844.rvu&gid='+gid,
+		// 		title: '新闻分享',
+		// 		description: gid,
+		// 		imgUrl: 'http://upload.wabei.cn/2011/0807/20110807025817844.jpg',
+		// 		type: "QFriend"
+		// });
+		api.openFrame({
+				name: 'more(new)',
+				url: 'widget://html/nav/more(new).html',
+				rect: {
+						x: 0,
+						y: 0,
+						w: 'auto',
+						h: 'auto'
+				},
+				pageParam: {
+						outShare: true,
+						group_name: group.group.groupname,
+						group_describe: group.group.descriptio,
+						group_avatar: group.group.avatar,
+						gid: gid
+				},
+				bounces: false,
+				bgColor: 'rgba(0,0,0,0)',
+				vScrollBarEnabled: false,
+				hScrollBarEnabled: false
+		});
+
+		});
+		//点击邀请别人分享在群里发一条群分享
+			$api.addEvt($api.dom('.invite'), 'click', function(){
+				// alert("??");
+				api.sendEvent({    //发给 chat_list 页面
+						name: 'ChatListExec',
+						extra: {
+								targetType: "group",  //来源的类型单聊类型 另外一种是群聊类型single
+								target_gid: gid,  //往这个群分享
+								target_gname: group.group.groupname,
+								content: '[群组]',
+								avatar_url: group.group.avatar,  //分享的群的头像
+								nickname: '点击弹出分享',  //分享的群的名字
+								describe: group.group.descriptio, //群描述
+								gid: gid, //要分享的 那个群的 gid
+								type: 'shareGroup' ,    //发送的自定义的消息类型
+								key: 'outside', //外分享
+								txt: '邀请你一起分享此群 ❤'
+						}
+				});
+				//监听chat_list 极光发送消息发送成功
+				api.addEventListener({
+						name: 'ChatListExecReturn'
+				}, function(ret, err){
+						if( ret ){
+								if(ret.value.state == 1){
+									api.toast({
+											msg: '分享成功',
+											duration: 2000,
+											location: 'bottom'
+									});
+										 setTimeout(function(){
+												api.closeWin({
+														name: 'group_setting'
+												});
+										 },300)
+								}
+						}
+				});
+			});
+
+		if($api.getStorage("language") == "zho"){
+			//$api.text($api.dom('.mingcheng'),"修改群名称")
+			//$('.group_setting_list>.abcd').text("修改群名称");
+			$api.html($api.dom('.first'),'選擇壹個類型');
+			$api.html($api.dom('.qq'),'自己分享');
+			$api.html($api.dom('.invite'),'邀請分享');
+			$api.html($api.dom('.cancel'),'取消');
+			$api.html($api.dom('.yes'),'确 认');
+			$api.html($api.dom('.no'),'取 消');
+			$(".member").css("margin-top","-1px");
+			group.qunming=" 修 改 群 組 名 ";
+			group.qunjieshao=" 修 改 群 公 告 ";
+			group.quntouxiang=" 修 改 群 圖 片 ";
+			group.jiaren=" 添 加 成 員 ";
+			group.tuiqun=" 退出群组 ";
+			group.jiequn=" 解散群组 ";
+			group.notification=" 消 息 提 醒 " ;
+			group.people=" 人 數 ";
+			group.discussions=" 討 論 數 ";
+			group.rank=" 排 名 ";
+			group.details=" 群 詳 情 ";
+			group.xiugai="修 改 信 息";
+			group.share="分 享 該 群";
+			group.shengji="升 級 該 群";
+			group.join='進 入 群 組';
+		}
+	};
+
+	var group = new Vue({
+	  el: '#group_setting',
+	  data: {
+	    group:[],//群的所有的信息
+	    members:[],//群成员列表
+	    my_identity:0,//我在群内的身份-0-、普通成员-1-、群主-2-、管理员
+	    my_keep_silence:false,
+			//是否保持沉默 -trun-、接收消息  —false—拒收消息
+
+			avatar:'../../icon/logon-page/headimg.png',//头像
+			qunming:'Modify The Group Name',//
+			qunjieshao:'Modify The Group Profile',
+			quntouxiang:'Modify Group Image',
+			jiaren:'Add Members',
+			tuiqun:'LEAVE THE GROUP',
+			jiequn:'DISSOLVE THE GROUP',
+			notification:'Message Notification',
+			people:'Members',
+			join: 'JOIN',
+			discussions: 'Discussions',
+			rank: 'Rank',
+			details: 'D E T A I L S',
+			memberId:[],//普通成员的数组
+			leadId:[],//群主和管理员的数组
+			xiugai: 'Modify Information',//修改群资料
+			share: 'Share This Group',
+			shengji: 'Upgrade This Group',
+			fun: 'Welcome ~ Have fun ！(o゜▽゜)o☆',
+			groupgid:[],//储存群成员的缓存
+			judge:0,//判断是从哪里点进来的
+	  },
+	  methods: {
+			// setlanuage () {
+			// 	this.$nextTick(function(){
+			// 			this.group.name="哈哈哈哈哈";
+			// 			alert("哈哈哈");
+			// 	});
+			// },
+			getT: function(group_type){
+				var language = $api.getStorage('language');
+				switch (group_type) {
+					case 'gossip':
+							if(language=='zho'){
+								return '閑 聊';
+							}else{
+								return 'gossip';
+							}
+						break;
+					case 'anime':
+							if(language=='zho'){
+								return '動 漫';
+							}else{
+								return 'anime';
+							}
+						break;
+					case 'movie':
+						 if(language=='zho'){
+						   return '電 影';
+						 }else{
+							 return 'movie';
+						 }
+						break;
+					case 'music':
+						if(language=='zho'){
+								return '音 樂';
+							}else{
+								return 'music';
+							}
+						break;
+					case 'game':
+							if(language=='zho'){
+								return '遊 戲';
+							}else{
+								return 'game';
+							}
+						break;
+					default:
+						return 'gossip';
+				}
+			},
+			getP: function(message){
+				if(message=='gossip'){
+					return "../../icon/chat/chat.png";
+				}else if(message=='movie'){
+					return "../../icon/chat/movie.png";
+				}else if(message=='music'){
+					return "../../icon/chat/music.png";
+				}else if(message=='game'){
+					return "../../icon/chat/game.png";
+				}else if(message=='anime'){
+					return "../../icon/chat/anm.png";
+				}else{
+					return "../../icon/chat/chat.png";
+				}
+			},
+			//进入群组
+			joinGroup: function(){
+					api.ajax({
+					    url: 'http://api.baopinghui.com/jpushim/findnewbin8',
+					    method: 'get',
+					    data: {
+					        values: {
+					            gid: gid,
+											uiid: $api.getStorage("id"),
+					        }
+					    }
+					},function(ret, err){
+					    if (ret) {
+								// alert(JSON.stringify(ret));
+								//新人进群更新活跃度
+									api.ajax({
+									    url: 'http://api.baopinghui.com/tin_Groups/updateGroupsActive',
+									    method: 'post',
+									    data: {
+									        values: {
+									            operation: 'join',
+															gid: gid
+									        }
+									    }
+									},function(ret, err){
+									    if (ret) {
+									        // alert( JSON.stringify( ret ) );
+									    }
+									});
+									var groupfirst = gid+'first';
+									 var groupTime = gid+'time';
+
+
+									var jointime= new Date().getTime();
+									// alert(jointime);
+									//添加进入该群组的时间和记录第一次到缓存中
+										$api.setStorage(groupTime,jointime);
+										$api.setStorage(groupfirst, groupfirst);
+										api.openWin({
+											name: 'group_chat1',
+											url:router['widget']+"group/group_chat.html",
+											slidBackEnabled: false,
+											animation: {
+													type: "fade", //动画类型（详见动画类型常量）
+													subType: "fade", //动画子类型（详见动画子类型常量）
+													duration: 250 //动画过渡时间，默认300毫秒
+												},
+													pageParam: {
+													gid: gid,
+													gname: group.group.groupname
+													}
+												});
+					  			  }
+					});
+
+			},
+			//设置头像
+			getPic: function(avatar) {
+				return {
+					backgroundImage: 'url('+'http://bin.baopinghui.com/'+ avatar+ '?imageView2/0/w/100)',
+				}
+			},
+			modify: function(){
+				var typeGroup = group.getT(group.group.group_type);//群类型
+					api.openWin({
+					    name: 'groupcreate',
+					    url: './groupcreate.html',
+					    pageParam: {
+					        key: 1,
+									groupname: group.group.groupname,
+									descriptio:group.group.descriptio,
+									avatar:group.group.avatar,
+									typeGroup:typeGroup,
+									gid:gid
+					    }
+					});
+
+
+			},
+			openMember: function(type){
+				var members;
+				if(type == 1){
+					members = group.leadId;
+				}else{
+					members = group.memberId;
+				}
+				//如果不是从群分享链接点进来的则可以点击打开成员页
+				if(group.judge!=1){
+				api.openWin({
+				    name: 'member',
+				    url: './member.html',
+				    pageParam: {
+				        members: members,
+								my_identity: group.my_identity,
+								gid: gid
+				    }
+				});
+			}
+
+			},
+		  	back: function(item) {
+
+					// api.sendEvent({
+					//     name: 'settingback',
+					//     extra: {
+					//         key1: 'value1'
+					//     }
+					// });
+
+
+					// refreshfn();
+					// 打开群聊页面
+				// 	api.openWin({
+				// name:'group_chat',
+				// url:router['widget']+"group/group_chat.html",
+				// slidBackEnabled: false,
+				// // animation: {
+				// // 	type: "fade", //动画类型（详见动画类型常量）
+				// // 	subType: "fade", //动画子类型（详见动画子类型常量）
+				// // 	duration: 250 //动画过渡时间，默认300毫秒
+				// // },
+				// pageParam: {
+				// 	// //  avatar: message['avatar_url'],
+				// 	gid: api.pageParam["gid"],
+				// 	gname:group.group.name
+				//
+				//
+				// 	}
+				// });
+					api.closeWin({
+					});
+
+		  	},
+			// gba: function(item) {
+			// 	alert('你好');
+			//
+			// },
+	  	//修改群名
+	  	modify_the_groupName: function(item) {
+	  		api.openFrame({
+				name: "reply",
+				url: "widget://html/details/reply.html",
+				rect: {
+					x: 0,
+					y: 0,
+					w: "auto",
+					h: "auto"
+				},
+				pageParam:{
+					modify_the_group: 'groupName',
+				}
+			});
+	  	},
+	  	//修改群描述
+	  	modify_the_groupPorfile: function(item) {
+
+	  		api.openFrame({
+				name: "reply",
+				url: "widget://html/details/reply.html",
+				rect: {
+					x: 0,
+					y: 0,
+					w: "auto",
+					h: "auto"
+				},
+				pageParam:{
+					modify_the_group: 'groupPorfile',
+				}
+			});
+
+	  	},
+	  	//更改群头像
+	  	modify_the_groupImage: function(item) {
+				// alert(JSON.stringify(group.group));
+				// jim_init();
+	  		//alert('更改群头像');
+				api.getPicture({
+	    		sourceType: "library",
+	    		mediaValue: "pic",
+	    		destinationType: "url",
+	    		saveToPhotoAlbum: true,
+	    		quality: 70,
+	    		targetWidth: 1200,
+	    		targetHeight: 1200,
+	    	}, function(ret, err){
+	    		if(ret){
+						// alert(JSON.stringify(ret));
+	    			if(ret.data){
+	    				var data = ret.data,
+	    					myDate = new Date(),
+	    					avatar = data;
+								//alert(avatar);
+	    				var obj = api.require('qiniuUpfile');
+						obj.upfile({
+							file: avatar,
+							name: myDate.getTime() + Math.random()
+						}, function(ret, err) {
+							// alert(JSON.stringify(ret));
+							if(ret.status) {
+								if(ret.oper == "complete") {
+									var qiniuKey = ret.info.key;
+									//alert(ret.info.key);
+				            api.ajax({
+				                url: 'http://api.baopinghui.com/jpushim/findnewbin9',
+				                method: 'get',
+				                data: {
+				                    values: {
+				                        gid: gid,
+																avatar:qiniuKey
+				                    }
+
+				                }
+				            },function(ret, err){
+                        if(ret){
+													group.group.avatar=qiniuKey;
+													api.toast({
+													    msg: '修改成功',
+													    duration: 2000,
+													    location: 'bottom'
+													});
+
+
+												}else{
+													api.toast({
+													    msg: '操作失败',
+													    duration: 2000,
+													    location: 'bottom'
+													});
+
+												}
+
+				            });
+
+
+								}
+								return;
+							}
+							alert("上传失败");
+							return;
+						});
+	    			};
+	    			return;
+	    		};
+				console.log(err);
+	    	});
+	  	},
+	  	//显示二维码
+	  	display_or_code: function(item) {
+	  		alert('显示二维码');
+
+	  	},
+	  	//添加成员
+	  	addMembers: function(item) {
+
+			api.openFrame({
+			    name: 'add_members',
+			    url: 'widget://html/group/add-members.html',
+			    rect: {
+			        x: 0,
+			        y: 0,
+			        w: 'auto',
+			        h: 'auto'
+			    },
+			    slidBackEnabled: false,
+				animation: {
+					type: "fade", //动画类型（详见动画类型常量）
+					subType: "fade", //动画子类型（详见动画子类型常量）
+					duration: 250 //动画过渡时间，默认300毫秒
+				}
+			});
+
+	  	},
+	  	//离开群组
+	  	leave_group_chat: function(item) {
+				if($api.getStorage('language')=='zho'){
+					$api.html($api.dom('.title'),'退 出 群 组 ？');
+					$api.html($api.dom('.des'),'您 确 定 要 退 出 群 组 吗，这 代 表 您 将 不 能 收 到 该 群 组 的 信 息');
+				}
+				$('.bg').css('display','block');
+				$('.yes').click(function(){
+					api.ajax({
+							url: 'http://api.baopinghui.com/jpushim/findnewbin8',
+							method: 'get',
+							data: {
+									values: {
+											gid: gid,
+											uiid:uiid,
+											type:"0" //0代表删除成员
+
+									}
+							}
+					},function(ret, err){
+							if (ret) {
+								api.sendEvent({
+									 name: 'shuaAll',
+									 extra: {
+											 key1: 1  //key没有用到
+									 }
+								});
+								//离开群组后，将该群从chatlist列表删除
+								api.sendEvent({
+										name: 'leaveGroup',
+										extra: {
+												gid: gid
+										}
+								});
+										api.toast({
+												msg: '离开成功',
+												duration: 2000,
+												location: 'bottom'
+										});
+										api.closeWin({
+												});
+
+							} else {
+									api.toast({
+											msg: '操作失败',
+											duration: 2000,
+											location: 'bottom'
+									});
+
+							}
+					});
+				})
+	  	},
+	  	//解散群组
+	  	leave_the_group: function() {
+				if($api.getStorage('language')=='zho'){
+					$api.html($api.dom('.title'),'解 散 群 组 ？');
+					$api.html($api.dom('.des'),'您 确 定 要 解 散 群 组 吗 ？');
+				}
+					$('.bg').css('display','block');
+					$('.yes').click(function(){
+            api.ajax({
+                url: 'http://api.baopinghui.com/jpushim/findnewbin15',
+                method: 'get',
+                data: {
+                    values: {
+                        gid: gid
+                    }
+                }
+            },function(ret, err){
+                if (ret) {
+									api.sendEvent({
+										 name: 'shuaAll',
+										 extra: {
+												 key1: 1  //key没有用到
+										 }
+									});
+									//离开群组后，将该群从chatlist列表删除
+									api.sendEvent({
+											name: 'leaveGroup',
+											extra: {
+													gid: gid
+											}
+									});
+                      api.toast({
+                          msg: '解散群成功',
+                          duration: 2000,
+                          location: 'bottom'
+                      });
+
+
+											api.closeWin({
+													});
+
+							  } else {
+                    api.toast({
+                        msg: '解散失败',
+                        duration: 2000,
+                        location: 'bottom'
+                    });
+
+                }
+            });
+
+					});
+
+	  	}
+	  	// //点击成员头像-管理扩展
+	  	// management: function(item) {
+			// 	//设置成员的标识flag   0普通成员 1群主 2管理员
+			// 	//后端返回的普通成员是没有标识的所以会是null
+			//
+			// 	var temFlag=0;
+			// 	if(item.flag!=null){
+			// 		// alert(item.flag);
+			// 		temFlag=item.flag;
+			//
+			// 	}else{
+			// 		item.flag=0;
+			// 	}
+			//
+			// 	// jim_init();
+	  	// console.log(JSON.stringify(item));
+	  	// 	var this_ = this;
+	  	// 	if(item.id == uiid){
+	  	// 		console.log('不可以点击自己的！');
+	  	// 		return;
+	  	// 	}
+	  	// 	api.openFrame({
+			// 	name: "management",
+			// 	url: "widget://html/group/management.html",
+			// 	rect: {
+			// 		x: 0,
+			// 		y: 0,
+			// 		w: "auto",
+			// 		h: "auto"
+			// 	},
+			// 	pageParam:{
+			// 		members_int : item,
+			// 		my_flag :group.my_identity
+			// 	}
+			// });
+	  	// }
+
+	  }
+	})
+
+
+
+
+
+
+		//获取群的所有信息
+		function getGroup(){
+			    api.ajax({
+			        url: 'http://api.baopinghui.com/jpushim/findnewbin4',
+			        method: 'get',
+			        data: {
+			            values: {
+			                gid: gid
+			            }
+			        }
+			    },function(ret, err){
+			        if (ret) {
+									group.group = ret.data;
+
+			        } else {
+
+			        }
+			    });
+
+
+		}
+		//		获取'我'在群内的身份和成员信息
+				function getGroupMember(type){
+					var member_list = [];
+					// var idBox=[];
+
+					    api.ajax({
+					        url: 'http://api.baopinghui.com/jpushim/findnewbin2',
+					        method: 'get',
+					        data: {
+					            values: {
+					                gid:api.pageParam["gid"]
+					            }
+					        }
+					    },function(ret, err){
+								// alert(JSON.stringify(ret));
+					        if (ret) {
+					          	group.members=ret.data.list;
+											if(type==2){
+												for(var i=0;i<group.groupgid.length;i++){
+													if(group.groupgid[i].gid==gid){
+															group.groupgid[i].members = group.members;
+															$api.setStorage('groupgid', group.groupgid);
+															group.leadId=[];
+															group.memberId=[];
+															for(var i=0;i<group.members.length;i++){
+																if(group.members[i].flag==1||group.members[i].flag==2){
+																	group.leadId.push(group.members[i]);
+																}else{
+																	group.memberId.push(group.members[i]);
+																}
+																// idBox.push(group.members[i].id);
+																if(ret.data.list[i].id==uiid){
+
+																		group.my_identity = ret.data.list[i].flag;
+																 }
+															}
+															return;
+													}
+												}
+												// return;
+											}
+											// group.groupgid[0].members=ret.data.list;
+											// for(var i=0;i<group.groupgid.length;i++){
+											// 	if(group.groupgid[i]==gid){
+											//
+											// 	}else{
+											// 		group.groupgid.push()
+											// 	}
+											// }
+											// console.log(JSON.stringify(group.groupgid));
+											// $api.setStorage('groupgid', group.groupgid);
+
+											// $api.setStorage('members', group.members);
+
+											// console.log(JSON.stringify(group.members));
+									var  mlength=group.members.length;
+
+									// var idBox=[]
+		                    for(var i=0;i<mlength;i++){
+													if(group.members[i].flag==1||group.members[i].flag==2){
+														group.leadId.push(group.members[i]);
+													}else{
+														group.memberId.push(group.members[i]);
+													}
+													// idBox.push(group.members[i].id);
+													if(ret.data.list[i].id==uiid){
+
+															group.my_identity = ret.data.list[i].flag;
+													 }
+												}
+												if(type==1){
+													group.groupgid = [{'gid':gid,'my_identity':group.my_identity,'members':[]}];
+													group.groupgid[0].members=group.members;
+													$api.setStorage('groupgid', group.groupgid);
+												}
+												if(type==3){
+													var newGid = {'gid':gid,'my_identity':group.my_identity,'members':group.members};
+													group.groupgid.push(newGid);
+													$api.setStorage('groupgid',group.groupgid);
+												}
+												// alert(JSON.stringify(group.leadId));
+												// alert(JSON.stringify(group.memberId));
+											// 	setTimeout(function(){
+											// 	api.ajax({
+											// 			url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/checkUserOnTimeOnLine',
+											// 			method: 'post',
+											// 			data: {
+											// 					values: {
+											// 							uiids:''+idBox,
+											// 							hour:3
+											// 					}
+											// 			}
+											// 	},function(ret, err){
+											// 			// alert(JSON.stringify(ret))
+											// 			for(var i=0;i<group.members.length;i++){
+											// 				for(var j=0;j<ret.data.length;j++){
+											// 					if(group.members[i].id==ret.data[j].uiid){
+											// 						if(ret.data[j].state==1){
+											// 							Vue.set(group.members[i],'state',1);
+											// 						}else{
+											// 							Vue.set(group.members[i],'state',0);
+											// 						}
+											// 					}
+											// 				}
+											// 				// if(group.members[i].flag==1||group.members[i].flag==2){
+											// 				// 	group.leadId.push(group.members[i]);
+											// 				// }else{
+											// 				// 	group.memberId.push(group.members[i]);
+											// 				// }
+											// 			}
+											// 	});
+											// },50)
+					        } else {
+					            api.toast({
+					                msg: '获取群组消息失败',
+					                duration: 2000,
+					                location: 'bottom'
+					            });
+
+					        }
+					    });
+				}
+		//开关按钮-控制消息免打扰
+		// function getSwitchBtn(){
+		// 	var switchBtn = api.require('UISwitchButton');
+		// 	//打开前关闭之前的，防止重复打开
+		// 	switchBtn.close({
+		// 	    id: 'getNews'
+		// 	});
+		// 	switchBtn.open({
+		// 	    id:'getNews',
+		// 	    state:group.my_keep_silence,
+		// 	    rect: {
+		// 	      x: $('.getMessage').offset().left - $(window).width() * 0.06,
+		// 	      y: $('.getMessage').offset().top - 1,
+		// 	      w: 40,
+		// 	      h: $(window).width() * 0.075
+		// 	    },
+		// 	    styles:{
+		// 	       bgCorner:12,
+		// 	       active:'#EEE' ,
+		// 	       inActive:'#0F0',
+		// 	       thumb:{
+		// 	          active:'#FFF' ,
+		// 	          inActive:'#FFF' ,
+		// 	          size:18,
+		// 	          corner:10
+		// 	       }
+		// 	    },
+		// 	    fixedOn: '',
+		// 	    fixed: false
+		// 	}, function(ret) {
+		// 	    console.log(JSON.stringify(ret));
+		// 	});
+		//
+		// }
+		//修改群资料和群名称
+		function modify(type,content){
+			// alert(JSON.stringify(group.group));
+			var groupName = group.group.groupname,
+				groupDesc = group.group.descriptio;
+			if(type == 'groupName'){//修改群资料
+				groupName = content;
+				// alert(gid);
+				// alert(content);
+				console.log(groupName+'=============='+groupDesc);
+        api.ajax({
+            url: 'http://api.baopinghui.com/jpushim/findnewbin9',
+            method: 'get',
+            data: {
+                values: {
+                    gid: gid,
+										groupName:content
+                }
+            }
+        },function(ret, err){
+
+       console.log(JSON.stringify(ret));
+							api.toast({
+							    msg: '修改成功',
+							    duration: 2000,
+							    location: 'bottom'
+							});
+                 group.group.groupname=content;
+       if(err){
+				 api.toast({
+						 msg: '修改失败',
+						 duration: 2000,
+						 location: 'bottom'
+					 });
+
+				 }
+        });
+			}else{
+				if(groupDesc == ''){
+					groupDesc = ' ';
+				}
+				groupDesc = content;
+				console.log(groupName+'=============='+groupDesc);
+			api.ajax({
+			    url: 'http://api.baopinghui.com/tin_Groups/updateGroupDescribe',
+			    method: 'post',
+			    data: {
+			        values: {
+			            describe: groupDesc,
+									gid: gid
+			        }
+			    }
+			},function(ret, err){
+				group.group.descriptio=content;
+				api.toast({
+				    msg: '修改成功',
+				    duration: 2000,
+				    location: 'bottom'
+				});
+				//修改公告后发送事务通知聊天列表页面把公告用心消息发送出去
+
+			api.execScript({
+					name: 'group_chat',
+					script: "addnotice('"+content+"');"
+			});
+
+			//发送事务通知聊天列表发送消息
+			api.sendEvent({    //发给 chat_list 页面
+					name: 'ChatListExec',
+					extra: {
+							targetType: "group",  //来源的类型单聊类型 另外一种是群聊类型single
+							target_gid:api.pageParam["gid"],  //单聊的对象极光的username既tinkle的uiid
+							content:"[公告]",  //要发送的消息体内容
+							type: 'notice' ,    //发送的自定义的消息类型
+							content2:content
+					}
+			});
+
+
+			});
+
+
+			}
+
+
+		};
+
+		//定义刷新群聊页面函数
+		function refreshfn(){
+
+			var refresh = "window.location.reload();";
+
+			// //刷新win
+			// api.execScript({
+			// 	  name: 'group_chat',
+			// 		script: refresh
+			// });
+
+			// api.execScript({
+			// 		name: 'index2',
+			// 		frameName: 'recommend_list2',
+			// 		script: refresh
+			// });
+
+		};
+
+		//定义刷新当前页面函数
+		function refreshfn_ing(){
+			window.location.reload();
+			//self.location=document.referrer;
+			// var refresh = "window.location.reload();";
+			// if($api.getStorage("frameName")){//刷新fram
+			// 	api.execScript({
+			// 		frameName: $api.getStorage("frameName"),
+			// 			script: refresh
+			// 	});
+			// 	api.closeFrame({});
+			// 	return;
+			// };
+			// //alert('group_chat');
+			// //刷新win
+			// api.execScript({
+			// 		name: 'group_chat',
+			// 		script: refresh
+			// });
+			// api.closeFrame({});
+			//alert('刷新页面')
+		};
+
+	// 	//添加群管理员
+	// 	function addAdmin(username,num){
+	// 		var execType="addAdmin";
+	// 		if(num==2){
+	// 			execType="removeAdmin";
+	// 		}
+	//
+	// 	api.sendEvent({
+	// 	    name: 'execJIM',
+	// 	    extra: {
+	// 				  type:execType,
+	// 	        gid: gid,
+	// 	        username: username
+	// 	    }
+	// 	});
+	// //group_chat传来管理员添加成功
+	// 	api.addEventListener({
+	// 	    name: 'execJIMend'
+	// 	}, function(ret, err){
+	// 	    if( ret ){
+	// 				//切割改变数组让他的状态改变，不然就使用v-show来实现不使用v-if
+	// 				api.toast({
+	// 				    msg: '操作成功',
+	// 				    duration: 2000,
+	// 				    location: 'bottom'
+	// 				});
+	//
+	//
+	// 				var Mlength=group.members.length;
+	// 				for(var i=0;i<Mlength;i++){
+	// 					     if(group.members[i].id==username){
+	// 										// 	Vue.set(group.members[i],'flag',2);//更改最新一条消息
+  //                         //  alert("sss");
+	// 								 var qian=group.members.slice(0,i);
+	// 										var hou=group.members.slice(i+1,Mlength);
+	// 								var aa=group.members.splice(i,1);
+	// 								//判断类型是添加还是移除管理员
+	// 								if(ret.value.type=="addAdmin"){
+	// 										aa[0].flag=2;
+	// 								}else{
+	// 									aa[0].flag=0;
+	// 								}
+	//
+	// 									qian.push(aa[0]);
+	// 								group.members=qian.concat(hou);
+	//
+	// 										 return;
+	// 							 }
+	// 				}
+	//
+	//
+	//
+	// 	    }else{
+	//
+	// 	    }
+	// 	});
+	//
+	//
+	//
+	// 	}
+	// 	//移除群管理员
+	// 	function removeAdmin(username){
+	// 		addAdmin(username,2);
+	//
+	// 	}
+		//测试你好世界
+		function helloworld() {
+			alert('你好，世界');
+			window.location.reload();
+		}
+		// //删除群成员
+		// function delGroupMembers(username){
+		// 	api.ajax({
+		// 			url: 'http://api.baopinghui.com/jpushim/findnewbin8',
+		// 			method: 'get',
+		// 			data: {
+		// 					values: {
+		// 							gid: gid,
+		// 							uiid:username,
+		// 							type:"0" //0代表删除成员
+		//
+		// 					}
+		// 			}
+		// 	},function(ret, err){
+		// 			if (ret) {
+		//
+		//
+		// 						api.toast({
+		// 								msg: '删除群成员成功',
+		// 								duration: 2000,
+		// 								location: 'bottom'
+		// 						});
+		// 						var Mlength=group.members.length;
+		// 						for(var i=0;i<Mlength;i++){
+		// 							if(group.members[i].id==username){
+		// 								//切掉数据中的这一行，不用刷新，不然加载的时间太久
+    //                    group.members.splice(i,1);
+		// 									 return;
+		// 							}
+		// 						}
+		//
+		//
+		//
+		//
+		// 			} else {
+		// 					api.toast({
+		// 							msg: '操作失败失败',
+		// 							duration: 2000,
+		// 							location: 'bottom'
+		// 					});
+		//
+		// 			}
+		// 	});
+		//
+		//
+		//
+		// };
+
+
+
+
+		//添加群成员
+		function addMembers(Member_id){
+			console.log(Member_id);
+
+           api.ajax({
+               url: 'http://api.baopinghui.com/jpushim/findnewbin8.1',
+               method: 'get',
+               data: {
+                   values: {
+                       gid: gid,
+											 uiid:Member_id,
+											 type:"1"   //1代表添加 0代表删除
+                   }
+               }
+           },function(ret, err){
+               if (ret) {
+								//  alert(JSON.stringify(ret));
+								 group.members.push(ret.data);
+								 group.memberId.push(ret.data);
+                   	api.toast({
+                   	    msg: '添加成员成功',
+                   	    duration: 2000,
+                   	    location: 'bottom'
+                   	});
+
+               } else {
+                   api.toast({
+                       msg: '添加成员失败',
+                       duration: 2000,
+                       location: 'bottom'
+                   });
+
+               }
+
+
+								//   	refreshfn_ing();
+							               //更新活跃度
+							 									api.ajax({
+							 											url: 'http://api.baopinghui.com/tin_Groups/updateGroupsActive',
+							 											method: 'post',
+							 											data: {
+							 													values: {
+							 															operation: 'join',
+							 															gid:gid
+							 													},
+							 											}
+							 									},function(ret, err){
+							 											if (ret) {
+							 											} else {
+							 													api.toast({
+							 													    msg: '操作错误',
+							 													    duration: 2000,
+							 													    location: 'bottom'
+							 													});
+
+							 											}
+							 									});
+					 });
+
+		};
+		//从别人分享的群点进来的时候判断自己是不是在该群中
+		function onGroup(){
+			//不能点击群成员
+			group.judge = 1;
+			api.ajax({
+			    url: 'http://api.baopinghui.com/jpushim/findnewbin3',
+			    method: 'post',
+			    data: {
+			        values: {
+			            gid: gid,
+									uiid: $api.getStorage('id')
+			        }
+			    }
+			},function(ret, err){
+			    if (ret) {
+						// alert(JSON.stringify(ret));
+			        if(ret.data==false){
+								$('.miandarao').css('display','none');
+								$('.leave').css('display','none');
+								$('.modify').css('display','none');
+								$('.add').css('display','none');
+								$('.join').css('display','block');
+							}else{
+								var ggid = api.pageParam['gid'];
+								setTimeout(function(){
+									api.openWin({
+										name: 'group',
+										url:router['widget']+"group/group_chat.html",
+										slidBackEnabled: false,
+										animation: {
+												type: "fade", //动画类型（详见动画类型常量）
+												subType: "fade", //动画子类型（详见动画子类型常量）
+												duration: 250 //动画过渡时间，默认300毫秒
+											},
+												pageParam: {
+												gid: ggid,
+												gname: group.group.groupname
+												}
+											});
+								},300)
+							}
+			    }
+			});
+
+		}
+
+		//断线了~~~~
+//
+//		我是群成员列表：[{
+//		"flag":1,
+//		"nickName":"大霸王",
+//		"keep_silence":false,
+//		"shield_flag":0,
+//		"appkey":"c46c8bc128f41299334ec8e3",
+//		"avatar":"f8cc5f9956df68260156dffa4e9b00141516423321193",
+//		"username":"f8cc5f9956df68260156dffa4e9b0014"}]
+
+		//更改群头像，member页面 执行这个方法
+		function groupAvatar(qiniuKey){
+			// alert("???");
+						api.ajax({
+								url: 'http://api.baopinghui.com/jpushim/findnewbin9',
+								method: 'get',
+								data: {
+										values: {
+												gid: gid,
+												avatar:qiniuKey
+										}
+
+								}
+						},function(ret, err){
+								if(ret){
+									group.group.avatar=qiniuKey;
+									// api.toast({
+									// 		msg: '修改成功',
+									// 		duration: 2000,
+									// 		location: 'bottom'
+									// });
+
+
+								}
+						});
+				}
+		//更改群名字，member页面 执行这个方法
+		function groupName(GroupName){
+			api.ajax({
+					url: 'http://api.baopinghui.com/jpushim/findnewbin9',
+					method: 'get',
+					data: {
+							values: {
+									gid: gid,
+									groupName:GroupName
+							}
+					}
+			},function(ret, err){
+
+		 console.log(JSON.stringify(ret));
+						// api.toast({
+						// 		msg: '修改成功',
+						// 		duration: 2000,
+						// 		location: 'bottom'
+						// });
+							 group.group.groupname=GroupName;
+		 if(err){
+			//  api.toast({
+			// 		 msg: '修改失败',
+			// 		 duration: 2000,
+			// 		 location: 'bottom'
+			// 	 });
+
+			 }
+			});
+		}
+		//更改群公告，member页面 执行这个方法
+		function notice(intro){
+			api.ajax({
+			    url: 'http://api.baopinghui.com/tin_Groups/updateGroupDescribe',
+			    method: 'post',
+			    data: {
+			        values: {
+			            describe: intro,
+									gid: gid
+			        }
+			    }
+			},function(ret, err){
+				group.group.descriptio=intro;
+				// api.toast({
+				//     msg: '修改成功',
+				//     duration: 2000,
+				//     location: 'bottom'
+				// });
+				//修改公告后发送事务通知聊天列表页面把公告用心消息发送出去
+
+			api.execScript({
+					name: 'group_chat',
+					script: "addnotice('"+intro+"');"
+			});
+
+			//发送事务通知聊天列表发送消息
+			api.sendEvent({    //发给 chat_list 页面
+					name: 'ChatListExec',
+					extra: {
+							targetType: "group",  //来源的类型单聊类型 另外一种是群聊类型single
+							target_gid:api.pageParam["gid"],  //单聊的对象极光的username既tinkle的uiid
+							content:"[公告]",  //要发送的消息体内容
+							type: 'notice' ,    //发送的自定义的消息类型
+							content2:intro
+					}
+			});
+
+
+			});
+		}
+</script>
+</html>

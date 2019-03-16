@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+	<title>guide9(new)</title>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+		}
+		body{
+			width:100vw;
+			height:100vh;
+			/*visibility: hidden;*/
+		}
+		.bg{
+			position: fixed;
+			top:0;
+			width:100vw;
+			height:100vh;
+			background-color:#000;
+			opacity: 0.8;
+			/*animation:bganimation 0.3s linear 0s 1 normal;
+			-webkit-animation: bganimation 0.3s linear 0s 1 normal;
+			-ms-animation: bganimation 0.3s linear 0s 1 normal;
+			-o-animation: bganimation 0.3s linear 0s 1 normal;
+			-moz-animation: bganimation 0.3s linear 0s 1 normal;*/
+			z-index: -1;
+		}
+		.box{
+			margin-top:51.81vw;
+			width: 100vw;
+			position: relative;
+		}
+		.arrow{
+			display: inline-block;
+			width:10.64vw;
+			height:10.64vw;
+			background:url(../../icon/guide/arrow2.png) no-repeat;
+			background-size:contain;
+			transform: rotate(-100deg);
+			margin-left:7.98vw;
+			margin-top:3vw;
+		}
+		p{
+			font:3.99vw/5.85vw Arial;
+			font-weight: bold;
+			color:#fff;
+			display: inline-block;
+		}
+		p>span{
+			color:#f381a3;
+		}
+		.square_type_box{
+			padding:1.33vw;
+			height:9.31vw;
+			margin-top:7.48vw;
+			margin-bottom:3.99;
+			background-color:#fff;
+			display: inline-block;
+			margin-left:3.99vw;
+			border-radius:1.33vw;
+		}
+		.square_type_box>span{
+			width:15.96vw;
+			height:9.31vw;
+			border-radius:9.31vw;
+			font:3.99vw/9.81vw Arial;
+			text-align: center;
+			font-weight: bold;
+			color:#aaa; 
+			float:left;
+		}
+		.square_type_box>span:nth-of-type(1){
+			background-color:#efefef;
+			color:#000;
+		}
+		.square_selected{
+			display: inline-block;
+			width:100vw;
+			padding:0 3.99vw;
+			margin-top:2.66vw;
+			margin-bottom:1.33vw;
+			box-sizing: border-box;
+		}
+		.square_style_box{
+			height:9.31vw;
+			background-color:#efefef;
+			border-radius:1.33vw;
+			padding:0.48vw 0.6vw 0vw 0.5vw;
+			box-sizing: border-box;
+			float:left;
+		}
+		.square_style_box>span,.sort>span{
+			float:left;
+			position: relative;
+			width:10.64vw;
+			height:8.31vw;
+			border-radius:1.33vw;
+		}
+		.sort{
+			height:9.31vw;
+			background-color:#efefef;
+			border-radius:1.33vw;
+			padding:0.48vw 0.5vw 0vw 0.5vw;
+			box-sizing: border-box;
+			float:right;
+		}
+		.square_style_box>span>img,.sort>span>img{
+			position: absolute;
+			top:50%;
+			left:50%;
+			margin-top:-2.4vw;
+			margin-left:-2.4vw;
+			width:4.8vw;
+			height:4.8vw;
+			object-fit: cover;
+			opacity: 0.4;
+		}
+		.square_style_box>span>img{
+			opacity: 0.4;
+		}
+		.square_style_box>span:nth-of-type(1),.sort>span:nth-of-type(1){
+			background-color:#fff;
+		}
+		.square_style_box>span:nth-of-type(1) img,.sort>span:nth-of-type(1)>img{
+			opacity: 1;
+		}
+		.text{
+			margin:20vw 0 0 50vw ;
+		}
+		.arrow1{
+			width:10.64vw;
+			height:10.64vw;
+			background:url(../../icon/guide/arrow1.png) no-repeat;
+			background-size:contain;
+			transform: rotate(47deg);
+			margin-left:2.66vw;
+			margin-top:2.66vw;
+			float:left;
+		}
+		.arrow2{
+			width:10.64vw;
+			height:10.64vw;
+			background:url(../../icon/guide/arrow2.png) no-repeat;
+			background-size:contain;
+			transform: rotate(60deg);
+			margin-right:2.66vw;
+			margin-top:2.66vw;
+			float:right;
+		}
+		.text1,.text2{
+			font:3.99vw/5.85vw Arial;
+			font-weight: bold;
+			color:#fff;
+			float:left;
+			margin-top:17.32vw;
+			margin-left:-5.33vw;
+		}
+		.text2{
+			float:right;
+			margin-left:0vw;
+			margin-right:-5.33vw;
+		}
+		.text1>span,.text2>span{
+			color:#f381a3;
+		}
+		.button{
+			position: fixed;
+			bottom:10.64vw;
+			left:50%;
+			margin-left:-29.655vw;
+			width:59.31vw;
+			height:10.64vw;
+			border:2px solid rgba(255,255,255,1);
+			border-radius: 7.99vw;
+			font:3.99vw/10.64vw Arial;
+			font-weight: bold;
+			text-align: center;
+			color:#fff;
+		}
+	</style>
+</head>
+<body>
+	<div class="bg"></div>
+	<div class="box">
+		<div class="arrow"></div>
+		<p class="textt">Click to switch the  <span>post type</span> :<br>Hot door, my concern, newest</p>
+		<div class="square_type_box">
+			<span id="hot">HOT</span>
+			<span id="focus">LIKE</span>
+			<span id="new">NEW</span>
+		</div>
+		<div class="square_selected">
+			<div class="square_style_box">
+				<span><img src="../../image/index/square1.png" alt=""></span>
+				<span><img src="../../image/index/square2.png" alt=""></span>
+				<span><img src="../../image/index/square3.png" alt=""></span>
+			</div>
+			<div class="sort">
+				<span><img src="../../image/index/timee.png" alt=""></span>
+				<span><img src="../../image/index/random.png" alt=""></span>
+			</div>
+		</div>
+		<div class="arrow2"></div>
+		<div class="arrow1"></div>
+		<div class="text1">Click to switch <br><span>Display type</span></div>
+		<div class="text2">Click to switch <span>Sort</span></div>
+	</div>
+	<div class="button">N E X T</div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript">
+	var www = window.screen.width;
+	var hhh = window.screen.height;
+	apiready = function(){
+		if(hhh/www >2){
+			$api.css($api.dom('.box'), 'margin-top:51.81vw');
+			$api.css($api.dom('.buttom'), 'bottom:19.64vw');
+		}
+		if($api.getStorage('language')=='zho'){
+			$api.html($api.dom('.textt'), '點 擊 切 換 <span>帖 子 類 型</span> ：<br>熱 門 ，我 的 關 注 ，最 新');
+			$api.html($api.dom('.text1'), '點 擊 切 換 <span>顯 示 類 型</span>');
+			$api.html($api.dom('.text2'), '點 擊 切 換 <span>排 序</span>');
+			$api.html($api.dom('.button'), '下一步');
+		}
+		$api.addEvt($api.dom('.button'), 'click', function(){
+			api.openFrame({
+			    name: 'guide9.5(new)',
+			    url: 'widget://html/guide/guide9.5(new).html',
+			    rect: {
+			        x: 0,
+			        y: 0,
+			        w: 'auto',
+			        h: 'auto'
+			    },
+			    pageParam: {
+			        name: 'value'
+			    }
+			});
+			api.closeFrame({
+	    	    name: 'guide9(new)'
+	    	});
+		});
+	}
+</script>
+</html>

@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>out</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <style>
+		html, body{
+			background-color: transparent;
+			font-family: Arial;
+			font-style: italic;
+		}
+		.bg{
+			width: 100vw;
+			height: 100vh;
+			background-color: rgba(34, 34, 34, .7);
+			position: fixed;
+			top: 0;
+			left: 0;
+		}
+		.box{
+			/*position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;*/
+			margin:31.93vh auto 0;
+			border-radius: 5.33vw;
+			padding-bottom:4.52vw;
+			background-color: #fff;
+			width: 78.46vw;
+			height: auto;
+			text-align: center;
+		}
+		.title{
+			margin: 0 auto;
+			width: 53.3vw;
+			height: 15.2vw;
+			font-size: 4vw;
+			line-height: 15.2vw;
+			/*border-bottom: 1px solid #efefef;*/
+		}
+		.des{
+			width: 100%;
+			min-height: 17.6vw;
+			margin: 0 auto 4.53vw ;
+			padding:4.52vw ;
+			box-sizing: border-box;
+			text-align: center;
+			font-size: 4vw;
+			color: #aaa;
+			line-height: 5.87vw;
+			font-weight: bold;
+			background-color: #efefef;
+			/*min-height: 25vw;*/
+		}
+		.des p{
+			font-size: 4vw;
+			font-weight: bold;
+			line-height: 5.32vw;
+		}
+		.yes{
+			width: 52.19vw;
+			height: 10.64vw;
+			line-height: 10.64vw;
+			border-radius: 5.34vw;
+			background: #F381A3;
+			/*box-shadow: 0 0 10px #FFAFBD;*/
+			color: #fff;
+			font-weight: bold;
+			font-size: 4vw;
+			margin: 0 auto;
+		}
+		.no{
+			width: 42.4vw;
+			margin: 2.39vw auto 0;
+			font-size: 3.19vw;
+			line-height: 4.53vw;
+			font-weight: bold;
+			background: #aaa;
+		    -webkit-background-clip: text;
+		    -webkit-text-fill-color: transparent;
+		}
+		.postimg{
+			position: absolute;
+			top:3.99vw;
+			left:4.79vw;
+			width:15.6vw;
+			height:15.6vw;
+			border-radius: 0px 10px 10px 10px;
+			background-size: cover;
+		}
+		.posttitle{
+			position: absolute;
+			top:3.99vw;
+			left:26.1vw;
+			width:45.74vw;
+			height:auto;
+			font:3.99vw Arial;
+			color: #000;
+			line-height: 5.85vw;
+			font-weight: bold;
+			text-align: left;
+			display:-webkit-box;
+          	-webkit-line-clamp: 2;
+          	-webkit-box-orient: vertical;
+          	overflow: hidden;
+		}
+		.postnickname{
+			position: absolute;
+			top:15.96vw;
+			left:26.1vw;
+			width: 45.74vw;
+			height:auto;
+			line-height: 3.99vw;
+			color: #aaa;
+			font:3.19vw Arial;
+			font-weight: bold;
+			text-align: left;
+			display:-webkit-box;
+          	-webkit-line-clamp:1;
+          	-webkit-box-orient: vertical;
+          	overflow: hidden;
+		}
+    </style>
+</head>
+<body>
+	<div class="bg" id="bg">
+		<div class="box">
+			<h1 class="title" id="title">Sign Out?</h1>
+			<p class="des" id="des">Are You Sure To Log Out Of Landing, Which Means You Will Not Receive All ECHO !</p>
+			<p class="yes" id="yes">D E F I N E</p>
+			<p class="no" id="no">Cancel</p>
+		</div>
+	</div>
+		<script src="../../script/jmessage-sdk-web.2.5.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../script/md5.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		apiready = function(){
+			var language = $api.getStorage("language"),
+				oTitle = $api.dom("#title"),
+				des = $api.dom("#des"),
+				yes = $api.dom("#yes"),
+				no = $api.dom("#no"),
+				oBg = $api.dom("#bg"),
+				clear = api.pageParam["clear"],//参数为true，是清除缓存打开的提示框
+				size = api.pageParam["size"],//缓存的大小
+				passwordTip = api.pageParam["passwordTip"],//修改密码时的提示语
+				feedTip = api.pageParam["feedTip"],//提交反馈的提示语
+				isSuccess = api.pageParam["isSuccess"],//表示某操作已成功
+				head = api.pageParam["head"],//参数为true，是更换头像成功打开的提示框
+				profession = api.pageParam["profession"],//参数为true，是帐号设置页里的职业不能包含符号的提示框
+				sendSuccess = api.pageParam["sendSuccess"],//参数为true，是帐号设置提交成功的提示框
+				sendFail = api.pageParam["sendFail"],//参数为true，是帐号设置提交成失败的提示框
+				reply = api.pageParam["reply"],//参数为true，是回复帖子时打开的提示框
+				group = api.pageParam["group"],//参数为true，是群信息修改成功
+				replyEmpty = api.pageParam["replyEmpty"],//参数为true，是回复帖子不能为空的提示框
+				searchEmpty = api.pageParam["searchEmpty"],//参数为true，是搜索内容不能为空的提示框
+				postTip = api.pageParam["postTip"],//参数为true，是发布帖子时的提示框
+				postType = api.pageParam["postType"],
+				postId = api.pageParam["postId"],
+				otherId = api.pageParam["otherId"],
+				testId = $api.getStorage('id'),
+				deletePost = api.pageParam["deletePost"],
+				type = api.pageParam["type"],
+				i = api.pageParam["i"],
+				report = api.pageParam["report"],
+				firsttin = api.pageParam["firsttin"];
+				var reprint = api.pageParam["reprint"];
+				var nickname = api.pageParam["nickname"];
+				var postUsername = api.pageParam["postUsername"];
+				var pubuliu = api.pageParam["pubuliu"];
+				var follow = api.pageParam["follow"];
+				var groupcreate = api.pageParam["groupcreate"],
+					groupdes = api.pageParam["groupdes"];
+				var chatlimit = api.pageParam["chatlimit"];
+				var title=api.pageParam["title"];
+				var posttitle;
+				var	img = api.pageParam['img'];
+				var chat=api.pageParam['chat'];
+				// 轉發的信息框
+				if(reprint){
+
+					api.ajax({
+							url: 'http://api.baopinghui.com/app_dynamicCover/findPostInfo',
+							method: 'post',
+							data: {
+									values: {
+											id: postId
+									}
+							}
+					}, function(ret, err) {
+							if (ret) {
+							var	otherId = api.pageParam["otherId"];
+								var	posttitle=ret.data.title;
+								var title=api.pageParam['title'];
+									var post_type=ret.data.post_type
+									postUsername=ret.data.nickname;
+									imgurl=ret.data.cover_url.split(",")[0];
+									if(ret.data.post_type !== "Video"){
+										$api.html(des, '<div class="postimg" style="background-image:url(http://bin.baopinghui.com/'+imgurl+'?imageView2/0/w/200)"></div><div class="posttitle">'+posttitle+'</div><div class="postnickname">@'+postUsername+'</div>');
+										img='http://bin.baopinghui.com/'+imgurl+'?imageView2/0/w/350';
+									}else{
+										$api.html(des, '<div class="postimg" style="background-image:url(http://bin.baopinghui.com/'+imgurl+'?vframe/jpg/offset/5/w/200)"></div><div class="posttitle">'+posttitle+'</div><div class="postnickname">@'+postUsername+'</div>');
+										img='http://bin.baopinghui.com/'+imgurl+'?vframe/jpg/offset/5/w/350';
+									}
+									oBg.onclick = function(e){//点击黑色背景关闭frame
+										var tar = e.target;
+										if(tar.id === "bg"  || tar.id === "no"){
+													api.closeFrame();
+										};
+									};
+									// alert(posttitle+""+img);
+									$api.addEvt(yes, 'click',function(){
+										setTimeout(function(){
+											api.toast({
+													msg: '转发失败',
+													duration: 2000,
+													location: 'bottom'
+											});
+										},3000)
+
+										setTimeout(function(){
+											close_loading();
+											 api.closeWin({
+													 name: 'appshare'
+											 });
+
+										},4000)
+											open_loading();
+										jim_init();
+									});
+									// JIM=new JMessage();
+
+								 function random(length) {
+									 var str = Math.random().toString(36).substr(2);
+									 if(str.length >= length) {
+										 return str.substr(0, length);
+									 }
+									 str += random(length - str.length);
+									 return str;
+								 }
+								 function jim_init(){
+									 api.addEventListener({   //监听chat_list 极光发送消息发送成功
+											 name: 'ChatListExecReturn'
+									 }, function(ret, err){
+											 if( ret ){
+													 if(ret.value.state == 1){
+														 api.toast({
+														     msg: '转发成功',
+														     duration: 2000,
+														     location: 'bottom'
+														 });
+														    setTimeout(function(){
+																	close_loading();
+																	 api.closeWin({
+																			 name: 'appshare'
+																	 });
+																},300)
+
+													 }
+
+											 }else{
+
+											 }
+									 });
+									 if($api.getStorage('language')=="zho"){
+										 var text = '[帖子]';
+									 }else{
+										 var text = '[Post]';
+									 }
+									 if(type == 1){
+										 var title=api.pageParam['title'];
+										 api.sendEvent({    //发给 chat_list 页
+														name: 'ChatListExec',
+														extra: {
+																targetType: "single",  //来源的类型单聊类型 另外一种是群聊类型group
+																target_username:chat.username,  //单聊的对象极光的username既tinkle的uiid
+																content: text,  //要发送的消息体内容
+																type: 'share',     //发送的自定义的消息类型
+																postUsername:postUsername,
+																postId:postId,
+																img:img,
+																title:title,
+																otherId: otherId,
+																post_type: post_type
+														}
+										 });
+									 }else if(type == 2){
+										 var title=api.pageParam['title'];
+										 api.sendEvent({    //发给 chat_list 页
+														name: 'ChatListExec',
+														extra: {
+																targetType: "group",  //来源的类型单聊类型 另外一种是群聊类型group
+																target_gid:chat.gid,  //单聊的对象极光的username既tinkle的uiid
+																content: text,  //要发送的消息体内容
+																type: 'share',     //发送的自定义的消息类型
+																postUsername:postUsername,
+																postId:postId,
+																img:img,
+																title:title,
+																otherId: otherId,
+																post_type: post_type
+														}
+										 });
+
+
+
+									 }
+
+
+								 }
+
+							}
+					});
+					if(language == "zho"){
+						$api.html(oTitle, "轉發給 "+nickname);
+						$api.html(yes, "確 認");
+						$api.html(no, "取 消");
+					}else{
+						$api.html(oTitle, 'Reprint to '+nickname);
+					}
+
+					$api.css(des, 'position:relative;height:23.94vw;');
+					$api.html(des, '');
+						// alert(JSON.stringify(chat));
+
+					return;
+				}
+				oBg.onclick = function(e){//点击黑色背景关闭frame
+					var tar = e.target;
+					if(tar.id === "bg" || tar.id === "yes" || tar.id === "no"){
+						api.closeFrame();
+					};
+				};
+			function open_loading(){
+				var sendPost = true;
+				api.openFrame({
+					name: 'loading',
+					url: 'widget://html/logon-register/loading.html',
+					vScrollBarEnabled: false,
+					slidBackEnabled: false,
+					animation: {
+						type: "fade", //动画类型（详见动画类型常量）
+						subType: "fade", //动画子类型（详见动画子类型常量）
+						duration: 900 //动画过渡时间，默认300毫秒
+					},
+					pageParam:{
+						sendPost:sendPost
+					}
+				});
+			}
+			//		关闭loading页
+			function close_loading(){
+				api.closeFrame({
+						name: 'loading'
+				});
+			}
+			// 点击私聊弹出限制提示
+			if(chatlimit){
+				$api.html(oTitle, '(ﾟДﾟ≡ﾟдﾟ)!?');
+				if($api.getStorage('language')=='zho'){
+					$api.html(des, '<p>你 需 要 發 佈 了 帖 子</p><p>后 才 能 解 鎖 </p><p>私 聊 功 能 噢 ~</p>');
+					$api.text(yes, '馬 上 去 發');
+					$api.text(no, '點 擊 中 間 的 “ + ” 選 擇 發 佈');
+				}else{
+					$api.html(des, '<p>You need to post a post</p><p>to unlock </p><p>the private chat feature.</p>');
+					$api.text(yes, 'O K');
+					$api.text(no, 'Click on the "+" in the middle');
+				}
+				return;
+			}
+			// 群组创建提示
+			if(groupcreate){
+				$api.html(oTitle, '_(:з)∠)_');
+				$api.html(des, groupdes);
+				return;
+			}
+			// 取消關注
+			if(follow){
+				$api.html($api.dom('#title'), '_(:з)∠)_');
+
+				if($api.getStorage('language')=='zho'){
+					$api.html(des, '<p>真 的</p><p>要</p><p>取 消 關 注 嗎 ?</p>');
+					$api.html(yes, '忍 痛 取 消');
+					$api.html(no, '還 是 關 注 吧');
+				}else{
+					$api.html(des, '<p>Are You Sure</p><p>You Want To</p><p>Cancel Follow This User?</p>');
+					$api.html(yes, 'I   A M   S U R E');
+					$api.html(no, 'No');
+				}
+				$api.addEvt(yes, 'click',function(){
+					api.sendEvent({
+					    name: 'cancelfollow',
+					});
+				});
+				return;
+			}
+
+			if(deletePost){
+				$api.html(oTitle, "Note");
+				$api.html(des, "Detele post ?");
+				if(language == "zho"){
+					$api.html(oTitle, "注 意");
+					$api.html(des, "刪除帖子？");
+					$api.html(yes, "確 認");
+					$api.html(no, "取消");
+				};
+				// alert(pubuliu);
+				if(pubuliu){
+					// alert(1);
+					console.log(otherId);
+					$api.addEvt(yes, "click", function(){
+						console.log(testId);
+						console.log(postId);
+						api.sendEvent({
+						    name: 'deletett',
+						    extra: {
+						        testId: testId,
+						        postId: postId
+						    }
+						});
+				    	if(language == "zho"){
+							api.toast({
+						        msg: '刪除成功!',
+						        duration: 1000,
+						        location: 'middle'
+						    });
+						}else{
+							api.toast({
+						        msg: 'Detele success!',
+						        duration: 1000,
+						        location: 'middle'
+						    });
+						}
+				    // setTimeout(function(){
+						api.sendEvent({
+							name: 'home_loader'
+						});
+						api.sendEvent({
+							name: 'pubuliu1_loader'
+						});
+
+					// },500);
+					api.closeFrame({
+					    name: 'more'
+		    		});
+					});
+				}else{
+					// alert(2);
+					$api.addEvt(yes, "click", function(){
+					var jsfun = "deleteAndEnter()";
+					api.execScript({
+					    script: jsfun
+					});
+						api.sendEvent({
+							name: 'home_loader'
+						});
+						api.sendEvent({
+							name: 'pubuliu1_loader'
+						});
+						api.sendEvent({
+							name: 'pubuliu2_loader'
+						});
+						api.sendEvent({
+							name: 'pubuliu3_loader'
+						});
+					});
+
+				}
+				return;
+			};
+			if(group){//修改群信息和群名
+				$api.css(no, "display:none;");
+				$api.css(des, "min-height:25vw;");
+				$api.html(oTitle, "Modify information");
+				$api.html(des, "Modify success");
+				if(language == "zho"){
+					$api.html(oTitle, "修改信息");
+					$api.html(yes, "確 認");
+					$api.html(des, "修改成功");
+				};
+				oBg.onclick = function(e){
+					var tar = e.target;
+					if(tar.id === "bg" || tar.id === "yes" || tar.id === "no"){
+						api.closeFrame({
+							name: "reply"
+						});
+						api.closeFrame();
+					};
+				};
+				return;
+			};
+			// first tin
+			if(firsttin == 1){
+				$api.html(oTitle, '(￣▽￣)"');
+				$api.html(yes, 'G O &nbsp;&nbsp;O N');
+				$api.html(des, '<p>Your First Post</p><p>Will Recommend the Popular Show</p><p>Please Note</p>');
+				if(language == "zho"){
+					$api.html(des, '<p>您 發 佈 的 第 一 個 帖 子</p><p>將 會 直 接 推 薦 上 熱 門 帖 子</p><p>請 注 意 噢 ~</p>');
+					$api.html(yes, '馬 上 發 佈');
+					$api.html(no, '我 再 想 想');
+				}
+				yes.onclick=function(){
+					if(i == 0){
+						api.sendEvent({
+						    name: 'openvideoo',
+						});
+					}else if(i == 1 || i == 2){
+						api.sendEvent({
+						    name: 'openPostt',
+						    extra: {
+						        type:type
+						    }
+						});
+					}else if(i == 3){
+							opencer();
+					}
+					// api.closeFrame();
+				}
+				return;
+			}
+
+			if(postTip){//发布帖子
+				$api.css(no, "display:none;");
+				$api.css(des, "min-height:25vw;");
+				$api.html(oTitle, "Note");
+				$api.html(des, postTip);
+				if(language == "zho"){
+					$api.html(oTitle, "注 意");
+					$api.html(yes, "確 認");
+				}
+				if(isSuccess){
+					oBg.onclick = function(e){//点击黑色背景关闭frame
+						var tar = e.target;
+						var jsfun = "openDetail()";
+						api.execScript({
+						    script: jsfun
+						});
+						if(tar.id === "bg" || tar.id === "yes" || tar.id === "no"){
+							api.closeFrame();
+						};
+					};
+				};
+				api.sendEvent({
+					    	name: 'home_loader'
+				});
+				return;
+			};
+			if(searchEmpty){//搜索内容为空
+				$api.css(no, "display:none;");
+				$api.css(des, "min-height:25vw;");
+				$api.html(oTitle, "Note");
+				$api.html(des, "Please fill in the search content");
+				if(language == "zho"){
+					$api.html(oTitle, "注 意");
+					$api.html(yes, "確 認");
+					$api.html(des, "請填寫搜索内容");
+				};
+				return;
+			};
+			if(reply){//评论成功
+				$api.css(no, "display:none;");
+				$api.css(des, "min-height:25vw;");
+				$api.html(oTitle, "Reply");
+				$api.html(des, "Reply success");
+				if(language == "zho"){
+					$api.html(oTitle, "評 論");
+					$api.html(yes, "確 認");
+					$api.html(des, "評論成功");
+				};
+				oBg.onclick = function(e){
+					var tar = e.target;
+					if(tar.id === "bg" || tar.id === "yes" || tar.id === "no"){
+						api.closeFrame({
+							name: "reply"
+						});
+						api.closeFrame();
+					};
+				};
+				return;
+			};
+			if(replyEmpty){//评论为空
+				$api.css(no, "display:none;");
+				$api.css(des, "min-height:25vw;");
+				$api.html(oTitle, "Note");
+				$api.html(des, "Please fill in the reply content");
+				if(language == "zho"){
+					$api.html(oTitle, "注 意");
+					$api.html(yes, "確 認");
+					$api.html(des, "請填寫評論内容");
+				};
+				return;
+			};
+			if(clear){//清除缓存
+				$api.html(oTitle, "Clear All Caches?");
+				$api.html(des, "All Image Cache Will Be Deleted, Loaded Picture Needs To Be Reloaded（" + size + "M）");
+				$api.html(yes, "C L E A R");
+				$api.html(no, "Cancel");
+				if(language == "zho"){
+					$api.html(oTitle, "清 除 全 部 緩 存 ？");
+					$api.html(des, "您全部圖片緩存會被刪除，已加載的圖片需要重新加載！（" + size + "M）");
+					$api.html(yes, "清 除");
+					$api.html(no, "取消");
+				};
+				$api.addEvt(yes, "click", function(){
+					var jsfun = "clearCache()";
+					api.execScript({
+					    script: jsfun
+					});
+				});
+				return;
+			};
+			if(passwordTip){//修改密码
+				$api.css(no, "display:none;");
+				$api.css(des, "min-height:25vw;");
+				if(isSuccess){
+					$api.html(oTitle, "Change Password");
+					if(language == "zho"){
+						$api.html(oTitle, "修 改 密 碼");
+						$api.html(yes, "確 認");
+					};
+					clickClose();
+				}else{
+					$api.html(oTitle, "Note");
+					if(language == "zho"){
+						$api.html(oTitle, "注 意");
+						$api.html(yes, "確 認");
+					};
+				};
+				$api.html(des, passwordTip);
+				return;
+			};
+			if(feedTip){//反馈
+				$api.css(no, "display:none;");
+				$api.css(des, "min-height:25vw;");
+				if(isSuccess){
+					$api.html(oTitle, "Feedback");
+					if(language == "zho"){
+						$api.html(oTitle, "意 見 反 饋");
+					};
+					clickClose();
+				}else{
+					$api.html(oTitle, "Note");
+					if(language == "zho"){
+						$api.html(oTitle, "注 意");
+					};
+				};
+				if(language == "zho"){
+					$api.html(yes, "確 認");
+				};
+				$api.html(des, feedTip);
+				return;
+			};
+			if(head){//修改头像
+				$api.css(no, "display:none;");
+				$api.css(des, "min-height:25vw;");
+				$api.html(oTitle, "Gentle reminder");
+				if(language == "zho"){
+					$api.html(oTitle, "溫 馨 提 示");
+				};
+				$api.html(des, "Replace success");
+				if(language == "zho"){
+					$api.html(des, "替換成功");
+					$api.html(yes, "確 認");
+				};
+				return;
+			};
+			if(profession){//职业不能包含符号
+				$api.css(no, "display:none;");
+				$api.css(des, "min-height:25vw;");
+				$api.html(oTitle, "Note");
+				if(language == "zho"){
+					$api.html(oTitle, "注 意");
+				};
+				$api.html(des, "Occupation cannot include emoji");
+				if(language == "zho"){
+					$api.html(des, "職業不能包含表情符號");
+					$api.html(yes, "確 認");
+				};
+				return;
+			};
+			if(sendSuccess){//帐号设置成功
+				$api.css(no, "display:none;");
+				$api.css(des, "min-height:25vw;");
+				$api.html(oTitle, "Gentle reminder");
+				if(language == "zho"){
+					$api.html(oTitle, "溫 馨 提 示");
+				};
+				$api.html(des, "Revise success");
+				if(language == "zho"){
+					$api.html(des, "修改成功");
+					$api.html(yes, "確 認");
+				};
+				clickClose();
+				return;
+			};
+			if(sendFail){//帐号失败
+				$api.css(no, "display:none;");
+				$api.css(des, "min-height:25vw;");
+				$api.html(oTitle, "Gentle reminder");
+				if(language == "zho"){
+					$api.html(oTitle, "溫 馨 提 示");
+				};
+				$api.html(des, "Failed to modify! There may be special characters or duplicate usernames!");
+				if(language == "zho"){
+					$api.html(des, "修改失敗！可能存在特殊字符或者用戶名重複！");
+					$api.html(yes, "確 認");
+				};
+				clickClose();
+				return;
+			};
+			if(report){
+				$api.html(oTitle, 'Note');
+				$api.html(des, 'Do you report this post?');
+				if (language == "zho") {
+					$api.html(des, '你是否舉報這個帖子?');
+					$api.html(oTitle, '注 意');
+				};
+				yes.onclick=function(){
+					if(language == "zho"){
+						// alert("舉報成功!");
+						api.toast({
+					        msg: '舉報成功!',
+					        duration: 1000,
+					        location: 'middle'
+					    });
+					}else{
+						// alert("Report success!")
+						api.toast({
+					        msg: 'Report success!',
+					        duration: 1000,
+					        location: 'middle'
+					    });
+					}
+				}
+
+				return;
+			}
+			//默认为退出登录提示框
+			if(language == "zho"){
+				$api.html(oTitle, "退 出 登 陸 ?");
+				$api.html(des, "您确定要退出登陆吗，这代表您将不能收到所有的迴響");
+				$api.html(yes, "確 認");
+				$api.html(no, "取消");
+			};
+			$api.addEvt(yes, "click", function(){
+				var jsfun = "logout()";
+				api.execScript({
+					script: jsfun
+				});
+			});
+			function clickClose(){
+				oBg.onclick = function(e){
+					api.closeWin({
+					    name: 'report_choose'
+					});
+					api.closeWin({
+					    name: 'report_choose1'
+					});
+					api.closeWin({
+					    name: 'report_choose2'
+					});
+					api.closeWin({
+					    name: 'report_content'
+					});
+					if(sendFail){//账号设置失败-只关闭当前提示
+						api.closeFrame({});
+						return;
+					}
+					if(sendSuccess){//账号设置成功-打开刷新个人主页
+						api.sendEvent({
+					    	name: 'home_loader'
+						});
+					}
+					var tar = e.target;
+					if(tar.id === "bg" || tar.id === "yes" || tar.id === "no"){
+						api.closeWin();
+					};
+				};
+			};
+		};
+  //上传视频
+  function openvideo(){
+
+    api.openWin({
+      name: 'post',
+      url: 'widget://html/details/post.html',
+        reload: true,
+        vScrollBarEnabled: false,
+        slidBackEnabled: false,
+      animation: {
+        type: "fade", //动画类型（详见动画类型常量）
+        subType: "fade", //动画子类型（详见动画子类型常量）
+        duration: 500 //动画过渡时间，默认300毫秒
+      },
+      pageParam: {
+        type:'Video'
+      }
+    });
+
+  }
+function opencer(){
+    api.getPicture({
+      sourceType: 'camera',
+      encodingType: 'jpg',
+      mediaValue: 'pic',
+      destinationType: 'url',
+      allowEdit: true,
+      preview: true, //描述：（可选项）是否选择图片后进行预览，只支持iOS。
+      quality: 50,
+      saveToPhotoAlbum: true
+    }, function(ret, err) {
+      if(ret) {
+        //								alert(JSON.stringify(ret.data));
+        //uploadPic(ret.data);
+        if(ret.data!=""){
+          api.openWin({
+            name: 'post',
+            url: 'widget://html/details/post.html',
+              reload: true,
+              vScrollBarEnabled: false,
+              slidBackEnabled: false,
+            animation: {
+              type: "fade", //动画类型（详见动画类型常量）
+              subType: "fade", //动画子类型（详见动画子类型常量）
+              duration: 500 //动画过渡时间，默认300毫秒
+            },
+            pageParam: {
+              type:'Topimg'
+            }
+          });
+        }
+      } else {
+        alert(JSON.stringify(err));
+      }
+    });
+  }
+  function openPost(type){
+  	console.log(1);
+    api.openWin({
+      name: 'post',
+      url: 'widget://html/details/post.html',////chat/chat2.html
+        reload: true,
+        vScrollBarEnabled: false,
+        slidBackEnabled: false,
+      animation: {
+        type: "fade", //动画类型（详见动画类型常量）
+        subType: "fade", //动画子类型（详见动画子类型常量）
+        duration: 500 //动画过渡时间，默认300毫秒
+      },
+      pageParam: {
+        type:type
+      }
+    });
+};
+// function deletepostt(testId,postId){
+// 	api.ajax({
+// 		url: 'http://api.baopinghui.com/app_dynamicCover/removePost',
+// 		method: 'post',
+// 		data:{
+// 			values:{
+// 				uiId:testId,
+// 				dynId:postId
+// 			}
+// 		}
+// 	}, function(ret, err){
+// 		if(ret){
+// 			console.log("刪除成功");
+// 				    			// return;
+// 		}else{
+// 			console.log(1);
+// 		}
+// 		console.log(123);
+// 		return;
+// 	});
+// }
+	</script>
+
+</body>
+</html>

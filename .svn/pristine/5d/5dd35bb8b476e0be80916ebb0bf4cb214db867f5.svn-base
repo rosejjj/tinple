@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+  <style type="text/css">
+    html{
+      background: #EFEFEF;
+    }
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    .second,.third{
+      color:#0076FF;
+    }
+    #wrap{
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      background: #EFEFEF;
+    }
+    .top{
+      position: absolute;
+      top: 0;
+      height: 65px;
+      width: 100%;
+      background: white;
+      text-align: center;
+      /*line-height: 70px;*/
+      letter-spacing: 4px;
+      font-weight: bold;
+      /*line-height: 45px;*/
+      font-size: 15px;
+    }
+    .hel{
+      line-height: 87px;
+    }
+    .top img{
+      position: absolute;
+      top: 28px;
+      left: 10px;
+      height: 30px;
+      width: 30px;
+    }
+    .contnet{
+      position: absolute;
+      width: 100%;
+    }
+    #middle{
+      position: absolute;
+      top: 30px;
+      width: 100%;
+      height: 30%;
+      margin: 40px auto;;
+      text-align: center;
+      z-index: 0;
+      background: #EFEFEF;
+    }
+    input[type=text],[type=password]{
+      height: 50px;
+      width: 100%;
+      /*border-radius: 10px;*/
+      outline: none;
+      background: white;
+      margin: 0 auto;
+      color: black;
+      /*text-align: center;*/
+      font-weight: bold;
+      text-indent:20px;
+    }
+    .go{
+      margin-top: 0;
+      font-weight: bold;
+      background: white;
+      height: 50px;
+      width: 100%;
+      color: #F381A3;
+    }
+    .again{
+      height: 40px;
+      width: 66%;
+      background: #F381A3;
+      border-radius: 35px;
+      color: white;
+      outline: none;
+    }
+    .again{
+      position: relative;
+      top: 10px;
+      font-weight: bold;
+      height: 40px;
+      width: 66%;
+      background: #F381A3;
+      border-radius: 35px;
+      color: white;
+      outline: none;
+      border: none;
+      font-size: 15px;
+    }
+    #bottom{
+      position: absolute;
+      bottom: 9%;
+      width: 95%;
+      /*height: 25%;*/
+      text-align: center;
+      margin: 5px 10px;
+      visibility: hidden;
+
+      /*display: none;*/
+      background: white;
+      border-radius: 10px;
+      border:none;
+      z-index: 3;
+    }
+ #but{
+   position: absolute;
+   bottom: 3px;
+   height: 50px;
+   width: 95%;
+   margin: 5px 10px;
+   background: white;
+   border-radius: 10px;
+   color: #AAA;
+   font-size: 15px;
+   display: none;
+   outline: none;
+   /*visibility: hidden;*/
+   z-index: 3;
+ }
+ .first{
+   height: 40px;
+   color: #AAA;
+   font-size: 12px;
+ }
+ .second,.third{
+   color: black;
+   height: 50px;
+   font-size: 15px;
+   border-top: 1px solid #D0D0D0;
+   font-weight: bold;
+ }
+ .mask{
+   position: absolute;
+   height: 100%;
+   width: 100%;
+   background: #1C1C1E;
+   opacity: 0.7;
+   z-index: 2;
+   display: none;
+ }
+  #but:active,.second:active,.third:active,.go:active,.need:active{
+    opacity: 0.5;
+  }
+  #pop{
+    position: relative;
+    margin: 50% auto 0;
+    height: 250px;
+    width: 78.46vw;
+    background: white;
+    border-radius: 20px;
+    display: none;
+    z-index: 3;
+  }
+  #pop-p{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 250px;
+    width: 78.46vw;
+    text-align: center;
+    font-weight: bold;
+    /*visibility: hidden;*/
+    z-index: 999;
+  }
+  .error{
+    background: #EFEFEF;
+    height: 100px;
+    color: #AAA;
+    font-size: 15px;
+    font-weight: bold;
+  }
+  .back{
+    float: left;
+    position: absolute;
+    left: 20px;
+  }
+  #middle tr td img{
+      width: 30px;
+      height: 30px;
+      margin: 15px 15px 0;
+  }
+  :input-placeholder{
+      font-size:15px;
+      font-weight: bold;
+      color: #aaa;
+  }
+  .forget_password{
+    font-size: 12px;
+    font-weight: bold;
+    color: #aaa;
+  }
+  .need{
+    position: relative;
+    top: -5px;
+    color: #AAA;
+    font-size: 12px;
+  }
+  .head{
+    height: 50px;
+  }
+  .fb,.wx,.qq{
+    height: 50px;
+    background: white;
+  }
+  .wtf{
+    position: relative;
+    top: -3px;
+    float:left;
+    margin-left:25px;
+
+  }
+  .word{
+    color: #000;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 50px;
+    float: left;
+    margin-top:2.5px;
+  }
+  /*一些毫无意义的操作，遮掉边边，那些傻逼要求的*/
+  .zhe1{
+    position: absolute;
+    top:20px;
+    left: 0;
+    height: 50px;
+    width: 20px;
+    background: white;
+  }
+  .zhe2{
+    position: absolute;
+    top:20px;
+    right: 0;
+    height: 50px;
+    width: 20px;
+    background: white;
+  }
+  .zhe3{
+    position: absolute;
+    top:-1px;
+    left: 5.3%;
+    height: 1px;
+    width: 89.4%;
+    background: #efefef;
+  }
+  .jiantou{
+    height: 17px !important;
+    width: 16px !important;
+    float: right;
+    margin-right: 20px;
+    margin-top:20px !important;
+  }
+  </style>
+</head>
+<body>
+    <div id="wrap">
+      <div  class="mask"></div>
+      <div class="top"><p class="hel">LOGIN</p>
+      <img class="back"src="../../icon/left.png">
+      </div>
+      <div class="content">
+              <table id="middle">
+                <tr>
+                  <td style="border-bottom:1px solid #efefef;"><input id="user" class="user" type="text" placeholder="Phone or Email"><span class="zhe2"></span></td>
+                </tr>
+                <tr>
+                  <td style="border-bottom:10px solid #efefef;"><input id="pwd" class="psw" type="password" placeholder="Password"><span class="zhe1"></span></td>
+                </tr>
+                <tr>
+                  <td class="fb" style="position:relative;"><span class="zhe3"></span><img class="wtf" src="../../image/share/FaceBook@3x.png"><span class="word">Facebook</span><img class="jiantou" src="../../icon/jiantou.png"></td>
+                </tr>
+                <tr>
+                  <td class="qq" style="position:relative;"><span class="zhe3"></span><img class="wtf" src="../../image/share/icon-share-qq@3x2.png"><span class="word">QQ</span><img class="jiantou" src="../../icon/jiantou.png"></td>
+                </tr>
+                <tr>
+                  <td class="wx" style="position:relative;"><span class="zhe3"></span><img class="wtf" src="../../image/share/icon-share-wechat@3x2.png"><span class="word">Wechat</span><img class="jiantou" src="../../icon/jiantou.png"></td>
+                </tr>
+                <tr style="border-top:5px solid #efefef;">
+                  <td><button  class="go signin" type="submit">G O</button></td>
+                </tr>
+                <tr>
+                  <td><span class="forget_password"  >Forget Password？ Click Here For Help.</span></td>
+                </tr>
+                <!-- <tr>
+                  <td style="border-top:1px solid #aaa">
+                       <img class="fb" src="../../icon/logon-page2/icon-login-facebook@3x2.png">
+                      <img class="qq" src="../../icon/logon-page2/icon-login-qq@3x2.png">
+                      <img class="wx" src="../../icon/logon-page2/icon-login-wechat@3x2.png">
+                  </td>
+                </tr> -->
+              </table>
+              <div id="pop" class="alert-focus" >
+                  <table id="pop-p" >
+                      <tr>
+                        <td class="head">(°ー°〃)</td>
+                      </tr>
+                      <tr>
+                        <td class="error">
+                          <span class="alert-header">There seems to be a little problem:</span><br>
+                         <span class="alert-focus-text ">Wechat associated login failed</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><button class="again" type="submit">C H A N G E</button></td>
+                      </tr>
+                      <tr>
+                        <td><span class="need">cancel</span></td>
+                      </tr>
+                  </table>
+              </div>
+              <table id="bottom">
+                <tr >
+                  <td class="first" >Choose a Type</td>
+                </tr>
+                <tr  >
+                  <td class="second"  >Phone</td>
+                </tr>
+                <tr >
+                  <td class="third"  >Email</td>
+                </tr>
+            </table>
+            <button id="but" class="but" type="submit" >Cancel</button>
+     </div>
+   </div>
+</body>
+</html>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/md5.js"></script>
+<script type="text/javascript" src="../../script/jmessage-sdk-web.2.5.0.min.js"></script><!--极光SDK-->
+<script type="text/javascript" src="../../json/api.json"></script>
+<script type="text/javascript" src="../../json/router.json"></script>
+<script type="text/javascript" src="../../json/global.json"></script>
+<script type="text/javascript" src="../../script/jquery-3.1.0.min.js"></script>
+<script src="../../script/public.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../script/StackBlur.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+var JIM = new JMessage(); //极光对象
+var warn_text = {
+  text1: "Logged in",
+  text2: "Password error",
+  text4: "Not enough password length",
+  text6: 'Account error',
+  text7: 'password error',
+  text8: 'Please enter the account number',
+  text9: 'Please enter the password',
+  text10: 'Getting chat data errors',
+  text12: "<p class='toast-content'>“Server Connection Failed, <br/> Tinkle Service May Not Cover Your Area”</p>",
+  text13: "<p class='toast-content'>-1-<br/>“Please Check The Network Is Normal”</p><p class='toast-content'>-2-<br/>“Please Check Whether Tinkle Network Permission Is Disabled”</p>"
+}
+if($api.getStorage("language") == "zho") {
+    $api.attr($api.dom(".user"),"placeholder","手 機  or 郵 箱");
+    $api.attr($api.dom(".psw"),"placeholder","密  碼");
+    $api.text($api.dom(".signin"), "登 陸");
+    $api.text($api.dom(".right_text"), "登 陸");
+    $api.text($api.dom(".forget_password"), "忘 記 密 碼 ？ 點 擊 這 裏 獲 取 幫 助  。");
+    $api.text($api.dom(".hel"), "登 陸");
+    $api.text($api.dom(".first"), "選 擇 壹 個 類 型");
+    $api.text($api.dom(".second"), "手 機");
+    $api.text($api.dom(".third"), "郵 箱");
+    $api.text($api.dom(".alert-header"), "好 像 出 現 了 一 點 小 問 題 :");
+    $api.text($api.dom(".again"), "再 試 試");
+    $api.text($api.dom(".need"), "我 需 要 幫 助");
+    $api.text($api.dom(".but"), "取 消");
+    warn_text = {
+      text1: "正 在 登 入",
+      text2: "密 碼 錯 誤",
+      text4: "密 碼 長 度 不 夠",
+      text6: '賬 號 錯 誤',
+      text7: '密 碼 錯 誤',
+      text8: '請 輸 入 賬 號',
+      text9: '請 輸 入 密 碼',
+      text10: '获 取 聊 天 数 据失 败',
+      text12: "<p class='toast-content'>“服 務 器 連 接 失 敗 ，<br/> T i n k l e 的 服 務 可 能 還 沒 覆 蓋 您 所 在 的 地 區 ”</p>",
+      text13: "<p class='toast-content'>“請 檢 查 網 絡 是 否 正 常”</p><p class='toast-content'>“請 檢 查 是 否 禁 用 了 T i n k l e 的 網 絡 權 限”</p>"
+    };
+
+  }
+apiready = function(){
+
+  $(".mask").click(function(){
+    $api.css($api.dom(".mask"),"display:none");
+    $api.css($api.dom("#bottom"), "visibility:hidden");
+    $api.css($api.dom("#but"), "display:none");
+    $api.css($api.dom("#pop"), "display:none");
+  })
+
+  $(".back").click(function(){
+    back();
+  })
+  //关闭Frame
+  function back(){
+    api.closeWin({
+      animation: {
+        type: 'push',
+        subType: 'from_left',
+        duration: 250
+      }
+    })
+  }
+
+  //向右滑关闭页面
+    api.addEventListener({
+      name: 'swiperight'
+    }, function(ret, err) {
+      back();
+    });
+  //点击关闭
+  $(".back").click(function(){
+    api.closeWin({
+      animation:{
+        type:"movein",                //动画类型（详见动画类型常量）
+        subType:"from_left",       //动画子类型（详见动画子类型常量）
+         duration:100                //动画过渡时间，默认300毫秒
+      }
+    });
+  })
+
+  //qq登录
+  $('.qq').click(function(){
+    console.log('qq登录');
+    //极光初始化
+  jMessage_init();
+  qqlogin();
+  });
+
+  //微信登录
+  $('.wx').click(function() {
+    console.log('微信登录');
+      wxlogin();
+      //极光初始化
+        jMessage_init();
+  });
+
+  //微信快速登录注册
+    function wxlogin(){
+       wx = api.require('wx');
+      wx.auth({
+        apiKey: 'wx2ccebd109467df4c'
+      }, function(ret, err) {
+      console.log(JSON.stringify(ret));
+        if(ret.status) {
+            open_loading();
+      // alert(JSON.stringify(ret));
+          wx.getToken({
+            apiKey: 'wx2ccebd109467df4c',
+            apiSecret: '2362da7382879554ed30006fb8f523d5',
+            code: ret.code
+          }, function(ret, err) {
+            if(ret.status) {
+              var accessToken = ret.accessToken;
+              var openId = ret.openId;
+              //							微信注册
+              wx.getUserInfo({
+                accessToken: ret.accessToken,
+                openId: ret.openId
+              }, function(ret, err) {
+                // alert(JSON.stringify(ret));
+                $api.setStorage('avatar', ret['headimgurl']);
+                if(ret.status) {
+                  if(accessToken){
+
+
+    										// alert(ret['headimgurl']);
+                    api.ajax({
+                      url: json['http'] + "app_wx/save",
+                      method: 'post',
+                      timeout : 10,//单位为：秒
+                      data: {
+                        values: {
+                          openid: ret['openid'],
+                          nickname: ret['nickname'],
+                          headimgurl: ret['headimgurl'],
+                          unionid: ret['unionid'],
+                          sex: ret['sex'],
+                        }
+                      }
+                    }, function(ret, err) {
+                    // alert(JSON.stringify(ret));
+                      if(ret['status'] == '1') {
+                      //清空以前的缓存
+                        ok_login();
+                      //极光注册
+                        jMessage_register(ret['data']);
+
+                        $api.setStorage('id', ret["data"]);
+
+                        //获取登录用户头像缓存
+                        // api.ajax({
+                        //   url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/userinfo',
+                        //   method: 'post',
+                        //   data: {
+                        //     values: {
+                        //       uiId: $api.getStorage('id'),
+                        //       pageUiId: $api.getStorage('id')
+                        //     }
+                        //   },
+                        // }, function(ret, err) {
+                        //   // alert(JSON.stringify(ret['data']['avatar_url']));
+                        //     if(ret['status']==1){
+                        //         $api.setStorage('avatar', ret['data']['avatar_url']);
+                        //
+                        //     }
+                        // });
+                      //查詢關注數
+                        concern_number();
+
+                      } else {
+                        close_loading();
+                        //错误码，数字类型。（0：连接错误、1：超时、2：授权错误、3：数据类型错误）
+                        if(err.code == 0 || err.code == 1 || err.code == 2){
+                           openPopup(warn_text.text12);
+                        }
+                      }
+                    })
+                  }
+                }
+              });
+            }
+          });
+
+        } else {
+          if(api.systemType == 'android' && err.code == 3) {
+            alert("请安装微信客户端");
+          }
+        }
+      })
+
+    }
+
+    $(".signin").click(function(){
+      //极光初始化
+      jMessage_init();
+    // setInterval('jMessage_init();',5000) ;
+      setTimeout(function(){
+        // alert("2");
+        sign();
+      },1000);
+      // alert("1");
+    })
+
+    //facebook
+    $('.fb').click(function() {
+      console.log('微信登录');
+      //极光初始化
+        jMessage_init();
+        fblogin();
+    });
+
+    $("#but").click(function() {
+        $api.css($api.dom(".mask"),"display:none");
+        $api.css($api.dom("#bottom"), "visibility:hidden");
+        $api.css($api.dom("#but"), "display:none");
+
+
+
+      });
+//忘记密码
+$('.forget_password').click(function(){
+  // alert("点击了");
+   $api.css($api.dom(".mask"),"display:block");
+   $api.css($api.dom("#bottom"), "visibility:visible");
+   $api.css($api.dom("#but"), "display:block");
+
+   //帮助跳到邮箱，收取验证码，更改密码
+   $(".third").click(function() {
+     //跳转到帮助的邮箱页面
+     api.openWin({
+         name: 'help',
+         url: './help.html',
+         pageParam: {
+             name: 'test'
+         }
+     });
+
+
+   });
+   //帮助跳到手机，收取验证码，更改密码
+   $(".second").click(function() {
+
+     //跳转到帮助的邮箱页面
+     api.openWin({
+         name: 'register_mobile',
+         url: './register_mobile.html',
+         pageParam: {
+             data: 1//1代表是从帮助的地方打开手机验证码的
+         }
+     });
+
+
+   });
+
+
+
+  // api.openFrame({
+  //   name: 'register',
+  //   url: 'widget://html/logon-register/register_index.html',
+  //   vScrollBarEnabled: false,
+  //   slidBackEnabled: false,
+  //   animation: {
+  //     type: "fade", //动画类型（详见动画类型常量）
+  //     subType: "fade", //动画子类型（详见动画子类型常量）
+  //     duration: 900 //动画过渡时间，默认300毫秒
+  //   },
+  //   pageParam: {
+  //     data: 1//1:找回密码    	2：注册
+  //   }
+  // });
+});
+//点击再试试关闭弹出窗
+   $('.again').click(function(event) {
+     $api.css($api.dom(".alert-focus"), "display:none");
+     $api.css($api.dom(".mask"), "display:none");
+});
+//点击 关闭弹出窗
+   $('.need').click(function(event) {
+     $api.css($api.dom(".alert-focus"), "display:none");
+     $api.css($api.dom(".mask"), "display:none");
+});
+
+    //facebook快速登录注册
+      function fblogin(){
+        facebook = api.require('facebook');
+        facebook.login({
+          appId: '121043455153956',
+         //  permissions: ['public_profile','email','user_birthday','user_likes']
+        }, function(ret, err) {
+         // alert(ret.appId);
+         //   alert(JSON.stringify(ret));
+
+          if(ret.status){//成功返回数据
+
+            // if(!ret.isCancelled) {
+
+              //登录后 获取用户信息
+              facebook.getUserInfo(function(ret, err) {
+               //  alert("facebook getUserInfo callback 1");
+               //  alert(JSON.stringify(ret));
+               //  alert(JSON.stringify(err));
+                if(ret.status) {
+                  open_loading();
+                  //								alert(JSON.stringify(ret));
+                 //  alert("ajax check_bind callback ");
+                 //  alert(JSON.stringify(ret));
+                 //  alert(JSON.stringify(err));
+
+                  api.ajax({
+                    url: 'http://api.baopinghui.com/app_fb/check_bind',
+                    method: 'post',
+                    timeout : 10,//单位为：秒
+                    data: {
+                      values: {
+                        unionid: ret['result']['id']
+                      }
+                    }
+                  }, function(ret, err) {
+                   //  alert("ajax check_bind callback ");
+                   //  alert(JSON.stringify(ret));
+                   //  alert(JSON.stringify(err));
+                    if(ret) {
+                      if(ret['status']) {
+                                        //  alert('进入fb没登陆过');
+                        //还没有fb登录过
+                        facebook.getUserInfo(function(ret, err) {
+                         //  alert("facebook fb getUserInfo callback 2 " + ret);
+
+                          if(ret.status) {
+                           //  alert(JSON.stringify(ret));
+                           //  alert(JSON.stringify(err));
+                            api.ajax({
+                              url: 'http://api.baopinghui.com/app_fb/save',
+                              method: 'post',
+                              data: {
+                                values: {
+                                  unionid: ret['result']['id'],
+                                  nickname: ret['result']['name'],
+                                  sex: '男',
+                                  // headimgurl: ret['result']['picture']['data']['url']
+                                }
+                              }
+                            }, function(ret, err) {
+                             //  alert("ajax ");
+                             //  alert(JSON.stringify(ret));
+                             //  alert(JSON.stringify(err));
+
+                              if(ret.status) {
+                              //清空以前的缓存
+                                ok_login();
+                              //极光注册
+                                jMessage_register(ret['data']);
+
+                                $api.setStorage('id', ret["data"]);
+                                //获取登录用户头像缓存
+                                // api.ajax({
+                                //   url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/userinfo',
+                                //   method: 'post',
+                                //   data: {
+                                //     values: {
+                                //       uiId: $api.getStorage('id'),
+                                //       pageUiId: $api.getStorage('id')
+                                //     }
+                                //   },
+                                // }, function(ret, err) {
+                                //   // alert(JSON.stringify(ret['data']['avatar_url']));
+                                //     if(ret['status']==1){
+                                //         $api.setStorage('avatar', ret['data']['avatar_url']);
+                                //
+                                //     }
+                                // });
+                                //查詢關注數
+                                concern_number();
+                              } else {
+                                //										alert(JSON.stringify(err) + '390');
+                              }
+                            })
+                          } else {
+                           //  alert("facebook fb getUserInfo callback 2 error ");
+                           //  alert(JSON.stringify(err));
+                            api.alert({
+                              msg: JSON.stringify(err)
+                            });
+                          }
+                        });
+                      } else {
+
+                      //清空以前的缓存
+                        ok_login();
+                      //极光注册
+                        jMessage_register(ret['data']);
+
+                        //fb登录过了
+                        var uiId = ret['data'];
+                        $api.setStorage('id', ret["data"]);
+                        //查詢關注數
+                        concern_number();
+                      }
+                    } else {
+                     //  close_loading();
+                      //错误码，数字类型。（0：连接错误、1：超时、2：授权错误、3：数据类型错误）
+                      if(err.code == 0 || err.code == 1 || err.code == 2){
+                         openPopup(warn_text.text12warn_text.text2,warn_text.text2);
+                      }
+                    }
+                  })
+
+                } else {
+                  //没有成功返回数据
+                  //返回内容：errMsg : an active access token must be used to query infomation about the current user
+                 //  api.alert({
+                 //    msg: JSON.stringify(err)
+                 //  });
+                  openPopup(warn_text.text10,warn_text.text2,warn_text.text2);
+                }
+              });
+            // }
+          } else {
+          //code: -1：未知错误	1：config.xml 未配置 appId 2：用户未授权 3：出现错误，详情参考错误信息 msg
+            //msg: ''  字符串类型；错误信息，当code 为 3 时有值
+           //  api.alert({
+           //    msg: JSON.stringify(err)
+           //  });
+            openPopup(warn_text.text10,warn_text.text2,warn_text.text2);
+          }
+        });
+
+      }
+            var wx,qq,facebook,	focus_users=[];
+
+                wx = api.require('wx');
+                qq = api.require('qq');
+                facebook = api.require('facebook');
+                //判断是否安装wx qq 否则隐藏
+                wx.isInstalled(function(ret, err) {
+                if(ret.installed) {} else {
+                  $api.css($api.dom('.wx'), 'display:none');
+                }
+                });
+                qq.installed(function(ret, err) {
+                if(ret.status) {} else {
+                  $api.css($api.dom('.qq'), 'display:none');
+                }
+                });
+                if(api.systemType == 'ios') {
+                  facebook.isInstalled(function(ret, err) {
+                    if(ret.installed) {
+                      //			        alert("当前设备已安装facebook客户端");
+                    } else {
+                      //			        alert('当前设备未安装facebook客户端');
+                      $api.css($api.dom('.fb'), 'display:none');
+                    }
+                  });
+                } else {
+                  api.appInstalled({
+                    appBundle: 'com.facebook.katana'
+                  }, function(ret, err) {
+                    if(ret.installed) {
+                    } else {
+                      //应用未安装
+                      $api.css($api.dom('.fb'), 'display:none');
+                    }
+                  });
+                }
+
+            //暂时隐藏Facebook登录
+              // $api.css($api.dom('.fb'), 'display:none');
+
+
+//实时监听断网
+  api.addEventListener({
+      name:'offline'
+  }, function(ret, err){
+      openPopup(warn_text.text13);
+      $(".mask").css("display","block");
+  });
+
+//来网了啊~~~~
+  api.addEventListener({
+      name:'online'
+  }, function(ret, err){
+    $(".mask").css("display","none");
+    $("#pop").css("display","none");
+    // $api.css($api.dom("#pop"), "display","none");
+    // $api.css($api.dom(".mask"), "display","none");
+  });
+
+//		极光初始化
+  // jMessage_init();
+
+
+
+// 用戶登录
+function sign(){
+  var tel = $api.val($api.dom('input[type="text"]'));
+  var psw = $api.val($api.dom('input[type="password"]'));
+  if(tel == ''){//賬號為空
+    openPopup(warn_text.text8);
+    return;
+  }
+  if(psw == ''){//密碼為空
+    openPopup(warn_text.text9);
+    return;
+  }else if(psw.length < 5) {//密码长度不够
+    openPopup(warn_text.text4);
+    return;
+  }
+
+jMessage_init();
+  // $api.css($api.dom(".mask"), "display:block");
+  api.ajax({
+    url: json['http'] + json['Login']['logon'],
+    method: 'post',
+    timeout : 10,//单位为：秒
+    data: {
+      values: {
+        "username": tel,
+        "password": psw,
+      }
+    },
+  }, function(ret, err) {
+  // alert(JSON.stringify(ret));
+    if(ret["status"] == 1) {
+        open_loading();
+      $api.setStorage('username',tel);
+
+//				清空以前的缓存
+      ok_login();
+
+    //极光注册
+      jMessage_register(ret['data']['uiId']);
+//				缓存用户信息
+      $api.setStorage('id', ret["data"]['uiId']);
+      // alert(JSON.stringify($api.getStorage('id')));
+      $api.setStorage('user_name', ret["data"]['username']);
+      $api.setStorage('token', ret["data"]['token']);
+      // alert(JSON.stringify($api.getStorage('id')));
+      // $api.setStorage('key', ret["data"]['avatar']);
+      // alert(JSON.stringify(ret['data']['avatar']));
+
+      //获取登录用户头像缓存
+      api.ajax({
+        url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/userinfo',
+        method: 'post',
+        data: {
+          values: {
+            uiId: $api.getStorage('id'),
+            pageUiId: $api.getStorage('id')
+          }
+        },
+      }, function(ret, err) {
+        // alert(JSON.stringify(ret['data']['avatar_url']));
+          if(ret['status']==1){
+              $api.setStorage('avatar', ret['data']['avatar_url']);
+
+          }
+      });
+
+        // alert("1");
+//				跳转页面
+setTimeout(function(){
+
+  enterWin('index', 'chat/index.html');
+  close_loading();
+  api.closeWin({});
+},1500);
+
+      return;
+      // close_loading();
+      // alert("2");
+    }else {
+      api.ajax({
+        url: json['http'] + json['Login']['findUserinfo'],
+        method: 'post',
+        data: {
+          values: {
+            "username": tel
+          }
+        },
+      }, function(ret, err) {
+        if(ret['data']){
+        // close_loading();
+          //密码错误  ret['data']有值 则为用户存在
+          openPopup(warn_text.text7);
+        }else{
+        // close_loading();
+          //ret['data']为null  用户不存在
+          openPopup(warn_text.text6);
+        }
+      });
+    }
+    close_loading();
+    //错误码，数字类型。（0：连接错误、1：超时、2：授权错误、3：数据类型错误）
+    if(err.code == 0){
+      openPopup(warn_text.text12);
+    }else if(err.code == 1){
+       openPopup(warn_text.text12);
+    }
+
+    if(err["statusCode"] == 0) {//離線了~~~
+      console.log(JSON.stringify(err));
+      openPopup(warn_text.text13);
+    }
+  })
+};
+
+
+          //qq 快速登录注册
+           function qqlogin(){
+             qq = api.require('qq');
+             qq.login(function(ret, err) {
+               if(ret) {
+
+                 var openId = ret.openId;
+                 var accessToken = ret.accessToken;
+                 qq.getUserInfo(function(ret, err) {
+                   if(ret.status) {
+                    //  alert(JSON.stringify(ret));
+                    //  alert(JSON.stringify(ret['info']['figureurl_qq_1']));
+                     $api.setStorage('avatar', ret['info']['figureurl_qq_2']);
+                      // alert(JSON.stringify( $api.getStorage('avatar')));
+                     if(accessToken){
+                       open_loading();
+                       document.getElementById('bottom').style.visibility="hidden";
+
+                       var nickname = ret['info']['nickname'];
+                       var figureurl_2 = ret['info']['figureurl_qq_2'];
+                       var gender = ret['info']['gender'];
+
+                       $.post(json['http'] + 'app_qq/get_unionid', //http://test.baopinghui.com/
+                       {
+                         accessToken: accessToken
+                       },
+                       function(ret, err) {
+                        //  alert(JSON.stringify(ret));
+                         if(ret) {
+                           var ret = ret.replace('callback(', "");
+                           ret = ret.replace(');', "");
+
+                           ret = JSON.parse(ret);
+                           var unionid = ret['unionid'];
+                           api.ajax({
+                             url: json['http'] + 'app_qq/save',
+                             method: 'post',
+                             timeout : 10,//单位为：秒
+                             data: {
+                               values: {
+                                 openid: openId,
+                                 nickname: nickname,
+                                 headimgurl: figureurl_2,
+                                 unionid: unionid,
+                                 sex: gender,
+                               }
+                             }
+                           }, function(ret, err) {
+                              // alert(JSON.stringify(ret));
+                             if(ret['status'] == '1') {
+                             //清空以前的缓存
+                               ok_login();
+                             //极光注册
+                               jMessage_register(ret['data']);
+
+                               $api.setStorage('id', ret["data"]);
+                                // alert($api.getStorage('id'));
+                              //  alert(JSON.stringify($api.getStorage(figureurl_2)));
+                              //  $api.setStorage('figureurl_qq_1',ret['info']['figureurl_qq_1']);
+
+                               //获取登录用户头像缓存
+                              //  api.ajax({
+                              //    url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/userinfo',
+                              //    method: 'post',
+                              //    data: {
+                              //      values: {
+                              //        uiId: $api.getStorage('id'),
+                              //        pageUiId: $api.getStorage('id')
+                              //      }
+                              //    },
+                              //  }, function(ret, err) {
+                              //   //  alert($api.getStorage('id'));
+                              //    // alert(JSON.stringify(ret['data']['avatar_url']));
+                              //      if(ret['status']==1){
+                              //          $api.setStorage('avatar', ret['data']['avatar_url']);
+                               //
+                              //      }
+                              //  });
+                             //查詢關注數
+                               concern_number();
+                             } else {
+                               close_loading();
+                               //错误码，数字类型。（0：连接错误、1：超时、2：授权错误、3：数据类型错误）
+                               if(err.code == 0 || err.code == 1 || err.code == 2){
+                                  openPopup(warn_text.text12,warn_text.text2,warn_text.text2);
+                               }
+                             }
+                           })
+                         } else {
+                          //  alert(JSON.stringify(err));
+                         }
+                       });
+
+                     }
+                   } else {
+
+                   }
+
+                 });
+               }
+             });
+
+           }
+          //查询关注数-跳轉myfollo頁面
+      		function concern_number(){
+      			api.ajax({
+      				url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/baseCount',
+      				method: 'post',
+      				data: {
+      					values: {
+      						uiId: $api.getStorage("id")
+      					}
+      				}
+      			}, function(ret, err) {
+      				if(ret) {
+      					if(ret["status"]) {
+      						if(ret['data']['myFocusNum'] < 10) {
+      							api.ajax({
+      								url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/findRUlist',
+      								method: 'post',
+      								data: {
+      									values: {
+
+      									}
+      								}
+      							}, function(ret, err) {
+                      // alert(JSON.stringify(ret));
+      								if(ret) {
+      									if(ret["status"]) {
+      										ret['data'] = ret['data'].slice(0, 30);
+      										for(var i = 0; i < 10; i++) {
+      											//选中的对象
+      											focus_users.push(ret['data'][i]['uid']);
+      										}
+      										var num_len = 0;
+      										for(var i = 0; i < focus_users.length; i++) {
+      											(function(i) {
+      												api.ajax({
+      													url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/focus',
+      													method: 'post',
+      													data: {
+      														values: {
+      															uiId: $api.getStorage('id'),
+      															otherUiId: focus_users[i],
+      															type: 'focus'
+      														}
+      													}
+      												}, function(ret, err) {
+      													if(ret) {
+      														num_len++;
+      														if(num_len == 9){//最后一个
+                                    setTimeout(function() {
+                                      close_loading();
+                                      enterWin('index', 'chat/index.html');
+                                      api.closeWin({});
+                                    },1500);
+      														}
+      														console.log(JSON.stringify(ret));
+      													} else {
+                                  close_loading();
+      														uploadError(err);
+      													}
+      												});
+      											})(i)
+      										}
+      									}
+      								} else {
+                        close_loading();
+      									uploadError(err);
+      								}
+      							});
+      						}
+                  setTimeout(function() {
+                    close_loading();
+                    api.closeWin({});
+                    enterWin('index', 'chat/index.html');
+                  }, 1500);
+      					} else {
+                  close_loading();
+      						console.log(JSON.stringify(ret));
+      					}
+      				} else {
+      					uploadError(err);
+      				}
+      			});
+      		}
+//彈窗
+function openPopup(data){
+  $api.html($api.dom(".alert-focus-text"), data);
+  $api.css($api.dom(".alert-focus"), "display:block");
+  $api.css($api.dom(".mask"), "display:block");
+
+}
+
+//提示确认框
+// function openToast(data){
+//   $api.html($api.dom(".toast-text"), data);
+//   $('.toast').css('margin-top','-' + Number($(".toast").innerHeight()) / 2 +'px');
+//   $api.css($api.dom(".toast"), "display:block");
+//   $api.css($api.dom(".mask"), "display:block");
+// }
+
+// //错误提示框 确定点击关闭
+// $api.dom(".toast-define").onclick = function() {
+//   $api.css($api.dom(".toast"), "display:none");
+//   $api.css($api.dom(".mask"), "display:none");
+// }
+
+
+//登录成功- 重新清空旧用户的缓存
+function ok_login() {
+  $api.rmStorage('id');//用户ID
+  $api.rmStorage('apId');
+  $api.rmStorage('avatar')
+  $api.rmStorage('fans')
+  $api.rmStorage('follwer')
+  $api.rmStorage('summary')
+  $api.rmStorage('popular')
+  $api.rmStorage('active')
+  $api.rmStorage('nickname')
+  $api.rmStorage('my_message')
+  $api.rmStorage('focus_message')
+  $api.rmStorage('user_name');
+  $api.rmStorage('beginDate');
+  $api.rmStorage('cover');
+
+  $api.rmStorage('hasNews')//总的未读数
+  $api.rmStorage('chatList');//会话列表
+}
+
+//		打开loading页
+function open_loading(){
+  api.openFrame({
+    name: 'loading',
+    url: 'widget://html/logon-register/loading.html',
+    vScrollBarEnabled: false,
+    slidBackEnabled: false,
+    animation: {
+      type: "fade", //动画类型（详见动画类型常量）
+      subType: "fade", //动画子类型（详见动画子类型常量）
+      duration: 900 //动画过渡时间，默认300毫秒
+    }
+  });
+}
+//		关闭loading页
+function close_loading(){
+  api.closeFrame({
+      name: 'loading'
+  });
+}
+
+//============================================		极光		===================================================
+
+//生成随机字符串--用于极光注册
+function random(length) {
+  var str = Math.random().toString(36).substr(2);
+  if(str.length >= length) {
+    return str.substr(0, length);
+  }
+  str += random(length - str.length);
+  return str;
+}
+
+//	极光初始化
+function jMessage_init() {
+  var appkey = 'c46c8bc128f41299334ec8e3';
+  var timestamp = (new Date()).valueOf(); //当前时间戳
+  var random_str = random(30); //生成随机字符串
+  var signature = MD5("appkey=" + appkey + "&timestamp=" + timestamp + "&random_str=" + random_str + "&key=269e7aa2881b1a8767f16ce6");
+  JIM.init({
+    "appkey": appkey,
+    "random_str": random_str,
+    "signature": signature,
+    "timestamp": timestamp,
+    "flag": 0
+  }).onSuccess(function(data) {
+    console.log('极光初始化成功');
+  }).onFail(function(data) {
+    console.log('错误，初始化失败');
+  }).onTimeout(function(data) {
+    openPopup(warn_text.text12);
+    console.log('请求超时 ' + JSON.stringify(data));
+
+  });
+}
+
+//	极光注册
+function jMessage_register(id){
+  console.log('开始极光注册');
+  JIM.register({
+      'username' : id,
+       'password' : 123456
+      }).onSuccess(function(data) {
+//			 	注册成功 {"code":0,"message":"success"}
+    console.log('注册成功 ' + JSON.stringify(data));
+    api.ajax({
+        url: 'http://api.baopinghui.com/jpushim/findnewbin14',
+        method: 'get',
+        data: {
+            values: {
+                user: id
+            }
+        }
+    },function(ret, err){
+        if (ret) {
+            // alert( JSON.stringify( ret ) );
+        }
+    });
+  }).onFail(function(data) {
+    //参数不合法（用户已注册） {"code":882002,"event":"register","message":"user exit or not exits or password err or uid err or gid err or appkey err"}
+    if(data.code == 882002){
+      console.log('参数不合法（用户已注册） ' + JSON.stringify(data));
+    }else{
+      console.log('请求错误' + JSON.stringify(data));
+      jMessage_register(id);
+    }
+  }).onTimeout(function(data) {
+    console.log('请求超时 ' + JSON.stringify(data));
+    jMessage_register(id);
+  });
+}
+}
+</script>

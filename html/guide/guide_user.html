@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+	<title>guide_user</title>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+		}
+		header{
+			position:fixed;
+			top:0;
+			width:100vw;
+			height:65px;
+			z-index: 999999;
+			background-color:#fff;
+			border-bottom:1px solid #efefef;
+		}
+		.title{
+			position: absolute;
+			bottom:0;
+			width:100%;
+			height:45px;
+			font:3.99vw/45px Arial;
+			font-weight: bold;
+			text-align: center;
+		}
+		.tip{
+			margin-top:66px;
+			width:100vw;
+			background-color:#aaa;
+			padding:2.13vw 0;
+			box-sizing: border-box;
+			font:3.99vw/5.85vw Arial;
+			font-weight:bold;
+			color:#fff;
+			text-align: center;
+		}
+		.user_content{
+			display: inline-block;
+			width:100vw;
+			min-height: 100vh;
+			padding:1.33vw 3.99vw 18vw 3.99vw; 
+			box-sizing: border-box;
+			background-color:#efefef;
+		}
+		.user_box{
+			position: relative;
+			margin-top:2.66vw;
+			float:left;
+			width:44.68vw;
+			height:38.83vw;
+			border-radius:5.32vw;
+			background-color:#fff;
+			box-shadow:0 2px 10px 3px rgba(170,170,170,0.3);
+		}
+		.user_box:nth-of-type(2n+1){
+			margin-right:2.66vw;
+		}
+		.choose_yes{
+			position: absolute;
+			top:2.66vw;
+			right:2.66vw;
+			width:5.32vw;
+			height:5.32vw;
+			border-radius: 50%;
+			background-color:#f381a3;
+		}
+		.choose_yes img{
+			position: absolute;
+			top:0;
+			left:0;
+			width:100%;
+			height:100%;
+			object-fit: cover;
+		}
+		.avatar{
+			position: absolute;
+			top:6.38vw;
+			left:15.69vw;
+			width:13.3vw;
+			height:13.3vw;
+			background-color:#efefef;
+			background-size:cover;
+			border-radius:50%;
+		}
+		.content{
+			position: absolute;
+			top:23.34vw;
+			font-weight: bold;
+			width: 100%;
+			padding: 0 2.66vw;
+			box-sizing: border-box;
+		}
+		.nickname{
+			font:3.99vw/5.85vw Arial;
+			text-align: center;
+			display: -webkit-box;
+	        -webkit-line-clamp: 1;
+	        -webkit-box-orient: vertical;
+	        overflow: hidden;
+		}
+		.location{
+			font:3.12vw/4.52vw Arial;
+			text-align: center;
+			color:#aaa;
+		}
+		.button{
+			position: fixed;
+			left:4.12vw;
+			bottom:5.32vw;
+			width:91.76vw;
+			height:13.3vw;
+			border-radius:2.66vw;
+			background-color:#f381a3;
+			font:3.99vw/13.3vw Arial;
+			font-weight: bold;
+			color:#fff;
+			text-align: center;
+			z-index: 10;
+		}
+		.button_bg,.button_bg1{
+			position: fixed;
+			bottom:0vw;
+			width: 100%;
+			height: 30vw;
+		}
+		.button_bg1{
+			position: fixed;bottom:5vw;
+		}
+		.button_bg>img,.button_bg1>img{
+			width: 100%;
+			height:100%;
+		}
+		.loading{
+		    width: 18.62vw;
+		    text-align: center;
+		    height: 13.30vw;
+		    position: fixed;
+		    bottom: 50%;
+		    left: 50%;
+		    margin-bottom:-6.65vw;
+		    transform: translateX(-50%);
+		    border-radius:2.66vw;
+		    z-index: 9999;
+		  }
+		  .loading img{
+		    position: absolute;
+		    bottom:2.66vw;
+		    left:50%;
+		    margin-left:-4vw;
+		    width:8vw;
+		    height:8vw;
+		  }
+
+	</style>
+</head>
+<body>
+	<header>
+		<div class="title">Tinkle</div>
+	</header>
+	<div class="tip">
+		We select some interesting users to you. <br>Follow them~
+	</div>
+	<div class="user_content">
+
+	</div>
+	<div class="button" onclick="closeWin()">FOLLOW & ENTER TINKLE</div>
+	<div class="button_bg"><img src="../../icon/logon-page2/jianbian.png" alt=""></div>
+	<!-- <div class="button_bg1"><img src="../../icon/logon-page2/jianbian.png" alt=""></div> -->
+	<div id="loadings" class="loading"><img src="../../icon/loading.gif" alt=""></div>
+</body>
+<script src="../../script/jquery-3.1.0.min.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script src="../../script/vue.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var booff=true,
+		random,
+		people_random=[],
+		follow_num=[],
+		following_num=[],
+		str='',
+		location_text,
+		random_yes=true,
+		choose_yes=true;
+	var img_qian = "http://bin.baopinghui.com/";
+	var img_suo = "?imageView2/0/w/400";
+	var hhh = window.screen.height;
+	var www = window.screen.width;
+	apiready = function(){
+		// 刘海屏适配
+		if(hhh/www > 2){
+			$('header').css({'height': '89px'});
+			$('.tip').css({'margin-top': '89px'});
+			$('.button').css({'bottom': '11.97vw'});
+			$('.user_content').css({'padding-bottom':'24vw'});
+		}
+		if($api.getStorage('language')=='zho'){
+			$('.tip').html('我 們 篩 選 了 一 些 有 趣 的 用 戶 給 你<br>快 关 注 他 们 吧 ~');
+			$('.button').html('關 注 &amp; 進 入 軟 件');
+		}
+	    // 加载在线用户
+	    $.ajax({
+	    	url:'http://api.baopinghui.com/app_IntegrationController/userInfoList',
+	    	type: 'post',
+	    	dataType: 'json',
+	    	data: {
+	    		startIndex:0,
+	            maxResult:200,
+	            uiid:$api.getStorage('id')
+	    	},
+	    })
+	    .done(function(ret,err) {
+	    	if (ret) {
+	    		// 循环第一个不属于自己的用户
+	        	while(booff){
+	        		random=parseInt(Math.random()*200);
+	        		if(ret.data[random].uid==$api.getStorage('id')){
+	        			booff=true;
+	        		}else{
+	        			booff=false;
+	        		}
+	        	}
+	        	people_random.push(random);
+	        	// 随机抽取20个用户
+	        	while(people_random.length<20){
+	        		do{
+		        		random=parseInt(Math.random()*200);
+		        		if(ret.data[random].uid!=$api.getStorage('id')){
+		        			for(var i=0;i<people_random.length;i++){
+								random_yes=false;
+								if(people_random[i]==random){
+					            	random_yes=true;
+					           		break;
+					            }
+					       	}
+		        		}else{
+		        			random_yes=true;
+		        		}
+		        	}while(random_yes==true);
+		            people_random.push(random);
+	        	}
+	        	for(var i=0;i<people_random.length;i++){
+	        		// 用户地址处理
+	        		if(ret.data[people_random[i]].location=='' || ret.data[people_random[i]].location==undefined){
+	        			if($api.getStorage('language')=='zho'){
+	        				location_text='火星';
+	        			}else{
+	        				location_text='Mars';
+	        			}
+	        		}else{
+	        			if($api.getStorage('language')=='zho'){
+	        				location_text=ret.data[people_random[i]].location.split(',')[0];
+	        			}else{
+	        				if(ret.data[people_random[i]].location.split(',')[1]==undefined || ret.data[people_random[i]].location.split(',')[1]==''){
+	        					location_text=ret.data[people_random[i]].location.split(',')[0];
+	        				}else{
+	        					location_text=ret.data[people_random[i]].location.split(',')[1];
+	        				}
+	        			}
+	        		}
+	        		str =`
+					<div class="user_box" onclick="choose_follow(`+i+`)">
+						<span class="choose_yes"><img src="../../image/icon-followed@3x2.png" alt=""></span>
+						<div class="avatar" style="background-image:url(`+img_qian+ret.data[people_random[i]].avatar_url+img_suo+`)"></div>
+						<div class="content"><div class="nickname">`+ret.data[people_random[i]].nickname+`</div>
+						<div class="location">`+location_text+`</div></div>	
+					</div>
+	        		`;
+	        		follow_num.push(ret.data[people_random[i]].uid);
+	        		following_num.push(ret.data[people_random[i]].uid);
+	        		$('.user_content').append(str);
+	        		if(i==people_random.length-1){
+	        			$('#loadings').hide();
+	        		}
+	        	}
+	        }
+	    })
+	    .fail(function() {
+	    	console.log("error");
+	    });
+	}
+	// 点击选中或取消关注
+	function choose_follow(i){
+		if(choose_yes){
+			$('.choose_yes').eq(i).css('display','none');
+			$('choose_yes').eq(i).css('display','block');
+			following_num[i]=0;
+			choose_yes=false;
+			return;
+		}else{
+			$('.choose_yes').eq(i).css('display','block');
+			$('choose_yes').eq(i).css('display','none');
+			following_num[i]=follow_num[i];
+			choose_yes=true;
+			return;
+		}
+	}    
+	function closeWin(){
+		// 点击关注选中用户
+			for(var i=0;i<following_num.length;i++){
+				if(following_num[i]==0){
+					console.log('未选中的用户');
+				}else{
+					$.ajax({
+						url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/focus',
+						type: 'post',
+						dataType: 'json',
+						data: {
+							uiId:$api.getStorage('id'),
+							otherUiId:following_num[i],
+							type:'focus',
+						},
+					})
+					.done(function() {
+						console.log("关注成功");
+					})
+					.fail(function() {
+						console.log("error");
+					});
+				}
+				if(i<following_num.length-1){
+					api.closeWin();
+				}
+			}
+	}
+</script>
+</html>

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style media="screen">
+  html{font-size: 12px;}
+  *{margin: 0px;padding: 0px;}
+  /*header{width: 100%;height: 80px;background: #ffffff;}*/
+  body{
+    background: #efefef;
+  }
+  section{padding: 20px;}
+  .language_choice{
+    width: 100%;height: 70px;background: #ffffff;border-radius: 0px 20px 20px 20px;
+    display: flex;align-items: center;
+  }
+  .language_choice>span:nth-of-type(1){width: 35%;margin-left: 20px;background: #F381A3;border-radius: 5px;
+    text-align: center;height: 27px;line-height: 27px;color: #ffffff;font-weight: bold;}
+  .language_choice>span:nth-of-type(2){margin: 0 6%;}
+  .language_choice>span:nth-of-type(3){width: 35%;margin-right: 20px;background: #F381A3;text-align: center;border-radius: 5px;
+    height: 27px;line-height: 27px;color: #ffffff;font-weight: bold;}
+  .content{height: 100px;border-radius: 20px 0px 20px 20px;background: #ffffff;margin-top: 20px;outline: none;font-size: 15px;
+  padding: 16px 24px;font-weight: bold;border: none;width: 85%;}
+  .content>span{color: rgba(72,72,72,.5);display: block;}
+  .huise{color: rgba(72,72,72,.5);}
+  .yiwen{background: #ffffff;margin-top: 20px;outline: none;font-size: 15px;
+  padding: 16px 24px;font-weight: bold;border-radius: 0px 40px 40px 40px;display: none;}
+  .button{width: 120px;height: 30px;margin: 20px auto;background: #f381a3;line-height: 30px;color: #ffffff;font-weight: bold;
+  text-align: center;border-radius: 5px;}
+</style>
+</style>
+<body>
+  <header>
+
+  </header>
+  <section id="chat4">
+    <div class="language_choice">
+      <span ref="city_left">中 文</span>
+      <span>&gt;&gt;&gt;</span>
+      <span ref="city_right">E N G L I S H</span>
+    </div>
+    <!-- <div class="content" contentEditable=true ref="content">
+<span class="content_content">Click to enter what you want to translate</span>
+    </div> -->
+    <!-- <input type="text" class="content" name="" value="" placeholder="Click to enter what you want to translate"> -->
+    <textarea name="name"  class="content huise" ref="content"></textarea>
+    <div class="yiwen" ref="yiwen">
+    </div>
+    <div class="button" ref="button">START</div>
+  </section>
+
+</body>
+<script src="../../json/api.json"></script>
+<script src="../../script/md5.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../script/jquery-3.1.0.min.js" type="text/javascript"></script>
+<script src="../../script/vue.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript">
+var fanyihou;
+
+apiready = function() {
+  if($api.getStorage('language')=='zho'){
+    $api.html($api.dom('.content_content'), '點 擊 這 裡 輸 入 你 想 翻 譯 的 內 容');
+    $api.html($api.dom('.button'), '開 始');
+  }
+    var iflyRecognition = api.require('iflyRecognition');
+    iflyRecognition.createUtility({
+        ios_appid: '5b769ee2',      // 填写讯飞平台上获得的appid
+        android_appid: '5b6d4135'   // 填写讯飞平台上获得的appid
+    }, function(ret, err) {
+      //alert('cnm');
+        if (ret.status) {
+            // api.alert({
+            //     msg: '创建成功'
+            // });
+            // fnread();
+        } else {
+            api.alert({
+                msg: "创建失败"
+            });
+        }
+    });
+
+    //下拉选择框
+    //var UICustomPicker = api.require('UICustomPicker');
+    // UICustomPicker.open({
+    //     rect: {
+    //         x: 0,
+    //         y: api.frameHeight*'0.15',
+    //     },
+    //     styles: {
+    //     bg:'#fff',
+    //         normalColor: '#a4a4a4',
+    //         selectedColor: '#313131',
+    //         selectedSize: 30,	//34
+    //     },
+    //     data: [{
+    //
+    //         scope: '1995-1998'
+    //     }, {
+    //
+    //     scope:['01','02','03','04','05','06','07','08','09','10','11','12']
+    //     },{
+    //       scope:["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"]
+    //     }],
+    //     rows: 3,
+    //     autoHide:false,
+    //     loop:false,
+    //     fixedOn: 'date',
+    //     fixed: true
+    // }, function(ret, err){
+    // if(ret.data){
+    //     par=ret.data;
+    //   }
+    // });
+
+    var chat4=new Vue({
+      el:"#chat4",
+      data:{
+
+      },
+      mounted:function(){
+
+        var city_left=this.$refs.city_left;
+        var city_right=this.$refs.city_right;
+        var content=this.$refs.content;
+        var yiwen=this.$refs.yiwen;
+        var button=this.$refs.button;
+        //alert('aaaa');
+        city_left.addEventListener('click',function(e){
+          //alert('aaaaa')
+          opencity_lan('left');
+        });
+        city_right.addEventListener('click',function(e){
+          opencity_lan('right');
+        });
+        content.addEventListener('click',function(e){
+          content.innerHTML="";
+        })
+        button.addEventListener('click',function(e){
+          yiwen.style.display="block";
+          var lan_type;
+          switch (city_right.innerHTML) {
+            case "E N G L I S H":
+              lan_type="en";
+              break;
+            case "中 文":
+              lan_type="zh";
+              break;
+            case "한 국 어":
+              lan_type="kor";
+              break;
+            case "日 本 語":
+              lan_type="jp";
+              break;
+            case "ภ า ษ า ไ ท ย":
+              lan_type="th";
+              break;
+            case "粤 语":
+              lan_type="yue";
+              break;
+            case "p o r t u g u ê s":
+              lan_type="pt";
+              break;
+            case "文 言 文":
+              lan_type="wyw";
+              break;
+            case "D e u t s c h":
+              lan_type="de";
+              break;
+            case "Tiếng Việt":
+              lan_type="vie";
+              break;
+          }
+          //alert(content.value);
+          yiwen.innerHTML=fanyis(content.value,lan_type);
+        })
+        api.addEventListener({
+            name: 'set_lan'
+        }, function(ret, err){
+          if(ret){
+            //alert(JSON.stringify(ret));
+            city_left.innerHTML=ret.value.lan;
+          }
+        });
+        api.addEventListener({
+            name: 'set_lans'
+        }, function(ret, err){
+          if(ret){
+            //alert(JSON.stringify(ret));
+            city_right.innerHTML=ret.value.lan;
+          }
+        });
+
+
+        }
+
+      // methods:{
+      //   luyin:function(e){
+      //     alert('zhengzailuyin');
+      //     console.log(e);
+      //   }
+      // },
+
+
+    })
+
+};
+
+
+
+function fnrecord() {
+
+    var flag = true;
+    var iflyRecognition = api.require('iflyRecognition');
+    iflyRecognition.record({
+        vadbos: 3000,
+        vadeos: 3000,
+        rate: 16000,
+        asrptt: 0,
+        audioPath: 'fs://speechRecogniser/speech.pcm'
+    }, function(ret, err) {
+        if (ret.status&&ret.wordStr!="。"&&ret.wordStr!="？"&&ret.wordStr!="！") {
+            //api.alert({ msg: ret.wordStr });
+            if(flag){
+              //alert(ret.wordStr);
+              var right=document.getElementsByClassName('right')[0];
+              right.style.display="block";
+              right.innerHTML=ret.wordStr;
+              fanyi(ret.wordStr);
+              flag=false;
+            }
+            //api.parseTapmode();
+        } else {
+            //api.alert({ msg: err.msg });
+        }
+    });
+};
+//朗读文字
+function fnread(text) {
+    var iflyRecognition = api.require('iflyRecognition');
+
+    iflyRecognition.read({
+        readStr: text,
+        speed: 60,
+        volume: 60,
+        voice: 1,
+        rate: 16000,
+        audioPath: 'fs://speechRecogniser/read.mp3'
+    }, function(ret, err) {
+        if (ret.status) {
+          //alert('nmb');
+            ret.speakProgress
+        } else {
+            api.alert({
+                msg: err.msg
+            });
+        }
+    });
+}
+//翻译
+function fanyi(text){
+ var salt = (new Date).getTime();
+ var query= text;
+ var q = encodeURIComponent(query);
+ var str1 ="20161226000034707"+query+salt+"i1XmNFcDa7_Z4i6jUSZA";
+ var sign = MD5(str1);
+    $.ajax({
+      url: 'http://api.fanyi.baidu.com/api/trans/vip/translate',
+      async:false,
+      type: 'POST',
+      data: {
+        q: query,
+        //appid: "20170419000045193",
+        appid: "20161226000034707",
+        salt: salt,
+        from: "auto",
+        to: "auto",
+        sign: sign
+      }
+    })
+    .done(function(data) {
+        //alert(JSON.stringify(data));
+
+      if(data.error_code!="54001"&&data.error_code!="54000"){
+       var left=document.getElementsByClassName('left')[0];
+        left.style.display="block";
+        left.innerHTML=data.trans_result[0].dst;
+        fnread(data.trans_result[0].dst);
+      }else{
+
+      }
+
+    })
+    .fail(function(err) {
+      alert(JSON.stringify(err));
+    })
+}
+
+//打开城市选择页
+function opencity_lan(direction){
+  api.openFrame({
+    name: "dateBg",
+    url: "widget://html/set-up/selectLanguageBg.html",
+    rect: {
+      x: 0,
+      y: 0,
+      w: "auto",
+      h: "auto"
+    },
+    pageParam: {
+    name: direction
+    }
+    });
+  }
+
+  //翻译
+function fanyis(text,type){
+ var salt = (new Date).getTime();
+ var query= text;
+ var q = encodeURIComponent(query);
+ var str1 ="20161226000034707"+query+salt+"i1XmNFcDa7_Z4i6jUSZA";
+ var sign = MD5(str1);
+    $.ajax({
+      url: 'http://api.fanyi.baidu.com/api/trans/vip/translate',
+      async:false,
+      type: 'POST',
+      data: {
+        q: query,
+        //appid: "20170419000045193",
+        appid: "20161226000034707",
+        salt: salt,
+        from: "auto",
+        to: type,
+        sign: sign
+      }
+    })
+    .done(function(data) {
+        //alert(JSON.stringify(data));
+        fanyihou=data.trans_result[0].dst;
+        if(type=="zh"||type=="en"){
+          fnread(fanyihou);
+        }
+    })
+    .fail(function(err) {
+      console.log(JSON.stringify(err));
+    })
+    return fanyihou;
+}
+
+
+</script>
+</html>

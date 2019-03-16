@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>announcement_list</title>
+	<!-- <link rel="stylesheet" type="text/css" href="../../css/api.css" /> -->
+    
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+		}
+		html{
+			background-color: #aaa;
+			width:100vw;
+			height:100vh;
+		}
+		header{
+			position: fixed;
+			top:0;
+			width: 100vw;
+			height: 17.29vw;
+			background-color: #fff;
+			/*box-shadow: 0px 0px 2px 2px #efefef;*/
+		}
+		.topleft{
+			position: absolute;
+			left:2.66vw;
+			top:7.31vw;
+			width:7.98vw;
+			height:7.98vw;
+			line-height: 7.98vw;
+			text-align: center;
+		}
+		.topleft img{
+			width:7.98vw;
+			height:7.98vw;
+		}
+		.topcenter{
+			position: absolute;
+			left:50%;
+			margin-left:-50%;
+			width:100%;
+			height:11.97vw;
+			margin-top:5.32vw;
+			text-align: center;
+			font:3.99vw/11.97vw Arial;
+			font-weight: bold;
+		}
+		.content{
+			width:100%;
+			height:auto;
+			margin-top:22.60vw;
+		}
+		ul{
+			background-color: #aaa;
+		}
+		ul li{
+			list-style: none;
+			margin:0 auto 5.32vw;
+			width:89.1vw;
+			height:26.6vw;
+			background-color: #fff;
+			border-radius: 0 30px 30px 30px ;
+		}
+		.contentimg{
+			width:26.6vw;
+			height:26.6vw;
+			background-size:cover;
+			background-color: #efefef;
+			border-radius:0 0 0 30px;
+			display:inline-block;
+			vertical-align: top;
+		}
+		.contenttext{
+			display: inline-block;
+			width: 54.52vw;
+			height:19.15vw;
+			margin-top:4.5vw;
+			margin-left:3.99vw;
+			font:3.119vw/4.52vw Arial;
+			font-weight: bold;
+			color:#aaa;
+		}
+		.zhuangtailan{
+			position: fixed;
+			top:0;
+			width:100vw;
+			height:25px;
+			background-color: #fff;
+			z-index: 20;
+		}
+	</style>
+</head>
+<body>
+	<div class="zhuangtailan"></div>
+	<header>
+		<div class="topcenter">"Bling - Bling"</div>
+		<div class="topleft" onclick="closeWin()"><img src="../../image/icon-back@3x2.png" alt=""></div>
+	</header>
+	<div class="content">
+		<ul id="boxx">
+<!-- 			<li><div class="contentimg"></div><div class="contenttext">7.25 | SMS System Upgrade | This is a free tool for entrepreneurs, who are willing to open or to expand their own business. &gt;&gt;</div></li>
+			<li><div class="contentimg"></div><div class="contenttext">7.25 | SMS System Upgrade | This is a free tool for entrepreneurs, who are willing to open or to expand their own business. &gt;&gt;</div></li>
+			<li><div class="contentimg"></div><div class="contenttext">7.25 | SMS System Upgrade | This is a free tool for entrepreneurs, who are willing to open or to expand their own business. &gt;&gt;</div></li> -->
+		</ul>
+	</div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript">
+	var hhh = window.screen.height;
+	var www = window.screen.width;
+	apiready = function(){
+		if(hhh/www>2){
+			$api.css($api.dom('header'), 'margin-top:25px;');
+			$api.css($api.dom('.content'), 'margin-top:29.26vw;');
+		}
+			// 右滑關閉頁面
+		    api.addEventListener({
+		        name: 'swiperight'
+		    }, function() {
+		       closeWin();
+		    });
+	// 加載公告
+      var announcement_img_url=[],
+          announcement_link=[],
+          announcement_type=[],
+          announcement_title=[],
+          announcement_content=[];
+        var temp="";
+      api.ajax({
+          url: 'http://api.baopinghui.com/app_AnnouncementController/findAllAnnouncement',
+          method: 'post'
+      }, function(ret, err) {
+          if (ret) {
+              var announcement_length=ret.data.length;
+              for(var i=0;i<announcement_length;i++){
+                announcement_img_url.push(ret.data[i].img_url);
+                announcement_link.push(ret.data[i].link);
+                announcement_type.push(ret.data[i].type);
+                announcement_content.push(ret.data[i].content);
+                announcement_title.push(ret.data[i].title);
+              }
+              if($api.getStorage('language')=="zho"){
+              	for(var i=0;i<announcement_length;i++){
+                  if(announcement_type[i]=="user"){
+                    temp +='<li onclick=openhome("'+announcement_link[i]+'")><div class="contentimg" style="background-image:url(http://bin.baopinghui.com/'+announcement_img_url[i]+')"></div><div class="contenttext">'+announcement_content[i]+'</div></li>';
+                  }else{
+                    temp +='<li onclick=openweb("'+announcement_link[i]+'")><div class="contentimg" style="background-image:url(http://bin.baopinghui.com/'+announcement_img_url[i]+')"></div><div class="contenttext">'+announcement_content[i]+'</div></li>';
+                  }
+                };
+            }else{
+            	for(var i=0;i<announcement_length;i++){
+                  if(announcement_type[i]=="user"){
+                    temp +='<li onclick=openhome("'+announcement_link[i]+'")><div class="contentimg" style="background-image:url(http://bin.baopinghui.com/'+announcement_img_url[i]+')"></div><div class="contenttext">'+announcement_title[i]+'</div></li>';
+                  }else{
+                    temp +='<li onclick=openweb("'+announcement_link[i]+'")><div class="contentimg" style="background-image:url(http://bin.baopinghui.com/'+announcement_img_url[i]+')"></div><div class="contenttext">'+announcement_title[i]+'</div></li>';
+                  }
+                };
+            }
+              
+              // for(var i=0;i<announcement_length;i++){
+              // 	temp +='<li><div class="contentimg" style="url(http://bin.baopinghui.com/'+announcement_img_url[i]+')"></div><div class="contenttext">'+announcement_content[i]+'</div></li>';
+              // }
+              // $api.append($api.dom('#boxx'),temp);
+              $api.html($api.dom('#boxx'), temp);
+          } else {
+              console.log(JSON.stringify(err));
+          }
+      });
+	};
+		    
+		function closeWin(){
+			api.closeWin();
+		}
+  // 點擊公告打開網頁
+  function openweb(url){
+  	 var urll=url;
+    if($api.getStorage('language')=='zho'){
+      urll=url.split(",")[0];
+    }else{
+      urll=url.split(",")[1];
+    }
+    // alert(1);
+    api.openWin({
+        name: 'announcement_web',
+        url: 'widget://html/announcement/announcement_web.html',
+        pageParam: {
+            url: urll
+        }
+    });
+  }
+  function openhome(id){
+    // alert(2);
+    api.openWin({
+          name: 'home1/'+id,
+          url: "widget://html/home/home1.html",
+          reload: true,//页面打开过时重新打开执行刷新操作
+          vScrollBarEnabled: false,
+          slidBackEnabled: false,
+          pageParam:{
+          otherId: id//其他用户的ID
+        }
+    });
+  }
+	</script>
+</html>

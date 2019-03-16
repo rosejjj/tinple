@@ -1,0 +1,103 @@
+var router = {
+	widget : 'widget://html/',
+	home : "home/home.html",
+	logonPage : {
+		guide : 'logon-page/guide.html',
+		logonPage : 'logon-page/login.html',
+		register : 'logon-page/register2.html',
+		languageSelect : 'logon-page/language_select.html',
+		VerificationCode : 'logon-page/Verification_code.html',
+		registerArea : 'logon-page/register_area.html',
+		findPsw1 : 'logon-page/find_psw.html',
+		registerInfo2 : 'logon-page/register_info2.html',
+		registerArea : 'logon-page/register_area.html',
+		lead : 'logon-page/lead.html',
+		signType : 'logon-page/signup_type.html',
+		resetPsw : 'logon-page/reset-psw.html'
+	},
+	chat:{
+		chat : "chat/chat2.html"
+//		chat_group: "chat/chat.group.html"
+	},
+	group:{
+		add_members : "group/add-members.html",
+		group_chat : "group/group_chat.html",
+		group_list : "group/group-list",
+		group_setting : "group/group-setting.html",
+		management : "group/management.html"
+	},
+	
+	function_list : {
+		functionList : 'activity/activity_index.html',
+		filter : 'function_list/filter.html',
+		addTag : 'function_list/add-tag.html',
+		newTag : 'function_list/newTag.html',
+		camera : 'function_list/camera.html',
+		tag : 'function_list/tag.html',
+		description : 'function_list/description.html',
+		album : 'function_list/album.html',
+		cameraRoll : 'function_list/cameraRoll.html',
+		newDescription : 'function_list/newDescription.html',
+		nowPost : 'function_list/now_post.html',
+		newAddTag : 'function_list/newAddTag.html',
+		publish : 'function_list/publish.html'
+		
+	},
+	set_up : {
+		set_up : 'function_list/function_list.html',
+		basic_data : 'set_up/basic_data.html',
+		changePsw : 'set_up/change_password.html',
+		profile : 'set_up/profile.html',
+		select_language : 'set_up/select_language.html',
+		feedBack : 'set_up/feedback.html',
+		privacy : 'set_up/privacy.html',
+		service : 'set_up/service_terms.html',
+		set : 'set_up/set.html'
+	},
+	details : {
+		details : 'details/index.html',
+		fullPic : 'details/full-pic.html',
+		gether : 'details/gather.html',
+		comment : 'details/comment.html'
+	},
+	search : {
+		search : 'search/found.html',
+		searchPage : 'search/index_search.html',
+		searchTins : 'search/tins.html',
+		searchUser : 'search/user.html',
+		squareLife : 'search/Square-pic.html',
+		squareLive : 'search/Square-live.html',
+		scanner : 'search/scanner.html',
+		square : 'search/square.html',
+//		square : 'search/squareHomepage.html',
+		squareHomePage : 'search/squareHomepage.html',
+		squareGuide : 'search/squareGuide.html',
+		squareRecommend : 'search/squareRecommend.html',
+		squareDiscovery : 'search/squareDiscovery.html'
+	},
+	translated : {
+		translatedPic : 'translated/translating_pic.html',
+		translatedText : 'translated/translating_word.html',
+		translatedLang : 'translated/translating.html',
+		translatedGroup : 'translated/translated_group.html'
+	},
+	error : {
+		serviceError : 'serviceError.html',
+		fourZeroFour : 'servicefour.html'
+	},
+	introduction2 : 'introduction.html',
+	personalPage: 'personal-page2.html',
+	qrcode : 'QRcode.html',
+	settings_data : 'settings_data.html',
+	myfollow : 'myfollow.html',
+	tourist : 'tourist.html',
+	allecho : 'echo-all.html',
+	comment : 'comment.html',
+	tins : 'tins2.html',
+	echo_day : 'echo-day.html',
+	latestPost : 'latest-post2.html',
+	reply : 'reply.html',
+	otherTins : 'other-tins.html',
+	echo : 'echo.html',
+	activity : 'header-guide.html'
+}

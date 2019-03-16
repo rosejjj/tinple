@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script type="text/javascript" src="../../script/api.js"></script>
+  <title>Document</title>
+  <style type="text/css">
+  	*{
+  		padding:0;
+  		margin:0;
+  	}
+    html{
+      font-family: Arial;
+    }
+    .mask{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: black;
+      opacity: 0.8;
+    }
+    .box{
+      position: fixed;
+      top: 15vh;
+      /*height: 50vh;*/
+      width: 100vw;
+      /*background: black;*/
+    }
+    .avatar1{
+      position: relative;
+      margin: 0 auto;
+      height: 140px;
+      width: 140px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      z-index: 9;
+    }
+    .avatar2{
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      height: 120px;
+      width: 120px;
+      border-radius: 50%;
+      /*margin-top: 10px;*/
+      background: no-repeat center center #efefef;
+      background-size: cover;
+      object-fit: cover;
+    }
+    .public{
+      margin-top: 10px;
+      color: white;
+      font-size: 15px;
+      text-align: center;
+      font-weight: bold;
+    }
+    .box2{
+      position: fixed;
+      bottom: 15vh;
+      width: 100vw;
+      /*background: black;*/
+    }
+    .buttom{
+      height: 50px;
+      width: 94vw;
+      margin-left: 3vw;
+      font-weight: bold;
+      background: #F381A3;
+      border-radius: 10px;
+      text-align: center;
+      line-height: 52px;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="mask"></div>
+	<div class="box">
+    <div class="avatar1">
+      <div class="avatar2"></div>
+    </div>
+    <p class="public name"></p>
+    <p class="public" style="margin-top:50px;">Invite you to play a role-playing<br/>game🤖</p>
+    <p class="public" style="opacity:0.5;">【Couple - One week】</p>
+	</div>
+  <div class="box2">
+    <div class="buttom accept">A C C E P T</div>
+    <div class="buttom back" style="margin-top:10px;background: rgba(255, 255, 255, 0.3);">B A C K</div>
+  </div>
+</body>
+<script src="../../script/jquery-3.1.0.min.js"></script>
+<script type="text/javascript">
+  apiready=function () {
+    var data = api.pageParam['data'];
+    // alert(JSON.stringify(data));
+    var img = 'http://bin.baopinghui.com/'+data.avatar_url;
+    $('.name').html(data.nickname);
+    $('.avatar2').css('background-image','url('+img+')');
+    $('.back').click(function(){
+      api.closeWin({
+          name: 'rolePlay'
+      });
+    });
+    $('.accept').click(function(){
+      // alert( JSON.stringify( ret ) );
+      api.ajax({
+          url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/userinfo',
+          method: 'post',
+          data: {
+              values: {
+                  uiId: $api.getStorage('id'),
+                  pageUiId: $api.getStorage('id')
+              }
+          }
+      },function(ret, err){
+          if (ret) {
+            var ownHead = ret.data.avatar_url;
+            api.sendEvent({
+                name: 'ChatListExec',
+                extra: {
+                    content: '[角色扮演]',
+                    targetType: "single",  //来源的类型单聊类型 另外一种是群聊类型group
+                    target_username: data.id,  //单聊的对象极光的username既tinkle的uiid
+                    data: data,
+                    ownHead: ownHead, //自己的头像
+                    type: 'role',     //发送的自定义的消息类型
+                }
+            });
+            //监听chat_list 极光发送消息发送成功
+            api.addEventListener({
+                name: 'ChatListExecReturn'
+            }, function(ret, err){
+                if( ret ){
+                    if(ret.value.state == 1){
+                      api.sendEvent({
+                          name: 'role',
+                          extra: {
+                              ownHead: ownHead, //自己的头像
+                              data: data
+                          }
+                      });
+
+                      api.toast({
+                          msg: '发送成功',
+                          duration: 2000,
+                          location: 'bottom'
+                      });
+                      api.closeWin({
+                          name: 'rolePlay'
+                      });
+
+
+                    }
+                }
+            });
+          }
+      });
+    });
+  }
+</script>
+</html>

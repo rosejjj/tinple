@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>注册主页1</title>
+    <style>
+    	html,body{
+    		margin:0;
+    		padding:0;
+    		color:#FFF;
+    		background-color:#FFF;
+    	}
+		input{border:0;outline:none;/*去除蓝色边框*/}
+		button{outline:none;/*去除蓝色边框*/}
+
+		/*遮罩层*/
+		.mask {
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0,0,0,0.9);
+			/*opacity: 0.2;*/
+			position: fixed;
+			left: 0;
+			top: 0;
+			z-index: 999999;
+			display:none;
+		}
+    	header{
+    		position: fixed;
+    		left:0;
+    		top:0;
+	    	width:100vw;
+	    	height:18.67vw;
+	    	background: linear-gradient(to right, #d9afd9 0%,#97d9e1 100%);
+	    	box-shadow: 0 0 10px #36A5B2;
+    	}
+    	header img {
+			width: 8vw;
+			height: 8vw;
+		}
+		header .left {
+			position:absolute;
+			left:8vw;
+			bottom:0;
+			display: inline-block;
+		}
+		header .right {
+			position:absolute;
+			right:8vw;
+			bottom:0;
+    		width:56vw;
+    		height:12vw;
+    		line-height:12vw;
+			text-align: center;
+			font-size:8vw;
+			font-weight: bold;
+    		background:url(../../icon/nav/head_box.png)no-repeat bottom center;
+    		background-size : 100%;
+		}
+		.title{
+    		display:inline-block;
+    		font-size:4.5vw;
+    		font-weight:bold;
+    		/*文字颜色渐变*/
+    		background-image: -webkit-gradient(linear, 0 0, 100% bottom, from(#d9afd9), to(#97d9e1));
+		    -webkit-background-clip: text;
+		    -webkit-text-fill-color: transparent;
+		    word-spacing:5px;
+		    letter-spacing: 3px;
+		}
+
+		.nav {
+    		position: fixed;
+    		left:8vw;
+    		top:30vw;
+			width: 100%;
+			height: 15vw;
+		}
+		.box{
+			position:relative;
+			display:inline-block;
+			width:34.2vw;
+			height:12.43vw;
+			padding: 0 5vw 0 0;
+			line-height:11.42vw;
+			text-align:center;
+			font-weight: bold;
+    		/*文字颜色渐变*/
+		}
+		.box .text{
+    		/*文字颜色渐变*/
+    		background-image: -webkit-gradient(linear, 0 0, 100% bottom, from(#d9afd9), to(#97d9e1));
+		    -webkit-background-clip: text;
+		    -webkit-text-fill-color: transparent;
+		    word-spacing:5px;
+		    letter-spacing: 3px;
+		}
+		.box .bottom{
+			display:block;
+			position:absolute;
+			left:0;
+			bottom:0;
+	    	width:35vw;
+	    	height:3px;
+	    	background: linear-gradient(to right, #d9afd9 0%,#97d9e1 100%);
+		}
+		/*下一步按钮*/
+		.next {
+			position: fixed;
+			left:8vw;
+			top:140vw;
+			height: 11.111111vw;
+			width: 83.3333vw;
+			color: #ffffff;
+			font-size: 15px;
+			font-weight: bold;
+			padding: 0 5vw 0 0;
+			position: relative;
+			text-align: center;
+			text-indent: 5.5555vw;
+			white-space: pre;
+			border-radius: 13.8888vw;
+			box-shadow: 0 1px 2px rgba(0, 0, 0, 0.18), 0 2px 2px rgba(0, 0, 0, 0.25);
+			background: linear-gradient(to right, #ffc3a0 0%,#ffafbd 100%);
+		}
+    </style>
+</head>
+<body>
+		<header>
+			<div class="left"><img src="../../icon/logon-page/ht1.png" onclick="back()" /></div>
+			<div class="right"><span class="title">Sign Up</span></div>
+		</header>
+		<div class="nav">
+			<div class="box" onclick="frameGroupIndex(0)" style="margin-right:4vw;" ><span id="Mobile" class="text">M O B I L E </span><span id="Mobile_bottom" class="bottom"></span></div>
+			<div class="box" onclick="frameGroupIndex(1)"><span id="Email" class="text">E - M A I L</span><span id="Email_bottom" class="bottom"></span></div>
+		</div>
+
+	<button class="next" onclick="next()">N E X T</button>
+
+	<!--遮罩层-->
+	<div class="mask"></div>
+
+</body>
+
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script src="../../script/jquery-3.1.0.min.js" type="text/javascript"></script>
+	<script src="../../json/router.json" type="text/javascript"></script>
+	<script src="../../script/public.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var data,index;
+
+		apiready = function(){
+			data = api.pageParam["data"];//1：忘记密码 2： 注册
+			if(data == 1){//忘记密码
+				$api.text($api.dom(".title"), "Ask For Help");
+				if($api.getStorage("language") == "zho") {
+					$api.text($api.dom(".title"), "請求幫助");
+					$api.text($api.dom("#Mobile"), "移 动");
+					$api.text($api.dom("#Email"), "郵 箱");
+					$api.text($api.dom(".next"), "下 一 步");
+				}
+			}else{//注册账号
+				$api.text($api.dom(".title"), "Sign Up");
+				if($api.getStorage("language") == "zho") {
+					$api.text($api.dom(".title"), "注 册");
+					$api.text($api.dom("#Mobile"), "移 动");
+					$api.text($api.dom("#Email"), "郵 箱");
+					$api.text($api.dom(".next"), "下 一 步");
+				}
+			}
+			//打开Fram组
+			frame();
+			//向右滑关闭页面
+			api.addEventListener({
+				name: 'swiperight'
+			}, function(ret, err) {
+				back();
+			});
+		};
+			//frame组--手矶--邮箱
+			function frame() {
+				var UIChatBox = api.require('UIChatBox');
+				api.openFrameGroup({
+					name: 'register',
+					rect: {
+						x: 0,
+						y: 240,
+						w: 'auto',
+						h: 200
+					},
+					preload: 1,
+					frames: [{
+							name: 'frame1',
+							url: 'register_mobile.html',
+							bgColor: 'transparent',
+							pageParam: { //页面参数，页面中可以通过api.pageParam获取，JSON对象
+								data :data
+							}
+						},
+						{
+							name: 'frame2',
+							url: 'register_email.html',
+							bgColor: 'transparent',
+							pageParam: { //页面参数，页面中可以通过api.pageParam获取，JSON对象
+								data :data
+							}
+						}
+					]
+				}, function(ret, err) {
+					index = ret.index;
+					if(index == 0) {
+						$('#Mobile_bottom').css('display', 'block');
+						$('#Email_bottom').css('display', 'none');
+					} else {
+						$('#Email_bottom').css('display', 'block');
+						$('#Mobile_bottom').css('display', 'none');
+					}
+				});
+			}
+
+			//切换frame组当前页面
+			function frameGroupIndex(num) {
+				api.setFrameGroupIndex({
+					name: 'register',
+					scroll: true,
+					index: num
+				});
+			}
+
+			//关闭Frame
+			function back(){
+				api.closeFrame({
+					animation: {
+						type: 'push',
+						subType: 'from_left',
+						duration: 250
+					}
+				})
+				api.closeFrameGroup({
+				    name: 'register'
+				});
+
+			}
+			//下一步
+			function next(){
+				//广播,判断数据是否正确，register_mobile或register_email 跳转页面
+				if(index == 0){//手矶注册
+					api.sendEvent({
+					    name: 'Obtain_mobile'
+					});
+				}else{//邮箱注册
+					api.sendEvent({
+					    name: 'Obtain_email'
+					});
+				}
+			}
+	</script>
+</html>

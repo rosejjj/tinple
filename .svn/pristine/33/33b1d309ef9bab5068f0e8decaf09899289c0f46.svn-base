@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+  <script type="text/javascript" src="../../script/api.js"></script>
+  <title>Document</title>
+</head>
+<style media="screen">
+  html,body{
+    background: #ffffff;
+    width: 100%;
+    overflow: hidden;
+    padding-bottom: 50px;
+  }
+  header{
+    height: 65px;
+    background: #ffffff;
+    position: relative;
+    width: 100%;
+    /*box-shadow: 0px 1px 1px 5px #efefef;*/
+    border-bottom:5px solid #efefef;
+  }
+  header p{
+    display: block;
+
+    text-align: center;
+    width: 100%;
+    height: 65px;
+    line-height: 85px;
+    font-size: 15px;
+    font-weight: bold;
+  }
+  header img{
+    display: inline-block;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    left: 10px;
+    top: 27.5px;
+  }
+  section{width: 100%;}
+  .box{
+    position: relative;
+    width:92.02vw;
+    /*height: 80px;*/
+    margin:0 auto;
+    margin-top: 15px;
+    padding-bottom:13px;
+    /*border-bottom:1px solid #efefef;*/
+  }
+  .line{
+    width: 100%;
+    height:5px;
+    background-color: #efefef
+  }
+  .avatar{
+    position: absolute;
+    top: 0px;
+    display: inline-block;
+    width: 40px;
+    height:40px;
+    border-radius: 50%;
+    background: #aaaaaa;
+    background-size: cover;
+    background-position: center;
+  }
+  .zhanwei{
+
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    /*background: #aaaaaa;
+    background-size: cover;
+    background-position: center;*/
+  }
+  .content{
+    display: inline-block;
+    width: 59%;
+    font-size: 12px;
+
+    margin-left: 10px;
+    /*transform: translateY(14px);*/
+  }
+  .nickname{
+    display: block;
+    margin-bottom: 8px;
+    color: #f381a3;
+    /*transform: translateY(10px);*/
+    font-weight: bold;
+  }
+  .time{
+    margin-top: 8px;
+    color: #aaaaaa;
+    display: block;
+    font:2.66vw;
+    /*transform: translateY(10px);*/
+  }
+  .pinglun{
+    color: #aaaaaa;
+    display: block;
+    color:#000;
+    font-weight: bold;
+    /*transform: translateY(10px);*/
+  }
+  .details_img{
+    position: absolute;
+    top: 0px;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    background: #aaaaaa;
+    background-size: cover;
+    background-position: center;
+    right: 0px;
+  }
+</style>
+<body>
+  <header>
+		<img src="../../icon/messages/back.png" alt="" onclick="closeWin()">
+		<p>E C H O</p>
+	</header>
+  <section id="box">
+    <template v-for="num in extra">
+    <div class="box" @click="jump_details(num.topicId)">
+      <div class="avatar" :style="{backgroundImage:'url('+avatarurl+num.avatar_url+')'}">
+
+      </div>
+      <div class="zhanwei">
+
+      </div>
+      <div class="content">
+        <span class="nickname">{{num.nickname}}</span>
+        <span class="pinglun">{{num.contentText}}</span>
+        <span class="time" id="time">{{num.current}}</span>
+      </div>
+        <div class="details_img" :style="{backgroundImage:'url('+avatarurl+num.cover_url.split(',')[0]+(num.post_type=='Video'?videoend:imgend)+')'}">
+      </div>
+    </div>
+    <div class="line"></div>
+    </template>
+  </section>
+</body>
+<script src="../../script/vue.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+//extra=[];
+var c_uiid=$api.getStorage('id');
+var db;
+//单个的查询方法
+var sql_uiid="'"+c_uiid+"'";
+// 多个的查询方法
+//下面是用于sqlite 相当于mysql 中的find_in_set（Str,Strings） 一样的拼凑方法
+// var a1="ae6e53b3227c44f3a668db602757a1d9";
+// var bc="'"+c_uiid+"','"+a1+"'";
+
+var pageextra;
+var huixiang_data=(typeof($api.getStorage("huixiang"))!="undefined")?$api.getStorage("huixiang"):{};
+      function closeWin(){
+        // api.sendEvent({
+        //     name: 'qingkong',
+        // });
+        api.closeWin({
+        });
+      };
+  apiready=function(){
+            db= api.require('db');
+          //收到新的消息时加载新的的数据
+          api.addEventListener({
+           name: 'echos'
+          }, function(ret, err){
+           if( ret ){
+
+             setTimeout(function(){
+                    selectEcho();
+             },200)
+
+           }else{
+
+           }
+          });
+        //页面加载查询回响数据
+         selectEcho();
+  api.addEventListener({
+                    name: 'swiperight'
+                }, function() {
+                    api.closeWin({
+                        animation: {
+                            type: "push", //动画类型（详见动画类型常量）
+                            subType: "from_left", //动画子类型（详见动画子类型常量）
+                            duration: 300 //动画过渡时间，默认300毫秒
+                        }
+                    });
+                }); //右滑关闭win
+  //alert($api.getStorage($api.getStorage('id')+"abc"));
+  //alert(JSON.stringify(api.pageParam.extra));
+  if(JSON.stringify(api.pageParam.extra)=="[]"){
+    pageextra=api.pageParam.extra
+  }else{
+    pageextra=huixiang_data[c_uiid];
+    //pageextra=api.pageParam.extra;
+  }
+  // alert(JSON.stringify(pageextra));
+  //extra.push(api.pageParam.extra);
+  //alert(JSON.stringify(extra));
+  var box=new Vue({
+    el:"#box",
+    data:{
+      extra:pageextra,
+      //postId:api.pageParam.extra.topicId,
+      avatarurl:"http://bin.baopinghui.com/",
+      //details_imgurl:"http://bin.baopinghui.com/"
+      imgend:"?imageView2/0/w/200",
+      videoend:"?vframe/jpg/offset/1/w/350"
+    },
+    methods:{
+      jump_details:function(event){
+        //alert(event);
+        api.openWin({
+          name: "detail",
+          url: "widget://html/details/detail.html",
+          reload: true,
+          vScrollBarEnabled: false,
+          slidBackEnabled: false,
+            pageParam: {
+                postId: event
+            }
+        });
+
+      }
+    },//方法
+    computed:{
+
+    },//计算属性
+    mounted:function(){
+      var time=document.getElementsByClassName('time');
+      //alert(time.innerHTML);
+      for(let i=0;i<time.length;i++){
+        time[i].innerHTML=time[i].innerHTML.substr(-16,13);
+      }
+      // time.innerHTML=time.innerHTML.substr(-16,13);
+      // getElementsByClassName('className')
+    }
+  })
+  // 从数据库中查询当前账号的回响消息
+function selectEcho(){
+
+      db.selectSql({
+              name: 'tinkle',
+              // sql: "SELECT * FROM echo where uuid='"+c_uiid+"' order by id desc"
+                sql: "SELECT * FROM echo where uuid in("+sql_uiid+") order by id desc"
+
+          }, function(ret, err) {
+              if (ret.status) {
+                box.extra=ret.data;
+                  // alert(JSON.stringify(ret));
+              } else {
+                  alert(JSON.stringify(err));
+              }
+          });
+
+}
+}
+
+</script>
+</html>

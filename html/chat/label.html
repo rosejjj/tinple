@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>label</title>
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <style>
+        *{
+          padding: 0;
+          margin: 0;
+          box-sizing: border-box;
+    			-webkit-user-select: auto;
+        }
+        header {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 18.7vw;
+          padding:15px 2.66vw;
+          display: -webkit-flex;
+          display: flex;
+          -webkit-justify-content: space-between;
+          justify-content: space-between;
+          /*position: relative;*/
+          z-index: 4;
+          background: #ffffff;
+          /*box-shadow: 0 0 10px #36A5B2;linear-gradient(to right, #d9afd9 0%, #97d9e1 100%)*/
+          /*margin-bottom:3px;*/
+          z-index: 100;
+          box-shadow: 0px 0px 2px .9px #efefef;
+        }
+        .back {
+    			width: 30px;
+    			height: 45px;
+    			margin-top: 1.7vw;
+    			background: url(../../image/back.png)no-repeat center center;
+    			background-size: cover;
+          opacity: 0.5;
+    		}
+        .info {
+    			height: 100%;
+    			display: flex;
+    			flex-direction: column;
+    			justify-content: space-between;
+    		}
+
+    		.info .nickname {
+    			position: relative;
+    			top: 4px;
+    			width:50vw;
+    			height: 100%;
+    			line-height:14vw;
+    			color: #101010;
+    			font-size: 20px;
+    			font-weight: bold;
+    			text-align: center;
+    			text-shadow: 0 0 1px 0 #36A5B2;
+    				white-space: nowrap;
+    				overflow: hidden;
+    				text-overflow: ellipsis;
+    			letter-spacing: 1px;
+    		}
+        .more {
+    			width: 60px;
+    			height: 35px;
+    			margin-top: 3.16666vw;
+    			background: #9DDA57;
+          color: white;
+          border-radius: 30px;
+          text-align: center;
+          line-height: 37px;
+          letter-spacing: 1px;
+          font-size: 12px;
+    		}
+        body,html{
+          background: white;
+        }
+        .box{
+          position: absolute;
+          top: 18.7vw;
+          width: 100vw;
+        }
+        .box p{
+          height: 70px;
+          width: 100vw;
+          background: #EFEFEF;
+          color: black;
+          font-size: 12px;
+          font-weight: 500;
+          padding: 17px 15px;
+          line-height: 18px;
+        }
+        .red{
+          background: #F381A3;
+          height: 10px;
+          width: 10px;
+          border-radius: 30px;
+          margin-left:10px;
+        }
+        .select{
+          color: #AAA;
+          font-size: 15px;
+          margin-left: 10px;
+        }
+        .mmm{
+          display: block;
+          margin-top: 18px;
+          margin-left: 5px;
+        }
+        .one{
+          /*display: block;*/
+          /*width: 55px;*/
+          padding: 0 10px;
+          height: 35px;
+          background: #EFEFEF;
+          color: #aaa;
+          font-size: 15px;
+          text-align: center;
+          line-height: 36px;
+          margin-top: 15px;
+          border-radius: 5px;
+          outline: none;
+          margin-left:10px;
+        }
+    </style>
+  </head>
+  <body>
+    <header id="head">
+      <span class="back"></span>
+      <div class="info">
+        <span class="nickname">SELECT LABEL</span>
+      </div>
+      <span class="more" onclick="ok()">OK</span>
+    </header>
+    <div class="box">
+      <p>For a higher degree of matching, please select more<br/>than 10 labels.</p>
+      <span class="mmm">
+        <span class="red"></span>
+        <span class="select" style="margin-left: 5px;">My Gender</span><br /><button type="button" value="男" class="one gender" onclick="radio(0,'gender')">Male</button><button type="button" value="女" class="one gender" onclick="radio(1,'gender')">Female</button>
+      </span>
+      <span class="mmm">
+        <span class="red"></span>
+        <span class="select" style="margin-left: 5px;">Matching Gender</span><br /><button type="button" value="男" class="one mGender" onclick="radio(0,'mGender')">Male</button><button type="button" value="女" class="one mGender" onclick="radio(1,'mGender')">Female</button><button type="button" value="男,女" class="one mGender" onclick="radio(2,'mGender')">All</button>
+      </span>
+      <span class="mmm"><span class="red"></span>
+      <span class="select" style="margin-left: 5px;">Matching Area</span><br />
+      <button type="button" class="one area" value="own" onclick="radio(0,'area')">Own Country</button><button type="button" value="other" class="one area" onclick="radio(1,'area')">Other countries</button><button type="button" value="all" class="one area" onclick="radio(2,'area')">All</button>
+    </span>
+      <span class="mmm">
+        <span class="select">Outdoor sports</span><br />
+        <button type="button" class="one outdoor" onclick="checkBox(0,'outdoor')" value="001">Hiking</button><button type="button" class="one outdoor" onclick="checkBox(1,'outdoor')" value="002">Camping</button><button type="button" class="one outdoor" onclick="checkBox(2,'outdoor')" value="003">Extreme sport</button><button type="button" class="one outdoor" onclick="checkBox(3,'outdoor')" value="004">Travel</button>
+    </span>
+    <span class="mmm">
+      <span class="select">Water sports</span><br />
+      <button type="button" class="one water" onclick="checkBox(0,'water')" value="005">Swim</button><button type="button" class="one water" onclick="checkBox(1,'water')" value="006">Surfing</button><button type="button" class="one water" onclick="checkBox(2,'water')" value="007">Snorkeling</button><button type="button" class="one water" onclick="checkBox(3,'water')" value="008">Diving</button>
+  </span>
+  <span class="mmm">
+    <span class="select">Driving movement</span><br />
+    <button type="button" class="one driving" onclick="checkBox(0,'driving')" value="009">Bicycle</button><button type="button" class="one driving" onclick="checkBox(1,'driving')" value="0010">Racing car</button><button type="button" class="one driving" onclick="checkBox(2,'driving')" value="0011">Rowing</button><button type="button" class="one driving" onclick="checkBox(3,'driving')" value="0012">Horse riding</button><button type="button" class="one driving" onclick="checkBox(4,'driving')" value="0013">Drive plane</button>
+</span>
+<span class="mmm">
+  <span class="select">Fitness</span><br />
+  <button type="button" class="one fitness" onclick="checkBox(0,'fitness')" value="0014">Martial arts</button><button type="button" class="one fitness" onclick="checkBox(1,'fitness')" value="0015">Run</button><button type="button" class="one fitness" onclick="checkBox(2,'fitness')" value="0016">Gym</button><button type="button" class="one fitness" onclick="checkBox(3,'fitness')" value="0017">Yoga</button><button type="button" class="one fitness" onclick="checkBox(4,'fitness')" value="0018">Tai Chi</button>
+</span>
+<span class="mmm">
+  <span class="select">Special</span><br />
+  <button type="button" class="one special" onclick="checkBox(0,'special')" value="0019">Shooting</button><button type="button" class="one special" onclick="checkBox(1,'special')" value="0020">Survival game</button>
+</span>
+<span class="mmm">
+  <span class="select">Ball sports</span><br />
+  <button type="button" class="one ball" onclick="checkBox(0,'ball')" value="0021">Baseball</button><button type="button" class="one ball" onclick="checkBox(1,'ball')" value="0022">Badminton</button><button type="button" class="one ball" onclick="checkBox(2,'ball')" value="0023">pingpong</button><button type="button" class="one ball" onclick="checkBox(3,'ball')" value="0024">Bowling</button><button type="button" class="one ball" onclick="checkBox(4,'ball')" value="0025">Ice hockey</button><button type="button" class="one ball" onclick="checkBox(5,'ball')" value="0026">Billiard</button><button type="button" class="one ball" onclick="checkBox(6,'ball')" value="0027">Golf</button>
+  <button type="button" class="one ball" onclick="checkBox(7,'ball')" value="0028">Football</button><button type="button" class="one ball" onclick="checkBox(8,'ball')" value="0029">Volleyball</button><button type="button" class="one ball" onclick="checkBox(9,'ball')" value="0030">Tennis</button><button type="button" class="one ball" onclick="checkBox(10,'ball')" value="0031">Hockey</button><button type="button" class="one ball" onclick="checkBox(11,'ball')" value="0032">Basketball</button><button type="button" class="one ball" onclick="checkBox(12,'ball')" value="0033">Football</button>
+</span>
+<span class="mmm">
+  <span class="select">Art</span><br />
+  <button type="button" class="one art" onclick="checkBox(0,'art')" value="0034">Sing</button><button type="button" class="one art" onclick="checkBox(1,'art')" value="0035">Dancing</button><button type="button" class="one art" onclick="checkBox(2,'art')" value="0036">Playing</button><button type="button" class="one art" onclick="checkBox(3,'art')" value="0037">Painting</button><button type="button" class="one art" onclick="checkBox(4,'art')" value="0038">Gardening</button><button type="button" class="one art" onclick="checkBox(5,'art')" value="0039">Flower arrangement</button><button type="button" class="one art" onclick="checkBox(6,'art')" value="0040">Cosplay</button>
+  <button type="button" class="one art" onclick="checkBox(7,'art')" value="0041">Creation</button><button type="button" class="one art" onclick="checkBox(8,'art')" value="0042">Photography</button><button type="button" class="one art" onclick="checkBox(9,'art')" value="0043">Writing</button>
+</span>
+<span class="mmm">
+  <span class="select">Reading</span><br />
+  <button type="button" class="one reading" onclick="checkBox(0,'reading')" value="0044">Reading novels</button><button type="button" class="one reading" onclick="checkBox(1,'reading')" value="0045">Read newspaper</button><button type="button" class="one reading" onclick="checkBox(2,'reading')" value="0046">Read magazine</button><button type="button" class="one reading" onclick="checkBox(3,'reading')" value="0047">Read comics</button><button type="button" class="one reading" onclick="checkBox(4,'reading')" value="0048">Internet access</button>
+</span>
+<span class="mmm">
+  <span class="select">Watch</span><br />
+  <button type="button" class="one watch" onclick="checkBox(0,'watch')" value="0049">Watch movie</button><button type="button" class="one watch" onclick="checkBox(1,'watch')" value="0050">View Gallery</button><button type="button" class="one watch" onclick="checkBox(2,'watch')" value="0051">Watch the show</button><button type="button" class="one watch" onclick="checkBox(3,'watch')" value="0052">Watching drama</button><button type="button" class="one watch" onclick="checkBox(4,'watch')" value="0053">Bird watching</button><button type="button" class="one watch" onclick="checkBox(5,'watch')" value="0054">Stargazing</button>
+</span>
+<span class="mmm">
+  <span class="select">Game</span><br />
+  <button type="button" class="one game" onclick="checkBox(0,'game')" value="0055">Video game</button><button type="button" class="one game" onclick="checkBox(1,'game')" value="0056">Desktop game</button><button type="button" class="one game" onclick="checkBox(2,'game')" value="0057">Board game</button><button type="button" class="one game" onclick="checkBox(3,'game')" value="0058">Poker</button><button type="button" class="one game" onclick="checkBox(4,'game')" value="0059">Mahjong</button><button type="button" class="one game" onclick="checkBox(5,'game')" value="0060">Puzzle game</button>
+</span>
+<span class="mmm">
+  <span class="select">Tasting</span><br />
+  <button type="button" class="one tasting" onclick="checkBox(0,'tasting')" value="0066">Cooking</button><button type="button" class="one tasting" onclick="checkBox(1,'tasting')" value="0062">Wine tasting</button><button type="button" class="one tasting" onclick="checkBox(2,'tasting')" value="0063">Tasting tea</button><button type="button" class="one tasting" onclick="checkBox(3,'tasting')" value="0064">Coffee</button><button type="button" class="one tasting" onclick="checkBox(4,'tasting')" value="0065">Bartending</button><button type="button" class="one tasting" onclick="checkBox(5,'tasting')" value="0066">Cigars</button>
+</span>
+<span class="mmm">
+  <span class="select">Production</span><br />
+  <button type="button" class="one production" onclick="checkBox(0,'production')" value="0067">Handicraft</button><button type="button" class="one production" onclick="checkBox(1,'production')" value="0068">Model</button>
+</span>
+<span class="mmm">
+  <span class="select">Collection</span><br />
+  <button type="button" class="one collection" onclick="checkBox(0,'collection')" value="0069">Antique</button><button type="button" class="one collection" onclick="checkBox(1,'collection')" value="0070">Specimen</button><button type="button" class="one collection" onclick="checkBox(2,'collection')" value="0071">Stamp</button><button type="button" class="one collection"  onclick="checkBox(3,'collection')" value="0072">Coin</button><button type="button" class="one collection" onclick="checkBox(4,'collection')" value="0073">Toy</button>
+</span>
+<span class="mmm">
+  <span class="select">Learn</span><br />
+  <button type="button" class="one learn" onclick="checkBox(0,'learn')" value="0074">Academic Research</button><button type="button" class="one learn" onclick="checkBox(1,'learn')" value="0075">Language</button>
+</span>
+    </div>
+  </body>
+  <script src="../../json/api.json"></script>
+	<script src="../../json/router.json"></script>
+  <script src="../../json/hobby.json"></script>
+	<script src="../../script/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../script/api.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../script/public.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../script/jquery-3.1.0.min.js" type="text/javascript"></script>
+	<script type="text/javascript">
+      var select = $('.select');
+      var arr = [];
+      var one = $('.one');
+      var number;
+      var danxuan = {'sex':'','otherSex':'','area':''};
+    if($api.getStorage('language')=='zho'){
+      $('.nickname').html('選擇標簽');
+      $('.box p').html('要獲得更高的匹配度，請選擇10個以上的標簽');
+      $('.box p').css('line-height','36px');
+      $(select[0]).html('我的性別');
+      $(select[1]).html('性別匹配');
+      $(select[2]).html('匹配地區');
+      $(select[3]).html('戶外運動');
+      $(select[4]).html('水類運動');
+      $(select[5]).html('騎乘類運動');
+      $(select[6]).html('健身');
+      $(select[7]).html('特殊');
+      $(select[8]).html('球類運動');
+      $(select[9]).html('藝術');
+      $(select[10]).html('閱讀');
+      $(select[11]).html('觀賞');
+      $(select[12]).html('遊戲');
+      $(select[13]).html('品嘗');
+      $(select[14]).html('制作');
+      $(select[15]).html('收藏');
+      $(select[16]).html('學習');
+      $(one[0]).html('男性');
+      $(one[1]).html('女性');
+      $(one[2]).html('男性');
+      $(one[3]).html('女性');
+      $(one[4]).html('全部');
+      $(one[5]).html('本國');
+      $(one[6]).html('其他國家');
+      $(one[7]).html('全部');
+      for(var i = 8;i < one.length;i++){
+        number = one[i].value;
+        $(one[i]).html(hobbyZ[number]);
+      }
+    }
+    var hhh =window.screen.height;
+    var www =window.screen.width;
+    // 适配刘海屏
+    if(hhh/www>2){
+      $api.css($api.dom('header'), 'margin-top:25px');
+      $api.css($api.dom('.box'), 'margin-top:25px');
+    }
+    apiready = function(){
+      api.ajax({
+          url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/getUserlabel',
+          method: 'post',
+          data: {
+              values: {
+                  uiId: $api.getStorage('id');
+              }
+          }
+      },function(ret, err){
+          if (ret) {
+              // if(ret.data!=null&&ret.data!=''){
+              //    danxuan.sex =
+              // }
+          }
+      });
+
+      //需求一张图，过程全靠想
+      // for(var i = 0 ; i < 4 ; i++){
+      //   $api.rmStorage(i+'');
+      // }
+    }
+    function radio(index,className){
+          var button = $('.'+className);
+          if(className == 'gender'){
+            danxuan.sex = button[index].value;
+          }else if(className  == 'mGender'){
+            danxuan.otherSex = button[index].value;
+          }else{
+            danxuan.area = button[index].value;
+          }
+          $(button[index]).css('background','#9DDA57');
+          $(button[index]).css('color','white');
+          for(var i=0;i<button.length;i++){
+            if(i!=index){
+              $(button[i]).css('background','#efefef');
+              $(button[i]).css('color','#aaa');
+            }
+          }
+    }
+    function checkBox(index,className){
+      var button2 = $('.'+className);
+      var value = button2[index].value;
+      if(arr.indexOf(value)!= -1){
+        $(button2[index]).css('background','#efefef');
+        $(button2[index]).css('color','#aaa');
+        arr.splice(arr.indexOf(value),1);
+      }else{
+        $(button2[index]).css('background','#9DDA57');
+        $(button2[index]).css('color','white');
+        arr.push(value);
+      }
+    }
+    function ok(){
+      var msg;
+      if(danxuan['sex']==''||danxuan['otherSex']==''||danxuan['area']==''){
+        if($api.getStorage('language')=='zho'){
+          msg = '請選上必選標簽'
+        }else{
+          msg = 'Please select the required label.'
+        }
+        api.toast({
+            msg: msg,
+            duration: 2000,
+            location: 'middle'
+        });
+
+      }else if(arr.length < 10){
+        if($api.getStorage('language')=='zho'){
+          msg = '要獲得更高的匹配度，請選擇10個以上的標簽'
+        }else{
+          msg = 'For a higher degree of matching, please select more than 10 labels.'
+        }
+        api.toast({
+            msg: msg,
+            duration: 2000,
+            location: 'middle'
+        });
+      }else{
+        api.ajax({
+            url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/setUserlabel',
+            method: 'post',
+            data: {
+                values: {
+                    uiId : $api.getStorage('id'),
+                    gender : danxuan['sex'],
+                    mch_gender : danxuan['otherSex'],
+                    country : danxuan['area'],
+                    habbies : arr.toString()
+                }
+            }
+        },function(ret, err){
+            if (ret) {
+              //把图标绿了
+              api.sendEvent({
+                  name: 'green',
+                  extra: {
+                  }
+              });
+
+              api.closeWin({
+                  name: 'label'
+              });
+            }
+        });
+      }
+    }
+  </script>
+</html>

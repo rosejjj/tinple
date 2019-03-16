@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>注册页</title>
+		<link rel="stylesheet" type="text/css" href="../../css/alert.css" />
+		<style>
+			html,body {
+				margin:0;
+				padding:0;
+					background-color:#EFEFEF;
+					overflow: scroll;
+			}
+			button{outline:none;/*去除蓝色边框*/}
+		    input{
+		    	border:0;outline:none;/*去除蓝色边框*/
+	    		-webkit-appearance: none;
+	            		appearance: none;
+
+	    		height: 50px;
+	    		width:94vw;
+				font-size: 4vw;
+
+				font-weight: bold;
+				padding: 0 3vw;
+				/*margin:3vw 8vw;*/
+				margin-top:0px;
+	    		color:#727272;
+	    		background-color:#EFEFEF;
+				/*border-radius: 2vw;*/
+			}
+	    	p{
+	    		display:inline-block;
+	    		width:84vw;
+	    		margin:5vw 0 0 8vw;
+	    		font-size:4vw;
+				font-weight: bold;
+	    		text-align:center;
+	    	}
+
+				/*头部*/
+		    	header{
+		    		position: fixed;
+		    		top: 0;
+		    		/*margin-top:25px;*/
+					height: 65px;
+		    		width:100%;
+		    		background: white;
+						box-shadow: 0px 1px 0px .4px #efefef;
+						z-index: 999;
+		    	}
+	    	header .left{
+					position: absolute;
+		      top: 28px;
+		      left: 10px;
+		      height: 30px;
+		      width: 30px;
+	    	}
+	    	header .right{
+	    		position: relative;
+					top: 0;
+	    		height:40px;
+	    		line-height:70px;
+	    		text-align:center;
+	    		z-index:1;
+	    	}
+	    	/*.right_text{
+	    		display:inline-block;
+	    		font-size:4.5vw;
+	    		font-weight:bold;
+	    		/*文字颜色渐变*/
+	    		/*background-image: -webkit-gradient(linear, 0 0, 100% bottom, from(#d9afd9), to(#97d9e1));
+			    -webkit-background-clip: text;
+			    -webkit-text-fill-color: transparent;
+			    word-spacing:5px;
+			    letter-spacing: 3px;*/
+	    	/*}*/
+
+			/*头像部分*/
+			.avatar {
+				width: 20vw;
+				height: 20vw;
+				background: url(../../icon/logon-page/headimg.png)no-repeat center center;
+				background-size: cover;
+				margin-right: 43px;
+				margin-top: 15px;
+				float: right;
+			}
+			/*选择性别*/
+			.sex_box{
+				height: 11.111111vw;
+	    		width:84vw;
+	    		line-height: 0vw;
+				color: #ffffff;
+				float:right;
+				font-size: 15px;
+				font-weight: bold;
+				margin:5vw 8vw 0 0;
+				position: relative;
+				text-align: center;
+				text-indent: 5.5555vw;
+				text-shadow: 0 0 2px #222222;
+				white-space: pre;
+				border-radius: 13.8888vw;
+				box-shadow: 0 1px 2px rgba(0, 0, 0, 0.18), 0 2px 2px rgba(0, 0, 0, 0.25);
+				background-color: rgba(239, 239, 239, 0.4);
+				overflow: hidden;
+			}
+			.sex_box .sex{
+				display:inline-block;
+				float:left;
+				width:50%;
+				height:100%;
+				border-radius: 13.8888vw;
+			}
+			.male{
+				background : linear-gradient(to right, #d9afd9 0%,#97d9e1 100%);
+				box-shadow: 0 1px 2px rgba(0, 0, 0, 0.18), 0 2px 2px rgba(0, 0, 0, 0.25);
+			}
+			.sex img{
+				display:inline-block;
+				width:8vw;
+				height:8vw;
+				margin:1.56vw 0 0 -4vw;
+			}
+			.mask {
+				width: 100%;
+				height: 100vh;
+				background-color: #484848;
+				opacity: 0.8;
+				position: fixed;
+				left: 0;
+				top: 0;
+				z-index: 9999;
+				display: none;
+			}
+			/*输入框*/
+		    .input-con::-webkit-input-placeholder {
+				color: #fff;
+				font-size: 4.1666666vw;
+				font-weight: bold;
+				text-shadow: 0 0 2px #222222;
+				text-indent: 5.5555vw !important;
+				opacity: .5;
+			}
+			/*提示*/
+			.agreement{
+				position: relative;
+				top: -3px;
+			  /*left: 1px;*/
+				/*margin:10px auto 0;*/
+				color:white;
+				font-size: 15px;
+				text-align: center;
+				line-height: 22px;
+			}
+			/*注册按钮*/
+			.signin{
+				position: absolute;
+				/*left:14vw;*/
+				top:80.88vw;
+				height: 50px;
+				width: 100%;
+				color: #F381A3;
+				font-size: 15px;
+				font-weight: bold;
+				padding: 0 5vw 0 0;
+				text-align: center;
+				text-indent: 5.5555vw;
+				white-space: pre;
+				background: white;
+				border: none;
+			}
+			/*提示框*/
+
+			.toast {
+				width: 55.333333vw;
+				/*height: 66.6666666vw;*/
+				padding: 3.333333vw 13.888888vw 7.333333vw 13.888888vw;
+				border-radius: 20px;
+				background-color: #fff;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin-left: -41.6666665vw;
+				z-index: 99999;
+				text-align: center;
+				display: none;
+			}
+
+			.toast-title {
+				color: #484848;
+				font-size: 5.555555vw;
+				font-weight: bold;
+				margin-bottom: 3.333333vw;
+			}
+
+			.toast-line {
+				width: 100%;
+				height: 2px;
+				background-color: #efefef;
+				border-radius: 30px;
+			}
+
+			.toast-content {
+				width: 60vw;
+				color: #484848;
+				font-size: 4.1666666vw;
+				font-weight: bold;
+				line-height: 6.111111vw;
+				margin: 8.333333vw 0 0 -2vw;
+			}
+
+			.toast-define {
+				color: #fff;
+				font-size: 4.1666666vw;
+				font-weight: bold;
+				width: 44.444444vw;
+				background-color: #ff808a;
+				border-radius: 30px;
+				box-shadow: 0 1px 2px rgba(158, 158, 158, 0.18), 0 2px 2px rgba(158, 158, 158, 0.25);
+				font-size: 3.888888vw;
+				height: 11.111111vw;
+				line-height: 11.111111vw;
+				text-align: center;
+				margin: 8.333333vw auto 0;
+			}
+
+			.login-loading {
+				width: 83.3333vw;
+				height: 55.5555vw;
+				border-radius: 5.5555vw;
+				position: absolute;
+				top: 50%;
+				margin-top: -27.77775vw;
+				left: 50%;
+				margin-left: -41.665vw;
+				display: flex;
+				-webkit-justify-content: center;
+				justify-content: center;
+				z-index: 9999;
+				background: url(../../image/logon-page/loaader_circle.gif)no-repeat center 4.1666vw;
+				background-size: 41.6666vw;
+				background-color: #fff;
+				display: none;
+			}
+
+			.login-title {
+				font-size: 3.333vw;
+				text-align: center;
+				color: #484848;
+				font-weight: bold;
+				margin-top: 35.5555vw;
+			}
+
+			#logining {
+				width: 100vw;
+				height: 100vh;
+				background: url(../../image/logon-page/loading2.png)no-repeat center 97px;
+				background-size: 300px;
+				background-color: #282d35;
+				position: fixed;
+				top: 0;
+				left: 0;
+				display: none;
+				z-index: 9999;
+			}
+
+			#logining::after {
+				content: '';
+				display: block;
+				width: 100vw;
+				height: 270px;
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				background: url(../../image/logon-page/danche.gif)no-repeat center center;
+				background-size: cover;
+			}
+			.alert-focus{
+	    		line-height:35vw;
+	    		text-align:center;
+	    	}
+	    	.alert-focus-text{
+	    		display:inline-block;
+	    		line-height:5vw;
+	    	}
+				.user,.pass{
+					position: relative;
+					top: -8px;
+					/*text-align: center;*/
+					background: white;
+					text-indent: 10px;
+					color: black;
+				}
+				.right_text{
+					color: black;
+					font-weight: bold;
+					line-height: 87px;
+				}
+				.zhuangtailan{
+					position: fixed;
+					top:0;
+					width:100vw;
+					height:25px;
+					background-color:#fff;
+					display: none;
+				}
+				.content{
+					position: absolute;
+					top: 65px;
+				}
+				.nimabi{
+					text-decoration: underline;
+				}
+				.head{
+					width: 100%;
+					height: 100px;
+					background: white;
+					margin-top: 5px;
+				}
+				.zhe{
+					position: absolute;
+					top: -2.5vw;
+					left: 5.3%;
+					height: 1px;
+					background: #efefef;
+					width: 94.6%;
+				}
+				.pas{
+					position: relative;
+					height: 50px;
+					width: 94vw;
+				}
+				.jiantou{
+					height: 17px;
+					width: 16px;
+					float: right;
+					margin-right: -25px;
+					margin-top: 7.5vw;
+				}
+				.protrait{
+					position: absolute;
+					top: 46px;
+					left: 20px;
+					font-weight: bold;
+					font-size:15px;
+				}
+				.beijing{
+					height: 75px;
+					width: 100%;
+					background: #aaa;
+					margin-top:-7px;
+				}
+		</style>
+	</head>
+
+	<body>
+		<div class="zhuangtailan" ></div>
+		<header>
+			<img src="../../icon/left.png" class="left" onclick="back()">
+			<div class="right"><span class="right_text">D A T A</span></div>
+		</header>
+<div class="content">
+		<div class="head">
+				<span class="protrait">Head Portrait</span>
+				<div class="avatar" onclick="pic()" tapmode><img class="jiantou" src="../../icon/jiantou.png"></div>
+		</div>
+				<input style="margin-top:13px;" class="user" type="text" placeholder="Nickname" />
+		<!--<div class="sex_box">
+			<span class="sex male"><img src="../../icon/logon-page/male.png"></span>
+			<span class="sex female"><img src="../../icon/logon-page/female.png"></span>
+		</div>-->
+<div class="pas">
+		<input class="pass" type="password" placeholder="Password" />
+		<span class="zhe"></span>
+</div>
+<div class="beijing">
+		<p class="agreement">After You Sign Up, You Agree To The <br /><span class="nimabi" id="fuck">&lt;Privacy Policy&gt;</span> &amp; <span class="nimabi" id="fuckAgain">&lt;Terms Of Service&gt;</span>
+</p>
+</div>
+		<button class="signin" tapmode>N E X T</button>
+</div>
+		<!--遮罩层-->
+		<div class="mask"></div>
+
+		<!--提示确认框-->
+		<!-- <div class="toast">
+			<h1 class="toast-title">Note</h1>
+			<div class="toast-line"></div>
+			<div class="toast-text"></div>
+			<div class="toast-define" tapmode>D E F I N E</div>
+		</div> -->
+
+		<!--狀態或錯誤提示框-->
+		<div class="alert-focus">
+			<div class="alert-focus-text"></div>
+		</div>
+
+		<!--logining頁面-->
+		<div id="logining" ></div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/md5.js"></script>
+	<script type="text/javascript" src="../../script/jmessage-sdk-web.2.5.0.min.js"></script>
+	<!--极光SDK-->
+	<script type="text/javascript" src="../../json/api.json"></script>
+	<script type="text/javascript" src="../../json/global.json"></script>
+	<script type="text/javascript" src="../../json/router.json"></script>
+	<script src="../../script/public.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="../../script/jquery-3.1.0.min.js"></script>
+
+	<script type="text/javascript">
+
+		var email,				//郵箱註冊--郵箱
+			username,			//手機註冊--手機號碼
+			country,			//手機註冊--國家區號
+			sex = "男",			//性別
+			imagekey,	//頭像
+			nickname,			//暱稱
+			password,			//密碼
+			focus_users = [], 	//用戶數組
+			head_state = false,	//true: 已上傳		false: 未上傳
+			account_state = 1,	//0:正常 	1:空值	2：暱稱重複		3：暱稱太長		4:暱稱太短
+			password_state = 1;	//0:正常 	1:空值	2：密碼少於6位
+		var JIM = new JMessage(); //极光对象
+		var warn_text = {
+			text1: "You don't have a picture",
+			text2: "You no name",
+			text3: "Nickname repeats",
+			text4: "The nickname is too long",
+			text5: "The password is too short",
+			text6: "Please enter the password",
+			text7: "The password should not be less than 6 bits",
+			text8: "<p class='toast-content'>The Information Has Not Been Completed / Selected.</p>",
+			text9: "<p class='toast-content'>“Server Connection Failed, <br/> Tinkle Service May Not Cover Your Area”</p>",
+			text10: "<p class='toast-content'>-1-<br/>“Please Check The Network Is Normal”</p><p class='toast-content'>-2-<br/>“Please Check Whether Tinkle Network Permission Is Disabled”</p>",
+			text11: "N O W",
+			text12: "click “ + ” to upload",
+			text13: "N O W",
+			text14: "don‘t play too long name",
+			text15: "C H A N G E",
+			text16: "try other combinations",
+			text17: "C H A N G E",
+			text18: "Length limit is 2 - 20 characters",
+			text19: "E X T E N D E D",
+			text20: "More than 6 passwords are required",
+			text21: "C H A N G E",
+			text22: "Please enter the account number and password",
+			text23: "cancel"
+		}
+
+		if($api.getStorage("language") == "zho") {
+			$api.attr($api.dom(".user"), "placeholder", "設 定 昵 稱 ");
+			$api.attr($api.dom(".pass"), "placeholder", "設 定 密 碼 ");
+			$api.html($api.dom(".agreement"), "點 擊 創 建 賬 戶 后 表 示 您 同 意 我 們 的 <br/><span class='nimabi' id='fuck'>《隱 私 政 策》</span> 及 <span class='nimabi' id='fuckAgain'>《服 務 條 款》</span>");
+			$api.text($api.dom(".signin"), "創 建 賬 號 ");
+			$api.text($api.dom(".right_text"), "資 料 填 寫 ");
+
+			$api.text($api.dom('.toast-title'), '注 意');
+			$api.text($api.dom('.toast-define'), '確 定');
+			$api.text($api.dom('.protrait'), '頭 像');
+
+			warn_text = {
+				text1: "沒 頭 像 怎 麽 見 人 噢~",
+				text2: "沒 名 字 怎 麽 出 來 混 噢~",
+				text3: "名 字 太 受 歡 迎 ， 重 複 了",
+				text4: "名 字 這 麽 長 想 造 反 嗎 ？",
+				text5: "密 碼 太 短 可 不 行 噢~",
+				text6: "請 輸 入 密 碼",
+				text7: "密 碼 不 能 少 於 6 位",
+				text8: "<p class='toast-content'>资 料 还 没 完 成<br> 填 写/选 择</p>",
+				text9: "<p class='toast-content'>“服 務 器 連 接 失 敗 ，<br/> T i n k l e 的 服 務 可 能 還 沒 覆 蓋 您 所 在 的 地 區 ”</p>",
+				text10: "<p class='toast-content'>-1-<br/>“請 檢 查 網 絡 是 否 正 常”</p><p class='toast-content'>-2-<br/>“請 檢 查 是 否 禁 用 了 T i n k l e 的 網 絡 權 限”</p>",
+				text11: "傳 傳 傳",
+				text12: "點 擊 上 面 的 “ + ” 就 可 以 上 傳",
+				text13: "馬 上 起 藝 名",
+				text14: "別 起 太 長 的 ！",
+				text15: "我 調 調",
+				text16: "或 許 ，加 點 英 文 在 後 面 ？",
+				text17: "我 錯 了",
+				text18: "長 度 限 制 為 2 - 20 個 字 符",
+				text19: "立 馬 加 長",
+				text20: "密 碼 需 要 多 餘 6 位 噢",
+				text21: "再 試 試",
+				text22: "請 輸 入 賬 號 和 密 碼",
+				text23: "取 消"
+			}
+		}
+		var hhh = window.screen.height;
+		var www = window.screen.width;
+		apiready = function() {
+			if(hhh/www>2){
+				$api.css($api.dom('header'), 'margin-top:25px;');
+				$api.css($api.dom('.signin'), 'top:118.65vw;');
+				$api.css($api.dom('.zhuangtailan'),'display:block');
+			}
+			var fuck = $api.dom('#fuck');
+			var fuckAgain = $api.dom('#fuckAgain');
+			 $api.addEvt(fuck, 'click',function(){
+				 api.openWin({
+					 name: "privacy",
+					 url: "widget://html/set-up/privacy.html",
+					 reload: true,
+					 vScrollBarEnabled: false,
+					 slidBackEnabled: false
+				 });
+			 });
+			 $api.addEvt(fuckAgain, 'click',function(){
+				 api.openWin({
+					 name: "privacy",
+					 url: "widget://html/set-up/service.html",
+					 reload: true,
+					 vScrollBarEnabled: false,
+					 slidBackEnabled: false
+				 });
+			 });
+
+			//向右滑关闭页面
+			api.addEventListener({
+				name: 'swiperight'
+			}, function(ret, err) {
+				back();
+			});
+
+			//实时监听断网
+			api.addEventListener({
+			    name:'offline'
+			}, function(ret, err){
+			   openPopup(warn_text.text10,warn_text.text21,warn_text.text21);
+			});
+
+			jMessage_init(); //极光初始化
+
+		}
+
+		//错误提示框 确定点击关闭
+		// $api.dom(".toast-define").onclick = function() {
+		// 	$api.css($api.dom(".toast"), "display:none");
+		// 	$api.css($api.dom(".mask"), "display:none");
+		// }
+
+		// //提示确认框
+		// function openToast(data){
+		// 	$api.html($api.dom(".toast-text"), data);
+		// 	$('.toast').css('margin-top','-' + Number($(".toast").innerHeight()) / 2 +'px');
+		// 	$api.css($api.dom(".toast"), "display:block");
+		// 	$api.css($api.dom(".mask"), "display:block");
+		// }
+		//彈窗
+		// function openPopup(data){
+		// 	$api.html($api.dom(".alert-focus-text"), data);
+		// 	$api.css($api.dom(".alert-focus"), "display:block");
+		// 	$api.css($api.dom(".mask"), "display:block");
+		// 	setTimeout(function(){
+		// 		$api.css($api.dom(".alert-focus"), "display:none");
+		// 		$api.css($api.dom(".mask"), "display:none");
+		// 	},1000);
+		// }
+
+		function openPopup(data,value,none){
+	    // var UIChatBox = api.require('UIChatBox');
+	  api.openFrame({
+	      name: 'pop',
+	      url: './pop.html',
+	      rect: {
+	          x: 0,
+	          y: 0
+
+	      },
+	      pageParam: {
+	          data: data,
+						value: value,
+						none: none
+	      },
+	      // bounces: true,
+	      bgColor: 'rgba(0,0,0,0)',
+	      vScrollBarEnabled: true,
+	      hScrollBarEnabled: true
+	  });
+
+	    //定時關閉彈窗
+	  }
+		//關閉
+		function back(){
+			api.closeFrame({
+				animation: {
+					type: 'push',
+					subType: 'from_left',
+					duration: 250
+				}
+			})
+		}
+		//暱稱事件
+		$api.dom(".user").onblur = function() {
+			nickname = $api.val(this);
+			if(nickname.length == 0){
+				account_state = 1;
+			}else if(nickname.length < 2){
+				openPopup(warn_text.text5,warn_text.text19,warn_text.text20);
+				account_state = 4;
+			}else if(nickname.length > 20){
+				openPopup(warn_text.text4,warn_text.text17,warn_text.text18);
+				account_state = 3;
+			}else{
+				//判斷暱稱是否存在
+				api.ajax({
+					url: 'http://api.baopinghui.com:18096/tinUserControllerC/validnick',
+					method: 'post',
+					timeout : 10,//单位为：秒
+					data: {
+						values: {
+							nickname: nickname
+						}
+					},
+					dataTpye: 'json',
+					charset: 'utf-8'
+				}, function(ret, err) {
+					if(ret){
+						if(ret['status'] == 0){//改暱稱已存在
+							account_state = 2;
+							openPopup(warn_text.text3,warn_text.text15,warn_text.text16);
+							return;
+						}
+						account_state = 0;
+					}else{
+						//错误码，数字类型。（0：连接错误、1：超时、2：授权错误、3：数据类型错误）
+						if(err.code == 0 || err.code == 1 || err.code == 2){
+							openPopup(warn_text.text9,warn_text.text21,warn_text.text23);
+						}
+					}
+				});
+			}
+		}
+
+		//密碼事件
+		// $api.dom(".pass").onblur = function() {
+		//
+		//
+		// }
+//		//选择性别
+//		$('.sex').click(function() {
+//			$('.sex').css('background','rgba(0,0,0,0)');
+//			$('.sex').css('box-shadow','0 0 0 rgba(0,0,0,0)');
+//			if(this == $api.domAll('.sex')[0]){
+//				this.style.background = 'linear-gradient(to right, #d9afd9 0%,#97d9e1 100%)';
+//				this.style.boxShadow = '0 1px 2px rgba(0, 0, 0, 0.18), 0 2px 2px rgba(0, 0, 0, 0.25)';
+//				sex = '男';
+//			}else{
+//				this.style.background = 'linear-gradient(to right, #ffc3a0 0%,#ffafbd 100%)';
+//				this.style.boxShadow = '0 1px 2px rgba(0, 0, 0, 0.18), 0 2px 2px rgba(0, 0, 0, 0.25)';
+//				sex = '女';
+//			}
+//		});
+
+		//注册
+		$api.dom(".signin").onclick = function() {
+			password = $(".pass").val();
+			nickname = $api.val($api.dom(".user"));
+			// alert(nickname);
+				// alert(password.length);
+			 if(password.length == 0&&nickname.length==0){
+					openPopup(warn_text.text22,warn_text.text21,warn_text.text23);
+					return;
+				}else if(password.length == 0){
+				openPopup(warn_text.text6,warn_text.text21,warn_text.text23);
+				password_state = 1;
+				return;
+			}else if(password.length < 6){
+				openPopup(warn_text.text5,warn_text.text19,warn_text.text20);
+				password_state = 2;
+				return;
+			}
+			password_state = 0;
+
+			if(!head_state){
+				openPopup(warn_text.text1,warn_text.text11,warn_text.text12);
+				return;
+			}
+			if(account_state == 1){//0:正常 	1:空值	2：暱稱重複		3：暱稱太長		4:暱稱太短
+				openPopup(warn_text.text2,warn_text.text13,warn_text.text14);
+				return;
+			}else if(account_state == 2){
+				openPopup(warn_text.text3,warn_text.text15,warn_text.text16);
+				return;
+			}else if(account_state == 3){
+				openPopup(warn_text.text4,warn_text.text17,warn_text.text18);
+				return;
+			}else if(account_state == 4){
+				openPopup(warn_text.text5,warn_text.text19,warn_text.text20);
+				return;
+			}
+			if(password_state == 1){
+				openPopup(warn_text.text6,warn_text.text21,warn_text.text23);
+				return;
+			}else if(password_state == 2){
+				openPopup(warn_text.text7,warn_text.text21,warn_text.text23);
+				return;
+			}
+
+
+     open_loading();
+			if(api.pageParam['username']) {//手机注册
+				username = api.pageParam['username'];
+				country = api.pageParam['country'];
+			}
+			if(api.pageParam['email']) {//邮箱注册
+				email = api.pageParam['email'];
+			}
+			if(email) {
+				//邮箱注册
+				api.ajax({
+					url: json["loginhttp"] + json['Login']['register'],
+					method: 'post',
+					timeout : 10,//单位为：秒
+					data: {
+						values: {
+							key: imagekey,
+							nickname: nickname,
+							email: email,
+							password: password
+						}
+					},
+					dataTpye: 'json',
+					charset: 'utf-8'
+				}, function(ret, err) {
+					if(ret) {
+						regisyer(ret);
+							close_loading();
+					} else {
+						close_loading();
+
+						//错误码，数字类型。（0：连接错误、1：超时、2：授权错误、3：数据类型错误）
+						if(err.code == 0 || err.code == 1 || err.code == 2){
+							openPopup(warn_text.text9,warn_text.text21,warn_text.text23);
+						}
+					}
+				});
+			} else {
+				//手机注册
+				api.ajax({
+					url: json["loginhttp"] + json['Login']['register'],
+					method: 'post',
+					timeout : 10,
+					data: {
+						values: {
+							key: imagekey,
+							regionId: country,
+							username: username,
+							nickname: nickname,
+							password: password
+						}
+					},
+					dataTpye: 'json',
+					charset: 'utf-8'
+				}, function(ret, err) {
+					console.log('返回' + JSON.stringify(ret));
+					console.log('錯誤' + JSON.stringify(err));
+					if(ret) {
+						regisyer(ret);
+						setTimeout(function(){
+								close_loading();
+						},2200);
+
+					} else {
+						close_loading();
+
+						//错误码，数字类型。（0：连接错误、1：超时、2：授权错误、3：数据类型错误）
+						if(err.code == 0 || err.code == 1 || err.code == 2){
+							openPopup(warn_text.text9,warn_text.text21,warn_text.text23);
+						}
+					}
+				});
+			}
+		}
+
+		//極光注册
+		function regisyer(ret){
+			if(ret['data'] !== null && ret['data'] !== '' && ret['data'] !== undefined) {
+				if(ret["status"] == 1) {
+					console.log('用户注册成功');
+					console.log(JSON.stringify(ret));
+				var uiId=ret['data']['uiId'];
+					//极光注册
+					console.log('极光注册开始');
+					JIM.register({
+						'username': ret['data']['uiId'],
+						'password': 123456
+					}).onSuccess(function(data) {
+						console.log('注册成功 ' + JSON.stringify(data));
+						api.ajax({
+						    url: 'http://api.baopinghui.com/jpushim/findnewbin14',
+						    method: 'get',
+						    data: {
+						        values: {
+						            user: uiId
+						        }
+						    }
+						},function(ret, err){
+						    if (ret) {
+						        // alert( JSON.stringify( ret ) );
+						    }
+						});
+
+					}).onFail(function(data) {
+						console.log('参数不合法（用户已注册） ' + JSON.stringify(data));
+					}).onTimeout(function(data) {
+						$api.css($api.dom("#logining"), "display:none");
+						openPopup(warn_text.text9);
+						console.log('请求超时 ' + JSON.stringify(data));
+					});
+					//					        alert('注册结束');
+
+					$api.rmStorage('id');
+					$api.rmStorage('apId');
+					$api.rmStorage('avatar');
+					$api.rmStorage('fans');
+					$api.rmStorage('follwer');
+					$api.rmStorage('summary');
+					$api.rmStorage('popular');
+					$api.rmStorage('active');
+					$api.rmStorage('nickname');
+					$api.rmStorage('my_message');
+					$api.rmStorage('focus_message');
+
+					$api.setStorage('id', ret['data']['uiId']);
+					$api.setStorage('user_name', ret['data']['username']);
+					$api.setStorage('token', ret['data']['token']);
+					$api.setStorage('username', ret['data']['username']);
+					$api.setStorage('sex', sex);
+					$api.setStorage('avatar_url', {
+						backgroundImage: 'url(' + json['qiniu'] + imagekey + '?imageView2/0/w/200)'
+					});
+
+					api.ajax({
+						url:'http://api.baopinghui.com/app_tinUserinfoControllerC/findRUlist',
+//						url: json['http'] + json['tin']['findRUlist'],
+						method: 'post',
+						data:{
+							values:{
+
+							}
+						}
+					}, function(ret, err) {
+						if(ret) {
+							if(ret["status"]) {
+								ret['data'] = ret['data'].slice(0, 30);
+								for(var i = 0; i < 10; i++) {
+									//选中的对象
+									focus_users.push(ret['data'][i]['uid']);
+								}
+
+								for(var i = 0; i < focus_users.length; i++) {
+									(function(i) {
+										api.ajax({
+											url:'http://api.baopinghui.com/app_tinUserinfoControllerC/focus',
+											method: 'post',
+											data: {
+												values: {
+													uiId: $api.getStorage('id'),
+													otherUiId: focus_users[i],
+													type: 'focus'
+												}
+											}
+										}, function(ret, err) {
+											if(ret) {
+												if(ret['status']) {
+													if(i == focus_users.length - 1) {
+														setTimeout(function() {
+															close_loading();
+															// enterWin('chat_index', 'chat/chat_index.html','toRecommend_list');
+															enterWin('index', 'chat/index.html');
+															api.closeWin();
+															api.closeFrame();
+														}, 3000);
+													}
+												} else {
+													console.log('我是668行：'+JSON.stringify(ret));
+												}
+											} else {
+												uploadError(err);
+											}
+										});
+								})(i)
+							}
+						}
+					} else {
+						uploadError(err);
+					}
+				});
+					$api.css($api.byId("loading-finish"), "display:none");
+				}
+			} else {
+				console.log('我是685行：'+JSON.stringify(ret));
+				$api.css($api.dom("#logining"), "display:none");
+				$api.css($api.dom(".mask"), 'display:none');
+			}
+		}
+
+		// 选取图片当头像
+		function pic() {
+			if(api.systemType=="ios"){
+					openANdsetpic();  //打开相册选择图片
+
+			}else{
+				//申请权限
+				api.requestPermission({
+						list: ["photos","storage"],
+				}, function(ret, err) {
+							if(ret.list[0].granted){  //判断第一个权限是否为true
+									openANdsetpic();  //打开相册选择图片
+							}
+				});
+
+
+			}
+
+		}
+		//打开相册选择图片设置头像
+    function openANdsetpic(){
+
+					api.getPicture({
+						sourceType: 'library',
+						mediaValue: 'pic',
+						destinationType: 'url',
+						saveToPhotoAlbum: true,
+						quality: 70,
+						targetWidth: 1200,
+						targetHeight: 1200,
+					}, function(ret, err) {
+						if(ret) {
+							if(ret['data']) {
+								var avatar = ret['data'],
+								myDate = new Date();
+								$api.css($api.dom(".avatar"), "border-radius: 26.67vw;");
+								$api.css($api.dom(".avatar"), "box-shadow: 0 1px 2px rgba(0, 0, 0, 0.18), 0 2px 2px rgba(0, 0, 0, 0.25);");
+								$api.css($api.dom(".avatar"), "border: 3px solid #FFF");
+								$api.css($api.dom(".avatar"), "background-image:url(" + avatar + ");");
+								head_state = true;
+								var obj = api.require('qiniuUpfile');
+
+								obj.upfile({
+									file: avatar,
+									name: myDate.getTime() + Math.random() + '.jpg',
+								}, function(ret, err) {
+									if(ret.status) {
+										if(ret.oper == "complete") {
+											imagekey = ret['info']['key'];
+										}
+									}
+								});
+							}
+						}
+					});
+
+		}
+		//		打开loading页
+		function open_loading(){
+			api.openFrame({
+				name: 'loading',
+				url: 'widget://html/logon-register/loading.html',
+				vScrollBarEnabled: false,
+				slidBackEnabled: false,
+				animation: {
+					type: "fade", //动画类型（详见动画类型常量）
+					subType: "fade", //动画子类型（详见动画子类型常量）
+					duration: 900 //动画过渡时间，默认300毫秒
+				}
+			});
+		}
+//		关闭loading页
+		function close_loading(){
+			api.closeFrame({
+			    name: 'loading'
+			});
+		}
+
+//===========================================极光注册==============================================
+
+		//生成随机字符串--用于极光注册
+		function random(length) {
+			var str = Math.random().toString(36).substr(2);
+			if(str.length >= length) {
+				return str.substr(0, length);
+			}
+			str += random(length - str.length);
+			return str;
+		}
+
+		//	极光初始化
+		function jMessage_init() {
+			console.log('极光初始化');
+			var appkey = 'c46c8bc128f41299334ec8e3';
+			var timestamp = (new Date()).valueOf(); //当前时间戳
+			var random_str = random(30); //生成随机字符串
+			var signature = MD5("appkey=" + appkey + "&timestamp=" + timestamp + "&random_str=" + random_str + "&key=269e7aa2881b1a8767f16ce6");
+			JIM.init({
+				"appkey": appkey,
+				"random_str": random_str,
+				"signature": signature,
+				"timestamp": timestamp,
+				"flag": 0
+			}).onSuccess(function(data) {
+				console.log('极光初始化成功');
+			}).onFail(function(data) {
+				console.log('错误，初始化失败');
+			});
+		}
+
+	</script>
+</html>

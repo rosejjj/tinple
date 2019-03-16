@@ -1,0 +1,3788 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>会话列表</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <script src="../../script/jquery-3.1.0.min.js" type="text/javascript"></script>
+    <style>
+    	html,body{
+    		padding:0;
+    		margin:0;
+    		width:100vw;
+    		height:100vw;
+    	}
+    	p{
+    		/*height:6.7vw;*/
+    		height:4.2vw;
+    		line-height:5vw;
+    		margin:1.8vw 0 0 0;
+    	}
+    	#chatList{
+    		padding-bottom: 2.66vw;
+    	}
+    	.message_box{
+    		position: relative;
+    		width:89.33vw;
+    		height:13.33vw;
+    		line-height:13.33vw;
+    		margin: 0 auto;
+    		padding: 2.66vw 5.33vw;
+    		font-size:3.5vw;
+    	}
+    	.message_box:nth-child(1){
+    		margin-top: 2.66vw;
+    	}
+    	.message_box:active,.zuji_box:active{
+    		opacity: 0.7;
+    	}
+    	.portrait,.zuji{
+    		position:relative;
+    		display:inline-block;
+    		float:left;
+    		width:13.33vw;
+    		height:13.33vw;
+    		background: no-repeat center center #efefef;
+			background-size: cover;
+    	}
+			.portrait{
+				border-radius:13.33vw;
+			}
+    	.news{
+	    	position:absolute;
+	    	right:0;
+	    	top:0;
+    		display:inline-block;
+    		/*width:3.5vw;
+    		height:3.5vw;*/
+    	}
+    	.content{
+    		display:inline-block;
+    		float:left;
+    		margin:0 0 0 4vw;
+    	}
+    	.nickname{
+    		/*单行省略*/
+    		display: -webkit-box;
+    		-webkit-box-orient: vertical;
+    		-webkit-line-clamp: 1;
+    		max-width:50vw;
+    		display:inline-block;
+    		color:#484848;
+				overflow: hidden;
+				text-overflow:ellipsis;
+				white-space: nowrap;
+    		/*background: red;*/
+    	}
+    	.time{
+    		display:inline-block;
+    		float:right;
+    		max-width:22vw;
+    		text-align:right;
+    		color:#AAAAAA;
+				/*background: blue;*/
+    	}
+    	.message{
+    		color:#AAAAAA;
+    		width:50vw;
+    		padding-bottom: 3px;
+    		/*height:5vw;*/
+    		/*font-size:4vw;*/
+    		/*单行省略*/
+    		display: -webkit-box;
+    		-webkit-box-orient: vertical;
+    		-webkit-line-clamp: 1;
+    		text-overflow: ellipsis;
+    		overflow: hidden;
+    		/*background-color:red;*/
+    	}
+    	.msg_status{
+    		width: 3.5vw;
+    		height: 3.5vw;
+    		vertical-align: middle;
+    	}
+    	.jiao{
+    		position: relative;
+    		/*box-sizing: border-box;*/
+    		height: 0px;
+  			width: 0px;
+  			/*border-top: 1.5vw solid transparent;
+			border-left: 3vw solid #F381A3;
+			border-bottom: 1.5vw solid transparent;*/
+
+			/*box-shadow: 0 0 10px #F381A3;*/
+    	}
+			.jiao2{
+				position: relative;
+				width: 12px;
+				height: 12px;
+			}
+
+		/*空白頁面*/
+    	.empty{
+			position:absolute;
+			top:10.37vw;
+			width: 100%;
+			margin:0 auto;
+		}
+		.empty p{
+			font:3.99vw Arial;
+			font-weight: 700;
+			color:#aaa;
+			line-height: 5.85vw;
+			text-align: center;
+		}
+		.empty p span{
+			color:#F381A3;
+		}
+		.emptyimg{
+			position: absolute;
+			top:41.76vw;
+			left:5.32vw;
+			width:89.1vw;
+			height:45.48vw;
+		}
+		.empty-bottom{
+			position: absolute;
+			top:122.87vw;
+			width:100%;
+		}
+		.empty-bottom-left{
+			position: absolute;
+			left:19.17vw;
+			width:36.97vw;
+			height:22.07vw;
+			font:3.99vw Arial;
+			font-weight: 700;
+			color:#aaa;
+			line-height: 5.85vw;
+			text-align: center;
+			white-space: pre-line;
+            word-wrap: break-word;
+            /*内容超过宽度自动换行，不带空格的全英文和全数字也可以*/
+		}
+		.empty-bottom-right{
+			position: absolute;
+			top:-6.18vw;
+			left:44.33vw;
+			width:36.97vw;
+			height:14.1vw;
+			font:3.99vw Arial;
+			font-weight: 700;
+			color:#aaa;
+			line-height: 5.85vw;
+			text-align: center;
+			white-space: pre-line;
+            word-wrap: break-word;
+            /*内容超过宽度自动换行，不带空格的全英文和全数字也可以*/
+
+		}
+			#qunzu{
+				position: absolute;
+				left: 4.5vw;top: 10.5vw;
+				width: 20px;
+				height: 20px;
+				display: inline;
+			}
+			.shadow{border:0px solid #efefef;position: fixed;top:0px;z-index: 9999;width: 100%;
+			box-shadow: 0px 0px 2px .9px #efefef; }
+			.here{
+				color: #aaa;
+				text-overflow: ellipsis;
+				font-weight: normal;
+			}
+			.zuji_content{
+				position: relative;
+				left:4vw;
+			}
+			.toright{
+				position: absolute;
+				right:4.1vw;
+			}
+			.zuji_box{
+				/*visibility: hidden;*/
+				position: relative;
+				width:89.33vw;
+				height:13.33vw;
+				line-height:13.33vw;
+				margin: 0 auto;
+				padding: 2.66vw 5.33vw;
+				font-size:3.5vw;
+			}
+			.noReadMessageCount{
+		display: inline-block;
+		position: absolute;
+		margin-left: 7px;
+		margin-top:-2px;
+		padding: 0vw 1.9vw;
+		color:white;
+		font-size:11px;
+		text-align: center;
+		background-color: #F381A3;
+		border-radius: 10px;
+		height: 20px;
+		line-height: 21px;
+	}
+	.fenlei{
+		position: relative;
+		top: 3px;
+		height: 15px;
+		width: 15px;
+		margin-right: 5px;
+	}
+	.bell{
+		position: absolute;
+		right: 0;
+		bottom:0;
+		height:15px;
+		width:15px;
+		/*float:right;*/
+		/*display:none;*/
+	}
+	.loading{
+		position: fixed;
+		bottom: 5vw;
+		left: 46vw;
+		height: 8vw;
+		width: 8vw;
+		/*opacity: 0.5;*/
+		display: none;
+		z-index: 99;
+	}
+	.nice{
+		position:absolute;
+		right:0;
+		top:0;
+		height:40px;
+		width:110px;
+		background:white;
+	}
+	.nice span:nth-child(1){
+		height:35px;
+		width:50px;
+		background:#efefef;
+		border-radius:30px;
+		font-size:12px;
+		font-weight:bold;
+		line-height:36px;
+		text-align:center;
+		letter-spacing: 1px;
+		z-index: 10;
+	}
+	.nice span:nth-child(2){
+		height:35px;
+		width:50px;
+		background:#F381A3;
+		border-radius:30px;
+		float:right;
+		font-size:12px;
+		font-weight:bold;
+		line-height:36px;
+		text-align:center;
+		color:white;
+		letter-spacing: 1px;
+		z-index: 10;
+	}
+	.bg{
+		position: absolute;
+		right: 0;
+		top: 0;
+		width: 110px;
+		height: 40px;
+		background: blue;
+		z-index: 9;
+	}
+	.rec{
+		position: relative;
+		height: 60px;
+		width:89.33vw;
+		margin: 15px auto 5px;
+		color: white;
+		font-size: 15px;
+		text-align: center;
+		line-height: 62px;
+		font-weight: bold;
+		letter-spacing: 1px;
+		background: url(../../icon/juxing86@3x.png) no-repeat center;
+		background-size:contain;
+		border-radius: 10px;
+		display: none;
+	}
+	.delete{
+		position: absolute;
+		top: 12px;
+		right: 22px;
+		height: 22px;
+		width: 22px;
+		display: none;
+	}
+	.pipeidu{
+		position: absolute;
+		bottom: -1px;
+		right: -4px;
+		width: 27px;
+		height: 15px;
+		background: #9DDA57;
+		border: 1px solid white;
+		border-radius: 10px;
+		font-size: 8px;
+		font-weight: bold;
+		color: white;
+		line-height: 16px;
+	}
+    </style>
+</head>
+
+<body>
+	<header>
+	</header>
+	<div class="shadow">
+	</div>
+	<div id="chatList">
+		<template v-if='chatList.length > 0'>
+			<div class="rec" @click="hello()"><span>Recommended by Friends Today</span></div><img class="delete" src="../../icon/icon-delete@3x2.png" @click="hello(true)">
+			<div id="message_box" class="message_box" v-for='(message , index) in chatList' @click="openChat(message)" v-if="list(message)" >
+				<!-- <span class="pipeidu" v-if="message.from_id!=ownId&&message.type=='3'&&message.hi=='yes'" v-html="message.num+'％'"></span> -->
+				<span class="portrait" :style="getPic(message)"><span class="news" v-show='message.unread_msg_count > 0' ></span></span>
+				<!-- <img src="../../icon/qunzu.png" id='qunzu' v-if="message.gid!=null"> -->
+				<div class="content" style="position:relative;z-index:1;">
+					<p class="text" style="width:72vw;"><b class="nickname"><img v-if="message.gid!=null" class="fenlei" :src="getP(message)">{{message.nickname}}</b><span class="noReadMessageCount" v-if="message.unread_msg_count > 0">{{message.unread_msg_count}}</span><span class="time">{{message.time}}</span></p>
+					<p style="float: right; margin-top: -5px;" v-if="!message.msg_ctime">
+						<!-- <img src="../../icon/messages/toright.png" style="width: 5.3vw;height: 5.3vw;"/> -->
+					</p>
+					<p  v-if='message.messages_text!=undefined||message.messages_text==null' class="text message" :style='getColor(message)'>
+						<!-- <img v-if="message.unread_msg_count > 0" src="../../icon/messages/send.png" class="jiao" /> -->
+						<!-- <img v-if="message.unread_msg_count > 0" src="../../icon/messages/du.png" class="jiao2" /> -->
+						<img v-else-if="message.unread_msg_count==0&&message.from_id==ownId" src="../../icon/messages/send2.png" class="msg_status" />
+							{{ityou(message)}}
+						{{sayHi(message)}}
+						<img src="../../image/bell.jpg" class="bell" v-show="bell(message)">
+					</p>
+					<p class="nice" v-if="message.from_id!=ownId&&message.type=='3'&&message.hi=='yes'">
+						<span class="del" @click="once(index,message)">{{del}}</span>
+						<span class="chat" @click="openChat(message,1,index)">{{chat}}</span>
+					</p>
+				</div>
+			</div>
+			<div id="zuji_box" @click='openlist' class="zuji_box">
+				<img class="zuji" style="background-color:white;" src="../../image/ONCE.png">
+				<div class="zuji_content">
+					<p class="text"><b class="zuji_name">O N C E</p>
+					<p style="float: right; margin-top: -5px;"  class="toright">
+						<img src="../../icon/jiantou.png" style="width: 5.3vw;height: 5.3vw;"/>
+					</p>
+					<p class="here">
+						<!-- <img  src="../../icon/messages/du.png" class="jiao2" />
+						<img  src="../../icon/messages/send2.png" class="msg_status" /> -->
+						All chat objects will be stored here
+					</p>
+				</div>
+			</div>
+		</template>
+		<!--内容空白页 -->
+		<template v-else>
+			<div class="empty">
+				<p id="empty-p1">Congratulations ~</p>
+				<p id="empty-p2">Your discovery of the New World !</p>
+				<p>o(*<span>////</span>▽<span>////</span>*)q</p>
+			</div>
+			<img src="../../image/chat-nothing-picture-gif.gif" class="emptyimg">
+			<div class="empty-bottom">
+				<div class="empty-bottom-left">Interesting person Popular groups <p>↓</p></div>
+				<div class="empty-bottom-right">Featured Posts <br><br><br><p>&nbsp;↓</p></div>
+			</div>
+		</template>
+		<img src="../../icon/loading.gif" class="loading">
+	</div>
+</body>
+	<script src="../../script/jmessage-sdk-web.2.6.0.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../script/base64.min.js" type="text/javascript"></script>
+	<script src="../../script/md5.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../json/api.json"></script>
+	<script type="text/javascript" src="../../json/hobby.json"></script>
+	<script type="text/javascript" src="../../json/router.json"></script>
+	<script src="../../script/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../script/jquery-3.1.0.min.js" type="text/javascript"></script>
+	<script src="../../script/public.js" type="text/javascript"></script>
+	<script src="../../image/emotion/emotion2.json" charset="utf-8"></script>
+
+	<script type="text/javascript">
+	var db;
+    var  chatListOnce=[];//用来存储七天内没有没有聊天的
+    var toulist=(typeof($api.getStorage("toulist"))!="undefined")?$api.getStorage("toulist"):[];//用来作为存储通知栏聊天对象的名字
+		var tempMs=(typeof($api.getStorage("tempMs"))!="undefined")?$api.getStorage("tempMs"):[]; //临时历史消息储存
+		var tempGMs=(typeof($api.getStorage("tempGMs"))!="undefined")?$api.getStorage("tempGMs"):[]; //临时历史消息储存
+		var uiid;//临时会话对象的id
+			var tou='新朋友';
+			wenben={
+			 text1:'Your network is disconnected( •̥́ ˍ •̀ू )',
+			 text2: 'Pretend not to care',
+			 text3:'⚆_⚆？I can\'t help it',
+			  it:'【Someone S @ You】'
+
+		 };
+		var Object_type='';//用来存储当前聊天的对象类型3代表单聊4代表群聊
+		var Object_username='';//用来存储当前聊天对象的uiid或群组的gid
+		var	messageList = [];//列表所有会话消息
+		var JIM; //极光iM 对象
+		// var noSend = $api.getStorage('noSend') || ['28b6712355b74f66a8c39f85d820cd97','8c32c80005be481da1188b18e2d85ffd','334c8636799f4f65aa4b8785d123a971','c5ecb2e205664f339f1d387fe8ce49ac','2dd870ffe36840ba9cbbae32fa3954ba','e1410caab1d945f2be273588f1856279','297eb47456a094750156a09eb31e0005','b0e58a97945744549fdc3d85d805313a','8aaee3b85cfd154b015cfdd888f01857','f8cc5f9958cd064c0158cefd89521fc5']; //每天自动给用户发消息的时候不发送给这几个家伙
+		apiready = function(){
+			api.addEventListener({
+			    name: 'green'
+			}, function(ret, err){
+			    if( ret ){
+			        $('.rec').css('display','block');
+							$('.delete').css('display','block');
+			    }
+			});
+
+			// var a = ["cac236e514dd470c88020978b532cff7"];
+			// online(a);
+			api.addEventListener({
+					name: 'caonima'
+			}, function(ret, err){
+				// alert("监听到哦了");
+					if( ret ){
+							 caonima(ret.value.otherId);
+							 for(var i=0;i<chatList.chatList.length;i++){
+								 if(chatList.chatList[i].username==ret.value.otherId){
+									 Vue.set(chatList.chatList[i],'hi','no');
+								 }
+							 }
+					}
+			});
+
+			onceUser();
+			//查询会话列表存在once垃圾桶里面的用户
+			function onceUser(){
+				api.ajax({
+				    url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/sessionBlacklist_query',
+				    method: 'get',
+				    data: {
+				        values: {
+				            uiid: $api.getStorage('id')
+				        }
+				    }
+				},function(ret, err){
+				    if (ret) {
+							if(ret.data!=null){
+								chatList.onceUser =	ret.data.session_bl.split(',');
+								// alert( JSON.stringify( chatList.onceUser) );
+							}
+				    }
+				});
+
+			}
+			// setTimeout(function(){
+			// 	alert(JSON.stringify(chatList.chatList))
+			// },3000)
+			// alert(JSON.stringify(chatList.chatList));
+				// $('.loading').css('display','block');
+			newUser();
+			//获取注册时间
+			function newUser(){
+				api.ajax({
+						url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/userinfo',
+						method: 'post',
+						data: {
+								values: {
+										uiId: $api.getStorage('id'),
+										pageUiId:$api.getStorage('id')
+								}
+						}
+			}, function(ret, err) {
+					if (ret) {
+							//用户的注册时间
+							 chatList.registTime = ret.data.create_date;
+					}
+			});
+		}
+			//根据从别的地方打开的隐藏的聊天的人把这个人显示在聊天列表
+			// api.addEventListener({
+			//     name: 'hidno'
+			// }, function(ret, err){
+			//     if( ret ){
+			//          for(var i=0;i<chatList.chatList.length;i++){
+			// 					 if(chatList.chatList[i].username==ret.value.hisId){
+			// 						 alert(JSON.stringify(chatList.chatList[i]));
+			// 						//  if(chatList.chatList[i].extras=='hidden'||chatList.chatList[i].extras=='undefined'){
+			// 						 Vue.set(chatList.chatList[i],'extras','');
+			// 						 $api.setStorage('chatList', chatList.chatList);
+			//
+			// 						 return;
+			// 					//  }
+			// 					 }
+			// 				 }
+			//     }
+			// });
+			// 监听引导页的 群发 事件
+ 			api.addEventListener({
+			    name: 'send_uid'
+			}, function(ret, err) {
+				var user = ret.value.user;
+				var cdate=new Date().getTime();
+				api.ajax({
+				    url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/getUserlabel',
+				    method: 'post',
+				    data: {
+				        values: {
+				            uiId : $api.getStorage('id')
+				        }
+				    }
+				},function(ret, err){
+				    if (ret) {
+								var hobbies_common = [];
+				        var hobbies_own = ret.data.habbies.split(',');
+								var hobbies_other = user.habbies.split(',');
+								for(var i=0;i<hobbies_own.length;i++){
+										if(hobbies_other.indexOf(hobbies_own[i])!=-1){
+											hobbies_common.push(hobbies_own[i]);
+										}
+								}
+								online(user,hobbies_common);
+								if($api.getStorage('language')=='zho'){
+									var mess = "妳已經跟她（他）打過招呼了";
+								}else{
+									var mess = "You've already said hi to her(him)";
+								}
+								var text ={
+									name: user.ui_id,
+									username: user.ui_id,
+									messages_text: mess,
+									msg_ctime: cdate,
+									from_id:  $api.getStorage('id'),
+									time:'刚刚',
+									avatar_url: user.avatar_url,
+									nickname: user.nickname,
+									unread_msg_count:0
+								}
+								for(var i=0;i<chatList.chatList.length;i++){
+									if(chatList.chatList[i].username==user.ui_id){
+										chatList.chatList.splice(i,1);
+										chatList.chatList.unshift(text);
+										$api.setStorage('chatList', chatList.chatList);
+										api.toast({
+												msg: '发送成功',
+												duration: 2000,
+												location: 'middle'
+										});
+										return;
+									}
+								}
+								chatList.chatList.unshift(text);//在前面插入数据
+								$api.setStorage('chatList', chatList.chatList);
+								api.toast({
+								    msg: '发送成功',
+								    duration: 2000,
+								    location: 'middle'
+								});
+
+				    }
+				});
+			});
+			//查找在线的人并给他们发送一条消息
+		 function online(user,hobby){
+			//  alert(JSON.stringify(send_uid));
+					setTimeout(function(){
+					//  for(var i=0;i<send_uid.length;i++){
+						//  (function(i){
+															 if(JIM.isLogin() == true){
+																				sayHello(user,hobby);
+																	 }else {
+																			 rejim_init();
+																			 setTimeout(function(){
+																				 sayHello(user,hobby);
+																				//  sayHello(onlineUser[i].uid);
+																			 },500)
+																			//  onMsg();
+																	 }
+							//  })(i)
+							// }
+						 },200)
+
+		 }
+
+			db=api.require("db");
+			// openDb(db);//打开数据库是否有表建成功
+// 			var shark=true;
+// 			api.addEventListener({
+// 		name:'shake'
+// }, function(ret, err){
+//
+// 	if(shark){
+// 			shark=false;
+// 			var db = api.require('db');
+// 	db.executeSql({
+// 			name: 'tinkle',
+// 			sql: 'drop table if EXISTS tin_im_Gmessage'
+// 	}, function(ret, err) {
+// 			if (ret.status) {
+// 						db.executeSql({
+// 								name: 'tinkle',
+// 								sql: "create table if not EXISTS tin_im_Gmessage (gid varchar(36) NOT NULL,msg_body varchar(10000) DEFAULT NULL,create_time varchar(20) DEFAULT NULL,ctime_ms varchar(20) DEFAULT NULL,from_id varchar(36) DEFAULT NULL,from_platform varchar(36) DEFAULT NULL,target_type varchar(10) DEFAULT NULL,target_id varchar(36) DEFAULT NULL,version varchar(20) DEFAULT NULL,type varchar(20) DEFAULT NULL,text varchar(10000) DEFAULT NULL,msg_type varchar(20) DEFAULT NULL,msg_id varchar(30) DEFAULT NULL,PRIMARY KEY (msg_id))"
+// 						}, function(ret, err){
+// 								if( ret.status ){
+// 									 console.log("群聊====聊天消息表创建或存在表    成功...");
+// 								}else{
+// 								 //  console.log(JSON.stringify(err));
+// 										console.log("群聊===聊天消息表创建或存在表   失败...");
+// 								}
+// 						});
+// 						shark=true;
+// 			} else {
+// 					alert(JSON.stringify(err));
+// 			}
+// 	});
+// 		// shark=true;
+// 	}
+//
+// });
+
+			// api.addEventListener({
+			// 	name: 'appintent'
+			// }, function(ret, err) {
+			// 	if(ret){
+			// 		console.log(JSON.stringify(ret));
+			// 	clipBoard.get(function(ret, err) {
+			// 		if (ret) {
+			// 		alert(JSON.stringify(ret));
+			// 		} else {
+			// 				console.log(JSON.stringify(err));
+			// 		}
+			// });
+			// 	}
+			// });
+			//监听group-setting页面传来的退群信息将群从列表删除
+			api.addEventListener({
+			    name: 'leaveGroup'
+			}, function(ret, err){
+			    if( ret ){
+			         for(var i=0;i<chatList.chatList.length;i++){
+								 if(chatList.chatList[i].gid==ret.value.gid){
+									 chatList.chatList.splice(i,1);
+									 $api.setStorage('chatList', chatList.chatList);
+
+								 }
+							 }
+			    }
+			});
+			//监听groupcreate页面传来的的群类型同步更新图标
+			api.addEventListener({
+					name: 'groupType'
+			}, function(ret, err){
+					if( ret ){
+						for(var i=0;i<chatList.chatList.length;i++){
+						 if(chatList.chatList[i].gid==ret.value.gid){
+							 chatList.chatList[i].group_type=ret.value.groupT;
+							 $api.setStorage('chatList', chatList.chatList);
+						 }
+					 }
+					}
+			});
+
+			//监听返回顶部
+			api.addEventListener({
+			    name: 'dingbu'
+			}, function(ret, err){
+				var osTop = document.documentElement.scrollTop || document.body.scrollTop;
+				document.documentElement.scrollTop = document.body.scrollTop = -200;
+			});
+			//监听应用是从后台到前台
+			api.addEventListener({
+		    name:'resume'
+		}, function(ret, err){
+			 console.log("应用是从后台切换到前台时—— —— 极光 --- 已登录   ");
+		       if(JIM.isLogin() == false){     //如果用户极光未登录时刷新chat_list页面
+						 console.log("应用是从后台切换到前台时—— —— 极光未登录重新刷新页面");
+						  location.reload();
+					 }
+					 getConversation();
+					 var clipBoard = api.require('clipBoard');
+					 clipBoard.setListener(function(ret, err) {
+ 				    if (ret) {
+ 					// 	alert(JSON.stringify(ret));
+					if(ret.value.split(':')[0]=='gid'){
+						api.openWin({
+								name: 'group-setting',
+								url: 'widget://html/group/group-setting.html',
+								pageParam: {
+										gid: ret.value.split(':')[1],
+										shareGroup: 'shareGroup'
+										}
+								});
+							}
+ 				    }
+ 				});
+		});
+		api.addEventListener({  //监听群聊单聊已经把历史消息加到数据库中了
+				name: 'clear_tempMs'
+		}, function(ret, err){
+			if(ret.value.statu == "tempMs"){
+					tempMs=[];
+			}else{
+					// tempGMs=[];
+			}
+
+	});
+
+
+			if($api.getStorage("language")=="zho"){
+			   wenben={
+					text1:'您的网络已经断开( •̥́ ˍ •̀ू )',
+					text2: '假装不在意',
+					text3:'⚆_⚆？我也帮不了',
+          	it:'【有人@你】'
+				};
+
+			 weidu="收到一條新消息，快去查看吧！";
+			chatList.del = '删除';
+			chatList.chat = '聊天';
+			$("#empty-p1").html("恭 喜 ~");
+			$("#empty-p2").html("你 發 現 了 新 大 陸 ！");
+			$(".empty-bottom-left").html("有 趣 的 人 <br>熱 門 群 組 <p>↓</p>");
+			$(".empty-bottom-right").html("<br /><br />精 選 帖 子 <p>&nbsp;↓</p>");
+			$(".here").html("七天後所有的聊天對象都會存放在這裏");
+			$(".rec span").html("今日好友推薦");
+			}else{
+			 weidu="You receive a new chat, go and receive it!";
+			}
+
+
+
+			//监听网络的情况是否没网
+						api.addEventListener({
+								name:'offline'
+						}, function(ret, err){
+							api.openFrame({
+									name: 'duanwang',
+									url: '../logon-register/pop.html',
+
+									pageParam: {
+											data: wenben.text1,
+											value: wenben.text2,
+											 none: wenben.text3
+									},
+									bounces: true,
+									bgColor: 'rgba(0,0,0,0)',
+									vScrollBarEnabled: true,
+									hScrollBarEnabled: true
+							});
+
+						});
+						//监听是否来网了
+					api.addEventListener({
+					    name:'online'
+					}, function(ret, err){
+						//重新刷新页面
+						if(Object_type==''){
+						    history.go(0);
+								}
+					    api.closeFrame({
+					        name: 'duanwang'
+					    });
+
+					});
+						// api.addEventListener({
+						//     name: 'shabi'
+						// }, function(ret, err){
+						//     if( ret ){
+						//         	console.log("登录的状态"+JIM.isLogin());
+						//     }else{
+						//         //  alert( JSON.stringify( err ) );
+						//     }
+						// });
+
+
+
+			api.setRefreshHeaderInfo({
+					visible: true,
+					loadingImg: 'widget://image/refresh.png',
+					bgColor: '#efefef',
+					textColor: '#aaa',
+					textDown: 'Ready to refresh',
+					textUp: 'Ready to refresh',
+					textLoading:'Ready to refresh',
+					showTime: false
+			}, function(ret, err){
+				setTimeout(function(){
+					window.location.reload();
+					api.refreshHeaderLoadDone();
+				},500)
+			});
+
+	// 		setTimeout(function(){
+	// 	// 聊天首页公告每天只显示一遍
+	// 			var an_date=new Date(),
+	// 				an_day=an_date.getDate();
+	// 				// an_hour=an_date.getHours(),
+	// 				// an_minutes=an_date.getMinutes(),
+	// 				// an_seconds=an_date.getSeconds();
+	// 			if($api.getStorage('ddd') == undefined){
+	// 				api.openFrame({
+	// 						name: 'announcement',
+	// 						url: 'widget://html/announcement/announcement.html',
+	// 						rect: {
+	// 								x: 0,
+	// 								y: 0,
+	// 								w: 'auto',
+	// 								h: 'auto'
+	// 						}
+	// 				});
+	// 				// $api.setStorage('mmm', an_minutes);
+	// 				// $api.setStorage('hhh', an_hour);
+	// 				$api.setStorage('ddd', an_day);
+	// 			}else if($api.getStorage('ddd')-an_day !== 0 ){
+	// 				api.openFrame({
+	// 						name: 'announcement',
+	// 						url: 'widget://html/announcement/announcement.html',
+	// 						rect: {
+	// 								x: 0,
+	// 								y: 0,
+	// 								w: 'auto',
+	// 								h: 'auto'
+	// 						}
+	// 				});
+	// 				$api.setStorage('ddd', an_day);
+	// 			}
+	// },500);
+			// 新手指引-占卜
+		api.ajax({
+		    url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/getUserOnlinetime',
+		    method: 'get',
+		    data: {
+		        values: {
+		            uiid: $api.getStorage('id')
+		        }
+		    }
+		}, function(ret, err) {
+		    if (ret) {
+		        var login1 = ret.data.length;
+
+			api.ajax({
+			    url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/userinfo',
+			    method: 'post',
+			    data: {
+			        values: {
+			            uiId: $api.getStorage('id'),
+			            pageUiId:$api.getStorage('id')
+			        }
+			    }
+			}, function(ret, err) {
+			    if (ret) {
+			       var nowtimee=new Date();
+			       		nowtimet=nowtimee.getTime();
+							// var retime =	new Date(parseInt(ret.data.create_date) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');
+							// 	alert(retime+'::::::'+nowtimee);
+			       		// console.log(ret.data.create_date);
+			       		// console.log(nowtimet);
+			       		// console.log(nowtimet-ret.data.create_date);
+			       		if(nowtimet-ret.data.create_date<1800000 ||login1<=1){
+			       			if($api.getStorage('new')==undefined){
+			       				// api.openWin({
+			       				//     name: 'login_function',
+			       				//     url: 'widget://html/logon-register/login_function.html',
+			       				//     pageParam: {
+			       				//         name:'value'
+			       				//     }
+			       				// });
+			       				api.closeFrame({
+			       				    name: 'announcement'
+			       				});
+			       				api.openFrame({
+										name: 'guide_select',
+										url: 'widget://html/guide/guide_select.html',
+								    rect: {
+								        x: 0,
+								        y: 0,
+								        w: 'auto',
+								        h: 'auto'
+								    },
+								    pageParam: {
+								        name: 'value'
+								    }
+								});
+								$api.setStorage('new','2');
+			       			}
+
+			       		}else{
+			       					setTimeout(function(){
+		// 聊天首页公告每天只显示一遍
+				var an_date=new Date(),
+					an_day=an_date.getDate();
+				if($api.getStorage('ddd') == undefined){
+					api.openFrame({
+							name: 'announcement',
+							url: 'widget://html/announcement/announcement.html',
+							rect: {
+									x: 0,
+									y: 0,
+									w: 'auto',
+									h: 'auto'
+							}
+					});
+					$api.setStorage('ddd', an_day);
+				}else if($api.getStorage('ddd')-an_day !== 0 ){
+					api.openFrame({
+							name: 'announcement',
+							url: 'widget://html/announcement/announcement.html',
+							rect: {
+									x: 0,
+									y: 0,
+									w: 'auto',
+									h: 'auto'
+							}
+					});
+					$api.setStorage('ddd', an_day);
+				}
+	},500);
+			       			}
+
+							// 	if(nowtimet-ret.data.create_date<15000){
+							// 		setTimeout(function(){
+							// 		 online();
+							// 	 },3000)
+							//  }
+							//  api.ajax({
+							//      url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/findonlinetimedaybyuiid',
+							//      method: 'post',
+							//      data: {
+							//          values: {
+							//              uiid: $api.getStorage('id')
+							//          }
+							//      }
+							//  },function(ret, err){
+							//      if (ret) {
+							// 			 var leng = ret.data.length;
+							// 			// alert( JSON.stringify( ret ) );
+							// 				 if(ret.data[leng-1].second!=0&&leng>1){
+							// 					//  for(var i=0;i<noSend.length;i++){
+							// 					// 	 if($api.getStorage('id')==noSend[i]){
+							// 					// 		//  alert("???");
+							// 					// 		 return;
+							// 					// 	 }
+							// 					//  }
+							// 					 setTimeout(function(){
+							// 									api.openFrame({
+							// 									    name: 'guide_skip_sayhi',
+							// 									    url: '../guide/guide_skip_sayhi.html',
+							// 									    rect: {
+							// 									        x: 0,
+							// 									        y: 0,
+							// 									        w: 'auto',
+							// 									        h: 'auto'
+							// 									    },
+							// 									    pageParam: {
+							// 												     oneDayOneSend: true
+							// 									    },
+							// 									    bounces: false,
+							// 									    bgColor: 'rgba(0,0,0,0)',
+							// 									    vScrollBarEnabled: false,
+							// 									    hScrollBarEnabled: false
+							// 									});
+							 //
+							// 								// online();
+							// 					 },2000)
+							// 					   api.ajax({
+							// 					     url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/onlineHeartbeatConnection',
+							// 					     method: 'post',
+							// 					     data: {
+							// 					       values: {
+							// 					         uid: $api.getStorage('id')
+							// 					       }
+							// 					     }
+							// 					   }, function(ret, err) {alert(JSON.stringify(ret))})
+							// 				 }
+							//      }
+							//  });
+
+			    }
+			});
+		    }
+		});
+			// 新手指引
+			api.addEventListener({
+			    name: 'guide'
+			}, function() {
+				api.closeFrame({
+				    name: 'announcement'
+				});
+			    api.openFrame({
+				    name: 'guide1',
+				    url: 'widget://html/guide/guide1.html',
+				    rect: {
+				        x: 0,
+				        y: 0,
+				        w: 'auto',
+				        h: 'auto'
+				    },
+				    pageParam: {
+				        name: 'value'
+				    }
+				});
+
+			});
+
+
+			//极光初始化
+			jim_init();
+			//离线消息同步监听
+	// 		JIM.onSyncConversation(function(data) {
+	// 			// messageList=data[0].msgs;
+	//
+	// 			for(var i=0;i<data[0].msgs.length;i++){
+	// 				var content=data[0].msgs[i].content;
+	// 				   content.msg_ctime=data[0].msgs[i].ctime_ms;
+	// 					 messageList.push(content);
+	// 			}
+	//
+	// 			// alert(JSON.stringify(data[0].msgs));
+	// });
+	//被踢者收到该事件
+				// JIM.onEventNotification(function(data) {
+				// 		alert(JSON.stringify(data));
+				//     //data.event_id 事件 id
+				//     //data.event_type 事件类型
+				//     //data.ctime_ms 事件生成时间
+				//     //data.extra =0同时登录，=1用户被禁用，=2用户被删除
+				// });
+
+			 	msg_time();//刷新时间
+			api.setStatusBarStyle({
+				style: 'dark'
+			});
+			api.addEventListener({
+			    name: 'CObject'
+			}, function(ret, err){
+			    if( ret ){
+						Object_type=ret.value.key1;
+						Object_username=ret.value.key2;
+
+
+			    }else{
+
+			    }
+			});
+	//监听分享页面是否打开，如果打开则停止定时登录极光
+	// api.addEventListener({
+	//     name: 'myShare'
+	// }, function(ret, err){
+	//   			Object_type=ret.value.key1;
+	// 				// alert(Object_type);
+	// });
+
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+		api.addEventListener({
+        name: 'ChatListExec'                              //接受来至群聊单聊页面（chat2 group_chat）极光发送消息
+    }, function(ret, err){
+        if( ret ){
+					// alert(JSON.stringify(ret));
+      //  JIM.loginOut();
+					if(JIM.isLogin() == true){                       //确定极光的账号是否登录了
+							sendMessages(ret);                           //调用发送发送消息给群聊单聊
+							}else {                                      //未登录时调用rejim_init登录极光后再发送消息
+		           console.log("极光未登录进行,进行登录极光后再发送消息");
+								  rejim_init(1,ret);
+									onMsg();
+									                       //第一个参数是为了告诉rejim_init方法这是来发送消息的不传参数代表是极光计时器
+							}
+
+         }else{
+             console.log("接受极光发送消息的事务错误");
+        }
+    });
+
+		//监听群聊设置页面传来的是极光操作 来至 group-setting
+		api.addEventListener({
+		    name: 'execJIM'
+		}, function(ret, err){
+		  // alert(JSON.stringify(ret));
+		    if( ret ){
+		        //判断类型是移除还是添加管理员
+		          //添加指定群主的管理员
+		        mangerAdmin(ret);  //调用群组对管理员进行操作
+
+		    }else{
+
+		    }
+		});
+
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$&$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+			//从1v1退出，IM重新登录
+			api.addEventListener({
+				name: 'loginIM'
+			}, function(ret, err) {
+				// alert(JSON.stringify(ret));
+			console.log("1V1退出，实时更新会话列表数据登录的状态"+JIM.isLogin());
+       Object_type='';
+			 Object_username='';
+				toggle=false;
+			console.log(JSON.stringify(ret));
+			//如果是小表情，根据中英翻译显示相应的字
+			for(var i =0;i<emotionArr.length;i++){
+				if(ret.value.key2==emotionArr[i].text){
+					if($api.getStorage('language')=='zho'){
+
+					}else{
+						ret.value.key2=emotionArrEn[i].text;
+					}
+				}
+			}
+				//key1: api.pageParam['uiId'], //别人的id
+				//key2: msgContent, //最新一条消息
+				//key3: time,//最新的消息时间戳
+				//key4: from_id,//会话内容
+				//key5:api.pageParam['avatar'],//会话头像
+				//key6:api.pageParam['nickname']//会话用户名
+
+				var lock_load = true;
+				for(var i = 0;i<chatList.chatList.length;i++){
+					  // alert(chatList.chatList);
+					if(chatList.chatList[i].username == ret.value.key1){
+						lock_load = false;
+						console.log('匹配' + JSON.stringify(chatList.chatList[i]));
+
+						//缓存总未读数
+						// $api.setStorage('hasNews',(Number($api.getStorage('hasNews')) - Number(chatList.chatList[i].unread_msg_count)));
+						//推送、广播总未读消息数
+						// hasnews();
+						//更改当前对象的未读数未读数
+						Vue.set(chatList.chatList[i],'unread_msg_count',0);
+
+
+						//如果在1v1界面有消息消息更新
+						if(ret.value.key2 !== ''){
+							if(chatList.chatList[i].statu==0){
+								// alert("dd");
+									Vue.set(chatList.chatList[i],'statu',1);
+							}
+							Vue.set(chatList.chatList[i],'messages_text',ret.value.key2);//更改最新一条消息
+							Vue.set(chatList.chatList[i],'msg_ctime',ret.value.key3);//更改最新一条消息时间
+	//						chatList.chatList[i].from_id = ret.value.key4;
+							Vue.set(chatList.chatList[i],'from_id',ret.value.key4);
+							Vue.set(chatList.chatList[i],'time','刚刚');//更改最新一条消息时间
+
+	//						msg_time();//刷新时间
+							// console.log(ret.value.key3);
+							//列表置顶
+							var newMessage = chatList.chatList.splice(i,1);
+							chatList.chatList.unshift(newMessage[0]);
+						}
+					}
+				}
+				if(lock_load){//如果列表匹配不到--就是第一次聊天
+
+					api.ajax({
+			 			 url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/userinfo',
+			 			 method: 'post',
+			 			 data: {
+			 					 values: {
+			 							 uiId: ret.value.key1,
+			 							 pageUiId:ret.value.key1
+			 					 }
+			 			 }
+			 	 },function(data, err){
+			 			 if (data) {
+			 				 var text ={
+			 					 name:ret.value.key1,
+			 					 username:ret.value.key1,
+			 					 messages_text:ret.value.key2,
+			 					 msg_ctime:ret.value.key3,
+			 					 from_id:ret.value.key4,
+			 					 time:'刚刚',
+			 					 avatar_url:data.data.avatar_url,
+			 					 nickname:ret.value.key6,
+			 					 unread_msg_count:0
+			 				 }
+			 				 chatList.chatList.unshift(text);//在前面插入数据
+
+
+
+			 			 } else {
+
+			 			 }
+			 	 });
+					// chatList.chatList.unshift(text);//在前面插入数据
+
+				}
+	//			更新缓存数据
+				$api.setStorage('chatList',chatlist.chatlist);
+				//清空当前会话对象的id
+				uiid = '';
+	    	msg_time();//刷新时间
+				console.log("极光重新初始化登录");
+				//初始化
+				//加延迟是为了防止极光上的数据没有更新、获取的数据不是最新的
+	//			setTimeout(function(){
+	        // JIM.loginOut();
+				rejim_init();//极光初始化登录
+					onMsg();//监听信息和和断线监听
+	//			},2000);
+	//			getAllmessage();
+
+			});
+
+	//从群聊页面退出来
+	api.addEventListener({
+		name: 'loginIM2'
+	}, function(ret, err) {
+
+
+		Object_type='';
+		Object_username='';
+		toggle=false;
+		console.log("群聊页面退出，实时更新会话列表数据___登录的状态"+JIM.isLogin());
+		for(var i =0;i<emotionArr.length;i++){
+			if(ret.value.key2==emotionArr[i].text){
+				if($api.getStorage('language')=='zho'){
+
+				}else{
+					ret.value.key2=emotionArrEn[i].text;
+				}
+			}
+		}
+		// if(JIM.isLogin()==false){
+		// 		JIM= new JMessage();
+		// }
+		//key1: gid
+		//key2: msgContent, //最新一条消息
+		//key3: time,//最新的消息时间戳
+		//key4: from_id,//会话内容
+		//key5:api.pageParam['avatar'],//会话头像
+		//key6:api.pageParam['nickname']//会话用户名
+
+		var lock_load = true;
+		for(var i = 0;i<chatList.chatList.length;i++){
+				// alert(chatList.chatList);
+			if(chatList.chatList[i].gid == ret.value.key1){
+				// alert(JSON.stringify(chatList.chatList[i].gid));
+				// alert("未读数消除");
+				lock_load = false;
+				console.log('匹配' + JSON.stringify(chatList.chatList[i]));
+
+				//缓存总未读数
+				// $api.setStorage('hasNews',(Number($api.getStorage('hasNews')) - Number(chatList.chatList[i].unread_msg_count)));
+			console.log("剩下"+$api.getStorage("hasNews")+"多少未读数");
+			// alert("剩下"+$api.getStorage("hasNews")+"多少未读数");
+				//推送、广播总未读消息数
+				// hasnews();
+				//更改当前对象的未读数未读数
+					// alert("重置前的未读数"+JSON.stringify(chatList.chatList[i].unread_msg_count));
+	     //重置极光未读数
+	      // jim_init();
+		    //       JIM.resetUnreadCount({
+				// 								 'gid' : chatList.chatList[i].gid
+				// 								});
+
+
+				Vue.set(chatList.chatList[i],'unread_msg_count',0);
+				// alert("重置后的未读数"+JSON.stringify(chatList.chatList[i].unread_msg_count));
+
+
+				//如果在群聊界面有消息消息更新
+				if(ret.value.key2 !== ''){
+
+					// alert("进了");
+					Vue.set(chatList.chatList[i],'messages_text',ret.value.key2);//更改最新一条消息
+					Vue.set(chatList.chatList[i],'msg_ctime',ret.value.key3);//更改最新一条消息时间
+	//						chatList.chatList[i].from_id = ret.value.key4;
+					Vue.set(chatList.chatList[i],'from_id',ret.value.key4);
+					Vue.set(chatList.chatList[i],'time','刚刚');//更改最新一条消息时间
+
+	//						msg_time();//刷新时间
+					console.log(ret.value.key3);
+					//列表置顶
+					var newMessage = chatList.chatList.splice(i,1);
+					chatList.chatList.unshift(newMessage[0]);
+
+				}
+			}
+		}
+		if(lock_load){//如果列表匹配不到--就是第一次群聊
+	//				手动插入数据
+//第一次需要获取群头像
+	api.ajax({
+			url: 'http://api.baopinghui.com/jpushim/findnewbin4',
+			method: 'get',
+			data: {
+					values: {
+							gid: ret.value.key1
+					}
+					}
+
+	},function(data, err){
+			if (data) {
+				var text ={
+					gid:ret.value.key1,
+					name:ret.value.key1,
+					username:ret.value.key1,
+					messages_text:ret.value.key2,
+					msg_ctime:ret.value.key3,
+					from_id:ret.value.key4,
+					time:'刚刚',
+					avatar_url:data.data.avatar,
+					nickname:ret.value.key6,
+					unread_msg_count:0
+				}
+				chatList.chatList.unshift(text);//在前面插入数据
+
+
+			} else {
+
+			}
+	});
+	}
+	//			更新缓存数据
+
+		$api.setStorage('chatList',chatlist.chatlist);
+		//清空当前会话对象的id
+
+
+		console.log("极光重新初始化登录");
+		//初始化
+		//加延迟是为了防止极光上的数据没有更新、获取的数据不是最新的
+	//			setTimeout(function(){
+	 msg_time();
+		rejim_init();//极光初始化登录
+				onMsg();//监听信息和和断线监听
+	//			},2000);
+	//			getAllmessage();
+
+	});
+	api.addEventListener({
+	    name: 'loginIM3'
+	}, function(ret, err){
+	    if( ret ){
+   //如果是来至group_chat 到pop.html 的不再群组警告窗口的话，就删掉会话列表中的该群组，让自己无法进入该群中
+    if(ret.value.key1!=null&&ret.value.key1!=''){
+			for(var i=0;i<chatList.chatList.length;i++){
+				   if(chatList.chatList[i].gid == ret.value.key1){
+						 chatList.chatList.splice(i,1);
+								//  	alert(i);
+					 }
+
+}
+		}
+
+
+				rejim_init();//极光初始化登录
+					onMsg();//监听信息和和断线监听
+	    }else{
+
+	    }
+	});
+
+
+	    //监听数据有一些web 多个页面登陆极光会互踢，奇怪的是有些不会
+	// 		api.addEventListener({
+	// 		    name: 'messageList'
+	// 		}, function(ret, err){
+	// 		    if( ret ){
+	// 					// alert("收到了");
+	// 					if(JIM.isLogin()==false){
+  //                 onmsgbody(ret.value.key1);
+	// 		}
+	//     }else{
+	//
+	//     }
+	// });
+
+
+			//1v1发送和接收消息，实时更新至会话列表
+	//		api.addEventListener({
+	//			name: 'getMsg'
+	//		}, function(ret, err) {
+	//			console.log("实时更新会话列表数据");
+	//			for(var i = 0;i<chatList.chatList.length;i++){
+	//				if(chatList.chatList[i].username == ret.value.key1){
+	//					console.log('匹配');
+	//					chatList.chatList[i].messages_text =  ret.value.key2;//更改最新一条消息
+	//					//列表置顶
+	//					var newMessage = chatList.chatList.splice(i,1);
+	//					chatList.chatList.unshift(newMessage[0]);
+	//				}
+	//			}
+	//		});
+
+			setInterval('msg_time();',1*60*1000);//定时刷新一分钟
+			setInterval('timer1()',1*20*1000);//定时确定是否要登录极光
+	//		setInterval('jim_init();',5*60*1000);//定时重新登录
+	      //  function(){
+							// api.setAppIconBadge({
+							// 	 badge: 100
+							//  		});
+				// 			}
+		// setInterval('jim_init();',1*60*1000);
+		//监听group-setting页面 群消息提醒是否打开
+		api.addEventListener({
+				name: 'shieldMS'
+		}, function(ret, err){
+				if( ret ){
+					// alert(JSON.stringify(ret));
+							var gid = ret.value.gid;
+							var bell = ret.value.bell;
+							if($api.getStorage('bells')==undefined || chatList.bells[$api.getStorage('id')]==undefined){
+								chatList.bells = {};
+								chatList.bells[$api.getStorage('id')] = [];
+								// chatList.bells={'uiid':[{}],'uiid2':[{}]};
+							}
+							// alert(JSON.stringify($api.getStorage('bells')));
+							for(var i=0;i<chatList.bells[$api.getStorage('id')].length;i++){
+								if(chatList.bells[$api.getStorage('id')][i].gid==gid){
+									chatList.bells[$api.getStorage('id')][i].bell=bell;
+									$api.setStorage('bells', chatList.bells);
+									// alert(JSON.stringify($api.getStorage('bellBox')));
+									chatList.bells = $api.getStorage('bells');
+									// alert(JSON.stringify(chatList.bells));
+									return;
+								}
+							}
+							var box = {'gid':gid,'bell':bell};
+							chatList.bells[$api.getStorage('id')].push(box);
+							$api.setStorage('bells', chatList.bells);
+							chatList.bells = $api.getStorage('bells');
+				}
+		});
+		};
+		var chatList = new Vue({
+			el: '#chatList',
+			data: {
+				ownId:$api.getStorage('id'),
+				chatList: $api.getStorage('chatList') || [], //会话列表
+				group1_my_group: $api.getStorage('group1_my_group')||[],//我的群组
+				bells:$api.getStorage('bells')||{},//存放群组对应的bell为true还是为false true显示静音铃铛，false则不显示
+				registTime: 0, //注册时间
+				onceUser: [],//存在once垃圾桶的用户数组
+				del: 'DEL',
+				chat: 'CHAT',
+	//			chatList: [] //会话列表
+
+	//			hasNews: 0, //总的未读数
+			},
+			watch: {
+				chatList: function() {
+					 this.$nextTick(function(){
+							$('.loading').css('display','none');
+					 })
+				 }
+			 },
+			methods: {
+				hello: function(close){
+					if(close){
+						api.ajax({
+							url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/onlineHeartbeatConnection',
+							method: 'post',
+							data: {
+								values: {
+									uid: $api.getStorage('id')
+								}
+							}
+						}, function(ret, err) {
+							$('.rec').css('display','none');
+							$('.delete').css('display','none');
+						})
+					}else{
+						api.openFrame({
+						    name: 'sayHello',
+						    url: './sayHello.html',
+						    rect: {
+						        x: 0,
+						        y: 0,
+						        w: 'auto',
+						        h: 'auto'
+						    },
+						    pageParam: {
+						        name: 'test'
+						    },
+						    bounces: false,
+						    bgColor: 'rgba(0,0,0,0)',
+						    vScrollBarEnabled: false,
+						    hScrollBarEnabled: false
+						});
+					}
+				},
+				once:function(index,message){
+					// console.log($api.getStorage('id')+':::::'+message.username);
+					// alert(JSON.stringify(message))
+					api.ajax({
+					    url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/sessionBlacklist_add',
+					    method: 'get',
+					    data: {
+					        values: {
+					            uiid: $api.getStorage('id'),
+											target_id: message.username
+					        }
+					    }
+					},function(ret, err){
+					    if (ret) {
+								// alert(JSON.stringify(chatList.chatList[index]));
+								Vue.set(chatList.chatList[index],'statu',0);
+								chatListOnce.push(chatlist[index]);
+								$api.setStorage('chatList', chatList.chatList);
+
+					    }
+					});
+
+				},
+				sayHi: function(message){
+					// alert(JSON.stringify(message));
+					if(message.from_id!=this.ownId&&message.type=='3'&&message.hi=='yes'&&message.messages_text=='hi'){
+						if($api.getStorage('language')!='zho'){
+							return 'Say HI to you';
+						}else{
+							return '向你打招呼';
+						}
+					}else if(message.from_id==this.ownId&&message.type=='3'&&message.hi=='yes'&&message.messages_text=='hi'){
+						if($api.getStorage('language')!='zho'){
+							return "You've already said hi to her(him)";
+						}else{
+							return '妳已經跟她（他）打過招呼了';
+						}
+					}else{
+						return message.messages_text;
+					}
+				},
+				list: function(message){
+					var nnd;
+					if(message.nickname!=''&&message.nickname!=null&&message.statu!=0){
+						 nnd = true;
+					}
+					// if(message.from_id==$api.getStorage('id')&&message.type=='3'){
+					// 	 if(message.hidden == 'yes'){
+					// 		 nnd = false;
+					// 	 }
+					// }
+					// alert(nnd);
+					return nnd;
+				},
+				getP: function(message){
+					if(message.group_type=='gossip'){
+						return "../../icon/chat/chat.png";
+					}else if(message.group_type=='movie'){
+						return "../../icon/chat/movie.png";
+					}else if(message.group_type=='music'){
+						return "../../icon/chat/music.png";
+					}else if(message.group_type=='game'){
+						return "../../icon/chat/game.png";
+					}else if(message.group_type=='anime'){
+						return "../../icon/chat/anm.png";
+					}else{
+						return "../../icon/chat/chat.png";
+					}
+				},
+				ityou:function(mess){    //有人@你是加在it 这个字段中
+					if(mess.it==null){
+					return "";
+					}else{
+					return 	mess.it;
+					}
+
+				},
+				//铃铛
+				bell: function(message){
+				// console.log(JSON.stringify(this.bells));
+				if(this.bells[$api.getStorage('id')]==undefined){
+					return false;
+				}
+
+						for(var i = 0;i<this.bells[$api.getStorage('id')].length;i++){
+							if(this.bells[$api.getStorage('id')][i].gid == message.gid || this.bells[$api.getStorage('id')][i].gid == message.username){
+								return this.bells[$api.getStorage('id')][i].bell;
+							}
+						}
+						return false;
+				},
+				openlist:function(){
+            // $api.setStorage('listonce', chatListOnce);
+						if(chatListOnce.length==0){
+							chatListOnce=$api.getStorage('listonce')||[];
+						}
+
+					api.openWin({
+							name: 'chat_list_once',
+							url: './chat_list_once.html',
+							pageParam: {
+									lists: chatListOnce
+							},
+							// bounces: true,
+							bgColor: 'rgba(0,0,0,0)',
+							vScrollBarEnabled: false,
+							hScrollBarEnabled: true
+
+					});
+				},
+				//设置头像
+				getPic: function(item) {
+								if(item.gid!=null){
+					return {
+						borderRadius:'10px',
+						backgroundImage: 'url(' + json['qiniu'] + item['avatar_url'] + '?imageView2/0/w/100)',
+						backgroundColor: item['avatarBg']
+					}
+				}else{
+					return {
+						backgroundImage: 'url(' + json['qiniu'] + item['avatar_url'] + '?imageView2/0/w/100)',
+						backgroundColor: item['avatarBg']
+					}
+
+				}
+				},
+				getColor: function(item) {
+	//				alert(JSON.stringify(item));
+					if(item['unread_msg_count'] > 0){
+						return {
+							color: '#F381A3'
+						}
+					}
+
+				},
+
+
+
+				////saaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+				openChat: function(message,chat,index) { //打开聊天界面
+					// console.log("进行退出登录当前窗口的极光");
+			    // JIM.loginOut();
+					var sen = false;
+					if(chat==1){
+						sen = true;
+					}else{
+						if(message.from_id!=this.ownId&&message.type=='3'&&message.hi=='yes'){
+									return;
+						}
+				}
+					// console.log(JSON.stringify(message));
+					var num = Number($api.getStorage('hasNews')) - message.unread_msg_count;
+					//functionList.hasNews = num;//更改消息总未读数
+					$api.setStorage('hasNews',num);//设置缓存--消息总未读数message.unread_msg_count
+					console.log($api.getStorage('hasNews'))
+					// alert("当前的未读数"+$api.getStorage('hasNews'));
+					hasnews();
+					message.unread_msg_count = 0;
+					uiid = message['name'];
+						// 	for(i=0;i<chatList.chatList.length;i++){
+						// 	alert(chatList.chatList[i].from_id);
+						// }
+				//			alert(num);
+				//			message.messages_text = '';
+					 Vue.set(message,'it',"");//让有人iT消失
+	       if(message.gid!=null&&message.gid!=''){
+
+					  // alert(JSON.stringify(message.nickname));
+						// 打开群聊页面
+						api.openWin({
+
+					name: 'group_chat',
+						url:router['widget']+"group/group_chat.html",
+					slidBackEnabled: false,
+					animation: {
+						type: "fade", //动画类型（详见动画类型常量）
+						subType: "fade", //动画子类型（详见动画子类型常量）
+						duration: 250 //动画过渡时间，默认300毫秒
+					},
+					pageParam: {
+						// //  avatar: message['avatar_url'],
+						gid: message.gid,
+						gname: message.nickname
+
+
+						}
+					});
+					if(JIM.isLogin() == false){ //如果没有登录极光进行登录
+						timer1();
+					}
+					JIM.resetUnreadCount({    // 重置群聊会话，调用则成功，无回调函数
+												'gid' : message.gid
+											 });
+
+				 }
+				else {
+					    api.openWin({
+
+
+						name: "chat2",
+						url: router['widget'] + router['chat']['chat'],
+						   // "chat/chat2.html"
+						  // url:router['widget']+"group/group_chat.html",
+						slidBackEnabled: false,
+						animation: {
+							type: "fade", //动画类型（详见动画类型常量）
+							subType: "fade", //动画子类型（详见动画子类型常量）
+							duration: 250 //动画过渡时间，默认300毫秒
+						},
+						pageParam: {
+							uiId: message['name'],
+							nickname: message['nickname'],
+							avatar: message['avatar_url'],
+							sen: sen
+							// gid:'11512702',
+							// gname: '666892的群組2'
+
+
+					   	}
+					  });
+						if(JIM.isLogin() == false){ //如果没有登录极光进行登录
+							timer1();
+						}
+						JIM.resetUnreadCount({    // 重置单聊会话，调用则成功，无回调函数
+													 'username' : message['name']
+													});
+
+					}
+				}
+			}
+
+		});
+
+		//判别最新消息的时间
+		function msg_time(){
+			// setTimeout
+			//  console.log(chatList.chatList);
+			console.log('判别最新消息的时间');
+			for(var j = 0;j<chatList.chatList.length;j++){
+				// alert(JSON.stringify(chatList.chatList[j]));
+				//判别消息时间
+				if(!chatList.chatList[j].msg_ctime){//没有最新消息
+					// alert(JSON.stringify(chatList.chatList[j]));
+	//				chatList.chatList[j].time = '';
+
+					Vue.set(chatList.chatList[j],'messages_text','點擊開始聊天');
+					Vue.set(chatList.chatList[j],'time','');
+				}else if(new Date().getTime() - chatList.chatList[j].msg_ctime < 5*60*1000){//五分钟内
+	//				chatList.chatList[j].time = '刚刚';
+					if($api.getStorage("language")=="zho"){
+						Vue.set(chatList.chatList[j],'time','刚刚');
+					}else{
+						Vue.set(chatList.chatList[j],'time','Just');
+					}
+
+				} else if (new Date(chatList.chatList[j].msg_ctime).toDateString() === new Date().toDateString()) {//当天
+					var time = new Date(chatList.chatList[j].msg_ctime);
+					var hours = time.getHours();
+					var minutes = time.getMinutes();
+					var nowtime = hours+":"+minutes;
+					if(minutes<10){
+						nowtime = hours+":0"+minutes;
+					}
+					chatList.chatList[j].time = nowtime;
+				} else if (new Date() - (new Date().getHours()*60*60*1000 + new Date().getMinutes()*60*1000 + new Date().getSeconds()*1000) - new Date(chatList.chatList[j].msg_ctime) < 1000*60*60*24) {//昨天
+	//				chatList.chatList[j].time = '昨天';
+					if($api.getStorage("language")=="zho"){
+						Vue.set(chatList.chatList[j],'time','昨天');
+					}else{
+						Vue.set(chatList.chatList[j],'time','Yesterday');
+					}
+
+				} else {//昨天之前
+					var time = new Date(chatList.chatList[j].msg_ctime);
+					var year = time.getFullYear();
+					var month = time.getMonth()+1 < 10 ? '0'+(time.getMonth()+1) : time.getMonth()+1;
+					var date = time.getDate();
+					var nowtime = year+"/"+month+"/"+date;
+	//				chatList.chatList[j].time = nowtime;
+					Vue.set(chatList.chatList[j],'time',nowtime);
+				}
+			}
+			// console.log('第一条数据'+JSON.stringify(chatList.chatList[0]));
+			if(chatList.chatList != $api.getStorage('chatList')){
+				$api.setStorage('chatList',chatList.chatList);
+			}
+		}
+
+
+		//----------------------极光初始化登录-------------------------------------------------------------------------------
+			//极光初始化需要的数据
+			 JIM = new JMessage();//极光登录
+				var timestamp, //当前时间戳
+				random_str, //生成随机字符串
+				signature,
+				toggle=true,//判断是否是刷新页面还是从单聊群聊退出的
+
+				//用于获取数据
+				sj,//获取当前日期
+				sj2,//获取7天前的日期
+				sj3,//获取半天前的日期
+				cursor = "",//获取消息的回执
+				login_lock = 0;
+
+				par = Base64.encode('c46c8bc128f41299334ec8e3:269e7aa2881b1a8767f16ce6'),//base64加密
+
+				hasNews = 0,//总未读数
+				chatlist = {},//会话列表
+
+				lock = true;
+
+				//生成随机字符串
+				function random(length) {
+					var str = Math.random().toString(36).substr(2);
+					if(str.length >= length) {
+						return str.substr(0, length);
+					}
+					str += random(length - str.length);
+					return str;
+				}
+
+				//获取当前时间，格式YYYY-MM-DD
+			    function getNowFormatDate() {
+			        var date = new Date();
+			        var seperator1 = "-";
+			        var year = date.getFullYear();
+			        var month = date.getMonth() + 1;
+			        var strDate = date.getDate();
+			        if (month >= 1 && month <= 9) {
+			            month = "0" + month;
+			        }
+			        if (strDate >= 0 && strDate <= 9) {
+			            strDate = "0" + strDate;
+			        }
+			        var currentdate = year + seperator1 + month + seperator1 + strDate;
+			        return currentdate;
+			    }
+
+			    //求出当前时间的7天前是几号
+			    function getNowFormatDate2(){
+			    	var now = new Date();
+					var date = new Date(now.getTime() - 6 * 24 * 3600 * 1000);
+					var year = date.getFullYear();
+					var month = date.getMonth() + 1;
+					var day = date.getDate();
+					if (month >= 1 && month <= 9) {
+			            month = "0" + month;
+			        }
+			        if (day >= 0 && day <= 9) {
+			            day = "0" + day;
+			        }
+	//				alert(year + '-' + month + '-' + day  + ' ' + hour + ':' + minute + ':' + second);
+					return year + '-' + month + '-' + day;
+			    }
+					//求出当前时间的半天天前是几号
+					function getNowFormatDate3() {
+						var now = new Date();
+						var date = new Date(now.getTime() - 0.15* 24 * 3600 * 1000);
+						var year = date.getFullYear();
+						var month = date.getMonth() + 1;
+						var day = date.getDate();
+					var	h = date.getHours() + ':';
+					var	m = date.getMinutes() + ':';
+					var		s = date.getSeconds();
+						if(month >= 1 && month <= 9) {
+							month = "0" + month;
+						}
+						if(day >= 0 && day <= 9) {
+							day = "0" + day;
+						}
+						return year + '-' + month + '-' + day+" "+h+m+s;
+					}
+
+
+				//极光初始化
+				function jim_init(){
+					sj = getNowFormatDate();//获取当前日期
+					sj2 = getNowFormatDate2();//获取7天前的日期
+				  sj3 = getNowFormatDate3(); //获取半天天前的日期
+					timestamp = (new Date()).valueOf(); //当前时间戳
+					random_str = random(30); //生成随机字符串
+					signature = MD5("appkey=c46c8bc128f41299334ec8e3&timestamp=" + timestamp + "&random_str=" + random_str + "&key=269e7aa2881b1a8767f16ce6");
+
+					console.log("初始化极光");
+					JIM.init({
+						"appkey": "c46c8bc128f41299334ec8e3",
+						"random_str": random_str,
+						"signature": signature,
+						"timestamp": timestamp,
+						"flag": 0
+					}).onSuccess(function(data) {
+
+							  //  console.log("sss状态"+JIM.isInit());
+					 	console.log('初始化请求成功回调' + JSON.stringify(data));
+						console.log("登录极光");
+
+					console.log("登录的状态"+JIM.isLogin());
+					if(JIM.isLogin()==true){
+							return;
+					}
+						//  	JIM.loginOut();
+						JIM.login({
+							'username': $api.getStorage('id'),
+							'password': 123456
+						}).onSuccess(function(data) {
+							// alert("登录成功");
+								 login_lock = 2;
+							console.log("登录成功");
+
+							if(lock){
+								// if(toggle){
+								// chatList.getJoinGroupList();
+								// }
+								getConversation();//获取会话列表
+	//							lock = false;
+							}
+						}).onFail(function(data) {
+	//						jim_init();//重新初始化登录
+							console.log("登录失败" + JSON.stringify(data));
+							// if(toggle){
+							// chatList.getJoinGroupList();
+							// }
+							getConversation();
+							if(data.code == 880107){//已是登录状态
+								return;
+							}
+							if(data.code == 880109){//重复登录
+								return;
+							}
+							//重新极光注册-防止在注册页时没有注册到
+							JIM.register({
+								'username': $api.getStorage('id'),
+								'password': '123456'
+							}).onSuccess(function(data) {
+								jim_init();//重新初始化登录并登录
+								console.log('注册成功 ' + JSON.stringify(data));
+							}).onFail(function(data) {
+								console.log('注册失败 ' + JSON.stringify(data));
+							});
+
+						}).onTimeout(function(data) {
+							jim_init();
+						    console.log('登录请求超時回调' + JSON.stringify(data));
+						}).onAck(function(data) {
+
+						    console.log('登录请求應答回调' + JSON.stringify(data));
+							// if(login_lock <2){//如果登录应答超过三次，则重新初始化登录
+							// 	console.log('登录不成功请求應答回调不成功' + JSON.stringify(data));
+							// 	login_lock ++;
+							// 	jim_init();
+							// }
+						    console.log('登录请求應答回调' + JSON.stringify(data));
+
+						});
+					}).onFail(function(data) {
+						JIM.login({
+							'username': $api.getStorage('id'),
+							'password': 123456
+						}).onSuccess(function(data) {});
+
+
+
+					}).onTimeout(function(data) {
+					    console.log('初始化请求超時回调' + JSON.stringify(data));
+					}).onAck(function(data) {
+					    console.log('初始化请求應答回调' + JSON.stringify(data));
+					});
+				}
+				//获取会话列表
+				function getConversation(){
+					console.log("开始获取会话列表");
+					// if($api.getStorage('chatList')==''){
+					$('.loading').css('display','block');
+				// }
+					// JIM.updateConversation({
+					// 									'appkey' : 'c46c8bc128f41299334ec8e3',
+					// 									'username' : 'a9b5d3d7910248a4821cef195320ba62',
+					// 									'extras' : {'key':'尼玛的头'}
+					// 								 });
+					JIM.getConversation().onSuccess(function(data) {
+						//每天一次弹出自动打招呼
+						api.ajax({
+								url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/findonlinetimedaybyuiid',
+								method: 'post',
+								data: {
+										values: {
+												uiid: $api.getStorage('id')
+										}
+								}
+						},function(ret, err){
+								if (ret) {
+									var leng = ret.data.length;
+								 // alert( JSON.stringify( ret ) );
+										if(ret.data[leng-1].second==0){
+											api.ajax({
+								          url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/getUserlabel',
+								          method: 'post',
+								          data: {
+								              values: {
+								                  uiId: $api.getStorage('id')
+								              }
+								          }
+								      },function(ret, err){
+								          if (ret) {
+								              if(ret.data!=null&&ret.data.length!=0){
+																$('.rec').css('display','block');
+																$('.delete').css('display','block');
+								              }
+								          }
+								      });
+										}
+										if(ret.data[leng-1].second==0&&leng==1){
+											api.openFrame({
+								          name: 'sayHi',
+								          url: './sayHi.html',
+								          rect: {
+								              x: 0,
+								              y: 0,
+								              w: 'auto',
+								              h: 'auto'
+								          },
+								          pageParam: {
+								              label: false
+								          },
+								          bounces: false,
+								          bgColor: 'rgba(0,0,0,0)',
+								          vScrollBarEnabled: false,
+								          hScrollBarEnabled: false
+								      });
+										}
+								}
+						});
+						// var conversation = data.conversations;
+						// alert(JSON.stringify(data));
+						// for(var i = 0;i<conversation.length;i++){
+						// 	if(conversation[i].extras.hidden=='yes'&&conversation[i].unread_msg_count=0){
+						// 		conversation.splice(i,1);
+						// 		i=i-1;
+						// 	}
+						// }
+						chatlist = data.conversations;//获取会话列表,插入数据
+						console.log('获取列表内用户头像和用户名');
+						//获取列表内用户头像和用户名
+						// 	console.log(JSON.stringify(data));
+						var conversationLength = chatlist.length;
+						var initialSubscript = 0;
+							// alert(conversationLength);
+							hasNews = 0;//未读数清零
+						if(conversationLength > 50){//限制最新显示五十条
+							initialSubscript = conversationLength - 50;
+							chatlist.splice(0,initialSubscript);//删除起始下标为1，长度为1的一个值
+							conversationLength = chatlist.length;
+						}
+							// console.log(JSON.stringify(data));
+						for(var i = 0;i < conversationLength;i++){
+
+							// console.log(chatlist[i].name+"*************************未读数有     "+chatlist[i].unread_msg_count+"   *****");
+							//未读消息总数
+							hasNews += chatlist[i]['unread_msg_count'];
+			// 获取群名称和群头像
+					// if(chatlist[i]['gid']!=null&&chatlist[i]['gid']!='')
+					//根据类型判断是否为群组信息
+					if(chatlist[i]['type']==4)
+					{
+							 //  alert(JSON.stringify(chatlist[i]['type']));
+						// alert(JSON.stringify(chatlist[i]['gid']));
+						//  alert(JSON.stringify(chatlist[i]));
+						 //获取群组信息啊
+							(function(i){
+							JIM.getGroupInfo({
+					 'gid' : chatlist[i]['gid']
+				}).onSuccess(function(data) {
+					 //data.group_info.name 群名
+					 //data.group_list[0].avatar 群头像
+							 if(data.code==0) {
+									// alert(JSON.stringify(data.code));
+								 conversationLength--;
+								//  console.log("会话列表" + i + ret.data.nickname);
+								 chatlist[i].nickname = data.group_info.name;//群组名称
+								 chatlist[i].avatar_url = data.group_info.desc; //群组头像
+										// alert(JSON.stringify(chatlist[i]));
+								 if(conversationLength === 0){
+									 console.log("进入获取所有消息");
+									 if(toggle){
+									 getAllmessage();//获取所有消息数据
+								 }else{
+										getAllmessage2();
+								 }
+			 //					 					console.log("列表倒序");
+			 //					 					chatList.chatList.reverse();//数组倒叙
+								 }
+							 }else{
+
+								 conversationLength--;
+								 if(conversationLength === 0){
+									 if(toggle){
+									 getAllmessage();//获取所有消息数据
+								 }else{
+										getAllmessage2();
+								 }
+			 //					 					console.log("列表倒序");
+			 //					 					chatList.chatList.reverse();//数组倒叙
+								 }
+							 }
+
+
+
+				}).onFail(function(data) {
+						//data.code 返回码
+						//data.message 描述
+					// alert(JSON.stringify("获取群信息失败"));
+				});
+			        	//获取消息
+								var now = new Date();
+							var cmtime=	now.getTime() - 6 * 24 * 3600 * 1000
+							 if(parseInt(chatlist[i].mtime)<cmtime ){
+
+                        //  chatListOnce.push(chatlist[i]);
+							 }else{
+								 api.ajax({
+											 url: 'https://report.im.jpush.cn/v2/groups/' + chatlist[i].gid + '/messages?count=1&begin_time='+change1(chatlist[i].mtime,0)+'&end_time='+change1(chatlist[i].mtime,1),
+											 method: 'get',
+											 headers: {
+												 'Authorization': 'Basic ' + par,
+												 'Content-Type': 'application/json;charset=utf-8'
+											 },
+											 data: {
+
+											 }
+									 },function(ret, err){
+											 if (ret) {
+												 console.log("******"+i+"******"+JSON.stringify(ret.messages[0]));
+															messageList.push(ret.messages[0]);
+
+															 return;
+											 } else {
+
+											 }
+									 });
+
+
+								}
+								api.ajax({
+								    url: 'http://api.baopinghui.com/jpushim/findnewbin4',
+								    method: 'get',
+								    data: {
+								        values: {
+								          	gid: chatlist[i]['gid']
+								        }
+								    }
+								},function(ret, err){
+								    if (ret) {
+											Vue.set(chatlist[i],'group_type',ret.data.group_type);
+								    }
+								});
+					 })(i)
+
+
+					}else{
+
+						(function(i){
+
+							//获取用户头像和用户名
+							// console.log(chatlist[i]['username']);
+								api.ajax({
+									url: json['http'] + json['tin']['userinfo'],
+									method: 'post',
+									data: {
+										values: {
+											uiId: chatlist[i]['username'],
+											pageUiId: chatlist[i]['username']
+										}
+									},
+									async: false,
+								}, function(ret, err) {
+									if(ret) {
+										conversationLength--;
+										if(ret.data!=null){
+										// console.log("Tinke用户存在的单聊会话列表"+JSON.stringify(ret.data));
+										// alert(JSON.stringify(ret.data.nickname));
+										// console.log("会话列表" + i + ret.data.nickname);
+										chatlist[i].nickname = ret.data.nickname;//用户名
+										chatlist[i].avatar_url = ret.data.avatar_url; //用户头像
+										//  alert(JSON.stringify(chatlist[i]));
+										}
+										if(conversationLength === 0){
+											if(toggle){
+											getAllmessage();//获取所有消息数据
+										}else{
+											 getAllmessage2();
+										}
+		//					 					console.log("列表倒序");
+		//					 					chatList.chatList.reverse();//数组倒叙
+										}
+									}else{
+										conversationLength--;
+										if(conversationLength === 0){
+											if(toggle){
+											getAllmessage();//获取所有消息数据
+										}else{
+											 getAllmessage2();
+										}
+		//					 					console.log("列表倒序");
+		//					 					chatList.chatList.reverse();//数组倒叙
+										}
+									}
+								});
+                 //获取消息
+								 var now = new Date();
+							 var cmtime=	now.getTime() - 6 * 24 * 3600 * 1000
+								if(parseInt(chatlist[i].mtime)<cmtime ){
+									chatListOnce.push(chatlist[i]);
+									// alert(JSON.stringify(chatListOnce));
+									//0表示不再这个列表显示出来
+									chatlist[i].statu=0;
+
+								 }else{
+									 for(var j=0;j<chatList.onceUser.length;j++){
+										 if(chatlist[i]['username']==chatList.onceUser[j]){
+											 chatlist[i].statu = 0;
+											 chatListOnce.push(chatlist[i]);
+										 }
+									 }
+									 api.ajax({
+			 									 url: 'https://report.im.jpush.cn/v2/users/' + chatlist[i].username + '/messages?count=10&begin_time='+change1(chatlist[i].mtime,0)+'&end_time='+change1(chatlist[i].mtime,1),
+			 										method: 'get',
+			 										headers: {
+			 											'Authorization': 'Basic ' + par,
+			 											'Content-Type': 'application/json;charset=utf-8'
+			 										},
+			 										data: {
+
+			 										}
+			 								},function(ret, err){
+			 										if (ret) {
+															console.log("******"+i+"******"+JSON.stringify(ret.messages[0]));
+																					// 		messageList.push(ret.messages[0]);
+																					messageList=messageList.concat(ret.messages);
+															// if(chatlist[i].username=='879b10e76bab491dbb16f4a479513677'){
+															// 	alert(JSON.stringify(ret.messages))
+															// }
+			 								 										return;
+
+			 										} else {
+
+			 										}
+			 								});
+											}
+
+
+							})(i)
+								}
+						}
+						// var uncount = JIM.getUnreadMsgCnt({
+						// 							 'gid' : "11512702"
+						// 							});
+						// 							console.log("群组未读数"+uncount);
+						//缓存未读数
+						$api.setStorage('hasNews',hasNews);
+						hasnews();
+
+
+							}).onFail(function(data) {});
+
+				}
+
+				//获取所有消息
+				function getAllmessage(){
+												var chatlist2=chatlist;//reverse();原数组也会被翻转
+									// alert(JSON.stringify(messageList));
+									//  alert(JSON.stringify("会话列表"+chatlist.length));
+							// var showCount = function (bin) {
+					// 	 for(var i=0;i<chatlist2.length;i++){
+					// 			var now = new Date();
+					// 		var cmtime=	now.getTime() - 6 * 24 * 3600 * 1000
+					// 		 if(parseInt(chatlist2[i].mtime)<cmtime ){ continue;}
+					 //
+					 //
+					// 		 (function(i){
+					// 		 //如果该会话是群组
+					 //
+					// 		 if(chatlist2[i].type==4){
+					 //
+					 //
+					// 			 $.ajax({
+					// 									url: 'https://report.im.jpush.cn/v2/groups/' + chatlist2[i].gid + '/messages?count=1&begin_time='+change1(chatlist2[i].mtime,0)+'&end_time='+change1(chatlist2[i].mtime,1000),
+					// 									type:"GET",
+					// 									// data:"dynId="+dyn_id+"&hot="+hot,
+					// 									async:true,
+					// 										 headers: {
+					// 											 'Authorization': 'Basic ' + par,
+					// 											 'Content-Type': 'application/json;charset=utf-8'
+					// 										 },
+					// 									success:function(ret){
+					// 											console.log("******"+i+"******"+JSON.stringify(ret.messages[0]));
+					// 													 messageList.push(ret.messages[0]);
+					// 												//  getNesmessage();
+					// 													 return;
+					 //
+					 //
+					 //
+					// 									}
+					// 								})
+					// 		 }
+					// 			 //会话是单聊
+					// 		 else if (chatlist2[i].type==3) {
+					 //
+					// 			 $.ajax({
+					// 									url: 'https://report.im.jpush.cn/v2/users/' + chatlist2[i].username + '/messages?count=1&begin_time='+change1(chatlist2[i].mtime,0)+'&end_time='+change1(chatlist2[i].mtime,1000),
+					// 									type:"GET",
+					// 									// data:"dynId="+dyn_id+"&hot="+hot,
+					// 									async:true,
+					// 										 headers: {
+					// 											 'Authorization': 'Basic ' + par,
+					// 											 'Content-Type': 'application/json;charset=utf-8'
+					// 										 },
+					// 									success:function(ret){
+					 //
+					// 											console.log("******"+i+"******"+JSON.stringify(ret.messages[0]));
+					// 													 messageList.push(ret.messages[0]);
+					// 												//  getNesmessage();
+					// 													 return;
+					 //
+					 //
+					 //
+					// 									}
+					// 								})
+					 //
+					// 		 }
+					// 	})(i)
+					 //
+					 //
+					 //
+					//  }
+						 setTimeout(function(){
+							   if(chatListOnce.length>0){
+                   $api.setStorage('listonce', chatListOnce);
+                 }
+										getNesmessage();
+
+						 },1000);
+
+
+
+				}
+
+
+
+
+				//从群聊，单聊页面返回是所获取的最近几个小时的历史消息
+				function getAllmessage2(){
+					// chatlist.reverse();
+					var this_ = this;
+						api.ajax({
+							url: 'https://report.im.jpush.cn/v2'  + '/messages?count=1000&begin_time=' + sj3 +' &end_time=' + sj + ' 23:59:59',
+							encode: true,
+							method: 'get',
+							headers: {
+								'Authorization': 'Basic ' + par,
+								'Content-Type': 'application/json;charset=utf-8'
+							}
+						}, function(ret, err) {
+
+							if(ret) {
+								// for(var i = 0; i < ret.messages.length; i++) {
+								// 	if((ret.messages[i].from_id == chat.targetId && ret.messages[i].target_id == chat.ownId) || (ret.messages[i].from_id == chat.ownId && ret.messages[i].target_id == chat.targetId)) {
+								// 		ret.messages[i].translated = '';
+								// 		chat.messageArr.push(ret.messages[i]);
+								// 	}
+								// }
+									messageList=ret.messages;
+									// alert(JSON.stringify(chat.messageArr));
+								this_.cursor = ret.cursor; //拿到标识
+									console.log("信息数1*****************************************"+ret.messages.length);
+								if(this_.cursor !== "" && ret.count == 1000) {
+									//继续获取消息
+												Continue_getHistroy(this_.ownId,this_.cursor);
+
+								}else{
+								console.log("退出的获取消息已结束，准备进入获取最新消息");
+
+								getNesmessage();
+									return;
+								}
+
+
+
+							} else {
+								// api.alert({
+								// 	msg: JSON.stringify(err)
+								// });
+							}
+
+						});
+
+				}
+			//继续获取第二次的历史消息
+			function	Continue_getHistroy(ownId,cursor) {
+				 var this_ = this;
+				 api.ajax({
+					 url: 'https://report.im.jpush.cn/v2'+ '/messages?cursor=' + cursor,
+					 method: 'get',
+					 headers: {
+						 'Authorization': 'Basic ' + par,
+						 'Content-Type': 'application/json;charset=utf-8'
+					 }
+				 }, function(ret, err) {
+					 if(ret) {
+						//  api.alert({ msg: JSON.stringify(ret) });
+						 if(ret.count === 0) {
+							 return;
+						 }
+						 for(var i = 0; i < ret.messages.length; i++) {
+								 messageList.push(ret.messages[i]);
+						 }
+						 // chat.messageArr.push(ret.messages[i]);
+						 this_.cursor = ret.cursor; //拿到标识
+						 // //如果还有未拿完的数据-那就继续拿
+						 if(this_.cursor !== "" && ret.count == 1000) {
+
+										 Continue_getHistroy(this_.ownId,this_.cursor);
+						 }
+					console.log("信息数2*****************************************"+ret.messages.length);
+					getNesmessage();
+				return;
+
+					 } else {
+						//  api.alert({
+						// 	 msg: JSON.stringify(err)
+						//  });
+					 }
+				 });
+			 }
+
+
+
+				//从所有消息中匹配各个ID的最新消息
+				function getNesmessage(){
+					// alert(JSON.stringify(chatlist));
+					if(chatlist[1]&&chatlist[0].mtime<=chatlist[1].mtime){
+							chatlist.reverse();
+							}
+					// alert(chatlist.length);
+					if(chatlist.length==0){
+
+						api.execScript({
+								script: "window.location.reload();"
+						});
+
+					}
+					// alert("进入");
+					if(!toggle){
+						//获取七天会话列表数组的信息，作用是使半天的信息无法获取以前的信息
+						console.log("进行提前赋值开始***********************");
+							var lastchatList=$api.getStorage('lastchatList');
+							// alert(JSON.stringify(lastchatList));
+						for(var i=0;i<lastchatList.length;i++){
+									for(var j=0;j<chatlist.length;j++){
+										if(lastchatList[i].key==chatlist[j].key){
+											chatlist[j].messages_text=lastchatList[i].messages_text;
+											chatlist[j].msg_ctime=lastchatList[i].msg_ctime;
+										}
+
+									}
+
+							}
+							console.log("提前赋值结束**************************8");
+					}
+
+
+					console.log("进入提取消息");
+					// alert(JSON.stringify(emotionArrEn));
+		//				messageList.reverse();//数据数组倒叙
+					for(var i = 0;i < messageList.length;i++){
+						for(var j=0;j<emotionArr.length;j++){
+							if(messageList[i].msg_body.text==emotionArr[j].text){
+								if($api.getStorage('language')=='zho'){
+								}else{
+									messageList[i].msg_body.text=emotionArrEn[j].text;
+								}
+							}
+						}
+						for(var j = 0;j<chatlist.length;j++){
+							if(messageList[i].target_type=="group"){
+								//ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+								if(messageList[i].target_id == chatlist[j].gid){
+									// alert(JSON.stringify(messageList[i].msg_body.text));
+
+			//							最新消息的发送时间
+										chatlist[j].msg_ctime = messageList[i].msg_ctime;
+										chatlist[j].gid = messageList[i].target_id;
+										// alert(JSON.stringify(chatlist[j].messages_text));
+
+										//判别消息类型
+										if(messageList[i].msg_body.extras && messageList[i].msg_body.extras.type == 'img'){
+											if($api.getStorage('language')=='zho'){
+												chatlist[j].messages_text = '[圖片]';
+											}else{
+												chatlist[j].messages_text = '[Picture]';
+											}
+
+										}else if(messageList[i].msg_body.extras && messageList[i].msg_body.extras.type=='voice'){
+											if($api.getStorage('language')=='zho'){
+												chatlist[j].messages_text = '[語音]';
+											}else{
+												chatlist[j].messages_text = '[Voice]';
+											}
+										}else if(messageList[i].msg_body.extras && messageList[i].msg_body.extras.type=='notice'){
+											if($api.getStorage('language')=='zho'){
+												chatlist[j].messages_text = '[公告]';
+											}else{
+												chatlist[j].messages_text = '[Announcement]';
+											}
+										}else if(messageList[i].msg_body.extras && messageList[i].msg_body.extras.type=='match'){
+											if($api.getStorage('language')=='zho'){
+												chatlist[j].messages_text = '[匹配]';
+											}else{
+												chatlist[j].messages_text = '[Match]';
+											}
+										}else if(messageList[i].msg_body.extras && messageList[i].msg_body.extras.type=='share'){
+											if($api.getStorage('language')=='zho'){
+												chatlist[j].messages_text = '[帖子]';
+											}else{
+												chatlist[j].messages_text = '[Post]';
+											}
+										}else if(messageList[i].msg_body.extras && messageList[i].msg_body.extras.type=='shareGroup'){
+											if($api.getStorage('language')=='zho'){
+												chatlist[j].messages_text = '[群组]';
+											}else{
+												chatlist[j].messages_text = '[Group]';
+											}
+										}
+										else{
+											chatlist[j].messages_text = messageList[i].msg_body.text;
+
+			//								alert(JSON.stringify(chatList.chatList[j]));
+											if(i == messageList.length-1 && j == chatlist.length - 1){
+												// console.log(JSON.stringify(chatlist));
+												// console.log(JSON.stringify(chatlist[chatlist.length-1]));
+												console.log("列表倒序");
+												// 	chatlist.reverse();//数组倒叙
+
+			////					 				如果数据不一样，则替换
+												// 	if(chatlist != $api.getStorage('chatList')){
+												//       chatList.chatList = chatlist;
+												// 	 $api.setStorage('chatList',chatlist);
+												// 	}
+												// 	if(chatlist.length != $api.getStorage('chatList').length){
+												//    chatList.chatList = chatlist;
+												// 	$api.setStorage('chatList',chatlist);
+												// 	}
+												// 	if(chatlist != chatList.chatList){
+												// 		chatList.chatList = chatlist;
+												// 	}
+
+			////									简单粗暴的替换数据
+			//					 				//更新缓存
+			//					 				$api.setStorage('chatList',chatlist);
+			//					 				//更新页面信息
+			//					 				chatList.chatList = chatlist;
+
+												msg_time();//判别最新消息的时间
+											 }
+										 }
+										}
+
+
+								//ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+							}
+						else {
+							// if(messageList[i].from_id=='879b10e76bab491dbb16f4a479513677'){
+							// 	alert("hhh     "+JSON.stringify(messageList[i]));
+							// 	return;
+							// }
+							// (messageList[i].from_id == chatlist[j].username&&messageList[i].target_id==$api.getStorage('id'))||(messageList[i].target_id == chatlist[j].username&&messageList[i].target_id==$api.getStorage('id'))||(messageList[i].from_id==$api.getStorage('id')&&messageList[i].target_id==chatlist[j].username)
+								if((messageList[i].from_id == chatlist[j].username&&messageList[i].target_id==$api.getStorage('id'))||(messageList[i].target_id == chatlist[j].username&&messageList[i].target_id==$api.getStorage('id'))||(messageList[i].from_id==$api.getStorage('id')&&messageList[i].target_id==chatlist[j].username)){
+							// alert(JSON.stringify(messageList[i]));
+		//							最新消息的发送时间
+								chatlist[j].msg_ctime = messageList[i].msg_ctime;
+								chatlist[j].from_id = messageList[i].from_id;
+								// if(chatlist[j].from_id=='879b10e76bab491dbb16f4a479513677'){
+								// 	alert(" ddd " +JSON.stringify(	chatlist[j]));3
+								// }
+								//判别消息类型
+								if(messageList[i].msg_body.extras && messageList[i].msg_body.extras.type == 'img'){
+									if($api.getStorage('language')=='zho'){
+										chatlist[j].messages_text = '[圖片]';
+									}else{
+										chatlist[j].messages_text = '[Picture]';
+									}
+								}else if(messageList[i].msg_body.extras && messageList[i].msg_body.extras.type=='voice'){
+									if($api.getStorage('language')=='zho'){
+										chatlist[j].messages_text = '[語音]';
+									}else{
+										chatlist[j].messages_text = '[Voice]';
+									}
+								}else if(messageList[i].msg_body.extras && messageList[i].msg_body.extras.type=='share'){
+									if($api.getStorage('language')=='zho'){
+										chatlist[j].messages_text = '[帖子]';
+									}else{
+										chatlist[j].messages_text = '[Post]';
+									}
+								}else if(messageList[i].msg_body.extras && messageList[i].msg_body.extras.type=='match'){
+									if($api.getStorage('language')=='zho'){
+										chatlist[j].messages_text = '[匹配]';
+									}else{
+										chatlist[j].messages_text = '[Match]';
+									}
+								}else if(messageList[i].msg_body.extras && messageList[i].msg_body.extras.type=='shareGroup'){
+									if($api.getStorage('language')=='zho'){
+										chatlist[j].messages_text = '[群组]';
+									}else{
+										chatlist[j].messages_text = '[Group]';
+									}
+								}else if(messageList[i].msg_body.extras && messageList[i].msg_body.extras.type=='notice'){
+									if($api.getStorage('language')=='zho'){
+										chatlist[j].messages_text = '[公告]';
+									}else{
+										chatlist[j].messages_text = '[Announcement]';
+									}
+								}
+								else{
+									chatlist[j].messages_text = messageList[i].msg_body.text;
+									if(messageList[i].msg_body.extras.hidden == 'yes'){
+										chatlist[j].hidden = 'yes';
+										// alert(JSON.stringify(chatlist[j]));
+										// alert(JSON.stringify(chatlist));
+									}
+									if(messageList[i].msg_body.extras.hi == 'yes'){
+										chatlist[j].hi = 'yes';
+									}
+
+		//								alert(JSON.stringify(chatList.chatList[j]));
+									if(i == messageList.length-1 && j == chatlist.length - 1){
+
+										// console.log(JSON.stringify(chatlist));
+										// console.log(JSON.stringify(chatlist[chatlist.length-1]));
+										// console.log("列表倒序");
+		// 					 				chatlist.reverse();//数组倒叙
+		//
+		// ////					 				如果数据不一样，则替换
+		// 					 				if(chatlist != $api.getStorage('chatList')){
+		//                        chatList.chatList = chatlist;
+		// 										$api.setStorage('chatList',chatlist);
+		// 					 				}
+		// 					 				if(chatlist.length != $api.getStorage('chatList').length){
+		//                       chatList.chatList = chatlist;
+		// 										$api.setStorage('chatList',chatlist);
+		// 					 				}
+		// 					 				if(chatlist != chatList.chatList){
+		// 					 					chatList.chatList = chatlist;
+		// 					 				}
+
+		////									简单粗暴的替换数据
+		//					 				//更新缓存
+		//					 				$api.setStorage('chatList',chatlist);
+		//					 				//更新页面信息
+		//					 				chatList.chatList = chatlist;
+
+										msg_time();//判别最新消息的时间
+									 }
+								 }
+
+								//  if(chatlist[j].from_id == $api.getStorage('id')&&chatlist[j].messages_text == 'Hello , nice to meet you !'){
+								// 	 	console.log(JSON.stringify(chatlist[j]));
+								//  }
+
+								}
+							 }
+
+						}
+					}
+					if(toggle){
+						//缓存了七天信息的会话列表数组
+										 $api.setStorage('lastchatList',chatlist);
+										 }
+
+													//  chatlist.reverse();//数组倒叙
+					////					 				如果数据不一样，则替换
+														if(chatlist != $api.getStorage('chatList')){
+																	chatList.chatList = chatlist;
+															//  $api.setStorage('chatList',chatlist);
+														}
+														if(chatlist.length != $api.getStorage('chatList').length){
+															 chatList.chatList = chatlist;
+
+														}
+														if(chatlist != chatList.chatList){
+															chatList.chatList = chatlist;
+														}
+														msg_time();
+															$api.setStorage('chatList',chatlist);
+															// $('.loading').css('display','none');
+															// alert(JSON.stringify(chatlist))
+			console.log("提取消息结束");
+			console.log($api.getStorage('id'));
+			//  console.log(JSON.stringify(chatList.chatList));
+				}
+
+		//
+				//实时监听消息
+			function onMsg(){
+				JIM.onMsgReceive(function(data) {
+					// alert(JSON.stringify(data.messages[0].content.msg_body.extras.hi));
+				// 	for(var i =0;i<data.messages.length;i++){
+				// 	Vue.set(chatList.chatList[i],'extras','');
+				// 	$api.setStorage('chatList', chatList.chatList);
+				//
+				// }
+			       setTimeout(function(){
+							 api.sendEvent({
+							     name: 'onMsgReceive',
+							     extra: {
+							       databody:data
+							     }
+							 });
+							 if($api.getStorage('id')!=data.messages[0].content.from_id){
+								 //把监听到的聊天消息存储到数据库中
+								 var msg=[];// 监听单聊的消息列表
+									var Gmsg=[];// 监听群聊的消息列表
+									// alert(JSON.stringify(data.messages[0]));
+								 for(var i=0;i<data.messages.length;i++){
+									//  data.messages[i].content.create_time=;
+								data.messages[i].content.msg_ctime=data.messages[i].ctime_ms;
+										data.messages[i].content.msgid=data.messages[i].msg_id;
+											if(data.messages[i].msg_type==3){
+												 msg.push(data.messages[i].content);
+											 }else if(data.messages[i].msg_type==4){
+													Gmsg.push(data.messages[i].content);
+											 }
+								 }
+								//  alert(JSON.stringify(data.messages[0]));
+
+
+								 tempMs=tempMs.concat(msg);
+								 tempGMs=tempGMs.concat(Gmsg);
+								 if(tempMs.length>20){
+									 tempMs.splice(tempMs.length-20,tempMs.length);
+								 }
+								 if(tempGMs.length>40){
+									 tempGMs.splice(tempGMs.length-40,tempGMs.length);
+								 }
+								 $api.setStorage("tempMs",tempMs);
+								 $api.setStorage("tempGMs",tempGMs);
+								 console.log("添加单聊天消息到数据库");
+								//  insermessage(msg,db);
+							 }
+
+						 },100)
+
+					setTimeout(function(){
+						onmsgbody(data);
+
+					},1000);
+				});
+				// 断线了~~~~
+				JIM.onDisconnect(function(){
+	  				console.log('断线了~~~~断线了~~~~断线了~~~~'+new Date());
+						// alert("列表断线初始化");
+			//没有打开群聊单聊页面的时候重新加载
+      //  if(Object_type==''){
+	  			rejim_init();//重新初始化登录
+					// }
+	  			});
+				}
+				onMsg();
+
+		  	// 广播未读数--显示未读
+		  	function hasnews(){
+		  	console.log('总的未读数：'+$api.getStorage('hasNews')+'******************************************');
+				// alert(JSON.stringify($api.getStorage('hasNews')));
+	//			广播未读消息数
+				api.sendEvent({
+				    name: 'hasNews',
+				    extra: {
+				        num: $api.getStorage('hasNews')
+				    }
+				});
+				//显示在应用图标右上角的数字。为0时表示清除应用图标上显示的数字
+				api.setAppIconBadge({
+				    badge: $api.getStorage('hasNews')
+				});
+		  	}
+				//用于时间戳转换成日期格式
+				function change1(number,b){
+
+	           var timebin='';
+	          var number1=(number+"").substring(0,10);
+	            b= parseInt(number1)+b;
+	        function timestampToTime(b) {
+	                var date = new Date(b*1000);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+	                Y = date.getFullYear() + '-';
+	                M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+	                D = date.getDate() + ' ';
+	                h = date.getHours() + ':';
+	                m = date.getMinutes() + ':';
+	                s = date.getSeconds();
+	                timebin=Y+M+D+h+m+s;
+	               //  //alert(timebin+h+m+s);
+	            }
+
+	             timestampToTime(b);
+	             return timebin;
+	            // alert(timebin);
+
+	      }
+				function caonima(otherId){
+					JIM.sendSingleMsg({
+					'target_username': otherId,
+					'content': 'hi',
+					'extras': {
+						hidden: 'yes',
+						type: 'txt'
+					}
+				}).onSuccess(function(data, msg) {
+													console.log("发送成功");
+				}).onFail(function(data,msg){
+					console.log("发送失败，重新登录极光发送");
+					rejim_init(2,ret);
+					// onMsg();
+				})
+				}
+				function sayHello(user,hobby){
+						// var num1 = Math.round(Math.random()*9);
+						// var num1 = Math.round(Math.random()*7);
+						// var emo = ['[得意]','[呲牙]','[调皮]','[愉快]','[玫瑰]','[太阳]','[胜利]','[强]','[咖啡]','[害羞]'];
+						// var hello = ['hi','hello','hey','Yo!','[呲牙]','[愉快]','[太阳]','[害羞]'];
+						// var helemo =
+						api.sendEvent({
+						    name: 'ChatListExec',
+						    extra: {
+										targetType: "single",
+						        otherId: user.ui_id,
+										hi: 'yes',
+										hobby_common: hobby,
+										num: user.num,
+						        type: 'txt3'
+						    }
+						});
+				}
+				function rejim_init(schema,data2){   //schema当传入schema == 1 代表是被发送消息调用
+						if(JIM.isLogin()==false){
+						  JIM= new JMessage();
+						}
+					console.log("启动极光计时器连接状态"+JIM.isConnect());
+console.log("开始计时器没初始化"+JIM.isInit());
+        if(JIM.isInit()==false){
+					timestamp = (new Date()).valueOf(); //当前时间戳
+					 random_str = random(30); //生成随机字符串
+					 signature = MD5("appkey=c46c8bc128f41299334ec8e3&timestamp=" + timestamp + "&random_str=" + random_str + "&key=269e7aa2881b1a8767f16ce6");
+					 JIM.init({
+			 			"appkey": "c46c8bc128f41299334ec8e3",
+			 			"random_str": random_str,
+			 			"signature": signature,
+			 			"timestamp": timestamp,
+			 			"flag": 0
+			 		}).onSuccess(function(data) {
+						console.log("开始计时器初始化成功"+JIM.isLogin());
+						if(JIM.isLogin()==false){
+							console.log("开始计时器没有初始化————未登录极光------》开始进行登录极光");
+							JIM.login({
+									'username': $api.getStorage('id'),
+									'password': 123456
+								}).onSuccess(function(data) {
+										console.log("计时器成功登陆极光");
+														if(schema == 1){             //被极光发送消息调用
+														sendMessages(data2);          //调用发送消息
+										}
+								})
+
+						}
+
+					}).onFail(function(data) {
+          console.log("计时器失败登陆极光"+JSON.stringify(data));
+        });
+				}else if(JIM.isLogin()==false){
+						console.log("开始计时器已初始化————未登录极光------》开始进行登录极光");
+					JIM.login({
+							'username': $api.getStorage('id'),
+							'password': 123456
+						}).onSuccess(function(data) {
+								console.log("计时器成功登陆极光");
+								if(schema == 1){             //被极光发送消息调用
+								sendMessages(data);          //调用发送消息
+				}
+
+
+						})
+				}
+			}
+			//	用于定时器调用
+				function timer1(){
+				// 	if(Object_type==''){
+				// 	rejim_init();
+				// 	onMsg();
+				//
+				// }else
+				// if(Object_type==1){
+				// 	console.log("打开分享页面，停止定时重新登录极光！")
+				// }else{
+				console.log("计时器开始运行中");
+						rejim_init();
+						onMsg();
+
+				// }
+
+				}
+			function onmsgbody(data){
+					var  nickname=$api.getStorage("nickname");
+				console.log("监听到新消息");
+				//  alert("不可能的");
+				// alert(JSON.stringify(data));
+				console.log('实时监听消息----------'+JSON.stringify(data));
+				//如果发送者是自己或者是当前聊天对象，则忽略
+				// if($api.getStorage('id') == data.messages[0].content.from_id || uiid == data.messages[0].content.from_id){
+				// 	return;
+				// }
+				// console.log("11*************"+Object_username);
+				// console.log("11*************"+Object_type);
+				if($api.getStorage('id')==data.messages[0].content.from_id){
+					return;
+				}
+				// &&(Object_username==data.messages[0].from_gid||Object_username==data.messages[0].from_id)
+				if(data.messages[0].msg_type==Object_type&&data.messages[0].msg_type=='3'&&Object_username==data.messages[0].from_username){
+						return;
+
+				}else if(data.messages[0].msg_type==Object_type&&data.messages[0].msg_type=='4'&&Object_username==data.messages[0].from_gid){
+					return;
+				}
+
+
+				var content;//最新消息内容
+				//判断消息类型
+				if(data.messages[0].content.msg_body.extras.type=='img'){
+					if($api.getStorage('language')=='zho'){
+							content ='[圖片]';
+					}else{
+						  content ='[Picture]';
+					}
+				}else if(data.messages[0].content.msg_body.extras.type=='voice'){
+					if($api.getStorage('language')=='zho'){
+							content ='[語音]';
+					}else{
+							content ='[Voice]';
+					}
+				}else if(data.messages[0].content.msg_body.extras.type=='share'){
+					if($api.getStorage('language')=='zho'){
+							content ='[帖子]';
+					}else{
+							content ='[Post]';
+					}
+				}else if(data.messages[0].content.msg_body.extras.type=='match'){
+					if($api.getStorage('language')=='zho'){
+							content ='[匹配]';
+					}else{
+							content ='[Match]';
+					}
+				}else if(data.messages[0].content.msg_body.extras.type=='txt3'){
+					if($api.getStorage('language')=='zho'){
+							content ='向你打招呼';
+					}else{
+							content ='Say HI to you';
+					}
+				}else{
+					for(var i=0;i<emotionArr.length;i++){
+						if(data.messages[0].content.msg_body.text==emotionArr[i].text){
+							if($api.getStorage('language')=='zho'){
+
+							}else{
+								data.messages[0].content.msg_body.text = emotionArrEn[i].text;
+							}
+						}
+					}
+					content = data.messages[0].content.msg_body.text;
+				}
+
+				//匹配-插入数据
+				var lock1 = true;
+				for(var i = 0;i < chatList.chatList.length;i++){
+					//判断是否为群消息且是已有会话
+					if(chatList.chatList[i].gid == data.messages[0].from_gid&&data.messages[0].msg_type=='4'){
+						 tou=chatList.chatList[i].nickname;
+						// alert("再次进行群聊");
+						lock1 = false;
+						console.log('匹配');
+						Vue.set(chatList.chatList[i],'time','刚刚');
+						Vue.set(chatList.chatList[i],'gid',data.messages[0].from_gid);
+
+//						最新消息的发送时间
+						Vue.set(chatList.chatList[i],'msg_ctime',data.messages[0].ctime_ms);
+
+						//最新消息内容
+						Vue.set(chatList.chatList[i],'messages_text',content);
+
+						//该消息未读数加一
+						Vue.set(chatList.chatList[i],'unread_msg_count',chatList.chatList[i].unread_msg_count + 1);
+
+						if(content.indexOf("@"+nickname)!=-1){ //表示有人@你,进行通知
+									Vue.set(chatList.chatList[i],'it',wenben.it);
+						}
+						// 置顶
+//						setTimeout(function (){
+						//  alert(JSON.stringify(chatList.chatList[i]));
+							var newMessage = chatList.chatList.splice(i,1);
+							chatList.chatList.unshift(newMessage[0]);
+//						},1000)
+
+					}
+				//判断是否为单聊消息
+
+				if(chatList.chatList[i].username == data.messages[0].content.from_id&&data.messages[0].msg_type=='3'){
+							tou=chatList.chatList[i].nickname;
+						// alert("再次进行单聊");
+						lock1 = false;
+						console.log('匹配');
+						if(data.messages[0].content.msg_body.extras.hi=='yes'){
+							Vue.set(chatList.chatList[i],'hi','yes');
+						}else{
+							Vue.set(chatList.chatList[i],'hi','no');
+						}
+						//如果是原本七天前的聊天对象让他显示出在当前的列表
+						if(chatList.chatList[i].statu==0){
+								Vue.set(chatList.chatList[i],'statu',1);
+						}
+						Vue.set(chatList.chatList[i],'time','刚刚');
+						Vue.set(chatList.chatList[i],'from_id',data.messages[0].content.from_id);
+
+//						最新消息的发送时间
+						Vue.set(chatList.chatList[i],'msg_ctime',data.messages[0].ctime_ms);
+
+						//最新消息内容
+						Vue.set(chatList.chatList[i],'messages_text',content);
+
+						//该消息未读数加一
+						Vue.set(chatList.chatList[i],'unread_msg_count',chatList.chatList[i].unread_msg_count + 1);
+						// 置顶
+//						setTimeout(function (){
+							var newMessage = chatList.chatList.splice(i,1);
+							chatList.chatList.unshift(newMessage[0]);
+//						},1000)
+
+								}
+
+				}
+
+				if(lock1){//第一次对话
+					console.log('第一次对话');
+//判断是否为群组消息
+					if(data.messages[0].msg_type=='4'){
+						// alert("第一次群聊");
+
+						JIM.getGroupInfo({
+								'gid' : data.messages[0].from_gid
+						 }).onSuccess(function(data2) {
+							//  alert(JSON.stringify(data2));
+									tou=data2.group_info.name;
+							 	var text ={
+									gid:data.messages[0].from_gid,
+									name : data.messages[0].from_gid,
+									username : data.messages[0].from_gid,
+									messages_text : content,
+									msg_ctime : data.messages[0].ctime_ms,
+									from_id : data.messages[0].content.from_id,
+									time:'刚刚',
+									avatar_url:data2.group_info.desc,
+									nickname:data2.group_info.name,
+									unread_msg_count:1
+								}
+								chatList.chatList.unshift(text);//在前面插入数据
+
+						 }).onFail(function(data) {
+								// alert(JSON.stringify(data));
+						 });
+
+
+					}
+								//获取最新消息的个人信息
+else	{
+						// alert("第一次单聊");
+							api.ajax({
+						url: json['http'] + json['tin']['userinfo'],
+						method: 'post',
+						data: {
+							values: {
+								uiId: data.messages[0].content.from_id,
+								pageUiId: data.messages[0].content.from_id
+							}
+						},
+						async: false,
+					}, function(ret, err) {
+						if(data.messages[0].content.msg_body.extras.hi!=undefined){
+							var h = data.messages[0].content.msg_body.extras.hi;
+						}else{
+							var h = '';
+						}
+						//手动插入数据-简单粗暴
+						tou=ret.data.nickname;
+						var text ={
+							name : data.messages[0].content.from_id,
+							username : data.messages[0].content.from_id,
+							messages_text : content,
+							msg_ctime : data.messages[0].ctime_ms,
+							from_id : data.messages[0].content.from_id,
+							time:'刚刚',
+							avatar_url:ret.data.avatar_url,
+							nickname:ret.data.nickname,
+							hi:h,
+							unread_msg_count:1
+						}
+						chatList.chatList.unshift(text);//在前面插入数据
+					});
+			}
+				}else{
+					$api.setStorage('chatList',chatList.chatList);
+					console.log('总未读消息数' + hasNews);
+				}
+				//提示声音
+				// alert(JSON.stringify(data.messages[0].content.msg_body.text));
+				  // var toggle7=0;
+					console.log("*********        "+JSON.stringify(toulist));
+				for(var i=0;i<toulist.length;i++){
+					if(toulist[i].tou==tou){
+						api.cancelNotification({    //清除通知栏上的本地来源于同一个群组或者单聊的推送消息
+									id: toulist[i].id
+							});
+							toulist.splice(i,1);
+					}
+
+				}
+											var id=$api.getStorage("id")
+							//群聊免打扰功能
+							var shieldMS=(typeof($api.getStorage("shieldMS"))!="undefined")?$api.getStorage("shieldMS"):{};
+							if(data.messages[0].msg_type=='4'&&shieldMS[id]!=null&&shieldMS[id][data.messages[0].from_gid]==false || data.messages[0].msg_type=='3'&&shieldMS[id]!=null&&shieldMS[id][data.messages[0].content.from_id]==false){
+											if(content.indexOf("@"+nickname)!=-1){ //表示有人@你,进行通知
+
+											}else{
+												return;
+											}
+							}
+								//缓存总未读数
+								$api.setStorage('hasNews',(Number($api.getStorage('hasNews')) + 1));
+								hasnews();
+
+					//不覆盖
+	      // alert("aaa");
+				// api.notification();
+					api.notification({
+
+						// sound:'widget://res/m.wav',
+							  //  sound:'default',
+							// light:true,
+							notify:{
+
+								title:"Tinkle",                //标题，Android中默认值为应用名称，支持Android和iOS 8.2以上系统
+								content:tou+": "+content,//content,                //内容，默认值为'有新消息'
+								extra:'',                   //附加信息，页面可以监听noticeclicked事件得到点击的通知的附加信息
+								updateCurrent: false   //是否覆盖更新已有的通知，取值范围true|false。只Android有效
+						}
+					}, function(ret, err) {
+
+							var id = ret.id;
+								toulist.push({"tou":tou,"id":ret.id});
+								//缓存推送的列表
+								$api.setStorage('toulist', toulist);
+
+							// console.log("不覆盖的"+ret.id);
+					});
+
+
+
+
+
+			}
+			//发消息增加活跃度
+			function addact(gid){
+					api.ajax({
+					    url: 'http://api.baopinghui.com/tin_Groups/updateGroupsActivityTospeak',
+					    method: 'post',
+					    data: {
+					        values: {
+					            gid: gid,
+											uid: $api.getStorage('id')
+					        }
+					    }
+					},function(ret, err){
+					    if (ret) {
+					        // alert( JSON.stringify( ret ) );
+					    }
+					});
+
+			}
+			//接受群单聊群聊的消息用极光发送消息
+			function sendMessages(ret){
+				if(ret.value.targetType == "single"){   //发送事务的来源是单聊
+													if(ret.value.type == "txt"||ret.value.type=="img"){     //判断发送自定义信息类型
+																					JIM.sendSingleMsg({
+																					'target_username': ret.value.target_username,
+																					'content': ret.value.content,
+																					'extras': {
+																						type: ret.value.type
+																					}
+																				}).onSuccess(function(data, msg) {
+																					console.log("发送文本或图片消息成功");
+																					//发送消息成功
+
+																					if(ret.value.type == "txt"){
+																						api.sendEvent({
+																								name: 'ChatListExecReturn',
+																								extra: {
+																										state:1
+																								}
+																						});
+																						addTempMessages(data,msg,1); //发送成功的消息添加到临时消息组中，的进入单聊页面是加入数据库单聊消息表
+																							notificationIOS(ret.value.target_username,ret.value.content);
+
+																					}else{
+																						api.sendEvent({
+																								name: 'ChatListExecReturn',
+																								extra: {
+																										state:1,
+																										text: msg.content.msg_body.text
+																								}
+																						});
+																						addTempMessages(data,msg,1); //发送成功的消息添加到临时消息组中，的进入单聊页面是加入数据库单聊消息表
+																						if($api.getStorage('language')=='zho'){
+																							notificationIOS(ret.value.target_username,"[圖片]");//单聊发送IOS推送
+																						}else{
+																							notificationIOS(ret.value.target_username,"[Picture]");//单聊发送IOS推送
+																						}
+																					}
+
+
+																				}).onFail(function(data,msg){
+																					  if(data.code==880103){
+																						       addJIMUser(ret.value.target_username);
+																					}
+
+
+																				})
+																		}else if(ret.value.type=="voice"){   //发送的是单聊语音
+																					JIM.sendSingleMsg({
+																						'target_username': ret.value.target_username,
+																						'content': ret.value.content,
+																						'extras': {
+																							type: 'voice',
+																							duration: ret.value.duration
+																						}
+																					}).onSuccess(function(data, msg) {
+																						console.log("发送语音成功消息成功");
+																						api.sendEvent({
+																								name: 'ChatListExecReturn',
+																								extra: {
+																										state:1
+																								}
+																						});
+																					addTempMessages(data,msg,1); //发送成功的消息添加到临时消息组中，的进入单聊页面是加入数据库单聊消息表
+																						if($api.getStorage('language')=='zho'){
+																							notificationIOS(ret.value.target_username,"[語音]");//单聊发送IOS推送
+																						}else{
+																							notificationIOS(ret.value.target_username,"[Voice]");//单聊发送IOS推送
+																						}
+
+																			}).onFail(function(data){
+																						if(data.code==880103){
+																									 addJIMUser(ret.value.target_username);
+																					}
+
+																			})
+
+																		}else if(ret.value.type=="txt2"){
+																					JIM.sendSingleMsg({
+																						'target_username': ret.value.target_username,
+																						'content': ret.value.content,
+																						'extras': {
+																							type: 'txt2',
+																						}
+																					}).onSuccess(function(data, msg) {
+																						console.log("发送消息成功");
+																						api.sendEvent({
+																								name: 'ChatListExecReturn',
+																								extra: {
+																										state:1
+																								}
+																						});
+														   addTempMessages(data,msg,1); //发送成功的消息添加到临时消息组中，的进入单聊页面是加入数据库单聊消息表
+                               notificationIOS(ret.value.target_username,ret.value.content);//单聊发送IOS推送
+
+																			}).onFail(function(data){
+																						if(data.code==880103){
+																									 addJIMUser(ret.value.target_username);
+																					}
+
+																			})
+
+																		}else if(ret.value.type=="match"){   //发送的是匹配
+																					JIM.sendSingleMsg({
+																						'target_username': ret.value.target_username,
+																						'content': ret.value.content,
+																						'extras': {
+																							type: 'match',
+																							adjective_me: ret.value.adjective_me,
+																							fate_me:ret.value.fate_me,
+																							constellation1:ret.value.constellation1,
+																							area_me:ret.value.area_me,
+																							match:ret.value.match,
+																							adjective: ret.value.adjective,
+																							fate:ret.value.fate,
+																							constellation2:ret.value.constellation2,
+																							area:ret.value.area,
+																							sex_me:ret.value.sex_me,
+																							sex:ret.value.sex
+																						}
+																					}).onSuccess(function(data, msg) {
+																						// console.log("发送语音成功消息成功");
+																						// alert(JSON.stringify(msg));
+																						api.sendEvent({
+																								name: 'ChatListExecReturn',
+																								extra: {
+																										state:1
+																								}
+																						});
+																						addTempMessages(data,msg,1); //发送成功的消息添加到临时消息组中，的进入单聊页面是加入数据库单聊消息表
+																						if($api.getStorage('language')=='zho'){
+																							notificationIOS(ret.value.target_username,"[匹配]");//单聊发送IOS推送
+																						}else{
+																							notificationIOS(ret.value.target_username,"[Match]");//单聊发送IOS推送
+																						}
+
+																			}).onFail(function(data){
+																						if(data.code==880103){
+																									 addJIMUser(ret.value.target_username);
+																					}
+
+																			})
+
+																		}else if(ret.value.type == "share"){
+																			JIM.sendSingleMsg({
+																				'target_username': ret.value.target_username,
+																				'content': ret.value.content,
+																				'extras': {
+																					type: 'share',     //发送的自定义的消息类型
+																					postUsername:ret.value.postUsername,
+																					postId:ret.value.postId,
+																					img:ret.value.img,
+																					title:ret.value.title,
+																					otherId: ret.value.otherId,
+																					post_type: ret.value.post_type
+																				}
+																			}).onSuccess(function(data, msg) {
+																				console.log("转载帖子成功");
+																				api.sendEvent({
+																						name: 'ChatListExecReturn',
+																						extra: {
+																								state:1
+																						}
+																				});
+																			addTempMessages(data,msg,1); //发送成功的消息添加到临时消息组中，的进入单聊页面是加入数据库单聊消息表
+																				api.sendEvent({
+																 									 name: 'loginIM',
+																 									 extra: {
+																										 key4: $api.getStorage("id"),
+																										 key1: msg.content.target_id,
+																										 key3: msg.content.create_time,
+																										 key2: msg.content.msg_body.text
+																 									 }
+																 							 });
+																							 if($api.getStorage('language')=='zho'){
+									 															notificationIOS(ret.value.target_username,"[帖子]");//单聊发送IOS推送
+									 														}else{
+									 															notificationIOS(ret.value.target_username,"[Post]");//单聊发送IOS推送
+									 														}
+																	}).onFail(function(data){
+																		if(data.code==880103){
+																					 addJIMUser(ret.value.target_username);
+																	}
+
+																	})
+
+
+																}else if(ret.value.type == "shareGroup"){
+																	JIM.sendSingleMsg({
+																		'target_username': ret.value.target_username,
+																		'content': ret.value.content,
+																		'extras': {
+																			type: 'shareGroup',     //发送的自定义的消息类型
+																			avatar_url: ret.value.avatar_url,
+																			nickname: ret.value.nickname,
+																			gid: ret.value.gid
+																		}
+																	}).onSuccess(function(data, msg) {
+																		// alert(JSON.stringify(msg));
+																		console.log("分享群组成功");
+																		api.sendEvent({
+																				name: 'ChatListExecReturn',
+																				extra: {
+																						state:1
+																				}
+																		});
+																		//分享群成功同步更新chat2的messageArr数组
+																		api.sendEvent({
+																		    name: 'chatMessage',
+																		    extra: {
+																		        msg: msg.content.msg_body,
+																		    }
+																		});
+                                    addTempMessages(data,msg,1); //发送成功的消息添加到临时消息组中，的进入单聊页面是加入数据库单聊消息表
+																		api.sendEvent({
+																							 name: 'loginIM',
+																							 extra: {
+																								 key4: $api.getStorage("id"),
+																								 key1: msg.content.target_id,
+																								 key3: msg.content.create_time,
+																								 key2: msg.content.msg_body.text
+																							 }
+																					 });
+																					 if($api.getStorage('language')=='zho'){
+																						notificationIOS(ret.value.target_username,"[群组]");//单聊发送IOS推送
+																					}else{
+																						notificationIOS(ret.value.target_username,"[Group]");//单聊发送IOS推送
+																					}
+																		}).onFail(function(data){
+																			if(data.code==880103){
+																						 addJIMUser(ret.value.target_username);
+																		}
+
+																		})
+																}else if(ret.value.type == "couple"){
+																	JIM.sendSingleMsg({
+																		'target_username': ret.value.target_username,
+																		'content': ret.value.content,
+																		'extras': {
+																			type: 'couple',
+																			data: ret.value.data,
+																		}
+																	}).onSuccess(function(data, msg) {
+																		// alert(JSON.stringify(msg));
+																		api.sendEvent({
+																				name: 'ChatListExecReturn',
+																				extra: {
+																						state:1,
+																						data: msg.content.msg_body.extras.data
+																				}
+																		});
+															 addTempMessages(data,msg,1); //发送成功的消息添加到临时消息组中，的进入单聊页面是加入数据库单聊消息表
+															 notificationIOS(ret.value.target_username,ret.value.content);//单聊发送IOS推送
+
+															}).onFail(function(data){
+																		if(data.code==880103){
+																					 addJIMUser(ret.value.target_username);
+																	}
+
+															})
+														}else if(ret.value.type == "role"){
+															JIM.sendSingleMsg({
+																'target_username': ret.value.target_username,
+																'content': ret.value.content,
+																'extras': {
+																	type: 'role',
+																	data: ret.value.data,
+																	ownHead: ret.value.ownHead
+																}
+															}).onSuccess(function(data, msg) {
+																// alert(JSON.stringify(msg));
+																api.sendEvent({
+																		name: 'ChatListExecReturn',
+																		extra: {
+																				state:1
+																		}
+																});
+													 addTempMessages(data,msg,1); //发送成功的消息添加到临时消息组中，的进入单聊页面是加入数据库单聊消息表
+													 notificationIOS(ret.value.target_username,ret.value.content);//单聊发送IOS推送
+
+													}).onFail(function(data){
+																if(data.code==880103){
+																			 addJIMUser(ret.value.target_username);
+															}
+
+													})
+												}else if(ret.value.type == "txt3"){ //每天调用给4个人发送消息
+													JIM.sendSingleMsg({
+														'target_username': ret.value.otherId,
+														'content': 'hi',
+														'extras': {
+															hi: 'yes',
+															hobbies_common: ret.value.hobby_common,
+															num: ret.value.num,
+															type: 'txt3'
+														}
+													}).onSuccess(function(data, msg) {
+														// if($api.getStorage('noSend')!='undefined'&&$api.getStorage('noSend')!=undefined){
+														// 	var noSend = $api.getStorage('noSend');
+														// }else{
+														// 	var noSend = [];
+														// }
+														console.log("发送成功");
+														// noSend.push(ret.value.otherId);
+														// $api.setStorage('noSend', noSend);
+														// alert(JSON.stringify(msg));
+											 addTempMessages(data,msg,1); //发送成功的消息添加到临时消息组中，的进入单聊页面是加入数据库单聊消息表
+											 notificationIOS(ret.value.otherId,'Say HI to you');//单聊发送IOS推送
+
+											}).onFail(function(data){
+														if(data.code==880103){
+																	 addJIMUser(ret.value.otherId);
+													}
+
+											})
+										}
+
+				}else if(ret.value.targetType=="group"){     //调用极光向指定群组发送消息
+					var gid = ret.value.target_gid;
+					if(ret.value.type=="txt"||ret.value.type=="img"){    //发送自定义消息的文本消息和图片
+													JIM.sendGroupMsg({
+													'target_gid': ret.value.target_gid,
+													'target_gname':ret.value.target_gname,
+													'content': ret.value.content,
+													'extras': {
+														type: ret.value.type
+													}
+												}).onSuccess(function(data, msg) {
+													if(ret.value.type=="txt"){
+														//发送消息成功
+														api.sendEvent({
+																name: 'ChatListExecReturn',
+																extra: {
+																		state:1
+																}
+														});
+														addTempMessages(data,msg,2); //发送成功的消息添加到临时消息组中，的进入单聊页面是加入数据库单聊消息表
+														addact(gid);                 //发消息增加活跃度
+													}else{
+														//发送消息成功
+														api.sendEvent({
+																name: 'ChatListExecReturn',
+																extra: {
+																		state:1,
+																		text: msg.content.msg_body.text
+																}
+														});
+														addTempMessages(data,msg,2); //发送成功的消息添加到临时消息组中，的进入单聊页面是加入数据库单聊消息表
+														addact(gid);                 //发消息增加活跃度
+													}
+
+												}).onFail(function(data,msg){
+												})
+										}else if(ret.value.type == "voice"){    //发送自定义消息的语音
+													JIM.sendGroupMsg({
+													'target_gid': ret.value.target_gid,
+													'target_gname':ret.value.target_gname,
+													'content': ret.value.content,
+													'extras': {
+														type: ret.value.type,
+														duration: ret.value.duration
+													}
+												}).onSuccess(function(data, msg) {
+													//发送消息成功
+													api.sendEvent({
+															name: 'ChatListExecReturn',
+															extra: {
+																	state:1
+															}
+													});
+													addTempMessages(data,msg,2); //发送成功的消息添加到临时消息组中，的进入单聊页面是加入数据库单聊消息表
+													addact(gid);                 //发消息增加活跃度
+												}).onFail(function(data,msg){
+
+									})
+							}else if(ret.value.type == "notice"){  //发送群聊发送公告
+											JIM.sendGroupMsg({
+											'target_gid': ret.value.target_gid,
+											'target_gname':ret.value.target_gname,
+											'content': ret.value.content,
+											'extras': {
+												type: ret.value.type,
+												content: ret.value.content2
+											}
+										}).onSuccess(function(data, msg) {
+											//发送消息成功
+											// api.sendEvent({
+											// 		name: 'ChatListExecReturn',
+											// 		extra: {
+											// 				state:1
+											// 		}
+											// });
+											addTempMessages(data,msg,2); //发送成功的消息添加到临时消息组中，的进入单聊页面是加入数据库单聊消息表
+											addact(gid);                 //发消息增加活跃度
+										}).onFail(function(data,msg){
+
+			         	})
+						}else if(ret.value.type == "share"){  //把帖子转发到群组
+										JIM.sendGroupMsg({
+											'target_gid': ret.value.target_gid,
+											'content': ret.value.content,
+											'extras': {
+												type: 'share',     //发送的自定义的消息类型
+												postUsername:ret.value.postUsername,
+												postId:ret.value.postId,
+												img:ret.value.img,
+												title:ret.value.title,
+												otherId: ret.value.otherId,
+												post_type: ret.value.post_type
+											}
+										}).onSuccess(function(data, msg) {
+											console.log("转载帖子成功");
+											api.sendEvent({        //发送到nav/out.html 通知转发成功
+													name: 'ChatListExecReturn',
+													extra: {
+															state:1
+													}
+											});
+
+											api.sendEvent({
+																 name: 'loginIM2',
+																 extra: {
+																	 key4: $api.getStorage("id"),
+																	 key1: ret.value.target_gid,
+																	 key3: msg.content.create_time,
+																	 key2: msg.content.msg_body.text
+																 }
+														 });
+														 addTempMessages(data,msg,2); //发送成功的消息添加到临时消息组中，的进入单聊页面是加入数据库单聊消息表
+														 addact(gid);                 //发消息增加活跃度
+								}).onFail(function(data){
+
+								})
+						}else if(ret.value.type == "shareGroup"){
+							JIM.sendGroupMsg({
+								'target_gid': ret.value.target_gid,
+								'content': ret.value.content,
+								'extras': {
+									type: 'shareGroup',     //发送的自定义的消息类型
+									avatar_url: ret.value.avatar_url,
+									target_gname: ret.value.target_gname,
+									nickname: ret.value.nickname,
+									gid: ret.value.gid,
+									txt: ret.value.txt,
+									describe: ret.value.describe,
+									key: ret.value.key
+								}
+							}).onSuccess(function(data, msg) {
+								// alert(JSON.stringify(msg));
+								console.log("分享群组成功");
+								api.sendEvent({
+										name: 'ChatListExecReturn',
+										extra: {
+												state:1
+										}
+								});
+								//分享群成功同步更新group_chaht的messageArrfen数组
+								api.sendEvent({
+										name: 'groupMessage',
+										extra: {
+												msg: msg.content.msg_body,
+										}
+								});
+								addTempMessages(data,msg,2); //发送成功的消息添加到临时消息组中，的进入单聊页面是加入数据库单聊消息表
+								 addact(gid);                 //发消息增加活跃度
+								api.sendEvent({
+													 name: 'loginIM2',
+													 extra: {
+														 key4: $api.getStorage("id"),
+														 key1: ret.value.target_gid,
+														 key3: msg.content.create_time,
+														 key2: msg.content.msg_body.text
+													 }
+											 });
+								}).onFail(function(data){
+									if(data.code==880103){
+												 addJIMUser(ret.value.target_username);
+								}
+
+								})
+						}
+		  	}
+		}
+		   	function mangerAdmin(ret){  //群组对管理员的操作
+
+				//判断类型是移除还是添加管理员
+					//添加指定群主的管理员
+				if(ret.value.type == "addAdmin"){
+				JIM.addGroupKeeper({
+										'gid' : ret.value.gid,
+										 'member_usernames' : [{'username' : ret.value.username}]
+								 }).onSuccess(function(data) {
+									//  成功立即通知group-setting.hmtl页面
+									 api.sendEvent({
+											 name: 'execJIMend',
+											 extra: {
+													 type: "addAdmin"
+
+											 }
+									 });
+								 }).onFail(function(data) {});
+			}else if(ret.value.type == "removeAdmin"){
+				//移除管理员
+				JIM.delGroupKeeper({
+										'gid' : ret.value.gid,
+										 'member_usernames' : [{'username' : ret.value.username}]
+								 }).onSuccess(function(data) {
+									//  成功立即通知group-setting.hmtl页面
+									 api.sendEvent({
+											 name: 'execJIMend',
+											 extra: {
+													 type: "removeAdmin"
+											 }
+									 });
+						 }).onFail(function(data) { });
+		  	}
+		}
+		  function addJIMUser(username){   //直接通过Tinkle 的后台对对用户进行极光注册
+								 api.ajax({
+										 url: 'http://api.baopinghui.com/jpushim/findnewbin11',
+										 method: 'get',
+										 data: {
+												 values: {
+														 user: username
+												 }
+										 }
+								 },function(ret1, err){
+										 if (ret1) {
+											 api.sendEvent({                    //通知当前的聊天
+														name: 'ChatListExecReturn',
+														extra: {
+																state:2   //2代表对方用户不存在极光账户,帮他进行注册，并注册成功  1代表发送消息成功
+														}
+												});
+												 // alert("成功");
+											//  history.go(0);
+											// 	 msgToTop();
+
+										 } else {
+
+										 }
+								 });
+
+			}
+			function notificationIOS(sendUiid,contentText){//单聊消息发送调用后台接口进行iOS平台的推送
+				 api.ajax({
+						 url: 'http://api.baopinghui.com/jpushim/findnewbin19',
+						 method: 'get',
+						 data: {
+								 values: {
+										 uiid: $api.getStorage("id"),
+										 targetUiid:sendUiid,
+										 nickname:$api.getStorage("nickname"),
+										 text:contentText
+								 }
+						 }
+				 },function(ret, err){
+
+				 });
+		}
+		//自己发送的消息加到临时的消息数组中，等进入某个群组或单聊时把这些消息加到数据库中，这个用来解决操作太快导致消息还没有到极光的数据库中
+		 function addTempMessages(data, msg ,statu){ //statu 1代表单聊 2群聊
+
+			//  alert(JSON.stringify(msg)+":::::::"+JSON.stringify(data));
+					 var msgs=[];
+					 msg.content.msgid=msg.msg_id;
+					//  msg.content.create_time=data.ctime_ms;
+					msg.content.msg_ctime=data.ctime_ms;
+				//  alert(JSON.stringify(msg)+":::::::"+JSON.stringify(data));
+				 setTimeout(function(){
+								 msgs.push(msg.content);
+								 if(statu == 1){
+									 tempMs=tempMs.concat(msgs);
+									 if(tempMs.length>20){
+										 tempMs.splice(tempMs.length-20,tempMs.length);
+									 }
+									 $api.setStorage("tempMs",tempMs);
+								 }else{
+									 tempGMs=tempGMs.concat(msgs);
+									 if(tempGMs.length>40){
+										 tempGMs.splice(tempGMs.length-40,tempGMs.length);
+									 }
+									 $api.setStorage("tempGMs",tempGMs);
+								 }
+				 },50)
+
+		 }
+	</script>
+<!-- <script src="../../script/jiguang.js" type="text/javascript" charset="utf-8"></script> -->
+</html>

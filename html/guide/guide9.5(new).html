@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+	<title>guide9(new)</title>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+		}
+		body{
+			width:100vw;
+			height:100vh;
+			/*visibility: hidden;*/
+		}
+		.bg{
+			position: fixed;
+			top:0;
+			width:100vw;
+			height:100vh;
+			background-color:#000;
+			opacity: 0.8;
+			/*animation:bganimation 0.3s linear 0s 1 normal;
+			-webkit-animation: bganimation 0.3s linear 0s 1 normal;
+			-ms-animation: bganimation 0.3s linear 0s 1 normal;
+			-o-animation: bganimation 0.3s linear 0s 1 normal;
+			-moz-animation: bganimation 0.3s linear 0s 1 normal;*/
+			z-index: -1;
+		}
+		.box{
+			position: fixed;
+			top:50%;
+			left:50%;
+			margin-left:-41.89vw;
+			/*margin-top:-50vw;*/
+			width:83.78vw;
+			padding-bottom:8.2vw;
+			background-color:#fff;
+			border-radius:5.32vw;
+			display: none;
+		}
+		p{
+			width: 96%;
+			font:3.8vw Arial;
+			font-weight:bold;
+			text-align: center;
+			padding:0 2.66vw;
+			box-sizing: border-box;
+			/*background: black;*/
+			margin-left: 2%;
+		}
+		.box p:nth-of-type(1){
+			margin-top:3.2vw;
+		}
+		span{
+			color:#f381a3;
+		}
+		.img{
+			margin-top:3.12vw;
+			margin-bottom:3.12vw;
+			width:100%;
+			height:55.85vw;
+			background:url(../../icon/guide/guide_img.jpg);
+			background-size: cover;
+		}
+		.button1,.button2,.buttonM{
+			width:75.53vw;
+			height:13.3vw;
+			margin:0 auto;
+			border-radius:2.66vw;
+			background-color:#f381a3;
+			font:3.99vw/13.3vw Arial;
+			font-weight:bold;
+			text-align: center;
+			color:#fff;
+			margin-top:7.98vw;
+		}
+		.button2{
+			background-color:#efefef;
+			color:#000;
+			margin-top:2.66vw;
+			font-weight: normal;
+		}
+		.shensu{
+			background: #EFEFEF;
+			color: black;
+			margin-top: 5px !important;
+		}
+	</style>
+</head>
+<body>
+	<div class="bg"></div>
+	<div class="box">
+		<p class="fuck">（づ￣3￣）づ╭ <span>❤</span>～</p>
+		<div class="img"></div>
+		<p class="text">Congratulations, You finish the tutorial !<br>Introduce some friends to you.</p>
+		<div class="button1">Meet new friends</div>
+		<div class="buttonM return" style="display:none;">B A C K</div>
+		<!-- <div class="buttonM shensu">Complaint</div> -->
+	</div>
+</body>
+<script src="../../script/jquery-3.1.0.min.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript">
+	var www = window.screen.width;
+	var hhh = window.screen.height;
+	var date,timer,d,hour,minute,second;
+	apiready = function(){
+		// alert(api.pageParam['date']+'::::'+api.pageParam['timer']);
+		  date = api.pageParam['date'];
+			timer = api.pageParam['timer'];
+		if($api.getStorage('language')=='zho'){
+			$api.html($api.dom('.text'), '恭 喜 你 完 成 了 新 手 引 導 ！<br />Tinkle 推 薦 了 一 些 朋 友 給 你');
+			$api.html($api.dom('.button1'), '認 識 新 朋 友');
+			$api.html($api.dom('.shensu'), '申 述');
+			$api.html($api.dom('.return'), '默 默 退 出');
+		}
+		$api.css($api.dom('.box'), 'margin-top:-'+$('.box').height()*0.5+'px');
+		setTimeout(function(){
+			$api.css($api.dom('.box'), 'display:block');
+		},200);
+		$api.addEvt($api.dom('.button1'), 'click', function(){
+			api.openWin({
+			    name: 'guide_user',
+			    url: 'widget://html/guide/guide_user.html',
+			    pageParam: {
+			        name: 'value'
+			    }
+			});
+			setTimeout(function(){
+				api.closeFrame({
+		    	    name: 'guide9.5(new)'
+		    	});
+			},1000);
+
+		});
+		//chat2过来表示自己把对面的给拉黑了
+		if(api.pageParam['blackUser']){
+			$('.return').css('display','block');
+			$('.button1').css('display','none');
+			$('.fuck').html('(ﾟДﾟ≡ﾟдﾟ)!?');
+			$('.img').css('background-image','url(../../icon/guide/smileCat.jpg)');
+			if($api.getStorage('language')=='zho'){
+				$api.html($api.dom('.text'), '你 已 經 屏 蔽 該 用 戶<br/>TA 再 也 不 能 騷 擾 你 了');
+				$('.return').html('返 回');
+			}else{
+				$api.html($api.dom('.text'), "You have block this tinkle user,they won't be able to message you");
+			}
+		}
+		//表示从chat2检测到被举报了跳过来的
+		else if(api.pageParam['istrue']){
+			$('.return').css('display','block');
+			$('.button1').css('display','none');
+			$('.fuck').html('(ﾟДﾟ≡ﾟдﾟ)!?');
+			$('.img').css('background-image','url(../../icon/guide/smileCat.jpg)');
+			if($api.getStorage('language')=='zho'){
+				$api.html($api.dom('.text'), '你 已 經 給 該 用 戶 屏 蔽<br/>現 在 已 經 不 能 對 其 發 送 消 息');
+			}else{
+				$api.html($api.dom('.text'), "You were blocked by this tinkle user, you can't send message now");
+			}
+		}
+		$('.return').click(function(){
+			api.closeWin({
+				animation: {
+					type: "push", //动画类型（详见动画类型常量）
+					subType: "from_left", //动画子类型（详见动画子类型常量）
+					duration: 300 //动画过渡时间，默认300毫秒
+				}
+			});
+		})
+		//被禁言了
+		if(api.pageParam['isban']){
+			$('.return').css('display','block');
+			$('.button1').css('display','none');
+			$('.fuck').html('(ﾟДﾟ≡ﾟдﾟ)!?');
+			$('.img').css('background-image','url(../../icon/guide/smileCat.jpg)');
+			if($api.getStorage('language')=='zho'){
+				$api.html($api.dom('.text'), "你 已 經 給 多 個 用 戶 屏 蔽<br/>限 制 使 用 聊 天 <span class='timer'>"+date+'</span>');
+			}else{
+				$api.html($api.dom('.text'), "You have been reported by multiple users<br/>Restricted use chat<br/><span class='timer'>"+date+'</span>');
+			}
+			d = new Date(timer)
+			second = d.getSeconds();
+			minute = d.getMinutes();
+			if(date.split(':').length==3){
+				hour = date.split(':')[0];
+			}else{
+				hour = 0;
+			}
+			var showtime2 = setInterval("CountDown()", 1000);
+		}
+	}
+	//屏蔽时间倒计时
+	var showtime,second0,minute0,hour0;
+	function CountDown(){
+			if(second < 0){
+					second = 60;
+					--minute;
+					if(minute < 0){
+						minute = 59;
+						--hour;
+						if(hour < 0){
+								clearInterval(showtimer2);
+								api.closeFrame({
+								    name: 'guide9.5(new)'
+								});
+						}
+					}
+			}
+			if(second >= 0 && second < 10){
+				second0 = '0' + second;
+			}else{
+				second0 = second;
+			}
+			if(minute >= 0 && minute < 10){
+				minute0 = '0' + minute;
+			}else{
+				minute0 = minute;
+			}
+			if(hour >= 0 && hour < 10){
+				hour0 = '0' + hour;
+			}else{
+				hour0 = hour;
+			}
+				showtime = hour0 + ':' + minute0 + ':' + second0;
+			$('.timer').html(showtime);
+		 --second;
+	}
+</script>
+</html>

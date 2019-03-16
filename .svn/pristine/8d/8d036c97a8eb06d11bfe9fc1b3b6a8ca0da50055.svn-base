@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>guide1</title>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+		}
+		body{
+			width:100vw;
+			height:100vh;
+		}
+		.bg{
+			width:100vw;
+			height:100vh;
+			background-color:#000;
+			opacity: 0.8;
+			animation:bganimation 1s linear 0s 1 normal;
+			-webkit-animation: bganimation 1s linear 0s 1 normal;
+			-ms-animation: bganimation 1s linear 0s 1 normal;
+			-o-animation: bganimation 1s linear 0s 1 normal;
+			-moz-animation: bganimation 1s linear 0s 1 normal;
+		}
+		.chatbox{
+			position: fixed;
+			top:19.41vw;
+			left:50%;
+			margin-left:-47.34vw;
+			width:94.68vw;
+			height:18.62vw;
+			background-color:#fff;
+			border-radius: 1.33vw;
+		}
+		.avatar{
+			position: absolute;
+			top:2.66vw;
+			left:2.66vw;
+			width:13.3vw;
+			height:13.3vw;
+			background:url(../../icon/share/logo-icon.png) no-repeat;
+			background-size: cover;
+		}
+		.chatbox>span:nth-child(2){
+			position: absolute;
+			top:4.52vw;
+			left:19.95vw;
+			font:3.19vw/4.52vw Arial;
+			font-weight: bold;
+		}
+		.chatbox>span:nth-child(3){
+			position: absolute;
+			top:10.11vw;
+			left:19.95vw;
+			font:3.19vw/4.52vw Arial;
+			color:#f381a3;
+			font-weight: bold;
+		}
+		.chatbox>span>span{
+			display: inline-block;
+			width:3.99vw;
+			height:3.99vw;
+			background-color: #f381a3;
+			vertical-align: top;
+			background:url(../../icon/messages/du.png) no-repeat;
+			background-size:cover;
+			margin-right:1.33vw;
+		}
+		.textbox{
+			position: fixed;
+			top:51.86vw;
+			width:100vw;
+			height:auto;
+		}
+		.textbox>.arrow{
+			position: absolute;
+			top: -11vw;
+			left:10.64vw;
+			width:10.64vw;
+			height:10.64vw;
+			background:url(../../icon/guide/arrow1.png) no-repeat;
+			background-size:contain;
+			transform: rotate(0deg);
+		}
+		.arrow2{
+			position: absolute;
+			top: 45vw;
+			left:25.64vw;
+			width:10.64vw;
+			height:10.64vw;
+			background:url(../../icon/guide/arrow1.png) no-repeat;
+			background-size:contain;
+			transform: rotate(87deg);
+			display: none;
+		}
+		.textbox p{
+			margin-left:24.47vw;
+			font:3.99vw/5.85vw Arial;
+			font-weight: bold;
+			color:#fff;
+		}
+		.textbox p span{
+			color:#f381a3;
+		}
+		.ps{
+			margin-top:48vw;
+			display: none;
+		}
+		.buttom{
+			position: fixed;
+			bottom:10.64vw;
+			left:50%;
+			margin-left:-29.655vw;
+			width:59.31vw;
+			height:10.64vw;
+			border:2px solid rgba(255,255,255,1);
+			border-radius: 7.99vw;
+			font:3.99vw/10.64vw Arial;
+			font-weight: bold;
+			text-align: center;
+			color:#fff;
+		}
+		@keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 0.8;
+			}
+		}
+		@-webkit-keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 0.8;
+			}
+		}
+		@-ms-keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 0.8;
+			}
+		}
+		@-o-keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 0.8;
+			}
+		}
+		@-moz-keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 0.8;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="bg"></div>
+	<div class="chatbox">
+		<div class="avatar"></div>
+		<span>TinkleTeam</span>
+		<span><span></span>Welcom (●ˇ∀ˇ●)</span>
+	</div>
+	<div class="textbox">
+		<div class="arrow"></div>
+		<p><span>Private chat and Group chat</span> content will be displayed in a list on this page.</p>
+		<div class="arrow2"></div>
+		<p class="ps">P.S: If your phone has not upgraded <span>iOS 12.0</span>, the chat may flash back.</p>
+	</div>
+	<div class="buttom">G E T</div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript">
+	var www = window.screen.width;
+	var hhh = window.screen.height;
+	apiready = function(){
+		if(hhh/www > 2){
+			$api.css($api.dom('.chatbox'), 'top:26.06vw');
+			$api.css($api.dom('.textbox'), 'top:58.51vw');
+			$api.css($api.dom('.buttom'), 'bottom:19.64vw');
+		}
+		var u = navigator.userAgent;
+	    if($api.getStorage('language')=='zho'){
+	    	if (u.indexOf('iPhone') > -1){
+	    		$api.html($api.dom('.textbox'), '<div class="arrow"></div><p><span>單 人 / 群 組</span> 的 聊 天 内 容 <br />都 會 以 列 表 的 形 式 顯 示 在 這 頁</p><div class="arrow2"></div><p class="ps">P.S：如 果 你 的 手 机 还 没 有 升 级 <span>iOS 12.0</span> ，聊 天 可 能 会 闪 退</p>');
+	    	}else{
+	    		$api.html($api.dom('.textbox'), '<div class="arrow"></div><p><span>單 人 / 群 組</span> 的 聊 天 内 容 <br />都 會 以 列 表 的 形 式 顯 示 在 這 頁</p>');
+	    	}
+	    	
+	    	$api.html($api.dom('.buttom'), '明 白');
+	    }
+	    if (u.indexOf('iPhone') > -1){
+	    	$api.css($api.dom('.arrow2'), 'position: absolute;top: 45vw;left:25.64vw;width:10.64vw;height:10.64vw;background:url(../../icon/guide/arrow1.png) no-repeat;background-size:contain;transform: rotate(87deg);display:block');
+	    	$api.css($api.dom('.ps'), 'margin-top:48vw;display:block');
+	    };
+	    api.sendEvent({
+	    name: 'login_function_close'
+		});
+				api.sendEvent({
+				    name: 'divination_result_new'
+				});
+				api.sendEvent({
+	    		    name: 'numerology_new'
+	    		});
+	    		api.sendEvent({
+	    		    name: 'numerology_result_new'
+	    		});
+	    		api.sendEvent({
+	    		    name: 'associated_user'
+	    		});
+		    	api.sendEvent({
+	    		    name: 'numerology_follow'
+	    		});
+				api.sendEvent({
+				    name: 'divination_new'
+				});
+
+
+
+
+
+	    $api.addEvt($api.dom('.buttom'), 'click',function(){
+	    	api.openFrame({
+	    	    name: 'guide2',
+	    	    url: 'widget://html/guide/guide2.html',
+	    	    rect: {
+	    	        x: 0,
+	    	        y: 0,
+	    	        w: 'auto',
+	    	        h: 'auto'
+	    	    },
+	    	    pageParam: {
+	    	        name: 'value'
+	    	    }
+	    	});
+	    	api.closeFrame({
+	    	    name: 'guide1'
+	    	});
+	    });
+
+	    // $api.addEvt($api.dom('.bg'), 'click',function(){
+	    // 	api.closeFrame({
+	    // 	    name: 'guide1'
+	    // 	});
+	    // });
+	}
+	    
+</script>
+</html>

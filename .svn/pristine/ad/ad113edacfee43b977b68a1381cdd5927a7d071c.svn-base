@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+		}
+		.bg{
+			width: 100vw;
+			height: 100vh;
+			background-color: transparent;
+		}
+		
+		html,body{
+			background-color:rgba(34, 34, 34, 0.6);
+			font-family: Arial;
+			font-style: normal; 
+			animation:bganimation 0.3s linear 0s 1 normal;
+			-webkit-animation: bganimation 0.3s linear 0s 1 normal;
+			-ms-animation: bganimation 0.3s linear 0s 1 normal;
+			-o-animation: bganimation 0.3s linear 0s 1 normal;
+			-moz-animation: bganimation 0.3s linear 0s 1 normal;
+			/*-khtml-animation: bganimation 0.3s linear 0s 1 normal;*/
+		}
+		.button{
+			position: fixed;
+			bottom:0;
+			width:100vw;
+			animation:winanimation 0.3s linear 0s 1 normal;
+			-webkit-animation: winanimation 0.3s linear 0s 1 normal;
+			-ms-animation: winanimation 0.3s linear 0s 1 normal;
+			-o-animation: winanimation 0.3s linear 0s 1 normal;
+			-moz-animation: winanimation 0.3s linear 0s 1 normal;
+		}
+		.button>div{
+			width:100%;
+			height:13.3vw;
+			border-top:1px solid #efefef;
+			background-color:#fff;
+			font:3.19vw/13.8vw Arial;
+			font-weight: bold;
+			text-align: center;
+			box-sizing: border-box;
+      display: none;
+		}
+		.button>div:last-child{
+			border-bottom:0;
+		}
+		.button>div>img{
+			margin-top:-1vw;
+			width:7.98vw;
+			height:7.98vw;
+			object-fit: contain;
+			vertical-align: middle;
+			margin-right:1.33vw;
+		}
+    .search_user,.search_group{
+      display: none;
+    }
+    .function{
+      position: fixed;
+      top:2.66vw;
+      left:0;
+      width: 100vw;
+      display: none;
+      padding-top:15px;
+    }
+    .function>div{
+      position: relative;
+      display: inline-block;
+      width:46.01vw;
+      height:31.91vw;
+      box-shadow:0 0 10px 3px rgba(170,170,170,0.1);
+      border-radius: 2.66vw;
+      font:3.19vw/50vw Arial;
+      font-weight: bold;
+      text-align: center;
+      margin-left:2.66vw;
+      margin-top:2.66vw;
+      background-color:#fff;
+      float:left;
+    }
+    .function>div>img{
+      position: absolute;
+      top:3.19vw;
+      left:50%;
+      margin-left:-9.31vw;
+      width:18.62vw;
+      height:18.62vw;
+      border-radius: 2.66vw;
+    }
+    .tarot_party::before{
+      content:'';
+      position: absolute;
+      top:2.66vw;
+      left:2.66vw;
+      width:7.98vw ;
+      height:7.98vw;
+      background:url(../../icon/guide/hot.gif) no-repeat center top;
+      background-size:contain;
+    }
+		@keyframes bganimation{
+			0%{
+				background-color: rgba(250,250,250,0.6);
+			}
+			100%{
+				background-color:rgba(34, 34, 34, 0.6);
+			}
+		}
+		@-webkit-keyframes bganimation{
+			0%{
+				background-color: rgba(250,250,250,0.6);
+			}
+			100%{
+				background-color:rgba(34, 34, 34, 0.6);
+			}
+		}
+		@-ms-keyframes bganimation{
+			0%{
+				background-color: rgba(250,250,250,0.6);
+			}
+			100%{
+				background-color:rgba(34, 34, 34, 0.6);
+			}
+		}
+		@-o-keyframes bganimation{
+			0%{
+				background-color: rgba(250,250,250,0.6);
+			}
+			100%{
+				background-color:rgba(34, 34, 34, 0.6);
+			}
+		}
+		@-moz-keyframes bganimation{
+			0%{
+				background-color: rgba(250,250,250,0.6);
+			}
+			100%{
+				background-color:rgba(34, 34, 34, 0.6);
+			}
+		}
+		@keyframes winanimation{
+			0%{
+				margin-bottom:-28vh;
+			}
+			100%{
+				margin-bottom:0;
+			}
+		}
+		@-webkit-keyframes winanimation{
+			0%{
+				margin-bottom:-28vh;
+			}
+			100%{
+				margin-bottom:0;
+			}
+		}
+		@-ms-keyframes winanimation{
+			0%{
+				margin-bottom:-28vh;
+			}
+			100%{
+				margin-bottom:0;
+			}
+		}
+		@-o-keyframes winanimation{
+			0%{
+				margin-bottom:-28vh;
+			}
+			100%{
+				margin-bottom:0;
+			}
+		}
+		@-moz-keyframes winanimation{
+			0%{
+				margin-bottom:-28vh;
+			}
+			100%{
+				margin-bottom:0;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="bg" onclick="closeframe()"></div>
+  <div class="function">
+    <div class="translation" id="translation_button"><img src="../../icon/function/function-translation-ai@3x2.png" alt="">Translation System</div>
+
+        <div class="divination" id="divination"><img src="../../icon/function/icon-tarot1@3x2.png" alt="">Daily Divination</div>
+        <div class="numerology" id="numerology"><img src="../../icon/function/icon-tarot5@3x2.png" alt="">Numerology</div>
+        <div class="tarot_chat" id="match" style="display: none;"><img src="../../icon/function/icon-tarot2@3x2.png" alt="">Tarot Dating</div>
+  </div>
+	<div class="button">
+    <!-- 发帖选择 -->
+		<div class="post_photo"><img src="../../image/duotu.png">P O S T - P H O T O</div>
+		<div class="post_video"><img src="../../image/shipin.png">P O S T - V I D E O</div>
+		<div class="post_camera"><img src="../../image/xiangji.png">P O S T - C A M E R A</div>
+    <!-- 广场类型 -->
+		<div class="square_popular">P O P U L A R</div>
+		<div class="square_focus">M Y   F O C U S</div>
+		<div class="square_latest">L A T E S T   P O S T</div>
+    <!-- 搜索选择 -->
+    <div class="search_user" onclick="opensearchuser()">S E A R C H   U S E R</div>
+    <div class="search_group" onclick="opensearchgroup()">S E A R C H   G R O U P</div>
+    <div class="creat_group" onclick="opencreatgroup()">C R E A T E   G R O U P</div>
+    <!-- 群组类型选择 -->
+    <div class="group_" id="
+    group_popular" onclick="choose_group(0)">P O P U L A R</div>
+    <div class="group_" id="
+    group_gossip" onclick="choose_group(1)">G O S S I P</div>
+    <div class="group_" id="
+    group_music" onclick="choose_group(2)">M U S I C</div>
+    <div class="group_" id="
+    group_movie" onclick="choose_group(3)">M O V I E</div>
+    <div class="group_" id="
+    group_game" onclick="choose_group(4)">G A M E</div>
+    <div class="group_" id="
+    group_anime" onclick="choose_group(5)">A N I M E</div>
+	</div>
+</body>
+<script src="../../script/jquery-3.1.0.min.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript">
+	var firsttindata;
+	apiready = function(){
+		var ispost=api.pageParam['ispost'];
+    var square_num=api.pageParam['square_num'];
+		var issearch=api.pageParam['issearch'];
+    var group_num=api.pageParam['group_num'];
+    var isgroup=api.pageParam['isgroup'];
+    // 活动显示
+          var party_date = new Date(),
+            party_time_now = party_date.getTime(),
+            party_year = party_date.getFullYear(),
+            party_month = party_date.getMonth()+1,
+            party_day = party_date.getDate(),
+            party_time_start = new Date(party_year+'/'+party_month+'/'+party_day+' '+'20:00:01').getTime(),
+            party_time_end = new Date(party_year+'/'+party_month+'/'+party_day+' '+'23:00:01').getTime(),
+              party_hour = party_date.getHours();
+          if(party_time_now>=party_time_start && party_time_now<party_time_end){
+            console.log('活动时间到');
+              party();
+      }
+      if(party_time_start-party_time_now>=0){
+        setTimeout(function(){
+          window.location.reload();
+        },party_time_start-party_time_now);
+      }else if(party_time_end-party_time_now>=0){
+        setTimeout(function(){
+          window.location.reload();
+        },party_time_end-party_time_now);
+      }
+
+		if(ispost){
+      $api.css($api.dom('.post_photo'), 'display:block');
+      $api.css($api.dom('.post_video'), 'display:block');
+      $api.css($api.dom('.post_camera'), 'display:block');
+		}else if(issearch){
+      $api.css($api.dom('.search_user'), 'display:block');
+      $api.css($api.dom('.search_group'), 'display:block');
+      $api.css($api.dom('.creat_group'), 'display:block');
+      $api.css($api.dom('.function'), 'display:block');
+    }else if(isgroup){
+      for(var i=0;i<$('.group_').length;i++){
+        $('.group_').eq(i).css('display','block');
+      }
+    }else{
+			$api.css($api.dom('.square_popular'), 'display:block');
+      $api.css($api.dom('.square_focus'), 'display:block');
+      $api.css($api.dom('.square_latest'), 'display:block');
+		}
+	    if($api.getStorage('language')=='zho'){
+	    	$api.html($api.dom('.post_photo'), '<img src="../../image/duotu.png">發 帖 - 相 冊');
+	    	$api.html($api.dom('.post_video'), '<img src="../../image/shipin.png">發 帖 - 視 頻');
+	    	$api.html($api.dom('.post_camera'), '<img src="../../image/xiangji.png">發 帖 - 相 機');
+	    	$api.html($api.dom('.square_popular'), '熱 門 帖 子');
+	    	$api.html($api.dom('.square_focus'), '我 的 關 注');
+	    	$api.html($api.dom('.square_latest'), '最 新 發 佈');
+        $api.html($api.dom('.search_user'), '添 加 好 友');
+        $api.html($api.dom('.search_group'), '搜 索 群 組');
+        $api.html($api.dom('.creat_group'), '創 建 群 組');
+        $('.group_').eq(0).html('熱 門');
+        $('.group_').eq(1).html('閒 聊');
+        $('.group_').eq(2).html('音 樂');
+        $('.group_').eq(3).html('影 視');
+        $('.group_').eq(4).html('遊 戲');
+        $('.group_').eq(5).html('動 漫');
+        $api.html($api.dom('#translation_button'), '<img src="../../icon/function/function-translation-ai@3x2.png" alt="">翻 譯 系 統');
+        $api.html($api.dom('#numerology'), '<img src="../../icon/function/icon-tarot5@3x2.png" alt="">數 秘 術');
+        $api.html($api.dom('#divination'), '<img src="../../icon/function/icon-tarot1@3x2.png" alt="">每 日 一 占');
+        $api.html($api.dom('#match'), '<img src="../../icon/function/icon-tarot2@3x2.png" alt="">塔 羅 匹 配');
+	    }
+      // 判断是否进行过自测
+      api.ajax({
+          url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/userinfo',
+          method: 'post',
+          data: {
+              values: {
+                  uiId:$api.getStorage('id'),
+              pageUiId:$api.getStorage('id')
+              }
+          }
+      }, function(ret, err) {
+          if (ret) {
+              if(ret.data.angury == 0){
+                $api.css($api.dom('#match'), 'display:none;');
+              }
+          }
+      });
+    // 翻译功能
+    $api.addEvt($api.dom('#translation_button'), 'click',function(){
+      api.openWin({
+          name: 'chats_indexs',
+          url: 'widget://html/chat/chats_indexs.html'
+      });
+    });
+    // 数秘术按钮
+    $api.addEvt($api.dom('#numerology'), 'click',function(){
+      api.openWin({
+          name: 'numerology_new',
+          url: 'widget://html/logon-register/numerology_new.html',
+          pageParam: {
+              function1:1,
+              key: 1
+          }
+      });
+    });
+    // 每日一占按钮
+    $api.addEvt($api.dom('#divination'), 'click',function(){
+      api.openWin({
+          name: 'divination_new',
+          url: 'widget://html/logon-register/divination_new.html',
+          pageParam: {
+              function1:1
+          }
+      });
+    });
+    //塔罗匹配
+    $api.addEvt($api.dom('#match'), 'click',function(){
+      api.openWin({
+        name: 'numerology_new',
+        url: 'widget://html/logon-register/numerology_new.html',
+        animation:{
+            type:"fade",
+          // subType:"from_right",
+            duration:1000
+        },
+        pageParam: {
+          function1:1,
+          key: 2
+        }
+      });
+    });
+
+
+
+
+	    if(square_num=='1'){
+	    	$api.css($api.dom('.square_popular'), 'color:#f381a3');
+	    }else if(square_num=='2'){
+	    	$api.css($api.dom('.square_focus'), 'color:#f381a3');
+	    }else{
+	    	$api.css($api.dom('.square_latest'), 'color:#f381a3');
+	    }
+      if(group_num==0){
+        $('.group_').eq(0).css('color','#f381a3');
+      }else if(group_num==1){
+        $('.group_').eq(1).css('color','#f381a3');
+      }else if(group_num==2){
+        $('.group_').eq(2).css('color','#f381a3');
+      }else if(group_num==3){
+        $('.group_').eq(3).css('color','#f381a3');
+      }else if(group_num==4){
+        $('.group_').eq(4).css('color','#f381a3');
+      }else if(group_num==5){
+        $('.group_').eq(5).css('color','#f381a3');
+      }
+	    $api.addEvt($api.dom('.square_popular'), 'click', function(){
+	    	api.sendEvent({
+	    	    name: 'popular'
+	    	});
+	    	closeframe();
+	    });
+	    $api.addEvt($api.dom('.square_focus'), 'click', function(){
+	    	api.sendEvent({
+	    	    name: 'myfocus'
+	    	});
+	    	closeframe();
+	    });
+	    $api.addEvt($api.dom('.square_latest'), 'click', function(){
+	    	api.sendEvent({
+	    	    name: 'latestpost'
+	    	});
+	    	closeframe();
+	    });
+	    // 判断该用户是否发过帖子
+	    $.ajax({
+	      // async: false,
+	      url: 'http://api.baopinghui.com/app_dynamicCover/CheckFirstTin',
+	      type: 'post',
+	      dataType: 'json',
+	      data: {
+	        uiId:$api.getStorage('id')
+	      },
+	    })
+	    .done(function(ret) {
+	      if (ret) {
+	              firsttindata = ret["data"];
+	            };
+	            return;
+	    });
+	    $api.dom('.post_video').onclick=function(){
+        if(api.systemType=="ios"){
+          if(firsttindata == 0){
+            // i=0;
+            api.openFrame({
+                      name: 'out',
+                      url: 'widget://html/nav/out.html',
+                      rect: {
+                          x: 0,
+                          y: 0,
+                          w: 'auto',
+                          h: 'auto'
+                      },
+                      pageParam: {
+                          firsttin:1,
+                          type:1,
+                          i:0
+                      }
+              });
+          }else{
+            openvideo();
+          };
+
+
+        }else{
+    //安卓申请访问资源的权限
+          api.requestPermission({
+              list: ["storage"],
+          }, function(ret, err) {
+                if(ret.list[0].granted){
+                  if(firsttindata == 0){
+                    // i=0;
+                    api.openFrame({
+                              name: 'out',
+                              url: 'widget://html/nav/out.html',
+                              rect: {
+                                  x: 0,
+                                  y: 0,
+                                  w: 'auto',
+                                  h: 'auto'
+                              },
+                              pageParam: {
+                                  firsttin:1,
+                                  type:1,
+                                  i:0
+                              }
+                      });
+                  }else{
+                    openvideo();
+                  };
+                }
+          });
+
+        }
+
+
+      };
+      $api.dom('.post_camera').onclick=function(){
+        if(api.systemType=="ios"){
+          if (firsttindata == 0) {
+            // i=3;
+            api.openFrame({
+                      name: 'out',
+                      url: 'widget://html/nav/out.html',
+                      rect: {
+                          x: 0,
+                          y: 0,
+                          w: 'auto',
+                          h: 'auto'
+                      },
+                      pageParam: {
+                          firsttin:1,
+                          type:1,
+                          i:3
+                      }
+              });
+          }else{
+            opencer();
+          }
+
+        }else{
+          //安卓申请打开相机权限
+          api.requestPermission({
+              list: ["camera","storage"],
+          }, function(ret, err) {
+                if(ret.list[0].granted){
+                  if (firsttindata == 0) {
+                    // i=3;
+                    api.openFrame({
+                              name: 'out',
+                              url: 'widget://html/nav/out.html',
+                              rect: {
+                                  x: 0,
+                                  y: 0,
+                                  w: 'auto',
+                                  h: 'auto'
+                              },
+                              pageParam: {
+                                  firsttin:1,
+                                  type:1,
+                                  i:3
+                              }
+                      });
+                  }else{
+                    opencer();
+                  }
+
+                }
+
+
+          });
+
+        }
+
+
+      };
+      $api.dom('.post_photo').onclick=function(){
+        if(api.systemType=="ios"){
+          if(firsttindata == 0){
+            // i=2;
+            api.openFrame({
+                      name: 'out',
+                      url: 'widget://html/nav/out.html',
+                      rect: {
+                          x: 0,
+                          y: 0,
+                          w: 'auto',
+                          h: 'auto'
+                      },
+                      pageParam: {
+                          firsttin:1,
+                          type:'Topimg',
+                          i:2
+                      }
+              });
+          }else{
+            openPost('Topimg');
+          }
+
+        }else{
+          //安卓申请获取资源的权限
+          api.requestPermission({
+              list: ["storage"],
+          }, function(ret, err) {
+                if(ret.list[0].granted){
+                    if(firsttindata == 0){
+                      // i=2;
+                      api.openFrame({
+                                name: 'out',
+                                url: 'widget://html/nav/out.html',
+                                rect: {
+                                    x: 0,
+                                    y: 0,
+                                    w: 'auto',
+                                    h: 'auto'
+                                },
+                                pageParam: {
+                                    firsttin:1,
+                                    type:'Topimg',
+                                    i:2
+                                }
+                        });
+                    }else{
+                      openPost('Topimg');
+                    }
+
+                }
+
+
+          });
+
+        }
+
+
+
+      };
+      api.addEventListener({
+          name: 'openvideoo'
+      }, function(ret, err) {
+          openvideo();
+      });
+      api.addEventListener({
+          name: 'openPostt'
+      }, function(ret, err) {
+        // alert(ret.value.type);
+          openPost(ret.value.type);
+      });
+	}
+  //跳转发帖子
+  function openPost(type){
+    api.openWin({
+      name: 'post',
+      url: 'widget://html/details/post.html',////chat/chat2.html
+        reload: true,
+        vScrollBarEnabled: false,
+        slidBackEnabled: false,
+      animation: {
+        type: "fade", //动画类型（详见动画类型常量）
+        subType: "fade", //动画子类型（详见动画子类型常量）
+        duration: 500 //动画过渡时间，默认300毫秒
+      },
+      pageParam: {
+        type:type
+      }
+    });
+  };
+  //打开相
+  function opencer(){
+
+    api.getPicture({
+      sourceType: 'camera',
+      encodingType: 'jpg',
+      mediaValue: 'pic',
+      destinationType: 'url',
+      allowEdit: true,
+      preview: true, //描述：（可选项）是否选择图片后进行预览，只支持iOS。
+      quality: 50,
+      saveToPhotoAlbum: true
+    }, function(ret, err) {
+      if(ret) {
+        //								alert(JSON.stringify(ret.data));
+        //uploadPic(ret.data);
+        if(ret.data!=""){
+          api.openWin({
+            name: 'post',
+            url: 'widget://html/details/post.html',
+              reload: true,
+              vScrollBarEnabled: false,
+              slidBackEnabled: false,
+            animation: {
+              type: "fade", //动画类型（详见动画类型常量）
+              subType: "fade", //动画子类型（详见动画子类型常量）
+              duration: 500 //动画过渡时间，默认300毫秒
+            },
+            pageParam: {
+              type:'Topimg'
+            }
+          });
+        }
+      } else {
+        alert(JSON.stringify(err));
+      }
+    });
+  }	    	
+   //上传视频
+  function openvideo(){
+    api.openWin({
+      name: 'post',
+      url: 'widget://html/details/post.html',
+        reload: true,
+        vScrollBarEnabled: false,
+        slidBackEnabled: false,
+      animation: {
+        type: "fade", //动画类型（详见动画类型常量）
+        subType: "fade", //动画子类型（详见动画子类型常量）
+        duration: 500 //动画过渡时间，默认300毫秒
+      },
+      pageParam: {
+        type:'Video'
+      }
+    });
+
+  }
+function closeframe(){
+	api.closeFrame();
+}
+// 点击打开用户搜索
+function opensearchuser(){
+  api.openWin({
+      name: 'search',
+      url: 'widget://html/search/search.html',
+      pageParam: {
+          name: 'value'
+      }
+  });
+}
+// 点击打开群组搜索
+function opensearchgroup(){
+  api.openWin({
+      name: 'search2',
+      url: 'widget://html/search/search2.html',
+      pageParam: {
+          name: 'value'
+      }
+  });
+}
+// 点击打开群组相关群
+function opencreatgroup(){
+  api.ajax({
+      url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/userinfo',
+      method: 'post',
+      data: {
+          values: { 
+              uiId: $api.getStorage('id'),
+              pageUiId:$api.getStorage('id')
+          }
+      }
+  }, function(ret, err) {
+      if (ret) {
+          api.openWin({
+              name: 'group_list',
+              url: "widget://html/group/group-list.html",
+              slidBackEnabled: false,
+              animation: {
+                  type: "fade", //动画类型（详见动画类型常量）
+                  subType: "fade", //动画子类型（详见动画子类型常量）
+                  duration: 250 //动画过渡时间，默认300毫秒
+              },
+              pageParam: {
+                  uiId: $api.getStorage('id'),
+                  nickname: ret.data.user_name,
+                  avatar: ret.data.avatar_url
+              }
+          }); 
+      }
+  });
+  
+}
+function choose_group(i){
+  api.sendEvent({
+              name: 'choose_group_type',
+              extra: {
+                  type:i
+              }
+          });
+  closeframe();
+}
+function party(){
+  $api.html($api.dom('.function'), '<div class="tarot_chat tarot_party" id="match" style="display:inline-block;"><img src="../../icon/function/icon-tarot2@3x2.png" alt="">Tarot Dating</div><div class="translation" id="translation_button"><img src="../../icon/function/function-translation-ai@3x2.png" alt="">Translation System</div><div class="divination" id="divination"><img src="../../icon/function/icon-tarot1@3x2.png" alt="">Daily Divination</div><div class="numerology" id="numerology"><img src="../../icon/function/icon-tarot5@3x2.png" alt="">Numerology</div>');
+}
+</script>
+</html>

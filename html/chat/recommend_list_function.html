@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>function</title>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+		}
+		.T-coins_box{
+			position: fixed;
+			top:0;
+			width:100vw;
+			height:auto;
+			background-color: #fff;
+			padding-bottom:2.66vw;
+			border-bottom:1px solid #efefef;
+			z-index: 10;
+		}
+		.T-coins{
+			position: relative;
+			width:94.41vw;
+			height:7.98vw;
+			margin:0 auto;
+			background-color: #efefef;
+			border-radius: 1.33vw;
+		}
+		.T-coins_img1,.T-coins_img2{
+			width:3.99vw;
+			height:3.99vw;
+			position: absolute;
+			top:1.995vw;
+		}
+		.T-coins_img1{
+			left:2.66vw;
+			background:url(../../icon/function/icon-Tcoin@3x2.png);
+			background-size: cover;
+		}
+		.T-coins_img2{
+			right:2.66vw;
+			background:url(../../icon/function/icon-Tcoin-more@3x2.png);
+			background-size: cover;
+		}
+		.T-coins_text{
+			position: absolute;
+			left:9.31vw;
+			width:53.19vw;
+			height:7.98vw;
+			font:3.19vw/7.98vw Arial;
+			font-weight: bold;
+			color:#aaa;
+			text-align: left;
+		}
+		.T-coins_text span{
+			color: #F381A3;
+		}
+		.wrap{
+			width:100vw;
+			height: auto;
+			margin-top: 10.64vw;
+			background-color: #efefef;
+			padding-top:2.66vw;
+			padding-bottom:8.78vw;
+		}
+		.content_box{
+			position: relative;
+			width:94.41vw;
+			height:37.23vw;
+			margin:0 auto;
+			margin-bottom:2.66vw;
+			box-shadow: 0px 2px 10px 3px rgba(170,170,170,0.3);
+			background-color: #fff;
+			border-radius: 2.66vw;
+		}
+		.content_img{
+			position: absolute;
+			top:2.66vw;
+			left: 2.66vw;
+			width:31.91vw;
+			height: 31.91vw;
+		}
+		.content_img img{
+			width:31.91vw;
+			height: 31.91vw;
+		}
+		.content_title{
+			position: absolute;
+			top:2.66vw;
+			left:37.23vw;
+			width: 53.19vw;
+			height:6.91vw;
+			font:3.99vw/6.91vw Arial;
+			font-weight: bold;
+			color: #101010;
+		}
+		.content_text{
+			position: absolute;
+			top:9.84vw;
+			left: 37.23vw;
+			width:53.19vw;
+			height:13.56vw;
+			font:3.19vw/4.52vw Arial;
+			color:#aaa;
+		}
+		.content_text span{
+			color:#F381A3;
+			font-weight: bold;
+		}
+		.content_button,.content_button2{
+			position: absolute;
+			top:26.6vw;
+			left:37.23vw;
+			width:53.72vw;
+			height:7.98vw;
+			font:3.19vw/7.48vw Arial;
+			font-weight: bold;
+			color:#000;
+			text-align: center;
+			background-color: #fff;
+			border:0.5vw solid #000;
+			box-sizing: border-box;
+			border-radius: 13.3vw;
+		}
+		.hot{
+			position: absolute;
+			top:0vw;
+			left:0vw;
+			width:7.98vw;
+			height:6.65vw;
+			background:url(../../icon/guide/hot.gif) no-repeat ;
+			background-size:contain;
+		}
+	</style>
+</head>
+<body>
+	<div class="T-coins_box">
+		<div class="T-coins" id="T-coins">
+			<div class="T-coins_img1"></div>
+			<div class="T-coins_text" >Currently has <span>300</span> T-coins</div>
+			<div class="T-coins_img2"></div>
+		</div>
+	</div>
+	<div class="wrap">
+		<!-- 翻译系统 -->
+		<div class="content_box">
+			<div class="content_img"><img src="../../icon/function/function-translation-ai@3x2.png" alt=""></div>
+			<div class="content_title" id="content_title1">Translation System</div>
+			<div class="content_text" id="content_text1">Built-in 3 instant translation methods.</div>
+			<div class="content_button" id="translation_button">P L A Y</div>
+		</div>
+		<!-- 匹配好友 -->
+		<div class="content_box" style="display: none;">
+			<div class="content_img"><img src="../../icon/function/function-makefriends-ai@3x2.png" alt=""></div>
+			<div class="content_title" id="content_title2">Match Friends</div>
+			<div class="content_text" id="content_text2">You have <span>10</span> matching opportunities today.</div>
+			<div class="content_button" style="background:#aaa;">P L A Y</div>
+		</div>
+		<!-- 高级匹配好友 -->
+		<div class="content_box" style="display: none;">
+			<div class="content_img"><img src="../../icon/function/function-ADmakefriends-ai@3x2.png" alt=""></div>
+			<div class="content_title" id="content_title3">Advanced Match Friends</div>
+			<div class="content_text" id="content_text3">Filter and match friends，each use consumes <span>100</span> T-coins.</div>
+			<div class="content_button" style="background:#aaa;">P L A Y</div>
+		</div>
+		<!-- 數 秘 術 -->
+		<div class="content_box">
+			<div class="content_img"><img src="../../icon/function/icon-tarot5@3x2.png" alt=""></div>
+			<div class="content_title" id="content_title6">Numerology</div>
+			<div class="content_text" id="content_text6">look at what type of person you belong to.</div>
+			<div class="content_button" id="numerology">C H E C K</div>
+		</div>
+		<!-- 每 日 一 占 -->
+		<div class="content_box">
+			<div class="content_img"><img src="../../icon/function/icon-tarot1@3x2.png" alt=""></div>
+			<div class="content_title" id="content_title7">Daily Divination</div>
+			<div class="content_text" id="content_text7">Look at my luck today.</div>
+			<div class="content_button" id="divination" >C H E C K</div>
+		</div>
+		<!-- 塔 羅 匹 配 -->
+		<div class="content_box">
+			<div class="content_img"><img src="../../icon/function/icon-tarot2@3x2.png" alt=""></div>
+			<div class="content_title" id="content_title8">Tarot Dating</div>
+			<div class="content_text" id="content_text8">Let you quickly find your soul friend，open every day from 20:00 to 23:00.(Need to complete Numerology first.)</div>
+			<div class="content_button" style="color:#aaa;border:0.5vw solid #aaa;">P L A Y</div>
+			<div class="content_button2" id="match2" style="color:#aaa;border:0.5vw solid #aaa;">P L A Y</div>
+		</div>
+		<!-- 匿名匹配聊天 -->
+		<div class="content_box" style="display: none;">
+			<div class="content_img"><img src="../../icon/function/function-anonymous-chat-ai@3x2.jpg" alt=""></div>
+			<div class="content_title" id="content_title4">Anonymous Match Chat</div>
+			<div class="content_text" id="content_text4">You have <span>10</span> matching opportunities today.</div>
+			<div class="content_button" style="color:#aaa;border:0.5vw solid #aaa;">P L A Y</div>
+		</div>
+		<!-- 语音通话 -->
+		<div class="content_box" style="display: none;">
+			<div class="content_img"><img src="../../icon/function/function-voice-chat-ai@3x2.jpg" alt=""></div>
+			<div class="content_title" id="content_title5">Voice Call</div>
+			<div class="content_text" id="content_text5">Make a voice call with the matching person, consuming <span>200</span> T-coins each time.</div>
+			<div class="content_button" style="color:#aaa;border:0.5vw solid #aaa;">P L A Y</div>
+		</div>
+
+	</div>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script src="../../script/jquery-3.1.0.min.js"></script>
+	<script type="text/javascript">
+		apiready = function(){
+			    // 下拉刷新
+            api.setRefreshHeaderInfo({
+					visible: true,
+					loadingImg: 'widget://image/refresh.png',
+					bgColor: '#fff',
+					textColor: '#aaa',
+					textDown: 'Ready to refresh',
+					textUp: 'Ready to refresh',
+					textLoading:'Ready to refresh',
+					showTime: false
+			}, function(ret, err){
+				setTimeout(function(){
+					window.location.reload();
+					api.refreshHeaderLoadDone();
+				},500)
+			});
+            api.addEventListener({
+                name: 'recommend_reload'
+            }, function(ret, err) {
+                window.location.reload();
+            });
+            // 活动显示
+	      	var party_date = new Date(),
+	      		party_time_now = party_date.getTime(),
+	      		party_year = party_date.getFullYear(),
+	      		party_month = party_date.getMonth()+1,
+	      		party_day = party_date.getDate(),
+	      		party_time_start = new Date(party_year+'/'+party_month+'/'+party_day+' '+'20:00:01').getTime(),
+	      		party_time_end = new Date(party_year+'/'+party_month+'/'+party_day+' '+'23:00:01').getTime(),
+	           	party_hour = party_date.getHours();
+	        	// console.log(party_year);
+	        	// console.log(party_month);
+	        	// console.log(party_day);
+	        	// console.log(party_time_start);
+	        	// console.log(party_time_end);
+	        	// console.log(party_time_now);
+	        	// console.log(party_year+'/'+party_month+'/'+party_day+' '+'20:00:00');
+	        if(party_time_now>=party_time_start && party_time_now<party_time_end){
+	        	console.log('活动时间到');
+	            party();
+			}
+			if(party_time_start-party_time_now>=0){
+				setTimeout(function(){
+					window.location.reload();
+				},party_time_start-party_time_now);
+			}else if(party_time_end-party_time_now>=0){
+				setTimeout(function(){
+					window.location.reload();
+				},party_time_end-party_time_now);
+			}
+			
+			// setInterval(function(){
+			// 	var party_date = new Date(),
+		 //           	party_hour = party_date.getHours();
+		 //        	console.log(party_hour);
+		 //        if(party_hour>=20 && party_hour<=22){
+		 //        	console.log('活动时间到');
+		 //            party();
+		 //            var content_button = document.getElementsByClassName('content_button');
+		 //            if($api.getStorage('language')=='zho'){
+		 //            	$api.text($api.dom('#test11'), '建 设 中');
+		 //            	$api.text($api.dom('#test12'), '建 设 中');
+		 //            }else if(party_hour>=19 && party_hour<=23){
+			//           if(party_min>=56 || party_min<=6){
+			//             window.location.reload();
+			//           }
+			//         }
+			// 	}
+			// },300000);
+
+			var content_button = document.getElementsByClassName('content_button');
+			// $api.addEvt(content_button[5], 'click', function(){
+			// 	api.openWin({
+			// 			name: 'numerology',
+			// 			url: 'widget://html/logon-register/numerology_new.html',
+			// 				pageParam: {
+			// 					name: 'value',
+			// 					key: 2
+			// 			}
+			// 	});
+			// });
+			// 判断是否进行过自测
+			api.ajax({
+			    url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/userinfo',
+			    method: 'post',
+			    data: {
+			        values: {
+			            uiId:$api.getStorage('id'),
+			            pageUiId:$api.getStorage('id')
+			        }
+			    }
+			}, function(ret, err) {
+			    if(ret.data.augury == 0){
+						$('#match2').css('display','block');
+						$('#match').css('display','none');
+			    	if($api.getStorage('language')=='zho'){
+			    		$api.text($api.dom('#numerology'), '開 始 使 用');
+			    	}else{
+						$api.text($api.dom('#numerology'), 'P L A Y');
+			    	}
+
+			    }else{
+								// var party_date = new Date(),
+								// party_hour = party_date.getHours();
+								// if(party_hour>=20 && party_hour<=22){
+											$('#match2').css('display','none');
+											$('#match').css('display','block');
+								// }else{
+								// 	$('#match2').css('display','block');
+								// 	$('#match').css('display','none');
+								// }
+						}
+			});
+			var divination_date = new Date(),
+	    	divination_month = divination_date.getMonth();
+	    	divination_month = divination_month + 1;
+	    	divination_day = divination_date.getDate();
+			// 判断是否进行过每日抽卡
+			api.ajax({
+	    	    url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/getUserCard',
+	    	    method: 'get',
+	    	    data: {
+	    	        values: {
+	    	            uiid: $api.getStorage('id')
+	    	        }
+	    	    }
+	    	}, function(ret, err) {
+	    		if(ret.data == null){
+	    			if($api.getStorage('language')=='zho'){
+	    				$api.text($api.dom('#divination'), '開 始 使 用');
+	    			}else{
+	    				$api.text($api.dom('#divination'), 'P L A Y');
+	    			}
+
+	    		}else if(ret.data.update_time.slice(8,10)-divination_day!==0){
+	    			console.log('符合不同日');
+	    			// if(ret.data.update_time.slice(5,7)-divination_month!=0){
+	    				// console.log('符合不同月');
+	    				if($api.getStorage('language')=='zho'){
+		    				$api.text($api.dom('#divination'), '開 始 使 用');
+		    			}else{
+		    				$api.text($api.dom('#divination'), 'P L A Y');
+		    			}
+	    			// }
+	    		}
+	    	});
+			// 数秘术按钮
+			$api.addEvt($api.dom('#numerology'), 'click',function(){
+				$api.css($api.dom('#numerology'), 'background-color:#000;color:#fff;');
+				setTimeout(function(){
+					$api.css($api.dom('#numerology'), 'background-color:#fff;color:#000;');
+				},100);
+				api.openWin({
+				    name: 'numerology_new',
+				    url: 'widget://html/logon-register/numerology_new.html',
+				    pageParam: {
+				        function1:1,
+				        key: 1
+				    }
+				});
+			});
+			// 每日一占按钮
+			$api.addEvt($api.dom('#divination'), 'click',function(){
+				$api.css($api.dom('#divination'), 'background-color:#000;color:#fff;');
+				setTimeout(function(){
+					$api.css($api.dom('#divination'), 'background-color:#fff;color:#000;');
+				},100);
+				api.openWin({
+				    name: 'divination_new',
+				    url: 'widget://html/logon-register/divination_new.html',
+				    pageParam: {
+				        function1:1
+				    }
+				});
+			});
+			//塔罗匹配
+			$api.addEvt($api.dom('#match'), 'click',function(){
+				$api.css($api.dom('#match'), 'background-color:#000;color:#fff;');
+				setTimeout(function(){
+					$api.css($api.dom('#match'), 'background-color:#fff;color:#000;');
+				},100);
+				api.openWin({
+						name: 'numerology_new',
+						url: 'widget://html/logon-register/numerology_new.html',
+						animation:{
+						    type:"fade",
+						    // subType:"from_right",
+						    duration:1000
+						},
+						pageParam: {
+								function1:1,
+								key: 2
+						}
+				});
+			});
+			$api.html($api.dom('.T-coins_text'), 'T coin system under construction');
+			// 翻译功能
+			$api.addEvt($api.dom('#translation_button'), 'click',function(){
+				$api.css($api.dom('#translation_button'), 'background-color:#000;color:#fff;');
+				setTimeout(function(){
+					$api.css($api.dom('#translation_button'), 'background-color:#fff;color:#000;');
+				},100);
+				// alert(1);
+				api.openWin({
+				    name: 'chats_indexs',
+				    url: 'widget://html/chat/chats_indexs.html'
+				});
+			});
+			for(var i=0;i<content_button.length;i++){
+				if(i>5){
+					content_button[i].innerHTML='B U I L D I N G';
+					content_button[i].style='color:#aaa;border:0.5vw solid #aaa;';
+				}
+
+				}
+			if($api.getStorage('language')=="zho"){
+				$('#match2').html('開 始 使 用');
+				for(var i=0;i<content_button.length;i++){
+					if(content_button[i].innerHTML=='P L A Y'){
+						content_button[i].innerHTML='開 始 使 用';
+					}else if(content_button[i].innerHTML=='C H E C K'){
+						content_button[i].innerHTML='查 看 結 果';
+					}
+					if(i>5){
+						content_button[i].innerHTML='建 設 中';
+						content_button[i].style='color:#aaa;border:0.5vw solid #aaa;';
+					}
+
+				}
+				$api.html($api.dom('.T-coins_text'), '積 分 系 統 正 在 建 設');
+				//等待下次更新：：20180816记
+				// $api.html($api.dom('.T-coins_text'), '目 前 擁 有 <span>300</span> 個 T 幣');
+				$api.html($api.dom('#content_title1'), '翻 譯 系 統');
+				$api.html($api.dom('#content_text1'), '内 置 三 種 即 時 的 翻 譯 功 能 ， 包 含 語 音 ， 文 字 ， 圖 片 。');
+				$api.html($api.dom('#content_title2'), '匹 配 好 友');
+				$api.html($api.dom('#content_text2'), '你 今 天 還 有 <span>10</span> 次 匹 配 機 會 。');
+				$api.html($api.dom('#content_title3'), '高 級 匹 配 好 友');
+				$api.html($api.dom('#content_text3'), '可 以 進 行 篩 選 匹 配 ， 每 次 消 耗 <span>100</span> 點 積 分 。');
+				$api.html($api.dom('#content_title4'), '匿 名 匹 配 聊 天');
+				$api.html($api.dom('#content_text4'), '你 今 天 還 有 <span>10</span> 次 匹 配 機 會 。');
+				$api.html($api.dom('#content_title5'), '語 音 通 話');
+				$api.html($api.dom('#content_text5'), '和 匹 配 對 象 進 行 語 音 通 話 ， 每 次 消 耗 <span>200</span> 點 積 分 。');
+				$api.html($api.dom('#content_title6'), '數 秘 術');
+				$api.html($api.dom('#content_text6'), '解 密 属 于 你 的 “ 命 运 数 ”');
+				$api.html($api.dom('#content_title7'), '每 日 一 占');
+				$api.html($api.dom('#content_text7'), '今 天 會 抽 到 哪 張 牌 ？ 代 表 什 麽 ？');
+				$api.html($api.dom('#content_title8'), '塔 羅 匹 配');
+				$api.html($api.dom('#content_text8'), '通 過 塔 羅 快  速 匹 配 到 你 的 靈 魂 朋 友 ， 每 天 20 : 00 至 23 : 00 開 放 。（ 需 先 完 成 數 秘 術 測 試 ）');
+			}
+			//等待下次更新：：20180816记
+		    // $api.addEvt($api.dom('#T-coins'), 'click', function(){
+		    // 	api.openWin({
+		    // 	    name: 'T-coins',
+		    // 	    url: 'widget://html/chat/T-coins.html',
+		    // 	    pageParam: {
+		    // 	        name: 'value'
+		    // 	    }
+		    // 	});
+		    // });
+		}
+// function opentest(){
+// 	api.openWin({
+// 	    name: 'divination_new',
+// 	    url: 'widget://html/logon-register/divination_new.html',
+// 	    pageParam: {
+// 	        name: 'value'
+// 	    }
+// 	});
+// }
+function party(){
+	$api.html($api.dom('.wrap'), '<div class="content_box"><div class="content_img"><div class="hot"></div><img src="../../icon/function/icon-tarot2@3x2.png" alt=""></div><div class="content_title" id="content_title8">Tarot Dating</div><div class="content_text" id="content_text8">Let you quickly find your soul friend，open every day from 20:00 to 23:00.(Need to complete Numerology first.)</div><div class="content_button" id="match">P L A Y</div><div class="content_button2" id="match2" style="color:#aaa;border:0.5vw solid #aaa;">P L A Y</div></div><div class="content_box"><div class="content_img"><img src="../../icon/function/function-translation-ai@3x2.png" alt=""></div><div class="content_title" id="content_title1">Translation System</div><div class="content_text" id="content_text1">Built-in 3 instant translation methods.</div><div class="content_button" id="translation_button">P L A Y</div></div><div class="content_box"><div class="content_img"><img src="../../icon/function/icon-tarot5@3x2.png" alt=""></div><div class="content_title" id="content_title6">Numerology</div><div class="content_text" id="content_text6">look at what type of person you belong to.</div><div class="content_button" id="numerology">C H E C K</div></div><div class="content_box"><div class="content_img"><img src="../../icon/function/icon-tarot1@3x2.png" alt=""></div><div class="content_title" id="content_title7">Daily Divination</div><div class="content_text" id="content_text7">Look at my luck today.</div><div class="content_button" id="divination" >C H E C K</div></div><div class="content_box" style="display:none"><div class="content_img"><img src="../../icon/function/function-anonymous-chat-ai@3x2.jpg" alt=""></div><div class="content_title" id="content_title4">Anonymous Match Chat</div><div class="content_text" id="content_text4">You have <span>10</span> matching opportunities today.</div><div class="content_button" style="color:#aaa;border:0.5vw solid #aaa;" id="test11">B U I L D I N G</div></div><div class="content_box" style="display:none"><div class="content_img"><img src="../../icon/function/function-voice-chat-ai@3x2.jpg" alt=""></div><div class="content_title" id="content_title5">Voice Call</div><div class="content_text" id="content_text5">Make a voice call with the matching person, consuming <span>200</span> T-coins each time.</div><div class="content_button" style="color:#aaa;border:0.5vw solid #aaa;" id="test12">B U I L D I N G</div></div>');
+}
+	</script>
+</body>
+</html>

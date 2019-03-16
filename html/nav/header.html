@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>header</title>
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <style>
+		html, body{
+			background-color: transparent;
+			font-family: Arial;
+			font-style: italic;
+		}
+		img[src=""]{
+			visibility: hidden;/*将src不存在的img隐藏*/
+		}
+		img{
+			display: block;
+		}
+		header{/*头部*/
+			position: fixed;
+			top: 0;
+			left: 0;
+			z-index: 99;
+			width: 100vw;
+			height: 65px;
+			background:#ffffff; /*设置背景色渐变 linear-gradient(to right, #d9afd9 0%, #97d9e1 100%);*/
+			/*box-shadow: 0 0 10px #36A5B2;*/
+			border-bottom:1px solid #efefef;
+			display: -webkit-box;
+		    display: -webkit-flex;
+		    display: flex;
+		    /*设置容器为弹性盒子*/
+		}
+		header img{/*头部图片*/
+			margin: auto;/*设置图片外边距为自动，让它们能平均分布*/
+			margin-top:27.5px ;
+		}
+		header h1{/*头部的用户名称*/
+			margin: auto;/*设置外边距为自动，使能够平均分布*/
+			margin-top: 9vw;
+			font-size: 4.8vw;
+			line-height: 8vw;
+			color: #fff;
+		}
+		header h2{
+			margin-top: 27.5px;
+			color: #fff;
+			background: #f381a3;
+			line-height: 30px;
+			height: 30px;
+			width: 68px;
+			text-align: center;
+			border-radius: 5px;
+			font-size: 12px;
+			margin-right: 10px;
+			display: none;
+		}
+		.picLeft{/*头部左图片*/
+			width: 30px;
+			height: 30px;
+			margin-left: 10px;/*设置距离容器左边的边距*/
+		}
+		.isfollowing{
+			position: absolute;
+            left: 50%;
+            bottom:0;
+            margin-left:-3.99vw;
+            width: 7.98vw;
+            height: 11.97vw;
+            line-height: 12.5vw;
+            border-radius:50%;
+            text-align: center;
+            z-index:10;
+            display: none;
+            -webkit-animation: zoomIn 0.5s linear 0s normal;
+            animation: zoomIn 0.5s linear 0s normal;
+		}
+		@keyframes zoomIn {
+		  from {
+		    opacity: 0;
+		    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+		    transform: scale3d(0.3, 0.3, 0.3);
+		  }
+
+		  50% {
+		    opacity: 1;
+		  }
+		}
+		@-webkit-keyframes zoomIn {
+		  from {
+		    opacity: 0;
+		    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+		    transform: scale3d(0.3, 0.3, 0.3);
+		  }
+
+		  50% {
+		    opacity: 1;
+		  }
+		}
+		.comment{
+			width: 68px;
+			height: 30px;
+			/*设置距离容器右边的边距*/
+			display: none;
+			background: #000000;
+			border-radius: 5px;
+			line-height: 30px;
+			margin-top: 27.5px;
+			margin-right:7px;
+			font-size: 12px;
+			font-weight:700;
+			color: #ffffff;
+			text-align: center;
+		}
+		.comment2{
+			width: 68px;
+			height: 30px;
+			/*设置距离容器右边的边距*/
+			display: none;
+			background: #aaaaaa;
+			border-radius: 5px;
+			line-height: 30px;
+			margin-top: 27.5px;
+			margin-right: 7px;
+			font-size: 12px;
+			font-weight:700;
+			color: #ffffff;
+			text-align: center;
+		}
+		.comment2d{
+			width:30px;
+			height:30px;
+			margin-top:7.31vw;
+			margin-right:10px;
+			font-size: 20px;
+			font-weight: bold;
+			line-height: 7.98vw;
+			text-align: center;
+			/*float:right;*/
+		}
+		.picRight{/*头部右图片*/
+			width: 68px;
+			height: 30px;
+			margin-right: 10px;/*设置距离容器右边的边距*/
+			display: inline-block;
+			background: #f381a3;
+			border-radius: 5px;
+			line-height: 30px;
+			margin-top: 27.5px;
+			font-size: 12px;
+			font-weight:700;
+			color: #ffffff;
+			text-align: center;
+			z-index:999 !important;
+			visibility: hidden;
+		}
+		.set{
+			position: absolute;
+			left: 50%;
+			bottom:0;
+			margin-left:-50%;
+			width:100vw;
+    		height:11.97vw;
+			/*margin-right: 5.3vw;*/
+			/*margin-top: 6.32vw;*/
+			text-align: center;
+    		font:4vw/11.97vw Arial;
+    		font-weight:bold;
+    		/*border:1px solid #000;*/
+			/*background: url("../../icon/nav/head_box.png") no-repeat;*/
+			/*background-size: 100% 100%;*/
+			display: none;
+			z-index:-999;
+		}
+/*		.set p{
+			background: -webkit-linear-gradient(left, #d9afd9 , #97d9e1);
+		    -webkit-background-clip: text;
+		    -webkit-text-fill-color: transparent;
+		}*/
+		/*input{
+			display: block;
+			border: none;
+			outline: none;
+			color: #484848;
+			font-weight: bold;
+			font-size: 4vw;
+			line-height: 5.87vw;
+			float: left;
+			width: 54.65vw;
+			margin-left: 5.33vw;
+			padding: 5.5vw 2.67vw 4.5vw;
+		}
+		.wrap{
+			position: fixed;
+			left: 0;
+			top: 18.7vw;
+			background-color: #f8f8f8;
+			width: 100vw;
+			display: none;
+			border-bottom: 1px solid #efefef;
+		}
+		.btn{
+			float: right;
+			padding: 4vw 5.33vw;
+		}
+		.btn p{
+			font-size: 3.47vw;
+			text-align: center;
+			color: #fff;
+			font-weight: bold;
+			width: 24vw;
+			height: 8vw;
+			line-height: 9.25vw;
+			border-radius: 4vw;
+			background: linear-gradient(to right, #FFC2A0 0%, #FFAFBD 100%);
+			box-shadow: 0 0 10px #FFAFBD;
+		}*/
+		.zhuangtailan{
+			position: fixed;
+			top:0;
+			width: 100vw;
+			height:24px;
+			background-color: #fff;
+		}
+    </style>
+</head>
+<body>
+	<div class="zhuangtailan"></div>
+	<header>
+		<img src="../../icon/nav/LOGO1.png" class="picLeft" id="picLeft">
+		<h1 id="otherName"></h1>
+		<!-- <img src="../../icon/nav/comment.png" class="comment" id="comment">
+		<img src="../../icon/nav/setting.png" class="picRight" id="picRight"> -->
+		<span class="delete"></span>
+		<span class="isfollowing" id="isfollowing">☻</span>
+		<span class="comment2" id="comment2">MORE</span>
+		<span class="comment" id="comment">COMMENT</span>
+		<span class="picRight" id="picRight">LIKE</span>
+		<h2  id="rightWord">CHANGE</h2>
+		<div class="set" id="set">
+			<p>S&nbsp;E&nbsp;T</p>
+		</div>
+	</header>
+	<!-- 头部 -->
+	<!--<div class="wrap" id="searchInput">
+		<input type="text" placeholder="Enter Keywords" id="search" autofocus="autofocus">
+		<div class="btn">
+			<p id="btn">G O</p>
+		</div>
+	</div>-->
+	<script src="../../script/jquery-3.1.0.min.js"></script>
+	<script type="text/javascript">
+		var hhh =window.screen.height;
+    	var www =window.screen.width;
+
+		apiready = function(){
+			if(hhh/www > 2){
+            $api.css($api.dom('.zhuangtailan'), 'height:24px;');
+            $api.css($api.dom('header'), 'top:24px;');
+        }   
+			//leftCloseWin();
+
+			var testId = $api.getStorage("id"),//获取缓存ID
+    			otherId = api.pageParam["otherId"] || testId,//获取他人ID，不传则默认等于缓存ID
+    			postId = api.pageParam['postId'],
+    			pubuliu = api.pageParam['pubuliu'],
+    			user = api.pageParam["user"],//获取user参数，用来绑定到头部的中间
+    			summary=api.pageParam["summary"],
+    			pubuliu=api.pageParam['pubuliu'],
+    			picLeft = $api.dom("#picLeft"),
+    			picRight = $api.dom("#picRight"),
+    			otherName = $api.dom("#otherName"),
+    			comment = $api.dom("#comment"),
+					comment2 = $api.dom("#comment2"),
+    			setting = api.pageParam["setting"],//参数为true的话，是设置页打开的头部
+    			change = api.pageParam["change"],//参数为true的话，是修改密码页打开的头部
+    			set = $api.dom("#set"),
+    			rightWord = $api.dom("#rightWord"),
+    			language = $api.getStorage("language"),
+    			feed = api.pageParam["feed"],//参数为true的话，是反馈页打开的头部
+    			account = api.pageParam["account"],//参数为true的话，是帐号设置页打开的头部
+    			detail = api.pageParam["detail"],//参数为true的话，是详情页打开的头部
+    			search = api.pageParam["search"],//参数为true的话，是搜索页打开的头部
+    			searchDom = $api.dom("#search"),
+    			searchInput = $api.dom("#searchInput"),
+    			btn = $api.dom("#btn"),
+    			post = api.pageParam["post"];
+    			if(language  == "zho"){
+    				$api.text($api.dom("#comment2"), "更 多");
+    				$api.text($api.dom("#comment"),"評 論");
+    			};
+
+    			//参数为true的话，是帖子发布页打开的头部
+
+    		if(post){//帖子发布页
+    			leftCloseWin();
+    			$api.css(picRight, "display:none");
+    			$api.css(rightWord, "display:block");
+    			$api.html(rightWord, "POST");
+    			if(language == "zho"){
+    				$api.html(rightWord, "發 佈");
+    			};
+    			$api.addEvt(rightWord, "click", function(){
+    				var jsfun = "sendPost()";
+    				api.execScript({
+    					script: jsfun
+    				});
+    			});
+    			return;
+    		};
+    		if(search){//搜索页
+    			leftCloseWin();
+//  			$api.css(searchInput, "display:block");
+    			$api.dom(set, "p").innerHTML = "S E A R C H";
+    			if(language == "zho"){
+    				$api.dom(set, "p").innerHTML = "搜&nbsp;尋";
+//  				$api.html(btn, "開 始");
+//  				searchDom.placeholder = "輸入名字的關鍵字";
+    			};
+    			$api.css(picRight, "display:none");
+    			$api.css(set, "display:block");
+//  			$api.addEvt(btn, "click", function(){
+//  				var jsfun = "searchResult('" + $api.val(searchDom) + "')";
+//  				api.execScript({
+//  					script: jsfun
+//  				});
+//  			});
+    			return;
+    		};
+    		if(detail){//帖子详情页
+    			leftCloseWin();
+    			// picRight.src = "../../icon/nav/more.png";
+    			$api.css(picRight, "display:block;border-radius:18px;visibility:visible;letter-spacing:2px");
+    			if($api.getStorage('language')=='zho'){
+    				$api.text(picRight, '贊');
+    			}
+    			$api.css(comment, "display:none");
+    			// $api.css($api.dom('.isfollowing'), 'block');
+    			$api.html(comment2, '');
+    			$api.css(comment2, 'background-image:url(../../image/icon-share@3x2.png);background-size:cover;margin-top:29px');
+    			$api.css($api.dom('.delete'), 'background-image:url(../../image/share/delete.png);background-size:cover;margin-top:29px');
+    			$api.addCls(comment2, 'comment2d');
+    			$api.removeCls(comment2, 'comment2');
+    			$api.addCls($api.dom('.delete'), 'comment2d');
+    			$api.css(comment2, "display:block");
+    			if($api.getStorage('id')!==otherId){
+    				$api.css($api.dom('.delete'), 'display:none;');
+    			}
+    			$api.addEvt($api.dom('.delete'), 'click', function(){
+    				api.openFrame({
+						name: "out",
+						url: "widget://html/nav/out.html",
+						rect: {
+							x: 0,
+							y: 0,
+							w: "auto",
+							h: "auto"
+						},
+						pageParam:{
+							deletePost: true,
+							postId:postId,
+							otherId:otherId,
+							pubuliu:pubuliu
+						}
+					});
+    			});
+    			$api.addEvt(comment2, "click", function(){
+    				var jsfun = "openDelete()";
+    				api.execScript({
+					    script: jsfun
+					});
+    			});
+    			// 监听帖子详情页关注事件
+    			// api.addEventListener({
+    			//     name: 'detail_isfollow_yes'
+    			// }, function(ret, err) {
+    			//     $api.css($api.dom('.isfollowing'), 'display:block');
+    			// });
+    			// 监听帖子详情页取消关注事件
+    			// api.addEventListener({
+    			//     name: 'detail_isfollow_no'
+    			// }, function(ret, err) {
+    			//     $api.css($api.dom('.isfollowing'), 'display:none');
+    			// });
+
+    			$api.addEvt($api.dom('#isfollowing'), 'click', function(){
+    				api.openFrame({
+					    name: 'out',
+					    url: 'widget://html/nav/out.html',
+					    rect: {
+					        x: 0,
+					        y: 0,
+					        w: 'auto',
+					        h: 'auto'
+					    },
+					    pageParam: {
+					        follow: 1
+					    }
+					});
+    			});
+    			// 点赞发送事件
+    			$api.addEvt(picRight, 'click', function(){
+    				api.sendEvent({
+    				    name: 'like_on'
+    				});
+    				$api.css(picRight, 'background-color:rgba(239,239,239,1);color:#fff');
+    				if($api.getStorage('language')=='zho'){
+    					$api.text(picRight, '已 贊');
+    				}else{
+    					$api.text(picRight, 'LIKED');
+    				}
+    			});
+    			// 监听该帖子是否点赞
+    			api.addEventListener({
+    			    name: 'like_yesno'
+    			}, function(ret, err) {
+    				$api.css(picRight, 'background-color:rgba(239,239,239,1);color:#fff');
+    			    if($api.getStorage('language')=='zho'){
+    					$api.text(picRight, '已 贊');
+    				}else{
+    					$api.text(picRight, 'LIKED');
+    				}
+    			});
+    			return;
+    		};
+    		if(account){//账号设置页
+    			leftCloseWin();
+    			$api.css(picRight, "display:none");
+    			// $api.css(rightWord, "display:block");
+    			$api.css(set, "display:block");
+    			// $api.html(rightWord, "DEFINE");
+    			$api.dom(set, "p").innerHTML = "D&nbsp;A&nbsp;T&nbsp;A";
+    			// if(language == "zho"){
+    			// 	$api.html(rightWord, "確&nbsp;定");
+    			// };
+    	// 		$api.addEvt(rightWord, "click", function(){
+    	// 			var jsfun = "sendData();";
+    	// 			api.execScript({
+					//     script: jsfun
+					// });
+    	// 		});
+    			return;
+    		};
+    		
+    		if(pubuliu){//专题页
+    			if(language == "zho"){
+    				$api.dom(set, "p").innerHTML = "主 題 活 動";
+    			}else{
+    				$api.dom(set, "p").innerHTML = "T H E M E&nbsp;&nbsp; A C T I V I T Y";
+    			}
+    			leftCloseWin();
+    			$api.css(picRight, "display:none");
+    			$api.css(set, "display:block");
+    			return;
+    		}
+    		if(setting){//设置页
+    			if(language == "zho"){
+    				$api.dom(set, "p").innerHTML = "設&nbsp;置";
+    			};
+    			leftCloseWin();
+    			$api.css(picRight, "display:none");
+    			$api.css(set, "display:block");
+    			return;
+    		};
+    		if(change){//修改密码页
+    			$api.css(picRight, "display:none");
+    			// $api.css(rightWord, "display:block");
+    			$api.css(set, "display:block");
+    			
+    			if(language == "zho"){
+    				$api.html(rightWord, "修&nbsp;改");
+    				
+    				$api.dom(set, "p").innerHTML = "修&nbsp;改&nbsp;密&nbsp;碼";
+    			}else{
+    				$api.dom(set, "p").innerHTML = "P A S S W O R D";
+    			}
+    			$api.css(picRight, "display:none");
+    			leftCloseWin();
+    	// 		$api.addEvt(rightWord, "click", function(){
+    	// 			var jsfun = "changePassword();";
+    	// 			api.execScript({
+					//     script: jsfun
+					// });
+    	// 		});
+    			return;
+    		};
+    		if(feed){//反馈页
+    			$api.css(picRight, "display:none");
+    			// $api.css(rightWord, "display:block");
+    			$api.css(set, "display:block");
+    			if($api.getStorage('language')=='zho'){
+    				$api.dom(set, "p").innerHTML = "意&nbsp;見&nbsp;反&nbsp;饋";
+    			}else{
+					$api.dom(set, "p").innerHTML = "F E E D B A C K";
+    			}
+    			
+    			$api.html(rightWord, "SEND");
+    			// if(language == "zho"){
+    			// 	$api.html(rightWord, "提&nbsp;交");
+    			// };
+    			$api.css(picRight, "display:none");
+    			leftCloseWin();
+    	// 		$api.addEvt(rightWord, "click", function(){
+    	// 			var jsfun = "sendMsg();";
+    	// 			api.execScript({
+					//     script: jsfun
+					// });
+    	// 		});
+    			return;
+    		};
+    		if(api.pageParam["onlyLeft"]){//onlyLeft参数表示只需要后退箭头的头部
+    			$api.css(picRight, "display:none");
+    			leftCloseWin();
+    			return;
+    		};
+    		if(testId !== otherId){//默认为主页头部
+				picRight.src = "../../icon/nav/more.png";
+				leftCloseWin();
+				$api.html(otherName, user);
+				$api.addEvt(picRight, "click", function(){
+					var jsfun = "openMore();";
+					api.execScript({
+					    script: jsfun
+					});
+				});
+				return;
+    		};
+    		$api.addEvt(picRight, "click", function(){
+				var jsfun = "openSetting();";
+				api.execScript({
+				    script: jsfun
+				});
+			});
+
+			//$api.css(comment, "display:block");
+		};
+
+		function leftCloseWin(){
+			$api.css(picLeft, "width: 8vw");
+			picLeft.src = "../../image/icon-back@3x2.png";
+			$api.addEvt(picLeft, "click", function(){
+				api.closeWin();
+			});
+		};
+	</script>
+</body>
+</html>

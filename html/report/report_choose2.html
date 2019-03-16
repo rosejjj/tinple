@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>report</title>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+		}
+		.bg{
+			position: fixed;
+			top: 0;
+			width:100vw;
+			height:100vh;
+			background-color:#efefef;
+			z-index: -1;
+		}
+		header{
+			width:100vw;
+			height:17.29vw;
+			position: relative;
+			box-shadow:0 0 1.33vw 0 rgba(239,239,239,1);
+			background-color:#fff;
+			z-index: 1;
+		}
+		.return{
+			position: absolute;
+			bottom:1.99vw;
+			left:2.66vw;
+			width:7.98vw;
+			height:7.98vw;
+			background:url(../../image/icon-back@3x2.png);
+			background-size:contain;
+			z-index: 10;
+		}
+		.title{
+			position: absolute;
+			bottom:0;
+			left:0;
+			width:100%;
+			font:3.98vw/11.97vw Arial;
+			font-weight: bold;
+			text-align: center;
+			z-index: 1;
+		}
+		.tip{
+			width:79.26vw;
+			margin:5.32vw auto 0;
+			font:3.98vw/5.85vw Arial;
+			font-weight: bold;
+			text-align: center;
+			color:#aaa;
+		}
+		.box1,.box2,.box3,.box4,.box5{
+			position: relative;
+			width:100%;
+			font:3.99vw/5.85vw Arial;
+			font-weight: bold;
+			/*text-align: center;*/
+			/*border-radius: 2.66vw;*/
+			margin:0vw auto;
+			background-color:#fff;
+			padding:3.72vw 5.32vw;
+			border-bottom:1px solid #efefef;
+			box-sizing: border-box;
+		}
+		.box1::before,.box2::before,.box3::before,.box4::before,.box5::before{
+			content: '';
+			position: absolute;
+			top:50%;
+			right:5.32vw;
+			width:4.26vw;
+			height:4.26vw;
+			margin-top:-2.13vw;
+			background:url(../../icon/search/toright2.png) no-repeat center;
+			background-size:cover;
+			transform: rotate(-90deg);
+		}
+	</style>
+</head>
+<body>
+	<div class="bg">
+	<header>
+		<div class="return"></div>
+		<div class="title">C O M P L A I N T S</div>
+	</header>
+
+	<div class="content">
+		<!-- <div class="tip">Please select the reason for the complaint account</div> -->
+		<div class="box1" onclick="openreport()">Buying and selling fraud</div>
+		<div class="box2" onclick="openreport()">Financial loan fraud</div>
+		<div class="box3" onclick="openreport()">Network part-time fraud</div>
+		<div class="box4" onclick="openreport()">Counterfeiting others</div>
+		<div class="box5" onclick="openreport()">Other fraud</div>
+	</div>
+	</div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript">
+	var hhh = window.screen.height;
+	var www = window.screen.width;
+	apiready = function(){
+		// 适应刘海屏
+		if(hhh/www > 2){
+			$api.css($api.dom('header'), 'height:90px;');
+		}
+	    if($api.getStorage('language')=='zho'){
+	    	$api.text($api.dom('.title'), '投 诉');
+	    	// $api.text($api.dom('.tip'), '请 选 择 投 诉 此 账 号 的 原 因');
+	    	$api.text($api.dom('.box1'), '买 卖 诈 骗');
+	    	$api.text($api.dom('.box2'), '金 融 贷 款 诈 骗');
+	    	$api.text($api.dom('.box3'), '网 络 兼 职 诈 骗');
+	    	$api.text($api.dom('.box4'), '仿 冒 他 人 诈 骗');
+	    	$api.text($api.dom('.box5'), '其 他 欺 诈');
+	    }
+	    api.addEventListener({
+				name: 'swiperight'
+			}, function() {
+				api.closeWin({
+					animation: {
+						type: "push", //动画类型（详见动画类型常量）
+						subType: "from_left", //动画子类型（详见动画子类型常量）
+						duration: 300 //动画过渡时间，默认300毫秒
+					}
+				});
+			});//右滑关闭win
+	    $api.addEvt($api.dom('.return'), 'click',function(){
+	    	api.closeWin();
+	    });
+	}
+function openreport(){
+	api.openWin({
+	    name: 'report_content',
+	    url: 'widget://html/report/report_content.html',
+	    pageParam: {
+	        report: api.pageParam['report']
+	    }
+	});
+}
+
+</script>
+</html>

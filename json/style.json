@@ -1,0 +1,160 @@
+var filterArr = {
+"data": [
+{
+"name": "Judith",
+"model": "80000_Judith_200_0.8.ckpt",
+"id": "2c93808b5d5ab817015d5da999040001",
+"url": "neuralStyle1012315679184280.jpg"
+},
+{
+"name": "Janet",
+"model": "80000_Janet_300_0.8.ckpt",
+"id": "2c93808b5d5ab817015d5da858af0000",
+"url": "neuralStyle1012225301156266.jpg"
+},
+{
+"name": "Ilya",
+"model": "70000_Ilya_300_0.8.ckpt",
+"id": "8aaee3b85d30e61d015d348a77d60000",
+"url": "neuralStyle62364209874891.jpg"
+},
+{
+"name": "Francoise",
+"model": "80000_Francoise_300_0.8.ckpt",
+"id": "8aaee3b85d0d148a015d20109fc70001",
+"url": "neuralStyle1171514103030456.jpg"
+},
+{
+"name": "Cítricos",
+"model": "80000_citricos_100_0.8.ckpt",
+"id": "8aaee3b85d0d148a015d136f90550000",
+"url": "neuralStyle959618801870415.jpg"
+},
+{
+"name": "CoraTiana",
+"model": "80000_coraTiana_200_1.0.ckpt",
+"id": "8aaee3b85d0de64f015d0e3c157f034c",
+"url": "neuralStyle872371386647040.jpg"
+},
+{
+"name": "Childhood",
+"model": "80000_Childhood_300_0.8.ckpt",
+"id": "8aaee3b85cfd154b015cfe9eb731253c",
+"url": "neuralStyle610403006535760.jpg"
+},
+{
+"name": "Charismatic",
+"model": "80000_Charismatic_200_1.2.ckpt",
+"id": "8aaee3b85cfa0418015cfbede0d30e25",
+"url": "neuralStyle565196009703349.jpg"
+},
+{
+"name": "Bridget",
+"model": "80000_Bridget_200_0.8.ckpt",
+"id": "8aaee3b85ceeefa7015cef50d74b0548",
+"url": "neuralStyle353642095539373.jpg"
+},
+{
+"name": "Carne",
+"model": "80000_CARNE_200_1.0.ckpt",
+"id": "8aaee3b85ceeefa7015cef3ce7190476",
+"url": "neuralStyle352308690703204.jpg"
+},
+{
+      "name": "Alia",
+      "model": "80000_Alia_300_0.8.ckpt",
+      "id": "8aaee3b85ce78d21015cea28b9b63d76",
+      "url": "neuralStyle266926010835014.jpg"
+    },
+    {
+      "name": "Aloha",
+      "model": "80000_Aloha_300_0.8.ckpt",
+      "id": "8aaee3b85ce78d21015cea24fea03d60",
+      "url": "neuralStyle266884662133952.jpg"
+    },
+    {
+      "name": "Agnes",
+      "model": "80001_ac_s200_0.8.ckpt",
+      "id": "8aaee3b85cbff178015cc0df5db321e7",
+      "url": "neuralStyle6237482142875880.jpg"
+    },
+    {
+      "name": "Colorful",
+      "model": "8w_s50_c08_colorful.ckpt",
+      "id": "8aaee3b85cb0d565015cb1b6cdd7034d",
+      "url": "neuralStyle5983161358644714.jpg"
+    },
+    {
+      "name": "Earth and Sky",
+      "model": "8w__s200_aate.ckpt",
+      "id": "8aaee3b85cac05ac015caebc6a8f03d8",
+      "url": "neuralStyle5933107518865132.jpg"
+    },
+    {
+      "name": "Tilda",
+      "model": "4w_tilda.ckpt",
+      "id": "8aaee3b85c8fe060015c9634a4c2222d",
+      "url": "neuralStyle5521634470676574.jpg"
+    },
+    {
+      "name": "Duchamp",
+      "model": "8w_s250_nu_desc.ckpt",
+      "id": "8aaee3b85b862e5f015b8b1605180d7f",
+      "url": "neuralStyle1040122522451849.jpg"
+    },
+    {
+      "name": "Lighthouse",
+      "model": "8w_s200_c08_crash.ckpt",
+      "id": "8aaee3b85c8beef6015c8d7a778b0547",
+      "url": "neuralStyle5375101086190122.jpg"
+    },
+    {
+      "name": "Ghost",
+      "model": "8w_s300_c08.ckpt",
+      "id": "8aaee3b85c8beef6015c8dbff744063a",
+      "url": "neuralStyle5379774671969007.jpg"
+    },
+    {
+      "name": "Star Wars",
+      "model": "7w_s200_c2_sw.ckpt",
+      "id": "8aaee3b85bc897df015bcc3b0a231015",
+      "url": "neuralStyle2132858846335058.jpg"
+    },
+     {
+      "name": "Forest",
+      "model": "5w_s500_c08_forest.ckpt",
+      "id": "8aaee3b85c7822af015c7b3b70620b13",
+      "url": "neuralStyle5069084225555111.jpg"
+    },
+    {
+      "name": "Pumpkin",
+      "model": "7w_s300_08_puk.ckpt",
+      "id": "8aaee3b85c62cb9e015c66c082151235",
+      "url": "neuralStyle4725489262973217.jpg"
+    },
+    {
+      "name": "Freud",
+      "model": "s300_3w_red.ckpt",
+      "id": "ff8080815b50c107015b50e7290b0000",
+      "url": "neuralStyle8607635529906.jpg"
+    },
+    {
+      "name": "とみえ",
+      "model": "4w_とみえ.ckpt",
+      "id": "8aaee3b85bb3c62a015bb3f4d0150142",
+      "url": "neuralStyle1725810478697984.jpg"
+    },
+    {
+      "name": "Picasso",
+      "model": "8w_le_pigeon.ckpt",
+      "id": "8aaee3b85b6c2359015b6fbf9d0a0534",
+      "url": "neuralStyle581469505149951.jpg"
+    },
+    {
+      "name": "Matisse",
+      "model": "6w_Matisse_Woman.ckpt",
+      "id": "ff8080815b50c107015b50e872640001",
+      "url": "neuralStyle6304209902263.jpg"
+    }
+]
+}

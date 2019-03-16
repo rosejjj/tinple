@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+		}
+		body{
+			background-color:#fff;
+		}
+		.line{
+			position: fixed;
+			top:0;
+			width:100vw;
+			height:1px;
+			background-color:#efefef;
+			box-shadow:0 0 5px 0 rgba(170,170,170,0.5);
+		}
+		.line1{
+			margin:0 auto;
+			width:89.36vw;
+			height:1px;
+			background-color:#efefef;
+		}
+		.online_list{
+			position: relative;
+			width: 100vw;
+			height:21.28vw;
+		}
+		.avatar{
+			position:relative;
+			width:13.3vw;
+			height:13.3vw;
+			border-radius: 50%;
+			background-position: center;
+			background-size: cover;
+			display: inline-block;
+			margin:3.99vw 0 3.99vw 3.99vw;
+			background-color:#efefef;
+		}
+		.avatar>.green{
+			position: absolute;
+			bottom:0;
+			right:0;
+			width:15px;
+			height:15px;
+			border:2px solid #fff;
+			border-radius: 50%;
+			background-color:#9DDA57;
+			box-sizing: border-box;
+		}
+		.online_all,.function_all{
+			position: absolute;
+			top:0;
+			right:3.99vw;
+			width:10.64vw;
+			height:100%;
+			/*font:3.12vw/23.94vw Arial;*/
+			color:#aaa;
+		}
+		.online_all>span{
+			position: absolute;
+			left:0;
+			top:50%;
+			margin-top:-4.655vw;
+			display: inline-block;
+			width:10.64vw;
+			height:9.31vw;
+			background-color:#efefef;
+			border-radius:1.33vw;
+/*			background-size: cover;
+			transform: rotate(-90deg);*/
+			/*vertical-align: middle;*/
+		}
+		.online_all>span>img{
+			position: absolute;
+			left:2.66vw;
+			top:1.995vw;
+			width:5.32vw;
+			height:5.32vw;
+			object-fit: contain;
+			transform:rotate(-90deg);
+			opacity: 0.4;
+		}
+		.function_title{
+			margin-top:7.98vw;
+			position: relative;
+			width: 100vw;
+			font:3.99vw/4.52vw Arial;
+			font-weight: bold;
+			padding-left:5.32vw;
+			box-sizing: border-box;
+		}
+		.function_all{
+			font:3.99vw/4.52vw Arial;
+			font-weight:normal;
+			display: none;
+		}
+		.function_box{
+			position: relative;
+			width:100vw;
+			height:31.91vw;
+			padding:5vw 0 6vw 0;
+			overflow: hidden;
+		}
+		.function_content{
+			position: absolute;
+			width: 181.88vw;
+			height:31.91vw;
+		}
+		.function_content>div{
+			position: relative;
+			display: inline-block;
+			width:39.89vw;
+			height:31.91vw;
+			box-shadow:0 0 10px 3px rgba(170,170,170,0.1);
+			border-radius: 2.66vw;
+			font:3.19vw/50vw Arial;
+			font-weight: bold;
+			text-align: center;
+			margin-left:3.99vw;
+		}
+		.function_content>div:nth-of-type(1){
+			margin-left:2.66vw;
+		}
+		.function_content>div>img{
+			position: absolute;
+			top:3.19vw;
+			left:50%;
+			margin-left:-9.31vw;
+			width:18.62vw;
+			height:18.62vw;
+			border-radius: 2.66vw;
+		}
+		.group_title{
+			position: relative;
+			width:100%;
+			/*height:7.98vw;*/
+			font:3.99vw Arial;
+			font-weight: bold;
+			padding-left:3.99vw;
+			box-sizing: border-box;
+			margin-top:3.99vw;
+			margin-bottom:1.33vw;
+		}
+		.group_title>img{
+			width:3.99vw;
+			height:3.99vw;
+			vertical-align:text-top;
+			margin-left:2.66vw;
+			object-fit: contain;
+		}
+		.group_data{
+			font:3.12vw/4.52vw Arial;
+			color:#aaa;
+			padding-left:3.99vw;
+			box-sizing: border-box;
+			margin-bottom:2.66vw;
+		}
+		.group_selected{
+			width:100vw;
+			height:9.31vw;
+			padding:0 3.99vw;
+			margin-bottom:3.99vw;
+			box-sizing:border-box;
+		}
+		.group_selected .group_type_button{
+			float:left;
+			width:auto;
+			height:100%;
+			background-color:#efefef;
+			border-radius:1.33vw;
+			padding:0.5vw;
+			box-sizing: border-box;
+		}
+		.group_selected .sort{
+			float:right;
+			position: relative;
+			width:10.64vw;
+			height:9.31vw;
+			background-color:#efefef;
+			border-radius:1.33vw;
+		}
+		.group_selected .group_type_button span{
+			float:left;
+			position: relative;
+			width:10.64vw;
+			height:8.31vw;
+			border-radius:1.33vw;
+		}
+		.group_selected .group_type_button span img,.group_selected .sort img{
+			position: absolute;
+			top:50%;
+			left:50%;
+			margin-top:-2.4vw;
+			margin-left:-2.4vw;
+			width:4.8vw;
+			height:4.8vw;
+			object-fit: cover;
+		}
+		.group_selected .group_type_button span img{
+			opacity: 0.4;
+		}
+		.group_content{
+			width: 100vw;
+		}
+		.group_box{
+			width: 92.41vw;
+			height:31.94vw;
+			margin:0 auto 3.99vw;
+			border-radius: 2.66vw;
+			box-shadow:0 0 10px 3px rgba(170,170,170,0.1);
+			overflow: hidden;
+		}
+		.group_img{
+			position: relative;
+			width:31.94vw;
+			height:31.94vw;
+			background-color:#efefef;
+			background-position: center;
+			background-size:cover;
+			float:left;
+		}
+		.group_box_text{
+			position: relative;
+			width:60vw;
+			height:31.94vw;
+			float:left;
+		}
+		.group_box_title{
+			font:3.99vw/5.85vw Arial;
+			font-weight: bold;
+			margin-top:2.66vw;
+			margin-left:2.66vw;
+			margin-bottom:1vw;
+			height:6.65vw;
+/*			display: inline-block;
+			display: -webkit-box;
+	        -webkit-line-clamp: 1;
+	        -webkit-box-orient: vertical;
+	        overflow: hidden;*/
+		}
+		.group_box_title>img{
+			width: 3.99vw;
+			height:3.99vw;
+			object-fit: cover;
+			margin-right:1.33vw;
+			margin-top:1vw;
+			display: inline-block;
+			float:left;
+			vertical-align:middle;
+		}
+		.group_people,.group_dis{
+			font:3.19vw/4.52vw Arial;
+			color:#aaa;
+			margin-bottom:2vw;
+			margin-left:2.66vw;
+			font-weight: bold;
+		}
+		.group_people span,.group_dis span{
+			color:#000;
+		}
+		.group_button{
+			position: absolute;
+			bottom:2.66vw;
+			right:2.66vw;
+			width:15.96vw;
+			height:7.98vw;
+			border:0.5vw solid #000;
+			border-radius: 26.6vw;
+			font:3.19vw/7.48vw Arial;
+			font-weight: bold;
+			text-align: center;
+			box-sizing: border-box;
+		}
+		.group_box_title_text1{
+			max-width: 41vw;
+			height: 6.65vw;
+			line-height: 6.65vw;
+			display: inline-block;
+			display: -webkit-box;
+	        -webkit-line-clamp: 1;
+	        -webkit-box-orient: vertical;
+	        overflow: hidden;
+	        float:left;
+	        vertical-align: middle;
+		}
+		/*活动样式*/
+		.party_time{
+			background-color:#000;
+		}
+		.party_time .hot{
+			position: absolute;
+			top:2.66vw;
+			left:2.66vw;
+			width:7.98vw ;
+			height:7.98vw;
+			background:url(../../icon/guide/hot.gif) no-repeat center top;
+			background-size:contain;
+		}
+		.party_time .group_box_title{
+			width: 100%;
+			height:6.65vw;
+			display: inline-block;
+	        -webkit-line-clamp: 1;
+	        -webkit-box-orient: vertical;
+	        overflow: hidden;
+		}
+
+		.party_time .group_box_title .group_box_title_text{
+			max-width: 50vw;
+			line-height: 6.65vw;
+			color:#fff;
+			display: inline-block;
+			display: -webkit-box;
+	        -webkit-line-clamp: 1;
+	        -webkit-box-orient: vertical;
+	        overflow: hidden;
+	        float:left;
+		}
+		.party_time .group_box_title .fire{
+			display: inline-block;
+			background:url(../../image/fire.gif) no-repeat center;
+			background-size:cover;
+			width:6.65vw;
+			height:6.65vw;
+			margin-top:-0.8vw;
+			/*vertical-align: top;*/
+			float:left;
+		}
+		.party_time .group_box_text span{
+			color:#f381a3;
+		}
+		.party_time .group_button{
+			border-color:#fff;
+			background-color:#000;
+			color:#fff;
+		}
+		.lv,.lv1{
+			display: inline-block;
+			width:30px;
+			height:15px;
+			font:10px/17px Arial;
+			font-weight: bold;
+			color:#fff;
+			text-align: center;
+			background-color: #f381a3;
+			vertical-align:middle;
+			border-radius: 10px;
+			box-sizing: border-box;
+			margin-left:5px;
+			display: none;
+		}
+		.lv1{
+			line-height: 15px;
+		}
+		.tarot_party::before{
+			content:'';
+			position: absolute;
+			top:2.66vw;
+			left:2.66vw;
+			width:7.98vw ;
+			height:7.98vw;
+			background:url(../../icon/guide/hot.gif) no-repeat center top;
+			background-size:contain;
+		}
+		.loading{
+		    width: 18.62vw;
+		    text-align: center;
+		    height: 13.30vw;
+		    position: fixed;
+		    bottom: 2.66vw;
+		    left: 50%;
+		    transform: translateX(-50%);
+		    /*background: #fff;*/
+		    border-radius:2.66vw;
+		    /*opacity: 0.5;*/
+		    z-index: 9999;
+		  }
+		  .loading img{
+		    position: absolute;
+		    bottom:2.66vw;
+		    left:50%;
+		    margin-left:-4vw;
+		    width:8vw;
+		    height:8vw;
+		  }
+	</style>
+</head>
+<body>
+	<!-- <div class="line"></div> -->
+	<div class="pagebox">
+		<div class="online_list">
+			<div class="avatar"><span class="green"></span></div>
+			<div class="avatar"><span class="green"></span></div>
+			<div class="avatar"><span class="green"></span></div>
+			<div class="avatar"><span class="green"></span></div>
+			<div class="online_all"><span><img src="../../image/index/arrow.png" alt=""></span></div>
+		</div>
+		<!-- <div class="line1" style="margin-bottom:6vw"></div> -->
+<!-- 		<div class="function_title">
+			S P E C I A L&nbsp;&nbsp;F E A T U R E S
+			<div class="function_all">all <span></span></div>
+		</div>
+		<div class="function_box"   onMouseDown="pageGuideMousedown(this,event)" onMouseMove="pageGuideMousemove(this,event)" onMouseUp="pageGuideMouseup(this,event)" onMouseOut="pageGuideMouseout(this,event)" ontouchstart="pageGuideTouchstart(this,event)" ontouchmove="pageGuideTouchmove(this,event)" ontouchend="pageGuideTouchend(this,event)">
+			<div class="function_content" >
+				<div class="translation" id="translation_button"><img src="../../icon/function/function-translation-ai@3x2.png" alt="">Translation System</div>
+
+				<div class="divination" id="divination"><img src="../../icon/function/icon-tarot1@3x2.png" alt="">Daily Divination</div>
+				<div class="numerology" id="numerology"><img src="../../icon/function/icon-tarot5@3x2.png" alt="">Numerology</div>
+				<div class="tarot_chat" id="match" style="display: none;"><img src="../../icon/function/icon-tarot2@3x2.png" alt="">Tarot Dating</div>
+			</div>
+		</div> -->
+		<div class="group_title">GROUPS LIST</div>
+		<div class="group_data">A total of <span id="group_data_num">0</span> Groups, <span id="group_data_dis">0</span> Discussion</div>
+		<div class="group_selected">
+			<div class="group_type_button">
+				<span id="hot"><img src="../../icon/chat/hot.png" alt=""></span>
+				<span id="chat"><img src="../../icon/chat/chat.png" alt=""></span>
+				<span id="music"><img src="../../icon/chat/music.png" alt=""></span>
+				<span id="movie"><img src="../../icon/chat/movie.png" alt=""></span>
+				<span id="game"><img src="../../icon/chat/game.png" alt=""></span>
+				<span id="anime"><img src="../../icon/chat/anm.png" alt=""></span>
+			</div>
+			<div class="sort" onclick='selected_sort()'><img src="../../icon/chat/sort.png" alt=""></div>
+		</div>
+		<div class="group_content" id="group_content">
+			<!-- <div class="group_box party_time">
+				<div class="group_img"><span class="hot"></span></div>
+				<div class="group_box_text">
+					<p class="group_box_title"><span class="group_box_title_text">TATTOOFAMILaosdlfn  sdkalnlY </span><span class="fire"></span></p>
+					<p class="group_people">The group will be hidden at 23:00</p>
+					<p class="group_people"><span>341/500</span> People</p>
+					<p class="group_dis">12.4k 討論數</p>
+					<div class="group_button">JOIN</div>
+				</div>
+			</div>
+			<div class="group_box">
+				<div class="group_img"></div>
+				<div class="group_box_text">
+					<p class="group_box_title">TATTOOFAMILY</p>
+					<p class="group_people"><span>341/500</span> People</p>
+					<p class="group_dis">12.4k 討論數</p>
+					<div class="group_button">JOIN</div>
+				</div>
+			</div> -->
+<!-- 			<div class="group_box">
+					<div class="group_img" ></div>
+					<div class="group_box_text">
+						<p class="group_box_title"><img src="../../icon/chat/chat.png" alt=""><span class="group_box_title_text1">dlsdnkglk dfnfjksdnfkjs dn fkjsdn gld k</span><span class="lv" style="display:inline-block;">Lv1</span></p>
+						<p class="group_people">#Just Chit Chat</p>
+						<p class="group_people"><span>`+membersNumber_num[i+z]+`/500</span>`+people+`</p>
+						<p class="group_dis"><span>`+active_text+`</span>`+discussions+`</p>
+						<div class="group_button" style="`+button_style+`" onclick="opengroup('`+gid_num[i+z]+`','`+groupname_num[i+z]+`',this,'`+group_button_style+`')">`+join+`</div>
+					</div>
+				</div> -->
+		</div>
+	</div>
+	<div id="loadings" class="loading"><img src="../../icon/loading.gif" alt=""></div>
+</body>
+<script src="../../script/jq22.js"></script>
+<script src="../../json/router.json"></script>
+<script src="../../script/jquery-3.1.0.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript">
+	var db;
+	var boof=true,//列表还没加载出来，不能下拉加载群列表的参数
+		booff=true,//随机四个在线用户的循环停止参数
+		select_boof=true;//列表还没加载出来，不能点击选择群类型的参数 true为可以点击,false为不能点击
+	var gid_num=[],
+		group_type_num=[],
+		active_num=[],
+		avatar_num=[],
+		groupname_num=[],
+		membersNumber_num=[],
+		lv_num=[];
+	var img_qian = "http://bin.baopinghui.com/";
+	var img_suo = "?imageView2/0/w/400";
+	var img_video = "?vframe/jpg/offset/5/w/400";
+	var people=' People',
+		discussions=' Discussions',
+		join='JOIN',
+		button_style,
+		group_button_style=1,//代表群未满人
+		group_num=0,
+		isgroup=1,
+		order_type,//排序参数
+		random,
+		people_random=[],
+		random_yes=true,
+		people_random2=16,
+		people_random3=16,
+		people_random4=16,
+		active_text;
+	var z=0,
+		lv=0;
+		lv_yes='inline-block';
+		str='';
+	var text1="Is entering the group";
+	var class_lv='lv';
+	apiready = function(){
+		order_type=$api.getStorage('order_type') || 1;
+		db=api.require("db");
+		// 下拉刷新
+        api.setRefreshHeaderInfo({
+            visible: true,
+            loadingImg: 'widget://image/refresh.png',
+            bgColor: '#efefef',
+            textColor: '#aaa',
+            textDown: 'Ready to refresh',
+            textUp: 'Ready to refresh',
+            textLoading:'Ready to refresh',
+            showTime: false
+        }, function(ret, err){
+            setTimeout(function(){
+	            window.location.reload();
+                api.refreshHeaderLoadDone();
+            },500)
+    	});
+        // 苹果样式
+	        var u = navigator.userAgent;
+            if(u.indexOf('iPhone') > -1){
+				class_lv='lv1';
+			}
+
+	    if($api.getStorage('language')=='zho'){
+	    	people=' 成員數';
+	    	discussions=' 討論數';
+	    	join='參 與';
+	    	text1="正在进入群组";
+	    	$api.html($api.dom('.group_data'), '一 共 <span id="group_data_num">0</span> 個 群 組 , <span id="group_data_dis">0</span> 次 討 論');
+	    	// $api.html($api.dom('.function_title'), '特 殊 功 能<div class="function_all">全部 <span></span></div>');
+	    	// $api.html($api.dom('#translation_button'), '<img src="../../icon/function/function-translation-ai@3x2.png" alt="">翻 譯 系 統');
+	    	// $api.html($api.dom('#numerology'), '<img src="../../icon/function/icon-tarot5@3x2.png" alt="">數 秘 術');
+	    	// $api.html($api.dom('#divination'), '<img src="../../icon/function/icon-tarot1@3x2.png" alt="">每 日 一 占');
+	    	// $api.html($api.dom('#match'), '<img src="../../icon/function/icon-tarot2@3x2.png" alt="">塔 羅 匹 配');
+	    	$api.html($api.dom('.group_title'), '群 組 列 表');
+	    }
+	    // 加载在线用户
+	    api.ajax({
+	        url: 'http://api.baopinghui.com/app_IntegrationController/userInfoList',
+	        method: 'post',
+	        data: {
+	            values: {
+	                startIndex:0,
+	                maxResult:100,
+	                uiid:$api.getStorage('id')
+	            }
+	        }
+	    }, function(ret, err) {
+	        if (ret) {
+	        	while(booff){
+	        		random=parseInt(Math.random()*100);
+	        		if(ret.data[random].uid==$api.getStorage('id')){
+	        			booff=true;
+	        		}else{
+	        			booff=false;
+	        		}
+	        	}
+	        	people_random.push(random);
+	        	while(people_random.length<4){
+	        		do{
+		        		random=parseInt(Math.random()*100);
+		        		if(ret.data[random].uid!=$api.getStorage('id')){
+		        			for(var i=0;i<people_random.length;i++){
+								random_yes=false;
+								if(people_random[i]==random){
+					            	random_yes=true;
+					           		break;
+					            }
+					       	}
+		        		}else{
+		        			random_yes=true;
+		        		}
+		        	}while(random_yes==true);
+		            people_random.push(random);
+	        	}
+	        	for(var i=0;i<4;i++){
+	        		str+='<div class="avatar" style="background-image:url('+img_qian+ret.data[people_random[i]].avatar_url+img_suo+')" onclick="openhome(\''+ret.data[people_random[i]].uid+'\')"><span class="green"></span></div>';
+	        	};
+	        		str+='<div class="online_all" onclick="openhomelist()"><span><img src="../../image/index/arrow.png" alt=""></span></div>';
+
+	        	$api.html($api.dom('.online_list'), str);
+	        }
+	    });
+
+	    // 判断是否进行过自测
+	 //    api.ajax({
+	 //        url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/userinfo',
+	 //        method: 'post',
+	 //        data: {
+	 //            values: {
+	 //                uiId:$api.getStorage('id'),
+		// 	        pageUiId:$api.getStorage('id')
+	 //            }
+	 //        }
+	 //    }, function(ret, err) {
+	 //        if (ret) {
+	 //           	if(ret.data.angury == 0){
+	 //           		$api.css($api.dom('#match'), 'display:none;');
+	 //           	}
+	 //        }
+	 //    });
+		// // 翻译功能
+		// $api.addEvt($api.dom('#translation_button'), 'click',function(){
+		// 	api.openWin({
+		// 	    name: 'chats_indexs',
+		// 	    url: 'widget://html/chat/chats_indexs.html'
+		// 	});
+		// });
+		// // 数秘术按钮
+		// $api.addEvt($api.dom('#numerology'), 'click',function(){
+		// 	api.openWin({
+		// 	    name: 'numerology_new',
+		// 	    url: 'widget://html/logon-register/numerology_new.html',
+		// 	    pageParam: {
+		// 	        function1:1,
+		// 	        key: 1
+		// 	    }
+		// 	});
+		// });
+		// // 每日一占按钮
+		// $api.addEvt($api.dom('#divination'), 'click',function(){
+		// 	api.openWin({
+		// 	    name: 'divination_new',
+		// 	    url: 'widget://html/logon-register/divination_new.html',
+		// 	    pageParam: {
+		// 	        function1:1
+		// 	    }
+		// 	});
+		// });
+		// //塔罗匹配
+		// $api.addEvt($api.dom('#match'), 'click',function(){
+		// 	api.openWin({
+		// 		name: 'numerology_new',
+		// 		url: 'widget://html/logon-register/numerology_new.html',
+		// 		animation:{
+		// 		    type:"fade",
+		// 	    // subType:"from_right",
+		// 		    duration:1000
+		// 		},
+		// 		pageParam: {
+		// 			function1:1,
+		// 			key: 2
+		// 		}
+		// 	});
+		// });
+		// 群类型选择按钮
+		$('.group_type_button span').eq(0).click(function() {
+			group_num='hot';
+			select_type();
+		});
+		$('.group_type_button span').eq(1).click(function() {
+			group_num='chat';
+			select_type();
+		});
+		$('.group_type_button span').eq(2).click(function() {
+			group_num='music';
+			select_type();
+		});
+		$('.group_type_button span').eq(3).click(function() {
+			group_num='movie';
+			select_type();
+		});
+		$('.group_type_button span').eq(4).click(function() {
+			group_num='game';
+			select_type();
+		});
+		$('.group_type_button span').eq(5).click(function() {
+			group_num='anime';
+			select_type();
+		});
+
+		// 监听群组排序选择
+		api.addEventListener({
+		    name: 'group_sort'
+		}, function(ret, err) {
+		    order_type=ret.value.group_sort_num;
+		    $api.setStorage('order_type', order_type);
+		    api.sendEvent({
+		        name: 'choose_group_type',
+		    });
+		});
+
+		// 初始显示
+		$('#hot').css({
+			'background-color':'#fff'
+		});
+		$('#hot img').css({
+			'opacity':'1'
+		});
+
+		// 监听选择的群类型
+		api.addEventListener({
+		    name: 'choose_group_type'
+		}, function(ret, err) {
+			// console.log(ret.value.type);
+			// group_num=ret.value.type;
+			// 清空瀑布流及数据初始化
+			$api.html($api.dom('#group_content'), '');
+			z=0;
+			gid_num=[];
+			group_type_num=[];
+			active_num=[];
+			avatar_num=[];
+			groupname_num=[];
+			membersNumber_num=[];
+			lv_num=[];
+			boof=true;
+			for(var i=0;i<$('.group_type_button span').length;i++){
+				$('.group_type_button span').eq(i).css({
+					'background-color':'#efefef'
+				});
+				$('.group_type_button span img').eq(i).css({
+					'opacity':'0.4'
+				});
+			}
+			if(group_num==0 || group_num=='hot'){
+				group_loading(z);
+				$('#hot').css({
+					'background-color':'#fff'
+				});
+				$('#hot img').css({
+					'opacity':'1'
+				});
+				$api.setStorage('group_num', 'hot');
+				// if($api.getStorage('language')=='zho'){
+				// 	$api.html($api.dom('.group_title'), '群 組 - 熱 門 <img src="../../image/index/more.png" alt="">');
+				// }else{
+				// 	$api.html($api.dom('.group_title'), 'G R O U P - P O P U L A R <img src="../../image/index/more.png" alt="">');
+				// }
+			}else if(group_num==1 || group_num=='chat'){
+				group_loading(z,'gossip');
+				$('#chat').css({
+					'background-color':'#fff'
+				});
+				$('#chat img').css({
+					'opacity':'1'
+				});
+				$api.setStorage('group_num', 'chat');
+				// if($api.getStorage('language')=='zho'){
+				// 	$api.html($api.dom('.group_title'), '群 組 - 閒 聊 <img src="../../image/index/more.png" alt="">');
+				// }else{
+				// 	$api.html($api.dom('.group_title'), 'G R O U P - G O S S I P <img src="../../image/index/more.png" alt="">');
+				// }
+			}else if(group_num==2 || group_num=='music'){
+				group_loading(z,'music');
+				$('#music').css({
+					'background-color':'#fff'
+				});
+				$('#music img').css({
+					'opacity':'1'
+				});
+				$api.setStorage('group_num', 'music');
+				// if($api.getStorage('language')=='zho'){
+				// 	$api.html($api.dom('.group_title'), '群 組 - 音 樂 <img src="../../image/index/more.png" alt="">');
+				// }else{
+				// 	$api.html($api.dom('.group_title'), 'G R O U P - M U S I C <img src="../../image/index/more.png" alt="">');
+				// }
+			}else if(group_num==3 || group_num=='movie'){
+				group_loading(z,'movie');
+				$('#movie').css({
+					'background-color':'#fff'
+				});
+				$('#movie img').css({
+					'opacity':'1'
+				});
+				$api.setStorage('group_num', 'movie');
+				// if($api.getStorage('language')=='zho'){
+				// 	$api.html($api.dom('.group_title'), '群 組 - 影 視 <img src="../../image/index/more.png" alt="">');
+				// }else{
+				// 	$api.html($api.dom('.group_title'), 'G R O U P - M O V I E <img src="../../image/index/more.png" alt="">');
+				// }
+			}else if(group_num==4 || group_num=='game'){
+				group_loading(z,'game');
+				$('#game').css({
+					'background-color':'#fff'
+				});
+				$('#game img').css({
+					'opacity':'1'
+				});
+				$api.setStorage('group_num', 'game');
+				// if($api.getStorage('language')=='zho'){
+				// 	$api.html($api.dom('.group_title'), '群 組 - 遊 戲 <img src="../../image/index/more.png" alt="">');
+				// }else{
+				// 	$api.html($api.dom('.group_title'), 'G R O U P - G A M E <img src="../../image/index/more.png" alt="">');
+				// }
+			}else if(group_num==5 || group_num=='anime'){
+				group_loading(z,'anime');
+				$('#anime').css({
+					'background-color':'#fff'
+				});
+				$('#anime img').css({
+					'opacity':'1'
+				});
+				$api.setStorage('group_num', 'anime');
+				// if($api.getStorage('language')=='zho'){
+				// 	$api.html($api.dom('.group_title'), '群 組 - 動 漫 <img src="../../image/index/more.png" alt="">');
+				// }else{
+				// 	$api.html($api.dom('.group_title'), 'G R O U P - A N I M E <img src="../../image/index/more.png" alt="">');
+				// }
+			}
+		});
+		// 点击选择群类型
+		// $api.addEvt($api.dom('.group_title'), 'click', function(){
+		// 	api.openFrame({
+	 //    	    name: 'discovery_selected',
+	 //    	    url: 'widget://html/details/discovery_selected.html',
+	 //    	    rect: {
+	 //    	        x: 0,
+	 //    	        y: 0,
+	 //    	        w: 'auto',
+	 //    	        h: 'auto'
+	 //    	    },
+	 //    	    pageParam: {
+	 //    	        group_num:group_num,
+	 //    	        isgroup:isgroup
+	 //    	    }
+	 //    	});
+		// });
+	    // 加载群组
+	    if($api.getStorage('group_num')==undefined || $api.getStorage('group_num')==''){
+	    	// 渲染数据
+	    	$.ajax({
+		    	url: 'http://api.baopinghui.com/jpushim/findnewbin22',
+		    	type: 'get',
+		    	dataType: 'json',
+		    	data: {
+		    		group_type:''
+		    	},
+		    })
+		    .done(function(ret,err) {
+		    	$api.html($api.dom('#group_data_num'), num(ret.data.count));
+		    	$api.html($api.dom('#group_data_dis'), num(ret.data.active));
+		    })
+		    .fail(function() {
+		    	console.log("error");
+		    });
+			group_loading(z);
+	    }else{
+	    	group_num=$api.getStorage('group_num');
+	    	select_type();
+	    }
+
+	    //下拉加载
+		api.addEventListener({
+		    name: 'scrolltobottom'
+		}, function(ret, err){
+			if(z<=50){
+				if(boof){
+					z=z+3;
+					if(group_num==0 || group_num=='hot'){
+						group_loading(z);
+					}else if(group_num==1 || group_num=='chat'){
+						group_loading(z,'gossip');
+					}else if(group_num==2 || group_num=='music'){
+						group_loading(z,'music');
+					}else if(group_num==3 || group_num=='movie'){
+						group_loading(z,'movie');
+					}else if(group_num==4 || group_num=='game'){
+						group_loading(z,'game');
+					}else if(group_num==5 || group_num=='anime'){
+						group_loading(z,'anime');
+					}
+					boof=false;
+				}
+			}
+		});
+	}
+	// 群组加载
+function group_loading(z,type){
+	$api.css($api.dom("#loadings"), 'display:block;');
+	if(type=='' || type==undefined){
+		type=='';
+	}
+	api.ajax({
+	    url: 'http://api.baopinghui.com/jpushim/findnewbin1.1',
+	    method: 'get',
+	    data: {
+	        values: {
+	            index:z,
+				count:3,
+				type:type,
+				order_type:order_type
+	        }
+	    }
+	}, function(ret, err) {
+	    if (ret) {
+	    	for(var i=0;i<ret.data.length;i++){
+	    		gid_num.push(ret.data[i].gid);
+	    		active_num.push(ret.data[i].active);
+	    		// if(ret.data[i].avatar=='' || ret.data[i].avatar==undefined){
+	    		// 	avatar_num.push(ret.data[i].list[0].avatar_url);
+	    		// }else{
+	    		avatar_num.push(ret.data[i].avatar);
+	    		// }
+	    		groupname_num.push(ret.data[i].groupname);
+	    		membersNumber_num.push(ret.data[i].membersNumber);
+	    		group_type_num.push(ret.data[i].group_type);
+	    		lv_num.push(ret.data[i].lv);
+	    	}
+	        for(var i=0;i<ret.data.length;i++){
+	        	// 数据初始化
+	        	lv=1;
+	        	lv_yes='inline-block';
+	        	group_button_style=1;
+	        	if($api.getStorage('language')=='zho'){
+	        			join='參 與';
+	        		}else{
+	        			join='JOIN';
+	        		}
+	        		button_style='';
+	        		// 等级划分
+	        	// if(active_num[i+z]>=400 && membersNumber_num[i+z]>=20){
+	        	// 	lv=2;
+	        	// 	if(active_num[i+z]>=800 && membersNumber_num[i+z]>=40){
+	        	// 		lv=3;
+	        	// 		if(active_num[i+z]>=1600 && membersNumber_num[i+z]>=120){
+	        	// 			lv=4;
+	        	// 			if(active_num[i+z]>=3200 && membersNumber_num[i+z]>=160){
+	        	// 				lv=5;
+	        	// 				if(active_num[i+z]>=7000 && membersNumber_num[i+z]>=350){
+	        	// 					lv=6;
+	        	// 					for(var j=1;j<=10;j++){
+	        	// 						if(active_num[i+z]>7000*j*2){
+	        	// 							lv=6+j;
+	        	// 						}
+	        	// 					}
+	        	// 				}
+	        	// 			}
+	        	// 		}
+	        	// 	}
+	        	// }
+	        	active_text=Number(active_num[i+z])>1000?(active_num[i+z]/1000).toFixed(1)+'k':active_num[i+z]==null?0:active_num[i+z];
+	        	if(membersNumber_num[i+z]>=500){
+	        		if($api.getStorage('language')=='zho'){
+	        			join='满 人';
+	        		}else{
+	        			join='FULL';
+	        		}
+	        		button_style='border-color:#aaa;background-color:#aaa;color:#fff';
+	        		group_button_style=2;//代表满人
+	        	}
+	        			 // 活动显示
+	        	var party_button=0;//活动群组限制时间进入开关 0 为不能进入，1 为可以进入
+		      	var party_date = new Date(),
+		            party_time_now = party_date.getTime(),
+		            party_year = party_date.getFullYear(),
+		            party_month = party_date.getMonth()+1,
+		            party_day = party_date.getDate(),
+		            party_time_start = new Date(party_year+'/'+party_month+'/'+party_day+' '+'20:00:01').getTime(),
+		            party_time_end = new Date(party_year+'/'+party_month+'/'+party_day+' '+'23:00:01').getTime(),
+		            party_hour = party_date.getHours();
+		        if(party_time_start-party_time_now>=0){
+					setTimeout(function(){
+						window.location.reload();
+					},party_time_start-party_time_now);
+				}else if(party_time_end-party_time_now>=0){
+					setTimeout(function(){
+						window.location.reload();
+					},party_time_end-party_time_now);
+				}
+				if(party_time_now>=party_time_start && party_time_now<party_time_end){
+					party_button=1;
+				}
+				//————————————————————————————————————————————————————————————————
+				// if(i==0 && z==0){
+		  //       	if(party_time_now>=party_time_start && party_time_now<party_time_end && group_num!='music' && group_num!='movie' && group_num!='game' && group_num!='anime'){
+				// 	group_button_style=3;
+	   //      		temp=`
+	   //      	<div class="group_box party_time">
+				// 	<div class="group_img" style="background-image:url(`+img_qian+avatar_num[i+z]+`)"><span class="hot"></span></div>
+				// 	<div class="group_box_text">
+				// 		<p class="group_box_title"><span class="group_box_title_text">`+groupname_num[i+z]+`</span><span class="fire"></span></p>
+				// 		<p class="group_people">The group will be hidden at 23:00</p>
+				// 		<p class="group_people"><span>500+</span>`+people+`</p>
+				// 		<p class="group_dis"><span>`+active_text+`</span>`+discussions+`</p>
+				// 		<div class="group_button" style="`+button_style+`" onclick="opengroup('`+gid_num[i+z]+`','`+groupname_num[i+z]+`',this,'`+group_button_style+`')">`+join+`</div>
+				// 	</div>
+				// </div>`;
+	   //      		}else{
+	   //      	temp=`
+	   //      	<div class="group_box">
+				// 	<div class="group_img" style="background-image:url(`+img_qian+avatar_num[i+z]+`)"></div>
+				// 	<div class="group_box_text">
+				// 		<p class="group_box_title"><img src="../../icon/chat/chat.png" alt="" /><span class="group_box_title_text1">`+groupname_num[i+z]+`</span><span class="`+class_lv+`" style="display:`+lv_yes+`">Lv`+lv_num[i+z]+`</span></p>
+				// 		<p class="group_people">#Just Chit Chat</p>
+				// 		<p class="group_people"><span>`+membersNumber_num[i+z]+`/500</span>`+people+`</p>
+				// 		<p class="group_dis"><span>`+active_text+`</span>`+discussions+`</p>
+				// 		<div class="group_button" style="`+button_style+`" onclick="opengroup('`+gid_num[i+z]+`','`+groupname_num[i+z]+`',this,'`+group_button_style+`')">`+join+`</div>
+				// 	</div>
+				// </div>`;
+	   //      		}
+		  //       }else{
+		        //————————————————————————————————————————————————————————————————
+		  	if(gid_num[i+z]=='30193646'){
+		  	// 	temp=`
+	      //   	<div class="group_box">
+				// 	<div class="group_img" style="background-image:url(`+img_qian+avatar_num[i+z]+`)"></div>
+				// 	<div class="group_box_text">
+				// 		<p class="group_box_title"><img src="../../image/fire1.gif" alt="" style="width:5vw;height:5vw;margin-top:0.5vw"/><span class="group_box_title_text1">`+groupname_num[i+z]+`</span><span class="`+class_lv+`" style="display:`+lv_yes+`">Lv`+lv_num[i+z]+`</span></p>
+				// 		<p class="group_people">Open daily from 20:00-23:00</p>
+				// 		<p class="group_people"><span>`+membersNumber_num[i+z]+`/500</span>`+people+`</p>
+				// 		<p class="group_dis"><span>`+active_text+`</span>`+discussions+`</p>
+				// 		<div class="group_button" style="`+button_style+`" onclick="opengroup('`+gid_num[i+z]+`','`+groupname_num[i+z]+`',this,'`+group_button_style+`','`+party_button+`')">`+join+`</div>
+				// 	</div>
+				// </div>`;
+
+
+     temp = "<div class=\"group_box\"><div class=\"group_img\" style=\"background-image:url("
+		       + img_qian + avatar_num[i + z] + ")\"></div><div class=\"group_box_text\"><p class=\"group_box_title\">"
+					 +"<img src=\"../../image/fire1.gif\" alt=\"\" style=\"width:5vw;height:5vw;margin-top:0.5vw\"/><span class=\"group_box_title_text1\">"
+				   + groupname_num[i + z] + "</span><span class=\"" + class_lv + "\" style=\"display:"
+					 + lv_yes + "\">Lv" + lv_num[i + z] + "</span></p><p class=\"group_people\">Open daily from 20:00-23:00</p><p class=\"group_people\"><span>"
+					 + membersNumber_num[i + z] + "/500</span>" + people + "</p><p class=\"group_dis\"><span>"
+					 + active_text + "</span>" + discussions + "</p><div class=\"group_button\" style=\""
+				   + button_style + "\" onclick=\"opengroup('" + gid_num[i + z] + "','"
+				   + groupname_num[i + z] + "',this,'" + group_button_style + "','" + party_button + "')\">"
+					 + join + "</div></div></div>";
+		  	}else{
+
+		  	// 	temp=`
+	      //   	<div class="group_box">
+				// 	<div class="group_img" style="background-image:url(`+img_qian+avatar_num[i+z]+`)"></div>
+				// 	<div class="group_box_text">
+				// 		<p class="group_box_title"><img src="../../icon/chat/chat.png" alt="" /><span class="group_box_title_text1">`+groupname_num[i+z]+`</span><span class="`+class_lv+`" style="display:`+lv_yes+`">Lv`+lv_num[i+z]+`</span></p>
+				// 		<p class="group_people">#Just Chit Chat</p>
+				// 		<p class="group_people"><span>`+membersNumber_num[i+z]+`/500</span>`+people+`</p>
+				// 		<p class="group_dis"><span>`+active_text+`</span>`+discussions+`</p>
+				// 		<div class="group_button" style="`+button_style+`" onclick="opengroup('`+gid_num[i+z]+`','`+groupname_num[i+z]+`',this,'`+group_button_style+`')">`+join+`</div>
+				// 	</div>
+				// </div>`;
+
+      temp = "<div class=\"group_box\"><div class=\"group_img\" style=\"background-image:url("
+			      + img_qian + avatar_num[i + z] + ")\"></div><div class=\"group_box_text\"><p class=\"group_box_title\"><img src=\"../../icon/chat/chat.png\" alt=\"\" />"
+						+"<span class=\"group_box_title_text1\">" + groupname_num[i + z] + "</span><span class=\"" + class_lv + "\" style=\"display:"
+						+ lv_yes + "\">Lv" + lv_num[i + z] + "</span></p><p class=\"group_people\">#Just Chit Chat</p><p class=\"group_people\"><span>"
+						+ membersNumber_num[i + z] + "/500</span>" + people + "</p><p class=\"group_dis\"><span>"
+						+ active_text + "</span>" + discussions + "</p><div class=\"group_button\" style=\"" + button_style + "\" "
+						+" onclick=\"opengroup('" + gid_num[i + z] + "','" + groupname_num[i + z] + "',this,'" + group_button_style + "')\">"
+						+ join + "</div></div></div>";
+
+		        }
+
+		        if(group_type_num[i+z]=='music'){
+		        	temp=temp.replace('chat.png','music.png');
+		        	if($api.getStorage('language')!=='zho'){
+						temp=temp.replace('#Just Chit Chat','#Music');
+		        	}else{
+		        		temp=temp.replace('#Just Chit Chat','#音樂');
+		        	}
+
+		        }else if(group_type_num[i+z]=='movie'){
+		        	temp=temp.replace('chat.png','movie.png');
+		        	if($api.getStorage('language')!=='zho'){
+						temp=temp.replace('#Just Chit Chat','#Movie');
+		        	}else{
+		        		temp=temp.replace('#Just Chit Chat','#影視');
+		        	}
+		        }else if(group_type_num[i+z]=='game'){
+		        	temp=temp.replace('chat.png','game.png');
+		        	if($api.getStorage('language')!=='zho'){
+						temp=temp.replace('#Just Chit Chat','#Game');
+		        	}else{
+		        		temp=temp.replace('#Just Chit Chat','#遊戲');
+		        	}
+		        }else if(group_type_num[i+z]=='anime'){
+		        	temp=temp.replace('chat.png','anm.png');
+		        	if($api.getStorage('language')!=='zho'){
+						temp=temp.replace('#Just Chit Chat','#Anime');
+		        	}else{
+		        		temp=temp.replace('#Just Chit Chat','#動漫');
+		        	}
+		        }else{
+		        	if($api.getStorage('language')!=='zho'){
+						temp=temp.replace('#Just Chit Chat','#Gossip');
+		        	}else{
+		        		temp=temp.replace('#Just Chit Chat','#閒聊');
+		        	}
+		        }
+				$api.append($api.dom('#group_content'),temp);
+
+	        }
+
+	        boof=true;
+	        select_boof=true;
+	        $api.css($api.dom("#loadings"), 'display:none;');
+	    } else {
+	        console.log(JSON.stringify(err));
+	    }
+	});
+}
+// 点击进入群组
+function opengroup(gid,gname,e,group_button_style,party){
+	if(group_button_style==1){
+		$(e).css({
+			'background-color':'#000',
+			'color':'#fff'
+		});
+		setTimeout(function(){
+			$(e).css({
+				'background-color':'#fff',
+				'color':'#000'
+			});
+		},100);
+	}else if(group_button_style==3){
+		$(e).css({
+			'background-color':'#fff',
+			'color':'#000'
+		});
+		setTimeout(function(){
+			$(e).css({
+				'background-color':'#000',
+				'color':'#fff'
+			});
+		},100);
+	}
+	if(party==0){
+		api.openFrame({
+            name: 'out',
+            url: 'widget://html/nav/out.html',
+            pageParam: {
+                party_group: 1
+            }
+        });
+	}else{
+	jQuery.ajax({
+						url: 'http://api.baopinghui.com/jpushim/findnewbin3',
+						type: 'POST',
+						async: true,
+						data:{
+							gid:gid,
+							uiid:$api.getStorage('id')
+						},
+					 success:function (data) {
+						 if(data.data){
+							//  api.toast({
+							// 			msg: '正在进入;请稍等',
+							// 			duration: 2000,
+							// 			location: 'center'
+							// 	});
+							 //alert("543成功"+JSON.stringify(data));
+							 api.openWin({
+									 name: 'group_chat',
+									 url: router['widget'] + router['group']['group_chat'],
+									 slidBackEnabled: false,
+									 animation: {
+											 type: "fade", //动画类型（详见动画类型常量）
+											 subType: "fade", //动画子类型（详见动画子类型常量）
+											 duration: 250 //动画过渡时间，默认300毫秒
+									 },
+									 pageParam: {
+											 gid: gid,
+											 gname: gname,
+									 }
+							 });
+						 }else{
+							 api.toast({
+										msg: text1,
+										duration: 1000,
+										location: 'middle'
+								});
+								api.ajax({
+								    url: 'http://api.baopinghui.com/jpushim/findnewbin8',
+								    method: 'get',
+								    data: {
+								        values: {
+								            gid:gid,
+														uiid:$api.getStorage("id")
+
+								        }
+								    }
+								},function(ret, err){
+								    if (ret) {
+
+											api.ajax({
+								url: "http://api.baopinghui.com/tin_Groups/updateGroupsActive?operation=join&gid=" + gid,
+								method: "post"
+							}, function(ret, err){
+							});
+							var jointime=new Date().getTime().toString();
+							var jointime=new Date().getTime().toString();
+							db.executeSql({
+									name: 'tinkle',
+									sql: "insert into joingroup(userid,gid,jointime) values('"+$api.getStorage("id")+"','"+gid+"','"+jointime+"')"
+							}, function(ret, err){
+									if( ret.status ){
+												 console.log("被别人拉入新群,把进群时间添加进入的群组表");
+									}else{
+													// alert(JSON.stringify(err));
+									}
+							});
+							// alert(groupMember);
+							var groupfirst=gid+'first';
+							 var groupTime=gid+'time';
+
+
+							var jointime= new Date().getTime();
+							// alert(jointime);
+							//添加进入该群组的时间和记录第一次到缓存中
+								$api.setStorage(groupTime,jointime);
+								$api.setStorage(groupfirst, groupfirst);
+
+							 api.openWin({
+									 name: 'group_chat',
+									 url: router['widget'] + router['group']['group_chat'],
+									 slidBackEnabled: false,
+									 animation: {
+											 type: "fade", //动画类型（详见动画类型常量）
+											 subType: "fade", //动画子类型（详见动画子类型常量）
+											 duration: 250 //动画过渡时间，默认300毫秒
+									 },
+									 pageParam: {
+											 gid: gid,
+											 gname: gname,
+									 }
+							 });
+
+
+								    } else {
+								    	if($api.getStorage('language')=='zho'){
+								    		api.toast({
+											    msg: '群组满人',
+											    duration: 1000,
+											    location: 'middle'
+											});
+								    	}else{
+								    		api.toast({
+											    msg: 'THE GROUP IS FULL',
+											    duration: 1000,
+											    location: 'middle'
+											});
+								    	}
+
+
+
+								    }
+								});
+
+
+						 }
+					 },
+					 error:function () {
+						 alert("你被禁止进群");
+						//  alert($api.getStorage('id'));
+					 }
+				 });
+	}
+}
+// 点击进入个人主页
+function openhome(id){
+	api.openWin({
+	    name: 'home',
+	    url: 'widget://html/home/home.html',
+	    pageParam: {
+	        otherId:id
+	    }
+	});
+}
+// 点击进入在线列表
+function openhomelist(){
+	api.openWin({
+	    name: 'recommend_list_header',
+	    url: 'widget://html/chat/recommend_list_header.html',
+	    pageParam: {
+	        name: 'value'
+	    }
+	});
+}
+// 活动显示
+function party(){
+	$api.html($api.dom('.function_content'), '<div class="tarot_chat tarot_party" id="match" style="display:inline-block;"><img src="../../icon/function/icon-tarot2@3x2.png" alt="">Tarot Dating</div><div class="translation" id="translation_button"><img src="../../icon/function/function-translation-ai@3x2.png" alt="">Translation System</div><div class="divination" id="divination"><img src="../../icon/function/icon-tarot1@3x2.png" alt="">Daily Divination</div><div class="numerology" id="numerology"><img src="../../icon/function/icon-tarot5@3x2.png" alt="">Numerology</div>');
+}
+// 选择群类型
+function select_type(){
+	var group_type22=group_num;//findnewbin22参数
+	if(group_num=='hot'){
+		group_type22='';
+	}else if(group_num=='chat'){
+		group_type22='gossip';
+	}
+	if(select_boof){
+		select_boof=false;
+		api.sendEvent({
+	        name: 'choose_group_type',
+	       	// extra: {
+	        //     type:group_selected_type
+	        // }
+	    });
+	    // 渲染数据
+	    $.ajax({
+	    	url: 'http://api.baopinghui.com/jpushim/findnewbin22',
+	    	type: 'get',
+	    	dataType: 'json',
+	    	data: {
+	    		group_type:group_type22
+	    	},
+	    })
+	    .done(function(ret,err) {
+	    	$api.html($api.dom('#group_data_num'), num(ret.data.count));
+	    	$api.html($api.dom('#group_data_dis'), num(ret.data.active));
+	    })
+	    .fail(function() {
+	    	console.log("error");
+	    });
+
+    }
+}
+// 排序选择
+function selected_sort(){
+	console.log(order_type);
+	api.openFrame({
+	    name: 'discovery_selected',
+	    url: 'widget://html/details/discovery_selected.html',
+	    rect: {
+	        x: 0,
+	        y: 0,
+	        w: 'auto',
+	        h: 'auto'
+	    },
+	    pageParam: {
+	        order_type:order_type
+	    }
+	});
+}
+// 数据处理
+function num(num){
+		return Number(num)>1000?(num/1000).toFixed(1)+'k':num==null?0:num;
+	}
+</script>
+</html>

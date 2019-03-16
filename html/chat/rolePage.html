@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script type="text/javascript" src="../../script/api.js"></script>
+  <title>Document</title>
+  <style type="text/css">
+  	*{
+  		padding:0;
+  		margin:0;
+  	}
+    html{
+      font-family: Arial;
+    }
+    .top{
+      position: absolute;
+      top: 0;
+      height: 65px;
+      width: 100%;
+      background: white;
+      text-align: center;
+      line-height: 87px;
+      font-weight: bold;
+      font-size: 15px;
+      box-shadow: 0px 1px 0px #efefef;
+    }
+    .back{
+      float: left;
+      position: absolute;
+      left: 20px;
+    }
+    .hel{
+      line-height: 87px;
+    }
+    .top img{
+      position: absolute;
+      top: 28px;
+      left: 10px;
+      height: 30px;
+      width: 30px;
+    }
+    .box1{
+      margin-top: 65px;
+      width: 100vw;
+      text-align: center;
+      background: blue;
+    }
+    .avatar{
+      display: block;
+      float: left;
+      height: 80px;
+      width: 80px;
+      border-radius: 50%;
+      background: #efefef;
+      margin-top: 20px;
+    }
+    .avatar2{
+      border: 2px solid white;
+      margin-left: -20px;
+      margin-top: 18px;
+    }
+    .head{
+      display: inline-block;
+    }
+    .public{
+      font-size: 12px;
+      font-weight: bold;
+      margin-top: 3px;
+      color: rgba(0, 0, 0, 0.5);
+    }
+    .box2{
+      width: 94vw;
+      margin-left: 3vw;
+      height: 28vw;
+      border-radius: 10px;
+      background: #efefef;
+      margin-top: 30px;
+      text-align: center;
+    }
+    .line{
+      display: inline-block;
+      height: 1px;
+      /*width: 70vw;*/
+      background: black;
+      /*margin-left: 12vw;*/
+      margin-top: 15vw;
+    }
+    .circle{
+      position: relative;
+      top: -2.25vw;
+      display: inline-block;
+      height: 4.5vw;
+      width: 4.5vw;
+      background: white;
+      border-radius: 50%;
+      margin-right: 7vw;
+      border: 1px solid rgba(0, 0, 0, 0.5);
+    }
+    .circle:nth-child(7){
+      margin-right: 0;
+    }
+    .num{
+      position: relative;
+      top: 4.5vw;
+      font-size: 12px;
+      color: rgba(0,0,0,0.5);
+      font-weight: bold;
+    }
+    .box3{
+      width: 94vw;
+      margin-left: 3vw;
+      height: 15vh;
+      border-radius: 10px;
+      background: #efefef;
+      margin-top: 10px;
+      text-align: center;
+    }
+    .box4{
+      width: 94vw;
+      margin-left: 3vw;
+      height: 10vh;
+      border-radius: 10px;
+      background: #efefef;
+      margin-top: 10px;
+      text-align: center;
+    }
+    .box5{
+      width: 94vw;
+      margin-left: 3vw;
+      height: 6vh;
+      border-radius: 10px;
+      background: #efefef;
+      margin-top: 10px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="top"><p class="hel">Role play</p>
+  <img class="back"src="../../icon/left.png">
+  </div>
+	<div class="box1">
+     <div class="head">
+        <span class="avatar"></span>
+        <span class="avatar avatar2"></span>
+     </div>
+     <p class="public" style="font-size:20px;color:black;margin-top:10px;">Couple</p>
+     <p class="public" style="margin-top:5px;">one week</p>
+     <p class="public">Intimacy index：12%</p>
+	</div>
+  <div class="box2">
+     <span class="line">
+       <span class="circle"><span class="num">1</span></span>
+       <span class="circle"><span class="num">2</span></span>
+       <span class="circle"><span class="num">3</span></span>
+       <span class="circle"><span class="num">4</span></span>
+       <span class="circle"><span class="num">5</span></span>
+       <span class="circle"><span class="num">6</span></span>
+       <span class="circle"><span class="num">7</span></span>
+     </span>
+  </div>
+  <div class="box3"></div>
+  <div class="box4"></div>
+  <div class="box5"></div>
+</body>
+<script src="../../script/jquery-3.1.0.min.js"></script>
+<script type="text/javascript">
+  apiready=function () {
+    var hhh = window.screen.height;
+    var www = window.screen.width;
+    if(hhh/www>2){
+      $api.css($api.dom('.top'), 'top:25px;');
+      $api.css($api.dom('.box1'), 'margin-top:90px;');
+    }
+  }
+</script>
+</html>

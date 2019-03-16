@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<link rel="stylesheet" type="text/css" href="../../css/api.css" />
+		<style type="text/css">
+			*{
+				padding: 0;
+				margin: 0;
+				box-sizing: border-box;
+				font-family: "微软雅黑";
+
+			}
+			header{
+				width: 100%;
+				height: 18.7vw;
+				padding: 15px 2.66vw;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-justify-content: space-between;
+				justify-content: space-between;
+				position: relative;
+				z-index: 4;
+				background: linear-gradient(to right, #d9afd9 0%, #97d9e1 100%);
+				box-shadow: 0 0 10px #36A5B2;
+				/*margin-bottom:3px;*/
+				z-index: 100;
+			}
+			.back {
+				width: 8.3333vw;
+				height: 8.3333vw;
+				margin-top: 3.16666vw;
+				background: url(../../icon/messages/back.png)no-repeat center center;
+				background-size: cover;
+			}
+			.info {
+				height: 100%;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+			}
+
+			.info .nickname {
+				position: relative;
+				top: 5px;
+				width:50vw;
+				height: 100%;
+				line-height:14vw;
+				color: #ffffff;
+				font-size: 4.8vw;
+				font-weight: bold;
+				text-align: center;
+				text-shadow: 0 0 1px 0 #36A5B2;
+	    		white-space: nowrap;
+	    		overflow: hidden;
+	    		text-overflow: ellipsis;
+	    		/*background: red;*/
+			}
+			.more {
+				width: 8.3333vw;
+				height: 8.3333vw;
+				margin-top: 3.16666vw;
+				background: url(../../icon/messages/translate.png) no-repeat center center;
+				background-size: cover;
+			}
+
+			.title{
+				text-align: center;
+				color: rgba(182, 187, 211, 1);
+				font-size: 4vw;
+				font-weight: bold;
+				margin-top: 8vw;
+			}
+			.kuang{
+				width: 89.6vw;
+				height: 44.8vw;
+
+				display: flex;
+    			align-items: center;
+				justify-content: space-around;
+
+				background: #F8F8F8;
+				border-radius: 10px;
+				margin: 4vw auto;
+				color: #AAC1D3;
+				font-weight: bold;
+
+			}
+
+		</style>
+	</head>
+	<body>
+		<div id="chat_group">
+
+			<header>
+				<span class="back" @click="closed"></span>
+				<div class="info">
+					<span class="nickname">Related Groups</span>
+				</div>
+				<span class="more"></span>
+			</header>
+
+			<main>
+
+				<div class="title">
+				M Y   G R O U P
+				</div>
+				<div class="kuang">
+					Nothing <br /><br /> Σ(*ﾟдﾟﾉ)ﾉ
+				</div>
+				<div class="title">
+					O T H E R   G R O U P
+				</div>
+				<div class="kuang">
+					Nothing <br /><br /> Σ(*ﾟдﾟﾉ)ﾉ
+				</div>
+
+			</main>
+
+		</div>
+
+
+	</body>
+	<script src="../../script/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../script/api.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../script/public.js" type="text/javascript" charset="utf-8"></script>
+
+	<script type="text/javascript">
+
+		apiready = function(){
+
+			//右划退出
+			swipeRight();
+
+			var chat_group = new Vue({
+				el:"#chat_group",
+				data:{
+
+
+				},
+				methods:{
+					closed: function() {
+						api.closeWin({
+							animation: {
+								type: "push", //动画类型（详见动画类型常量）
+								subType: "from_left", //动画子类型（详见动画子类型常量）
+								duration: 300 //动画过渡时间，默认300毫秒
+							}
+						});
+					},
+
+				},
+
+
+
+
+			})
+
+
+
+
+
+		}
+
+
+
+
+	</script>
+
+
+
+</html>

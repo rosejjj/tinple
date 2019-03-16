@@ -1,0 +1,655 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>主頁</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <script type="text/javascript" src="../../script/api.js"></script>
+	<script src="../../script/jquery-3.1.0.min.js"></script><!-- 引入jQuery -->
+	<script src="../../script/doT.min.js"></script><!-- 引入doT模板引擎 -->
+	<script src="../../script/masonry.pkgd.min.js"></script><!-- 引入jQuery瀑布流插件 -->
+	<script src="../../script/imagesloaded.pkgd.min.js"></script><!-- 引入瀑布流imagesloaded事件 -->
+	<script src="../../script/nav.js"></script><!-- 引入通用导航栏 -->
+	<script src="../../script/public.js"></script><!-- 引入通用导航栏 -->
+	<style>
+		html, body{
+			overflow-x: hidden;/*iphone下没加在加载瀑布流时会出现左右滚动条*/
+		}
+		img[src=""]{
+			visibility: hidden;/*将src不存在的img隐藏*/
+		}
+		img{
+			display: block;
+		}
+		.wrap{
+			padding-top: 18.7vw;/*使导航出现在最上方，并且不遮挡到内容*/
+			width: 89.3vw;
+			margin: 0 auto;
+			margin-top: 8vw;
+			font-family: Arial;
+			font-style: italic;
+			background-color: #fff;
+		}
+		.left, .right{
+			float: left;
+		}
+		.left{/*个人信息*/
+			width: 55vw;
+			margin-right: 6.3vw;
+		}
+		.left h1{/*名称*/
+			width: 100%;
+			font-size: 10.7vw;
+			color: #484848;
+			line-height: 12vw;
+			font-weight: bold;
+
+			white-space: pre-line;
+            word-wrap: break-word;
+            /*内容超过宽度自动换行，不带空格的全英文和全数字也都可以*/
+		}
+		.summary{/*个人签名*/
+			line-height: 4.5vw;
+			color: #bbb;
+			font-size: 3.2vw;
+			width: 100%;
+
+			white-space: pre-line;
+			word-wrap: break-word;
+			/*内容超过宽度自动换行，不带空格的全英文和全数字也都可以*/
+			min-height: 12vw;
+			margin-top: 4.3vw;
+
+			overflow: hidden;
+			text-overflow: ellipsis;
+			display: box;
+			display: -webkit-box;
+			display: -moz-box;
+			display: -ms-box;
+			display: -o-box;
+			line-clamp: 5;
+			-webkit-line-clamp: 5;
+			-moz-line-clamp: 5;
+			-ms-line-clamp: 5;
+			-o-line-clamp: 5;
+			box-orient: vertical;
+			-webkit-box-orient: vertical;
+			-moz-box-orient: vertical;
+			-ms-box-orient: vertical;
+			-o-box-orient: vertical;
+			/*当内容超过5行时，超过部分以省略号显示*/
+		}
+		.blue{/*相关组*/
+			margin-top: 4.3vw;
+			color: #0076FF;
+			line-height: 4.5vw;
+			font-size: 3.2vw;
+		}
+		.right{/*头像相关*/
+			width: 28vw;
+			height: 28vw;
+			position: relative;
+		}
+		.head{/*头像*/
+			width: 100%;
+			height: 100%;
+			border-radius: 50%;
+			object-fit: cover;/*对于替换的元素使用保持原有比例，覆盖整个区域的方法，图片可能会被裁减*/
+		}
+		.plus{/*加号按钮*/
+			width: 6.7vw;
+			height: 6.7vw;
+			position: absolute;
+			bottom: 0;
+			right: 0;
+		}
+		.main{/*主要内容*/
+			width: 100%;
+			clear: both;
+			padding-top: 3.5vw;
+		}
+		.flex:after{/*清除浮动*/
+			content: "";
+			display: block;
+			clear: both;
+		}
+		.item{/*设置两个item是为了对齐下面的图片*/
+			float: left;
+			width: 42.6vw;
+
+			display: -webkit-box;
+		    display: -webkit-flex;
+		    display: flex;
+		    /*将容器设置为弹性布局*/
+		}
+		.flex .item:first-child{
+			width: calc(42.6vw + 12px);
+			/*第一张图片的宽度加上图片之间的间距*/
+		}
+		.item > div{
+			margin: 0 auto;/*让div外边距自适应以达到平均布局效果*/
+		}
+		.item > div:first-child{
+			margin: 0;/*使第一个div贴着父容器的左边*/
+		}
+		.item > div > div{/*热度、关注、粉丝、帖子*/
+			font-size: 4vw;
+			line-height: 5.9vw;
+			position: relative;
+			font-weight: bold;
+			display: inline-block;/*为了使新粉丝通知的div能自动定位到粉丝数的右上角*/
+		}
+		.item p{/*各个内容的数量*/
+			font-size: 3.2vw;
+			line-height: 4.5vw;
+			opacity: 0.8;
+		}
+		.new_bg{/*新粉丝通知的背景*/
+			width: 6.6vw;
+			height: 6.6vw;
+			background-color: rgba(255, 128, 138, .5);
+			position: absolute;
+			top: -3.3vw;
+			right: -3.3vw;
+			border-radius: 50%;
+			-webkit-animation: bound 1.5s linear 0s infinite;
+			animation: bound 1.5s linear 0s infinite;
+			display: none;/*没有新粉丝隐藏*/
+		}
+		.new{/*新粉丝的数量*/
+			width: 5.3vw;
+			height: 5.3vw;
+			background-color: rgb(255, 128, 138);
+			text-align: center;
+			font-size: 2.5vw;
+			line-height: 5.5vw;
+			color: #fff;
+			border-radius: 50%;
+			font-family: Arial;
+			font-style: italic;
+			font-weight: bold;
+			position: absolute;
+			top: -2.65vw;
+			right: -2.65vw;
+			display: none;/*没有新粉丝隐藏*/
+		}
+		.btn{/*按钮的容器*/
+			width: 89.3vw;
+			margin: 7.7vw auto 0;
+
+			display: -webkit-box;
+		    display: -webkit-flex;
+		    display: flex;
+		    /*设置容器为弹性盒子*/
+		}
+		.btn a{/*按钮*/
+			display: block;
+			margin: 0 auto;/*自适应分布*/
+			height: 8vw;
+			border-radius: 4vw;
+			text-align: center;
+			font-family: Arial;
+			color: #fff;
+			font-size: 3.4vw;
+			line-height: 9vw;
+			font-weight: bold;
+		}
+		.btn a:first-child{/*第一个按钮*/
+			margin-left: 0;/*紧靠父元素的左边*/
+			width: 53.3vw;
+			background: linear-gradient(to right, #FFC2A0 0%, #FFAFBD 100%);
+			box-shadow: 0 0 10px #FFAFBD;
+		}
+		.btn a:last-child{/*最后一个按钮*/
+			margin-right: 0;/*紧靠父元素的右边*/
+			width: 29.3vw;
+			background: linear-gradient(to right, #D1ABCF 0%, #93D2D8 100%);
+			box-shadow: 0 0 10px #93D2D8;
+		}
+		.fluid_container{/*瀑布流布局的容器*/
+			width: calc(85.2vw + 14px);/*设置瀑布流容器的宽度等于两个瀑布流元素的宽之和加上两个元素之间的间距*/
+			margin: 7.7vw auto 0;
+		}
+		.box{/*瀑布流的元素*/
+			width: 42.6vw;
+			font-family: Arial;
+			font-style: italic;
+			margin-bottom: 4.3vw;
+			position: relative;
+			float: left;
+			min-height: 13.4vw;
+		}
+		.img_bg{/*加载图片时预加载底色的容器*/
+			border-radius: 3vw;
+			width: 100%;
+		}
+		.pic{/*瀑布流元素的图片*/
+			width: 100%;
+			border-radius: 3vw;
+		}
+		.title{/*瀑布流元素的标题*/
+			margin: 1.3vw 1.3vw 0;
+			color: #484848;
+			font-size: 3.5vw;
+			line-height: 4.8vw;
+			font-weight: bold;
+
+			overflow: hidden;
+			text-overflow: ellipsis;
+			display: box;
+			display: -webkit-box;
+			display: -moz-box;
+			display: -ms-box;
+			display: -o-box;
+			line-clamp: 3;
+			-webkit-line-clamp: 3;
+			-moz-line-clamp: 3;
+			-ms-line-clamp: 3;
+			-o-line-clamp: 3;
+			box-orient: vertical;
+			-webkit-box-orient: vertical;
+			-moz-box-orient: vertical;
+			-ms-box-orient: vertical;
+			-o-box-orient: vertical;
+			/*使文字超过3行时，超出部分以省略号显示*/
+		}
+		.textTitle{
+			border-radius: 3vw;
+			background: linear-gradient(to right, #ABABAB 0%, #C3C3C3 100%);
+			padding: 2.67vw 3.2vw;
+			color: #fff;
+			font-weight: bold;
+			font-size: 3.5vw;
+			line-height: 4.8vw;
+			white-space: pre-line;
+			word-wrap: break-word;
+			margin-bottom: 1.3vw;
+		}
+		.author{/*瀑布流元素的作者*/
+			color: #aaa;
+			font-size: 3.2vw;
+			line-height: 4.5vw;
+			margin: 0 1.3vw;
+		}
+		.type{/*瀑布流元素的类型*/
+			position: absolute;
+			width: 8vw;
+			right: 2.7vw;
+			top: 2.7vw;
+		}
+		.loading{
+			width: 100vw;
+			padding: 13.3vw 0;
+		}
+		.loading img{
+			width: 13.3vw;
+			margin: 0 auto;
+		}
+		.loading div{
+			width: 69.6vw;
+			margin: 0 auto;
+			display: none;
+		}
+		.loading p{
+			text-align: center;
+			color: #AAC1D3;
+			font-size: 4vw;
+			line-height: 6vw;
+			font-weight: bold;
+			background: #aaa;
+		    -webkit-background-clip: text;
+		    -webkit-text-fill-color: transparent;
+		}
+		.empty-container{
+			width: 89.3vw;
+			margin: 0 auto 5.33vw;
+			overflow: hidden;
+			position: relative;
+			display: none;
+		}
+		.empty{
+			width: 42.6vw;
+			float: left;
+		}
+		.empty-container .empty:first-child{
+			margin-right: 12px;
+		}
+		.empty div{
+			margin-bottom: 3vw;
+			width: 100%;
+			background-color: #F8F8F8;
+			border-radius: 3vw;
+		}
+		.h160{
+			height: 42.6vw;
+		}
+		.h200{
+			height: 53.3vw;
+		}
+		.empty-tip{
+			position: absolute;
+			width: 100%;
+			height: 23.48vw;
+			top: 50%;
+			left: 50%;
+			margin-left: -44.65vw;
+			margin-top: -11.74vw;
+			text-align: center;
+		}
+		.empty-tip p{
+			color: #AAC1D3;
+			font-size: 4vw;
+			line-height: 5.87vw;
+			font-weight: bold;
+			background: #aaa;
+		    -webkit-background-clip: text;
+		    -webkit-text-fill-color: transparent;
+		}
+		/*元素拉伸动画*/
+		-webkit-@keyframes bound{
+			33%{
+				-webkit-transform: matrix(1.2, 0, 0, 1.2, 0, 0);
+				transform: matrix(1.2, 0, 0, 1.2, 0, 0);
+			}
+			66%{
+				-webkit-transform: matrix(1.2, 0, 0, 1.2, 0, 0);
+				transform: matrix(1.2, 0, 0, 1.2, 0, 0);
+			}
+			100%{
+				-webkit-transform: matrix(1, 0, 0, 1, 0, 0);
+				transform: matrix(1, 0, 0, 1, 0, 0);
+			}
+		}
+		@keyframes bound{
+			33%{
+				-webkit-transform: matrix(1.2, 0, 0, 1.2, 0, 0);
+				transform: matrix(1.2, 0, 0, 1.2, 0, 0);
+			}
+			66%{
+				-webkit-transform: matrix(1.2, 0, 0, 1.2, 0, 0);
+				transform: matrix(1.2, 0, 0, 1.2, 0, 0);
+			}
+			100%{
+				-webkit-transform: matrix(1, 0, 0, 1, 0, 0);
+				transform: matrix(1, 0, 0, 1, 0, 0);
+			}
+		}
+	</style>
+</head>
+<body>
+	<div>
+	   	<!-- 按钮容器 -->
+	   	<div id="masonry" class="fluid_container"></div>
+	   	<!-- 瀑布流 -->
+	   	<div class="loading" id="loading">
+	   		<img src="../../icon/loading.gif" id="loadingImg">
+	   		<div id="loadingPage">
+	   			<p>No More Dataヽ(✿ﾟ▽ﾟ)ノ</p>
+	   			<p>You Can Try Refreshing The Page</p>
+	   		</div>
+	   	</div>
+	   	<div class="empty-container" id="empty">
+	   		<div class="empty">
+	   			<div class="h160"></div>
+	   			<div class="h200"></div>
+	   		</div>
+	   		<div class="empty">
+	   			<div class="h200"></div>
+	   			<div class="h160"></div>
+	   		</div>
+	   		<div class="empty-tip">
+	   			<p>Nothing . . .</p>
+	   			<p>Nothing ? ?</p>
+	   			<p>Nothing！！！</p>
+	   			<p>Nothing Σ(*ﾟдﾟﾉ)ﾉ</p>
+	   		</div>
+	   	</div>
+	</div>
+   	<script type="text/x-dot-template" id="one">
+   		<div class="box" onclick="openDetail('{{=it.postId}}', '{{=it.isText}}')">
+   			<div class="img_bg"><img src='{{=it.src}}' class="pic" style="{{=it.imgStyle}}"></div>
+   			<p class="title" style="{{=it.pStyle}}">
+   				{{=it.title}}
+   			</p>
+   			{{=it.newP}}
+   			<p class="author">
+   				{{=it.author}}
+   			</p>
+   			<img src="{{=it.type}}" class="type">
+   		</div>
+   	</script>
+   	<!-- 使用doT模版引擎绑定数据 -->
+</body>
+<script type="text/javascript">
+
+	var startIndex = 0,//初始化获取的帖子index
+		lock = true,//滑动是否加载的判断
+		headImg = [],//储存头像地址
+		tempFollow = false,//是否关注的临时储存
+		user = "",//用户昵称
+		language,
+		testId,
+		otherId,
+		oDiv = document.getElementsByClassName("img_bg"),
+		postType = ["../../icon/home/imgs.png", "../../icon/home/Video.png", ""],
+		loadingImg,
+		loadingPage,
+		tempAuthor = "",
+		$grid,
+		loadMore_cont,
+		popNum,
+		tinNum,
+		summary,
+		followDom,
+		//resTime = getRefreshTime(),
+		groupNum = 0,
+		nickname = '';//用户名
+
+
+    apiready = function(){
+
+      //监听返回顶部
+      api.addEventListener({
+          name: 'dingbu'
+      }, function(ret, err){
+        var osTop = document.documentElement.scrollTop || document.body.scrollTop;
+        document.documentElement.scrollTop = document.body.scrollTop = -200;
+      });
+      //alert($api.getStorage('id'));
+    	$api.setStorage("frameName",'');
+    	// $api.setStorage("id", "f8cc5f9956df68260156dffa4e9b0014");//设置缓存ID，登录后直接获取就可以
+    	// $api.setStorage("language", null);//设置缓存语言设置，登录后直接获取就可以
+    	testId = $api.getStorage("id"),//获取缓存ID
+		otherId = api.pageParam["otherId"] || testId;//获取参数ID，没有则默认是缓存的ID
+    	language = $api.getStorage("language");//获取用户使用的版本语言
+    	loadingImg = $api.dom("#loadingImg");
+    	loadingPage = $api.dom("#loadingPage");
+    	var isFollow = $api.dom("#isFollow"),
+    		chat = $api.dom("#chat"),
+    		head = $api.dom("#head"),
+    		loading = $api.dom("#loading"),
+    		loadFirst = $api.first(loading, "p"),
+    		loadLast = $api.last(loading, "p"),
+    		empty = $api.dom("#empty");
+    	followDom = $api.dom("#follow");
+    	$grid = $('#masonry').masonry({//瀑布流插件的设置语句
+			itemSelector: '.box',//需要使用瀑布流的item
+			gutter: 14,//每个item之间的间距
+			isAnimated: true//窗口变化时，使用动画重新布局
+		});
+		loadMore_cont = doT.template($api.dom("#one").innerHTML);//doT模版的JS语句
+		//账号设置页传来修改信息成功-刷新页面
+
+		if(language == "zho"){
+			$api.html(isFollow, "關&nbsp;注");
+			$api.html(chat, "聊&nbsp;天");
+    		$api.html($api.dom("#heat"), "熱度");
+			$api.html($api.dom("#follow"), "關注");
+			$api.html($api.dom("#fan"), "粉絲");
+			$api.html($api.dom("#post"), "帖子");
+			$api.html(loadFirst, "沒有更多信息了ヽ(✿ﾟ▽ﾟ)ノ");
+			$api.html(loadLast, "你可以嘗試刷新頁面");
+		};
+
+		setTimeout(getMorePost(4), 300);//获取帖子数
+
+		api.addEventListener({//绑定滑动加载事件，设置距离底部400时执行函数
+			name: "scrolltobottom",
+			extra: {
+				threshold: 300
+			}
+		}, function(ret, err){
+			if(lock){
+				lock = !lock;//防止加载了同样的图片
+				//setTimeout(getMorePost(2), 300);
+				getMorePost(4);
+			};
+		});
+    };
+
+    function getMorePost(numy){//定义获取帖子并自动执行瀑布流布局的函数
+
+    	api.ajax({
+			url: "http://api.baopinghui.com/app_dynamicCover/findpostBytime",
+      data: {
+          values: {
+              numx: startIndex,
+              numy: numy
+          }
+      },
+      //url: "http://112.74.20.66:18098/app_dynamicCover/findPostByUiId?uiId=" + otherId + "&startIndex=" + startIndex + "&maxResult=10&refreshTime=" + resTime,
+			method: "GET",
+			//method: "post"
+		}, function(ret, err){
+
+			if(ret){
+        //alert('回调成功');
+				if(!ret["status"]){
+
+					if(startIndex === 0){
+						$api.css(loading, "display:none;");
+						$api.css(empty, "display:block;");
+						return;
+					};
+					setTimeout(function(){
+						$api.css(loadingImg, "display:none");
+						$api.css(loadingPage, "display:block");
+					}, 1000);
+
+					return;
+				};
+				//if(startIndex==0){startIndex +=10}else{startIndex +=4;}
+				startIndex +=4;//每执行一次，获取帖子的初index加10
+				var data = ret["data"];
+				for(var i = 0, len = data.length; i < len; i++){
+          //alert("执行操作");
+					~(function(i){
+						var curEle = data[i];
+            //alert(JSON.stringify(data[i]))
+						var tempType;
+						if(testId !== otherId){
+							tempAuthor = "@" + data[i]["nickname"];//不是登录用户的主页时，显示帖子作者
+						};
+						if(curEle.type === "imgs"){//多图
+							tempType = postType[0];
+              //curEle.img_url += "?vframe/jpg/offset/1/w/100"
+						}else if(curEle.type === "Video"){//视频
+							tempType = postType[1];
+							curEle.img_url += "?vframe/jpg/offset/1/w/350";
+						}else{//其他
+							tempType = postType[2];
+              //curEle.img_url += "?vframe/jpg/offset/1/w/100";
+						};
+            //alert(JSON.stringify(curEle["img_url"]));
+						if(curEle.type !== "Video" && curEle.type !== "text"){//类型不是视频时，对图片实行先加载底色
+              //let img_url=abc(curEle["img_url"]);
+							api.ajax({//计算图片原始比例，根据原始比例和设备窗口设置图片背景DIV的宽高
+								url: "http://bin.baopinghui.com/" + curEle["img_url"].split(",")[0] + "?imageInfo",//
+								method: "get"
+							}, function(ret, err){
+								if(ret){
+									var winWidth = api.winWidth;
+									var ratio = ret["width"] / ret["height"];
+									oDiv[i + startIndex - 4].style.height = winWidth * 0.426 / ratio + "px";
+									return;
+								};
+								console.log(JSON.stringify(err));
+							});
+							api.ajax({
+								url: "http://bin.baopinghui.com/" + curEle["img_url"].split(",")[0] + "?imageAve",//.split(",")[0]
+								method: "get"
+							}, function(ret, err){
+								if(ret){
+									var bgColor = ret["RGB"].substring(2);
+									oDiv[i + startIndex - 4].style.backgroundColor = "#" + bgColor;
+									return;
+								};
+								console.log(JSON.stringify(err));
+							});
+						};
+						var tarSrc = "",
+							tarImgStyle = "display:none",
+							tarPStyle = "display:none",
+							newP = "<p class='textTitle'>" + curEle.title + "</p>",
+							isText = true;
+						if(curEle.type !== "text"){
+
+							tarSrc = "http://bin.baopinghui.com/" + curEle["img_url"].split(",")[0];//.split(",")[0]
+							tarImgStyle = "";
+							tarPStyle = "";
+							newP = "";
+							isText = "";
+						};
+						var div_loadmore = {//doT模版的每一个数据格式
+							src: tarSrc+"?imageView2/0/w/200",
+							title: curEle.title,
+							author: tempAuthor,
+							type: tempType,
+							postId: curEle.dyn_id,
+							imgStyle: tarImgStyle,
+							pStyle: tarPStyle,
+							newP: newP,
+							isText: isText
+						};
+						var $elems = $(loadMore_cont(div_loadmore));
+						$grid.append($elems).masonry('appended', $elems).masonry();//重新插入图片时，自动实行瀑布流布局
+					})(i);
+				};
+				$grid.imagesLoaded().progress(function(){//瀑布流imagesLoaded事件
+					$grid.masonry('layout');
+				});
+				if(data.length < 2){//10
+					setTimeout(function(){
+						$api.css(loadingImg, "display:none");
+						$api.css(loadingPage, "display:block");
+					}, 1000);
+				};
+				lock = true;//加载完成后才允许实行下一次加载函数
+				return;
+			}else{
+        alert(JSON.stringify(err));
+      }
+			console.log(err);
+		});
+    };
+
+    function openDetail(postId, isText){//打开帖子详情页
+    	api.openWin({
+    		name: "detail",
+    		url: "widget://html/details/detail.html",
+    		reload: true,
+    		vScrollBarEnabled: false,
+    		slidBackEnabled: false,
+    		pageParam:{
+				postId: postId,
+				popNum: popNum,
+				tinNum: tinNum,
+				summary: summary,
+				text: isText
+			}
+    	});
+    };
+</script>
+</html>

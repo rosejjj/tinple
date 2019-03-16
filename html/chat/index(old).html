@@ -1,0 +1,892 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>底部导航</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <!-- <link rel="stylesheet" type="text/css" href="./css/style.css"/> -->
+    <style>
+
+        html,body {  font-size:14px; height:100%;  border-color:#fff;}
+        .hover{ opacity: .8; }
+
+
+        .flex-wrap{ display: -webkit-box;	display: -webkit-flex;	display: flex; }
+        .flex-con{     -webkit-box-flex: 1;     -webkit-flex: 1;    flex: 1;}
+        .flex-vertical{ -webkit-box-orient: vertical;-webkit-flex-flow: column;flex-flow: column;}
+        .border-t,
+        .border-b{ position:relative; font-weight: bold;}
+        .zhuangtailan{
+          widows: 100vw;
+          height:24px;
+          background-color: #fff;
+        }
+        header ul .border-b:nth-child(1) img{width: 70px;height: 30px;margin-top: 30px;}
+        .border-t:before,
+        .border-b:after{     content: '';     position: absolute;     left: 0;  top:0;     background: #fff;   right:0;    height: 1px;     -webkit-transform: scaleY(0.5);             transform: scaleY(0.5);     -webkit-transform-origin: 0 0;             transform-origin: 0 0; }
+        .border-b:after{ top:auto; bottom:0;  }
+
+        #wrap{ height: 100%; }
+        header{ background-color: #FFFFFF;}
+        /*box-shadow: 0px 0px 5px 0px rgba(239,239,239,1);*/
+        header ul li { height: 0px; line-height: 85px; text-align: center; display: none; color: #323237; position: relative;font-size: 15px;  }
+        header ul li:nth-child(2){
+          text-align: left;
+        }
+        header ul li:nth-child(4){
+          line-height: auto;
+        }
+        header ul li.active{ display: block;width: 100%;height: 85px;}
+        #footer{  background-color: #ffffff;height: 50px;border-top:1px solid #efefef;}
+        #footer ul li{  padding-top: 12px; padding-bottom: 14px;margin-top: 14px;background: url() no-repeat 0px; background-size: 30px 30px; text-align: center;
+        background-position-x:50%;}
+        #footer ul li.active{ color: #6ab494; }
+        #footer ul li:nth-child(1){ background-image: url(../../image/bottombtn0101.png); }
+        #footer ul li:nth-child(2){ background-image: url(../../image/bottombtn0201.png); }
+        #footer ul li:nth-child(3){ background-color: black;background-image: url(../../image/jia.png);border-radius: 5px;
+        flex-grow: .6;margin-left: 5%;margin-right: 5%;}
+        #footer ul li:nth-child(4){ background-image: url(../../image/bottombtn0301.png); }
+        #footer ul li:nth-child(5){ background-image: url(../../image/bottombtn0401.png); }
+        #footer ul li:nth-child(1).active{ background-image: url(../../image/bottombtn0102.png); }
+        #footer ul li:nth-child(2).active{ background-image: url(../../image/bottombtn0202.png); }
+        /*#footer ul li:nth-child(3).active{  }*/
+        #footer ul li:nth-child(4).active{ background-image: url(../../image/bottombtn0302.png); }
+        #footer ul li:nth-child(5).active{ background-image: url(../../image/bottombtn0402.png); }
+        .flex-con{
+          overflow: auto;
+        }
+        .huadong{
+          transform: translateX(0vw);
+          position: absolute;
+          top:0;
+          /*top:14vw;*/
+          /*bottom:7.8vw;*/
+          left:22.5vw;
+          width:15vw;
+          height:55px;
+          border-bottom:2px solid #f381a3;
+          font-weight: bold;
+          transition: transform 0.3s;
+        }
+        .function_lists{
+          width:18vw;text-align:center;font-weight: bold;
+          position:absolute;left:21vw;
+          overflow: hidden;
+        }
+        .left_lists{width:18vw;text-align:center;font-weight: bold;
+          position:absolute;left:41vw;
+          color:#aaa;}
+        .right_groups{width:18vw;text-align:center;color: #aaaaaa;font-weight:bold;
+          position:absolute;left:61vw;
+        }
+
+        .like,.hot,.news{width:10vw;text-align:center;font-weight: bold;color: #aaaaaa;position: absolute;
+          z-index: 999;}
+        .like{
+          left: 27.2%;
+        }
+        .hot{
+          left: 49.5%;
+          transform: translateX(-50%);
+        }
+        .news{
+          left: 60.4%;
+        }
+        .huadong2{
+          transform: translate(0vw);
+          position: absolute;
+          left: 29.2%;
+          /*top:14vw;*/
+          /*bottom:7.8vw;*/
+          top:0;
+          width:9.57vw;
+          height:55px;
+          font-weight: bold;
+          /*left: -13vw;*/
+          border-bottom:2px solid #f381a3;
+          transition:left 0.3s;
+        }
+        .borderr{
+          position: absolute;
+          left:0;
+          top:0;
+          width:100vw;
+          height:64px;
+          border-bottom:1px solid #efefef;
+        }
+        .more{
+          font-weight:700;
+        }
+        /*第五页面*/
+        /*个人页面头部*/
+        .bell {
+            position: absolute;
+            left: 2.66vw;
+            /*10px*/
+            width: 7.98vw;
+            height: 7.98vw;
+			      margin-top:10px;
+			      display:inline-block;
+            /*line-height: 7.98 vw;*/
+            /*30px*/
+            /*text-align: center;*/
+            /*font:25px/30px Arial;*/
+            z-index: 10;
+        }
+
+        .bell img {
+            width: 7.98vw;
+            height: 7.98vw;
+        }
+
+        .header-center {
+          font-weight: bold!important;
+          /*font-size: 12px;*/
+            position: absolute;
+            left: 50%;
+            width: 100vw;
+            margin-left: -50%;
+            margin-top:20px;
+            display:inline-block;
+            text-align: center;
+            font: 15px/45px Microsoft Yahei;
+            font-weight:700;
+            z-index: 1;
+        }
+
+        .setup {
+            position: absolute;
+            left: 89.36vw;
+            /* 336px*/
+            width: 7.98vw;
+            height: 7.98vw;
+            margin-top:10px;
+            display:inline-block;
+            /*line-height: 7.98vw;*/
+            /*30px*/
+            /*text-align: center;*/
+            /*font:25px/30px Arial;*/
+            z-index: 10;
+        }
+
+        .setup img {
+            width: 7.98vw;
+            height: 7.98vw;
+        }
+
+
+        .haha{
+          position: absolute;
+          z-index: 9999;
+          width: 10px;
+          height: 10px;
+          left: 27px;
+          top: 24.5px;
+          /*display: none;*/
+          opacity: 0;
+          background: #F381A3;
+          /*border: 2px solid blue;*/
+          border-radius: 50%;
+        }
+
+        .people{
+          position:absolute;
+          z-index: 666666;
+          top: 11px;
+          right:20.5px;
+          content:"";
+          opacity: 0;
+          background: #F381A3;
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+        }
+        #noReadMessageCount{
+      display: none;
+      /*position: absolute;
+      margin-left: 0px;
+      margin-top:-16px;
+      padding: 0vw 1.9vw;
+      color:white;
+      font-size:11px;
+      text-align: center;
+      background-color: #F381A3;
+      border-radius: 10px;
+      height: 10px;
+      line-height: 21px;
+      width: 10px;*/
+      position:absolute;
+      left: 50%;
+      /*bottom: 28px;*/
+      top:0px;
+      margin-left:1px;
+      z-index: 666666;
+      content:"";
+      background: #F381A3;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+    }
+    .party{
+      background-image:url(../../image/icon-main-search-party.gif) !important;
+    }
+    </style>
+</head>
+<body>
+<div id="wrap" class="flex-wrap flex-vertical">
+
+    <header>
+      <!-- <span class="huadong">________</span> -->
+
+        <ul >
+            <li class="border-b active" onclick="dingbu()"><img id="logoimg" src="../../img/TINKLE-black@3x2.png" alt="" ></li>
+            <li class="border-b" style="position；relative;" onclick="dingbu()">
+              <span class="function_lists" onclick="function_lists()">Function</span>
+              <span class="left_lists"  onclick="left_lists()">Online</span>
+              <span class="huadong"></span>
+              <span class="right_groups" onclick="right_groups()">Groups<span id="fire"></span></span>
+            </li>
+            <li class="border-b" onclick="dingbu()"><span class="more" >M O R E</span></li>
+            <li class="border-b" onclick="dingbu()" style="border-bottom:1px solid #efefef;">
+              <span class="huadong2"></span>
+              <span class="like" style="color:black;"  onclick="left_likes()">Theme</span>
+              <span class="hot"  onclick="center_hots()">Hot</span>
+              <span class="news"  onclick="right_newss()">New</span>
+              <span class="borderr"></span>
+            </li>
+            <li class="border-b" onclick="dingbu()">
+              <!-- 个人页面头部 -->
+                  <span class="haha"></span>
+                  <span class="bell" ><img src="../../icon/nav/icon-echo@3x2.png" onclick="openecho()" alt=""></span>
+                  <span class="header-center">A B O U T  &nbsp;M E</span>
+                  <span class="setup"><img src="../../icon/nav/icon-set@3x2.png" onclick="openSetting()" alt=""></span>
+            </li>
+
+        </ul>
+    </header>
+
+    <div id="main" class="flex-con">
+
+    </div>
+    <div id="footer" class="border-t">
+        <ul class="flex-wrap" >
+            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con active" style="position: relative;"><span id="noReadMessageCount"></span></li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" id="discovery"></li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" id="postbuttom"></li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" id="square"></li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" ><span class="people"></span></li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
+<script src="../../script/jquery-3.1.0.min.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript">
+    htmlnum=[
+      'chat_list.html',
+      'searchmain.html',
+      'nav.html',
+      'pubuliumain.html',
+      '../home/home.html'
+    ];
+    htmlnamenum=[
+      'chat_list',
+      'search',
+      'nav',
+      'pubuliumain',
+      'home'
+    ];
+    //返回顶部
+    var dingbu=()=>{
+      api.sendEvent({
+          name: 'dingbu'
+      });
+    };
+    function openecho(){//打开回响页
+      $api.css(haha,'opacity:0');
+      $api.css(people,'opacity:0');
+      api.openWin({
+        name: "echos",
+        url: "widget://html/details/echo.html",
+        pageParam: {
+          extra: echoobj,
+          postId:echoobj.topicId
+        },
+        // reload: true,
+        // vScrollBarEnabled: false,
+        // slidBackEnabled: false
+      });
+    };
+
+    var huadong=$api.dom('.huadong');//huadong dom
+    var functionn=$api.dom('.function_lists');//huadong dom
+    var left=$api.dom('.left_lists');
+    var right=$api.dom('.right_groups');
+    var more=$api.dom('.more');
+
+    var huadong2=$api.dom('.huadong2');
+    var like=$api.dom('.like');
+    var hot=$api.dom('.hot');
+    var news=$api.dom('.news');
+    var haha=$api.dom('.haha');
+    var people=$api.dom('.people');
+    var echoobj={};
+
+    var hhh =window.screen.height;
+    var www =window.screen.width;
+    var headerr=document.getElementsByTagName('header')[0];
+    var headerrli=headerr.getElementsByTagName('li');
+    var hhh=window.screen.height;
+      var www=window.screen.width;
+    var frametop=65;
+    var framebottom=49;
+    var frameh=window.screen.height-frametop-framebottom;
+    apiready = function () {
+      api.sendEvent({
+          name: 'login_function_close'
+      });
+      var jbs=document.getElementById('noReadMessageCount');
+      setInterval(function(){
+
+        //jbs.innerHTML=;
+        if(parseInt($api.getStorage("hasNews"))<=0||$api.getStorage("hasNews")==undefined){
+          jbs.style.display="none";
+        }else{
+          jbs.style.display="inline-block";
+        }
+      },2000);
+
+
+      // 适应刘海屏
+        if(hhh/www > 2){
+          $api.css($api.dom('#footer'), 'height:84px;');
+          $api.css($api.dom('#logoimg'), 'margin-top:54px;');
+          $api.css(headerrli[1], 'margin-top:20px;');
+          $api.css(headerrli[2], 'margin-top:20px;');
+          $api.css(headerrli[3], 'margin-top:20px;');
+          $api.css(headerrli[4], 'margin-top:20px;');
+          $api.css($api.dom('.borderr'), 'height:88px');
+          frametop=89;
+          framebottom=84;
+          frameh=window.screen.height-89-84;
+          jbs.style.bottom=60+'px';
+        }
+
+        // 监听新手指引的按钮
+        api.addEventListener({
+            name: 'discovery'
+        }, function() {
+            randomSwitchBtn($api.dom('#discovery'));
+        });
+        api.addEventListener({
+            name: 'square'
+        }, function() {
+            randomSwitchBtn($api.dom('#square'));
+        });
+        api.addEventListener({
+            name: 'postbuttom'
+        }, function() {
+            randomSwitchBtn($api.dom('#postbuttom'));
+        });
+        api.addEventListener({
+            name: 'guide4'
+        }, function() {
+          setTimeout(function(){
+            left_lists();
+          },500);
+
+        });
+        api.addEventListener({
+            name: 'guide6'
+        }, function() {
+          setTimeout(function(){
+            right_groups();
+          },500);
+
+        });
+        api.addEventListener({
+            name: 'guide10'
+        }, function() {
+          setTimeout(function(){
+            center_hots();
+          },500);
+
+        });
+      if($api.getStorage("language")=="zho"){
+        $api.html(functionn, '功 能');
+        $api.html(left,"推 薦");
+        // $api.css(left, 'margin-left:-5.72vw;');
+        $api.html(right,"群 組<span id='fire'></span>");
+        // $api.css(right, 'margin-left:8.72vw');
+        $api.text(more,"更 多") ;
+        $api.html(like,"主 題");
+        $api.css(like, 'left:29.2%;');
+        $api.text(hot," 熱 門 ");
+        $api.html(news,"最 新");
+        $api.html($api.dom(".header-center"),"關 於 我") ;
+      }
+            // 活动显示
+      var party_date = new Date(),
+            party_time_now = party_date.getTime(),
+            party_year = party_date.getFullYear(),
+            party_month = party_date.getMonth()+1,
+            party_day = party_date.getDate(),
+            party_time_start = new Date(party_year+'/'+party_month+'/'+party_day+' '+'20:00:01').getTime(),
+            party_time_end = new Date(party_year+'/'+party_month+'/'+party_day+' '+'23:00:01').getTime(),
+              party_hour = party_date.getHours();
+      if(party_time_now>=party_time_start && party_time_now<party_time_end){
+            console.log('活动时间到');
+            $('#discovery').addClass('party');
+            $api.css($api.dom('#fire'), 'position:absolute;top:8vw;background:url(../../image/fire1.gif);background-size:cover;width:6.65vw;height:6.65vw;');
+      }
+      if(party_time_start-party_time_now>=0){
+        setTimeout(function(){
+          $('#discovery').addClass('party');
+            $api.css($api.dom('#fire'), 'position:absolute;top:8vw;background:url(../../image/fire1.gif);background-size:cover;width:6.65vw;height:6.65vw;');
+        },party_time_start-party_time_now);
+      }else if(party_time_end-party_time_now>=0){
+        setTimeout(function(){
+          $('#discovery').removeClass('party');
+          $api.css($api.dom('#fire'), 'display:none;');
+        },party_time_end-party_time_now);
+      }
+        // if(party_hour>=20 && party_hour<=22){
+        //     $api.css($api.dom('#discovery'), 'background-image:url(../../image/icon-main-search-party.gif)');
+        //     $api.css($api.dom('#fire'), 'position:absolute;top:8vw;background:url(../../image/fire1.gif);background-size:cover;width:6.65vw;height:6.65vw;');
+        // }  
+        createipcheck();
+      // 设置缓存自己名字与头像
+      var testId = $api.getStorage('id'),
+          nickname = '',
+          avatar = '';
+      api.ajax({
+          url: "http://api.baopinghui.com/app_tinUserinfoControllerC/userinfo?uiId=" + testId + "&pageUiId=" + testId,
+          method: 'post',
+      }, function(ret, err) {
+          if (ret) {
+            nickname = ret.data.nickname;
+            avatar = ret.data.avatar_url;
+            $api.setStorage("nickname", nickname);
+            $api.setStorage("avatar", avatar);
+          }
+      });
+      api.openFrame({
+          name: htmlnamenum[0],
+          url: htmlnum[0],
+          rect: {
+            x: 0,
+            y: frametop+'px',
+            w: api.winWidth,
+            h:frameh+'px',
+            marginLeft:0,
+            marginTop:0,
+            marginBottom:framebottom+'px',
+            marginRight:0
+          },
+          pageParam: {
+              name: 'test'
+          },
+          bounces: false,
+          bgColor: 'rgba(0,0,0,0)',
+          vScrollBarEnabled: true,
+          hScrollBarEnabled: true
+      });
+      api.addEventListener({
+          name: 'echos'
+      }, function(ret, err) {
+          //alert('我草你妈');
+
+          echoobj=ret.value.extra;
+          //alert(JSON.stringify(echoobj));
+          $api.css(haha,'opacity:1');
+          $api.css(people,'opacity:1');
+      });
+
+      //接受左滑动 右滑动发送的事件
+        api.addEventListener({
+            name: 'huadong_function'
+        }, function(ret, err) {
+            function_list();
+        });
+        api.addEventListener({
+            name: 'huadong_left'
+        }, function(ret, err) {
+            //alert('我草你妈');
+            right_groups();
+        });
+
+        api.addEventListener({
+              name: 'huadong_right'
+          }, function(ret, err) {
+            left_list();
+          });
+
+      fnInitListener();
+        // $api.fixStatusBar( $api.dom('header') );
+        api.setStatusBarStyle({
+            style: 'dark',
+            color: '#ffffff'
+        });
+        funIniGroup();
+        bbOnline();
+    }
+    //后台要的~~~  检测ip的
+    	function createipcheck() {
+    		api.ajax({
+    			url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/createipcheckateipcheck',
+    			method: 'post',
+    			data: {
+    				values: {
+    					uiid: $api.getStorage('id')
+    				}
+    			}
+    		}, function(ret) {})
+    	}
+
+    //发送信息 说宝宝上线了~
+function bbOnline() {
+  api.ajax({
+    url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/onlineHeartbeatConnection',
+    method: 'post',
+    data: {
+      values: {
+        uid: $api.getStorage('id')
+      }
+    }
+  }, function(ret, err) {})
+}
+
+    function funIniGroup(){
+        var eHeaderLis = $api.domAll('header li'),
+            frames = [];
+        for (var i = 0,len = eHeaderLis.length; i < len; i++) {
+                frames.push( {
+                    name: htmlnamenum[i],
+                    //url: './html/frame'+i+'.html',
+                    url: htmlnum[i],
+                    bgColor : 'rgba(0,0,0,.2)',
+                    bounces:true
+                } )
+        }
+        // api.openFrameGroup({
+        //     name: 'group',
+        //     scrollEnabled: true,
+        //     rect: {
+        //         x: 0,
+        //         y: $api.dom('header').offsetHeight,
+        //         w: api.winWidth,
+        //         h: $api.dom('#main').offsetHeight
+        //     },
+        //     index: 0,
+        //     frames: frames
+        // }, function (ret, err) {
+        //
+        // });
+    }
+
+    // 随意切换按钮
+    function randomSwitchBtn( tag ) {
+      var hhh=window.screen.height;
+      var www=window.screen.width;
+    var frametop=65;
+    var framebottom=49;
+    var frameh=window.screen.height-frametop-framebottom;
+    if(hhh/www>2){
+      frametop=89;
+      framebottom=84;
+      frameh=window.screen.height-89-84;
+    }
+        if( tag == $api.dom('#footer li.active') )return;
+        var eFootLis = $api.domAll('#footer li'),
+            eHeaderLis = $api.domAll('header li'),
+            index = 0;
+        for (var i = 0,len = eFootLis.length; i < len; i++) {
+          // api.closeFrame({
+          //     name: htmlnamenum[i]
+          // });
+
+            if( tag == eFootLis[i] ){
+                index = i;
+                api.openFrame({
+                    name: htmlnamenum[i],
+                    url: htmlnum[i],
+                    rect: {
+                      x: 0,
+                      //y: $api.dom('header').offsetHeight,
+                      y: frametop+'px',
+                      w: api.winWidth,
+                      //h: $api.dom('#main').offsetHeight-44
+                      h:frameh+'px',
+                      marginBottom:framebottom+'px',
+                    },
+                    pageParam: {
+                        name: 'test'
+                    },
+                    bounces: false,
+                    bgColor: 'rgba(0,0,0,0)',
+                    vScrollBarEnabled: false,
+                    hScrollBarEnabled: false,
+                    //scrollEnabled:false
+                });
+
+                  // if(i==0){
+                  //   // $api.html(eHeaderLis[1], '<li class="border-b" >参谋</li>');
+                  //   alert('diaoni');
+                  //   api.setFrameAttr({
+                  //       name: 'search',
+                  //       hidden: true
+                  //   });
+                  // };
+                if(i==3){
+                  api.openFrameGroup ({
+                      name: 'pubuliumain',
+                      background: '#fff',
+                      scrollEnabled: true,
+                      rect: {
+                           x: 0,
+                           y: frametop+'px',
+                           w: 'auto',
+                           h: frameh+"px",
+                           marginBottom:framebottom+'px',
+                      },
+                      index: 0,
+                      frames: [{
+                          name: 'guanzhu',
+                          url: '../nav/pubuliu_.html',
+                          bgColor: '#fff'
+                      },{
+                          name: 'remen',
+                          url: '../nav/pubuliu3.html',
+                          bgColor: '#fff'
+                      },{
+                          name: 'zuijin',
+                          url: 'pubuliu2.html',
+                          bgColor: '#fff'
+                      }]
+                  }, function(ret, err){
+                      if( ret.index==0 ){
+                        left_like();
+                      }else if(ret.index==1){
+                        center_hot();
+                      }else{
+                        right_news();
+                      }
+                  });
+                }else if (i==1) {
+
+                  api.openFrameGroup ({
+                      name: 'search',
+                      background: '#fff',
+                      scrollEnabled: true,
+                      rect: {
+                           x: 0,
+                           y: frametop+'px',
+                           w: 'auto',
+                           h: frameh+"px",
+                           marginBottom:framebottom+'px',
+                      },
+                      index: 0,
+                      frames: [{
+                          name: 'recommend_list_function',
+                          url: 'recommend_list_function.html',
+                          bgColor: '#fff'
+
+                      },{
+                          name: 'recommend_list',
+                          url: 'recommend_list.html',
+                          bgColor: '#fff'
+                      },{
+                          name: 'recommend_list2',
+                          url: 'recommend_list2.html',
+                          bgColor: '#fff'
+                      }]
+                  }, function(ret, err){
+                    if(ret.index==1){
+                      left_list();
+                    }else if(ret.index==2){
+                      right_group();
+                    }else if(ret.index==0){
+                      function_list();
+                    }
+                  });
+                }else if(i==2){
+                  api.sendEvent({
+                      name: 'reloadnav'
+                  });
+                }
+
+
+            }else{
+                $api.removeCls(eFootLis[i], 'active');
+                $api.removeCls(eHeaderLis[i], 'active');
+                api.setFrameAttr({
+                    name: htmlnamenum[i],
+                    hidden: true
+                });
+                api.setFrameGroupAttr({
+                    name: htmlnamenum[i],
+                    hidden: true
+                });
+                // api.setFrameGroupAttr({
+                //     name: htmlnamenum[],
+                //     hidden: true
+                // });
+
+            }
+        }
+        api.setFrameAttr({
+            name: htmlnamenum[1],
+            hidden: true
+        });
+        $api.addCls( eFootLis[index], 'active');
+        $api.addCls( eHeaderLis[index], 'active');
+        // api.setFrameGroupIndex({
+        //     name: 'group',
+        //     index: index
+        // });
+    }
+
+    function fnInitListener() {
+        var flag = false;
+        api.addEventListener({
+            name: 'keyback'
+        }, function(ret, err) {
+          // alert(JSON.stringify(ret));
+            if (false == flag) {
+                api.toast({
+                    msg: '再按一次退出',
+                    duration: 2000,
+                    location: 'bottom'
+                });
+                flag = true;
+                setTimeout(function() {
+                    flag = false;
+                }, 2000);
+            } else {
+                api.closeWidget({
+                    silent: true
+                });
+            }
+        });
+    };
+
+    //定义切换左右动画函数
+    function function_lists(){
+      $api.css(huadong, 'transform:translateX(0);');
+      $api.css(functionn, 'color:#000;');
+      $api.css(left,'color:#aaa;');
+      $api.css(right,'color:#aaaaaa;');
+      api.sendEvent({
+          name:'huadong_function',
+      });
+    }
+    function left_lists(){
+
+      $api.css(huadong, 'transform:translateX(20vw);');
+      // $api.css(huadong,'');
+       // $api.css(left,'font-weight:bold;');
+       // $api.css(right,'font-weight:normal;');
+       $api.css(left,'color:black;');
+       $api.css(right,'color:#aaaaaa;');
+       $api.css(functionn, 'color:#aaa;');
+       api.sendEvent({
+           name: 'huadong_rights',
+       });
+    }
+
+    function right_groups(){
+      //alert('执行0');
+
+      $api.css(huadong, 'transform:translateX(40vw);');
+      // $api.css(huadong,'');
+       // $api.css(left,'font-weight:normal;');
+       // $api.css(right,'font-weight:bold;');
+       $api.css(right,'color:black;');
+       $api.css(left,'color:#aaaaaa;');
+       $api.css(functionn, 'color:#aaa;');
+       api.sendEvent({
+           name: 'huadong_lefts',
+       });
+    }
+
+    //定义切换左右动画函数
+    function function_list(){
+      $api.css(huadong,'transform:translateX(0vw);');
+       $api.css(functionn,'font-weight:bold;');
+       $api.css(functionn,'color:black;');
+       $api.css(right,'color:#aaaaaa;');
+       $api.css(left,'color:#aaaaaa;');
+    }
+    function left_list(){
+      $api.css(huadong,'transform:translateX(20vw);');
+       $api.css(left,'font-weight:bold;');
+       $api.css(left,'color:black;');
+       $api.css(right,'color:#aaaaaa;');
+       $api.css(functionn,'color:#aaaaaa;');
+    }
+
+    function right_group(){
+      //alert('执行0');
+      $api.css(huadong,'transform:translateX(40vw);');
+       $api.css(right,'font-weight:bold;');
+       $api.css(right,'color:black;');
+       $api.css(left,'color:#aaaaaa;');
+       $api.css(functionn,'color:#aaaaaa;');
+    }
+
+    //广场页左右切换动画
+    function left_like() {
+      $api.css(huadong2,'left:29.2%');
+      $api.css(like,'color:black;');
+      $api.css(hot,'color:#aaaaaa;');
+      $api.css(news,'color:#aaaaaa;');
+    }
+
+    function center_hot() {
+      $api.css(huadong2,'left:45%');
+      $api.css(like,'color:#aaaaaa;');
+      $api.css(hot,'color:black;');
+      $api.css(news,'color:#aaaaaa;');
+    }
+
+    function right_news() {
+      $api.css(huadong2,'left:60.5%');
+      $api.css(like,'color:#aaaaaa;');
+      $api.css(hot,'color:#aaaaaa;');
+      $api.css(news,'color:black;');
+    }
+
+    function left_likes() {
+      left_like();
+      api.sendEvent({
+          name: 'like',
+      });
+    }
+
+    function center_hots() {
+      center_hot();
+      api.sendEvent({
+          name: 'hot',
+      });
+    }
+
+    function right_newss() {
+      right_news();
+      api.sendEvent({
+          name: 'news',
+      });
+    }
+
+    function openSetting(){//打开设置页
+      api.openWin({
+        name: "setting",
+        url: "widget://html/set-up/setting.html",
+        reload: true,
+        vScrollBarEnabled: false,
+        slidBackEnabled: false
+      });
+    };
+</script>

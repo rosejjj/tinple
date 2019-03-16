@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+  <style type="text/css">
+    html{
+      background: #EFEFEF;
+    }
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    .top{
+      position: absolute;
+      top: 0;
+      height: 65px;
+      width: 100%;
+      background: white;
+      text-align: center;
+      /*line-height: 70px;*/
+      letter-spacing: 4px;
+      font-weight: bold;
+      /*line-height: 45px;*/
+      font-size: 15px;
+    }
+    .hel{
+      line-height: 87px;
+    }
+    .top img{
+      position: absolute;
+      top: 28px;
+      left: 10px;
+      height: 30px;
+      width: 30px;
+    }
+  .back{
+    float: left;
+    position: absolute;
+    left: 20px;
+  }
+  #wrap{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: #EFEFEF;
+  }
+  .avatar{
+    margin-top: 70px;
+    width: 100vw;
+    height: 30vw;
+    background: white;
+    line-height: 30vw;
+  }
+  .user{
+    font-size: 15px;
+    margin-left: 20px;
+    font-weight: bold;
+  }
+  .head{
+    width: 20vw;
+    height: 20vw;
+    border-radius: 75px;
+    float: right;
+    margin-right: 20px;
+    margin-top: 5vw;
+    background: no-repeat center center #efefef;
+  	background-size: cover;
+  	object-fit: cover;
+    /*border: 1px solid #efefef;*/
+  }
+  .message{
+    margin-top: 5px;
+    /*background: blue;*/
+    /*height: 30vw;*/
+    width: 100vw;
+  }
+  .public{
+    height: 15vw;
+    width: 100vw;
+    background: white;
+    line-height: 15vw;
+  }
+  .zhiding{
+    border-top: 1px solid #efefef;
+  }
+  .jiantou{
+    height: 5vw;
+    width: 5vw;
+    float: right;
+    margin-right: 20px;
+    margin-top:12.5vw;
+  }
+  .mes{
+    margin-left: 20px;
+    font-size: 15px;
+    font-weight: bold;
+  }
+  .messageButton{
+     height: 9vw;
+     width: 15vw;
+     background: green;
+     opacity: 0.8;
+     border-radius: 20px;
+     float: right;
+     margin-right: 20px;
+     margin-top: 3vw;
+  }
+  .button{
+    height: 9vw;
+    width: 9vw;
+    border-radius: 100%;
+    background: white;
+    float:right;
+  }
+  .tousu{
+    height: 15vw;
+    width: 100vw;
+    /*margin-top: 5px;*/
+    background: white;
+    line-height: 15vw;
+    border-top: 5px solid #efefef;
+  }
+  .zhuangtailan{
+    position: fixed;
+    top:0;
+    width: 100vw;
+    height:25px;
+    background-color: #fff;
+    z-index: 999;
+  }
+  </style>
+</head>
+<body>
+    <div class="zhuangtailan"></div>
+    <div id="wrap">
+      <div class="top"><p class="hel">DETAIL</p>
+      <img class="back"src="../../icon/left.png">
+      </div>
+      <div class="avatar"><span class="user">User</span><img class="jiantou" src="../../icon/jiantou.png"><span class="head"></span></div>
+      <div class="message">
+          <div class="tixing public"><span class="mes mesa">Message Notification</span><span class="messageButton"><span class="button"></span></span></div>
+          <div class="zhiding public" style="display:none;"><span class="mes roof">Roof placement</span><span class="messageButton"><span class="button"></span></span></div>
+      </div>
+      <div class="tousu"><span class="pingbi mes">Complaint &amp; Shield</span><img class="jiantou" style="margin-top:5vw;" src="../../icon/jiantou.png"></div>
+   </div>
+</body>
+</html>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../json/api.json"></script>
+<script type="text/javascript" src="../../json/router.json"></script>
+<script type="text/javascript" src="../../json/global.json"></script>
+<script type="text/javascript" src="../../script/jquery-3.1.0.min.js"></script>
+<script src="../../script/public.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../script/StackBlur.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+  if($api.getStorage('language')=='zho'){
+      $('.user').html('用戶名');
+      $('.mesa').html('消 息 提 示');
+      $('.roof').html('置 頂');
+      $('.pingbi').html('投 訴 &amp; 屏 蔽');
+      $('.hel').html('詳 情');
+  }
+  var hhh = window.screen.height;
+  var www = window.screen.width;
+  apiready = function(){
+    // 适配刘海屏
+    if(hhh/www>2){
+      $api.css($api.dom('.top'), 'top:25px;');
+      $api.css($api.dom('.avatar'), 'margin-top:95px;');
+    }
+    var uiid = api.pageParam['uid'];
+      api.ajax({
+          url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/userinfo',
+          method: 'post',
+          data: {
+              values: {
+                  uiId: uiid,
+                  pageUiId: uiid
+              }
+          }
+      },function(ret, err){
+          if (ret) {
+            var img = 'http://bin.baopinghui.com/'+ret.data.avatar_url;
+              $('.head').css('background-image','url('+img+')');
+          }
+      });
+    $('.avatar').click(function(){
+      openPersonal(api.winName, uiid);
+    });
+
+
+    var shieldMS=(typeof($api.getStorage("shieldMS"))!="undefined")?$api.getStorage("shieldMS"):{}; //用来判断是否群消息提醒
+    var shieldMS_child=shieldMS[$api.getStorage('id')]!=null?shieldMS[$api.getStorage('id')]:{};   //以当前的用户id为对象名以
+    button = $api.dom(".button");
+    messageButton = $api.dom(".messageButton");
+    var mbutton = true;
+        console.log(uiid+"进来是"+JSON.stringify(shieldMS_child));
+    if(shieldMS_child[uiid]!=null){
+    console.log("进来是2"+JSON.stringify(shieldMS));
+      if(shieldMS_child[uiid]==true){
+        $(messageButton).css("background","green");
+        $(button).css("float","right");
+        mbutton=true;
+      }else{
+        $(messageButton).css("background","#aaa");
+        $(button).css("float","left");
+        mbutton=false;
+
+      }
+
+    }
+
+    $(messageButton).click(function(){
+      console.log(uiid+"点击开始"+JSON.stringify(shieldMS));
+
+        if(shieldMS_child[uiid]==null){
+
+        shieldMS_child[uiid]=false;
+        api.sendEvent({
+            name: 'shieldMS',
+            extra: {
+                bell: true,
+                gid: uiid
+            }
+        });
+        console.log("进入了"+shieldMS[uiid]);
+      }else{
+        shieldMS_child[uiid]=shieldMS_child[uiid]==true?false:true;
+        if(shieldMS_child[uiid]==false){
+          api.sendEvent({
+              name: 'shieldMS',
+              extra: {
+                  bell: true,
+                  gid: uiid
+              }
+          });
+
+        }else{
+          api.sendEvent({
+              name: 'shieldMS',
+              extra: {
+                  bell: false,
+                  gid: uiid
+              }
+          });
+        }
+      }
+        console.log("点击结束"+JSON.stringify(shieldMS));
+        shieldMS[$api.getStorage('id')]=shieldMS_child;
+      $api.setStorage("shieldMS",shieldMS);
+      // api.sendEvent({
+      //     name: 'shieldMS',
+      //     extra: {
+      //         key1: 'value1',
+      //         key2: 'value2'
+      //     }
+      // });
+
+
+      if(mbutton==false){   //开
+      $(messageButton).css("background","green");
+      $(button).css("float","right");
+      mbutton=true;
+
+
+    //  close_notification = true
+  // getSwitchBtn();
+
+}else if(mbutton){ //关
+      $(messageButton).css("background","#aaa");
+      $(button).css("float","left");
+      mbutton=false;
+    }
+    return;
+    });
+
+    $('.tousu').click(function(){
+      api.openWin({
+          name: 'report_choose',
+          url: 'widget://html/report/report_choose.html',
+          pageParam: {
+              report: 'report'
+          }
+      });
+    });
+
+    $('.back').click(function(){
+        api.closeWin({
+            name: 'homepage'
+        });
+    });
+      api.addEventListener({
+          name:'swiperight'
+      }, function(ret, err){
+         api.closeWin({
+             name: 'homepage'
+         });
+
+      });
+
+  }
+</script>

@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>more1</title>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+		}
+		#bg{
+			width: 100vw;
+			height: 100vh;
+			background-color: transparent;
+		}
+		html,body{
+			background-color:rgba(34, 34, 34, 0.6);
+			font-family: Arial;
+			font-style: normal; 
+			animation:bganimation 0.3s linear 0s 1 normal;
+			-webkit-animation: bganimation 0.3s linear 0s 1 normal;
+			-ms-animation: bganimation 0.3s linear 0s 1 normal;
+			-o-animation: bganimation 0.3s linear 0s 1 normal;
+			-moz-animation: bganimation 0.3s linear 0s 1 normal;
+			/*-khtml-animation: bganimation 0.3s linear 0s 1 normal;*/
+		}
+		ul{
+			width: 100%;
+			height:7.98vw;
+			margin-top:3.19vw;
+			margin-bottom:3.99vw;
+		}
+		ul li{
+			list-style: none;
+		}
+		.box{
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+			height: auto;
+			padding-left:5.32vw;
+			padding-top:4.26vw;
+			padding-bottom:6.65vw;
+			background-color: #fff;
+			box-sizing: border-box;
+			animation:winanimation 0.3s linear 0s 1 normal;
+			-webkit-animation: winanimation 0.3s linear 0s 1 normal;
+			-ms-animation: winanimation 0.3s linear 0s 1 normal;
+			-o-animation: winanimation 0.3s linear 0s 1 normal;
+			-moz-animation: winanimation 0.3s linear 0s 1 normal;
+			/*-khtml-animation: winanimation 0.3s linear 0s 1 normal;*/
+		}
+		p{
+			font:3.19vw Arial;
+			line-height: 4.52vw;
+			font-weight: bold;
+		}
+		ul li{
+			float:left;
+			margin-right:5.32vw;
+		}
+		.sharebtn li{
+			width: 7.98vw;
+			height: 7.98vw;
+		}
+		.sharebtn li:nth-child(1){
+			background:url(../../image/share/icon-share-wechat@3x2.png);
+			background-size: cover;
+		}
+		.sharebtn li:nth-child(2){
+			background:url(../../image/share/icon-share-pengyouquan@3x2.png);
+			background-size: cover;
+		}
+		.sharebtn li:nth-child(3){
+			background:url(../../image/share/icon-share-qq@3x2.png);
+			background-size: cover;
+		}
+		.sharebtn li:nth-child(4){
+			background:url(../../image/share/icon-share-QQsquare@3x2.png);
+			background-size: cover;
+		}
+		.oprationbtn{
+			margin-top:4.26vw;
+		}
+		.oprationbtn li{
+			width: 21.28vw;
+			height:7.98vw;
+			color:#fff;
+			text-align: center;
+			font:3.19vw Arial;
+			font-weight: bold;
+			line-height: 7.98vw;
+			border-radius: 1.06vw;
+		}
+		.oprationbtn li:nth-child(1),.oprationbtn li:nth-child(2){
+			background-color: #000;
+		}
+		.oprationbtn li:nth-child(3){
+			background-color: #F381A3;
+			display: none;
+		}
+		@keyframes bganimation{
+			0%{
+				background-color: rgba(250,250,250,0.6);
+			}
+			100%{
+				background-color:rgba(34, 34, 34, 0.6);
+			}
+		}
+		@-webkit-keyframes bganimation{
+			0%{
+				background-color: rgba(250,250,250,0.6);
+			}
+			100%{
+				background-color:rgba(34, 34, 34, 0.6);
+			}
+		}
+		@-ms-keyframes bganimation{
+			0%{
+				background-color: rgba(250,250,250,0.6);
+			}
+			100%{
+				background-color:rgba(34, 34, 34, 0.6);
+			}
+		}
+		@-o-keyframes bganimation{
+			0%{
+				background-color: rgba(250,250,250,0.6);
+			}
+			100%{
+				background-color:rgba(34, 34, 34, 0.6);
+			}
+		}
+		@-moz-keyframes bganimation{
+			0%{
+				background-color: rgba(250,250,250,0.6);
+			}
+			100%{
+				background-color:rgba(34, 34, 34, 0.6);
+			}
+		}
+		/*@-khtml-keyframes bganimation{
+			0%{
+				background-color: rgba(250,250,250,0.6);
+			}
+			100%{
+				background-color:rgba(34, 34, 34, 0.6);
+			}
+		}*/
+		@keyframes winanimation{
+			0%{
+				margin-bottom:-28vh;
+			}
+			100%{
+				margin-bottom:0;
+			}
+		}
+		@-webkit-keyframes winanimation{
+			0%{
+				margin-bottom:-28vh;
+			}
+			100%{
+				margin-bottom:0;
+			}
+		}
+		@-ms-keyframes winanimation{
+			0%{
+				margin-bottom:-28vh;
+			}
+			100%{
+				margin-bottom:0;
+			}
+		}
+		@-o-keyframes winanimation{
+			0%{
+				margin-bottom:-28vh;
+			}
+			100%{
+				margin-bottom:0;
+			}
+		}
+		@-moz-keyframes winanimation{
+			0%{
+				margin-bottom:-28vh;
+			}
+			100%{
+				margin-bottom:0;
+			}
+		}
+		/*@-khtml-keyframes winanimation{
+			0%{
+				margin-bottom:-28vh;
+			}
+			100%{
+				margin-bottom:0;
+			}
+		}*/
+		header{
+			width:100vw;
+			height:17.29vw;
+			background-color:#fff;
+			position: fixed;
+			top:0;
+			box-shadow:0 0 5px 0 rgba(239,239,239,1);
+		}
+		.return{
+			position: absolute;
+			bottom:1.86vw;
+			left:2.66vw;
+			width:7.98vw;
+			height:7.98vw;
+			background:url(../../icon/icon-close@3x2.png);
+			background-size: cover;
+		}
+		.note{
+			position: fixed;
+			top:39.89vw;
+			left:50%;
+			margin-left:-39.23vw;
+			width:78.46vw;
+			height:66.49vw;
+			border-radius:5.32vw;
+			background-color:#fff;
+		}
+		.note_top{
+			width:100%;
+			height:14.1vw;
+			font:3.99vw/14.1vw Arial;
+			font-weight: bold;
+			text-align: center;
+		}
+		.note_content{
+			width:100%;
+			height:27.65vw;
+			font:3.99vw/6vw Arial;
+			color:#aaa;
+			font-weight: bold;
+			background-color:#efefef;
+			text-align: center;
+			padding:7.98vw 10vw;
+			box-sizing: border-box;
+		}
+		.note_bottom{
+			width:100%;
+			height:24.74vw;
+			line-height: 24.74vw;
+		}
+		.note_buttom{
+			width:53.19vw;
+			height:10.64vw;
+			background-color:#000;
+			text-align: center;
+			font:3.99vw/10.64vw Arial;
+			color:#fff;
+			font-weight: bold;
+			margin:0 auto;
+			margin-top:7.05vw;
+			border-radius: 7.98vw;
+		}
+	</style>
+</head>
+<body>
+	<div id="bg">
+	<header>
+		<div class="return" onclick="closeWin()"></div>
+	</header>
+	<div class="note">
+		<div class="note_top">(●'◡'●)</div>
+		<div class="note_content">Post Posted<br>Successfully</div>
+		<div class="note_bottom">
+			<div class="note_buttom" onclick="opendetail()">V I E W   P O S T </div>
+		</div>
+	</div>
+	<div class="box" id="box">
+		<p id="sharetext">S H A R E</p>
+		<ul class="sharebtn">
+			<li id="wechat"></li>
+			<li id="circle"></li>
+			<li id="qfriends"></li>
+			<li id="qspace"></li>
+			<li id="testtt"></li>
+		</ul>
+		<p id="moretext">M O R E</p>
+		<ul class="oprationbtn">
+			<li id="reprint" style="display: none">REPRINT</li>
+			<li id="report">REPORT</li>
+			<li id="delete">DELETE</li>
+		</ul>
+	</div>
+	</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script type="text/javascript">
+	var hhh = window.screen.height;
+	var www = window.screen.width;
+	apiready = function(){
+		if(hhh/www > 2){
+			$api.css($api.dom('header'), 'height:23.67vw');
+			$api.css($api.dom('.note'), 'top:46vw');
+		}
+	    var wechat = $api.dom("#wechat"),
+	    	circle = $api.dom("#circle"),
+	    	qfriends = $api.dom("#qfriends"),
+	    	qspace = $api.dom("#qspace"),
+	    	otherId = api.pageParam["otherId"],
+	    	postId = api.pageParam["postId"],
+	    	popNum = api.pageParam["popNum"],
+		    tinNum = api.pageParam["tinNum"],
+		    testId = $api.getStorage('id'),
+		    reprintbtn = $api.dom("#reprint"),
+		    reportbtn = $api.dom("#report"),
+		    deletebtn = $api.dom("#delete"),
+		    bg = $api.dom("#bg"),
+		    language = $api.getStorage('language');
+		var pubuliu = api.pageParam["pubuliu"];
+		var title,
+			content,
+			img,
+			postUsername;
+		// 判断是否中文版本,中英切换
+		if(language == "zho"){
+			$api.text($api.dom("#sharetext"), '分 享');
+			$api.text($api.dom("#moretext"), '更 多');
+			$api.text(reprintbtn, '轉 載');
+			$api.text(reportbtn, '舉 報');
+			$api.text(deletebtn, '刪 除');
+			$api.html($api.dom('.note_content'), '發 佈 成 功');
+			$api.text($api.dom('.note_buttom'), '查 看 詳 情');
+		}
+		setInterval(function(){
+		    	$api.css(wechat, 'opacity:1');
+		    	$api.css(circle, 'opacity:1');
+		    	$api.css(qfriends, 'opacity:1');
+		    	$api.css(qspace, 'opacity:1');
+		    	$api.css(reprintbtn, 'opacity:1');
+		    	$api.css(reportbtn, 'opacity:1');
+		    	$api.css(deletebtn, 'opacity:1');
+		},500);
+		// 点击空白处,关掉当前窗口
+		bg.onclick=function(e){
+			var tar = e.target;
+			if(tar.id === "bg"){
+				api.closeFrame();
+			}
+		};
+		var imgpath;
+		// 获取分享信息
+		$.ajax({
+		    	// async: false,
+		    	url: 'http://api.baopinghui.com/app_dynamicCover/findPostInfo',
+		    	type: 'post',
+		    	dataType: 'json',
+		    	data: {
+		    		id: postId
+		    	},
+		    })
+		    .done(function(ret) {
+		    	if(ret){
+		    		title=ret.data.title;
+		    		if(title.length>=50){
+		    			title=title.slice(0, 50);
+		    			title+="...";
+		    		}
+		    		
+		    		content="來自 "+ret.data.nickname+ " 的創作 | TINKLE國際交友社區，更多精彩等待你去發現";
+		    		if(ret.data.post_type == "Video"){
+		    			img='http://bin.baopinghui.com/'+ret.data.cover_url+'?vframe/jpg/offset/1/w/200';
+		    		}else{
+		    			img='http://bin.baopinghui.com/'+ret.data.cover_url.replace(/;/g,",").split(",")[0]+'?imageView2/0/w/200';
+		    		}
+		    	}
+		    	imgpath=api.cacheDir + "/pic/" + ret.data.cover_url + '.png';
+		    	postUsername = ret.data.nickname;
+		    	return;
+		    });
+		    // 微信分享图片
+			var path= api.cacheDir + "/pic/" +"112.png";
+		   $api.addEvt($api.dom('#moretext'), 'click', function(){
+			   	api.download({
+			       url: img,
+			       savePath: path,
+			       report: true,
+			       cache: true,
+			       allowResume: true
+			   	}, function(ret, err) {
+			       if(ret.state == 1){
+			          console.log(1);
+			      } else {
+			          console.log(2);
+			      }
+			   	});
+			});
+		   $api.addEvt($api.dom('#sharetext'), 'click', function(){
+		   		var wx = api.require('wx');
+				wx.shareImage({
+				    apiKey: 'wx2ccebd109467df4c',
+				    scene: 'session',
+				    thumb: path,
+				    contentUrl: path
+				}, function(ret, err) {
+				    if (ret.status) {
+				        console.log('分享成功');
+				    } else {
+				        console.log(err.code);
+				    }
+				});
+		   });
+			   	
+		  
+		   
+		    
+		    // 微信分享好友
+		    $api.addEvt(wechat,"click",function(){
+		    	api.download({
+			       url: img,
+			       savePath: imgpath,
+			       report: true,
+			       cache: true,
+			       allowResume: true
+			   	}, function(ret, err) {
+			       if(ret.state == 1){
+			          console.log(1);
+			      } else {
+			          console.log(2);
+			      }
+			   	});
+		    	$api.css(wechat, 'opacity:0.5');
+		    	setTimeout(function(){
+		    		var wx = api.require('wx');
+					wx.shareWebpage({
+					    apiKey: 'wx2ccebd109467df4c',
+					    scene: 'session',
+					    title: title,
+					    description: content,
+					    thumb:imgpath,
+					    contentUrl: 'http://parttime.baopinghui.com/chat/bin/detail.html?popNum='+popNum+'&tinNum='+tinNum+'&postId='+postId
+					    // contentUrl: img
+					}, function(ret, err) {
+					    if (ret.status) {
+					        console.log('分享成功');
+					    } else {
+					        console.log('分享失敗');
+					    }
+					});
+		    	},500);
+		    	
+		    });
+		    // 微信分享朋友圈
+		    $api.addEvt(circle,"click",function(){
+		    	api.download({
+			       url: img,
+			       savePath: imgpath,
+			       report: true,
+			       cache: true,
+			       allowResume: true
+			   	}, function(ret, err) {
+			       if(ret.state == 1){
+			          console.log(1);
+			      } else {
+			          console.log(2);
+			      }
+			   	});
+			   	setTimeout(function(){
+			   		var wx = api.require('wx');
+					wx.shareWebpage({
+					    apiKey: 'wx2ccebd109467df4c',
+					    scene: 'timeline',
+					    title: title,
+					    description: content,
+					    thumb: imgpath,
+					    contentUrl: 'http://parttime.baopinghui.com/chat/bin/detail.html?popNum='+popNum+'&tinNum='+tinNum+'&postId='+postId
+					}, function(ret, err) {
+					    if (ret.status) {
+					        console.log('分享成功');
+					    } else {
+					        console.log('分享失敗');
+					    }
+					});
+			   	},500);
+		    	$api.css(circle, 'opacity:0.5');
+		    	
+		    });
+		    // QQ分享好友
+		    $api.addEvt(qfriends, 'click', function(){
+		    	$api.css(qfriends, 'opacity:0.5');
+		    	var qq = api.require('qq');
+				qq.shareNews({
+				    url: 'http://parttime.baopinghui.com/chat/bin/detail.html?popNum='+popNum+'&tinNum='+tinNum+'&postId='+postId,
+				    title: title,
+				    description: content,
+				    imgUrl: img,
+				    type: "QFriend"
+				});
+		    });
+		    // QQ分享空间
+		    $api.addEvt(qspace, 'click', function(){
+		    	$api.css(qspace, 'opacity:0.5');
+		    	var qq = api.require('qq');
+				qq.shareNews({
+				    url: 'http://parttime.baopinghui.com/chat/bin/detail.html?popNum='+popNum+'&tinNum='+tinNum+'&postId='+postId,
+				    title: title,
+				    description: content,
+				    imgUrl: img,
+				    type: "QZone"
+				});
+		    });
+		    // 點擊舉報
+		    $api.addEvt(reportbtn, 'click', function(){
+		    	$api.css(reportbtn, 'opacity:0.5');
+		    	api.openFrame({
+		    	    name: 'out',
+		    	    url: 'widget://html/nav/out.html',
+		    	    rect: {
+		    	        x: 0,
+		    	        y: 0,
+		    	        w: 'auto',
+		    	        h: 'auto'
+		    	    },
+		    	    pageParam: {
+		    	        report:1
+		    	    }
+		    	});
+		    });
+		    // 判断是否登陆ID,添加删除功能
+		    if(testId == otherId){
+		    	$api.css(deletebtn, 'display:block');
+		    	$api.addEvt(deletebtn, 'click', function(){
+		    		$api.css(deletebtn, 'opacity:0.5');
+		    		api.openFrame({
+						name: "out",
+						url: "widget://html/nav/out.html",
+						rect: {
+							x: 0,
+							y: 0,
+							w: "auto",
+							h: "auto"
+						},
+						pageParam:{
+							deletePost: true,
+							postId:postId,
+							otherId:otherId,
+							pubuliu:pubuliu
+						}
+					});
+		    	});
+		    }
+		    // 点进转发功能
+		    $api.addEvt(reprintbtn, 'click', function(){
+		    	api.openWin({
+				    name: 'appshare',
+				    url: 'widget://html/chat/appshare.html',
+				    pageParam: {
+				        postId:postId,
+				        otherId:otherId,
+				        postUsername:postUsername
+				    }
+				});
+		    });
+	}
+	function closeWin(){
+		
+		api.closeWin({
+		    name: 'post'
+		});
+		api.closeWin({
+		    name: 'postsuccess'
+		});
+	}
+	function opendetail(){
+		var postId = api.pageParam["postId"];
+		api.openWin({
+		    name: 'detail',
+		    url: 'widget://html/details/detail.html',
+		    pageParam: {
+		        postId:postId
+		    }
+		});
+		api.closeWin({
+		    name: 'post'
+		});
+		api.closeWin({
+		    name: 'postsuccess'
+		});
+	}
+	function deleteAndEnter(){
+		var postId = api.pageParam["postId"];
+		var testId = $api.getStorage('id');
+	    	api.ajax({
+	    		url: "http://api.baopinghui.com/app_dynamicCover/removePost?uiId=" + testId + "&dynId=" + postId,
+	    		method: "post"
+	    	}, function(ret, err){
+	    		if(ret){
+	    			if(ret["status"]){
+	    				// api.openWin({
+				    	// 	name: "home",
+				    	// 	url: "widget://html/home/home.html",
+				    	// 	reload: true,
+				    	// 	vScrollBarEnabled: false,
+				    	// 	slidBackEnabled: false
+				    	// });
+				    	api.closeWin({
+						    name: 'post'
+						});
+						api.closeWin({
+						    name: 'postsuccess'
+						});
+	    			};
+	    			return;
+	    		};
+	    		console.log(err);
+	    	});
+	    };
+</script>
+</html>

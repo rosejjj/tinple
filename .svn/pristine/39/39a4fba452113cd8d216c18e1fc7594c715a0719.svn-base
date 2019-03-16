@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>guide10</title>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+		}
+		body{
+			width:100vw;
+			height:100vh;
+		}
+		.bg{
+			width:100vw;
+			height:100vh;
+			background-color:#000;
+			opacity: 0.8;
+			/*animation:bganimation 0.3s linear 0s 1 normal;
+			-webkit-animation: bganimation 0.3s linear 0s 1 normal;
+			-ms-animation: bganimation 0.3s linear 0s 1 normal;
+			-o-animation: bganimation 0.3s linear 0s 1 normal;
+			-moz-animation: bganimation 0.3s linear 0s 1 normal;*/
+		}
+		.box{
+			position: fixed;
+			top:0;
+			width:100vw;
+		}
+		.window{
+			position: absolute;
+			top:4.52vw;
+			left:50%;
+			margin-left:-11.97vw;
+			width:23.94vw;
+			height:13.3vw;
+			background-color:#fff;
+			border-radius: 1.33vw;
+			font:3.99vw/13.3vw Arial;
+			font-weight: bold;
+			text-align: center;
+			color:#aaa;
+		}
+		.arrow{
+			position: absolute;
+			top:18.21vw;
+			left:25.93vw;
+			width:10.64vw;
+			height:10.64vw;
+			background:url(../../icon/guide/arrow1.png) no-repeat;
+			background-size:contain;
+			transform: rotate(68deg);
+		}
+		.content{
+			position: absolute;
+			top:32.57vw;
+			left:50%;
+			margin-left:-30.32vw;
+			width:60.64vw;
+			font:3.99vw/5.85vw Arial;
+			font-weight: bold;
+			color:#fff;
+		}
+		.content>p>span{
+			color:#f381a3;
+		}
+		.content>p:nth-child(2)>span{
+			color:#fff;
+			border-bottom:2px solid #fff;
+		}
+		.content>p:nth-child(3){
+			margin-top:3.99vw;
+			margin-bottom:3.99vw;
+		}
+		.img{
+			width:10.64vw;
+			height:10.64vw;
+			margin-left:2.66vw;
+			margin-top:2.66vw;
+			background:url(../../icon/guide/swipeleft.png) no-repeat center;
+			background-size: contain;
+		}
+		@keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 0.8;
+			}
+		}
+		@-webkit-keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 0.8;
+			}
+		}
+		@-ms-keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 0.8;
+			}
+		}
+		@-o-keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 0.8;
+			}
+		}
+		@-moz-keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 0.8;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="bg"></div>
+	<div class="box">
+		<div class="window"><span>Hot</span></div>
+		<div class="arrow"></div>
+		<div class="content">
+			<p>Next <span>click here</span>,</p>
+			<p>Let's go to the <span>Hot posts</span>.</p>
+			<p>or</p>
+			<p>can slide the screen left.</p>
+			<div class="img"></div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript">
+	var www = window.screen.width;
+	var hhh = window.screen.height;
+	apiready = function(){
+		if(hhh/www > 2){
+			$api.css($api.dom('.box'), 'top:25px;');
+		}
+	    if($api.getStorage('language')=='zho'){
+	    	$api.html($api.dom('.window'), '熱 門');
+	    	$api.html($api.dom('.content'), '<p>接 下 來 <span>點 擊 這 裏</span></p><p>我 們 去 <span>熱 門 帖 子</span> 看 看</p><p>或</p><p>向 左 滑 動 頁 面 也 可 以 噢</p><div class="img"></div>');
+	    }; 
+	    $api.addEvt($api.dom('.window'), 'click',function(){
+	    	api.sendEvent({
+	    	    name: 'guide10'
+	    	});
+	    	api.openFrame({
+	    	    name: 'guide11',
+	    	    url: 'widget://html/guide/guide11.html',
+	    	    rect: {
+	    	        x: 0,
+	    	        y: 0,
+	    	        w: 'auto',
+	    	        h: 'auto'
+	    	    },
+	    	    pageParam: {
+	    	        name: 'value'
+	    	    }
+	    	});
+	    	api.closeFrame({
+	    	    name: 'guide10'
+	    	});
+	    });
+	    api.addEventListener({
+	        name: 'swipeleft'
+	    }, function() {
+	    	api.sendEvent({
+	    	    name: 'guide10'
+	    	});
+	        api.openFrame({
+	    	    name: 'guide11',
+	    	    url: 'widget://html/guide/guide11.html',
+	    	    rect: {
+	    	        x: 0,
+	    	        y: 0,
+	    	        w: 'auto',
+	    	        h: 'auto'
+	    	    },
+	    	    pageParam: {
+	    	        name: 'value'
+	    	    }
+	    	});
+	    	api.closeFrame({
+	    	    name: 'guide10'
+	    	});
+	    });
+
+	}
+	    
+</script>
+</html>

@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+		}
+		.bg{
+			position: fixed;
+			top:0;
+			left:0;
+			width:100vw;
+			height:100vh;
+			background-color:rgba(0,0,0,0.7);
+			z-index: -1;
+		}
+		.title{
+		  height: 5.26vh;
+			font:3.99vw/5.32vw Arial;
+			font-weight: bold;
+			text-align: center;
+      line-height: 5.4vh;
+		}
+		.box{
+			/*padding:0 3.99vw 3.99vw 3.99vw;*/
+			position: relative;
+      text-align: center;
+      height: 38.61vh;
+      width: 84.04vw;
+      /*overflow: hidden;*/
+		}
+    .jianjie{
+    	/*height: 5.5vh;*/
+      margin-top: 2vh;
+      font-size: 15px;
+      font-weight: bold;
+      /*text-align: center;*/
+      width: 90%;
+      margin-left: 5%;
+      letter-spacing: 0.7px;
+			/*background: red;*/
+			overflow: hidden;
+			word-break:break-all;
+			text-overflow:ellipsis;
+			/*white-space:nowrap;*/
+			display:-webkit-box;
+			-webkit-box-orient:vertical;
+			-webkit-line-clamp:2;
+    }
+    .list2{
+      list-style: none;
+      margin-top: 1.5vh;
+			overflow: hidden;
+			height: 25px;
+    }
+    .list2 li{
+      float: left;
+      background: #EFEFEF;
+      height: 25px;
+      margin-left: 2vw;
+      text-align: center;
+      line-height: 26px;
+      border-radius: 5px;
+      color: #aaa;
+      font-size: 12px;
+      padding: 0 5px;
+    }
+    .list2 li:nth-child(1){
+      margin-left: 5%;
+    }
+    .num{
+      font-weight: bold;
+      font-size: 15px;
+      text-align: center;
+      margin-top: 15px;
+      color: #fff;
+      opacity: 1;
+      z-index: 9;
+    }
+    .box2{
+      height: 50px;
+      width: 84.04vw;
+      margin: 10vw auto 0;
+      text-align: center;
+    }
+    .jiantou{
+      float: left;
+      height: 50px;
+      width: 50px;
+      transform: rotate(-180deg);
+      opacity: 0.5;
+    }
+    .jiantou2{
+      height: 50px;
+      width: 50px;
+      float: right;
+    }
+    .button{
+      display: inline-block;
+      width: 150px;
+      height: 50px;
+      background: #9DDA57;
+      border-radius: 10px;
+      color: white;
+      font-weight: bold;
+      font-size: 15px;
+      line-height: 51px;
+      text-align: center;
+      letter-spacing: 1.5px;
+    }
+    .list{
+      width:252.12vw;
+			height:58.26vh;
+      list-style: none;
+			z-index: 5;
+    }
+    .li{
+    	/*position: relative;*/
+      width:84.04vw;
+      height:58.26vh;
+      float: left;
+			background: #fff;
+			border-radius: 2.66vw;
+    }
+		.win{
+			display: inline;
+			width:84.04vw;
+			height:58.26vh;
+			border-radius:2.66vw;
+			background-color:#fff;
+			margin: 0;
+			z-index: 5;
+		}
+		.bigBox{
+			position: relative;
+			margin:20vw auto 0;
+			width:84.04vw;
+			height:58.26vh;
+			border-radius:20px;
+			background-color:#fff;
+			overflow: hidden;
+			z-index: 5;
+		}
+		.xxx{
+			position: absolute;
+			right: 7.98vw;
+			height: 22px;
+			width: 22px;
+			opacity: 1;
+			z-index: 9999;
+			margin-right: 10px;
+			margin-top: -4px;
+		}
+		.number{
+			position: absolute;
+			left: 11px;
+			bottom: 14px;
+			height: 25px;
+			width: 40px;
+			background: #9DDA57;
+			border-radius: 10px;
+			color: white;
+			line-height: 26px;
+			font-size: 12px;
+			text-align: center;
+			font-weight: bold;
+		}
+	</style>
+</head>
+<body>
+	<div class="bg"></div>
+	<img class="xxx" src="../../icon/icon-delete@3x2.png" onclick="closeframe()">
+  <div class="bigBox" id="list">
+    <ul class="list">
+      <li  class="li" v-for="user in match">
+        <div class="win">
+      		<p class="title" v-html="user.nickname"></p>
+      		<div class="box">
+							<p class="number" v-html="user.num+'％'"></p>
+              <img :src="'http://bin.baopinghui.com/'+user.avatar_url" style="height:100%;width:100%;object-fit:fill;">
+      		</div>
+          <p class="jianjie" v-html="user.introduction"></p>
+          <ul class="list2" v-html="getHobby(user)">
+
+          </ul>
+      	</div>
+      </li>
+  </ul>
+	</div>
+  <p class="num">( <span class="num2">1</span> / <span class="num3"></span> )</p>
+  <div class="box2"><img class="jiantou" src="../../icon/lujin@3x.png"><span class="button">SAY HI</span><img class="jiantou2" src="../../icon/lujin@3x.png"></div>
+</body>
+</html>
+<script src="../../script/jquery-3.1.0.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script src="../../json/hobby.json"></script>
+<script src="../../script/vue.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+		var hhh =window.screen.height;
+		var www =window.screen.width;
+    var index = 0;
+		var list;
+		var click = {};
+	apiready = function(){
+		if(hhh/www>2){
+			$('.bigBox').css('margin-top','30vw');
+		}
+		list = new Vue({
+			el: "#list",
+			data: {
+					match : [],
+					jianjie: {},
+			},
+			methods: {
+					getHobby: function(user){
+						var str = '';
+						var habbies = user.habbies.split(',');
+						for(var i = 0;i < habbies.length;i++){
+							if($api.getStorage('language')=='zho'){
+								habbies[i] = hobbyZ[habbies[i]];
+							}else{
+								habbies[i] = hobbyE[habbies[i]];
+							}
+							str += '<li>'+habbies[i]+'</li>';
+						}
+						return str;
+					}
+			}
+		})
+		//获取用户
+		api.ajax({
+		    url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/getMatchUserlabel',
+		    method: 'post',
+		    data: {
+		        values: {
+		            uiId: $api.getStorage('id')
+		        }
+		    }
+		},function(ret, err){
+		    if (ret) {
+					list.match = ret.data;
+					$('.num3').html(ret.data.length);
+					if(ret.data==0){
+						$('.num2').html(0);
+						$('.num3').html(0);
+						$('.jiantou2').css('opacity',0.5);
+						api.toast({
+						    msg: '没有匹配用户',
+						    duration: 2000,
+						    location: 'middle'
+						});
+					}else{
+						var data =	ret.data;
+						for(var i=0;i<ret.data.length;i++){
+							(function(i){
+								api.ajax({
+										url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/userinfo',
+										method: 'post',
+										data: {
+												values: {
+														uiId: data[i].ui_id,
+														pageUiId: data[i].ui_id
+												}
+										}
+								},function(ret, err){
+									var msg = '';
+										if (ret) {
+												if(ret.data.summary==''||ret.data.summary==null){
+													if($api.getStorage('language')=='zho'){
+														 msg = '这个人很懒，什么都没留下';
+													}else{
+														 msg = 'The man was lazy and left nothing behind.';
+													}
+												}else{
+														msg = ret.data.summary;
+												}
+												Vue.set(list.match[i],'introduction',msg);
+										}
+								});
+							})(i)
+						}
+					}
+
+		    }else{
+						$('.num2').html(0);
+						$('.num3').html(0);
+						$('.jiantou2').css('opacity',0.5);
+						api.toast({
+						    msg: '没有匹配用户',
+						    duration: 2000,
+						    location: 'middle'
+						});
+
+				}
+		});
+
+		$('.jiantou2').click(function(){
+			// alert(list.match.length)
+			if(index < list.match.length-1){
+				index++;
+				$(".list").animate({marginLeft: '-' + index*84.04 + 'vw'});
+				$('.num2').html(index + 1);
+				if(click[index+1]){
+					$('.button').css('background','#efefef');
+				}else{
+					$('.button').css('background','#9DDA57');
+				}
+				$('.jiantou').css('opacity',1);
+				if(index == list.match.length-1){
+					$('.jiantou2').css('opacity',0.5);
+				}
+			}else{
+				return;
+			}
+			// alert(JSON.stringify(click));
+	  })
+		$('.jiantou').click(function(){
+				if(index < list.match.length+1 && index > 0){
+					$('.jiantou2').css('opacity',1);
+					$(".list").animate({marginLeft: '-' + (index-1)*84.04 + 'vw'});
+					$('.num2').html(index);
+					if(click[index]){
+						$('.button').css('background','#efefef');
+					}else{
+						$('.button').css('background','#9DDA57');
+					}
+					index--;
+					$('.jiantou').css('opacity',1);
+				}
+				if(index < 1){
+					$('.jiantou').css('opacity',0.5);
+					return;
+				}
+		})
+		$('.button').click(function(){
+			var number = $('.num2').html();
+			if(number!=0){
+				if(click[number]){
+					return;
+				}
+				// alert(JSON.stringify(list.match[number-1]));
+				api.sendEvent({
+				    name: 'send_uid',
+				    extra: {
+				        user: list.match[number-1]
+				    }
+				});
+				click[number] = true;
+				$('.button').css('background','#efefef');
+			}else{
+				$('.button').css('background','#efefef');
+			}
+		})
+}
+	// 关闭当前页面
+	function closeframe(){
+		api.closeFrame();
+	}
+</script>

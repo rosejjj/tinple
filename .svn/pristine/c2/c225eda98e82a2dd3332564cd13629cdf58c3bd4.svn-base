@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>瀑布流主页</title>
+</head>
+<body class="ha">
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript">
+  apiready=function () {
+    //alert(window.screen.height);
+
+    // api.openFrameGroup ({
+    //     name: 'pubuliu',
+    //     background: '#fff',
+    //     scrollEnabled: true,
+    //     rect: {
+    //          x: 0,
+    //          y: '65px',
+    //          w: 'auto',
+    //          h: (api.winHeight-109 )+"px"
+    //     },
+    //     index: 0,
+    //     frames: [{
+    //         name: 'guanzhu',
+    //         url: '../nav/pubuliu_.html',
+    //         bgColor: '#fff'
+    //     },{
+    //         name: 'remen',
+    //         url: '../nav/pubuliu_.html',
+    //         bgColor: '#fff'
+    //     },{
+    //         name: 'zuijin',
+    //         url: 'pubuliu2.html',
+    //         bgColor: '#fff'
+    //     }]
+    // }, function(ret, err){
+    //     if( ret ){
+    //
+    //     }else{
+    //
+    //     }
+    // });
+
+      api.addEventListener({
+          name: 'like'
+      }, function(ret, err) {
+        api.setFrameGroupIndex({
+          name: 'pubuliumain',
+          index: 0,
+          scroll:true
+        });
+      });
+
+      api.addEventListener({
+          name: 'hot'
+      }, function(ret, err) {
+        api.setFrameGroupIndex({
+          name: 'pubuliumain',
+          index: 1,
+          scroll:true
+        });
+      });
+
+      api.addEventListener({
+          name: 'news'
+      }, function(ret, err) {
+        api.setFrameGroupIndex({
+          name: 'pubuliumain',
+          index: 2,
+          scroll:true
+        });
+      });
+
+
+
+
+
+
+
+  }
+</script>
+</html>

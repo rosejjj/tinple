@@ -1,0 +1,1026 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>底部导航</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <!-- <link rel="stylesheet" type="text/css" href="./css/style.css"/> -->
+    <style>
+
+        html,body {  font-size:14px; height:100%;  border-color:#fff;font-family: Arial;}
+        .hover{ opacity: .8; }
+
+
+        .flex-wrap{ display: -webkit-box;	display: -webkit-flex;	display: flex; }
+        .flex-con{     -webkit-box-flex: 1;     -webkit-flex: 1;    flex: 1;}
+        .flex-vertical{ -webkit-box-orient: vertical;-webkit-flex-flow: column;flex-flow: column;}
+        .border-t,
+        .border-b{ position:relative; font-weight: bold;}
+        .zhuangtailan{
+          widows: 100vw;
+          height:24px;
+          background-color: #fff;
+        }
+        header ul .border-b:nth-child(1) img{width: 70px;height: 30px;margin-top: 30px;}
+        .border-t:before,
+        .border-b:after{     content: '';     position: absolute;     left: 0;  top:0;     background: #fff;   right:0;    height: 1px;     -webkit-transform: scaleY(0.5);             transform: scaleY(0.5);     -webkit-transform-origin: 0 0;             transform-origin: 0 0; }
+        .border-b:after{ top:auto; bottom:0;  }
+
+        #wrap{ height: 100%; }
+        header{ background-color: #FFFFFF;}
+        /*box-shadow: 0px 0px 5px 0px rgba(239,239,239,1);*/
+        header ul li { height: 0px; line-height: 85px; text-align: center; display: none; color: #000; position: relative;font-size: 15px;  }
+        header ul li:nth-child(2){
+          text-align: left;
+        }
+        header ul li:nth-child(4){
+          line-height: auto;
+        }
+        header ul li.active{ display: block;width: 100%;height: 85px;}
+        header ul li:nth-of-type(3) .header_discovery_title,.header_search_title{
+            position: absolute;
+            left:0;
+            bottom:15px;
+            width:100%;
+            height:50px;
+            font:15px/50px Arial;
+            font-weight: bold;
+            text-align:left;
+            padding-left:5.32vw;
+            box-sizing: border-box;
+        }
+        header ul li:nth-of-type(3) .header_discovery_btn{
+          position: absolute;
+          bottom:15px;
+          right:5.32vw;
+          width:100%;
+          height:50px;
+        }
+        header ul li:nth-of-type(3) .header_discovery_btn div{
+          position: relative;
+          width:30px;
+          height:30px;
+          float:right;
+          margin-left:5.32vw;
+          margin-top:10px;
+        }
+        .bell>img{
+          position: absolute;
+          top:0;
+          left:0;
+          width:30px;
+          height:30px;
+          object-fit: contain;
+        }
+        .bell>.haha{
+          position: absolute;
+          top:0;
+          right:0;
+          width: 10px;
+          height: 10px;
+          opacity: 0;
+          background: #F381A3;
+          border-radius: 50%;
+        }
+        .discovery_post{
+          background:url(../../image/index/discovery-post.png) no-repeat center;
+          background-size:contain;
+        }
+        .header_search_button{
+          position: absolute;
+          top:50%;
+          margin-top:-12.5px;
+          right:5.32vw;
+          width:25px;
+          height:25px;
+          background:url(../../icon/icon-delete@3x2.png) no-repeat center;
+          background-size:contain;
+          transform:rotate(-45deg);
+        }
+        #footer{  background-color: #ffffff;height: 50px;border-top:1px solid #efefef;}
+        #footer ul li{  width:40px;height:40px;margin-top: 10px;background: url() no-repeat 0px; background-size: 20px 20px; text-align: center;
+        background-position:top;background-size:20px 20px;font:10px/60px Arial;color:#c2c3c3;font-weight: bold;}
+        #footer ul li.active{ color: #000; }
+        /*旧样式20181106*/
+        /*#footer ul li:nth-child(1){ background-image: url(../../image/bottombtn0101.png); }
+        #footer ul li:nth-child(2){ background-image: url(../../image/bottombtn0201.png); }
+        #footer ul li:nth-child(3){ background-color: black;background-image: url(../../image/jia.png);border-radius: 5px;
+        flex-grow: .6;margin-left: 5%;margin-right: 5%;}
+        #footer ul li:nth-child(4){ background-image: url(../../image/bottombtn0301.png); }
+        #footer ul li:nth-child(5){ background-image: url(../../image/bottombtn0401.png); }
+        #footer ul li:nth-child(1).active{ background-image: url(../../image/bottombtn0102.png); }
+        #footer ul li:nth-child(2).active{ background-image: url(../../image/bottombtn0202.png); }
+        #footer ul li:nth-child(4).active{ background-image: url(../../image/bottombtn0302.png); }
+        #footer ul li:nth-child(5).active{ background-image: url(../../image/bottombtn0402.png); }*/
+        /*20181106新样式*/
+        #footer ul li:nth-child(1){ background-image: url(../../image/index/chat.png); }
+        #footer ul li:nth-child(2){ background-image: url(../../image/index/search.png); }
+        #footer ul li:nth-child(3){ background-image: url(../../image/index/discovery.png);}
+        #footer ul li:nth-child(4){ background-image: url(../../image/index/home.png); }
+        #footer ul li:nth-child(1).active{ background-image: url(../../image/index/ischat.png); }
+        #footer ul li:nth-child(2).active{ background-image: url(../../image/index/issearch.png); }
+        #footer ul li:nth-child(3).active{ background-image: url(../../image/index/isdiscovery.png); }
+        #footer ul li:nth-child(4).active{ background-image: url(../../image/index/ishome.png); }
+/*        .flex-con{
+          overflow: auto;
+        }*/
+/*        .huadong{
+          transform: translateX(0vw);
+          position: absolute;
+          top:0;
+          left:22.5vw;
+          width:15vw;
+          height:55px;
+          border-bottom:2px solid #f381a3;
+          font-weight: bold;
+          transition: transform 0.3s;
+        }*/
+/*        .function_lists{
+          width:18vw;text-align:center;font-weight: bold;
+          position:absolute;left:21vw;
+          overflow: hidden;
+        }
+        .left_lists{width:18vw;text-align:center;font-weight: bold;
+          position:absolute;left:41vw;
+          color:#aaa;}
+        .right_groups{width:18vw;text-align:center;color: #aaaaaa;font-weight:bold;
+          position:absolute;left:61vw;
+        }*/
+
+/*        .like,.hot,.news{width:10vw;text-align:center;font-weight: bold;color: #aaaaaa;position: absolute;
+          z-index: 999;}
+        .like{
+          left: 27.2%;
+        }
+        .hot{
+          left: 49.5%;
+          transform: translateX(-50%);
+        }
+        .news{
+          left: 60.4%;
+        }*/
+/*        .huadong2{
+          transform: translate(0vw);
+          position: absolute;
+          left: 29.2%;
+          top:0;
+          width:9.57vw;
+          height:55px;
+          font-weight: bold;
+          border-bottom:2px solid #f381a3;
+          transition:left 0.3s;
+        }*/
+/*        .borderr{
+          position: absolute;
+          left:0;
+          top:0;
+          width:100vw;
+          height:64px;
+          border-bottom:1px solid #efefef;
+        }*/
+/*        .more{
+          font-weight:700;
+        }*/
+        /*第五页面*/
+        /*个人页面头部*/
+/*        .bell {
+            position: absolute;
+            left: 2.66vw;
+            width: 7.98vw;
+            height: 7.98vw;
+			      margin-top:10px;
+			      display:inline-block;
+            z-index: 10;
+        }
+
+        .bell img {
+            width: 7.98vw;
+            height: 7.98vw;
+        }*/
+
+        .header-center {
+          font-weight: bold!important;
+          /*font-size: 12px;*/
+            position: absolute;
+            left: 0;
+            width: 100vw;
+            padding-left:5.32vw;
+            box-sizing: border-box;
+            /*margin-left: -50%;*/
+            margin-top:20px;
+            display:inline-block;
+            text-align: left;
+            font: 15px/50px Arial;
+            font-weight:700;
+            z-index: 1;
+        }
+
+        .setup {
+            position: absolute;
+            right:5.32vw;
+            /* 336px*/
+            width: 7.98vw;
+            height: 7.98vw;
+            margin-top:15px;
+            display:inline-block;
+            /*line-height: 7.98vw;*/
+            /*30px*/
+            /*text-align: center;*/
+            /*font:25px/30px Arial;*/
+            z-index: 10;
+        }
+
+        .setup img {
+            width: 7.98vw;
+            height: 7.98vw;
+        }
+
+
+/*        .haha{
+          position: absolute;
+          z-index: 9999;
+          width: 10px;
+          height: 10px;
+          left: 27px;
+          top: 24.5px;
+          opacity: 0;
+          background: #F381A3;
+          border-radius: 50%;
+        }*/
+
+        .people{
+          position:absolute;
+          z-index: 6666;
+          top: -3px;
+          left: 54%;
+          opacity: 0;
+          background: #F381A3;
+          width: 11px;
+          height: 11px;
+          border-radius: 50%;
+        }
+        #noReadMessageCount{
+      display: none;
+      /*position: absolute;
+      margin-left: 0px;
+      margin-top:-16px;
+      padding: 0vw 1.9vw;
+      color:white;
+      font-size:11px;
+      text-align: center;
+      background-color: #F381A3;
+      border-radius: 10px;
+      height: 10px;
+      line-height: 21px;
+      width: 10px;*/
+      position:absolute;
+      left: 50%;
+      /*bottom: 28px;*/
+      top:-3px;
+      margin-left:6px;
+      z-index: 666666;
+      content:"";
+      background: #F381A3;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+    }
+    .party{
+      background-image:url(../../image/icon-main-search-party.gif) !important;
+    }
+    .isparty{
+      background-image:url(../../image/icon-main-issearch-party.gif) !important;
+    }
+    </style>
+</head>
+<body>
+<div id="wrap" class="flex-wrap flex-vertical">
+
+    <header>
+      <!-- <span class="huadong">________</span> -->
+
+        <ul >
+            <li class="border-b active" onclick="dingbu()"><img id="logoimg" src="../../img/TINKLE-black@3x2.png" alt="" ><div class="header_search_button" style="margin-top: -9.5px" onclick="opensearchmore()"></div></li>
+            <li class="border-b" style="position:relative;" onclick="dingbu()">
+              <!-- 旧样式20181110 -->
+              <!-- <span class="function_lists" onclick="function_lists()">Function</span>
+              <span class="left_lists"  onclick="left_lists()">Online</span>
+              <span class="huadong"></span>
+              <span class="right_groups" onclick="right_groups()">Groups<span id="fire"></span></span> -->
+
+              <!-- 20181110新样式 -->
+              <span class="header_search_title">S E A R C H<div class="header_search_button" onclick="opensearchmore()"></div></span>
+              
+            </li>
+            <!-- <li class="border-b" onclick="dingbu()"><span class="more" >M O R E</span></li> -->
+            <li class="border-b" onclick="dingbu()" style="border-bottom:1px solid #efefef;">
+              <!-- 旧样式20181106 -->
+              <!-- <span class="huadong2"></span>
+              <span class="like" style="color:black;"  onclick="left_likes()">Theme</span>
+              <span class="hot"  onclick="center_hots()">Hot</span>
+              <span class="news"  onclick="right_newss()">New</span>
+              <span class="borderr"></span> -->
+
+              <!-- 20181106新样式 -->
+              <span class="header_discovery_title">D I S C O V E R Y</span>
+              <div class="header_discovery_btn">
+                <div class="discovery_post" onclick="openpost()"></div>
+                <div class="bell"><img src="../../image/index/bell.png"  onclick="openecho()" ><span class="haha"></span></div>
+              </div>
+            </li>
+            <li class="border-b" onclick="dingbu()">
+              <!-- 个人页面头部 -->
+                  <!-- <span class="haha"></span> -->
+                  <!-- <span class="bell" ><img src="../../icon/nav/icon-echo@3x2.png" onclick="openecho()" alt=""></span> -->
+                  <span class="header-center">A B O U T  &nbsp;&nbsp;M E</span>
+                  <span class="setup"><img src="../../image/setting.png" onclick="openSetting()" alt=""></span>
+            </li>
+
+        </ul>
+    </header>
+
+    <div id="main" class="flex-con">
+
+    </div>
+    <div id="footer" class="border-t">
+        <ul class="flex-wrap" >
+            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con active" style="position: relative;" id="footer_chat">CHAT<span id="noReadMessageCount"></span></li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" id="discovery">SEARCH</li>
+            <!-- <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" id="postbuttom"></li> -->
+            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" id="square" style="position: relative;">DISCOVERY<span class="people"></span></li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" id="footer_mine">MINE</li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript">
+    htmlnum=[
+      'chat_list.html',
+      'widget://html/chat/search(index).html',
+      // 'nav.html',
+      'widget://html/details/discovery.html',
+      '../home/home.html'
+    ];
+    htmlnamenum=[
+      'chat_list',
+      'search',
+      // 'nav',
+      'dicovery',
+      'home'
+    ];
+    //返回顶部
+    var dingbu=()=>{
+      api.sendEvent({
+          name: 'dingbu'
+      });
+    };
+    function openecho(){//打开回响页
+      $api.css(haha,'opacity:0');
+      $api.css($api.dom('.people'),'opacity:0');
+      api.openWin({
+        name: "echos",
+        url: "widget://html/details/echo.html",
+        pageParam: {
+          extra: echoobj,
+          postId:echoobj.topicId
+        },
+        // reload: true,
+        // vScrollBarEnabled: false,
+        // slidBackEnabled: false
+      });
+    };
+
+    var huadong=$api.dom('.huadong');//huadong dom
+    var functionn=$api.dom('.function_lists');//huadong dom
+    var left=$api.dom('.left_lists');
+    var right=$api.dom('.right_groups');
+    var more=$api.dom('.more');
+
+    var huadong2=$api.dom('.huadong2');
+    var like=$api.dom('.like');
+    var hot=$api.dom('.hot');
+    var news=$api.dom('.news');
+    var haha=$api.dom('.haha');
+    var people=$api.dom('.people');
+    var echoobj={};
+
+    var hhh =window.screen.height;
+    var www =window.screen.width;
+    var headerr=document.getElementsByTagName('header')[0];
+    var headerrli=headerr.getElementsByTagName('li');
+    var hhh=window.screen.height;
+      var www=window.screen.width;
+    var frametop=70;
+    var framebottom=49;
+    var frameh=window.screen.height-frametop-framebottom;
+    apiready = function () {
+      api.sendEvent({
+          name: 'login_function_close'
+      });
+      
+
+
+      // 适应刘海屏
+        if(hhh/www > 2){
+          $api.css($api.dom('#footer'), 'height:84px;');
+          $api.css($api.dom('#logoimg'), 'margin-top:54px;');
+          $api.css(headerrli[1], 'margin-top:20px;');
+          $api.css(headerrli[2], 'margin-top:20px;');
+          $api.css(headerrli[3], 'margin-top:20px;');
+          $api.css(headerrli[4], 'margin-top:20px;');
+          $api.css($api.dom('.borderr'), 'height:88px');
+          frametop=94;
+          framebottom=84;
+          frameh=window.screen.height-94-84;
+          var jbs=document.getElementById('noReadMessageCount');
+          jbs.style.bottom=60+'px';
+        }
+
+        // 监听新手指引的按钮
+        api.addEventListener({
+            name: 'discovery'
+        }, function() {
+            randomSwitchBtn($api.dom('#discovery'));
+        });
+        api.addEventListener({
+            name: 'square'
+        }, function() {
+            randomSwitchBtn($api.dom('#square'));
+        });
+        api.addEventListener({
+            name: 'postbuttom'
+        }, function() {
+            randomSwitchBtn($api.dom('#postbuttom'));
+        });
+        api.addEventListener({
+            name: 'guide4'
+        }, function() {
+          setTimeout(function(){
+            left_lists();
+          },500);
+
+        });
+        api.addEventListener({
+            name: 'guide6'
+        }, function() {
+          setTimeout(function(){
+            right_groups();
+          },500);
+
+        });
+        api.addEventListener({
+            name: 'guide10'
+        }, function() {
+          setTimeout(function(){
+            center_hots();
+          },500);
+
+        });
+      if($api.getStorage("language")=="zho"){
+        $api.html($api.dom('.header_search_title'), '搜 寻<div class="header_search_button"  onclick="opensearchmore()"></div>');
+        $api.html($api.dom('.header_discovery_title'), '發 現');
+        $api.html($api.dom('#footer_chat'), '聊天<span id="noReadMessageCount"></span>');
+        $api.html($api.dom('#discovery'), '搜寻');
+        $api.html($api.dom('#square'), '發現<span class="people"></span>');
+        $api.html($api.dom('#footer_mine'), '我的');
+        $api.html(functionn, '功 能');
+        $api.html(left,"推 薦");
+        // $api.css(left, 'margin-left:-5.72vw;');
+        $api.html(right,"群 組<span id='fire'></span>");
+        // $api.css(right, 'margin-left:8.72vw');
+        $api.text(more,"更 多") ;
+        $api.html(like,"主 題");
+        $api.css(like, 'left:29.2%;');
+        $api.text(hot," 熱 門 ");
+        $api.html(news,"最 新");
+        $api.html($api.dom(".header-center"),"關 於 我") ;
+      }
+      var jbs=document.getElementById('noReadMessageCount');
+      setInterval(function(){
+
+        //jbs.innerHTML=;
+        if(parseInt($api.getStorage("hasNews"))<=0||$api.getStorage("hasNews")==undefined){
+          jbs.style.display="none";
+        }else{
+          jbs.style.display="inline-block";
+        }
+      },2000);
+            // 活动显示
+      var party_date = new Date(),
+            party_time_now = party_date.getTime(),
+            party_year = party_date.getFullYear(),
+            party_month = party_date.getMonth()+1,
+            party_day = party_date.getDate(),
+            party_time_start = new Date(party_year+'/'+party_month+'/'+party_day+' '+'20:00:01').getTime(),
+            party_time_end = new Date(party_year+'/'+party_month+'/'+party_day+' '+'23:00:01').getTime(),
+              party_hour = party_date.getHours();
+      if(party_time_now>=party_time_start && party_time_now<party_time_end){
+            console.log('活动时间到');
+            $('#discovery').addClass('party');
+            $api.css($api.dom('#fire'), 'position:absolute;top:8vw;background:url(../../image/fire1.gif);background-size:cover;width:6.65vw;height:6.65vw;');
+      }
+      if(party_time_start-party_time_now>=0){
+        setTimeout(function(){
+          $('#discovery').addClass('party');
+            $api.css($api.dom('#fire'), 'position:absolute;top:8vw;background:url(../../image/fire1.gif);background-size:cover;width:6.65vw;height:6.65vw;');
+        },party_time_start-party_time_now);
+      }else if(party_time_end-party_time_now>=0){
+        setTimeout(function(){
+          $('#discovery').removeClass('party');
+          $api.css($api.dom('#fire'), 'display:none;');
+        },party_time_end-party_time_now);
+      }
+        // if(party_hour>=20 && party_hour<=22){
+        //     $api.css($api.dom('#discovery'), 'background-image:url(../../image/icon-main-search-party.gif)');
+        //     $api.css($api.dom('#fire'), 'position:absolute;top:8vw;background:url(../../image/fire1.gif);background-size:cover;width:6.65vw;height:6.65vw;');
+        // }  
+        createipcheck();
+      // 设置缓存自己名字与头像
+      var testId = $api.getStorage('id'),
+          nickname = '',
+          avatar = '';
+      api.ajax({
+          url: "http://api.baopinghui.com/app_tinUserinfoControllerC/userinfo?uiId=" + testId + "&pageUiId=" + testId,
+          method: 'post',
+      }, function(ret, err) {
+          if (ret) {
+            nickname = ret.data.nickname;
+            avatar = ret.data.avatar_url;
+            $api.setStorage("nickname", nickname);
+            $api.setStorage("avatar", avatar);
+          }
+      });
+      api.openFrame({
+          name: htmlnamenum[0],
+          url: htmlnum[0],
+          rect: {
+            x: 0,
+            y: frametop+'px',
+            w: api.winWidth,
+            h:frameh+'px',
+            marginLeft:0,
+            marginTop:0,
+            marginBottom:framebottom+'px',
+            marginRight:0
+          },
+          pageParam: {
+              name: 'test'
+          },
+          bounces: false,
+          bgColor: 'rgba(0,0,0,0)',
+          vScrollBarEnabled: true,
+          hScrollBarEnabled: true
+      });
+      api.addEventListener({
+          name: 'echos'
+      }, function(ret, err) {
+          // alert('我草你妈');
+
+          echoobj=ret.value.extra;
+          //alert(JSON.stringify(echoobj));
+          $api.css(haha,'opacity:1');
+          $api.css($api.dom('.people'),'opacity:1');
+      });
+
+      //接受左滑动 右滑动发送的事件
+        api.addEventListener({
+            name: 'huadong_function'
+        }, function(ret, err) {
+            function_list();
+        });
+        api.addEventListener({
+            name: 'huadong_left'
+        }, function(ret, err) {
+            //alert('我草你妈');
+            right_groups();
+        });
+
+        api.addEventListener({
+              name: 'huadong_right'
+          }, function(ret, err) {
+            left_list();
+          });
+
+      fnInitListener();
+        // $api.fixStatusBar( $api.dom('header') );
+        api.setStatusBarStyle({
+            style: 'dark',
+            color: '#ffffff'
+        });
+        funIniGroup();
+        bbOnline();
+    }
+    //后台要的~~~  检测ip的
+    	function createipcheck() {
+    		api.ajax({
+    			url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/createipcheckateipcheck',
+    			method: 'post',
+    			data: {
+    				values: {
+    					uiid: $api.getStorage('id')
+    				}
+    			}
+    		}, function(ret) {})
+    	}
+
+    //发送信息 说宝宝上线了~
+function bbOnline() {
+  api.ajax({
+    url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/onlineHeartbeatConnection',
+    method: 'post',
+    data: {
+      values: {
+        uid: $api.getStorage('id')
+      }
+    }
+  }, function(ret, err) {})
+}
+
+    function funIniGroup(){
+        var eHeaderLis = $api.domAll('header li'),
+            frames = [];
+        for (var i = 0,len = eHeaderLis.length; i < len; i++) {
+                frames.push( {
+                    name: htmlnamenum[i],
+                    //url: './html/frame'+i+'.html',
+                    url: htmlnum[i],
+                    bgColor : 'rgba(0,0,0,.2)',
+                    bounces:true
+                } )
+        }
+        // api.openFrameGroup({
+        //     name: 'group',
+        //     scrollEnabled: true,
+        //     rect: {
+        //         x: 0,
+        //         y: $api.dom('header').offsetHeight,
+        //         w: api.winWidth,
+        //         h: $api.dom('#main').offsetHeight
+        //     },
+        //     index: 0,
+        //     frames: frames
+        // }, function (ret, err) {
+        //
+        // });
+    }
+
+    // 随意切换按钮
+    function randomSwitchBtn( tag ) {
+    //   var hhh=window.screen.height;
+    //   var www=window.screen.width;
+    // var frametop=70;
+    // var framebottom=49;
+    // var frameh=window.screen.height-frametop-framebottom-2;
+    if(hhh/www>2){
+      frametop=94;
+      framebottom=84;
+      frameh=window.screen.height-94-84;
+    }
+        if( tag == $api.dom('#footer li.active') )return;
+        var eFootLis = $api.domAll('#footer li'),
+            eHeaderLis = $api.domAll('header li'),
+            index = 0;
+        for (var i = 0,len = eFootLis.length; i < len; i++) {
+          // api.closeFrame({
+          //     name: htmlnamenum[i]
+          // });
+
+            if( tag == eFootLis[i] ){
+              // 活动显示
+              if(i==1){
+                // alert($('#discovery').hasClass("party"));
+                if($('#discovery').hasClass("party")){
+                  $('#discovery').addClass('isparty');
+                  $('#discovery').removeClass('party');
+                }
+              }else{
+                if($('#discovery').hasClass("isparty")){
+                  $('#discovery').addClass('party');
+                  $('#discovery').removeClass('isparty');
+                }
+              }
+              
+                index = i;
+                api.openFrame({
+                    name: htmlnamenum[i],
+                    url: htmlnum[i],
+                    rect: {
+                      x: 0,
+                      //y: $api.dom('header').offsetHeight,
+                      y: frametop+'px',
+                      w: api.winWidth,
+                      //h: $api.dom('#main').offsetHeight-44
+                      h:frameh+'px',
+                      marginLeft:0,
+                      marginTop:0,
+                      marginBottom:framebottom+'px',
+                      marginRight:0
+                    },
+                    pageParam: {
+                        name: 'test'
+                    },
+                    bounces: false,
+                    bgColor: 'rgba(0,0,0,0)',
+                    vScrollBarEnabled: false,
+                    hScrollBarEnabled: false,
+                    //scrollEnabled:false
+                });
+
+                  // if(i==0){
+                  //   // $api.html(eHeaderLis[1], '<li class="border-b" >参谋</li>');
+                  //   alert('diaoni');
+                  //   api.setFrameAttr({
+                  //       name: 'search',
+                  //       hidden: true
+                  //   });
+                  // };
+                // if(i==2){
+                //   api.openFrameGroup ({
+                //       name: 'pubuliumain',
+                //       background: '#fff',
+                //       scrollEnabled: true,
+                //       rect: {
+                //            x: 0,
+                //            y: frametop+'px',
+                //            w: 'auto',
+                //            h: frameh+"px",
+                //            marginBottom:framebottom+'px',
+                //       },
+                //       index: 0,
+                //       frames: [{
+                //           name: 'guanzhu',
+                //           url: '../nav/pubuliu_.html',
+                //           bgColor: '#fff'
+                //       },{
+                //           name: 'remen',
+                //           url: '../nav/pubuliu3.html',
+                //           bgColor: '#fff'
+                //       },{
+                //           name: 'zuijin',
+                //           url: 'pubuliu2.html',
+                //           bgColor: '#fff'
+                //       }]
+                //   }, function(ret, err){
+                //       if( ret.index==0 ){
+                //         left_like();
+                //       }else if(ret.index==1){
+                //         center_hot();
+                //       }else{
+                //         right_news();
+                //       }
+                //   });
+                // }else 
+                // if (i==1) {
+
+                //   api.openFrameGroup ({
+                //       name: 'search',
+                //       background: '#fff',
+                //       scrollEnabled: true,
+                //       rect: {
+                //            x: 0,
+                //            y: frametop+'px',
+                //            w: 'auto',
+                //            h: frameh+"px",
+                //            marginLeft:0,
+                //             marginTop:0,
+                //             marginBottom:framebottom+'px',
+                //             marginRight:0
+                //       },
+                //       index: 0,
+                //       frames: [{
+                //           name: 'recommend_list_function',
+                //           url: 'recommend_list_function.html',
+                //           bgColor: '#fff'
+
+                //       },{
+                //           name: 'recommend_list',
+                //           url: 'recommend_list.html',
+                //           bgColor: '#fff'
+                //       },{
+                //           name: 'recommend_list2',
+                //           url: 'recommend_list2.html',
+                //           bgColor: '#fff'
+                //       }]
+                //   }, function(ret, err){
+                //     if(ret.index==1){
+                //       left_list();
+                //     }else if(ret.index==2){
+                //       right_group();
+                //     }else if(ret.index==0){
+                //       function_list();
+                //     }
+                //   });
+                // }else if(i==2){
+                //   api.sendEvent({
+                //       name: 'reloadnav'
+                //   });
+                // }
+
+
+            }else{
+                $api.removeCls(eFootLis[i], 'active');
+                $api.removeCls(eHeaderLis[i], 'active');
+                api.setFrameAttr({
+                    name: htmlnamenum[i],
+                    hidden: true
+                });
+                api.setFrameGroupAttr({
+                    name: htmlnamenum[i],
+                    hidden: true
+                });
+                // api.setFrameGroupAttr({
+                //     name: htmlnamenum[],
+                //     hidden: true
+                // });
+
+            }
+        }
+        // api.setFrameAttr({
+        //     name: htmlnamenum[1],
+        //     hidden: true
+        // });
+        $api.addCls( eFootLis[index], 'active');
+        $api.addCls( eHeaderLis[index], 'active');
+        // api.setFrameGroupIndex({
+        //     name: 'group',
+        //     index: index
+        // });
+    }
+
+    function fnInitListener() {
+        var flag = false;
+        api.addEventListener({
+            name: 'keyback'
+        }, function(ret, err) {
+          // alert(JSON.stringify(ret));
+            if (false == flag) {
+                api.toast({
+                    msg: '再按一次退出',
+                    duration: 2000,
+                    location: 'bottom'
+                });
+                flag = true;
+                setTimeout(function() {
+                    flag = false;
+                }, 2000);
+            } else {
+                api.closeWidget({
+                    silent: true
+                });
+            }
+        });
+    };
+
+    //定义切换左右动画函数
+    function function_lists(){
+      $api.css(huadong, 'transform:translateX(0);');
+      $api.css(functionn, 'color:#000;');
+      $api.css(left,'color:#aaa;');
+      $api.css(right,'color:#aaaaaa;');
+      api.sendEvent({
+          name:'huadong_function',
+      });
+    }
+    function left_lists(){
+
+      $api.css(huadong, 'transform:translateX(20vw);');
+      // $api.css(huadong,'');
+       // $api.css(left,'font-weight:bold;');
+       // $api.css(right,'font-weight:normal;');
+       $api.css(left,'color:black;');
+       $api.css(right,'color:#aaaaaa;');
+       $api.css(functionn, 'color:#aaa;');
+       api.sendEvent({
+           name: 'huadong_rights',
+       });
+    }
+
+    function right_groups(){
+      //alert('执行0');
+
+      $api.css(huadong, 'transform:translateX(40vw);');
+      // $api.css(huadong,'');
+       // $api.css(left,'font-weight:normal;');
+       // $api.css(right,'font-weight:bold;');
+       $api.css(right,'color:black;');
+       $api.css(left,'color:#aaaaaa;');
+       $api.css(functionn, 'color:#aaa;');
+       api.sendEvent({
+           name: 'huadong_lefts',
+       });
+    }
+
+    //定义切换左右动画函数
+    function function_list(){
+      $api.css(huadong,'transform:translateX(0vw);');
+       $api.css(functionn,'font-weight:bold;');
+       $api.css(functionn,'color:black;');
+       $api.css(right,'color:#aaaaaa;');
+       $api.css(left,'color:#aaaaaa;');
+    }
+    function left_list(){
+      $api.css(huadong,'transform:translateX(20vw);');
+       $api.css(left,'font-weight:bold;');
+       $api.css(left,'color:black;');
+       $api.css(right,'color:#aaaaaa;');
+       $api.css(functionn,'color:#aaaaaa;');
+    }
+
+    function right_group(){
+      //alert('执行0');
+      $api.css(huadong,'transform:translateX(40vw);');
+       $api.css(right,'font-weight:bold;');
+       $api.css(right,'color:black;');
+       $api.css(left,'color:#aaaaaa;');
+       $api.css(functionn,'color:#aaaaaa;');
+    }
+
+    //广场页左右切换动画
+    function left_like() {
+      $api.css(huadong2,'left:29.2%');
+      $api.css(like,'color:black;');
+      $api.css(hot,'color:#aaaaaa;');
+      $api.css(news,'color:#aaaaaa;');
+    }
+
+    function center_hot() {
+      $api.css(huadong2,'left:45%');
+      $api.css(like,'color:#aaaaaa;');
+      $api.css(hot,'color:black;');
+      $api.css(news,'color:#aaaaaa;');
+    }
+
+    function right_news() {
+      $api.css(huadong2,'left:60.5%');
+      $api.css(like,'color:#aaaaaa;');
+      $api.css(hot,'color:#aaaaaa;');
+      $api.css(news,'color:black;');
+    }
+
+    function left_likes() {
+      left_like();
+      api.sendEvent({
+          name: 'like',
+      });
+    }
+
+    function center_hots() {
+      center_hot();
+      api.sendEvent({
+          name: 'hot',
+      });
+    }
+
+    function right_newss() {
+      right_news();
+      api.sendEvent({
+          name: 'news',
+      });
+    }
+
+    function openSetting(){//打开设置页
+      api.openWin({
+        name: "setting",
+        url: "widget://html/set-up/setting.html",
+        reload: true,
+        vScrollBarEnabled: false,
+        slidBackEnabled: false
+      });
+    };
+    // 打开发布帖子选择
+    function openpost(){
+      api.openFrame({
+          name: 'discovery_selected',
+          url: 'widget://html/details/discovery_selected.html',
+          rect: {
+              x: 0,
+              y: 0,
+              w: 'auto',
+              h: 'auto'
+          },
+          pageParam: {
+              ispost: 1
+          }
+      });
+    }
+    function opensearchmore(){
+      api.openFrame({
+          name: 'discovery_selected',
+          url: 'widget://html/details/discovery_selected.html',
+          rect: {
+              x: 0,
+              y: 0,
+              w: 'auto',
+              h: 'auto'
+          },
+          pageParam: {
+              issearch: 1
+          }
+      });
+    }
+</script>

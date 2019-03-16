@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+	    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+	    <title>title</title>
+
+	    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+	    <script src="../../json/api.json" type="text/javascript" charset="utf-8"></script>
+				<script type="text/javascript" src="../../script/api.js"></script>
+	    <script src="../../json/router.json" type="text/javascript" charset="utf-8"></script>
+
+
+	    <style>
+	    	*{
+	    		margin: 0;
+	    		padding: 0;
+	    		box-sizing: border-box;
+	    	}
+	    	html,body {
+				width: 100%;
+				height: 100%;
+				background-color: rgba(239, 239, 239, 1);
+			}
+
+			/*头部*/
+				header{
+					font-size: 15px;
+					position: fixed;
+					background: #ffffff;
+					top:0;
+					left:0;
+					display:inline-block;
+					width:100%;
+					height:18.67vw;
+					/*background: linear-gradient(to right, #d9afd9 0%,#97d9e1 100%);
+					box-shadow: 0 0 10px #36A5B2;*/
+					z-index:10000;
+				}
+				header .left{
+					position: absolute;
+					/*bottom:1vw;
+					left:8vw;*/
+					bottom: 14.2%;
+					left:10px;
+					display:inline-block;
+					width: 30px;
+					height: 30px;
+					margin-top: 3.3vw;
+					z-index:2;
+				}
+				header .center{
+					position: absolute;
+					/*width: 90vw;*/
+					/*bottom:2vw;
+					left:50%;*/
+					/*width: 82%;*/
+					bottom: 22%;
+					left: 50%;
+				transform:translate(-50%);
+				color:black;
+					display:inline-block;
+					z-index:2;
+					font-weight: bold;
+				}
+				.lang{
+					/*position: absolute;*/
+					/*left:10% ;*/
+					position: relative;
+					top: 18.67vw;
+					width: 100%;
+					height: 70px;
+					line-height: 25px;
+					/*border-radius: 10px;*/
+					background-color: #AAA;
+					text-align: left;
+					font-size: 15px;
+					font-family: Arial;
+					color: white;
+					font-weight: bold;
+				}
+				img[src=""]{
+					visibility: hidden;/*将src不存在的img隐藏*/
+				}
+				img{
+					display: block;
+				}
+				ul{
+					position: absolute;
+					left:0;
+					width: 100vw;
+				}
+				ul li{
+					height: 50px;
+					width: 100%;
+					line-height: 52px;
+					background-color: #ffffff;
+					font-size: 15px;
+					font-weight: bold;
+					margin-bottom: 5px;
+					/*border-radius: 2.6vw;*/
+					/*padding: 2.6vw 5.3vw;*/
+					color: black;
+					text-indent: 10px;
+				}
+				li img{
+					float: right;
+					width: 5.3vw;
+					height: 5.3vw;
+					display: inline-block;
+					margin-top: 4.5vw;
+					margin-right: 18px;
+				}
+				i{
+					font-style: normal;
+				}
+
+						.wrap{
+							padding-top: 20vw;/*使导航出现在最上方，并且不遮挡到内容*/
+							width: 89.3vw;
+							margin: 0 auto;
+							margin-top: 0;
+						}
+					.mmm{
+						display:inline-block;
+						width: 70vw;
+						/*background: red;*/
+						margin-left:5.3vw;
+						margin-top: 2.8vw;
+					}
+					.photo{
+						/*position: absolute;
+						right: 10px;*/
+						width: 5.3vw;
+						height: 5.3vw;
+						/*display: inline-block;*/
+						margin-top: 4.5vw;
+						margin-right: 18px;
+					}
+					.now{
+						position: absolute;
+						right: 45px;
+						color: #AAA;
+						font-weight: normal;
+					}
+	    </style>
+	</head>
+	<body >
+		<div id="content">
+		<header>
+			<img class="left" src="../../icon/messages/back.png" @click="back">
+			<span class="center">{{fanyi}}</span>
+			<!-- T R A N S L A T I O N  &nbsp;&nbsp; C H O I O E -->
+			<!-- <img class="right openadd"  src="../../icon/more.png"> -->
+		</header>
+		<section>
+			<div class="lang"><p class="mmm">{{fanyi_choose}}</p></div>
+			<div class="wrap">
+				<ul id="list">
+					<li @click="change('en')"><span>E N G L I S H</span><span class="now" v-if="translateLang=='en'">NOW</span><img class="photo" src="../../icon/jiantou.png"></li>
+					<li @click="change('zh')"><span>繁 體 中 文</span><span class="now" v-if="translateLang=='zh'">NOW</span><img class="photo" src="../../icon/jiantou.png"></li>
+					<li  @click="change('kor')"><span>한 국 어</span><span class="now" v-if="translateLang=='kor'">NOW</span><img class="photo" src="../../icon/jiantou.png"></li>
+					<li  @click="change('jp')"><span>日 本 語</span><span class="now" v-if="translateLang=='jp'">NOW</span><img class="photo" src="../../icon/jiantou.png"></li>
+					<li  @click="change('th')"><span>ภ า ษ า ไ ท ย</span><span class="now" v-if="translateLang=='th'">NOW</span><img class="photo" src="../../icon/jiantou.png"></li>
+					<!-- <li  @click="change('yue')"><span>粤 语</span><span class="now" v-if="translateLang=='yue'">NOW</span><img class="photo" src="../../icon/jiantou.png"></li> -->
+					<li  @click="change('pt')"><span>p o r t u g u ê s</span><span class="now" v-if="translateLang=='pt'">NOW</span><img class="photo" src="../../icon/jiantou.png"></li>
+					<!-- <li  @click="change('wyw')"><span>文 言 文</span><span class="now" v-if="translateLang=='wyw'">NOW</span><img class="photo" src="../../icon/jiantou.png"></li> -->
+					<li  @click="change('de')"><span>D e u t s c h</span><span class="now" v-if="translateLang=='de'">NOW</span><img class="photo" src="../../icon/jiantou.png"></li>
+					<li  @click="change('vie')"><span>Tiếng Việt</span><span class="now" v-if="translateLang=='vie'">NOW</span><img class="photo" src="../../icon/jiantou.png"></li>
+				</ul>
+			</div>
+		</section>
+</div>
+	</body>
+	<script src="../../script/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../script/jquery-3.1.0.min.js" type="text/javascript"></script>
+	<script>
+   apiready=function(){
+
+
+
+
+    var content = new Vue({
+          el: "#content",
+					data: {
+						translateLang:api.pageParam['translateLang'],
+						fanyi: 'T R A N S L A T I O N',
+						fanyi_choose: 'Choose the language for automatic translation'
+					},
+					methods:{
+						back:function(){
+							// alert(content.translateLang);
+							$api.setStorage('translateLangStorage', content.translateLang);
+
+							api.sendEvent({
+							    name: 'translateLang',
+							    extra: {
+							        key1: content.translateLang
+
+							    }
+							});
+
+							api.closeWin({
+
+
+							});
+
+
+
+						},change:function(str){
+							// alert(str);
+							content.translateLang=str;
+
+
+						}
+
+					}
+
+		 })
+
+		 if($api.getStorage('language')=="zho"){
+				 content.fanyi='翻 译';
+				 content.fanyi_choose='選 擇 自 動 翻 譯 時 的 語 言';
+				 $(".mmm").css("margin-top","6.5vw");
+		 }
+		 api.addEventListener({
+		     name: 'keyback'
+		 }, function(ret, err){
+		     if( ret ){
+					 content.back();
+
+		     }else{
+
+		     }
+		 });
+		 api.addEventListener({
+				 name: 'swiperight'
+		 }, function(ret, err){
+
+					 content.back();
+
+
+		 });
+
+
+
+
+
+
+	 }
+	//  function back(){
+	// 	//  alert("奇怪");
+	// 				api.closeWin({
+	 //
+	// 				});
+	//  }
+
+
+
+
+
+	</script>
+</html>

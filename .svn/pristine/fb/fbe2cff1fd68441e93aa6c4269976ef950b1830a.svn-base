@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>guide13</title>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+		}
+		body{
+			width:100vw;
+			height:100vh;
+			animation:bganimation 1s linear 1s 1 normal;
+			-webkit-animation: bganimation 1s linear 1s 1 normal;
+			-ms-animation: bganimation 1s linear 1s 1 normal;
+			-o-animation: bganimation 1s linear 1s 1 normal;
+			-moz-animation: bganimation 1s linear 1s 1 normal;
+			visibility: hidden;
+		}
+		.bg{
+			width:100vw;
+			height:100vh;
+			background-color:#000;
+			opacity: 0.8;
+		}
+		.box{
+			position: fixed;
+			top:0;
+			width:100vw;
+		}
+		.arrow{
+			margin-top:28.72vw;
+			margin-left:16.49vw;
+			width:10.64vw;
+			height:10.64vw;
+			background:url(../../icon/guide/arrow1.png) no-repeat;
+			background-size:contain;
+			transform: rotate(94deg);
+		}
+		.content{
+			width:80vw;
+			margin:0 auto;
+			margin-top:1.66vw;
+			font:3.99vw/5.85vw Arial;
+			font-weight: bold;
+			color:#fff;
+		}
+		.content>p>span{
+			color:#f381a3;
+		}
+		.content>p:nth-child(5)>span{
+			color:#fff;
+			border-bottom:2px solid #fff;
+		}
+		.content>p:nth-child(3){
+			margin-top:27vw;
+		}
+		.arrow2{
+			margin-left:66vw;
+			width:10.64vw;
+			height:10.64vw;
+			background:url(../../icon/guide/arrow1.png) no-repeat;
+			background-size:contain;
+			transform: rotate(247deg);
+		}
+		.content2{
+			width:92.02vw;
+			height:29.26vw;
+			background-color: #fff;
+			border-radius: 1.33vw;
+			margin:0 auto;
+			margin-top:3.66vw;
+		}
+		.content2>div{
+			width:39.89vw;
+			height:10.64vw;
+			border-radius: 7.98vw;
+			box-shadow: 0 0 10px 0 rgba(170,170,170,1);
+			display: inline-block;
+			margin-top:2.66vw;
+			margin-left:2.66vw;
+			text-align: center;
+			font:3.19vw/10.64vw Arial;
+			font-weight: bold;
+		}
+		.content2>div:nth-child(1),.content2>div:nth-child(3){
+			margin-left:5.05vw;
+		}
+		.content2>div>span{
+			display: inline-block;
+			width:7.98vw;
+			height:7.98vw;
+			margin-left:-3vw;
+			margin-right:2.13vw;
+			vertical-align: middle;
+		}
+		.video>span{
+			background:url(../../image/shipin.png) no-repeat center;
+			background-size: cover;
+		}
+		.pic>span{
+			background:url(../../image/duotu.png) no-repeat center;
+			background-size: cover;
+		}
+		.text>span{
+			background:url(../../image/wenzi.png) no-repeat center;
+			background-size: cover;
+		}
+		.camera>span{
+			background:url(../../image/xiangji.png) no-repeat center;
+			background-size: cover;
+		}
+		.buttom{
+			position: fixed;
+			bottom:10.64vw;
+			left:50%;
+			margin-left:-29.655vw;
+			width:59.31vw;
+			height:10.64vw;
+			border:2px solid rgba(255,255,255,1);
+			border-radius: 7.99vw;
+			font:3.99vw/10.64vw Arial;
+			font-weight: bold;
+			text-align: center;
+			color:#fff;
+		}
+		@keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 1;
+			}
+		}
+		@-webkit-keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 1;
+			}
+		}
+		@-ms-keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 1;
+			}
+		}
+		@-o-keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 1;
+			}
+		}
+		@-moz-keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 1;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="bg"></div>
+	<div class="box">
+		<div class="arrow"></div>
+		<div class="content">
+			<p>All of the above are <span>announcements</span>.</p>
+			<p>Can slide left and right.</p>
+			<p>Click on these to <span>post</span>.</p>
+			<p>Let's say hello to everyone.</p>
+			<p>( <span>First Post will enter the Hot Posts</span> ! )</p>
+			<div class="arrow2"></div>
+		</div>
+		<div class="content2">
+			<div class="video"><span></span>Post - Video</div>
+			<div class="pic"><span></span>Post - Photo</div>
+			<div class="text"><span></span>Post - Text</div>
+			<div class="camera"><span></span>Post - Camera</div>
+		</div>	
+	</div>
+	<div class="buttom">E N D   T U T O R I A L</div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript">
+	var www = window.screen.width;
+	var hhh = window.screen.height;
+	apiready = function(){
+		if(hhh/www > 2){
+			$api.css($api.dom('.box'), 'top:25px;');
+			$api.css($api.dom('.buttom'), 'bottom:19.64vw');
+		}
+	    setTimeout(function(){
+			$api.css($api.dom('body'), 'visibility:visible;');
+		},1100);
+		if($api.getStorage('language')=='zho'){
+			$api.html($api.dom('.content'), '<p>上 面 這 些 都 是 <span>公 告</span></p><p>可 以 左 右 滑 動</p><p>點 擊 這 裏 就 可 以 <span>發 帖</span> 了 ！</p><p>快 跟 大 家 打 個 招 呼 吧 ~</p><p>（ <span>首 次 發 帖 自 動 上 熱 門</span> ！ ）</p><div class="arrow2"></div>');
+			$api.html($api.dom('.content2'), '<div class="video"><span></span>發 帖 - 視 頻</div><div class="pic"><span></span>發 帖 - 相 冊</div><div class="text"><span></span>發 帖 - 文 字</div><div class="camera"><span></span>發 帖 - 相 機</div>');
+			$api.html($api.dom('.buttom'), '馬 上 自 由 探 索');
+		}
+		$api.addEvt($api.dom('.buttom'), 'click',function(){
+			api.closeFrame({
+			    name: 'guide13'
+			});
+		});
+	}
+	    
+		
+</script>
+</html>

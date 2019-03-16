@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>numeroloy</title>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+		}
+		html{
+			background: white;
+		}
+    .bg{
+      height: 220px;
+      width: 100%;
+      background: white;
+      /*padding-top:5px;
+      padding-left: 5px;*/
+			/*overflow: hidden;*/
+    }
+    .add{
+    	/*position: absolute;*/
+      height: 80px;
+      width: 80px;
+			margin:1.2%;
+			float: left;
+      /*background: red;*/
+    }
+		.emotion{
+			/*float:left;*/
+			/*list-style: none;*/
+			/*background: blue;*/
+		}
+		ul li{
+			display: block;
+			height: 80px;
+			width: 22.5%;
+			list-style: none;
+			float:left;
+			margin:1.2%;
+			text-align: center;
+			/*border: 1px solid black;*/
+			/*vertical-align: middle;*/
+			line-height: 80px;
+			/*background: white;*/
+		}
+		.photo{
+			max-height: 80px;
+			max-width: 80px;
+			background-size:cover;
+			vertical-align: middle;
+		}
+		.bbg{
+			height: 100vh;
+			width:100vw;
+			background: #efefef;
+		}
+	</style>
+</head>
+<body>
+		<div class="bbg">
+    <div class="bg" id="bg">
+        <div class="add"><img class="photo" src="../../icon/addimage.png" ></div>
+				<ul name="emotion" v-for="(emotion,index) in emotionArr">
+					<!-- <li><img class="photo" src="../../icon/addimage.png" ></li> -->
+					<li><img class="photo" :src="emotion+'?imageView2/0/w/100/auto-orient'" @click="sendEmotion(index)" @touchstart="gtouchstart(event,index)" @touchmove="gtouchmove()" @touchend="gtouchend(index)"></li>
+					<!-- <li><span class="photo" :style="getEmo(emotion)" @click="sendEmotion(index)"></span></li> -->
+					<!-- <li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li> -->
+				</ul>
+    </div>
+		</div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script src="../../script/jquery-3.1.0.min.js"></script>
+<script src="../../script/vue.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+      apiready = function(){
+				var qiniu = api.require('qiniuUpfile'); //七牛云模块
+				var UIMediaScanner = api.require('UIMediaScanner');
+				var ownEmotion;
+				var height = api.pageParam['height'];
+				// var emotion=api.pageParam['emotion'];
+        var back = $api.dom('#back');
+		   setTimeout(function(){
+				 getEmo();
+			 },50)
+			// alert(JSON.stringify(emotion));
+        $api.addEvt(back, 'click',function(){
+            api.closeFrame({
+                name: 'ownEmotion'
+            });
+
+        });
+
+				ownEmotion=new Vue({
+						el: '#bg',
+						data:{
+							emotionArr:[],
+							targetId:api.pageParam['targetId'],
+							type:api.pageParam['type'],
+						},
+						methods:{
+							sendEmotion: function(index){
+								var emo=ownEmotion.emotionArr[index];
+								// alert(emo);
+								if(ownEmotion.type==1){
+								var jsfun ="sendEmo('"+emo+"')";
+								api.execScript({
+										// name:"chat2",
+										script: jsfun
+								});
+							}else if(ownEmotion.type==2){
+								var jsfun ="sendEmo('"+emo+"')";
+								api.execScript({
+										// name:"group_chat",
+										script: jsfun
+								});
+							}
+						},
+						gtouchstart:function gtouchstart(event,index){
+							if(api.systemType=='ios'){
+									var centerY=event.changedTouches[0].screenY+height;
+								}else{
+									var centerY=event.changedTouches[0].screenY;
+								}
+								// var centerY=height+50;
+								var centerX=event.changedTouches[0].screenX;
+								console.log(centerX+','+centerY);
+								timeOutEvent = setTimeout(function(){
+								 ownEmotion.longPress(index,centerX,centerY);
+							 },500);//这里设置定时器，定义长按500毫秒触发长按事件，时间可以自己改，个人感觉500毫秒非常合适
+							//  alert(timeOutEvent);
+											return false;
+								},
+							gtouchend:function gtouchend(index,event){
+												clearTimeout(timeOutEvent);//清除定时器
+												if(timeOutEvent!=0){
+														//这里写要执行的内容（尤如onclick事件）
+														// vm.goChat(item);
+												}
+												return false;
+										},
+										//如果手指有移动，则取消所有事件，此时说明用户只是要移动而不是长按
+									gtouchmove:function gtouchmove(){
+												clearTimeout(timeOutEvent);//清除定时器
+												timeOutEvent = 0;
+
+										},
+										//真正长按后应该执行的内容
+										longPress:function(index,centerX,centerY){
+											//添加表情
+												ownEmotion.emotion2(index,centerX,centerY);
+												timeOutEvent = 0;
+												//执行长按要执行的内容，如弹出菜单
+												// $api.css($api.dom('.Popup'), 'display:block');
+								},
+								emotion2: function(index,centerX,centerY){
+									// 使用apiCloud冒泡按钮插件
+														 var x=centerX;
+														 var y=centerY-10;
+														 var title;
+														 var imgUrl;
+														 if($api.getStorage('language')=='zho'){
+															 title="删除表情";
+														 }else{
+															 title="delete from warehouse";
+														 }
+														 var bubbleMenu = api.require('bubbleMenu');
+
+														 bubbleMenu.open({
+														 style: {
+																	 //  mask: '#FFF',
+															 maskColor:'rgba(0,0,0,0)',
+															 bgColor:'#000',
+													 lightColor:'#009acd',
+													 borderColor:'#000',
+													 cutLineColor:'#636363',
+																 // titleColor'#00':  //(可选项)字符串类型；遮罩层题色，支持 rgb,rgba,#；默认：rgba(0,0,0,0)
+													 cornerRadius: 8,  //(可选项)数字类型；圆角大小；默认：8
+													 arrowSize:8,    //(可选项)数字类型；尖角大小；默认：12
+													 titleSize: 14,    //(可选项)数字类型；标题大小：默认：14
+													 height: 50        //(可选项)数字类型；菜单高度；默认：50
+													 },
+																 centerX: x,
+																 centerY: y,
+																 btnArray: [{title:title,length:120}]
+																//  fixedOn: api.frameName
+														 }, function(ret, err) {
+															//  alert(JSON.stringify(ret))
+																 if (ret.index==0) {
+																	imgUrl=ownEmotion.emotionArr[index];
+																			console.log(imgUrl);
+																	ownEmotion.delEmotion(index,imgUrl);
+															}
+														 });
+								},
+								//删除表情
+									delEmotion: function(index,imgUrl){
+										//后端处理需要判断传进来的是不是第一个
+										var len=ownEmotion.emotionArr.length-1;
+										if(index==len){
+											api.ajax({
+											    url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/removeEmoji',
+											    method: 'post',
+											    data: {
+											        values: {
+											            uiid:$api.getStorage('id'),
+																	str: imgUrl,
+																	isfirst: true
+											        }
+											    }
+											},function(ret, err){
+											    if (ret) {
+											        ownEmotion.emotionArr.splice(index,1);
+											    }
+											});
+
+										}else{
+											api.ajax({
+													url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/removeEmoji',
+													method: 'post',
+													data: {
+															values: {
+																	uiid:$api.getStorage('id'),
+																	str: imgUrl,
+																	isfirst: false
+															}
+													}
+											},function(ret, err){
+													if (ret) {
+															ownEmotion.emotionArr.splice(index,1);
+													}
+											});
+										}
+									}
+						}
+				})
+				var add = $api.dom(".add");
+				$api.addEvt(add,'click',openPic);
+							function openPic(){
+								UIMediaScanner = api.require('UIMediaScanner');
+								if(api.systemType=="ios"){
+										//打开相册
+										openAndsendPic();
+								}else{
+									//申请相册权限
+								api.requestPermission({
+										list: ["storage"],
+								}, function(ret, err) {
+											if(ret.list[0].granted){
+												//打开相册
+												openAndsendPic();
+											}
+								});
+						}
+					}
+				//打开相册
+		     function openAndsendPic(){
+					 UIMediaScanner.open({
+								type: 'picture',
+								column: 4,
+								classify: false,
+								max: 1,
+								sort: {
+										key: 'time',
+										order: 'desc'
+								},
+								texts: {
+										stateText: '已选择*项',
+										cancelText: '取消',
+										finishText: '完成'
+								},
+								exchange: true,
+								rotation: false,
+								// showPreview:true
+						}, function(ret) {
+								if (ret) {
+										if(ret.eventType=='confirm'){
+											// alert("进了");
+											for(var i=0;i<ret.list.length;i++){
+													(function(i){
+														UIMediaScanner.transPath({
+																					path:ret.list[i].path
+																			}, function(ret_, err) {
+																					if (ret) {
+																								// alert(JSON.stringify(ret_));
+																							uploadPic(ret_.path);
+																					} else {
+
+																					}
+																			});
+
+
+													})(i)
+
+
+											}
+
+
+										}
+
+								}
+						});
+				 }
+		 //上传图片到七牛云云储存并发送图片消息
+		function uploadPic(picurl) {
+				 from_id = $api.getStorage("id");
+			console.log(picurl);
+			// alert("???")
+			qiniu.upfile({
+				file: picurl,
+				name: "f8cc5f9956df68260156dffa4e9b0014" + (new Date).getTime(),
+			}, function(ret, err) {
+				if(ret.status == 1) {
+					if(ret.oper == "complete") {
+						qinniuKey = 'http://bin.baopinghui.com/' + ret.info.key;
+						api.ajax({
+						    url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/addEmoji',
+						    method: 'post',
+						    data: {
+						        values: {
+						            uiid: $api.getStorage('id'),
+												str: qinniuKey
+						        }
+						    }
+						},function(ret, err){
+						    if (ret) {
+										ownEmotion.emotionArr.unshift(qinniuKey);
+										console.log("添加表情包成功："+qinniuKey);
+										// opener.reload();
+						    }
+						});
+					}
+				} else {
+					alert("发送图片失败");
+				}
+			});
+
+		}
+		function getEmo(){
+			api.ajax({
+			    url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/selectEmoji',
+			    method: 'post',
+			    data: {
+			        values: {
+			            uiid:$api.getStorage('id')
+			        }
+			    }
+			},function(ret, err){
+			    if (ret) {
+						var emoji;
+						if(ret.data.emoji!=""){
+			      	ownEmotion.emotionArr=ret.data.emoji.split(",");
+							ownEmotion.emotionArr.reverse();
+							// alert(JSON.stringify(ownEmotion.emotionArr));
+						}else{
+							ownEmotion.emotionArr=[];
+						}
+			    }
+			});
+
+		}
+		//
+				}
+</script>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>available_candy</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+		}
+		header{
+			width:100vw;
+			height:65px;
+			position: fixed;
+			top:0;
+			left:0;
+			background-color:#fff;
+			z-index: 20;
+		}
+		header>img{
+			position: absolute;
+			bottom:7.5px;
+			left:3.99vw;
+			width:30px;
+			height:30px;
+			opacity:0.5;
+		}
+		.my_candy{
+			margin-top:65px;
+			width:100vw;
+			padding:2.66vw 0 6vw 0;
+		}
+		.my_candy p:nth-of-type(1){
+			font:7.98vw/11.44vw Arial;
+			font-weight: bold;
+			text-align: center;
+		}
+		.my_candy p:nth-of-type(2){
+			font:3.99vw/5.32vw Arial;
+			color:#aaa;
+			text-align: center;
+		}
+		.my_candy p:nth-of-type(3){
+			font:7.98vw/11.44vw Arial;
+			font-weight: bold;
+			text-align: center;
+			color:#f381a3;
+			margin-top:5.32vw;
+		}
+		.recharge{
+			width:100vw;
+			background-color:#efefef;
+			padding:7.98vw 3.99vw;
+			box-sizing: border-box;
+		}
+		.recharge .select_title{
+			font:3.99vw/5.32vw Arial;
+			font-weight: bold;
+			color:#000;
+			opacity: 0.5;
+			letter-spacing: 0.5vw;
+		}
+		.select1,.select2,.select3,.select4{
+			margin-top:3.99vw;
+			width:100%;
+			height:29.52vw;
+			border-radius:2.66vw;
+			background-color:#fff;
+		}
+		.select_top{
+			width:100%;
+			height:15.96vw;
+			border-bottom:1px solid #efefef;
+		}
+		.select_top>img{
+			float:left;
+			width:7.98vw;
+			height:7.98vw;
+			margin:3.99vw 2.66vw 3.99vw 3.99vw;
+		}
+		.select_top>.select_top_text{
+			float:left;
+			margin-top:5.055vw;
+			width:64.09vw;
+			font:3.99vw/5.85vw Arial;
+			color:#000;
+			opacity: 0.5;
+		}
+		.select_bottom{
+			position: relative;
+			width:100%;
+			height:13.06vw;
+		}
+		.select_bottom_text{
+			float:left;
+			font:3.99vw/5.32vw Arial;
+			color:#000;
+			opacity: 0.5;
+			margin-top:3.87vw;
+			margin-left:3.99vw;
+		}
+		.select_button{
+			position: absolute;
+			right:3.99vw;
+			top:50%;
+			margin-top:-4.655vw;
+			width:21.28vw;
+			height:9.31vw;
+			border-radius:4.79vw;
+			background-color:rgba(157,218,87,1);
+			font:3.12vw/9.81vw Arial;
+			font-weight: bold;
+			color:#fff;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<header><img src="../../icon/left.png" alt="" onclick="closewin()"></header>
+	<div class="my_candy">
+		<p>Available Candy</p>
+		<p>for gift & viewing profiles</p>
+		<p>25.0</p>
+	</div>
+	<div class="recharge">
+		<div class="select_title">SELECT QUNANTITY</div>
+		<div class="select1">
+			<div class="select_top">
+				<img src="../../image/index/sugar.png" alt="">
+				<div class="select_top_text">
+					Get 100 candy
+				</div>
+			</div>
+			<div class="select_bottom">
+				<div class="select_bottom_text">$ 7.00</div>
+				<div class="select_button" onclick="select_charge(7)">RECHARGE</div>
+			</div>
+		</div>
+		<div class="select2">
+			<div class="select_top">
+				<img src="../../image/index/sugar.png" alt="">
+				<div class="select_top_text">
+					Get 200 candy
+				</div>
+			</div>
+			<div class="select_bottom">
+				<div class="select_bottom_text">$ 14.00</div>
+				<div class="select_button" onclick="select_charge(14)">RECHARGE</div>
+			</div>
+		</div>
+		<div class="select3">
+			<div class="select_top">
+				<img src="../../image/index/sugar.png" alt="">
+				<div class="select_top_text">
+					Get 300 candy
+				</div>
+			</div>
+			<div class="select_bottom">
+				<div class="select_bottom_text">$ 21.00</div>
+				<div class="select_button" onclick="select_charge(21)">RECHARGE</div>
+			</div>
+		</div>
+		<div class="select4">
+			<div class="select_top">
+				<img src="../../image/index/sugar.png" alt="">
+				<div class="select_top_text">
+					Get 500 candy
+				</div>
+			</div>
+			<div class="select_bottom">
+				<div class="select_bottom_text">$ 35.00</div>
+				<div class="select_button" onclick="select_charge(35)">RECHARGE</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+<script src="../../script/jquery-3.1.0.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript">
+	var hhh = window.screen.height;
+	var www = window.screen.width;
+	apiready = function(){
+	    if(hhh/www>2){
+	    	$('header').css({
+	    		'height': '89px'
+	    	});
+	    	$('.my_candy').css({
+	    		'margin-top': '89px'
+	    	});
+	    }
+	    // IPHONE样式修改
+	    // var u = navigator.userAgent;
+	    // if (u.indexOf('iPhone') > -1){
+	    // 	for(var i=0;i<$('.select_button').length;i++){
+	    // 		$('.select_button').eq(i).css({
+	    // 			'line-height': '9.31vw'
+	    // 		});
+	    // 	}
+	    // }
+	    api.addEventListener({
+            name: 'swiperight'
+        }, function() {
+            api.closeWin({
+                animation: {
+                	type: "push", //动画类型（详见动画类型常量）
+	                subType: "from_left", //动画子类型（详见动画子类型常量）
+ 	               duration: 300 //动画过渡时间，默认300毫秒
+           	 	}
+        	});
+        }); //右滑关闭win
+	}
+// 点击关闭当前页面
+function closewin(){
+	api.closeWin();
+}
+// 点击进入选择支付界面
+function select_charge(i){
+	api.openFrame({
+	    name: 'select_charge',
+	    url: 'widget://html/candy/select_charge.html',
+	    rect: {
+	        x: 0,
+	        y: 0,
+	        w: 'auto',
+	        h: 'auto'
+	    },
+	    pageParam: {
+	        money:i
+	    }
+	});
+}
+</script>

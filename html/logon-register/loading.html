@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>title</title>
+    <!--<link rel="stylesheet" type="text/css" href="../../css/api.css"/>-->
+    <style>
+    	body{
+    		margin: 0;
+				padding: 0;
+    	}
+			.mask{
+				position: absolute;
+				height: 100%;
+				width: 100%;
+				background: #1C1C1E;
+				opacity: 1;
+				z-index: 2;
+			}
+			#pop{
+				position: relative;
+				top: 30%;
+				margin: 0 auto;
+				height: 250px;
+				width: 78.46vw;
+				background: white;
+				border-radius: 20px;
+				z-index: 3;
+			}
+			#pop-p{
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				height:250px;
+				width: 78.46vw;
+				text-align: center;
+				font-weight: bold;
+				/*visibility: hidden;*/
+				z-index: 8;
+			}
+			.gif{
+				position: relative;
+				top: 5px;
+				height: 30px;
+				width: 30px;
+			}
+			.error{
+				height: 53px;
+			}
+			.wait{
+				/*vertical-align: middle;*/
+				margin: 0;
+				padding: 0;
+				background: #EFEFEF;
+				border-radius:0 0 20px 20px;
+				font-size: 15px;
+				color: #AAA;
+				text-align: center;
+			}
+			.alert_wait{
+				margin-top: -10px;
+			}
+			p{
+				position: relative;
+				bottom: -16px;
+			}
+    </style>
+</head>
+<body>
+	<div class="mask">
+	  <div id="pop" class="alert-focus" >
+	      <table id="pop-p" >
+	          <tr>
+	            <td class="error">
+	          				>φ(゜▽゜*)♪
+	            </td>
+	          </tr>
+	          <tr>
+	            <td class="wait"><img class="gif" src="../../icon/loading.gif"><br/><p class="alert">Connecting Tinkle</p><p class="alert_wait">&nbsp;Please Wait ...</p></td>
+	          </tr>
+	      </table>
+	    </div>
+	  </div>
+</body>
+	<script type="text/javascript" src="../../script/jquery-3.1.0.min.js"></script>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script src="../../script/jquery.gradientify.min.js"></script>
+	<script>
+
+apiready=function(){
+	if($api.getStorage("language") == "zho") {
+			$api.text($api.dom(".alert"), "正 在 連 接 Tinkle");
+			$api.html($api.dom(".alert_wait"), "&nbsp;&nbsp;請 稍 等 一 下 下 ...");
+			if(api.pageParam['sendPost']){
+					$api.text($api.dom(".alert"), "正 在 轉 發 帖 子");
+					$api.html($api.dom(".alert_wait"), "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;請 稍 等 一 下 下 ...");
+				}else if(api.pageParam['matching']){
+					$api.text($api.dom(".alert"), "正 在 匹 配");
+					$api.html($api.dom(".alert_wait"), "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;請 稍 等 一 下 下 ...");
+				}
+			}else{
+				if(api.pageParam['sendPost']){
+					$api.text($api.dom(".alert"), "Forwarding message");
+				}else if(api.pageParam['matching']){
+					$api.text($api.dom(".alert"), "Matching");
+				}
+			}
+		setTimeout(function(){
+				api.closeFrame();
+		},12000);
+	}
+    </script>
+</html>

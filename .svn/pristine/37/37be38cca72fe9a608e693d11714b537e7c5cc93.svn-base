@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>guide9</title>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+		}
+		body{
+			width:100vw;
+			height:100vh;
+			animation:bganimation 1s linear 1s 1 normal;
+			-webkit-animation: bganimation 1s linear 1s 1 normal;
+			-ms-animation: bganimation 1s linear 1s 1 normal;
+			-o-animation: bganimation 1s linear 1s 1 normal;
+			-moz-animation: bganimation 1s linear 1s 1 normal;
+			visibility: hidden;
+		}
+		.bg{
+			width:100vw;
+			height:100vh;
+			background-color:#000;
+			opacity: 0.8;
+		}
+		.box{
+			position: fixed;
+			top:0;
+			width:100vw;
+		}
+		.window{
+			width:23.94vw;
+			height:13.3vw;
+			margin-top:4.52vw;
+			margin-left:21.28vw;
+			background-color:#fff;
+			border-radius: 1.33vw;
+			font:3.99vw/13.3vw Arial;
+			font-weight: bold;
+			text-align: center;
+		}
+		.window>span{
+			border-bottom:2px solid #f381a3;
+		}
+		.arrow{
+			width:10.64vw;
+			height:10.64vw;
+			margin-top:1.33vw;
+			margin-left:9.64vw;
+			background:url(../../icon/guide/arrow1.png) no-repeat;
+			background-size:contain;
+			transform: rotate(65deg);
+		}
+		.content{
+			width: 70vw;
+			margin:0 auto;
+			margin-top:1.33vw;
+			font:3.99vw/5.85vw Arial;
+			font-weight: bold;
+			color:#fff;
+		}
+		.content>p>span{
+			color:#f381a3;
+		}
+		.content>p:nth-child(3){
+			margin-top:28.19vw;
+			margin-left:5vw;
+		}
+		.content>p:nth-child(4){
+			margin-left:5vw;
+		}
+		.arrow2{
+			width:10.64vw;
+			height:10.64vw;
+			margin-top:-8.67vw;
+			margin-left:-6.64vw;
+			background:url(../../icon/guide/arrow2.png) no-repeat;
+			background-size:contain;
+			transform: rotate(271deg);
+		}
+		.content2{
+			width:94.95vw;
+			height:16.49vw;
+			background-color:#fff;
+			margin:0 auto;
+			margin-top:4vw;
+			padding-top:2.66vw;
+			padding-left:1.33vw;
+			box-sizing: border-box;
+			border-radius: 1.33vw;
+		}
+		.content2>p>span{
+			display: inline-block;
+			width:6.65vw;
+			height:6.65vw;
+			background:url(../../image/fire1.gif) no-repeat center;
+			background-size:cover;
+			vertical-align: middle;
+			margin-top:-1vw;
+		}
+		.content2>p:nth-of-type(1){
+			font:3.19vw/4.52vw Arial;
+			font-weight: bold;
+			/*vertical-align:top;*/
+		}
+		.content2>p:nth-of-type(2){
+			font:3.19vw/4.52vw Arial;
+			font-weight: bold;
+			color:#aaa;
+			margin-left:2vw;
+		}
+		.content3{
+			margin-left:18.62vw;
+			margin-top:10.64vw;
+			position: relative;
+			font:3.99vw/5.85vw Arial;
+			font-weight: bold;
+			color:#fff;
+		}
+		.content3>span{
+			color:#f381a3;
+		}
+		.content3>div{
+			position: absolute;
+			top:-8vw;
+			left:-12vw;
+			display: inline-block;
+			width:10.64vw;
+			height:10.64vw;
+			background:url(../../icon/guide/arrow1.png) no-repeat;
+			background-size:contain;
+			transform: rotate(4deg);
+		}
+/*		.area{
+			position: relative;
+			width:62.77vw;
+			height:7.98vw;
+			background-color: #efefef;
+			margin-left:5.32vw;
+			border-radius: 9.31vw;
+			padding-top:1.33vw;
+			box-sizing: border-box;
+			display: inline-block;
+			vertical-align: top;
+		}*/
+/*		.avatar{
+			display: inline-block;
+			width:5.32vw;
+			height:5.32vw;
+			border-radius: 50%;
+			background:url(../../icon/share/logo-icon.png) no-repeat;
+			background-size: cover;
+			margin-left:2.66vw;
+		}*/
+/*		.comment{
+			position: absolute;
+			left:11.96vw;
+			top:1.33vw;
+			width:25vw;
+			height:5.32vw;
+			font:3.19vw/5.32vw Arial;
+			font-weight: bold;
+			color:#aaa;
+		}*/
+/*		.more{
+			width:7.98vw;
+			height:7.98vw;
+			border-radius: 50%;
+			display: inline-block;
+			vertical-align: top;
+			margin-left:2.66vw;
+			background:url(../../icon/icon-more@3x2.png) no-repeat center;
+			background-size:3.99vw 3.99vw;
+			background-color:#efefef;
+		}
+		.like{
+			width:7.98vw;
+			height:7.98vw;
+			border-radius: 50%;
+			display: inline-block;
+			vertical-align: top;
+			margin-left:2.66vw;
+			background:url(../../icon/a.png) no-repeat center;
+			background-size:3.99vw 3.99vw;
+			background-color:#efefef;
+		}*/
+		.buttom{
+			position: fixed;
+			bottom:10.64vw;
+			left:50%;
+			margin-left:-29.655vw;
+			width:59.31vw;
+			height:10.64vw;
+			border:2px solid rgba(255,255,255,1);
+			border-radius: 7.99vw;
+			font:3.99vw/10.64vw Arial;
+			font-weight: bold;
+			text-align: center;
+			color:#fff;
+		}
+		@keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 1;
+			}
+		}
+		@-webkit-keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 1;
+			}
+		}
+		@-ms-keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 1;
+			}
+		}
+		@-o-keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 1;
+			}
+		}
+		@-moz-keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 1;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="bg"></div>
+	<div class="box">
+		<div class="window"><span>Theme</span></div>
+		<div class="arrow"></div>
+		<div class="content">
+			<p><span>Themed events</span> list：</p>
+			<p>（ Participate in activities that you enjoy it ~ ）</p>
+			<p>On behalf of the event in <span>progress.</span></p>
+			<p>There are also notices and end status.</p>
+			<div class="arrow2"></div>
+		</div>
+		<div class="content2">
+			<p><span></span>主題派對5期 | SHOW出你的旅行吧~</p>
+			<p>10 个国家的人参与，1331 个参与人数</p>
+		</div>
+		<div class="content3"><span>Number of participants</span> in this event. <div></div></div>
+	</div>
+	<div class="buttom">G E T</div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript">
+	var www = window.screen.width;
+	var hhh = window.screen.height;
+	apiready = function(){
+		if(hhh/www > 2){
+			$api.css($api.dom('.box'), 'top:25px;');
+			$api.css($api.dom('.buttom'), 'bottom:19.64vw');
+		}
+		setTimeout(function(){
+			$api.css($api.dom('body'), 'visibility:visible;');
+		},1100);
+	    if($api.getStorage('language')=='zho'){
+	    	$api.html($api.dom('.content'), '<p><span>主 题 活 动</span> 列 表：</p><p>（ 选 择 你 喜 欢 的  活 动 来 参 与 吧 ~ ）</p><p>表 示 该 活 动 <span>进 行 中</span> </p><p>另 外 还 有 预 告 和 结 束 状 态</p><div class="arrow2"></div>');
+	    	$api.html($api.dom('.buttom'), '好 的');
+	    	$api.html($api.dom('.content3'), '该 活 动 的 <span>参 与 情 况</span><div></div>');
+	    }
+	    $api.addEvt($api.dom('.buttom'), 'click',function(){
+	    	api.openFrame({
+	    	    name: 'guide10',
+	    	    url: 'widget://html/guide/guide10.html',
+	    	    rect: {
+	    	        x: 0,
+	    	        y: 0,
+	    	        w: 'auto',
+	    	        h: 'auto'
+	    	    },
+	    	    pageParam: {
+	    	        name: 'value'
+	    	    }
+	    	});
+	    	api.closeFrame({
+	    	    name: 'guide9'
+	    	});
+	    });
+	}
+</script>
+</html>

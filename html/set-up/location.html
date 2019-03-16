@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>location</title>
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <style>
+		html, body{
+			background-color: transparent;
+			font-family: Arial;
+			font-style: italic;
+			color: #484848;
+			font-size: 4vw;
+			line-height: 5.86vw;
+		}
+		img[src=""]{
+			visibility: hidden;/*将src不存在的img隐藏*/
+		}
+		img{
+			display: block;
+		}
+		.line{
+			position: fixed;
+			top:5px;
+			width: 100vw;
+			height: 65px;
+			background-color:#efefef;
+		}
+		.wrap{
+			/*padding-top: 17.29vw;*/
+			/*使导航出现在最上方，并且不遮挡到内容*/
+			width: 100%;
+			margin: 0 auto;
+			margin-top: 5px;
+			background: #ffffff;
+			border-top: 65px solid #efefef;
+		}
+		ul{
+			width: 100%;
+			background: #ffffff;
+		}
+		ul li{
+			height: 37px;
+			width: 90%;
+			margin-left: 5%;
+
+			/*line-height: 50px;*/
+			background-color:#ffffff;
+			font-weight: bold;
+			/*margin-bottom: 5.3vw;*/
+			/*border-radius: 2.6vw;*/
+			padding: 4.6vw 0vw 0vw 0vw;
+			color: black;
+			font-size: 15px;
+			border-bottom: 1px solid #efefef;
+		}
+		li img{
+			float: right;
+			width: 5.3vw;
+			height: 5.3vw;
+			transform: rotate(270deg);
+		}
+    </style>
+</head>
+<body>
+	<div class="line"></div>
+	<div class="wrap">
+		<ul id="list">
+			<!-- <li><span></span><img src="../../icon/toright.png"></li> -->
+		</ul>
+	</div>
+	<script type="text/javascript">
+		var hhh = window.screen.height;
+		var www = window.screen.width;
+		var frameh='65px';
+		apiready = function(){
+			if(hhh/www > 2){
+				frameh='89px';
+				$api.css($api.dom('.wrap'), 'border-top: 89px solid #efefef');
+				$api.css($api.dom('.line'), 'height:89px');
+			};
+			api.addEventListener({
+				name: 'swiperight'
+			}, function() {
+				api.closeWin({
+					animation: {
+						type: "push", //动画类型（详见动画类型常量）
+						subType: "from_left", //动画子类型（详见动画子类型常量）
+						duration: 300 //动画过渡时间，默认300毫秒
+					}
+				});
+			});//右滑关闭win
+			api.openFrame({
+				name: "header",
+				url: "widget://html/nav/header.html",
+				rect: {
+					x: 0,
+					y: 0,
+					w: "auto",
+					h: frameh
+				},
+				pageParam: {
+					onlyLeft: true
+				}
+			});//打开通用头部
+			var list = $api.dom("#list"),
+				str = "",
+				ary = ["Asia","Europe","North America","South America","Africa","Oceania","China","America","Afghanistan","Aland Islands","Albania","Algeria","American Samoa","Andorra","Angola","Anguilla","Antigua and Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bangladesh","Bahrain","Bahamas","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia and Herzegovina","Botswana","Bouvet Island","Brazil","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Canada","Cape Verde","Central African Republic","Chad","Chile","Christmas Islands","Cocos （keeling） Islands","Colombia","Comoros","Congo （Congo-Kinshasa）","Congo","Cook Islands","Costa Rica","Cote D'Ivoire","Croatia","Cuba","Czech","Cyprus","Denmark","Djibouti","Dominica","East Timor","Ecuador","Egypt","Equatorial Guinea","Eritrea","Estonia","Ethiopia","Faroe Islands","Fiji","Finland","France","Franch Metropolitan","Franch Guiana","French Polynesia","Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Grenada","Guadeloupe","Guam","Guatemala","Guernsey","Guinea-Bissau","Guinea","Guyana","Hong Kong","Haiti","Honduras","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakstan","Kenya","Kiribati","Korea （South）","Korea （North）","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Macedonia","Malawi","Malaysia","Madagascar","Maldives","Mali","Malta","Marshall Islands","Martinique","Mauritania","Mauritius","Mayotte","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Myanmar","Namibia","Nauru","Nepal","Netherlands","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","Niue","Norfolk Island","Norway","Oman","Pakistan","Palau","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Pitcairn Islands","Poland","Portugal","Puerto Rico","Qatar","Reunion","Romania","Rwanda","Russian Federation","Saint Helena","Saint Kitts-Nevis","Saint Lucia","Saint Vincent and the Grenadines","El Salvador","Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Senegal","Seychelles","Sierra Leone","Serbia","Singapore","Serbia","Slovakia","Slovenia","Solomon Islands","Somalia","South Africa","Spain","Sri Lanka","Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","Tajikistan","Tanzania","Taiwan","Thailand","Trinidad and Tobago","Timor-Leste","Togo","Tokelau","Tonga","Tunisia","Turkey","Turkmenistan","Tuvalu","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States","Uruguay","Uzbekistan","Vanuatu","Vatican City","Venezuela","Vietnam","Wallis and Futuna","Western Sahara","Yemen","Yugoslavia","Zambia","Zimbabwe"],
+				ary2 = ["亞洲","歐洲","北美洲","南美洲","非洲","大洋洲","中國","美國","阿富汗","奧蘭群島","阿爾巴尼亞","阿爾及利亞","美屬薩摩亞","安道爾","安哥拉","安圭拉","安提瓜和巴布達","阿根廷","亞美尼亞","阿魯巴","澳大利亞","奧地利","阿塞拜疆","孟加拉","巴林","巴哈馬","巴巴多斯","白俄羅斯","比利時","伯利茲","貝寧","百慕大","不丹","玻利維亞","波斯尼亞和黑塞哥維那","博茨瓦納","布維島","巴西","文萊","保加利亞","布基納法索","布隆迪","柬埔寨","喀麥隆","加拿大","佛得角","中非","乍得","智利","聖誕島","科科斯（基林）群島","哥倫比亞","科摩羅","剛果（金）","剛果","庫克群島","哥斯達黎加","科特迪瓦","克羅地亞","古巴","捷克","塞浦路斯","丹麥","吉布提","多米尼加","東帝汶","厄瓜多爾","埃及","赤道幾內亞","厄立特裏亞","愛沙尼亞","埃塞俄比亞","法羅群島","斐濟","芬蘭","法國","法國大都會","法屬圭亞那","法屬波利尼西亞","加蓬","岡比亞","格魯吉亞","德國","加納","直布羅陀","希臘","格林納達","瓜德羅普島","關島","危地馬拉","根西島","幾內亞比紹","幾內亞","圭亞那","香港 （中國）","海地","洪都拉斯","匈牙利","冰島","印度","印度尼西亞","伊朗","伊拉克","愛爾蘭","馬恩島","以色列","意大利","牙買加","日本","澤西島","約旦","哈薩克斯坦","肯尼亞","基裏巴斯","韓國","朝鮮","科威特","吉爾吉斯斯坦","老撾","拉脫維亞","黎巴嫩","萊索托","利比裏亞","利比亞","列支敦士登","立陶宛","盧森堡","澳門（中國）","馬其頓","馬拉維","馬來西亞","馬達加斯加","馬爾代夫","馬裏","馬耳他","馬紹爾群島","馬提尼克島","毛裏塔尼亞","毛裏求斯","馬約特","墨西哥","密克羅尼西亞","摩爾多瓦","摩納哥","蒙古","黑山","蒙特塞拉特","摩洛哥","莫桑比克","緬甸","納米比亞","瑙魯","尼泊爾","荷蘭","新喀裏多尼亞","新西蘭","尼加拉瓜","尼日爾","尼日利亞","紐埃","諾福克島","挪威","阿曼","巴基斯坦","帕勞","巴勒斯坦","巴拿馬","巴布亞新幾內亞","巴拉圭","秘魯","菲律賓","皮特凱恩群島","波蘭","葡萄牙","波多黎各","卡塔爾","留尼汪島","羅馬尼亞","盧旺達","俄羅斯聯邦","聖赫勒拿","聖基茨和尼維斯","聖盧西亞","聖文森特和格林納丁斯","薩爾瓦多","薩摩亞","聖馬力諾","聖多美和普林西比","沙特阿拉伯","塞內加爾","塞舌爾","塞拉利昂","塞爾維亞","新加坡","塞爾維亞","斯洛伐克","斯洛文尼亞","所羅門群島","索馬裏","南非","西班牙","斯裏蘭卡","蘇丹","蘇裏南","斯威士蘭","瑞典","瑞士","敘利亞","塔吉克斯坦","坦桑尼亞","臺灣 （中國）","泰國","特立尼達和多巴哥","東帝汶","多哥","托克勞","湯加","突尼斯","土耳其","土庫曼斯坦","圖瓦盧","烏幹達","烏克蘭","阿拉伯聯合酋長國","英國","烏拉圭","烏茲別克斯坦","瓦努阿圖","梵蒂岡","委內瑞拉","越南","瓦利斯群島和富圖納群島","西撒哈拉","也門","南斯拉夫","贊比亞","津巴布韋"];
+			setTimeout(function(){//加定时器是为了让通用头部先打开
+				var tarAry = ary;
+				if($api.getStorage("language") == "zho"){
+					tarAry = ary2;
+				};
+				for(var i = 0, len = tarAry.length;i < len; i++){
+					str += "<li><span>" + tarAry[i] + "</span><img src='../../icon/search/toright2.png'></li>";
+				};
+				$api.html(list, str);
+				var oLi = $api.domAll(list, "li");
+				for(var i = 0, len = oLi.length; i < len; i++){
+					oLi[i].index = i;
+					$api.addEvt(oLi[i], "touchstart", function(){
+						//$api.css(this, "background-color: #aaa");
+					});
+					$api.addEvt(oLi[i], "touchend", function(){
+						//$api.css(this, "background-color: #efefef");
+					});
+					var a , b;
+					$api.addEvt(oLi[i], "click", function(){//传参格式为中文地址和英文地址，中间用逗号隔开，传参的话第一个是英文地址，第二个是中文地址
+						a = $api.text(this);
+						b = ary2[this.index];
+						var jsfun = "setLocation('"+ a +"','"+ b +"');";
+						if($api.getStorage("language") == "zho"){
+							a = ary[this.index];
+							b = $api.text(this);
+							jsfun = "setLocation('"+ a +"','"+ b +"');";
+						};
+						if(api.pageParam.register=='register'){
+							api.sendEvent({
+							    name: 'country',
+							    extra: {
+							        key1: a,
+							        key2: b
+							    }
+							});
+
+						}
+						api.execScript({
+						    name: "account",
+						    script: jsfun
+						});
+						api.closeWin();
+					});
+				};
+			}, 120);
+		};
+	</script>
+</body>
+</html>

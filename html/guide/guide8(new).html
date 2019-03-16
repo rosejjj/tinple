@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+	<title>guide8(new)</title>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+		}
+		body{
+			width:100vw;
+			height:100vh;
+			/*visibility: hidden;*/
+		}
+		.bg{
+			position: fixed;
+			top:0;
+			width:100vw;
+			height:100vh;
+			background-color:#000;
+			opacity: 0.8;
+			/*animation:bganimation 0.3s linear 0s 1 normal;
+			-webkit-animation: bganimation 0.3s linear 0s 1 normal;
+			-ms-animation: bganimation 0.3s linear 0s 1 normal;
+			-o-animation: bganimation 0.3s linear 0s 1 normal;
+			-moz-animation: bganimation 0.3s linear 0s 1 normal;*/
+			z-index: -1;
+		}
+		.box{
+			margin-top:35.11vw;
+			width: 100vw;
+			position: relative;
+		}
+		.theme_box{
+			margin:0 auto;
+			width:94.41vw;
+			height:30vw;
+			overflow: hidden;
+			border-radius: 2.66vw;
+			box-shadow:0 0.5vw 2.66vw 0.8vw rgba(170,170,170,0.3);
+			background-color:#fff;
+		}
+		.theme_box>div:nth-of-type(1){
+			width:30vw;
+			height:30vw;
+			background:url(http://bin.baopinghui.com/o_1cqsa8k8914b413dnhf1ki011tua.jpg) no-repeat center;
+			background-size:cover;
+			float:left;
+		}
+		.theme_box>div:nth-of-type(2){
+			float:left;
+			position: relative;
+			width:64vw;
+			height:30vw;
+			padding-left:2.66vw;
+			box-sizing: border-box;
+		}
+		.theme_box>div:nth-of-type(2) p{
+			margin-top:2.12vw;
+			font:3.19vw/4.52vw Arial;
+			font-weight: bold;
+			color:#aaa;
+		}
+		.theme_box>div:nth-of-type(2) p:nth-of-type(1){
+			color:#000;
+		}
+		.theme_box>div:nth-of-type(2) p img{
+			display: inline-block;
+			width:5.32vw;
+			height:5.32vw;
+			object-fit: cover;
+			vertical-align: middle;
+		}
+		.theme_button{
+			position: absolute;
+			bottom:2.66vw;
+			right:2.66vw;
+			width:15.95vw;
+			height:7.98vw;
+			border-radius: 13.3vw;
+			border:0.5vw solid #000;
+			font:3.19vw/7.48vw Arial;
+			font-weight: bold;
+			text-align: center;
+			box-sizing: border-box;
+		}
+		.arrow{
+			float:left;
+			width:10.64vw;
+			height:10.64vw;
+			background:url(../../icon/guide/arrow1.png) no-repeat;
+			background-size:contain;
+			transform: rotate(11deg);
+			margin-left:8.2vw;
+			margin-top:5.32vw;
+		}
+		.text{
+			float:left;
+			font:3.99vw/5.85vw Arial;
+			font-weight: bold;
+			color:#fff;
+			margin-top:11vw;
+			margin-left:2.66vw;
+		}
+		.text>span{
+			color:#f381a3;
+		}
+		.button{
+			position: fixed;
+			bottom:10.64vw;
+			left:50%;
+			margin-left:-29.655vw;
+			width:59.31vw;
+			height:10.64vw;
+			border:2px solid rgba(255,255,255,1);
+			border-radius: 7.99vw;
+			font:3.99vw/10.64vw Arial;
+			font-weight: bold;
+			text-align: center;
+			color:#fff;
+		}
+		@keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 0.8;
+			}
+		}
+		@-webkit-keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 0.8;
+			}
+		}
+		@-ms-keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 0.8;
+			}
+		}
+		@-o-keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 0.8;
+			}
+		}
+		@-moz-keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 0.8;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="bg"></div>
+	<div class="box">
+		<div class="theme_box">
+			<div></div>
+			<div>
+				<p><img src="../../image/fire1.gif" alt=""> What has changed in your autumn life?</p>
+				<p>People from 10 countries</p>
+				<p>1331 participants</p>
+				<div class="theme_button">JOIN</div>
+			</div>
+		</div>
+		<div class="arrow"></div>
+		<p class="text"><span>Theme Activity</span> :<br>Ongoing activities, come and join ~</p>
+	</div>
+	<div class="button">N E X T</div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript">
+	var www = window.screen.width;
+	var hhh = window.screen.height;
+	apiready = function(){
+		if(hhh/www >2){
+			$api.css($api.dom('.box'), 'margin-top:40.11vw');
+			$api.css($api.dom('.button'), 'bottom:19.64vw');
+		}
+		// setTimeout(function(){
+		// 	$api.css($api.dom('body'), 'visibility:visible;');
+		// },1100);
+		if($api.getStorage('language')=='zho'){
+			$api.html($api.dom('.text'), '<span>主 題 活 動</span> 顯 示 ：<br>正 在 進 行 中 的 主 題 活 動 ， 快 <br>來 參 與 讓 更 多 認 識 你 吧 ~');
+			$api.html($api.dom('.button'), '下一步');
+		}
+		$api.addEvt($api.dom('.button'), 'click', function(){
+			api.openFrame({
+			    name: 'guide9(new)',
+			    url: 'widget://html/guide/guide9(new).html',
+			    rect: {
+			        x: 0,
+			        y: 0,
+			        w: 'auto',
+			        h: 'auto'
+			    },
+			    pageParam: {
+			        name: 'value'
+			    }
+			});
+			api.closeFrame({
+	    	    name: 'guide8(new)'
+	    	});
+		});
+	}
+</script>
+</html>

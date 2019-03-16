@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="zh">
+	<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>瀑布流</title>
+	<style>
+* { margin: 0; }
+.jq22-container { margin-top: 50px; }
+#div1 { margin: auto; position: relative;}
+.box { float: left;width: 160px;height: auto;position: relative;}
+/*box{padding: 10px; border: 1px solid #ccc;
+background: #f7f7f7; box-shadow: 0 0 8px #ccc;}*/
+/*.box:hover { box-shadow: 0 0 10px #999; }*/
+.box img:nth-child(1) { width: 160px;border-radius: 10px;;margin-bottom: -4px;}
+.box img:nth-child(2) { width: 30px;height: 30px;position: absolute;
+top: 10px;right: 10px;}
+.box p{width: 140px;word-break: break-all;margin-left: 15px;font-size: 12px;
+font-weight: bold;color:#484848; display: inline-block;}
+.box p:nth-of-type(2){color:black;opacity: .3;margin-top: 5px;font-size: 10px;}
+.box{border: none;}
+#div1 .box+p{display: none;}
+.loading{width:50px;height: 50px;position: fixed;top:48%;left: 45%;}
+#div1 .box>img:nth-child(2){background：black;}
+.imgbox{    width: 160px;
+	/*height: 160px;*/
+    border-radius: 10px;
+    margin: 6px 6px 0px 6px;
+	background-color: #d1dbe4;}
+	.nochat{
+		text-align: center;
+		position: absolute;
+		left: 50%;
+		top: 27.09vh;
+		transform: translateX(-50%);
+	}
+	.nochat ul{
+		padding: 0px;
+	}
+	.nochat .nochat-img{
+		width: 32vw;
+		/*border:1px solid #000;*/
+	}
+	.nochat .nochat-text{
+		font-weight: bold;
+		font-size: 4vw;
+	}
+	.nochat .nochat-text li{
+		list-style:none;
+		padding-top: 5px;
+		background: -webkit-linear-gradient(left, #d9afd9 , #97d9e1);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+</style>
+	<!--[if IE]>
+		<script src="http://libs.baidu.com/html5shiv/3.7/html5shiv.min.js"></script>
+	<![endif]-->
+	</head>
+	<body>
+		<div style="heig"></div>
+<div class="jq22-container">
+      <div class="jq22-content bgcolor-3">
+						<div id="div1" style="bottom:250px;top:26px;">
+							<!-- <img class="loading" src="img/loading.gif" alt=""> -->
+							<div class="nochat">
+								<img src="../../icon/messages/cry.png" class="nochat-img"/>
+								<ul class="nochat-text">
+									<li>loading...</li>
+									<li>(°□°；)</li>
+									<li>加载中... → →</li>
+								</ul>
+							</div>
+							<!-- <div class="box"><img src="img/01.jpg" alt=""><img src="img/08.jpg" alt=""></div>
+							<div class="box"><img src="img/02.jpg" alt=""></div>
+							<div class="box"><img src="img/03.jpg" alt=""></div>
+							<div class="box"><img src="img/04.jpg" alt=""></div>
+							<div class="box"><img src="img/05.jpg" alt=""></div>
+							<div class="box"><img src="img/06.jpg" alt=""></div>
+							<div class="box"><img src="img/07.jpg" alt=""></div>
+							<div class="box"><img src="img/08.jpg" alt=""></div> -->
+		        </div>
+						<!-- <img class="icon2" src="img/loading.gif" style="width:50px;height:50px;position:fixed;bottom:100px;left:160px;z-index:999;margin-bottom:25px;opacity:1"/> -->
+  		</div>
+</div>
+<script src="http://www.jq22.com/jquery/1.7.2/jquery.min.js"></script>
+<script src="script/jquery.waterfall.js"></script>
+<script src="../../script/api.js"></script>
+<script>
+
+
+	$(function(){
+		//进入网页加载10个图片函数
+		//setTimeout(jiazai,1000)
+		jiazai();
+	$("#div1").waterfall({
+			itemClass: ".box",
+			minColCount: 2,
+			spacingHeight: 10,
+			resizeable: false,
+			ajaxCallback: function(success, end) {
+					var data = {"data": [
+							{ "src": "http://bin.baopinghui.com/"+num[++j].img_url.split(",")[0],"postId": num[j].dyn_id,"ui_id":num[j].ui_id},
+							{ "src": "http://bin.baopinghui.com/"+num[++j].img_url.split(",")[0],"postId": num[j].dyn_id,"ui_id":num[j].ui_id}
+					]};
+					var str = "";
+					var i=0;                                                                                      //'<img src="img/imgs.png" />'+
+					var templ = '<div class="box" data-id="diulei" data-poid="gg" onclick="click_jump(this)" style="opacity:0;filter:alpha(opacity=0);"><div class="pic"><div class="imgbox"><img src="{{src}}" /></div>'+'</div></div>'
+	                                                                                                     //'<p>'+"abc"+'</p>'+'<p>'+"def"+'</p>+'
+					for(var i = 0; i < data.data.length; i++) {
+							str += templ.replace("{{src}}", data.data[i].src);
+							str =str.replace("diulei",data.data[i].ui_id);
+							str = str.replace("gg",data.data[i].postId);
+					}
+					$('#div1').append('<img class="icon" src="img/loading.gif" style="width:50px;height:50px;position:absolute;bottom:-141px;left:160px;z-index:999;margin-bottom:25px;opacity:1"/>');
+					setTimeout(function () {
+						$('.icon').css("opacity","0");
+					},1000);
+					if(j<=length-4){
+						$(str).appendTo($("#div1"));
+					};
+					success();
+					end();
+			}
+
+	});
+
+  //定义进入页面加载函数
+	function jiazai() {
+		$.ajax({
+			url: 'http://api.baopinghui.com/app_dynamicCover/findpostBytime',
+			type: 'get',
+			async: false,
+			data: {
+					numx: 0,
+					numy: 1000
+		 },
+		 success:function (data) {
+			 $('.nochat').css("display","none");
+			 console.log(data);
+			 num=data.data;
+			 length=data.data.length;
+			 id=data.data;
+			 j=7;
+
+			 var div=$('#div1');
+			 var url_str="http://bin.baopinghui.com/"+num[0].img_url.split(",")[0];
+			 var url_str1="http://bin.baopinghui.com/"+num[1].img_url.split(",")[0];
+			 var url_str2="http://bin.baopinghui.com/"+num[2].img_url.split(",")[0];
+			 var url_str3="http://bin.baopinghui.com/"+num[3].img_url.split(",")[0];
+			 var url_str4="http://bin.baopinghui.com/"+num[4].img_url.split(",")[0];
+			 var url_str5="http://bin.baopinghui.com/"+num[5].img_url.split(",")[0];
+			 var url_str6="http://bin.baopinghui.com/"+num[6].img_url.split(",")[0];
+			 var url_str7="http://bin.baopinghui.com/"+num[7].img_url.split(",")[0];
+
+			var otherId=num[0].ui_id;
+			var otherId1=num[1].ui_id;
+			var otherId2=num[2].ui_id;
+			var otherId3=num[3].ui_id;
+			var otherId4=num[4].ui_id;
+			var otherId5=num[5].ui_id;
+			var otherId6=num[6].ui_id;
+			var otherId7=num[7].ui_id;
+
+			 var postId=num[0].dyn_id;
+			 var postId1=num[1].dyn_id;
+			 var postId2=num[2].dyn_id;
+			 var postId3=num[3].dyn_id;
+			 var postId4=num[4].dyn_id;
+			 var postId5=num[5].dyn_id;
+			 var postId6=num[6].dyn_id;
+			 var postId7=num[7].dyn_id;
+
+
+			 div.append('<div class="box" data-id="'+otherId+'" data-poid="'+postId+'" onclick="click_jump(this)"><div class="imgbox"><img src='+url_str+'></div><div>');
+			 div.append('<div class="box" data-id="'+otherId1+'" data-poid="'+postId1+'" onclick="click_jump(this)"><div class="imgbox"><img src='+url_str1+'></div></div>');
+			 div.append('<div class="box" data-id="'+otherId2+'" data-poid="'+postId2+'" onclick="click_jump(this)"><div class="imgbox"><img src='+url_str2+'></div></div>');
+			 div.append('<div class="box" data-id="'+otherId3+'" data-poid="'+postId3+'" onclick="click_jump(this)"><div class="imgbox"><img src='+url_str3+'></div></div>');
+			 div.append('<div class="box" data-id="'+otherId4+'" data-poid="'+postId4+'" onclick="click_jump(this)"><div class="imgbox"><img src='+url_str4+'></div></div>');
+			 div.append('<div class="box" data-id="'+otherId5+'" data-poid="'+postId5+'" onclick="click_jump(this)"><div class="imgbox"><img src='+url_str5+'></div></div>');
+			 div.append('<div class="box" data-id="'+otherId6+'" data-poid="'+postId6+'" onclick="click_jump(this)"><div class="imgbox"><img src='+url_str6+'></div></div>');
+			 div.append('<div class="box" data-id="'+otherId7+'" data-poid="'+postId7+'" onclick="click_jump(this)"><div class="imgbox"><img src='+url_str7+'></div></div>');
+
+		 },
+		 error:function () {
+			 console.log('失败')
+		 }
+	 });
+			//console.log(num);
+	}
+});
+
+</script>
+<script type="text/javascript">
+var popNum;
+apiready=function () {
+// 	api.addEventListener({
+//     name:'swipeup'
+// }, function(ret, err){
+// //alert('你好');
+// 	$api.append($api.byId('div1'),'<img class="icon" src="img/loading.gif" style="width:50px;height:50px;position:absolute;bottom:-141px;left:160px;z-index:999;margin-bottom:25px;opacity:1"/>');
+// });
+}
+
+
+//定义点击跳转事件
+function click_jump(ele) {
+
+	var otherId=ele.dataset['id'];
+	var postId=ele.dataset['poid'];
+
+	api.ajax({//获取后台数据（热度，关注，粉丝，帖子）
+		url: "http://api.baopinghui.com/app_tinUserinfoControllerC/baseCount?uiId=" + otherId,
+		//url: "http://112.74.20.66:18098/app_tinUserinfoControllerC/baseCount?uiId=" + otherId,
+		method: "post",
+		async:false
+	}, function(ret, err){
+		if(ret){
+
+			if(ret["status"]){
+				var jsondata = ret["data"],//获取数据
+					ary = [],//定义一个空数组
+					heatNum = $api.dom("#heatNum"),
+					fanNum = $api.dom("#fanNum"),
+					postNum = $api.dom("#postNum");
+				followDom = $api.dom("#followNum");
+				//将数据按顺序推入数组
+				ary.push(jsondata["popularNum"]);
+				ary.push(jsondata["myFocusNum"]);
+				ary.push(jsondata["fansNum"]);
+				ary.push(jsondata["coverNum"]);
+				//循环数组，如果数量大于1000时，使用k单位
+				for(var i = 0, len = ary.length; i < len; i++){
+					parseFloat(ary[i]) >= 1000 ? ary[i] = (ary[i] / 1000).toFixed(1) + "k": null;
+				};
+				popNum = ary[0];
+				tinNum = ary[3];
+				//alert(popNum);
+			};
+			 //alert(popNum);
+			 //alert(tinNum);
+		};
+		console.log(err);
+	});
+	if(popNum){
+		api.openWin({
+				name: "detail",
+				url: "widget://html/details/detail.html",
+				reload: true,
+				vScrollBarEnabled: false,
+				slidBackEnabled: false,
+				pageParam:{
+				postId:postId,
+				 popNum: popNum,
+				 tinNum: tinNum
+			}
+		})
+	}else{
+		api.toast({
+				msg: '正在加载，请再次点击',
+				duration: 1500,
+				location: 'middle'
+		});
+	}
+}
+
+</script>
+</body>
+</html>

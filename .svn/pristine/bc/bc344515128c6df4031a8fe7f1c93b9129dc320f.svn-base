@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>setting</title>
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <style>
+		html, body{
+			background-color: transparent;
+			font-family: Arial;
+			font-style: italic;
+			color: #484848;
+			font-size: 4vw;
+			line-height: 5.86vw;
+			background: #efefef;
+		}
+		img[src=""]{
+			visibility: hidden;/*将src不存在的img隐藏*/
+		}
+		img{
+			display: block;
+		}
+		.wrap{
+			/*padding-top: 17.29vw;*/
+			/*使导航出现在最上方，并且不遮挡到内容*/
+			width: 100%;
+			margin: 0 auto;
+			margin-top: 5px;
+			background: #ffffff;
+			border-top: 65px solid #efefef;
+		}
+		ul{
+			width: 100%;
+			background: #ffffff;
+		}
+		ul li{
+			height: 37px;
+			width: 90%;
+			margin-left: 5%;
+
+			/*line-height: 50px;*/
+			background-color:#ffffff;
+			font-weight: bold;
+			/*margin-bottom: 5.3vw;*/
+			/*border-radius: 2.6vw;*/
+			padding: 4.6vw 0vw 0vw 0vw;
+			color: black;
+			font-size: 15px;
+			border-bottom: 1px solid #efefef;
+		}
+		/*怪需求改样式 哎！ 维护的人  你死定了 天天乱发样式给我改*/
+		ul li:nth-of-type(2) i,ul li:nth-of-type(3) i{
+			font-weight: normal;
+			color:#aaa;
+		}
+		ul li:nth-of-type(3){
+			width: 100%;
+			/*padding-left: 0px;*/
+			/*font-weight: normal;*/
+			/*color:#aaa;*/
+			margin-left: 0px;
+			text-indent:8.3px;
+			border-bottom: 5px solid #efefef;
+		}
+/*		ul li:nth-of-type(8){
+			width: 100%;
+			margin-left: 0px;
+			text-indent:8.3px;
+			border-bottom: 5px solid #efefef;
+		}*/
+		li img{
+			float: right;
+			width: 5.3vw;
+			height: 5.3vw;
+			transform: rotate(270deg);
+		}
+		i{
+			position: absolute;right: 50px;
+		}
+		ul li:nth-of-type(3) img{
+			/*transform: translateX(-108.5px);*/
+			margin-right: 19px;
+
+		}
+		ul li:nth-of-type(8){
+			border:0;
+		}
+		.line{
+			width:100%;
+			height:5px;
+			background-color:#efefef;
+		}
+/*		ul li:nth-of-type(8) img{
+			margin-right: 19px;
+
+		}*/
+		ul li:nth-of-type(9){
+			text-align: center;
+			color:#F381A3;
+		}
+		i{
+			font-style: normal;
+		}
+		/*ul li:nth-child(10) span{
+
+		}*/
+    </style>
+</head>
+<body>
+	<div class="wrap">
+		<ul id="list">
+			<li><span>Account&nbsp;Settings</span><img src="../../icon/search/toright2.png"></li>
+			<li><span>Language&nbsp; <i>English</i> &nbsp;</span><img src="../../icon/search/toright2.png"></li>
+			<li><span>Clear&nbsp;Cache&nbsp;<i id="cache-size">&nbsp;M&nbsp;</i></span><img src="../../icon/search/toright2.png"></li>
+			<li><span>Change&nbsp;Password</span><img src="../../icon/search/toright2.png"></li>
+			<li><span>Feedback</span><img src="../../icon/search/toright2.png"></li>
+			<li style="display:none;"><span>Give&nbsp;us&nbsp;a&nbsp;Praise&nbsp;it&nbsp;(*ﾟ∀ﾟ*)</span><img src="../../icon/search/toright2.png"></li>
+			<li><span>Privacy&nbsp;Policy</span><img src="../../icon/search/toright2.png"></li>
+			<li><span>Terms&nbsp;of&nbsp;Service</span><img src="../../icon/search/toright2.png"></li>
+			<div class="line"></div>
+			<li><span>S I G N &nbsp; O U T</span></li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+		var language;
+		var groupgid = $api.getStorage('groupgid');
+		var huixiang_data=(typeof($api.getStorage("huixiang"))!="undefined")?$api.getStorage("huixiang"):{};
+		// console.log("设置的响应"+JSON.stringify(huixiang_data));
+		var hhh =window.screen.height;
+    	var www =window.screen.width;
+    	var headerh = '65px';
+		apiready = function(){
+			if(hhh/www > 2){
+				$api.css($api.dom('.wrap'), 'border-top:89px solid #efefef;');
+				headerh = '89px';
+			}
+			api.addEventListener({
+				name: 'swiperight'
+			}, function() {
+				api.closeWin({
+					animation: {
+						type: "push", //动画类型（详见动画类型常量）
+						subType: "from_left", //动画子类型（详见动画子类型常量）
+						duration: 300 //动画过渡时间，默认300毫秒
+					}
+
+				});
+			});//右滑关闭win
+			api.openFrame({
+				name: "header",
+				url: "widget://html/nav/header.html",
+				rect: {
+					x: 0,
+					y: 0,
+					w: "auto",
+					h: headerh
+				},
+				pageParam: {
+					setting: true
+				}
+			});//打开通用头部
+
+			var oUl = $api.dom("#list"),
+				oSpan = $api.domAll(oUl, "span"),
+				oLi = $api.domAll(oUl, "li"),
+				size;
+			language = $api.getStorage("language");
+			if(language == "zho"){
+				$api.html(oSpan[0], "賬&nbsp;號&nbsp;設&nbsp;置");
+				$api.html(oSpan[1], "軟&nbsp;件&nbsp;語&nbsp;言&nbsp;<i>中文</i>&nbsp;");
+				$api.html(oSpan[2], "清&nbsp;除&nbsp;緩&nbsp;存&nbsp;<i id='cache-size'></i>");
+				$api.html(oSpan[3], "修&nbsp;改&nbsp;密&nbsp;碼");
+				$api.html(oSpan[4], "意&nbsp;見&nbsp;反&nbsp;饋");
+				$api.html(oSpan[5], "給&nbsp;我&nbsp;們&nbsp;好&nbsp;評&nbsp;吧(*ﾟ∀ﾟ*)");
+				$api.html(oSpan[6], "隱&nbsp;私&nbsp;政&nbsp;策");
+				$api.html(oSpan[7], "服&nbsp;務&nbsp;條&nbsp;款");
+				$api.html(oSpan[8], "退&nbsp;出&nbsp;登&nbsp;陸");
+			};
+			api.getCacheSize(function(ret) {
+				size = Math.floor((ret.size / 1024 / 1024) * 100) / 100;
+				var	cacheSize = $api.dom("#cache-size");
+				$api.html(cacheSize, size+' M');
+			});
+			$api.addEvt(list, "touchstart", function(e){//点击改变背景
+				var tar = e.target;
+				var tarTag = e.target.tagName.toLowerCase();
+				if(tarTag !== "ul"){
+					if(tarTag !== "li"){
+						if(tarTag !== "i"){
+							tar = tar.parentNode;
+						}else{
+							tar = tar.parentNode.parentNode;
+						};
+					};
+					// $api.css(tar, "background-color:#aaa");
+				};
+			});
+			$api.addEvt(list, "touchend", function(e){
+				var tar = e.target;
+				var tarTag = e.target.tagName.toLowerCase();
+				if(tarTag !== "ul"){
+					if(tarTag !== "li"){
+						if(tarTag !== "i"){
+							tar = tar.parentNode;
+						}else{
+							tar = tar.parentNode.parentNode;
+						};
+					};
+					$api.css(tar, "background-color:#ffffff");
+				};
+			});
+			$api.addEvt(oLi[0], "click", function(){
+				api.openWin({
+					name: "account",
+					url: "widget://html/set-up/account.html",
+					reload: true,
+					vScrollBarEnabled: false,
+					slidBackEnabled: false
+				});
+			});
+			$api.addEvt(oLi[1], "click", function(){
+				api.openFrame({
+					name: "switchLan",
+					url: "widget://html/set-up/switchLan.html",
+					rect: {
+						x: 0,
+						y: 0,
+						w: "auto",
+						h: "auto"
+					}
+				});
+			});
+			$api.addEvt(oLi[2], "click", function(){
+				api.openFrame({
+					name: "clear",
+					url: "widget://html/nav/out.html",
+					reload: true,
+					vScrollBarEnabled: false,
+					slidBackEnabled: false,
+					pageParam: {
+						clear: true,
+						size: size
+					}
+				});
+			});
+			$api.addEvt(oLi[3], "click", function(){
+				api.openWin({
+					name: "changePassword",
+					url: "widget://html/set-up/changePassword.html",
+					reload: true,
+					vScrollBarEnabled: false,
+					slidBackEnabled: false,
+					softInputMode: "pan"
+				});
+			});
+			$api.addEvt(oLi[4], "click", function(){
+				api.openWin({
+					name: "feedback",
+					url: "widget://html/set-up/feedback.html",
+					reload: true,
+					vScrollBarEnabled: false,
+					slidBackEnabled: false,
+					softInputMode: "pan"
+				});
+			});
+			$api.addEvt(oLi[6], "click", function(){
+				api.openWin({
+					name: "privacy",
+					url: "widget://html/set-up/privacy.html",
+					reload: true,
+					vScrollBarEnabled: false,
+					slidBackEnabled: false
+				});
+			});
+			$api.addEvt(oLi[7], "click", function(){
+				api.openWin({
+					name: "service",
+					url: "widget://html/set-up/service.html",
+					reload: true,
+					vScrollBarEnabled: false,
+					slidBackEnabled: false
+				});
+			});
+			$api.addEvt(oLi[8], "click", function(){
+				api.openFrame({
+					name: "out",
+					url: "widget://html/nav/out.html",
+					reload: true,
+					vScrollBarEnabled: false,
+					slidBackEnabled: false
+				});
+			});
+		};
+
+		function clearCache(){
+			api.clearCache(function() {
+			    api.toast({
+			        msg: language == "zho" ? "清除完成" : "Clear Complete"
+			    });
+			});
+			var cacheSize = $api.dom("#cache-size");
+			$api.html(cacheSize, 0+' M');
+		};
+
+		function logout(){//退出登录
+			//关闭推送
+			var ajpush = api.require('ajpush');
+			var shieldMS=(typeof($api.getStorage("shieldMS"))!="undefined")?$api.getStorage("shieldMS"):{};
+			var bells = $api.getStorage('bells');		
+			//atlist页面设置的缓存，用来缓存铃铛
+			ajpush.removeListener();
+			$api.clearStorage();
+			$api.setStorage('shieldMS', shieldMS);
+			$api.setStorage('groupgid', groupgid);
+			$api.setStorage("language", language);
+			$api.setStorage("huixiang", huixiang_data);
+			$api.setStorage('bells', bells);
+
+
+			ok_login();
+			api.closeFrame({
+			    name: 'loading'
+			});
+
+//			关闭会话列表
+			api.closeWin({
+				name :'index'
+			});
+//			关闭功能列表
+			api.closeWin({
+				name: 'funtion_list'
+			});
+//			关闭个人主页
+			api.closeWin({
+				name: "home"
+			});
+//			关闭搜索页
+			api.closeWin({
+				name: "search"
+			});
+// //			关闭设置页
+// 			api.closeWin({
+// 				name: "setting"
+// 			});
+			//清除token
+			api.ajax({
+			    url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/cleanToken',
+			    method: 'post',
+			    data: {
+			        values: {
+			            token: $api.getStorage("id")+"JHHJKUY32432"
+			        }
+			    }
+			}, function(ret, err){
+			    if(ret){
+			    	if(ret.status == 1){
+			    		console.log("cleanToken");
+			    	}
+			    }
+			    return;
+			});
+			api.openWin({
+				name: "index0",
+				url: "widget://html/logon-register/index0.html",
+				reload: true,
+				vScrollBarEnabled: false,
+				slidBackEnabled: false,
+				animation:{
+						type:"none",
+						 subType:"from_right",
+						 duration: 1
+				}
+			});
+
+		setTimeout(function() {
+			api.closeWin({
+				name: "setting"
+			});
+		}, 1000);
+	}
+
+//		清一下缓存
+		function ok_login() {
+			// 重新清空缓存
+			$api.rmStorage('id');
+			$api.rmStorage('apId');
+			$api.rmStorage('avatar')
+			$api.rmStorage('fans')
+			$api.rmStorage('follwer')
+			$api.rmStorage('summary')
+			$api.rmStorage('popular')
+			$api.rmStorage('active')
+			$api.rmStorage('nickname')
+			$api.rmStorage('my_message')
+			$api.rmStorage('focus_message')
+			$api.rmStorage('user_name');
+			$api.rmStorage('beginDate');
+			$api.rmStorage('cover');
+
+
+			$api.rmStorage('hasNews')//总的未读数
+			$api.rmStorage('chatList');//会话列表
+
+		}
+	</script>
+</body>
+</html>

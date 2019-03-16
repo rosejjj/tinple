@@ -1,0 +1,1868 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>登录页面</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/mystyle.css" /> -->
+    <style type="text/css">
+    /*.slider-pane3 img{
+      position: relative;
+      left: 350px;
+    }
+    .slider-pane2 img{
+      position: relative;
+      left: 350px;
+    }
+    .slider-left{
+    height: 100%;
+    width: 100%;
+    }
+    .slider-bottom{
+    height: 100%;
+    width: 100%;
+    }*/
+    /*#but{
+      position: absolute;
+      bottom: 3px;
+      height: 50px;
+      width: 95%;
+      margin: 5px 10px;
+      background: white;
+      border-radius: 10px;
+      color: #AAA;
+      font-size: 15px;
+      visibility: hidden;
+      z-index: 11;
+    }*/
+    /*#bottom{
+      position: absolute;
+      bottom: 58px;
+      width: 95%;
+      text-align: center;
+      margin: 5px 10px;
+      visibility: hidden;
+      background: white;
+      border-radius: 10px;
+      border:none;
+      z-index: 11;
+    }*/
+    /*.second,.third,.forth,.fifth,.sixth{
+      height: 50px;
+      font-size: 15px;
+      border-top: 1px solid #F0F0F0;
+      font-weight: bold;
+    }*/
+
+    /*.first{
+      height: 40px;
+      color: #AAA;
+      font-size: 12px;
+    }*/
+    /*.slider-panel{
+      -webkit-animation: bounce 1s;
+    -webkit-animation-delay:0.7s;
+    -webkit-animation-fill-mode:forwards;
+    }
+    .slider-pane2{
+    -webkit-animation: bounce 1s;
+     -webkit-animation-delay:0.3s;
+     -webkit-animation-fill-mode:forwards;
+    }
+    .slider-pane3{
+    -webkit-animation: bounce 1s;
+    -webkit-animation-delay:0.5s;
+    -webkit-animation-fill-mode:forwards;
+    }
+    .slider-pane4{
+    -webkit-animation: bounce 1s;
+    -webkit-animation-delay:0.1s;
+    -webkit-animation-fill-mode:forwards;
+    }*/
+
+    /*@keyframes bounce {
+
+    from{
+        -moz-transform: translate3d(0, 0, 0);
+        -ms-transform: translate3d(0, 0, 0);
+        -o-transform: translate3d(0, 0, 0);
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+    from{
+        -moz-transform: translate3d(0, 0, 0);
+        -ms-transform: translate3d(0, 0, 0);
+        -o-transform: translate3d(0, 0, 0);
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+
+
+    40%{
+      -moz-transform: translate3d(-350, 0, 0);
+      -ms-transform: translate3d(-350, 0, 0);
+      -o-transform: translate3d(-350, 0, 0);
+
+        -webkit-transform: translate3d(-350, 0, 0);
+        transform: translate3d(-350px, 0, 0);
+      }
+      70%{
+        -moz-transform: translate3d(-335, 0, 0);
+        -ms-transform: translate3d(-335, 0, 0);
+        -o-transform: translate3d(-335, 0, 0);
+
+          -webkit-transform: translate3d(-335, 0, 0);
+          transform: translate3d(-335px, 0, 0);
+        }
+        90%{
+          -moz-transform: translate3d(-350, 0, 0);
+          -ms-transform: translate3d(-350, 0, 0);
+          -o-transform: translate3d(-350, 0, 0);
+
+            -webkit-transform: translate3d(-350, 0, 0);
+            transform: translate3d(-350px, 0, 0);
+
+          }
+        to{
+          -moz-transform: translate3d(-350px, 0, 0);
+          -ms-transform: translate3d(-350px, 0, 0);
+          -o-transform: translate3d(-350px, 0, 0);
+          -webkit-transform: translate3d(-350px, 0, 0);
+          transform: translate3d(-350px, 0, 0);
+        }
+
+    }
+    @-webkit-keyframes bounce {
+
+    from{
+        -moz-transform: translate3d(0, 0, 0);
+        -ms-transform: translate3d(0, 0, 0);
+        -o-transform: translate3d(0, 0, 0);
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+    from{
+        -moz-transform: translate3d(0, 0, 0);
+        -ms-transform: translate3d(0, 0, 0);
+        -o-transform: translate3d(0, 0, 0);
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+
+
+    40%{
+      -moz-transform: translate3d(-350, 0, 0);
+      -ms-transform: translate3d(-350, 0, 0);
+      -o-transform: translate3d(-350, 0, 0);
+
+        -webkit-transform: translate3d(-350, 0, 0);
+        transform: translate3d(-350px, 0, 0);
+      }
+      70%{
+        -moz-transform: translate3d(-335, 0, 0);
+        -ms-transform: translate3d(-335, 0, 0);
+        -o-transform: translate3d(-335, 0, 0);
+
+          -webkit-transform: translate3d(-335, 0, 0);
+          transform: translate3d(-335px, 0, 0);
+        }
+        90%{
+          -moz-transform: translate3d(-350, 0, 0);
+          -ms-transform: translate3d(-350, 0, 0);
+          -o-transform: translate3d(-350, 0, 0);
+
+            -webkit-transform: translate3d(-350, 0, 0);
+            transform: translate3d(-350px, 0, 0);
+
+          }
+        to{
+          -moz-transform: translate3d(-350px, 0, 0);
+          -ms-transform: translate3d(-350px, 0, 0);
+          -o-transform: translate3d(-350px, 0, 0);
+          -webkit-transform: translate3d(-350px, 0, 0);
+          transform: translate3d(-350px, 0, 0);
+        }
+
+    }*/
+    .register{
+      position: fixed;
+      top: 55%;
+      left: 3%;
+      height: 8%;
+      width: 94%;
+      border-radius: 10px;
+      background: #F381A3;
+    }
+    .fb{
+      position: fixed;
+      /*top: 63.5%;*/
+      top: 55%;
+      left: 3%;
+      height: 8%;
+      width: 94%;
+      border-radius: 10px;
+      background: #3B5999;
+    }
+    .wx{
+      position: fixed;
+      top: 72%;
+      left: 3%;
+      height: 8%;
+      width: 94%;
+      border-radius: 10px;
+      background: #89D952;
+    }
+    .qq{
+      position: absolute;
+      top: 72%;
+      left: 3%;
+      height: 8%;
+      width: 94%;
+      border-radius: 10px;
+      background: #0DB9F7;
+      display: none;
+    }
+    .wrap{
+      height: 100%;
+      width: 100%;
+    }
+    .jianbian{
+      position: fixed;
+      bottom: 36%;
+      width: 100%;
+      /*background: white;*/
+      height: 30%;
+      z-index: 3;
+    }
+    .white{
+      position: fixed;
+      top: 55%;
+      height: 45%;
+      width: 100%;
+      background: white;
+      z-index: 3;
+    }
+    .tinkle{
+      position: fixed;
+      top: 18.5%;
+      left: 27.5%;
+      height: 45vw;
+      width: 45%;
+      border-radius: 70px;
+      z-index: 9;
+    }
+    .welcome{
+      position: fixed;
+      top: 8%;
+      right: 25px;
+      height: 40px;
+      width: 165px;
+      background: white;
+      border-radius: 10px;
+      font-size: 18px;
+      text-align: center;
+      line-height: 43px;
+      font-weight: bold;
+      z-index: 4;
+    }
+    .log{
+      position: fixed;
+      top: 83%;
+      left: 3%;
+      height: 8%;
+      width: 94%;
+      border-radius: 10px;
+      background: #EFEFEF;
+      color: black;
+    }
+    .public{
+      font-size: 15px;
+      font-weight: bold;
+      text-align: center;
+      line-height: 8.2vh;
+      z-index: 4;
+    }
+    .qq,.fb,.wx,.register{
+      color:white;
+    }
+    .yinsi{
+      position: fixed;
+      bottom: 14px;
+      width: 100%;
+      font-size: 12px;
+      color: rgba(16,16,16,1);
+      text-align: center;
+      z-index: 4;
+    }
+    .bg-b{
+      height: 100%;
+      animation:bg 30s linear infinite;
+      /*width: 100%;*/
+      /*animation:bg 5s;*/
+    }
+    /*.bg{
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      animation:bg 15s linear infinite;
+      -webkit-animation:bg 15s linear infinite;
+      -moz-animation:bg 15s linear infinite;
+      -ms-animation:bg 15s linear infinite;
+      -o-animation:bg 15s linear infinite;
+    }*/
+    @keyframes bg
+        {
+        0%   {
+          transform: translate3d(0, 0,0);
+          -webkit-transform: translate3d(0, 0,0);
+          -moz-transform: translate3d(0, 0,0);
+          -ms-transform: translate3d(0, 0,0);
+          -o-transform: translate3d(0, 0,0);
+        }
+        25%  {
+          transform: translate3d(-17.5%, 0,0);
+          -webkit-transform: translate3d(-17.5%, 0,0);
+          -moz-transform: translate3d(-17.5%, 0,0);
+          -ms-transform: translate3d(-17.5%, 0,0);
+          -o-transform: translate3d(-17.5%, 0,0);
+        }
+        50%  {
+          transform: translate3d(-35%, 0,0);
+          -webkit-transform: translate3d(-35%, 0,0);
+          -moz-transform: translate3d(-35%, 0,0);
+          -ms-transform: translate3d(-35%, 0,0);
+          -o-transform: translate3d(-35%, 0,0);
+        }
+        75%  {
+          transform: translate3d(-52.5%, 0,0);
+          -webkit-transform: translate3d(-52.5%, 0,0);
+          -moz-transform: translate3d(-52.5%, 0,0);
+          -ms-transform: translate3d(-52.5%, 0,0);
+          -o-transform: translate3d(-52.5%, 0,0);
+        }
+        100% {
+          transform: translate3d(-70.05%, 0,0);
+          -webkit-transform: translate3d(-70.05%, 0,0);
+          -moz-transform: translate3d(-70.05%, 0,0);
+          -ms-transform: translate3d(-70.05%, 0,0);
+          -o-transform: translate3d(-70.05%, 0,0);
+        }
+        }
+        @-webkit-keyframes bg
+            {
+              0%   {
+                transform: translate3d(0, 0,0);
+                -webkit-transform: translate3d(0, 0,0);
+                -moz-transform: translate3d(0, 0,0);
+                -ms-transform: translate3d(0, 0,0);
+                -o-transform: translate3d(0, 0,0);
+              }
+              25%  {
+                transform: translate3d(-17.5%, 0,0);
+                -webkit-transform: translate3d(-17.5%, 0,0);
+                -moz-transform: translate3d(-17.5%, 0,0);
+                -ms-transform: translate3d(-17.5%, 0,0);
+                -o-transform: translate3d(-17.5%, 0,0);
+              }
+              50%  {
+                transform: translate3d(-35%, 0,0);
+                -webkit-transform: translate3d(-35%, 0,0);
+                -moz-transform: translate3d(-35%, 0,0);
+                -ms-transform: translate3d(-35%, 0,0);
+                -o-transform: translate3d(-35%, 0,0);
+              }
+              75%  {
+                transform: translate3d(-52.5%, 0,0);
+                -webkit-transform: translate3d(-52.5%, 0,0);
+                -moz-transform: translate3d(-52.5%, 0,0);
+                -ms-transform: translate3d(-52.5%, 0,0);
+                -o-transform: translate3d(-52.5%, 0,0);
+              }
+              100% {
+                transform: translate3d(-70.05%, 0,0);
+                -webkit-transform: translate3d(-70.05%, 0,0);
+                -moz-transform: translate3d(-70.05%, 0,0);
+                -ms-transform: translate3d(-70.05%, 0,0);
+                -o-transform: translate3d(-70.05%, 0,0);
+              }
+            }
+        .zhe{
+          position: fixed;
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: 100%;
+          /*background: black;
+          opacity: 0;*/
+          z-index: 2;
+        }
+        .regg{
+          background: #F381A3;
+          font-size: 15px;
+          color: white;
+          width: 94%;
+          height: 21%;
+          text-align: center;
+          line-height: 8.2vh;
+          border-radius: 10px;
+          font-weight: bold;
+        }
+        .number{
+          position: absolute;
+          top: 8%;
+          left: 3%;
+        }
+        .box{
+          position: absolute;
+          top: 30.5%;
+          left: 3%;
+        }
+        .have{
+          position: absolute;
+          top: 53%;
+          left: 3%;
+          background: #EFEFEF;
+          color: black;
+        }
+        .pl{
+          position: fixed;
+          bottom: 21px;
+          width: 100%;
+          color: black;
+          font-size: 12px;
+          text-align: center;
+          font-weight: bold;
+        }
+        .ple{
+          position: fixed;
+          bottom: 15px;
+          width: 100%;
+          color: black;
+          font-size: 12px;
+          text-align: center;
+          font-weight: bold;
+        }
+        #mask,#mask2{
+          position: absolute;
+          height: 100%;
+          width: 100%;
+          background: #1C1C1E;
+          opacity: 0.7;
+          z-index: 10;
+          display: none;
+        }
+        .reg{
+          position: fixed;
+          bottom: 0;
+          height: 37.4%;
+          width: 100%;
+          background: white;
+          z-index: 11;
+          display: none;
+        }
+        .language{
+          position: fixed;
+          bottom: 0;
+          width: 100%;
+          height: 256px;
+          background: white;
+          display: none;
+          z-index: 99;
+        }
+        .en,.zho{
+          width: 94%;
+          height: 80px;
+          text-align: center;
+          color: black;
+          font-weight: bold;
+          background: #EFEFEF;
+          border-radius: 10px;
+          /*line-height: 25px;*/
+          z-index: 5;
+        }
+        .en{
+          position: absolute;
+          top: 20px;
+          left: 3%;
+          line-height: 23px;
+        }
+        .zho{
+          position: absolute;
+          top: 105px;
+          left: 3%;
+          line-height: 25px;
+        }
+        .en p{
+          font-size: 15px;
+          margin-top: 20px;
+        }
+        .zho p{
+          font-size: 15px;
+          margin-top: 17px;
+        }
+        .sanjiao{
+          position: absolute;
+          left: 18px;
+          bottom: -13px;
+          height: 15px;
+          width: 20px;
+        }
+        .mailR{
+          position: fixed;
+          top: 63.5%;
+          left: 3%;
+          height: 8%;
+          width: 94%;
+          border-radius: 10px;
+          background: #F381A3;
+          color: white;
+          display: none;
+        }
+        .phoneR{
+          position: fixed;
+          top: 72%;
+          left: 3%;
+          height: 8%;
+          width: 94%;
+          border-radius: 10px;
+          background: #89D952;
+          color: white;
+          display: none;
+        }
+    </style>
+</head>
+<html>
+<body>
+  <!-- <div class="bg"></div> -->
+  <div class="zhe"><img class="bg-b" src="../../icon/logon-page2/login-bg.png"></div>
+  <div class="wrap">
+    <div class="welcome"><span class="ma">歡迎來到 Tinkle</span><img class="sanjiao" src="../../icon/logon-page2/sanjiao.png"></div>
+    <img class="tinkle" src="../../icon/logon-page2/logo-apple-icon-1024.png">
+    <div class="white"></div>
+    <img class="jianbian" src="../../icon/logon-page2/jianbian.png">
+    <div class="public register">用 郵 箱 &amp; 號 碼 註 冊</div>
+    <div class="public fb">用 Facebook 繼 續</div>
+    <div class="public wx">用 微 信 繼 續</div>
+    <div class="public qq">用 QQ 繼 續</div>
+    <div class="public mail mailR">用 郵 箱 註 冊</div>
+    <div class="public phone phoneR">用 手 機 號 碼 註 冊</div>
+    <div class="public log">登 錄</div>
+    <p class="yinsi">若繼續，則表示你同意 Tinkle 的 <span class="service">服務條款</span> 和 <span class="privacy">隱私政策</span></p>
+    <div id="mask"></div>
+    <div id="mask2"></div>
+    <div class="reg">
+      <div class="regg number phone">手 機 號 碼 註 冊</div>
+      <div class="regg box mail">郵 箱 註 冊</div>
+      <div class="regg have">已 經 有 賬 號</div>
+      <p class="ple">請 選 擇</p>
+    </div>
+    <div class="language">
+      <div class="en"> <p>Use「 English 」<br/>as a Software Language</p></div>
+      <div class="zho"><p>使 用「 繁 體 中 文 」<br/>作 為 軟 件 語 言</p></div>
+      <p class="pl">請 選 擇 壹 種 軟 件 語 言</p>
+    </div>
+    <!-- <div id="slider" class="slider">
+      <div class="slider-right">
+  		  <ul class="slider-main">
+  			  <li class="slider-panel"><img  src="../../icon/logon-page2/login-backg-trans@3x.png"></li>
+  			  <li class="slider-panel"><img src="../../icon/logon-page2/login-backg-world@3x.png"></li>
+  			  <li class="slider-panel"><img src="../../icon/logon-page2/login-backg-trap@3x.png"></li>
+  	     </ul>
+       </div>
+       <div class="slider-left" :style="language=='zho'?slider_left_chi:slider_left_eng">
+   		  <ul class="slider-main">
+   			  <li class="slider-pane2 left_1"><img id="left_img1" :style="language=='zho'?left_chi:left_eng" src="../../icon/logon-page2/login-eng-trans@3x.png"></li>
+   			  <li class="slider-pane2 left_2"><img id="left_img2" :style="language=='zho'?left_chi:left_eng" src="../../icon/logon-page2/login-eng-world@3x.png"></li>
+   			  <li class="slider-pane2 left_3"><img id="left_img3" :style="language=='zho'?left_chi:left_eng" src="../../icon/logon-page2/login-eng-trap@3x.png"></li>
+   	     </ul>
+        </div>
+        <div class="slider-bottom" :style="language=='zho'?slider_bottom_chi:slider_bottom_eng">
+    		  <ul class="slider-main">
+    			  <li class="slider-pane3 bottom_1"><img id="bottom_img1" :style="language=='zho'?bottom_chi:bottom_eng" src="../../icon/logon-page2/login-eng-world2@3x.png"></li>
+    			  <li class="slider-pane3 bottom_2"><img id="bottom_img2" :style="language=='zho'?bottom_chi:bottom_eng" src="../../icon/logon-page2/login-eng-trap2@3x.png"></li>
+    			  <li class="slider-pane3 bottom_3"><img id="bottom_img3" :style="language=='zho'?bottom_chi:bottom_eng" src="../../icon/logon-page2/login-eng-trans2@3x.png"></li>
+    	     </ul>
+         </div>
+         <div class="slider-top">
+          <ul class="slider-main">
+            <li class="slider-pane4"><img  src="../../icon/logon-page2/logo-pink.png"></li>
+            <li class="slider-pane4"><img src="../../icon/logon-page2/logo-pink.png"></li>
+            <li class="slider-pane4"><img src="../../icon/logon-page2/logo-pink.png"></li>
+           </ul>
+          </div>
+    </div>
+  		<div class="slider-extra">
+  			<ul class="slider-nav">
+  				<li class="slider-item"></li>
+  				<li class="slider-item"></li>
+  				<li class="slider-item"></li>
+  			</ul>
+    </div> -->
+    </div>
+    <!-- <div class="footer">
+      <div class="wechat phone_1" >E-mail Registration</div>
+      <div class="wechat fb_2" style="display:none">LOGIN WITH Facebook</div>
+      <div class="wechat wx_3" style="display:none">LOGIN WITH WECHAT</div>
+      <div class="wechat qq_4" style="display:none">LOGIN WITH QQ</div>
+      <div class="footer-bottom">
+        <ul>
+          <li class="sign">SIGN UP</a></li>
+          <li class="login">LOGIN</a></li>
+        </ul>
+        </div>
+      </div> -->
+      <!-- <table id="bottom">
+        <tr>
+          <td class="first">Choose a Type</td>
+        </tr>
+        <tr>
+          <td class="second">Number Registration</td>
+        </tr>
+        <tr>
+          <td class="third">E-mail Registration</td>
+        </tr>
+        <tr>
+          <td class="forth">Login with Facebook</td>
+        </tr>
+        <tr>
+          <td class="fifth">Login with Wechat</td>
+        </tr>
+        <tr>
+          <td class="sixth">Login with QQ</td>
+        </tr>
+    </table>
+    <button id="but" type="submit">Cancel</button> -->
+</body>
+</html>
+<script type="text/javascript" src="../../script/api.js"></script>
+	<script src="../../script/vue.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="../../script/md5.js"></script>
+<script type="text/javascript" src="../../script/jmessage-sdk-web.2.5.0.min.js"></script><!--极光SDK-->
+<script type="text/javascript" src="../../json/api.json"></script>
+<script type="text/javascript" src="../../json/router.json"></script>
+<script type="text/javascript" src="../../json/global.json"></script>
+<script type="text/javascript" src="../../script/jquery-3.1.0.min.js"></script>
+<script src="../../script/public.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../script/StackBlur.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+apiready = function(){
+    var logstate=0;//判断点击登陆按钮跳转页面;
+    var wx, qq, facebook,
+    loginMethod = 'Mobile',
+    focus_users = [];
+    var JIM = new JMessage();
+    var length,
+    //判断facebook 微信 qq 是否安装 0代表安装了，1代表没有安装
+    fbstate=0,
+    wxstate=0,
+    qqstate=0;
+  //判断是否安装了facebook 微信 QQ 如果没有安装则对相应的状态码进行更改
+  facebook = api.require('facebook');
+    if(api.systemType == 'ios') {
+      facebook.isInstalled(function(ret, err) {
+        if(ret.installed) {
+
+        } else {
+              //			        alert("当前设备已安装facebook客户端");
+            fbstate=1;
+        }
+      });
+
+    } else {
+      api.appInstalled({
+        appBundle: 'com.facebook.katana'
+      }, function(ret, err) {
+        if(ret.installed) {
+        } else {
+          //应用未安装
+            fbstate=1;
+          //  openPopup("你的手机上没有安装facebook");
+        }
+      });
+    }
+    wx = api.require('wx');
+  wx.isInstalled(function(ret, err) {
+  if(ret.installed) {} else {
+    //微信未安装
+      wxstate=1;
+  }
+  });
+  qq = api.require('qq');
+  qq.installed(function(ret, err) {
+  if(ret.status) {} else {
+    //qq未安装
+       qqstate=1;
+    }
+  });
+
+  //根据手机内安装是否的facebook 微信  qq  优先级别是微信 facebook qq 如果都没的话就显示  手机与邮箱登陆
+
+  setTimeout(function(){
+     if(qqstate==0&&wxstate==0){
+        logstate=1;
+        $api.css($api.dom(".register"), "display:none");
+        $api.css($api.dom(".wx"), "top:63.5vh");
+        $api.css($api.dom(".wx"), "display:block");
+        $api.css($api.dom(".qq"), "display:block");
+  }else if(qqstate==0&&wxstate==1){
+        $api.css($api.dom(".fb"), "top:63.5%");
+        $api.css($api.dom(".wx"), "display:none");
+        $api.css($api.dom(".qq"), "display:block");
+  }else if(qqstate==1&&wxstate==0){
+        $api.css($api.dom(".fb"), "top:63.5%");
+        $api.css($api.dom(".wx"), "display:block");
+        $api.css($api.dom(".qq"), "display:none");
+  }else{
+        $api.css($api.dom(".register"), "display:none");
+        $api.css($api.dom(".wx"), "display:none");
+        $api.css($api.dom(".qq"), "display:none");
+        $api.css($api.dom(".mailR"), "display:block");
+        $api.css($api.dom(".phoneR"), "display:block");
+  }
+  },200);
+
+  // if(api.systemType=='ios'){
+  //   $('.public').css('line-height','60px');
+  //   $('.regg').css('line-height','60px');
+  // }
+  //如果没有选择过语言，弹出语言选择 窗口
+  if($api.getStorage('language')==undefined){
+    $('#mask2').css('display','block');
+    $('.language').css('display','block');
+  }else{
+    $('#mask2').css('display','none');
+    $('.language').css('display','none');
+  }
+  //设置语言缓存并关闭弹窗
+    $api.addEvt($api.dom('.en'), 'click', function(){
+    $api.setStorage("language","en");
+    $('#mask2').css('display','none');
+    $('.language').css('display','none');
+    location.reload()
+    });
+    $api.addEvt($api.dom('.zho'), 'click', function(){
+    $api.setStorage("language","zho");
+    $('#mask2').css('display','none');
+    $('.language').css('display','none');
+    location.reload()
+    });
+
+    var warn_text = {
+      text1: "您 的 手 機 沒 有 安 裝 Wechat ！",
+      text2: "好 吧",
+      text3: "選 擇 其 他 方 式",
+      text4: "您 的 手 機 沒 有 安 裝 Facebook ！",
+      text5: "選 擇 其 他 方 式",
+      text6: "您 的 手 機 沒 有 安 裝 QQ  ！",
+      text7: "選 擇 其 他 方 式",
+      text10: '获 取 聊 天 数 据 失 败',
+      text12: "服务器连接失败，Tinkle服务可能无法覆盖您的区域",
+      text13: "请检查网络是否正常，请检查是否禁用Tinkle网络权限"
+    };
+
+  if($api.getStorage("language") != "zho") {
+    // $(".phone_1").html("郵箱注冊");
+    // $(".fb_2").html("Facebook關聯登陸");
+    // $(".wx_3").html("Wechat關聯登陸");
+    // $(".qq_4").html("QQ關聯登陸");
+    // $(".sign").html("注 冊");
+    // $(".login").html("登 陸");
+    // $(".first").html("選 擇 壹 個 類 型");
+    // $(".second").html("手 機 號 碼 注 冊");
+    // $(".third").html("郵 箱 注 冊");
+    // $(".forth").html("Facebook 關 聯 注 冊");
+    // $(".fifth").html("Wechat 關 聯 注 冊");
+    // $(".sixth").html("QQ 關 聯 注 冊");
+    // $("#but").html("取 消");
+    // $("#left_img1").attr("src","../../icon/logon-page2/login-cna-trans@3x.png");
+    // $("#left_img2").attr("src","../../icon/logon-page2/login-cna-world@3x.png");
+    // $("#left_img3").attr("src","../../icon/logon-page2/login-cna-trap@3x.png");
+    // $("#bottom_img1").attr("src","../../icon/logon-page2/login-cna-trans2@3x.png");
+    // $("#bottom_img2").attr("src","../../icon/logon-page2/login-cna-world2@3x.png");
+    // $("#bottom_img3").attr("src","../../icon/logon-page2/login-cna-trap2@3x.png");
+    $('.ma').html("Welcome to Tinkle");
+    $('.register').html("Use Phone &amp; E-mail continue");
+    $('.fb').html("Use Facebook continue");
+    $('.wx').html("Use Wechat continue");
+    $('.qq').html("Use QQ continue");
+    $('.log').html("Login");
+    $('.phone').html("Phone Registration");
+    $('.mail').html("E-mail Registration");
+    $('.have').html("Already have an Account");
+    $('.ple').html("Please choose");
+    $('.pl').html("Please Select a Software Language");
+    $('.welcome').css("font-size","16px");
+    $('.yinsi').css("font-size","9px");
+    $('.yinsi').html("If you continue, you agree with Tinkle <span class='service'>terms of service</span> and <span class='privacy'>privacy policy</span>");
+    // $api.html($api.dom(".yinsi"),"If you continue, you agree with Tinkle <span class='service'>terms of service</span> and <span class='privacy'>privacy policy</span>")
+
+    var warn_text = {
+      text1: "Wechat is not installed on<br/>your mobile phone",
+      text2: "OK",
+      text3: "Choose another way",
+      text4: "Facebook is not installed on<br/>your mobile phone",
+      text5: "Choose another way",
+      text6: "QQ is not installed on<br/>your mobile phone",
+      text7: "Choose another way",
+      text10: 'Getting WeChat data failure',
+      text12: "Server Connection Failed,  Tinkle Service May Not Cover Your Area",
+      text13: "Please Check The Network Is Normal, Please Check Whether Tinkle Network Permission Is Disabled"
+    };
+  }
+  $api.addEvt($api.dom('.privacy'), 'click',function(){
+    api.openWin({
+      name: "privacy",
+      url: "widget://html/set-up/privacy.html",
+      reload: true,
+      vScrollBarEnabled: false,
+      slidBackEnabled: false
+    });
+  });
+  $api.addEvt($api.dom('.service'), 'click',function(){
+    api.openWin({
+      name: "privacy",
+      url: "widget://html/set-up/service.html",
+      reload: true,
+      vScrollBarEnabled: false,
+      slidBackEnabled: false
+    });
+  });
+  var slider = new Vue({
+    el:"#slider",
+    data:{
+      language:$api.getStorage("language"),
+      // left_chi:{
+      //   height: '82%',
+      //   width: '82%'
+      // },
+      // left_eng: {
+      //   height: '70%',
+      //   width:'70%'
+      // },
+      // bottom_chi:{
+      //   height: '82%',
+      //   width: '82%'
+      // },
+      // bottom_eng:{
+      //   height: '76%',
+      //   width:'76%'
+      // },
+      // slider_left_chi:{
+      //   position: 'absolute',
+      //   top: '40%',
+      //   left: '3%'
+      // },
+      // slider_left_eng:{
+      //   position: 'absolute',
+      //   top:'40%',
+      //   left: '4%'
+      // },
+      // slider_bottom_eng:{
+      //   position: 'absolute',
+      //   top: '75%',
+      //   left: '4%'
+      // },
+      // slider_bottom_chi:{
+      //   position: 'absolute',
+      //   top: '72%',
+      //   left: '4%'
+      // }
+    }
+
+  })
+  //点击遮罩层关闭
+  $("#mask").click(function(){
+    // document.getElementById('bottom').style.visibility="hidden";
+    // document.getElementById('but').style.visibility="hidden";
+    // document.getElementById('mask').style.display="none";
+    $('.reg').css('display','none');
+    $('#mask').css('display','none');
+  });
+  //点击邮箱手机注册打开小窗口
+  $('.register').click(function(){
+    $('#mask').css('display','block');
+    $('.reg').css('display','block');
+  })
+  //点击已经有账号关闭窗口
+  $('.have').click(function(){
+    api.openWin({
+        name: 'login',
+        url: './login.html',
+        pageParam: {
+        }
+    });
+    $('#mask').css('display','none');
+    $('.reg').css('display','none');
+  })
+  //点击登陆
+  $('.log').click(function(){
+    if(logstate == 0){
+      api.openWin({
+          name: 'login',
+          url: './login.html',
+          pageParam: {
+          }
+      });
+    }else{
+      $('#mask').css('display','block');
+      $('.reg').css('display','block');
+    }
+  })
+  var flag = false;
+  api.addEventListener({
+      name: 'keyback'
+  }, function(ret, err) {
+    // alert(JSON.stringify(ret));
+      if (false == flag) {
+          api.toast({
+              msg: '再按一次退出',
+              duration: 2000,
+              location: 'bottom'
+          });
+          flag = true;
+          setTimeout(function() {
+              flag = false;
+          }, 2000);
+      } else {
+          api.closeWidget({
+              silent: true
+          });
+      }
+  });
+
+  //不全屏-导航栏透明底-白字
+  fullScreen();
+//   api.addEventListener({
+//     name: 'keyback'
+// }, function(ret, err) {
+//     api.openWin({
+//       name: 'quick_login',
+//       url: './quick_login.html',
+//       animation:{
+//         subType:"from_left",
+//         duration: 200
+//       }
+//     });
+// });
+
+  $('.wx').click(function(event) {
+    console.log('微信登录');
+    if(wxstate==1){
+     openPopup(warn_text.text1,warn_text.text2,warn_text.text3);
+      return;
+    }
+     wxlogin();
+     jMessage_init();
+ });
+
+  // currentIndex = 0,
+  // interval,
+  // hasStarted = false, //是否已经开始轮播
+  // t = 2500; //轮播时间间隔
+  // length = $('.slider-panel').length;
+
+  // var JIM = new JMessage(); //极光对象
+  //将除了第一张图片隐藏
+  // $('.slider-panel:not(:first)').hide();
+  // $('.slider-pane2:not(:first)').hide();
+  // $('.slider-pane3:not(:first)').hide();
+  // $('.slider-pane4:not(:first)').hide();
+  //将第一个slider-item设为激活状态
+  // $('.slider-item:first').addClass('slider-item-selected');
+
+
+  // $('.slider-item').hover(function(e) {
+  // stop();
+  // var preIndex = $(".slider-item").filter(".slider-item-selected").index();
+  // currentIndex = $(this).index();
+  // play(preIndex, currentIndex);
+  // }, function() {
+  // start();
+  // });
+
+
+  /**
+     * 向前翻页
+     */
+    // function pre() {
+    //   var preIndex = currentIndex;
+    //   currentIndex = (--currentIndex + length) % length;
+    //   play(preIndex, currentIndex);
+    // }
+    /**
+     * 向后翻页
+     */
+    // function next() {
+    //   var preIndex = currentIndex;
+    //   currentIndex = ++currentIndex % length;
+    //   play(preIndex, currentIndex);
+    //   // arr[preIndex].hide();
+    // }
+
+  // function play(preIndex, currentIndex) {
+  // $('.slider-panel').eq(preIndex).fadeOut(200)
+  //   .parent().children().eq(currentIndex).fadeIn(800);
+  // $('.slider-pane2').eq(preIndex).fadeOut(200)
+  //     .parent().children().eq(currentIndex).fadeIn(800);
+  // $('.slider-pane3').eq(preIndex).fadeOut(200)
+  //     .parent().children().eq(currentIndex).fadeIn(800);
+  // $('.slider-pane4').eq(preIndex).fadeOut(200)
+  //     .parent().children().eq(currentIndex).fadeIn(800);
+  // $('.slider-item').removeClass('slider-item-selected');
+  // $('.slider-item').eq(currentIndex).addClass('slider-item-selected');
+  // }
+
+  /**
+  * 开始轮播
+  */
+  // function start() {
+  // if(!hasStarted) {
+  //   hasStarted = true;
+  //   interval = setInterval(next,t);
+  // }
+  // }
+
+  // api.addEventListener({
+  //   name:'swiperight'
+  // }, function(ret, err){
+  //   pre();
+  // });
+  // api.addEventListener({
+  //   name:'swipeleft'
+  // }, function(ret, err){
+  // next();
+  // });
+  // start();
+
+
+    // jMessage_init();
+    // $(".sign").click(function(){
+    //   document.getElementById('bottom').style.visibility="visible";
+    //   document.getElementById('but').style.visibility="visible";
+    //   document.getElementById('mask').style.display="block";
+    // });
+    // $("#but").click(function(){
+    // document.getElementById('bottom').style.visibility="hidden";
+    // document.getElementById('but').style.visibility="hidden";
+    // document.getElementById('mask').style.display="none";
+    // });
+    // $(".login").click(function(){
+    // api.openWin({
+    //     name: 'login',
+    //     url: './login.html',
+    //     vScrollBarEnabled: false,
+    //     slidBackEnabled: false,
+    //     animation: {
+    //       type: "movein",
+    //       subType: "from_right",
+    //       duration: 500
+    //     },
+    //     pageParam: {
+    //         // name: 'test'
+    //     }
+    // });
+    //
+    // })
+
+
+    //帮助跳到手机，收取验证码，注册
+    $(".phone").click(function() {
+      // document.getElementById('bottom').style.visibility="hidden";
+      // document.getElementById('but').style.visibility="hidden";
+      // document.getElementById('mask').style.display="none";
+      api.openWin({
+          name: 'register_mobile',
+          url: './register_mobile.html',
+          pageParam: {
+              data: 0//0代表是从注册页面打开的收取手机验证码的页面    1代表是从帮助页面进入的收取手机验证码的页面
+          }
+      });
+      $('.reg').css('display','none');
+      $('#mask').css('display','none');
+    });
+    //帮助跳到邮箱，收取验证码，注册
+    $(".mail").click(function() {
+      // document.getElementById('bottom').style.visibility="hidden";
+      // document.getElementById('but').style.visibility="hidden";
+      // document.getElementById('mask').style.display="none";
+      api.openWin({
+          name: 'register_email',
+          url: './register_email.html',
+          pageParam: {
+                data:2
+          }
+      });
+      $('.reg').css('display','none');
+      $('#mask').css('display','none');
+    });
+
+
+      //Facebook
+      // facebook登录
+
+      // $('.forth').click(function(){
+      //   document.getElementById('mask').style.display="none";
+      //   document.getElementById('bottom').style.visibility="hidden";
+      //   document.getElementById('but').style.visibility="hidden";
+      //       facebook = api.require('facebook');
+      //
+      //   jMessage_init();
+      //   // var returnback=0;
+      //
+      //
+      //   // setTimeout(function(){
+      //       // alert("returnback"+returnback);
+      //   //     return;
+      //   // },10);
+      //   //  alert(fbstate);
+      //   if(fbstate==1){
+      //    openPopup(warn_text.text4,warn_text.text2,warn_text.text5);
+      //     return;
+      //   }
+      //
+      //     // jMessage_init();
+      //
+      //   console.log('fb 登录');
+      //   fblogin();
+      // });
+      //微信登录
+      // $('.fifth').click(function() {
+      //  jMessage_init();
+      // wx = api.require('wx');
+      // if(wxstate==1){
+      //  openPopup(warn_text.text6,warn_text.text2,warn_text.text3);
+      //   return;
+      // }
+      //   console.log('微信登录');
+      //   document.getElementById('mask').style.display="none";
+      //   document.getElementById('bottom').style.visibility="hidden";
+      //   document.getElementById('but').style.visibility="hidden";
+      //   wxlogin();
+      //
+      // });
+
+
+  //点击关联登陆是 手机与邮箱
+    //  $('.phone_1').click(function(event) {
+    //    api.openWin({
+    //        name: 'register_email',
+    //        url: './register_email.html',
+    //        pageParam: {
+    //              data:2
+    //        }
+    //    });
+     //
+    //  });
+     $('.qq').click(function(event) {
+       jMessage_init();
+       console.log('qq登录');
+       if(qqstate==1){
+        openPopup(warn_text.text6,warn_text.text2,warn_text.text7);
+         return;
+       }
+      //  document.getElementById('bottom').style.visibility="hidden";
+      //  document.getElementById('but').style.visibility="hidden";
+       qqlogin();
+     });
+     $('.fb').click(function(event) {
+       jMessage_init();
+        console.log('facebook登录');
+        // if(fbstate==1){
+        //  openPopup(warn_text.text4,warn_text.text2,warn_text.text5);
+        //   return;
+        // }
+        // document.getElementById('bottom').style.visibility="hidden";
+        // document.getElementById('but').style.visibility="hidden";
+        fblogin();
+     });
+
+     //qq登录
+    //  $('.sixth').click(function(){
+    //      document.getElementById('mask').style.display="none";
+    //    document.getElementById('bottom').style.visibility="hidden";
+    //    document.getElementById('but').style.visibility="hidden";
+    //    // jMessage_init();
+    //    qq = api.require('qq');
+      //  if(qqstate==1){
+      //   openPopup(warn_text.text6,warn_text.text2,warn_text.text7);
+      //    return;
+      //  }
+     //
+    //    console.log('qq登录');
+    //      qqlogin();
+    //        jMessage_init();
+    //  });
+
+
+  //微信快速登录注册
+    function wxlogin(){
+       wx = api.require('wx');
+      wx.auth({
+        apiKey: ''
+      }, function(ret, err) {
+      console.log(JSON.stringify(ret));
+        if(ret.status) {
+          open_loading();
+          wx.getToken({
+            apiKey: '',
+            apiSecret: '',
+            code: ret.code
+          }, function(ret, err) {
+            //  alert(JSON.stringify(ret));
+            if(ret.status) {
+              var accessToken = ret.accessToken;
+              var openId = ret.openId;
+              //							微信注册
+              console.log(openId);
+              console.log(openId);
+              console.log(openId);
+              console.log(openId);
+              console.log(openId);
+              wx.getUserInfo({
+                accessToken: ret.accessToken,
+                openId: ret.openId
+              }, function(ret, err) {
+                // alert(JSON.stringify(ret));
+                $api.setStorage('avatar', ret['headimgurl']);
+                if(ret.status) {
+                  if(accessToken){
+
+    //										alert(ret['headimgurl']);
+                    api.ajax({
+                      url: json['http'] + "app_wx/save",
+                      method: 'post',
+                      timeout : 10,//单位为：秒
+                      data: {
+                        values: {
+                          openid: ret['openid'],
+                          nickname: ret['nickname'],
+                          headimgurl: ret['headimgurl'],
+                          unionid: ret['unionid'],
+                          sex: ret['sex'],
+                        }
+                      }
+                    }, function(ret, err) {
+
+                      if(ret['status'] == '1') {
+                        //  alert(JSON.stringify(ret));
+                      //清空以前的缓存
+                        ok_login();
+                      //极光注册
+                        jMessage_register(ret['data']);
+                        $api.setStorage('id', ret["data"]);
+                        console.log(JSON.stringify($api.getStorage('id')));
+                        //获取登录用户头像缓存
+                        // api.ajax({
+                        //   url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/userinfo',
+                        //   method: 'post',
+                        //   data: {
+                        //     values: {
+                        //       uiId: $api.getStorage('id'),
+                        //       pageUiId: $api.getStorage('id')
+                        //     }
+                        //   },
+                        // }, function(ret, err) {
+                        //   // alert(JSON.stringify(ret['data']['avatar_url']));
+                        //     if(ret['status']==1){
+                        //         $api.setStorage('avatar', ret['data']['avatar_url']);
+                        //
+                        //     }
+                        // });
+                        // close_loading();
+                      //查詢關注數
+                        concern_number();
+
+                      } else {
+                        close_loading();
+                        //错误码，数字类型。（0：连接错误、1：超时、2：授权错误、3：数据类型错误）
+                        if(err.code == 0 || err.code == 1 || err.code == 2){
+                           openPopup(warn_text.text12,warn_text.text2,warn_text.text2);
+                        }
+                      }
+                    })
+                  }
+                }
+              });
+            }
+          });
+
+        } else {
+          if(api.systemType == 'android' && err.code == 3) {
+            alert("请安装微信客户端");
+          }
+        }
+      })
+
+    }
+
+    //qq 快速登录注册
+     function qqlogin(){
+       qq = api.require('qq');
+       qq.login(function(ret, err) {
+         if(ret) {
+            // open_loading();
+           var openId = ret.openId;
+           var accessToken = ret.accessToken;
+           qq.getUserInfo(function(ret, err) {
+             if(ret.status) {
+              //  alert(JSON.stringify(ret['info']['figureurl_2']));
+               $api.setStorage('avatar', ret['info']['figureurl_qq_2']);
+               if(accessToken){
+                  open_loading();
+                //  document.getElementById('bottom').style.visibility="hidden";
+                 var nickname = ret['info']['nickname'];
+                 var figureurl_2 = ret['info']['figureurl_qq_2'];
+                 var gender = ret['info']['gender'];
+
+                 $.post(json['http'] + 'app_qq/get_unionid', //http://test.baopinghui.com/
+                 {
+                   accessToken: accessToken
+                 },
+                 function(ret, err) {
+                   if(ret) {
+                     var ret = ret.replace('callback(', "");
+                     ret = ret.replace(');', "");
+
+                     ret = JSON.parse(ret);
+                     var unionid = ret['unionid'];
+                     api.ajax({
+                       url: json['http'] + 'app_qq/save',
+                       method: 'post',
+                       timeout : 10,//单位为：秒
+                       data: {
+                         values: {
+                           openid: openId,
+                           nickname: nickname,
+                           headimgurl: figureurl_2,
+                           unionid: unionid,
+                           sex: gender,
+                         }
+                       }
+                     }, function(ret, err) {
+                       if(ret['status'] == '1') {
+                       //清空以前的缓存
+                         ok_login();
+                       //极光注册
+                         jMessage_register(ret['data']);
+
+                         $api.setStorage('id', ret["data"]);
+                         //获取登录用户头像缓存
+                        //  api.ajax({
+                        //    url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/userinfo',
+                        //    method: 'post',
+                        //    data: {
+                        //      values: {
+                        //        uiId: $api.getStorage('id'),
+                        //        pageUiId: $api.getStorage('id')
+                        //      }
+                        //    },
+                        //  }, function(ret, err) {
+                        //    // alert(JSON.stringify(ret['data']['avatar_url']));
+                        //      if(ret['status']==1){
+                        //          $api.setStorage('avatar', ret['data']['avatar_url']);
+                         //
+                        //      }
+                        //  });
+                       //查詢關注數
+                         concern_number();
+                       } else {
+                         close_loading();
+                         //错误码，数字类型。（0：连接错误、1：超时、2：授权错误、3：数据类型错误）
+                         if(err.code == 0 || err.code == 1 || err.code == 2){
+                            openPopup(warn_text.text12,warn_text.text2,warn_text.text2);
+                         }
+                       }
+                     })
+                   } else {
+                     alert(JSON.stringify(err));
+                   }
+                 });
+
+               }
+             } else {
+
+             }
+
+           });
+         }
+       });
+
+     }
+
+
+
+// apireday = function(){
+//
+//   //语言选择
+//
+//     language();
+// 	//彈窗
+//
+//
+// //			监听返回事件——返回则退出应用
+//   api.addEventListener({
+//       name: 'keyback'
+//   }, function(ret, err) {
+// //		关闭应用
+//       api.closeWidget({
+//         id: 'A6925336051394',
+//         retData: {
+//             name: 'closeWidget'
+//         },
+//         silent : true,//退出时不弹出提示框
+//         animation: {
+//             type: 'flip',
+//             subType: 'from_bottom',
+//             duration: 500
+//         }
+//     });
+//   });
+//   //初始化极光
+//
+// }
+//Frame登录页面
+  // $('.login').click(function(){
+  //   api.openWin({
+  //     name: 'login',
+  //     url: 'html/sign.html',
+  //     vScrollBarEnabled: false,
+  //     slidBackEnabled: false,
+  //     animation: {
+  //       type: "movein",
+  //       subType: "from_right",
+  //       duration: 300
+  //     },
+  //     pageParam: {
+  //       name:'sign'
+  //     }
+  //   });
+  // });
+
+
+
+
+  function jMessage_init() {
+    // var JIM = new JMessage(); //极光对象
+    var appkey = 'c46c8bc128f41299334ec8e3';
+    var timestamp = (new Date()).valueOf(); //当前时间戳
+    var random_str = random(30); //生成随机字符串
+    var signature = MD5("appkey=" + appkey + "&timestamp=" + timestamp + "&random_str=" + random_str + "&key=269e7aa2881b1a8767f16ce6");
+    JIM.init({
+      "appkey": appkey,
+      "random_str": random_str,
+      "signature": signature,
+      "timestamp": timestamp,
+      "flag": 0
+    }).onSuccess(function(data) {
+      console.log('极光初始化成功');
+    }).onFail(function(data) {
+      console.log('错误，初始化失败');
+    }).onTimeout(function(data) {
+      // openPopup(warn_text.text12,warn_text.text2,warn_text.text2);
+      console.log('请求超时 ' + JSON.stringify(data));
+    });
+  }
+
+  //	极光注册
+  function jMessage_register(id){
+    // var JIM = new JMessage(); //极光对象
+    console.log('开始极光注册');
+    //jMessage_init();
+
+
+    // var JIM = new JMessage(); //极光对象
+    var appkey = 'c46c8bc128f41299334ec8e3';
+    var timestamp = (new Date()).valueOf(); //当前时间戳
+    var random_str = random(30); //生成随机字符串
+    var signature = MD5("appkey=" + appkey + "&timestamp=" + timestamp + "&random_str=" + random_str + "&key=269e7aa2881b1a8767f16ce6");
+    JIM.init({
+      "appkey": appkey,
+      "random_str": random_str,
+      "signature": signature,
+      "timestamp": timestamp,
+      "flag": 0
+    }).onSuccess(function(data) {
+      console.log('极光初始化成功,开始极光注册');
+       JIM.register({
+        'username' : id,
+         'password' : 123456
+        }).onSuccess(function(data) {
+  //			 	注册成功 {"code":0,"message":"success"}
+		      console.log('注册成功 ' + JSON.stringify(data));
+          api.ajax({
+              url: 'http://api.baopinghui.com/jpushim/findnewbin14',
+              method: 'get',
+              data: {
+                  values: {
+                      user: id
+                  }
+              }
+          },function(ret, err){
+              if (ret) {
+                  // alert( JSON.stringify( ret ) );
+              }
+          });
+		    }).onFail(function(data) {
+		      //参数不合法（用户已注册） {"code":882002,"event":"register","message":"user exit or not exits or password err or uid err or gid err or appkey err"}
+		      if(data.code == 882002){
+		        console.log('参数不合法（用户已注册） ' + JSON.stringify(data));
+		      }else{
+		        console.log('请求错误' + JSON.stringify(data));
+		        jMessage_register(id);
+		      }
+		    }).onTimeout(function(data) {
+		      console.log('请求超时 ' + JSON.stringify(data));
+		      jMessage_register(id);
+		    });
+
+    }).onFail(function(data) {
+      console.log('错误，初始化失败');
+    }).onTimeout(function(data) {
+      // openPopup(warn_text.text12,warn_text.text2,warn_text.text2);
+      console.log('请求超时 ' + JSON.stringify(data));
+    });
+
+
+
+  }
+  //登录成功- 重新清空旧用户的缓存
+  function ok_login() {
+    $api.rmStorage('id');//用户ID
+    $api.rmStorage('apId');
+    $api.rmStorage('avatar')
+    $api.rmStorage('fans')
+    $api.rmStorage('follwer')
+    $api.rmStorage('summary')
+    $api.rmStorage('popular')
+    $api.rmStorage('active')
+    $api.rmStorage('nickname')
+    $api.rmStorage('my_message')
+    $api.rmStorage('focus_message')
+    $api.rmStorage('user_name');
+    $api.rmStorage('beginDate');
+    $api.rmStorage('cover');
+
+    $api.rmStorage('hasNews')//总的未读数
+    $api.rmStorage('chatList');//会话列表
+  }
+
+  //		打开loading页
+  function open_loading(){
+    api.openFrame({
+      name: 'loading',
+      url: 'widget://html/logon-register/loading.html',
+      vScrollBarEnabled: false,
+      slidBackEnabled: false,
+      animation: {
+        type: "fade", //动画类型（详见动画类型常量）
+        subType: "fade", //动画子类型（详见动画子类型常量）
+        duration: 900 //动画过渡时间，默认300毫秒
+      }
+    });
+  }
+  //		关闭loading页
+  function close_loading(){
+    api.closeFrame({
+        name: 'loading'
+    });
+  }
+
+  //============================================		极光		===================================================
+
+  //生成随机字符串--用于极光注册
+  function random(length) {
+    var str = Math.random().toString(36).substr(2);
+    if(str.length >= length) {
+      return str.substr(0, length);
+    }
+    str += random(length - str.length);
+    return str;
+  }
+
+  //查询关注数-跳轉myfollo頁面
+  function concern_number(){
+    api.ajax({
+      url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/baseCount',
+      method: 'post',
+      data: {
+        values: {
+          uiId: $api.getStorage("id")
+        }
+      }
+    }, function(ret, err) {
+      if(ret) {
+        if(ret["status"]) {
+          if(ret['data']['myFocusNum'] < 10) {
+            api.ajax({
+              url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/findRUlist',
+              method: 'post',
+              data: {
+                values: {
+
+                }
+              }
+            }, function(ret, err) {
+              // alert(JSON.stringify(ret));
+              if(ret) {
+                if(ret["status"]) {
+                  ret['data'] = ret['data'].slice(0, 30);
+                  for(var i = 0; i < 10; i++) {
+                    //选中的对象
+                    focus_users.push(ret['data'][i]['uid']);
+                  }
+                  var num_len = 0;
+                  for(var i = 0; i < focus_users.length; i++) {
+                    (function(i) {
+                      api.ajax({
+                        url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/focus',
+                        method: 'post',
+                        data: {
+                          values: {
+                            uiId: $api.getStorage('id'),
+                            otherUiId: focus_users[i],
+                            type: 'focus'
+                          }
+                        }
+                      }, function(ret, err) {
+                        // alert(JSON.stringify(focus_users[0]));
+                        if(ret) {
+                          num_len++;
+                          if(num_len == 9){//最后一个
+                            setTimeout(function() {
+                              enterWin('index', 'chat/index.html');
+                                close_loading();
+                              // api.closeWin({});
+                            }, 2000);
+                          }
+                          console.log(JSON.stringify(ret));
+                        } else {
+                          close_loading();
+                          uploadError(err);
+                        }
+                      });
+                    })(i)
+                  }
+                }
+              } else {
+                close_loading();
+                uploadError(err);
+              }
+            });
+          }
+          setTimeout(function() {
+            enterWin('index', 'chat/index.html');
+              close_loading();
+            // api.closeWin({});
+          }, 2000);
+        } else {
+          close_loading();
+          console.log(JSON.stringify(ret));
+        }
+      } else {
+        uploadError(err);
+      }
+    });
+  }
+  function openPopup(data,value,none){
+    // var UIChatBox = api.require('UIChatBox');
+  api.openFrame({
+      name: 'pop',
+      url: './pop.html',
+      rect: {
+          x: 0,
+          y: 0
+
+      },
+      pageParam: {
+          data: data,
+          value: value,
+          none: none
+      },
+      // bounces: true,
+      bgColor: 'rgba(0,0,0,0)',
+      vScrollBarEnabled: true,
+      hScrollBarEnabled: true
+  });
+
+    //定時關閉彈窗
+  }
+
+   //facebook快速登录注册
+     function fblogin(){
+       facebook = api.require('facebook');
+       facebook.login({
+         appId: '121043455153956',
+         permissions: ['public_profile','email','user_birthday','user_likes']
+       }, function(ret, err) {
+        // alert(ret.appId);
+          // alert(JSON.stringify(ret));
+
+         if(ret.status){//成功返回数据
+
+          //  if(!ret.isCancelled) {
+
+             //登录后 获取用户信息
+             facebook.getUserInfo(function(ret, err) {
+              //  alert("facebook getUserInfo callback 1");
+              //  alert(JSON.stringify(ret));
+              //  alert(JSON.stringify(err));
+               if(ret.status) {
+                 open_loading();
+                 //	alert(JSON.stringify(ret));
+                //  alert("ajax check_bind callback ");
+                //  alert(JSON.stringify(ret));
+                //  alert(JSON.stringify(err));
+
+                 api.ajax({
+                   url: 'http://api.baopinghui.com/app_fb/check_bind',
+                   method: 'post',
+                   timeout : 10,//单位为：秒
+                   data: {
+                     values: {
+                       unionid: ret['result']['id']
+                     }
+                   }
+                 }, function(ret, err) {
+                  //  alert("ajax check_bind callback ");
+                  //  alert(JSON.stringify(ret));
+                  //  alert(JSON.stringify(err));
+                   if(ret) {
+                     if(ret['status']) {
+                       								// 	alert('进入fb没登陆过');
+                       //还没有fb登录过
+                       facebook.getUserInfo(function(ret, err) {
+                        //  alert("facebook fb getUserInfo callback 2 " + ret);
+                          // alert(JSON.stringify(ret));
+                         if(ret.status) {
+                          //  alert(JSON.stringify(ret));
+                          //  alert(JSON.stringify(err));
+                           api.ajax({
+                             url: 'http://api.baopinghui.com/app_fb/save',
+                             method: 'post',
+                             data: {
+                               values: {
+                                 unionid: ret['result']['id'],
+                                 nickname: ret['result']['name'],
+                                 sex: '男',
+                                //  headimgurl: ret['result']['picture']['data']['url']
+                               }
+                             }
+                           }, function(ret, err) {
+                            //  alert("ajax ");
+                            //  alert(JSON.stringify(ret));
+                            //  alert(JSON.stringify(err));
+
+                             if(ret.status) {
+
+                             //清空以前的缓存
+                               ok_login();
+                             //极光注册
+                               jMessage_register(ret['data']);
+
+                              //  $api.ajax({
+                              //    url: 'http://api.baopinghui.com/jpushim/findnewbin11'+
+                              //  })
+
+                               $api.setStorage('id', ret["data"]);
+                               //获取登录用户头像缓存
+                              //  api.ajax({
+                              //    url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/userinfo',
+                              //    method: 'post',
+                              //    data: {
+                              //      values: {
+                              //        uiId: $api.getStorage('id'),
+                              //        pageUiId: $api.getStorage('id')
+                              //      }
+                              //    },
+                              //  }, function(ret, err) {
+                              //    // alert(JSON.stringify(ret['data']['avatar_url']));
+                              //      if(ret['status']==1){
+                              //          $api.setStorage('avatar', ret['data']['avatar_url']);
+                               //
+                              //      }
+                              //  });
+                               //查詢關注數
+                               concern_number();
+                             } else {
+                              //  alert("注册成功，请重新点击登录");
+                               //										alert(JSON.stringify(err) + '390');
+                             }
+                           })
+                         } else {
+                          //  alert("facebook fb getUserInfo callback 2 error ");
+                          //  alert(JSON.stringify(err));
+                          //  api.alert({
+                          //    msg: JSON.stringify(err)
+                          //  });
+                         }
+                       });
+                     } else {
+
+                     //清空以前的缓存
+                       ok_login();
+                     //极光注册
+                       jMessage_register(ret['data']);
+
+                       //fb登录过了
+                       $api.setStorage('id', ret["data"]);
+                       //获取登录用户头像缓存
+                       api.ajax({
+                         url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/userinfo',
+                         method: 'post',
+                         data: {
+                           values: {
+                             uiId: $api.getStorage('id'),
+                             pageUiId: $api.getStorage('id')
+                           }
+                         },
+                       }, function(ret, err) {
+                         // alert(JSON.stringify(ret['data']['avatar_url']));
+                           if(ret['status']==1){
+                               $api.setStorage('avatar', ret['data']['avatar_url']);
+
+                           }
+                       });
+                       //查詢關注數
+                       concern_number();
+                     }
+                   } else {
+                    //  close_loading();
+                     //错误码，数字类型。（0：连接错误、1：超时、2：授权错误、3：数据类型错误）
+                     if(err.code == 0 || err.code == 1 || err.code == 2){
+                        openPopup(warn_text.text12warn_text.text2,warn_text.text2);
+                     }
+                   }
+                 })
+
+               } else {
+                 //没有成功返回数据
+                 //返回内容：errMsg : an active access token must be used to query infomation about the current user
+                //  api.alert({
+                //    msg: JSON.stringify(err)
+                //  });
+                 openPopup(warn_text.text10,warn_text.text2,warn_text.text2);
+               }
+             });
+          //  }
+         } else {
+         //code: -1：未知错误	1：config.xml 未配置 appId 2：用户未授权 3：出现错误，详情参考错误信息 msg
+           //msg: ''  字符串类型；错误信息，当code 为 3 时有值
+          //  api.alert({
+          //    msg: JSON.stringify(err)
+          //  });
+           openPopup(warn_text.text10,warn_text.text2,warn_text.text2);
+         }
+       });
+
+     }
+}
+
+
+
+</script>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+	<title>divination</title>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+		}
+		.bg{
+			position: absolute;
+			top:0;
+			width:100vw;
+			min-height:100vh;
+			background:url(../../icon/logon-page2/bg.jpg);
+			background-size:contain;
+			padding-bottom:5.32vw;
+			box-sizing: border-box;
+		}
+		.return{
+			position: absolute;
+			top:7.98vw;
+			left:5.32vw;
+			width:7.98vw;
+			height:7.98vw;
+			background:url(../../icon/logon-page2/return.png);
+			background-size: cover;
+		}
+		.box{
+			position: relative;
+			width:89.1vw;
+			height:150.8vw;
+			background-color:#7512f7;
+			border-radius: 10.64vw;
+			margin:22.07vw auto 0;
+			padding:2.66vw;
+			box-sizing: border-box;
+		}
+		.box1{
+			width:83.51vw;
+			height:109.57vw;
+			border-radius: 7.98vw;
+			background-color:#2d075c;
+		}
+		.box2{
+			margin-top:2.66vw;
+			width:83.51vw;
+			height:32.98vw;
+			border-radius: 7.98vw;
+			background-color:#2d075c;
+			line-height: 32.98vw;
+		}
+		.button{
+			display: inline-block;
+			width:66.49vw;
+			height:10.64vw;
+			background-color:#c42d8e;
+			border-radius: 7.98vw;
+			font:3.72vw/10.64vw Arial;
+			font-weight: bold;
+			color:#fff;
+			text-align: center;
+			margin-left:8.51vw;
+		}
+	</style>
+</head>
+<body>
+	<div class="bg">
+		<div class="return"></div>
+		<div class="box">
+			<div class="box1"></div>
+			<div class="box2">
+				<div class="button">P I C K&nbsp;&nbsp;&nbsp;C A R D</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript">
+	var boof = false;
+	apiready = function(){
+			// 监听关闭自己
+		api.addEventListener({
+		    name: 'divination_new'
+		}, function(ret, err) {
+			api.closeWin();
+		});
+	    var function1 = api.pageParam['function1'];
+	    if($api.getStorage('language')=='zho'){
+	    	$api.text($api.dom('.button'), '抽 牌');
+	    }
+	    var card=['ACE OF CUPS,聖杯一','ACE OF PENTACLFS,星幣一','ACE OF SWORDS,寶劍一','ACE OF WANDS,權杖一','DEATH,死神','EIGHT OF CUPS,聖杯八','EIGHT OF PENTACLFS,星幣八','EIGHT OF SWORDS,寶劍八','EIGHT OF WANDS,權杖八','FIVE OF CUPS,聖杯五','FIVE OF PENTACLFS,星幣五','FIVE OF SWORDS,寶劍五','FIVE OF WANDS,權杖五','FOUR OF CUPS,聖杯四','FOUR OF PENTACLFS,星幣四','FOUR OF SWORDS,寶劍四','FOUR OF WANDS,權杖四','JUDGEMENT,審判','JUSTICE,正義','KING OF CUPS,聖杯國王','KING OF PENTACLFS,星幣國王','KING OF SWORDS,寶劍國王','KING OF WANDS,權杖國王','KNIGHT OF CUPS,聖杯騎士','KNIGHT OF PENTACLFS,星幣騎士','KNIGHT OF SWORDS,寶劍騎士','KNIGHT OF WANDS,權杖騎士','NINE OF CUPS,聖杯九','NINE OF PENTACLFS,星幣九','NINE OF SWORDS,寶劍九','NINE OF WANDS,權杖九','PEACE OF CUPS,聖杯侍衛','PEACE OF PENTACLFS,星幣侍衛','PEACE OF SWORDS,寶劍侍衛','PEACE OF WANDS,權杖侍衛','QUEEN OF CUPS,聖杯女王','QUEEN OF PENTACLFS,星幣女王','QUEEN OF SWORDS,寶劍女王','QUEEN OF WANDS,權杖女王','SEVEN OF CUPS,聖杯七','SEVEN OF PENTACLFS,星幣七','SEVEN OF SWORDS,寶劍七','SEVEN OF WANDS,權杖七','SIX OF CUPS,聖杯六','SIX OF PENTACLFS,星幣六','SIX OF SWORDS,寶劍六','SIX OF WANDS,權杖六','STRENGTH,力量','TEMPERANCE,節制','TEN OF CUPS,聖杯十','TEN OF PENTACLFS,星幣十','TEN OF SWORDS,寶劍十','TEN OF WANDS,權杖十','THE CHARIOT,戰車','THE DEVIL,惡魔','THE EMPEROR,國王','THE EMPRESS,女王','THE FOOL,愚者','THE HANGED MAN,倒吊人','THE HERMIT,隱士','THE HIEROPHANT,教皇','THE HIGH PRIESTESS,女祭祀','THE LOVERS,戀人','THE MAGICIAN,魔術師','THE MOON,月亮','THE STAR,星星','THE SUN,太陽','THE TOWER,高塔','THE WORLD,世界','THREE OF CUPS,聖杯三','THREE OF PENTACLFS,星幣三','THREE OF SWORDS,寶劍三','THREE OF WANDS,權杖三','TWO OF CUPS,聖杯二','TWO OF PENTACLFS,星幣二','TWO OF SWORDS,寶劍二','TWO OF WANDS,權杖二','WHEEL OF FORTUNE,命運之輪'];
+	    var cardcontent={
+	    	'ACE OF CUPS,聖杯一':"'完 全 的 付 出 與 投 入 ，<br />可 以 全 然 地 表 達 愛 與 信 任 ，<br />不 需 要 回 報 就 覺 得 很 幸 福 。<br /><br />因 為 沒 有 滲 入 任 何 雜 質 ，<br />自 然 就 不 會 有 懷 疑 。<br /><br />學 會 接 納 、 包 容 、 相 信 。 <br />可 以 嘗 試 療 愈 他 人 ，<br />或 者 做 一 些 與 藝 術 有 關 的 ，<br />重 點 是 要 有 興 趣 。'&'With full commitment and input, you can fully express love and trust, and feel happy if you don\'t need to return. <br /><br />Since there is no infiltration of any impurities, there is naturally no doubt.<br /><br />Learn to accept, tolerate, and believe.<br /><br />Try to heal others, or do something related to art, the point is to be interested.'",
+	    	'ACE OF PENTACLFS,星幣一':"'能 夠 穩 定 地 掌 握 各 項 事 物 。<br /><br />不 會 輕 易 被 迷 惑 或 者 動 搖 ，<br />奠 定 穩 固 的 基 礎 ， 等 待 起 發 展 就 好 了 。<br /><br />收 入 穩 定 ， 而 且 金 額 不 少 。'&'Ability to master everything steadily. <br /><br />You won't be easily confused or shaken, laying a solid foundation and waiting for development to happen. <br /><br />The income is stable and the amount is quite large.'",
+	    	'ACE OF SWORDS,寶劍一':"'信 息 收 集 器 ， 由 於 信 息 收 集 的 太 快 太 多 ，<br />導 致 自 己 根 本 不 知 道 那 個 選 擇 好 。<br /><br />因 為 收 集 到 的 信 息 都 只 是 表 面 ，<br />了 解 的 還 不 夠 深 入 。'&'The information collector, because the information was collected too quickly, caused him to not know which choice. <br /><br />Because the information collected is only superficial, the understanding is not deep enough.'",
+	    	'ACE OF WANDS,權杖一':"'這 是 一 個 新 的 目 標 萌 生 的 時 期 。<br /><br />前 路 無 可 限 量 ， 有 自 己 的 主 見 ，<br />堅 持 自 己 的 想 法 所 以 才 會 踏 上 成 功 的 道 路 。<br /><br />但 是 也 有 可 能 因 為 太 不 註 重<br />自 己 以 外 的 客 觀 想 法 ，<br />而 在 成 功 之 後 很 快 就 嘗 到 失 敗 。'&'This is a time when a new goal emerges.<br /><br />There is no limit to the road ahead. I have my own opinions and stick to my own ideas, so I will embark on the road to success. <br /><br />But it is also possible that because you don't pay too much attention to objective ideas outside of yourself, you will soon fail after success.'",
+	    	'DEATH,死神':"'今 天 是 適 合 結 束 舊 有 的 時 刻 。<br /><br />因 為 一 直 認 為 的 事 情 已 經 到 了 盡 頭 了 ，<br />今 日 需 要 重 生 ， 重 新 開 始 。<br /><br />其 實 自 己 內 心 也 清 楚 ， 氣 數 已 盡 了 ， <br />不 能 再 逃 避 了 ， 是 時 候 踏 入 下 一 個 階 段 了 。<br /><br />該 分 開 的 終 究 要 分 開 的 。 請 放 下 固 執 ， <br />往 更 高 層 次 努 力 前 進 踏 出 第 一 步 吧 。'&'Today is the time to end the old days.<br /><br />Because some things have come to an end, today we need to be born again and start again.<br /><br />In fact, your heart is also clear, the gas has been exhausted, can no longer escape, it is time to step into the next stage. <br /><br />The separation must be separated after all. Please put down your stubbornness and go to the higher level to take the first step.'",
+	    	'EIGHT OF CUPS,聖杯八':"'對 現 狀 感 到 不 滿 ， 想 馬 上 離 開 ，<br />可 以 對 曾 經 自 己 的 付 出 有 點 不 舍 ， <br />處 於 是 否 能 真 正 做 到 斷 舍 離 的 階 段 。'&'If you are dissatisfied with the status quo and want to leave immediately, you can be a bit disappointed with your own efforts, whether you can really break the stage.'",
+	    	'EIGHT OF PENTACLFS,星幣八':"'所 有 的 精 神 都 集 中 在 一 個 點 上 ，<br />總 是 想 精 益 求 精 。<br /><br />往 往 會 忽 略 到 自 己 的 身 體 狀 況 ， <br />忽 視 身 邊 人 的 感 受 。<br /><br />生 活 缺 乏 情 趣 ， <br />給 身 邊 的 人 造 成 一 定的 壓 力 。'&'All spirits are concentrated on one point and always want to be better. <br /><br />You tend to ignore your physical condition and ignore the feelings of people around you. <br /><br />Life lacks interest and creates some pressure on the people around you.'",
+	    	'EIGHT OF SWORDS,寶劍八':"'計 劃 過 多 ， 凈 是 自 己 嚇 自 己 ， <br />自 己 給 自 己 設 定 很 多 的 困 難 ， <br />到 最 後 能 成 功 的 事 情 寥 寥 無 幾 。<br /><br />可 以 理 解 為 完 全 沈 醉 在 <br />自 己 制 造 出 來 的 恐 慌 中 ， <br />能 夠 走 出 來 的 也 只 有 自 己 。'&'Too many plans, the net is to scare yourself, set yourself a lot of difficulties, and there are very few things that can be successful in the end. <br /><br />It can be understood that you are completely immersed in the panic that you have created. Only you can come out.'",
+	    	'EIGHT OF WANDS,權杖八':"'累 積 已 久 或 者 長 久 期 盼 的 事 物 ， <br />終 於 顯 現 出 結 果 了 ， 或 者 是 有 了 新 的 轉 機 。<br /><br />用 最 少 的 資 源 跟 時 間 得 到 最 多 成 果 ， <br />不 打 沒 有 把 握 的 仗 ， 可 能 暗 示 會 出 去 旅 遊 。'&'Things that have accumulated for a long time or long-awaited, finally show the results, or have a new turn.<br /><br />Get the most results with the least amount of resources and time, don't make uncertain things, and may hint that you will go out to travel.'",
+	    	'FIVE OF CUPS,聖杯五':"'太 在 意 別 人 對 自 己 的 看 法 ， <br />永 遠 都 覺 得 自 己 受 到 不 公 平 的 對 待 。<br /><br />過 分 執 著 於 曾 經 失 敗 的 過 去 ， <br />把 過 失 放 大 了 ， 忽 視 了 其 他 成 功 的 例 子 ， <br />還 有 支 持 自 己 的人 。'&'Too much care about what others think of themselves, and always feel that they are being treated unfairly.<br /><br />Too much obsessed with the past that failed, magnified the fault, ignored other successful examples, and supported others.'",
+	    	'FIVE OF PENTACLFS,星幣五':"'遇 到 大 環 境 的 困 難 ， <br />或 者 個 人 缺 乏 足 夠 的 經 驗 與 條 件 ， <br />導 致 比 別 人 走 多 一 些 冤 枉 路 。 <br /><br />經 常 會 覺 得 龍 困 淺 灘 不 得 誌 之 憾 。'&'In the face of difficulties in the big environment, or the lack of sufficient experience and conditions for individuals, it leads to more roads than others. <br /><br />You often feel too much ambition but can not be achieved regret.'",
+	    	'FIVE OF SWORDS,寶劍五':"'自 覺 受 到 不 公 平 的 待 遇 ， <br />或 者 有 強 力 的 競 爭 者 出 現 ， <br />因 此 開 始 懷 疑 自 己 的 價 值 。<br /><br />然 而 因 為 面 子 的 關 系 ， <br />不 願 意 表 現 出 自 己 是 失 敗 的 。'&'You feel unfairly treated, or there are strong competitors, so you start to doubt your value. <br /><br />However, because of face, do not want to show that you are a failure.'",
+	    	'FIVE OF WANDS,權杖五':"'以 往 在 安 全 環 境 下 的 優 秀 與 自 信 ， <br />到 了 這 個 階 段 都 不 算 數 ， <br />必 須 重 新 被 測 量 。<br /><br />身 邊 會 出 現 不 少 的 競 爭 者 ， <br />或 者 要 去 面 對 早 已 存 在 <br />卻 一 直 未 必 正 視 的 問 題 。'&'The excellentness and self-confidence in the previous security environment did not count at this stage and must be re-measured. <br /><br />There will be a lot of competitors around, or you have to face problems that already exist but may not always face up.'",
+	    	'FOUR OF CUPS,聖杯四':"'想 做 的 太 多 了 ， 卻 沒 有 立 刻 行 動 。<br /><br />現 在 有 個 機 會 送 到 面 前 ， <br />但 由 於 曾 經 的 失 敗 對 妳 打 擊 比 較 大 ， <br />害 怕 重 蹈 覆 撤 ， 不 敢 往 前 一 步 了 。'&'I want to do too much, but I don't act immediately.<br /><br />Now there is an opportunity to be sent to the front, but because of the failure of the previous defeat, the fear of repeated attacks, you dare not go forward.'",
+	    	'FOUR OF PENTACLFS,星幣四':"'一 直 處 於 安 全 的 範 圍 內 。<br /><br />覺 得 只 有 緊 抓 著 金 錢 、 物 質 就 有 安 全 感 。<br /><br />生 活 缺 乏 樂 趣 ， <br />很 容 易 思 前 想 後 買 了 一 些 <br />並 沒 有 實 際 用 途 的 東 西 。'&'Always in a safe range. <br /><br />You feel that you only have a sense of security when you hold money and material.<br /><br />Life is not fun, it is easy to think about it and buy something that has no practical use.'",
+	    	'FOUR OF SWORDS,寶劍四':"'處 於 冷 靜 期 ， 放 下 手 中 的 武 器 ， <br />選 擇 了 等 待 ， 想 抽 離 開 這 裏 ， <br />不 想 接 受 現 實 ， <br />覺 得 想 法 、 語 言 表 達 和 內 心 都 被 壓 制 了 。 <br /><br />這 是 需 要 自 己 站 起 來 ， <br />改 變 現 在 ， 突 破 困 境 。'&'You are in a cool-off period, put down your arms, choose to wait, want to get out of here, don't want to accept reality, feel that ideas, language expressions and inner hearts are suppressed. <br /><br />It is necessary to stand up and change the present and break through the predicament.'",
+	    	'FOUR OF WANDS,權杖四':"'已 經 習 慣 團 體 與 組 織 的 支 持 ， <br />能 夠 結 合 自 己 與 他 人 的 力 量 。<br /><br />未 來 顯 得 一 片 光 明 ， <br />容 易 找 到 跟 自 己 誌 同 道 合 ， <br />良 好 默 契 的 小 夥 伴 。'&'I am used to the support of groups and organizations to combine the power of myself and others. <br /><br />The future looks bright, and it is easy to find a partner who is like-minded and has a good understanding.'",
+	    	'JUDGEMENT,審判':"'今 天 是 妳 人 生 中 關 鍵 性 的 一 刻 ， <br />進 入 截 然 不 同 的 領 域 或 者 新 的 世 界 。<br /><br />這 個 轉 變 是 從 妳 的 內 心 開 始 蛻 變 的 ， <br />可 能 也 有 一 些 實 際 的 決 定 性 的 轉 變 。<br /><br />如 果 表 面 沒 有 實 際 的 變 化 ， <br />那 內 心 的 變 化 就 越 劇 烈 。<br /><br />這 個 摧 毀 舊 有 思 想 然 後 重 生 的 思 維 的 過 程 ， <br />可 能 只 是 一 瞬 間 ， <br />慢 慢 會 覺 得 外 在 的 一 切 變 化 <br />都 不 如 自 己 內 心 的 悠 然 自 得 。'&'Today is a crucial moment in your life, entering a very different field or a new world. <br /><br />This transformation is beginning to change from your heart, and there may be some decisive changes in reality. <br /><br />If there is no actual change in the surface, then the change in the heart will be more intense. <br /><br />The process of destroying old thoughts and then reborn thoughts may be just a moment, and slowly feel that all changes in the outside are not as comfortable as your own inner feelings.'",
+	    	'JUSTICE,正義':"'今 日 的 妳 有 被 大 家 公 認 的 價 值 觀 ， <br />妳 能 辨 別 是 非 黑 白 。<br /><br />可 能 妳 的 誠 實 會 給 身 邊 的 人 帶 來 <br />公 正 平 等 的 對 待 ， <br />甚 至 妳 的 理 性 邏 輯 思 維 能 <br />幫 助 到 某 些 朋 友 做 判 斷 。<br /><br />對 於 自 身 其 實 也 是 壹 種 自 我 檢 視 ， <br />該 把 過 去 累 積 的 壹 切 做 壹 個 總 結 檢 討 了 。'&'Today, you have the values that are recognized by everyone, and you can distinguish between right and wrong.<br /><br />Probably honesty will bring fair and equal treatment to people around you, and even this rational logic can help friends make judgments.<br /><br />In fact, it is also a kind of self-examination, and it is a summary review of everything accumulated in the past.'",
+	    	'KING OF CUPS,聖杯國王':"'對 自 己 是 規 範 和 約 束 ， <br />對 別 人 卻 表 現 出 溫 暖和 包 容 。<br /><br />脾 氣 很 好 ， 有 耐 心 ， 喜 歡 照 顧 人 。<br /><br />但 由 於 太 好 說 話 ， <br />容 易 心 軟 就 答 應 幫 別 人 。'&'You are normative and restrained to yourself, but show warmth and tolerance to others. <br /><br />Good-natured, patient, likes to take care of people.<br /><br />However, due to very good talk, easy soft-hearted promised someone else.'",
+	    	'KING OF PENTACLFS,星幣國王':"'遇 到 困 難 都 不 會 浪 費 時 間 ， <br />直 接 就 處 理 了 。<br /><br />重 視 物 質 享 受 ， 雖 然 行 動 力 不 強 ， <br />但 妳 相 信 基 礎 打 好 了 ， <br />一 步 步 慢 慢 累 積 下 來 的 小 成 就 。<br /><br />等 到 最 後 的 時 刻 ， 就 沒 有 人 能 打 敗 你 了 。'&'You will not waste time when you encounter difficulties and will deal with it quickly. <br /><br />Paying attention to material enjoyment, although the mobility is not strong, but I believe that the foundation has been laid, and the small achievements that have gradually accumulated gradually. <br /><br />Wait until the last moment, no one can beat u up.'",
+	    	'KING OF SWORDS,寶劍國王':"'對 別 人 要 求 很 高 ， 對 自 己 要 求 更 高 ， <br />這 種 控 制 欲 讓 很 多 人 都 直 接 被 嚇 跑 了 ， <br />所 以 人 際 關 系 比 較 狹 隘 。<br /><br />凡 事 不 能 只 追 求 結 果 ， <br />人 的 內 心 想 法 和 過 程 也 是 很 重 要 的 。'&'You are very demanding of others and demanding more from yourself. This makes many people directly scared away, so the interpersonal relationship is relatively narrow. <br /><br />Everything can't just pursue results, and people's inner thoughts and processes are also very important.'",
+	    	'KING OF WANDS,權杖國王':"'標 準 的 獨 裁 者 ， 自 信 又 強 勢 。<br /><br />更 註 重 物 質 和 實 際 利 益 ， <br />不 太 註 意 人 的 內 心 需 求 和 想 法 ， <br />所 以 有 時 會 覺 得 固 執 。'&'The standard dictator is confident and strong. <br /><br />You pay more attention to material and practical interests, and pay less attention to people's inner needs and ideas, so sometimes others will feel that you are stubborn.'",
+	    	'KNIGHT OF CUPS,聖杯騎士':"'心 思 細 膩 ， 留 意 別 人 的 一 舉 一 動 ， <br />勇 於 表 達 自 己 的 關 心 ，<br /><br />這 樣 的 氣 質 讓 大 家 都 喜 歡 跟 妳 做 朋 友 ， <br />雖 然 貼 心 但 稍 嫌 膚 淺 ， <br />而 且 容 易 感 情 用 事 。'&'Your mind is delicate, pay attention to other people’s every move, and be brave to express your concern. <br /><br />This kind of temperament makes everyone like to be friends with you, although intimate but slightly superficial, and easy to use.'",
+	    	'KNIGHT OF PENTACLFS,星幣騎士':"'沒 有 足 夠 的 把 握 絕 不 出 手 ， <br />經 常 會 默 默 地 觀 察 ， <br />等 待 時 機 成 熟 了 才 出 發 。 <br /><br />不 會 註 重 於 一 些 小 成 就 ， 未 來 的 版 圖 更 是 不 可 限 量 。'&'If you don't have enough control, you will never take a shot. <br /><br />You will often observe silently and wait for the time to mature before starting. <br /><br />Will not focus on some small achievements, the future layout is even more limitless.'",
+	    	'KNIGHT OF SWORDS,寶劍騎士':"'沖 動 且 帶 點 幼 稚 ，企 圖 心 又 強 ， <br />根 本 聽 不 到 身 邊 人 的 提 醒 。<br /><br />完 全 沒 有 耐 性 ， 變 得 缺 乏 累 積 和 沉 澱 ， <br />除 了 碰 運 氣 沒 有 其 他 更 好 的 方 法 。'&'Impulsive and a little childish, and the intention is strong, you can't hear the reminders of people around you. <br /><br />There is no patience at all, you become lack of accumulation and precipitation, and there is no other better way than to try your luck.'",
+	    	'KNIGHT OF WANDS,權杖騎士':"'正 在 陷 入 一 頭 熱 的 狀 況 ， <br />沒 有 人 可 以 拉 得 住 妳 。<br /><br />出 發 妳 達 到 目 的 或 是 <br />一 頭 撞 上 墻 暈 過 去 為 止 ， <br />這 份 執 著 容 易 讓 周 圍 的 人 喘 不 過 氣 。'&'Is sinking into a hot-headed situation, no one can pull maintained u. <br /><br />Until you start to achieve the purpose or crashed into the wall until the halo past, this dedication is easy for people around can not breathe.'",
+	    	'NINE OF CUPS,聖杯九':"'喜 歡 跟 別 人 分 享 ， <br />可 能 單 純 只 是 想 炫 耀 自 己 有 多 能 耐 ， <br />希 望 得 到 肯 定 和 表 揚 ， <br />並 不 希 望 別 人 有 任 何 評 論 ， <br />有 時 會 給 人 感 覺 有 一 點 無 常 。'&'You like to share with others. <br /><br />You may simply want to show off how much you are capable of, and you want to be affirmed and praised. <br /><br />You don't want others to have any comments, and sometimes you feel a little impermanent.'",
+	    	'NINE OF PENTACLFS,星幣九':"'生 活 中 缺 乏 驚 喜 ， <br />基 本 上 身 邊 所 有 的 事 情 都 安 排 好 了 ， <br />全 部 都 能 按 部 就 班 完 成 。<br /><br />覺 得 空 閑 下 來 可 以 找 一 些 刺 激 ， <br />想 嘗 試 平 常 沒 有 的 經 歷 ， <br />但 怕 試 了 會 後 悔 。'&'There is a lack of surprises in life. <br /><br />You have basically arranged everything around you, and all of them can be done step by step. <br /><br />You feel that you can find some excitement when you are free, and you want to try what you don't have, but you will regret it if you try.'",
+	    	'NINE OF SWORDS,寶劍九':"'自 己 不 同 的 跟 自 己 催 眠 ， <br />讓 自 己 停 留 在 恐 懼 當 中 。 <br /><br />明 明 還 沒 發 生 的 事 情 ， <br />就 被 自 己 的 想 法 折 磨 得 死 去 活 來 。 <br /><br />自 己 的 危 機 意 識 太 強 ， <br />甚 至 還 會 給 到 身 邊 的 人 也 造 成 壓 力 。'&'You are hypnotizing yourself and let yourself stay in fear.<br /><br />Things that haven’t happened yet are tormented by your own ideas.<br /><br />Your own crisis awareness is too strong, and it will even put pressure on the people around you.'",
+	    	'NINE OF WANDS,權杖九':"'能 量 發 揮 到 最 後 階 段 了 ， <br />感 覺 十 分 疲 倦 ， 但 又 不 願 意 認 命 退 下。<br /><br />必 須 要 開 發 新 的 潛 力 和 做 法 ， <br />否 則 很 難 應 付 眼 前 的 困 境。 '&'The energy is in the final stage and it feels very tired, but you are not willing to give up. <br /><br />New potentials and practices must be developed, otherwise it will be difficult to cope with the immediate predicament.'",
+	    	'PEACE OF CUPS,聖杯侍衛':"'可 塑 性 很 強 ， 不 管 上 天 安 排 什 麽 ， <br />都 能 馬 上 適 應 。<br /><br />不 會 忘 記 純 粹 的 心 ， <br />抱 著 一 種 隨 遇 而 安 的 態 度 ，<br />配 合 周 圍 的 人 事 物 ， <br />自 己 不 打 算 主 動 。'&'You plasticity is very strong, no matter what arrangements can immediately adapt. <br /><br />You will not forget the pure heart, live with an attitude of peace of mind, and you are not going to take the initiative.'",
+	    	'PEACE OF PENTACLFS,星幣侍衛':"'慢 熱 的 狀 態 ， 習 慣 慢 慢 一 點 點 的 累 積 ，<br />不 太 願 意 付 出 。<br /><br />現 在 遇 到 的 一 切 都 是 學 習 的 過 程 ， <br />只 有 根 基 打 好 了 ， 才 考 慮 下 一 步 。'&'You are in a slow state of heat, and you are used to accumulating a little bit slowly and are not willing to pay. <br /><br />Everything that is encountered now is a process of learning. <br /><br />Only when the foundation is laid, will we consider the next step.'",
+	    	'PEACE OF SWORDS,寶劍侍衛':"'信 息 收 集 器 ， 由 於 信 息 收 集 的 太 快 太 多 ， <br />導 致 自 己 根 本 不 知 道 那 個 選 擇 好 。<br /><br />因 為 收 集 到 的 信 息 都 只 是 表 面 ， <br />了 解 的 還 不 夠 深 入 。'&'The information collector, because the information was collected too quickly, caused him to not know which choice. <br /><br />Because the information collected is only superficial, the understanding is not deep enough.'",
+	    	'PEACE OF WANDS,權杖侍衛':"'對 目 前 感 興 趣 的 事 物 ， <br />其 實 只 是 一 陣 興 頭 上 ， 三 分 鐘 熱 度 。 <br /><br />那 一 刻 是 很 專 註 很 執 著 ， <br />但 興 趣 過 了 就 馬 上 放 到 一 邊 ， 缺 乏 耐 力 。'&'For the things that are of current interest, it’s just a burst of heat, three minutes of heat. <br /><br />That moment is very focused and persistent, but if you are interested, you will give up immediately and lack stamina.'",
+	    	'QUEEN OF CUPS,聖杯女王':"'對 這 個 世 界 沒 有 太 大 的 懷 疑 ，<br />帶 著 濾 鏡 去 看 人 ， 而 且 匹 配 度 很 高 。<br /><br />願 意 為 別 付 出 ， 但 是 不 要 累 了 自 己 ， <br />請 多 愛自 己 和 珍 惜 自 己， <br />不 要 把 怨 氣 都 忍 到 肚 子 了 。 '&'You don't have much doubt about the world, you will judge others by yourself, and it is very accurate. <br /><br />I am willing to pay for it, but don't be tired of yourself. <br /><br />Please love yourself and cherish yourself. <br /><br />Don't endure your grievances.'",
+	    	'QUEEN OF PENTACLFS,星幣女王':"'擁 有 細 膩 的 心 及 敏 銳 的 觀 察 力 ， <br />即 使 不 做 最 出 色 最 有 名 的 人 ， <br />但 絕 對 是 最 安 分 守 己 謹 慎 本 分 的 人 。<br /><br />能 在 別 人 手 忙 腳 亂 出 錯 的 時 候 ，<br />成 為 救 星 和 安 心 的 存 在 。'&'You have a delicate heart and a keen eye for observation. <br /><br />Even if you don't do the best and most famous people, you are definitely the one who is the most secure and cautious. <br /><br />You can be a savior and a peace of mind when others are in a hurry.'",
+	    	'QUEEN OF SWORDS,寶劍女王':"'給 人 感 覺 有 才 華 有 智 慧 ， 思 維 敏 捷 ， <br />其 實 內 心 也 是 脆 弱 的 ， <br />會 害 怕 別 人 來 傷 害 自 己 。 <br /><br />所 以 會 矛 盾 的 出 現 既 想 交 朋 友 ， <br />又 把 自 己 武 裝 起 來 ，<br />讓 別 人 覺 得 不 能 輕 易 靠 近 。'&'Giving the impression that you have talent wise, quick thinking, in fact, the heart is vulnerable, afraid of other people to hurt themselves. <br /><br />Therefore, there will be contradictions that both want to make friends and arm themselves so that others can't easily get close.'",
+	    	'QUEEN OF WANDS,權杖女王':"'懂 得 照 顧 他 人 ， 堅 定 自 己 意 誌 ， <br />相 信 自 己 的 直 覺 。<br /><br />這 種 自 信 又 能 幹 的 氣 質 ， <br />受 到 大 家 的 寵 愛 。'&'Know how to take care of others, strengthen your will, and trust your instincts. <br /><br />This kind of self-confidence and capable temperament is favored by everyone.'",
+	    	'SEVEN OF CUPS,聖杯七':"'想 法 太 多 ， 想 要 得 到 的 也 多 ， <br />不 切 實 際 ， 眼 高 手 低 ， 想 的 永 遠 比 做 的 多 。<br /><br />需 要 突 破 自 己 對 這 一 切 想 法 ， <br />什 麽 都 想 要 ， 到 最 後 可 能 什 麽 都 得 不 到 。'&'There are too many ideas, and there are many things that you want to get. It is unrealistic and needs to be implemented. <br /><br />You need to break through all of your thoughts on this, and if you want everything, you may have nothing at the end.'",
+	    	'SEVEN OF PENTACLFS,星幣七':"'凡 事 一 定 做 足 了 功 課 ， <br />才 會 往 前 踏 出 一 小 步 。<br /><br />進 度 會 比 較 慢 ， 但 不 用 冒 險 。<br /><br />總 是 會 期 待 什 麽 時 候 能 得 到 更 大 的 收 益 ， <br />其 實 可 以 嘗 試 進 入 下 一 步 了 ， <br />並 不 需 要 等 待 。'&'Everything must be prepared, and then a small step forward. <br /><br />The progress will be slower, but you don't need to take risks. <br /><br />You will always expect to get more benefits, but you can actually try to move to the next stage without waiting.'",
+	    	'SEVEN OF SWORDS,寶劍七':"'因 為 夠 圓 滑 、 不 會 墨 守 成 規 ， <br />適 合 經 常 需 要 處 理 緊 急 狀 態 。<br /><br />有 時 會 由 於 過 分 投 機 取 巧 ， <br />重 視 短 期 好 處 ， 讓 人 覺 得 不 可 靠 ， <br />無 法 有 長 久 的 效 果 ， 並 且 會 帶 來 後 遺 症 。'&'Because you are smart, not rigid, and often need to deal with emergencies. <br /><br />Sometimes because of too much opportunistic, pay attention to short-term benefits, people feel unreliable, can not have long-lasting effects, will bring sequelae.'",
+	    	'SEVEN OF WANDS,權杖七':"'非 常 積 極 ， 非 常 有 戰 鬥 力 ， <br />不 易 放 棄 也 不 易 沮 喪 。<br /><br />現 在 正 是 需 要 突 破 的 時 候 ， 請 量 力 而 為 。<br /><br />如 果 一 直 持 續 這 個 狀 態 ， <br />請 先 從 根 基 抓 起 ， 不 要 貿 然 行 動 。'&'Very positive, very combative, not easy to give up and not easy to be depressed. <br /><br />Now is the time to break through, please do your best. <br /><br />If you continue this state, please start with the basics and don't act rashly.'",
+	    	'SIX OF CUPS,聖杯六':"'感 情 豐 富 真 摯 ， <br />沒 有 利 益 糾 葛 的 人 情 關 系 。<br /><br />處 於 最 美 好 的 ， 最 平 和 的 階 段 ， <br />互 相 照 顧 ， 懂 得 知 足 ， 感 恩。'&'Feelings are rich and sincere, and there is no human relationship with interest. <br /><br />In the most beautiful and peaceful stage, take care of each other, know the foot, and be grateful.'",
+	    	'SIX OF PENTACLFS,星幣六':"'人 都 有 幫 助 別 人 或 者 受 到 幫 助 的 時 候 ， <br />互 相 扶 持 和 幫 助 。 <br /><br />在 付 出 的 時 候 不 要 過 分 計 較 得 失 ， <br />忍 不 住 會 期 待 對 方 的 回 報 。<br /><br />學 會 分 享 更 多 ， 	<br />妳 能 得 到 的 可 能 並 不 是 妳 能 想 象 的 。'&'People have been helping others or help, mutual support and help. <br /><br />Don't care about gains and losses when you help others, you will expect the other party to give you a return. <br /><br />Learning to share more, what you can get is not imaginable.'",
+	    	'SIX OF SWORDS,寶劍六':"'不 易 受 到 情 緒 幹 擾 ， <br />也 不 會 在 突 發 狀 況 下 慌 了 手 腳 。<br /><br />有 自 知 之 明 ， <br />遇 到 矛 盾 時 會 選 擇 自 己 默 默 離 開 ， <br />避 免 不 必 要 的 紛 爭 。<br /><br />覺 得 自 己 之 後 可 以 再 療 傷 ， <br />忽 略 了 對 方 的 感 受 。'&'Not susceptible to emotional interference, and will not panic in an emergency. <br /><br />Have self-knowledge, when you encounter contradictions, you will choose to leave silently to avoid unnecessary disputes. <br /><br />After that they can heal again, ignoring each other's feelings.'",
+	    	'SIX OF WANDS,權杖六':"'原 本 自 我 意 識 過 高 的 妳 ， <br />到 了 這 個 階 段 會 大 方 分 享 、盡 情 表 現 ， <br />但 又 不 會 自 私 地 執 著 於 名 利 ， <br />受 到 最 多 的 肯 定 。<br /><br />既 有 個 人 風 采 、 收 到 眾 人 註 目 ， <br />又 會 為 他 人 著 想 、 親 和 力 十 足 的 人 ，<br />最 容 易 讓 人 想 跟 隨 。'&'our original self-awareness is too high. At this stage, you will share and express yourself generously, but you will not be selfishly attached to fame and fortune and receive the most recognition. <br /><br />People who have a personal style, receive attention from others, and think for others and have a good affinity are the easiest people to follow.'",
+	    	'STRENGTH,力量':"'今 日 的 妳 散 發 出 熱 情 的 個 性<br /><br />妳 的 喜 悅 能 傳 染 給 身 邊 的 人<br /><br />不 管 遇 到 什 麽 事 情 ， 妳 都 能 掌 控 局 面 ， <br />受 到 其 他 人 的 肯 定和 欣 賞<br />需 要 註 意 的 是 不 要 太 看 重 世 俗 層 面 的 滿 足 ，<br />有 時 候 還 是 需 要 壹 些 內 在 精 神 的 調 劑'&'Today u exudes enthusiasm.<br /><br />U joy can be transmitted to people around. <br /><br />No matter what happens, you can control the situation and be recognized and appreciated by others. <br /><br />It should be noted that don't pay too much attention to the satisfaction of the secular level, sometimes it is necessary to adjust the inner spirit.'",
+	    	'TEMPERANCE,節制':"'今 日 適 合 心 理 成 長 往 上 提 升 ， <br />在 去 到 一 個 更 高 層 次 ， 格 局 更 大 的 地 方 。<br /><br />妳 需 要 做 的 是 踏 出 原 有 的 領 域 ， <br />開 拓 自 己 的 新 技 能 。<br /><br />可 以 把 許 多 以 前 跟 妳 理 念 沖 突 、 <br />不 合 的 事 務 都 整 合 進 來 。<br /><br />當 妳 超 脫 了 原 有 的 自 我 ， <br />就 等 於 成 就 了 更 高 的 自 我 。'&'Today is suitable for psychological growth to improve, go to a higher level, a larger place. <br /><br />What you need to do is to step out of the original field and develop your own new skills. <br /><br />It is possible to integrate many of the previous conflicts and inconsistencies. <br /><br />When you detach from the original self, you are equal to achieving a higher self.'",
+	    	'TEN OF CUPS,聖杯十':"'絢 爛 歸 於 平 淡 的 感 覺 ， 比 較 滿 足 於 現 狀 。<br /><br />沒 有 太 大 的 野 心 與 新 計 劃 ， <br />覺 得 現 階 段 感 到 知 足 就 請 繼 續 維 持 就 好 了 。'&'Life returns to a dull feeling, more satisfied with the status quo.<br /><br />You don't have much ambition and new plans. If you feel satisfied at this stage, please continue to maintain it.'",
+	    	'TEN OF PENTACLFS,星幣十':"'理 性 和 计 划 性 发 展 到 极 致 的 地 步 。<br /><br />通 常 比 起 自 己 更 愿 意 为 家 里 花 钱 ， <br />又 或 者 所 有 的 资 金 来 源 都 是 从 家 里 来 的 。<br /><br />即 使 家 庭 中 不 是 那 么 的 感 情 丰 富 ， <br />更 多 的 是 责 任 感 。'&'Rational and planned development to the extreme.<br /><br />Usually more willing to spend money at home than on their own, or all sources of funding are from home. <br /><br />Even if there are not so many feelings for the family, more is a sense of responsibility.'",
+	    	'TEN OF SWORDS,寶劍十':"'一 切 都 到 了 盡 頭 ， <br />失 去 了 以 往 建 立 起 來 的 所 有 。<br /><br />但 正 是 如 此 置 之 死 地 而 後 生 的 狀 態 ， <br />馬 上 要 迎 來 新 的 開 始 ， 新 的 一 天 的 日 出 。'&'Everything has come to an end and lost everything that was built in the past. <br /><br />But it is just like the state of death and the birth, and it is about to usher in a new beginning, a sunrise of the new day.'",
+	    	'TEN OF WANDS,權杖十':"'能 量 受 到 限 制 ， 由 於 對 其 他 人 的 不 信 任 ， <br />變 得 所 的 事 情 都 想 自 己 親 自 處 理 。<br /><br />是 時 候 放 下 所 有 的 包 袱 ，<br />一 直 背 著 包 袱 前 進 是 走 不 遠 的 。'&'Energy is limited, because you don't trust others, you want to deal with what you do. <br /><br />It's time to let go of all the burdens so that you can go far.'",
+	    	'THE CHARIOT,戰車':"'今 天 的 妳 感 覺 到 了 瓶 頸 期 ，<br /><br />處 於 被 動 狀 態 ，<br />覺 得 需 要 再 積 累 更 多 才 能 前 進 ,<br /><br />	容 易 受 情 緒 影 響 ，<br />會 有 無 力 感 ， 請 不 要 灰 心 , <br /><br />不 要 被 自 己 的 思 維 局 限 了 行 動 力 和 突 破 性 , <br />只 有 付 諸 行 動 才 能 驗 證 結 果 , <br />而 不 是 只 有 思 維 的 設 想 。'&'Today's u feel bottleneck.<br /><br />In a passive state. <br />You feel that you need to accumulate more to move forward.<br /><br />Easily affected by emotions.<br />There will be powerlessness, please don't be discouraged.<br /><br />Don't be limited by your own thinking, <br />action and breakthrough.<br />Only put into action in order to verify the results<br />Not just the idea of thinking.'",
+	    	'THE DEVIL,惡魔':"'今 天 比 平 時 更 追 求 感 官 欲 望 的 滿 足 。<br /><br />小 心 不 要 被 物 質 、 肉 欲 、 現 實 利 益 、 <br />金 錢 沖 昏 自 己 頭 腦 ， 無 法 自 拔 。<br /><br />在 煎 熬 與 掙 紮 的 狀 態 下 ， <br />妳 覺 得 抓 得 越 緊 占 有 得 越 多 , <br />就 越 有 安 全 感 嗎 ？<br /><br />學 會 放 手 ， 有 空 多 去 青 山 綠 水 的 地 方 , <br />滋 養 一 下 自 己 的 心 靈 吧 。'&'Today, you want to satisfy your desire more than usual.<br /><br />Be careful not to be overwhelmed by material, sensual, profit, and money, and unable to extricate yourself.<br /><br />In the state of suffering and struggling, do you think that the more you hold the more you hold, the more secure you are?<br /><br />Learn to let go and go to the green mountains and green waters to nourish your soul.'",
+	    	'THE EMPEROR,國王':"'今 天 可 以 嘗 試 放 松 一 下 自 己 的 神 經 , <br />相 信 自 己 的 能 力 。<br /><br />不 要 覺 得 沒 有 安 全 感 , <br />任 何 事 情 都 不 是 只 有 結 果 。 <br /><br />一 段 旅 程 不 在 乎 終 點 是 哪 裏 ， <br />多 留 意 沿 途 的 風 景 。<br /><br />朋 友 不 在 乎 永 遠 無 時 無 刻 在 一 起 , <br />珍 惜 相 處 的 快 樂 時 光 。'&'Try to relax your nerves today.<br />Believe in your ability.<br /><br />Don't feel insecure.<br />Anything not only have the results.<br /><br />Where is the end of a journey not care. <br />Pay more attention to the scenery along the way. <br /><br />	Friends don't care if they are always together. <br />Cherish the happy time of getting along.'",
+	    	'THE EMPRESS,女王':"'今 天 友 善 聰 慧 的 妳 , <br />可 以 展 現 妳 善 於 溝 通 的 本 質 ,  <br />結 識 很 多 的 朋 友 。<br /><br />溫 暖 的 妳 既 樂 於 助 人 又 能 受 人 幫 助 。 <br /><br />重 視 感 官 享 受 的 妳 ， <br />也 可 以 按 照 自 己 的 步 伐 去 過 這 一 天 。'&'Friendly and intelligent today.<br />Can show good communication.<br />Meet many friends.<br /><br />Warm, you can help others and be helped by others.<br /><br />Pay attention to the senses.<br />You can also go to this day at your own pace.'",
+	    	'THE FOOL,愚者':"'今 日 可 以 嘗 試 拋 開 所 有 的 限 制 和 束 縛 , <br />堅 信 自 己 的 想 法 ,  <br />即 使 不 被 世 人 支 持 ， 至 少 忠 於 自 己 。<br /><br />需 要 提 醒 的 是 不 要 太 過 隨 心 所 欲 ， <br />有 時 候 也 需 要 聽 一 下 身 邊 人 的 提 醒 , <br />獨 立 可 以 ， 但 不 能 孤 立 自 己 。'&'Today you can try to put aside all restrictions and constraints, believe in your own ideas.<br /><br />Even if you are not supported by the world, at least be loyal to yourself.<br /><br />Need to be reminded not to be too free to do whatever you want. <br />Sometimes you need to listen to the reminders of people around you. <br />Independent, but can't isolate yourself.'",
+	    	'THE HANGED MAN,倒吊人':"'今 天 適 合 從 另 一 個 角 度 看 世 界 。<br /><br />其 實 妳 身 邊 的 所 有 都 未 必 是 理 所 當 然 ，<br />也 不 是 固 然 存 在 。 <br /><br />或 許 妳 在 等 待 ， 在 觀 察 ， 在 思 考 ， <br />但 不 代 表 可 以 長 期 維 持 這 種 狀 態 。<br /><br />註 意 不 要 被 周 圍 環 境 所 影 響 了 ，<br />專 心 想 好 妳 的 問 題 ， 然 後 自 主 的 走 出 來 吧 。'&'Today is suitable for seeing the world from another angle.<br /><br />In fact, everything around you is not necessarily taken for granted, nor is it certainly there.<br /><br />Perhaps you are waiting, watching, thinking, but it does not mean that you can maintain this state for a long time.<br /><br />Be careful not to be affected by the surrounding environment, concentrate on thinking about your problems, and then go out on your own.'",
+	    	'THE HERMIT,隱士':"'今 天 在 遇 到 很 多 人 和 事 的 時 候 ， <br />不 要 想 著 以 後 再 處 理 ， <br />或 者 想 把 自 己 藏 起 來 。<br /><br />可 能 現 在 妳 遇 到 的 只 是 壹 點 點 的 阻 礙 ， <br />但 只 要 渡 過 了 ， <br />對 於 以 後 妳 處 理 任 何 問 題 都 能 迎 刃 而 解 。<br /><br />就 好 像 毛 毛 蟲 在 變 成 蝴 蝶 之 前 ， <br />還 要 經 歷 蛹 的 階 段 ， <br />這 是 一 個 蛻 變 轉 化 的 過 程 ， <br />急 不 得 也 逃 不 掉 。'&'Today, when encountering a lot of people and things, don't think about handling it later, or want to hide yourself.<br /><br />It may be that you are only encountering a little bit of obstacles, but as long as you have passed it, you can solve any problems in the future.<br /><br />It is as if the caterpillars have to go through the embarrassing stage before they become a butterfly. This is a process of transformation and transformation. Don't worry, face it.'",
+	    	'THE HIEROPHANT,教皇':"'今 天 妳 可 以 多 跟 外 界 的 人 互 動 ，<br />可 以 嘗 試 傾 聽 別 人 的 困 惑 ,<br />領 導 對 方 往 對 的 方 向 走 。<br /><br />因 為 今 天 的 妳 是 來 傳 達 真 理 的 。<br /><br />妳 成 為 對 方 的 貴 人 ， <br />或 許 妳 的 貴 人 也 會 出 現 。'&'Today u can interact more with people outside.<br /><br />Can try to listen to other people's confusion.<br />Lead the other party in the right direction.<br /><br />U is to spread the truth today. <br /><br />Become the savior of the other party.<br />Maybe u savior will appear.'",
+	    	'THE HIGH PRIESTESS,女祭祀':"'今 天 的 妳 比 平 時 更 關 註 自 己 的 內 在 成 長 。<br /><br />把 之 前 學 到 的 知 識 和 自 己 原 有 的 東 西 整 合 ,<br />提 煉 出 真 正 有 用 的 知 識 跟 學 問 ,<br />才 叫 真 的 把 新 知 識 吸 收 ，<br />成 為 自 己 的 東 西 。'&'Today, you are more concerned about your inner growth than usual. <br /><br />You should integrate the knowledge you have learned with your original things and extract the truly useful knowledge and knowledge, so that you can really absorb new knowledge and become your own.'",
+	    	'THE LOVERS,戀人':"'今 天 的 妳 社 交 運 很 強 ,<br />會 被 跟 自 己 不 一 樣 的 人 產 生 興 趣 。<br /><br />可 以 跟 不 同 類 型 的 朋 友 嘗 試 接 觸 ,<br />能 更 好 鍛 煉 妳 的 溝 通 能 力 。<br /><br />小 心 好 奇 心 太 強 導 致 做 事 三 心 兩 意 。'&'Today’s social network is very strong.<br />Will be interested in people who are different from themselves.<br /><br />Can try to contact with different types of friends. <br />Better able to exercise your communication skills.<br /><br />If curiosity is too strong, it will lead to distraction.'",
+	    	'THE MAGICIAN,魔術師':"'今 天 不 管 妳 遇 到 任 何 事 情 都 有 辦 法 去 解 決 ,<br />可 以 運 用 手 上 的 一 切 資 源 開 啟 新 的 可 能 性 。<br /><br />如 此 有 魅 力 的 妳 ， 可 以 多 方 面 去 嘗 試 ,<br />但 一 定 要 有 充 分 的 準 備 ,<br />不 要 因 為 過 分 自 信 而 掉 以 輕 心 。'&'Today, no matter what happens, there are ways to solve it. <br /><br />You can use the resources on your hands to open up new possibilities. <br /><br />You are so attractive, you can try it in many ways. <br />But be sure to be fully prepared, Do not over-confident and complacent.'",
+	    	'THE MOON,月亮':"'今 天 妳 可 能 會 突 然 感 受 到 一 股 ,<br />前 所 未 有 的 恐 懼 感 。<br /><br />不 知 道 原 因 為 何 ， 突 然 變 得 ,<br />神 經 質 ， 敏 感 ， 情 緒 起 伏 不 定 ，<br />明 明 有 把 握 的 事 情 ， 突 然 會 覺 得 不 安 。<br /><br />請 不 要 太 擔 心 ，<br />這 是 妳 的 危 機 意 識 網 啟 動 了 而 已 ， <br />這 個 意 識 幫 妳 把 所 有 的 小 問 題 都 放 大 了 ， <br />所 以 請 不 要 太 焦 慮 了 。<br /><br />請 相 信 妳 自 己 ， <br />睜 開 眼 睛 看 看 自 己 其 實 ,<br />沒 有 想 象 中 那 麽 糟 糕 的 。<br /><br />建 議 多 做 運 動 ， 調 整 好 自 己 的 日 常 作 息 ， <br />多 去 感 受 大 自 然 的 美 ， 放 松 妳 的 神 經 。'&'Today, you may suddenly feel an unprecedented fear. <br /><br />You don't know why, suddenly become nervous, sensitive, emotional ups and downs, clearly and surely, suddenly feel uneasy. <br /><br />Please don't worry too much. This is the launch of the crisis awareness network. This awareness has amplified all the minor problems, so please don't be too anxious. <br /><br />Please believe in yourself, open your eyes and see that you are not as bad as you think. <br /><br />It is recommended to do more exercise, adjust your daily routine, and feel the beauty of nature and relax your nerves.'",
+	    	'THE STAR,星星':"'今 天 的 妳 沉 醉 在 自 己 的 世 界 裏 ，<br />或 許 在 憧 景 美 好 ，<br />或 許 在 計 劃 將 來 ，<br />在 心 裏 繪 出 人 生 的 藍 圖 。<br /><br />抽 離 了 的 現 實 是 想 摧 毀 妳 在 生 活 中 ,<br />不 滿 意 的 部 分 ， <br />會 容 易 在 自 己 的 幻 想 世 界 中 迷 失 ，<br />所 有 的 構 想 都 是 好 的 ， <br />重 點 在 於 將 其 實 現 。<br /><br />有 時 間 可 以 請 身 邊 信 得 過 的 朋 友 ,<br />協 助 妳 實 現 ， <br />請 不 要 覺 得 所 有 事 情 都 自 己 扛 ， <br />身 邊 的 朋 友 其 實 一 直 都 有 提 醒 ， <br />並 且 想 幫 助 妳 。'&'Today, you are fascinated by your own world, perhaps in a beautiful scenery, perhaps in the future, and in your heart to draw a blueprint for life.<br /><br />The reality that has been withdrawn is to destroy the dissatisfied parts of life, and it will be easy to get lost in your own fantasy world. All ideas are good, and the focus is on realizing them.<br /><br />If you have time, please ask your trusted friend to help you. Please don't do everything yourself. The friends around you always have reminders and want to help you.'",
+	    	'THE SUN,太陽':"'今 天 的 妳 熱 情 四 射 ， 活 力 充 沛 。<br /><br />自 信 和 光 明 正 大 的 氣 質 吸 引 了 不 少 ,<br />願 意 追 隨 妳 的 夥 伴 。<br /><br />妳 就 像 經 歷 了 一 場 浩 劫 後 重 生 的 光 明 ， <br />積 極 正 向 的 能 量 為 妳 奠 基 了 ,<br />內 心 的 強 大 ， 外 在 不 管 遇 到 任 何 問 題 ， <br />妳 都 無 所 畏 懼 。<br /><br />需 要 提 醒 的 是 不 要 太 過 自 信 導 致 ,<br />忽 略 身 邊 夥 伴 的 心 情 ， <br />他 們 也 想 得 到 妳 更 多 的 關 愛 。'&'Today you are passionate and energetic. <br /><br />Confidence and a bright and temperament have attracted many partners who are willing to follow. <br /><br />It is like the light of rebirth after a catastrophe. The positive and positive energy has laid the foundation for the strength of the heart. No matter what problems you encounter, you are not afraid. <br /><br />Need to be reminded is not to be too confident to ignore the mood of the partners around them, they also want to get more care.'",
+	    	'THE TOWER,高塔':"'今 日 上 天 給 妳 一 個 巨 大 的 顛 覆 ， <br />讓 妳 學 會 重 生 。<br /><br />這 種 重 生 不 是 單 純 的 重 來 ， <br />需 要 妳 從 基 層 開 始 重 新 打 好 根 基 。<br /><br />上 天 會 把 最 難 的 功 課 留 給 最 好 的 學 生 ， <br />這 是 突 破 現 狀 的 最 好 機 會。<br /><br />請 不 要 擔 心 ， 相 信 妳 自 己 可 以 勝 任 ， <br />因 為 上 天 會 在 不 知 不 覺 中 給 妳 安 排 了 幫 手 。'&'Today, God gave a huge subversion, letting you learn to be born again. <br /><br />This kind of rebirth is not a simple re-emergence. It is necessary to re-establish the foundation from the grassroots level. <br /><br />God will leave the most difficult homework to the best students, which is the best chance to break the status quo. <br /><br />Please don't worry, I believe that you can do it, because God will arrange a helper for you without knowing it.'",
+	    	'THE WORLD,世界':"'今 天 處 於 完 美 的 狀 態 。<br /><br />所 謂 完 美 ， 其 實 就 是 沒 有 任 何 的 ,<br />突 發 情 況 發 生 ， 跟 往 常 一 樣 ， <br />以 完 整 、 穩 定 的 狀 態 邁 向 成 功 。 <br /><br />完 整 的 狀 態 是 妳 覺 得 不 管 是  ，<br />外 在 實 踐 還 是 內 心 的 想 法 都 不 會 覺 得 匱 乏 ，<br />能 夠 持 續 有 耐 力 的 將 其 完 成 。 '&'Today in perfect condition.<br /><br />The so-called perfection is actually that no sudden situation occurs, and as usual, it is successful in a complete and stable state.<br /><br />The complete state is that you don't feel scared whether it is external practice or inner thought, and you can continue to have endurance.'",
+	    	'THREE OF CUPS,聖杯三':"'適 合 跟 三 五 知 己 聚 會 的 一 天 。<br /><br />大 家 都 可 以 自 然 又 毫 無 阻 礙 地 聚 合 在 一 起 ，<br />享 受 當 下 的 愉 悅 心 情 ， 暢 所 欲 言 。'&'A day for gathering with friends. <br /><br />Everyone can naturally and unimpededly get together and enjoy the current joyful mood and speak freely.'",
+	    	'THREE OF PENTACLFS,星幣三':"'處 於 合 作 關 系 當 中 ， <br />每 個 人 的 分 工 都 不 一 樣 ， <br />各 自 為 了 不 同 的 目 的 完 成 同 一 樣 事 情 ， <br />但 短 期 內 看 不 到 其 結 果 。<br /><br />在 人 際 關 系 中 ， 每 個 人 想 的 都 不 一 樣 ， <br />所 以 各 自 都 有 自 己 的 秘 密 。'&'In the cooperative relationship, each person's division of labor is different, each accomplishing the same thing for different purposes, but the results are not seen in the short term. <br /><br />In interpersonal relationships, everyone thinks differently, so each has its own secrets.'",
+	    	'THREE OF SWORDS,寶劍三':"'容 易 被 周 圍 的 人 扯 後 腿 ，<br />有 小 人 在 背 後 惡 意 中 傷 ，<br />或 者 遭 到 背 叛 ，<br />處 於 十 分 傷 心 痛 苦 的 階 段 。<br /><br />需 要 深 思 為 什 麽 會 允 許 這 些 情 況 發 生 ，<br />自 己 需 要 強 大 起 來 。'&'It is easy to be influenced by the people around, there are villains who are maliciously wounded in the back, or betrayed, in a very sad and painful stage. <br /><br />Need to think about why this is allowed, and you need to be strong.'",
+	    	'THREE OF WANDS,權杖三':"'蓄 勢 待 發 的 狀 態 ， 但 是 還 在 猶 豫 ，<br />可 能 需 要 顧 慮 的 事 情 比 較 多 。<br /><br />請 不 要 太 擔 心 ， <br />因 為 出 發 前 往 目 的 地 不 止 妳 一 個 人 。 <br /><br />既 然 開 始 策 劃 和 行 動 ， <br />就 跟 小 夥 伴 一 起 為 未 來 的 目 標 踏 出 第 一 步 。'&'The state of being ready to go, but still hesitating, there may be more things that may need to be considered.<br /><br />Please don't worry too much, because there are many people who go to the destination. <br /><br />Since starting planning and action, we will work with our partners to take the first step toward our future goals.'",
+	    	'TWO OF CUPS,聖杯二':"'沒 有 任 何 的 算 計 和 心 機 ， <br />喜 歡 單 純 的 人 際 關 系 。 <br /><br />不 一 定 一 開 始 就 有 很 深 刻 的 感 情 交 流 ，<br />可 以 慢 慢 深 入 了 解 ， 等 待 時 間 的 催 化 。'&'Without any calculations and ambitions, you like pure interpersonal relationships. <br /><br />There may not be a deep emotional exchange at the beginning, you can slowly understand and wait for the catalysis of time.'",
+	    	'TWO OF PENTACLFS,星幣二':"'在 原 有 的 基 礎 上 發 展 出 新 的 機 遇 ,<br />習 慣 去 衡 量 哪 一 份 的 收 益 會 更 大 。<br /><br />其 實 最 後 結 果 還 是 一 樣 的 ， <br />暗 示 近 期 會 出 遠 門 。'&'Develop new opportunities on the basis of the original, and get used to measuring which one will be more profitable. <br /><br />In fact, the final result is still the same, suggesting near term journey.'",
+	    	'TWO OF SWORDS,寶劍二':"'固 步 自 封 ， 不 想 接 收 外 面 的 信 息 。<br /><br />沒 有 魄 力 的 話 會 永 遠 被 環 境 影 響 ，<br />需 要 做 的 是 突 破 這 個 困 境 。'&'Close yourself and don't want to receive outside information.<br /><br />If you don't act, you will always be affected by the environment. What you need to do is to break through this dilemma.'",
+	    	'TWO OF WANDS,權杖二':"'眼 前 會 出 現 [ 二 選 一 ] 的 局 面 。<br /><br />妳 無 法 魚 與 熊 掌 兼 得 ，<br />請 認 真 考 慮 自 己 到 底 想 要 的 是 什 麽 。<br /><br />每 一 次 面 臨 選 擇 ， <br />就 是 檢 驗 自 己 的 初 心 到 底 是 什 麽 的 時 候 了 。'&'There will be a situation of [ two choices one ] in front of you. <br /><br />You can't choose two at the same time, please seriously consider what you really want. <br /><br />Every time you face a choice, it’s time to test what your heart is.'",
+	    	'WHEEL OF FORTUNE,命運之輪':"'今 天 的 妳 充 滿 機 遇 ，<br />整 體 在 往 好 的 方 面 發 展 ， 請 順 勢 而 為 。<br />	<br />當 之 前 的 事 情 沒 有 進 展 的 時 候 ，<br />其 實 就 暗 示 需 要 往 更 高 層 次 的 階 段 去 提 升 。<br /><br />或 許 當 下 的 妳 還 蒙 在 鼓 裏 ，<br />但 請 相 信 自 己 的 能 力 和 上 天 的 安 排 ， <br />上 天 或 許 關 了 妳 的 窗 ，<br />可 能 在 妳 身 後 開 了 一 扇 門 。'&'Today, there are plenty of opportunities, and the whole is developing in a good way. Please take advantage of the situation.<br /><br />When the previous things did not progress, it actually implies that it needs to be upgraded to a higher level.<br /><br />Maybe you are still in the dark, but please believe in your ability and the arrangement of God. God may have closed the window and may open a door behind you.'"
+	    };
+	    var divination_date = new Date(),
+	    	divination_month = divination_date.getMonth();
+	    	divination_month = divination_month + 1;
+	    	divination_day = divination_date.getDate();
+	    $api.addEvt($api.dom('.button'), 'click',function(){
+	    	api.sendEvent({
+	    	    name: 'recommend_reload'
+	    	});
+	    	var random_number=parseInt(Math.random()*77);
+		    	if($api.getStorage('language')=='zho'){
+		    		var cardcontentt=cardcontent[card[random_number]].split('&')[0];
+		    	}else{
+		    		var cardcontentt=cardcontent[card[random_number]].split('&')[1];
+		    	};
+		    	console.log(card[random_number]);
+		    // 查询是否当天已经抽卡
+	    	api.ajax({
+	    	    url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/getUserCard',
+	    	    method: 'get',
+	    	    data: {
+	    	        values: { 
+	    	            uiid: $api.getStorage('id')
+	    	        }
+	    	    }
+	    	}, function(ret, err) {
+	    		if(ret.data == null){
+	    			// alert(1);
+	    	    	boof = true;
+	    	    	api.ajax({
+			    	    url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/setUserCard',
+			    	    method: 'get',
+			    	    data: {
+			    	        values: { 
+			    	            uiid: $api.getStorage('id'),
+			    	            card: card[random_number]
+			    	        }
+			    	    }
+			    	}, function(ret, err) {
+			    	   api.openWin({
+				    	    name: 'divination_result_new',
+				    	    url: 'widget://html/logon-register/divination_result_new.html',
+				    	    pageParam: {
+				    	        card:card[random_number],
+				    	        cardcontent:cardcontentt,
+				    	        function1:function1
+				    	    }
+				    	});
+			    	});
+	    	    	// return;
+	    	    }else if(ret.data.update_time.slice(5,7)-divination_month==0 && ret.data.update_time.slice(8,10)-divination_day==0){
+	    	    	if($api.getStorage('language')=='zho'){
+			    		cardcontentt=cardcontent[ret.data.card].split('&')[0];
+			    	}else{
+			    		cardcontentt=cardcontent[ret.data.card].split('&')[1];
+			    	};
+			    	console.log(ret.data.card);
+	    	    	api.openWin({
+			    	    name: 'divination_result_new',
+			    	    url: 'widget://html/logon-register/divination_result_new.html',
+			    	    pageParam: {
+			    	        card:ret.data.card,
+			    	        cardcontent:cardcontentt,
+			    	        function1:function1
+			    	    }
+			    	});
+	    	    	return;
+	    	    }else{
+	    	    	boof = true;
+	    	    	// return;
+	    	    	api.ajax({
+			    	    url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/setUserCard',
+			    	    method: 'get',
+			    	    data: {
+			    	        values: { 
+			    	            uiid: $api.getStorage('id'),
+			    	            card: card[random_number]
+			    	        }
+			    	    }
+			    	}, function(ret, err) {
+			    	   api.openWin({
+				    	    name: 'divination_result_new',
+				    	    url: 'widget://html/logon-register/divination_result_new.html',
+				    	    pageParam: {
+				    	        card:card[random_number],
+				    	        cardcontent:cardcontentt,
+				    	        function1:function1
+				    	    }
+				    	});
+			    	});
+	    	    }
+	    	    return;
+	    	});
+	    	// if($api.getStorage('divination_day') == undefined){
+	    	// setTimeout(function(){
+	    	// 		console.log(boof);
+	    	// if(boof){
+		    // 	api.ajax({
+		    // 	    url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/setUserCard',
+		    // 	    method: 'get',
+		    // 	    data: {
+		    // 	        values: { 
+		    // 	            uiid: $api.getStorage('id'),
+		    // 	            card: card[random_number]
+		    // 	        }
+		    // 	    }
+		    // 	}, function(ret, err) {
+		    // 	   api.openWin({
+			   //  	    name: 'divination_result_new',
+			   //  	    url: 'widget://html/logon-register/divination_result_new.html',
+			   //  	    pageParam: {
+			   //  	        card:card[random_number],
+			   //  	        cardcontent:cardcontentt,
+			   //  	        function1:function1
+			   //  	    }
+			   //  	});
+		    // 	});
+		    // }	
+	    	// },500);
+	    	
+		    	// $api.setStorage('divination_day', divination_day);
+	    	// }else if($api.getStorage('divination_day')-divination_day !== 0){
+	    	// 	var random_number=parseInt(Math.random()*77);
+		    // 	if($api.getStorage('language')=='zho'){
+		    // 		var cardcontentt=cardcontent[card[random_number]].split('&')[0];
+		    // 	}else{
+		    // 		var cardcontentt=cardcontent[card[random_number]].split('&')[1];
+		    // 	};
+		    // 	console.log(card[random_number]);
+		    // 	api.openWin({
+		    // 	    name: 'divination_result_new',
+		    // 	    url: 'widget://html/logon-register/divination_result_new.html',
+		    // 	    pageParam: {
+		    // 	        card:card[random_number],
+		    // 	        cardcontent:cardcontentt,
+		    // 	        function1:function1
+		    // 	    }
+		    // 	});
+		    // 	$api.setStorage('divination_day', divination_day);
+	    	// }
+	    	
+	    });
+	    $api.addEvt($api.dom('.return'), 'click',function(){
+	    	api.closeWin({
+	    	    name: 'divination_new'
+	    	});
+	    });
+	}
+	    
+</script>
+</html>

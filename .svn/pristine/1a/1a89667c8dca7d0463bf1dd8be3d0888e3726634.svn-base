@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>report</title>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+		}
+		.bg{
+			position: fixed;
+			top: 0;
+			width:100vw;
+			height:100vh;
+			background-color:#efefef;
+			z-index: -1;
+		}
+		header{
+			width:100vw;
+			height:17.29vw;
+			position: relative;
+			box-shadow:0 0 1.33vw 0 rgba(239,239,239,1);
+			background-color:#fff;
+			z-index: 1;
+		}
+		.return{
+			position: absolute;
+			bottom:1.99vw;
+			left:2.66vw;
+			width:7.98vw;
+			height:7.98vw;
+			background:url(../../image/icon-back@3x2.png);
+			background-size:contain;
+			z-index: 10;
+		}
+		/*.send{
+			position: absolute;
+			bottom:1.99vw;
+			right:2.66vw;
+			width:18.09vw;
+			height:7.98vw;
+			border-radius: 1.33vw;
+			background-color:#f381a3;
+			font:3.19vw/7.98vw Arial;
+			font-weight: bold;
+			color:#fff;
+			text-align: center;
+			z-index: 10;
+		}*/
+		.title{
+			position: absolute;
+			bottom:0;
+			left:0;
+			width:100%;
+			font:3.98vw/11.97vw Arial;
+			font-weight: bold;
+			text-align: center;
+			z-index: 1;
+		}
+		.tip{
+			width:100%;
+			margin:0vw auto 0;
+			font:3.98vw/5.85vw Arial;
+			font-weight: bold;
+			/*text-align: center;*/
+			color:#fff;
+			background-color: #aaa;
+			padding:3.19vw 5.32vw;
+			box-sizing: border-box;
+		}
+		.box{
+			width:100%;
+			min-height: 39.89vw;
+			padding:2.66vw 5.32vw;
+			box-sizing: border-box;
+			background-color:#fff;
+			font:3.98vw/5.85vw Arial;
+			font-weight: bold;
+			margin:0vw auto 0;
+			/*border-radius: 2.66vw;*/
+			white-space: pre-line;
+			word-wrap: break-word;
+			/*内容超过宽度自动换行，不带空格的全英文和全数字也都可以*/
+			user-select:text;
+    		-webkit-user-select:text;
+    		outline:none;
+		}
+		.send{
+			width:100%;
+			height:13.3vw;
+			font:3.99vw/13.3vw Arial;
+			font-weight: bold;
+			color:#f381a3;
+			text-align: center;
+			background-color: #fff;
+			border-top:1.33vw solid #efefef;
+		}
+	</style>
+</head>
+<body>
+	<div class="bg">
+	<header>
+		<div class="return"></div>
+		<div class="title">C O M P L A I N T S</div>
+		<!-- <div class="send">SEND</div> -->
+	</header>
+	
+	<div class="content">
+		<div class="tip">Fill in the specific description and we will handle it for you as soon as possible.</div>
+		<div class="box" contenteditable="true" id="box">Say something...</div>
+	</div>
+	<div class="send">S E N D</div>
+	</div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript">
+	var hhh = window.screen.height;
+	var www = window.screen.width;
+	var emptyTip = "Please fill in the report content",
+		successTip = "Your comments have been successfully submitted to the background, thank you for your report~";
+	apiready = function(){
+		// 适应刘海屏
+		if(hhh/www > 2){
+			$api.css($api.dom('header'), 'height:90px;');
+		}
+		if($api.getStorage('language')=='zho'){
+			$api.text($api.dom('.title'), '投 诉');
+			$api.text($api.dom('.send'), '发 送');
+			$api.text($api.dom('.tip'), '填 寫 具 體 的 描 述， 我 們 將 儘 快 爲 你 處 理 。');
+			$api.text($api.dom('.box'), '说 些 什 么 ...');
+			emptyTip = "請填寫投诉内容";
+			successTip = "您的意見已經成功提交至後臺，感謝您的投诉~";
+		}
+		api.addEventListener({
+				name: 'swiperight'
+			}, function() {
+				api.closeWin({
+					animation: {
+						type: "push", //动画类型（详见动画类型常量）
+						subType: "from_left", //动画子类型（详见动画子类型常量）
+						duration: 300 //动画过渡时间，默认300毫秒
+					}
+				});
+			});//右滑关闭win
+		$api.addEvt($api.dom('.return'), 'click',function(){
+			api.closeWin();
+		});
+		var box = document.getElementById('box');
+		box.onclick=function(){
+			if($api.html($api.dom('#box'))=='说 些 什 么 ...' || $api.html($api.dom('#box'))=='Say something...'){
+				$api.html($api.dom('#box'), '');
+			}
+		}
+		// 失去焦点
+		box.onblur=function(){
+			if($api.html($api.dom('#box'))==''){
+				if($api.getStorage('language')=='zho'){
+					$api.html($api.dom('#box'), '说 些 什 么 ...');
+				}else{
+					$api.html($api.dom('#box'), 'Say something...');
+				}
+			}
+		}
+		// 点击发送
+		$api.addEvt($api.dom('.send'), 'click', function(){
+			
+			var msg = $api.html($api.dom('#box'));
+			console.log(msg);
+			if(msg == '说 些 什 么 ...' || msg == 'Say something...' || msg == ''){
+				openFrame(emptyTip);
+			}else{
+				api.ajax({
+				    url: 'http://api.baopinghui.com/app_FeedBackController/submitted',
+				    method: 'post',
+				    data: {
+				        values: { 
+				            "Id": $api.getStorage("id"),
+							"content": msg
+				        }
+				    }
+				}, function(ret, err) {
+				    if (ret) {
+				        if(ret.status === 1){
+							openFrame(successTip, true);//传第二个参数是为了绑定点击确定按钮关闭win的事件
+							return;
+						};
+
+				    } else {
+				        console.log(JSON.stringify(err));
+				    }
+				});
+			}
+		});
+	};
+	function openFrame(tip, isSuccess){
+			api.openFrame({
+				name: "out",
+				url: "widget://html/nav/out.html",
+				rect: {
+					x: 0,
+					y: 0,
+					w: "auto",
+					h: "auto"
+				},
+				pageParam: {
+					feedTip: tip,
+					isSuccess: isSuccess
+				}
+			});
+	};
+</script>
+</html>

@@ -1,0 +1,137 @@
+var json = {
+	"http":"http://api.baopinghui.com/",
+	"http2":"http://192.168.16.192:8081/",
+	'logonHttp2' : "http://api.baopinghui.com/",	
+	'baopinghui2' : 'http://style.baopinghui.com/',
+	'errhttp2' : "http://112.74.20.66:18080/",
+	"httpwww2":"http://www.baopinghui.com/",
+	'livehttp' : 'http://www.baopinghui.com/',
+	'testaaaa' : 'zhelishifenjiexian',
+	"http3":"http://test.baopinghui.com/",
+	'logonHttp3' : "http://test.baopinghui.com/",	
+	'baopinghui3' : 'http://test.baopinghui.com/',
+	'errhttp3' : "http://test.baopinghui.com/",
+	"httpwww3":"http://test.baopinghui.com/",
+	'zhengshi' : 'xiamianshizhengshidele',
+	'logonHttp' : "http://api.baopinghui.com/",	
+	'baopinghui' : 'http://api.baopinghui.com/',
+	'errhttp' : "http://api.baopinghui.com/",
+	"httpwww":"http://api.baopinghui.com/",
+	qiniu : "http://bin.baopinghui.com/",
+//	"baidu_appid":"20170419000045193",
+//	"baidu_key":"yQXVpsNoHLgQ9HT7LJU_",
+	"baidu_appid":"20161226000034707",
+	"baidu_key":"i1XmNFcDa7_Z4i6jUSZA",
+	//国外微信key:wx41eb64337941c2e6 , //国内微信key:wx2ccebd109467df4c
+	"wx_key":"wx2ccebd109467df4c",   
+	keyValueMap : {
+		get : 'app_keyValueMap/get'
+	},
+	Login : {
+		"qq_user":"app_qq_user/save",
+		"save":"app_wx/save",
+		"logon":"tinUserControllerC/login",
+		"forget_psw":"tinUserControllerC/forgetPassword",
+		"update_psw":"tinUserControllerC/updatePassword",
+	},
+	guide : {
+		"people":"app_guideController/people",
+	},
+	app : {
+		errorLog : 'app_appConfig/errorLog'
+	},
+	tin : {
+		baseCount : "app_tinUserinfoControllerC/baseCount",
+		userinfo  : 'app_tinUserinfoControllerC/userinfo',
+		findBackImg : 'app_tinUserinfoControllerC/findBackImg',
+		focus  : 'app_tinUserinfoControllerC/focus',
+		setting : 'app_tinUserinfoControllerC/setting',
+		findRandomRecommendUser : 'app_tinUserinfoControllerC/findRandomRecommendUser',
+		findRUlist : 'app_tinUserinfoControllerC/findRUlist',
+		createipcheck : 'app_tinUserinfoControllerC/createipcheck',
+		onlineHeartbeatConnection : 'app_tinUserinfoControllerC/onlineHeartbeatConnection',
+		findOnLineUser : 'app_tinUserinfoControllerC/findLastLoginUser'
+	},
+	dynamic : {
+		findMsgByUiId : "app_dynamicControllerC/findMsgByUiId",
+		findAllMsgNumByUiId : 'app_dynamicControllerC/findAllMsgNumByUiId',
+		findByDay : 'app_dynamicCover/findByDay',
+		findByDayLast : 'app_dynamicCover/findByDayLast',
+		findDynNewNum : 'app_dynamicControllerC/findDynNewNum',
+		findPostByMyFocusAndMe : 'app_dynamicCover/findPostByMyFocusAndMe',
+		foucusUserAvatarList : 'app_dynamicCover/findMyFoucusUserAvatarListByUiIdAndPostOrder',
+		FansUserInfoList : 'app_dynamicCover/findFansUserInfoListByUiIdAndFocusOrder',
+		MyFoucusUserInfoList : 'app_dynamicCover/findMyFoucusUserInfoListByUiIdAndPostOrder',
+		findLiveByPostTime : 'app_dynamicCover/findLiveByPostTime',
+		findLifeByPostTime : 'app_dynamicCover/findLifeByPostTime',
+		findRandomPostByPop : 'app_dynamicCover/findRandomPostByPop',
+		findLifeInfo : 'app_dynamicCover/findLifeInfo',
+		removePost : 'app_dynamicCover/removePost',
+		findPostByUiId : 'app_dynamicCover/findPostByUiId',
+		findPostByDayAndUid:'/app_dynamicCover/findPostByDayAndUid',//查询用户的帖子按天分
+		findLastUserByDayAndUid:'/app_dynamicCover/findLastUserByDayAndUid',//查询用户的游客按天分
+		createLifePost : 'app_dynamicCover/createLifePost',
+		v12createLifePost : 'app_dynamicCover/v12/createLifePost',
+		findGatherImageInfo : 'app_dynamicCover/findGatherImageInfo',
+		findPostInfo : 'app_dynamicCover/findPostInfo',
+		updateNotReadMsgToRead : 'app_dynamicControllerC/updateNotReadMsgToRead',
+		findRandomPostByUiId : 'app_dynamicCover/findRandomPostByUiId',
+		createGatherId : 'app_dynamicCover/createGatherId',
+		findComment : 'app_topicComment/findTopicCommentByTopicIdAndTopicType',
+		removeGather : 'app_dynamicCover/removeGather',
+		findBrowseMsgByUiId : 'app_dynamicControllerC/findBrowseMsgByUiId',
+		findPostByPostTime : 'app_dynamicCover/v11/findPostByPostTime',
+		findPostByTopicPop : 'app_dynamicCover/findPostByTopicPop',
+		findTopicDigest : 'app_dynamicCover/v12/findTopicDigest'
+	},
+	search : {
+		findSearchWordLog : 'app_search/findSearchWordLog',
+		searchLikeWord : 'app_search/findSearchWordLogByLikeWord',
+		findPostDtoByLikeTitle : 'app_search/findPostDtoByLikeTitleOrTagName',
+		findUserDtoByLikeNickname : 'app_search/findUserDtoByLikeNickname',
+		findPostMoreLike : 'app_search/v11/findPostMoreLike'
+	},
+	style : {
+		"get":"fastNeuralStyleController/get",
+		"sendNeuralstyle":"fastNeuralStyleController/postNeuralStyle",
+		"newNeuralStyle" : "fastNeuralStyleController/waitBackNeuralStyle"
+	},
+	tag : {
+		findTagUseLogByUiId : 'app_tag/findTagUseLogByUiId',
+		findTagNameByLikeName : 'app_tag/findTagNameByLikeName'
+	},
+	message : {
+		findAllMsgNumByUiId : 'app_dynamicControllerC/findAllMsgNumByUiId'
+	},
+	comment : {
+		findTopicCommentBy : 'app_topicComment/findTopicCommentByTopicUidAndReplyUid',
+		createTopicComment : 'app_topicComment/createTopicComment',
+		removeTopicComment : 'app_topicComment/removeTopicCommentByIdAndUiId',
+		
+	},
+	advertising : {
+		findByPageTypeAndState : 'app_advertising/v11/findByPageType',
+		updateAdvertisingchicknum : 'app_advertising/updateAdvertisingchicknum'
+	},
+	rongyun : {
+		getToken : 'app_rongyun/v11/getToken'
+	},
+	fb : {
+		save : 'app_fb/save',
+		check_bind : 'app_fb/check_bind'
+	},
+	chat : {
+		create_room : 'app_chat_room/v1/create_room',
+		create_message : 'chat_message/v1/create_message',
+		find_not_read_message_count_by_group : 'chat_message/v1/find_not_read_message_count_by_group',
+		find_not_read_message : 'chat_message/v1/find_not_read_message',
+		set_read : 'chat_message/v1/set_read',
+		find_chat_room_history_message : 'chat_message/v1/find_chat_room_history_message'
+	},
+	qq : {
+		check_bind : 'app_qq/check_bind'
+	},
+	wx : {
+		check_bind : 'app_wx/check_bind'
+	}
+}

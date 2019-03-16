@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>搜索主页</title>
+</head>
+<style media="screen">
+/*头部*/
+  header{
+    font-size: 15px;
+    position: fixed;
+    top:0;
+    left:0;
+    display:inline-block;
+    width:100vw;
+    height:18.67vw;
+    background: #efefef;
+    color:#101010;
+    /*box-shadow: 0 0 10px #36A5B2;*/
+    z-index:10000;
+  }
+  header .left{
+    position: absolute;
+    /*bottom:1vw;
+    left:8vw;*/
+    left: 35%;
+    bottom: 18%;
+    /*left:20px;*/
+    display:inline-block;
+    width:9vw;
+    height:9vw;
+    z-index:2;
+  }
+  /*header .center{
+    position: absolute;
+    bottom: 22%;
+    left: 50%;
+  transform:translate(-50%);
+
+    display:inline-block;
+    z-index:2;
+    font-weight: bold;
+  }*/
+  header .right{
+    position: absolute;
+    /*bottom:1vw;
+    right:8vw;*/
+    right: 40%;
+    bottom: 18%;
+    /*right: 20px;*/
+    display:inline-block;
+    width:9vw;
+    height:9vw;
+    z-index:2;
+  }
+</style>
+<body class="ha">
+  <!-- <header>
+    <span class="left">Online</span>
+    <span class="center"> N E W C O M E R S </span>
+    <span class="right">groups</span>
+  </header> -->
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript">
+  apiready=function () {
+    //alert(window.screen.height);
+    //接受左滑动 右滑动发送的事件
+    // api.addEventListener({
+    //       name: 'huadong_left'
+    //   }, function(ret, err) {
+    //     api.setFrameGroupIndex({
+    //       name: 'search',
+    //       index: 1,
+    //       scroll:true
+    //     });
+    //   });
+    //
+    //   api.addEventListener({
+    //         name: 'huadong_right'
+    //     }, function(ret, err) {
+    //       api.setFrameGroupIndex({
+    //         name: 'search',
+    //         index: 0,
+    //         scroll:true
+    //       });
+    //     });
+
+        api.addEventListener({
+              name: 'huadong_lefts'
+          }, function(ret, err) {
+            api.setFrameGroupIndex({
+              name: 'search',
+              index: 2,
+              scroll:true
+            });
+          });
+
+          api.addEventListener({
+                name: 'huadong_rights'
+            }, function(ret, err) {
+              api.setFrameGroupIndex({
+                name: 'search',
+                index: 1,
+                scroll:true
+              });
+            });
+          api.addEventListener({
+              name: 'huadong_function'
+          }, function(ret, err) {
+              api.setFrameGroupIndex({
+                name: 'search',
+                index: 0,
+                scroll:true
+              });
+          });
+
+
+  }
+</script>
+</html>

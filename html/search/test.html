@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="header">
+  </div>
+
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/nav.js"></script>
+<script type="text/javascript" src="../../script/public.js"></script>
+<script type="text/javascript">
+apiready = function() {
+  var header=$api.byId('header');
+  //alert($api.getStorage("language"));
+  var enavoffset=$api.offset(header);
+  		var head_Information = {
+  			current_location : 'left',				//初始点击状态显示的位置  ,不传则默认全部隐藏 	值：left/center/right
+  			left : {								//设置左边icon ,不传则不显示 , 但有点击事件
+  				Icon : '../../icon/nav/chat2.png',	//左邊Icon--图片和文字二选一
+  //				text : 'M Y F O C U S',				//左邊文字
+  				click_text : "MY FOCUS",		//点击后显示的文字 ,不传则不显示当前点击状态
+  			},
+  			center : {
+  				Icon : '../../icon/nav/atf2.png',
+  				click_text : 'TINS'
+  			},
+  			right : {
+  				Icon : '../../icon/nav/logo.png',
+  				click_text : 'SEARCH'
+  			}
+  		};
+
+  		var head_Information2 = {
+  			current_location : 'left',				//初始点击状态显示的位置  ,不传则默认全部隐藏 	值：left/center/right
+  			left : {								//设置左边icon ,不传则不显示 , 但有点击事件
+  				Icon : '../../icon/nav/chat2.png',	//左邊Icon--图片和文字二选一
+  //				text : 'M Y F O C U S',				//左邊文字
+  				click_text : "我的關注",		//点击后显示的文字 ,不传则不显示当前点击状态
+  			},
+  			center : {
+  				Icon : '../../icon/nav/atf2.png',
+  				click_text : '廣場'
+  			},
+  			right : {
+  				Icon : '../../icon/nav/logo.png',
+  				click_text : '搜索'
+  			}
+  		};
+      			// //让其选择语言版本
+      			// if(!$api.getStorage("language")){
+      			// 	setTimeout(function(){
+      			// 		enterWin('selectLanguage', router['set_up']['select_language']);
+      			// 	},2500);
+      			// }
+
+  		if($api.getStorage("language")=="zho"){
+  			openHead(head_Information2);//打开头部
+  		}else{
+        console.log($api.getStorage("language"))
+        openHead(head_Information);//打开头部
+  		}
+
+      openNav();//打开导航
+
+  api.openFrameGroup({
+      name: 'group1',
+      //preload:2,
+      rect: {
+          x: 0,
+          y: enavoffset.t+enavoffset.h,
+          w: 'auto',
+          h: 'auto'
+      },
+      index: 2,
+
+      frames: [{
+          name: 'frame1',
+          url: '../test_li/main.html',
+          useWKWebView:true
+          //softInputBarEnabled:false
+      },  {
+          name: 'frame2',
+          url: '../test_li/main2.html',
+          useWKWebView:true
+          //softInputBarEnabled:false
+      }, {
+          name: 'frame3',
+          url: 'search.html',
+          useWKWebView:true
+          //softInputBarEnabled:false
+      }],
+      preload:0
+  }, function(ret, err) {
+    var index = ret.index;
+    if(index == 0) {
+      head_fram_dosomething('left');
+    } else if(index == 1) {
+      head_fram_dosomething('center');
+    } else {
+      head_fram_dosomething('right');
+    }
+  });
+};
+//头部点击返回事件 data = left：左icon点击事件	center:中间icon点击事件		right：右icon点击事件
+function funcGoto(data){
+  if(data == 'left'){
+    frameGroupIndex(0);
+  }else if(data == 'center'){
+    frameGroupIndex(1);
+  }else{
+    frameGroupIndex(2);
+  }
+}
+
+//切换frame组当前页面
+function frameGroupIndex(num) {
+  api.setFrameGroupIndex({
+    name: 'group1',
+    scroll: true,
+    index: num
+  });
+}
+</script>
+</html>

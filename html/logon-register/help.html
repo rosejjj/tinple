@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+  <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+  <style type="text/css">
+  html,body{
+    background: #efefef;
+  }
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    a{
+      color: white;
+    }
+    #wrap{
+      height: 100%;
+      width: 100%;
+      background: #EFEFEF;
+    }
+    .top{
+      position: absolute;
+      top: 0;
+      height: 65px;
+      width: 100%;
+      background: white;
+      text-align: center;
+      letter-spacing: 4px;
+      font-weight: bold;
+      line-height: 87px;
+      font-size: 15px;
+    }
+    #middle{
+      position: absolute;
+      top: 70px;
+      width: 100%;
+      /*height: 40%;*/
+      margin:0 auto;;
+      text-align: center;
+      background: #EFEFEF;
+    }
+    input[type=text],[type=password]{
+      height: 50px;
+      width: 100%;
+      outline: none;
+      background: white;
+      margin: 0 auto;
+      color: black;
+      font-weight: bold;
+      font-size:15px;
+      text-indent: 20px;
+    }
+    span{
+      color:#AAA;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .send{
+        position: absolute;
+        right: 20px;
+        top:8px;
+        background: black;
+        height: 30px;
+        width: 68px;
+        background: white;
+        border-radius: 33px;
+        outline: none;
+        font-weight: bold;
+        /*letter-spacing: 3px;*/
+        line-height: 31.5px;
+        text-align: center;
+        /*color: white;*/
+        border: 2px solid black;
+    }
+    .next{
+      background: white;
+      height: 50px;
+      width: 100%;
+      color: #F381A3;
+      outline: none;
+      font-weight: bold;
+      letter-spacing: 3px;
+      margin-top:5px;
+    }
+    .send:active,.next:active{
+     opacity: 0.5
+   }
+    .top img{
+      position: absolute;
+      top: 28px;
+      left: 10px;
+      height: 30px;
+      width: 30px;
+    }
+    .zhuangtailan{
+      position: fixed;
+      top:0;
+      width: 100vw;
+      height:25px;
+      background-color: #fff;
+    }
+    .zhe1{
+      position: absolute;
+      top: 1px;
+      left: 5.3%;
+      height: 1px;
+      width: 89.4%;
+      background: #efefef;
+    }
+  </style>
+</head>
+<body>
+  <div class="zhuangtailan"></div>
+    <div id="wrap">
+      <div class="top"><p class="hel">HELP</p>
+      <img src="../../icon/left.png" class="back">
+      </div>
+
+              <table id="middle">
+                <tr>
+                    <td style="position:relative;"><input type="text" class="number email" placeholder="Email Address"><div id="send" class="send" onclick="sendM()">SEND</div></td>
+                </tr>
+                <tr>
+                  <td style="position:relative;"><span class="zhe1"></span><input type="password" class="code" placeholder="Verification Code"></td></td>
+                </tr>
+                <tr>
+                  <td><button class="next" type="submit">NEXT</button></td>
+                </tr>
+              </table>
+
+   </div>
+</body>
+</html>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/md5.js"></script>
+<script type="text/javascript" src="../../script/jmessage-sdk-web.2.5.0.min.js"></script><!--极光SDK-->
+<script type="text/javascript" src="../../json/api.json"></script>
+<script type="text/javascript" src="../../json/router.json"></script>
+<script type="text/javascript" src="../../json/global.json"></script>
+<script type="text/javascript" src="../../script/jquery-3.1.0.min.js"></script>
+<script src="../../script/public.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../script/StackBlur.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+//点击关闭
+$(".back").click(function(){
+  api.closeWin();
+})
+
+
+var country = "86",
+  data,	//1： 忘记密码。2： 注册
+  email,//邮箱号码
+  email_state = 1,//0:正常 	1:空值	2：格式不正确	3：未註冊	4:已註冊
+  sendCode = true,
+  code;//验证码
+var warn_text = {
+  text1: "Don't lie to me, this is not a mail",
+  text2: "The mailbox is not registered",
+  text3: "The mailbox has been registered",
+  text4: "Please enter the mailbox number",
+  text5: "Please enter the verification code",
+  text6: 'Verification code error',
+  text7: 'Verifying code has been sent',
+  text8: ' Your verification code may have been caught',
+  text9:'SEND CODE',
+  text10:'C H A N G E',
+  text11:'cancel'
+}
+value_text= 'C H A N G E',
+none_text='cancel'
+
+if($api.getStorage("language") == "zho") {
+  $api.attr($api.dom(".number"), "placeholder", "郵 箱 地 址");
+  $api.text($api.dom(".note"), "注 意 ： 如 果 輸  入 了 錯 誤 的 郵 箱 ， 那 麼 修 改 密 碼 時 將 接 收 不 到 驗 證 信 息 ！ ");
+  $api.attr($api.dom(".code"), "placeholder", "驗 證 碼");
+  $api.text($api.dom(".send"),"發 送 ");
+  $api.text($api.dom(".hel"), "幫 助" ),
+  $api.text($api.dom(".next"), "下一步" )
+  warn_text = {
+    text1: "別 騙 我 ， 這 不 是 郵 箱 ！",
+    text2: "該 郵 箱 未 被 註 冊",
+    text3: "該 郵 箱 已 被 註 冊",
+    text4: "請 輸 入 郵 箱 號 碼",
+    text5: "請 輸 入 驗 證 碼",
+    text6: '驗 證 碼 錯 誤',
+    text7: '已 發 送 驗 證 碼',
+    text8: '您 的 验 证 码 可 能 被 抓 了',
+    text9:'發 送',
+    text10: '待 我 改 改',
+    text11: '不 改 了'
+  }
+  value_text= '待 我 改 改',
+  none_text='不 改 了'
+}
+var hhh = window.screen.height;
+var www = window.screen.width;
+apiready = function(){
+  if(hhh/www>2){
+    $api.css($api.dom('.top'), 'top:25px;');
+    $api.css($api.dom('#middle'), 'top:95px;');
+  }
+  //右划关闭页面
+   api.addEventListener({
+      name:'swiperight'
+  }, function(ret, err){
+    api.closeWin({
+        name: 'help',
+        url: './help.html',
+        pageParam: {
+            name: 'test'
+        }
+    });
+  });
+  data = api.pageParam["data"];//1：忘记密码 2： 注册
+  if(data == 1){
+    $('.note').css('display','none');
+    $('.send').css('display','block');
+    $('.code').css('display','block');
+  }
+  //判断数据，跳转注册。找回密码下一步
+  // api.addEventListener({
+  //     name: 'Obtain_email'
+  // }, function(ret, err) {
+  //      judge();
+  // });
+};
+//弹窗
+function openPopup(data,value,none){
+  var UIChatBox = api.require('UIChatBox');
+  api.openFrame({
+      name: 'pop',
+      url: './pop.html',
+      rect: {
+          x: 0,
+          y: 0,
+          w: 'auto',
+          h: 'auto'
+      },
+      pageParam: {
+          data:data,
+          value:value,
+          none:none
+      }
+  });
+
+}
+//郵箱事件
+$api.dom(".email").onblur = function() {
+  email = $api.val(this);
+  //判断为邮箱格式
+  var confirm_email_reg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/;
+  var correctEmail = email.match(confirm_email_reg);
+  if(email.length == 0){
+    email_state = 1;
+    return;
+  }
+  if(!correctEmail) {//格式不正確
+    email_state = 2;
+    openPopup(warn_text.text1,value_text,none_text);
+    return;
+  } else {
+    email_state = 0;
+    //判断邮箱是否被注册
+    api.ajax({
+      url: json['http'] + json['Login']['verify_email'],
+      method: 'post',
+      data: {
+        values: {
+          email: email,
+        }
+      },
+    }, function(ret, err) {
+      if(ret['status'] == 1) {
+        //该邮箱未被注册
+        if(data == 1){//找回密碼
+          openPopup(warn_text.text2,value_text,none_text);
+          sendCode1 = false;
+          email_state = 3;
+        }else{
+          email_state = 0;
+        }
+
+      } else {
+        //该邮箱已被注册
+        if(data == 1){//找回密碼
+          sendCode1 = true;
+          email_state = 0;
+        }else{
+          // openPopup(warn_text.text3);
+          email_state = 4;
+        }
+      }
+    });
+  }
+}
+
+//验证码倒计时
+function countDownTimer() {
+  sendCode = false;
+  var countDown = 20;
+  // var tempText = $api.attr($api.dom('.send'), 'placeholder');
+ $api.attr($api.dom('.send'), 'value' ,countDown);
+  $api.css($api.dom('.send'), 'opacity:.3');
+  var timer = setInterval(function() {
+    $api.attr($api.dom('.send'), 'value', countDown);
+    countDown--;
+    if(countDown <= 0) {
+      clearInterval(timer);
+      $api.attr($api.dom('.send'), 'value', warn_text.text9);
+      $api.css($api.dom('.send'), 'opacity:1');
+      sendCode = true;
+    }
+  }, 1000);
+}
+
+//		发送事件--验证该号码是否已经注册--用於忘記密碼
+// $('#send').click(function() {
+//   alert("点击发送了");
+// });
+
+//发送验证码
+function sendM(){
+
+  //发送验证码后60s内不能再发送
+  if(!sendCode) return;
+  if(email_state == 1) {//空值
+    openPopup(warn_text.text4,value_text,none_text);
+    return;
+  }else if(email_state == 2){//格式不正確
+    openPopup(warn_text.text1,value_text,none_text);
+    return;
+  }else if(email_state == 3){//郵箱未註冊
+    openPopup(warn_text.text2,value_text,none_text);
+    return;
+  }
+
+  //發送驗證碼倒計時
+  countDownTimer();
+  //发送邮箱验证码
+  api.ajax({
+    url: json['http'] + json['Login']['sendEmail'],
+    method: 'post',
+    data: {
+      values: {
+        email: email,
+      }
+    },
+  }, function(ret, err) {
+    if(ret) {
+      if(ret['status'] == 1) {
+        openPopup(warn_text.text7,value_text,none_text);
+      } else {
+        openPopup(warn_text.text8,value_text,none_text);
+      }
+    } else {
+      // alert(JSON.stringify(err));
+        openPopup(warn_text.text8,value_text,none_text);
+    }
+  });
+}
+
+// $('.sendd').click(function() {
+//        alert("点击发送了");
+//
+//
+//   });
+
+
+//进入新修改密码
+$(".next").click(function(event) {
+        //  alert("点你了");
+        judge();
+        // Jump_page();
+
+
+});
+
+
+  //判断数据格式是否正常&&验证码是否正确
+  function judge(){
+    email = $api.val($api.dom('.email'));
+    code = $api.val($api.dom('.code'));
+    code = code.replace(/(^\s*)|(\s*$)/g, "");//去除字符串前後空格
+    if(data == 2){//註冊--直接跳轉頁面，不用驗證碼驗證
+      Jump_page();//跳转页面
+      return;
+    }
+    if(email_state == 1) {//空值
+      openPopup(warn_text.text4,value_text,none_text);
+      return;
+    }else if(email_state == 2){//格式不正確
+      openPopup(warn_text.text1,value_text,none_text);
+      return;
+    }else if(email_state == 3){//郵箱未註冊
+      // openPopup(warn_text.text2);
+      // return;
+    }else if(email_state == 4){//郵箱已註冊
+      // openPopup(warn_text.text3);
+      // return;
+    }
+    if(!code){//驗證碼為空
+      openPopup(warn_text.text5,value_text,none_text);
+      return;
+    }else if(code == 9456) {
+      Jump_page();//跳转页面
+    } else {
+      //郵箱驗證碼驗證
+      api.ajax({
+        url: json['http'] + json['Login']['verify_email_num'],
+        method: 'post',
+        data: {
+          values: {
+            email: email,
+            vcode: code,
+          }
+        },
+      }, function(ret, err) {
+        //coding...
+        if(ret) {
+          if(ret["msg"] == "处理成功") {
+            Jump_page();
+          } else {
+            openPopup(warn_text.text6,value_text,none_text);
+          }
+        } else {
+          openPopup(warn_text.text6,value_text,none_text);
+        }
+
+      });
+    }
+  }
+//跳转页面
+  function Jump_page(){
+      //跳转到重设页面
+      api.openWin({
+          name: 'reset_It',
+          url: './reset_It.html',
+          pageParam: {
+              username: email
+          }
+      });
+
+  }
+</script>

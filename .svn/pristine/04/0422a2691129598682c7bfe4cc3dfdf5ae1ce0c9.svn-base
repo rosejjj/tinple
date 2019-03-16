@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+	<title>guide9(new)</title>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+		}
+		body{
+			width:100vw;
+			height:100vh;
+			/*visibility: hidden;*/
+		}
+		.bg{
+			position: fixed;
+			top:0;
+			width:100vw;
+			height:100vh;
+			background-color:#000;
+			opacity: 0.8;
+			/*animation:bganimation 0.3s linear 0s 1 normal;
+			-webkit-animation: bganimation 0.3s linear 0s 1 normal;
+			-ms-animation: bganimation 0.3s linear 0s 1 normal;
+			-o-animation: bganimation 0.3s linear 0s 1 normal;
+			-moz-animation: bganimation 0.3s linear 0s 1 normal;*/
+			z-index: -1;
+		}
+		.box{
+			margin-top:46.81vw;
+			width: 100vw;
+			position: relative;
+		}
+		.arrow{
+			display: inline-block;
+			width:10.64vw;
+			height:10.64vw;
+			background:url(../../icon/guide/arrow2.png) no-repeat;
+			background-size:contain;
+			transform: rotate(-100deg);
+			margin-left:7.98vw;
+			margin-top:3vw;
+		}
+		p{
+			font:3.99vw/5.85vw Arial;
+			font-weight: bold;
+			color:#fff;
+			display: inline-block;
+		}
+		p>span{
+			color:#f381a3;
+		}
+		.square_title{
+			margin-top: 2.66vw;
+			margin-left:2.66vw;
+			float:left;
+			width:38.56vw;
+			height:10.64vw;
+			background-color:#fff;
+			font:3.99vw/10.64vw Arial;
+			font-weight: bold;
+			text-align: center;
+			color:#000;
+			border-radius: 1.33vw;
+		}
+		.square_title>img{
+			width:3.99vw;
+			height:3.99vw;
+			object-fit: cover;
+			vertical-align: middle;
+			margin-left:1.33vw;
+		}
+		.text{
+			margin:20vw 0 0 50vw ;
+		}
+		.arrow2{
+			width:10.64vw;
+			height:10.64vw;
+			background:url(../../icon/guide/arrow1.png) no-repeat;
+			background-size:contain;
+			transform: rotate(-100deg);
+			margin-left:50vw;
+			margin-top:3vw;
+		}
+		.button{
+			position: fixed;
+			bottom:10.64vw;
+			left:50%;
+			margin-left:-29.655vw;
+			width:59.31vw;
+			height:10.64vw;
+			border:2px solid rgba(255,255,255,1);
+			border-radius: 7.99vw;
+			font:3.99vw/10.64vw Arial;
+			font-weight: bold;
+			text-align: center;
+			color:#fff;
+		}
+	</style>
+</head>
+<body>
+	<div class="bg"></div>
+	<div class="box">
+		<div class="arrow"></div>
+		<p class="textt">Click to switch the  <span>post type</span> :<br>Hot door, newest, my concern</p>
+		<div class="square_title">
+			P O P U L A R <img src="../../image/index/more.png" alt="">
+		</div>
+		<p class="text">Post display</p>
+		<div class="arrow2"></div>
+	</div>
+	<div class="button">N E X T</div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript">
+	var www = window.screen.width;
+	var hhh = window.screen.height;
+	apiready = function(){
+		if(hhh/www >2){
+			$api.css($api.dom('.box'), 'margin-top:51.81vw');
+			$api.css($api.dom('.buttom'), 'bottom:19.64vw');
+		}
+		if($api.getStorage('language')=='zho'){
+			$api.html($api.dom('.textt'), '點 擊 切 換 <span>帖 子 類 型</span> ：<br>熱 門 ，最 新 ，我 的 關 注');
+			$api.html($api.dom('.text'), '各 種 帖 子 展 示');
+			$api.html($api.dom('.button'), '下一步');
+		}
+		$api.addEvt($api.dom('.button'), 'click', function(){
+			api.openFrame({
+			    name: 'guide10(new)',
+			    url: 'widget://html/guide/guide10(new).html',
+			    rect: {
+			        x: 0,
+			        y: 0,
+			        w: 'auto',
+			        h: 'auto'
+			    },
+			    pageParam: {
+			        name: 'value'
+			    }
+			});
+			api.closeFrame({
+	    	    name: 'guide9(new)'
+	    	});
+		});
+	}
+</script>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>reply</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <style>
+		html, body{
+			background-color: transparent;
+			font-family: Arial;
+			font-style: italic;
+		}
+		.bg{
+			width: 100vw;
+			height: 100vh;
+			background-color: rgba(34, 34, 34, .7);
+			position: fixed;
+			top: 0;
+			left: 0;
+		}
+		.box{
+			width: 295px;
+			height: 259px;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			margin: auto;
+			/*padding-top: 9.87vw;*/
+			border-radius: 20px;
+			background-color: #fff;
+		}
+		/*.box img{
+			width: 26.67vw;
+			margin: 0 auto;
+		}*/
+		.box h1{
+			position: relative;
+			top: 15px;
+			width: 80%;
+			text-align: center;
+			font-size: 4vw;
+			color: #484848;
+			line-height: 5.87vw;
+			height: 5.87vw;
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			margin: 0 auto;
+		}
+		.box textarea{
+			display: block;
+			width: 255px;
+			height: 88px;
+			background-color: #EFEFEF;
+			outline: none;
+			resize:none;
+			margin: 8vw auto 0;
+			color: #484848;
+			font-size: 4vw;
+			line-height: 5.87vw;
+			font-weight: bold;
+			padding: 2.6vw 5.3vw;
+			opacity: 0.5;
+			text-align: center;
+		}
+		.btn{
+			margin-top:19px;
+			width: 100%;
+			height: 41px;
+		}
+		.btn p{
+			width: 200px;
+			margin: 4vw auto 0;
+			height: 40px;
+			line-height: 45px;
+			text-align: center;
+			color: #fff;
+			font-weight: bold;
+			border-radius: 5.33vw;
+			background: #F381A3;
+			font-size: 15px;
+		}
+textarea::-webkit-input-placeholder {text-align: center;padding-top:34px;}
+		.cancel{
+			text-align: center;
+			margin-top:9px;
+			color: #AAA;
+			font-size: 12px;
+		}
+    </style>
+</head>
+<body>
+	<div class="bg" id="bg">
+		<div class="box">
+			<!-- <img src="../../icon/details/reply.png"> -->
+			<h1 id="head">Modify group name</h1>
+			<!-- <textarea style="display:none;" name="reply-content" id="reply-content" placeholder="Enter The Content"></textarea> -->
+			<textarea name="reply-content" id="reply-content1" placeholder="Click input group nickname"></textarea>
+			<div class="btn">
+				<p id="btn">S E N D</p>
+			</div>
+			<p class="cancel">cancel</p>
+		</div>
+	</div>
+	<script type="text/javascript">
+		apiready = function(){
+			var language = $api.getStorage("language"),
+					head = $api.dom("#head"),
+					replyContent = $api.dom("#reply-content1"),
+					btn = $api.dom("#btn"),
+					bg = $api.dom("#bg"),
+					cancel = $api.dom(".cancel"),
+					replyName = api.pageParam["replyName"] || "",//所@的那个用户名
+					replyId = api.pageParam["replyId"] || "";//所@的那个ID
+			var modify_the_group = api.pageParam["modify_the_group"];
+			//alert(modify_the_group);
+			if(modify_the_group){//更改群名和群描述
+				if(modify_the_group == 'groupName'){//修改群名
+					$api.html(head, 'The Group Name');
+					$api.html(btn, "M O D I F Y");
+					if(language == "zho"){
+						$api.html(head, "修 改 群 名 稱");
+						replyContent.placeholder = "點 擊 輸 入 群 昵 稱";
+						$api.html(btn, "修 改");
+							$api.html(cancel, "取 消");
+					}
+					$api.addEvt(cancel, 'click',function(){
+						api.closeFrame({
+								name: 'reply'
+						});
+
+					});
+				}else{//修改群描述
+					$api.html(head, 'The Group Profile');
+					$api.html(btn, "M O D I F Y");
+					replyContent.placeholder = "Input content";
+					if(language == "zho"){
+						$api.html(head, "修 改 群 公 告");
+						replyContent.placeholder = "輸 入 内 容";
+						$api.html(btn, "修 改");
+						$api.html(cancel, "取 消");
+					}
+					$api.addEvt(cancel, 'click',function(){
+						api.closeFrame({
+								name: 'reply'
+						});
+
+					});
+				}
+				$api.addEvt(btn, "click", function(){
+					if(replyContent.value === ""){
+						alert('请填写内容！');
+						return;
+					}
+					var content = $api.val(replyContent);
+					var jsfun = "modify('" + modify_the_group + "','" + content + "')";
+					api.execScript({
+					    script: jsfun
+					});
+					setTimeout(function(){
+						api.closeFrame({
+								name: 'reply'
+						});
+					},300);
+				});
+
+			}else{//帖子回复和评论
+
+				if(!!replyName){
+					$api.html(head, "REPLY @" + replyName);
+				};
+				if(language == "zho"){
+					$api.html(head, "評 論");
+					if(!!replyName){
+						$api.html(head, "回 復 @" + replyName);
+					};
+					replyContent.placeholder = "輸 入 内 容";
+					$api.html(btn, "發 送");
+				};
+				$api.addEvt(btn, "click", function(){
+					if(replyContent.value === ""){
+						api.openFrame({
+							name: "out",
+							url: "widget://html/nav/out.html",
+							rect: {
+								x: 0,
+								y: 0,
+								w: "auto",
+								h: "auto"
+							},
+							pageParam:{
+								replyEmpty: true
+							}
+						});
+						return;
+					};
+					var content = $api.val(replyContent);
+					var jsfun = "reply('" + replyId + "','" + content + "','" + replyName + "')";
+					api.execScript({
+					    script: jsfun
+					});
+				});
+
+			}
+
+			$api.addEvt(bg, "click", function(e){
+				var tar = e.target;
+				if(tar.id === "bg"){
+					api.closeFrame();
+				};
+			});
+		};
+	</script>
+</body>
+</html>

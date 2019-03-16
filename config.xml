@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<widget id="A6925336051394" version="0.0.1">
+  <name>Tinkle</name>
+  <description>Example For APICloud.</description>
+  <author email="developer@apicloud.com" href="http://www.apicloud.com">Developer</author>
+  <content src="index.html"/>
+  <preference name="pageBounce" value="false"/>
+  <preference name="backgroundMode" value="audio"/>
+  <preference name="appBackground" value="#FFF"/>
+  <preference name="windowBackground" value="#FFF"/>
+  <preference name="frameBackgroundColor" value=""/>
+  <preference name="hScrollBarEnabled" value="true"/>
+  <preference name="vScrollBarEnabled" value="false"/>
+  <preference name="autoLaunch" value="true"/>
+  <preference name="fullScreen" value="false"/>
+  <preference name="autoUpdate" value="true"/>
+  <preference name="smartUpdate" value="true"/>
+  <preference name="iOS7StatusBarAppearance" value="true"/>
+  <preference name="statusBarAppearance" value="true"/>
+  <preference name="debug" value="false"/>
+  <preference name="softInputMode" value="resize"/>
+  <preference name="querySchemes" value="fb,fbapi,fb-messenger-api,fbauth2,fbshareextension"/>
+  <meta-data name="com.facebook.sdk.ApplicationId" value="fb121043455153956"/>
+  <permission name="readPhoneState"/>    <!-- 读取手机状态和身份 -->
+  <permission name="camera"/>
+  <permission name="record"/>
+   <permission name="location"/>   <!-- 访问地理位置信息 -->
+  <permission name="fileSystem"/>
+  <permission name="internet"/>
+  <permission name="bootCompleted"/>   <!-- 开机启动 -->
+  <permission name="hardware"/>   <!-- 控制振动/闪光灯/屏幕休眠等硬件设备 -->
+  <access origin="*"/>
+  <feature name="ajpush">
+    <param name="app_key" value="c46c8bc128f41299334ec8e3"/>
+    <param name="channel" value="channel"/>
+  </feature>
+  <feature name="qq">
+    <param name="urlScheme" value="tencent1106152201"/>
+    <param name="apiKey" value="1106152201"/>
+  </feature>
+  <feature name="wx">
+    <!-- 国外微信 -->
+<!--     <param name="urlScheme" value="wx41eb64337941c2e6"/>
+    <param name="apiKey" value="wx41eb64337941c2e6"/>
+    <param name="apiSecret" value="ca0f235e16228db56d531fd0e7ffde27"/> -->
+
+    <!-- 国内微信 -->
+    <param name="urlScheme" value="wx2ccebd109467df4c"/>
+    <param name="apiKey" value="wx2ccebd109467df4c"/>
+    <param name="apiSecret" value="2362da7382879554ed30006fb8f523d5"/>
+  </feature>
+  <!-- 微信支付 -->
+<!--   <feature name="wxPay">
+    <param name="urlScheme" value="wx2ccebd109467df4c"/>
+    <param name="apiKey" value="wx2ccebd109467df4c"/>
+    <param name="apiSecret" value="2362da7382879554ed30006fb8f523d5"/>
+  </feature> -->
+  <!-- 支付宝支付 -->
+  <feature name="aliPayPlus">
+      <param name="urlScheme" value="AliPayPlusA6925336051394" />
+  </feature>
+
+  <feature name="facebook">
+    <param name="urlScheme" value="fb121043455153956"/>
+    <param name="appId" value="121043455153956"/>
+  </feature>
+  <feature name="smsVerify">
+    <param name="android_app_key" value="1557655e1d49f"/>
+    <param name="android_app_secret" value="58fd744089a9811ffe8adb407de7ef54"/>
+    <param name="ios_app_key" value="16c8fac0a1282"/>
+    <param name="ios_app_secret" value="af995d6f6ab0c68cf0dfff9c9afe6435"/>
+  </feature>
+  <!-- <feature name="rongCloud2">
+    <param name="appKey" value="z3v5yqkbvvox0"/>
+  </feature> -->
+  <feature name="qiniuUpfile">
+    <param name="bucket" value="baopinghui"/>
+    <param name="SecretKey" value="8o3E5H2cQ0N_sQH0BrtRVydXzITtb077cJOlcKhX"/>
+    <param name="AccessKey" value="iZU8PP5ryBNX4sBeVLbXRTmJVnNCQ7sBb6zDiuXR"/>
+  </feature>
+  <feature name="mapleRTC">
+    <param name="appId" value="7f8f00fef57365de"/>
+  </feature>
+</widget>

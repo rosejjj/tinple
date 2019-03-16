@@ -1,0 +1,2526 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>detail</title>
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <script type="text/javascript" src="../../script/md5.js"></script>
+
+    <style>
+    *{
+    	padding:0;
+    	margin:0;
+    }
+		html, body{
+			background-color: transparent;
+			font-family: Arial;
+			/*font-style: italic;*/
+		}
+		img[src=""]{
+			visibility: hidden;/*将src不存在的img隐藏*/
+		}
+		img{
+			display: block;
+		}
+		video{
+			width: 100vw;
+		}
+		.wrap{
+			padding-top: 66px;/*使导航出现在最上方，并且不遮挡到内容*/
+			width: 100vw;
+		}
+		.container{
+			margin-bottom: 1.5vw;
+		}
+		.loading{
+			width: 100vw;
+			padding: 13.3vw 0 26.6vw 0;
+		}
+		.loading img{
+			width: 8vw;
+			margin: 0 auto;
+		}
+		.box{
+			position: relative;
+			margin-bottom: 1px;
+		}
+		.box:last-child{
+			margin-bottom: 0px;
+		}
+		.box > img{
+			width: 100%;
+		}
+		.screen{
+			position: absolute;
+			width: 8vw;
+			height: 8vw;
+			bottom: 2.67vw;
+			right: 2.67vw;
+			background: url("../../icon/details/screen.png") no-repeat;
+			background-size: 100% 100%;
+			z-index: 9;
+			display: none;
+		}
+		.page{
+			position: relative;
+		}
+/*		.page{
+			position: relative;
+			width: 92.02vw;
+			margin: 5.32vw 3.99vw 0vw 3.99vw;
+			font-weight: bold;
+			border-bottom:1px solid #efefef;
+		}
+		.page .aimg{
+			position: absolute;
+			top:0;
+			left:0;
+			border-radius: 50%;
+			width:10.64vw;
+			height:10.64vw;
+			object-fit: cover;
+			display: inline-block;
+		}
+		.nickname{
+			font:3.2vw Arial;
+			font-weight: bold;
+			color:#aaa;
+			margin-left:13.3vw;
+			margin-bottom:1.33vw;
+		}
+		.des{
+			font-size: 3.2vw;
+			color: #000;
+			line-height: 4.52vw;
+			margin-bottom: 1.33vw;
+			margin-left:13.3vw;
+			/*内容超过宽度自动换行，不带空格的全英文和全数字也都可以*/
+			/*white-space: pre-line;
+            word-wrap: break-word;*/
+		/*}*/
+/*		.trans{
+			font-size: 3.2vw;
+			font-weight: bold;
+			color: #aaa;
+			line-height: 4.52vw;
+			margin-top:1vw;
+			margin-bottom: 1.33vw;
+			margin-left:13.3vw;
+			/*字体渐变*/
+/*			background: #aaa;
+		    -webkit-background-clip: text;
+		    -webkit-text-fill-color: transparent;*/
+
+		    /*内容超过宽度自动换行，不带空格的全英文和全数字也都可以*/
+/*		    white-space: pre-line;
+            word-wrap: break-word;*/
+		/*}*/
+/*		.tags, .popular,.tinCommentsNum,.pointNum{
+			color: #aaa;
+			font-size: 3.2vw;
+			line-height: 4.52vw;
+		}
+		.tags{
+			margin-bottom:1.33vw;
+			margin-left:13.3vw;
+		}
+		.popular{
+			margin-left:13.3vw;
+		}
+		.popular,.tinCommentsNum,.pointNum{
+			margin-top:-1vw;
+			margin-bottom:3.3vw;
+		}
+		.popular img,.tinCommentsNum img,.pointNum img{
+			display: inline-block;
+			width:3.99vw;
+			height:3.99vw;
+			object-fit: cover;
+			vertical-align:text-top;
+			margin-right:1.33vw;
+		}
+		.tinCommentsNum,.pointNum{
+			margin-left:3.72vw;
+		}
+		.tags span{
+			margin-right: 1.33vw;
+		}
+		.tags img{
+			width:3.99vw;
+			height:3.99vw;
+			vertical-align:text-top;
+			margin-right:1.33vw;
+			display: inline-block;
+		}
+		.isfollow{
+			width:37.23vw;
+			height:7.98vw;
+			border-radius:8.78vw;
+			font:3.19vw/7.98vw Arial;
+			font-weight: bold;
+			text-align: center;
+			color:#fff;
+			background-color: #F381A3;
+			margin-bottom:5.32vw;
+			margin-left:13.3vw;
+			vertical-align: middle;
+		}
+		.isfollowing{
+            width:37.23vw;
+			height:7.98vw;
+			border-radius:8.78vw;
+			font:3.19vw/7.98vw Arial;
+			font-weight: bold;
+			text-align: center;
+			color:#fff;
+			background-color: #aaa;
+			margin-bottom:5.32vw;
+			margin-left:13.3vw;
+			display: inline-block;
+			vertical-align: middle;
+        }
+        .isfollowing img{
+        	width:7.98vw;
+        	height:7.98vw;
+        	margin:0 auto;
+        	object-fit: cover;
+        }
+		.chat{
+			width:37.23vw;
+			height:7.98vw;
+			border-radius: 8.78vw;
+			font:3.19vw/7.98vw Arial;
+			font-weight: bold;
+			text-align: center;
+			color:#fff;
+			background-color: #aaa;
+			margin-bottom:5.32vw;
+			vertical-align: middle;
+			margin-left:4.25vw;
+		}*/
+
+		/*新样式20181020*/
+		.box1{
+			position: relative;
+			width:100%;
+			height:18.62vw;
+			border-top:1.33vw solid #efefef;
+			border-bottom:1.33vw solid #efefef;
+			box-sizing: border-box;
+		}
+		.views_likes{
+			position: absolute;
+			top:-13.29vw;
+			right:3.99vw;
+			height:9.31vw;
+			font:3.12vw/9.81vw Arial;
+			font-weight: bold;
+			text-align: center;
+			padding:0vw 3.99vw;
+			border-radius:4.79vw;
+			background-color:rgba(255,255,255,0.82);
+		}
+		.aimg{
+			position: absolute;
+			left:3.99vw;
+			top:50%;
+			margin-top:-20px;
+			width:40px;
+			height:40px;
+			border-radius: 50%;
+			object-fit: cover;
+		}
+		.nickname{
+			position: absolute;
+			left:17vw;
+			top:3.72vw;
+			font:3.19vw/4.52vw Arial;
+			font-weight: bold;
+			color:#f381a3;
+		}
+		.summary{
+			position: absolute;
+			left:17vw;
+			top:8.24vw;
+			width:45.21vw;
+			font:3.19vw/4.52vw Arial;
+			font-weight: bold;
+			color:#aaa;
+			display:-webkit-box;
+          	-webkit-line-clamp: 1;
+          	-webkit-box-orient: vertical;
+          	overflow: hidden;
+		}
+		.btn{
+			position: absolute;
+			right:3.99vw;
+			top:3.99vw;
+			height:7.98vw;
+			display: flex;
+			align-items: center;
+		}
+		.gohome{
+			position: relative;
+			width:10.64vw;
+			height:9.31vw;
+			background-color:rgba(239,239,239,1);
+			border-radius:1.33vw;
+		}
+		.gohome>img{
+			position: absolute;
+			top:50%;
+			left:50%;
+			margin-top:-2.66vw;
+			margin-left:-2.66vw;
+			width:5.32vw;
+			height:5.32vw;
+			object-fit: cover;
+			transform:rotate(-90deg);
+			opacity: 0.6;
+		}
+		.isfollow{
+			width:19.95vw;
+			height:7.98vw;
+			border:0.5vw solid #f381a3;
+			background-color:#f381a3;
+			font:3.19vw/7.98vw Arial;
+			font-weight: bold;
+			text-align: center;
+			color:#fff;
+			border-radius: 8.78vw;
+			display: none;
+		}
+		.isfollowing{
+			/*margin-right:2.66vw;*/
+            width:7.98vw;
+            height:7.98vw;
+            background:url(../../image/eye.png) no-repeat center;
+            background-size: 5.32vw 5.32vw;
+            background-position: center !important;
+            background-color: #F381A3;
+            border-radius:50%;
+            /*z-index:10;*/
+            vertical-align: text-top;
+            display: none;
+		}
+		.chat{
+			margin-left:2.66vw;
+			width:19.95vw;
+			height:7.98vw;
+			border:0.5vw solid #000;
+			font:3.19vw/7.98vw Arial;
+			font-weight: bold;
+			text-align: center;
+			color:#000;
+			border-radius: 8.78vw;
+			vertical-align: text-top;
+			display: none;
+		}
+		.box2,.box3{
+			position: relative;
+			width:100%;
+			/*border-bottom:1px solid #efefef;*/
+		}
+		.des_img,.tran_img{
+			position: absolute;
+			top:0vw;
+			left:10.64vw;
+			width:15px;
+			height:15px;
+			background:url(../../image/pen.png);
+			background-size:cover;
+		}
+		.des_img{
+			top:0vw;
+		}
+		.des,.trans{
+			padding-left:17vw;
+			font:3.19vw/4.52vw Arial;
+			font-weight: bold;
+			color:#000;
+			box-sizing: border-box;
+			padding:1.33vw 3.98vw 1.33vw 17vw;
+		}
+		.des{
+			font:3.99vw/5.82vw Arial;
+			font-weight: bold;
+			color:#000;
+			padding:0vw 3.98vw 2.66vw 17vw;
+		}
+		.tran_box{
+			/*border-top:1px solid #efefef;*/
+			position: relative;
+		}
+		.tran_img{
+			background:url(../../image/tran.png);
+			background-size:cover;
+		}
+		.tran_img1{
+			position: absolute;
+			top:3vw;
+			left:10.64vw;
+			width:15px;
+			height:15px;
+			background:url(../../image/tran.png);
+			background-size:cover;
+		}
+		.trans{
+			padding:0vw 3.98vw 2.66vw 17vw;
+			color:#aaa;
+			/*内容超过宽度自动换行，不带空格的全英文和全数字也都可以*/
+			white-space: pre-line;
+			word-wrap: break-word;
+			box-sizing: border-box;
+		}
+		.tags{
+			position: relative;
+			width: 100%;
+			min-height: 7.18vw;
+			/*border-bottom:1px solid #efefef;*/
+			padding:0vw 3.98vw 2.66vw 17vw;
+			font:3.19vw/4.52vw Arial;
+			font-weight: bold;
+			color:#aaa;
+			box-sizing: border-box;
+		}
+		.tags>img{
+			position: absolute;
+			top:0vw;
+			left:10.64vw;
+			width:15px;
+			height:15px;
+			object-fit: cover;
+		}
+		.box_popular,.box_hotpost,.box_themetext{
+			position: relative;
+			width: 100%;
+			min-height: 7.18vw;
+			/*border-bottom:1px solid #efefef;*/
+			padding:0vw 3.98vw 2.66vw 17vw;
+			font:3.19vw/4.52vw Arial;
+			font-weight: bold;
+			color:#aaa;
+			box-sizing: border-box;
+		}
+		.box_hotpost{
+/*			border-top:1.33vw solid #efefef;
+			border-bottom:1.33vw solid #efefef;*/
+			color:rgba(157,218,87,1);
+		}
+		.box_themetext{
+			border-top:1.33vw solid #efefef;
+			padding:2.66vw 3.98vw 2.66vw 17vw;
+			/*border-bottom:1.33vw solid #efefef;*/
+		}
+		.box_popular{
+			display: none;
+		}
+		.box_hotpost>span{
+			position: absolute;
+			top:0;
+			margin-top:0px;
+			left:10.74vw;
+			width:13px;
+			height:17px;
+			background:url(../../icon/details/hot.png) no-repeat center;
+			background-size:13px 17px;
+		}
+		.box_popular img{
+			display: inline-block;
+			margin-right:0vw;
+			width:15px;
+			height:15px;
+			object-fit: cover;
+			vertical-align: text-top;
+		}
+		img[src="../../icon/c.png"]{
+			position: absolute;
+			top:3.06vw;
+			left:10.64vw;
+			width:3.99vw;
+			height:3.99vw;
+			object-fit: cover;
+		}
+		.box_popular span{
+			font:3.19vw/4.52vw Arial;
+			font-weight: bold;
+			color:#aaa;
+			vertical-align: middle;
+			margin-right:7.98vw;
+		}
+/*		.box_themetext{
+			border-top:1px solid #efefef;
+		}*/
+		.box_themetext img{
+			position: absolute;
+			top:50%;
+			right:4.26vw;
+			margin-top:-7.5px;
+			width:15px;
+			height:15px;
+			object-fit: cover;
+			transform: rotate(-90deg);
+		}
+		.box_themetext span:nth-child(1){
+			position: absolute;
+			top:50%;
+			left:10.64vw;
+			margin-top:-7.5px;
+			width:15px;
+			height:15px;
+			background:url(../../image/crown.png) no-repeat center;
+			background-size:cover;
+		}
+		.box_themetext span:nth-child(2){
+			padding:0 2.66vw;
+			height:5.85vw;
+			line-height: 5.85vw;
+			border-radius: 5.32vw;
+			background-color:#aaa;
+			color:#fff;
+			box-sizing: border-box;
+		}
+		.likebtn{
+			position: absolute;
+			top:1.33vw;
+			right:3.99vw;
+			width:18.09vw;
+			height:7.98vw;
+			border:0.5vw solid #f381a3;
+			background-color:#f381a3;
+			font:3.19vw/7.48vw Arial;
+			font-weight: bold;
+			text-align: center;
+			color:#fff;
+			border-radius: 8.78vw;
+			box-sizing: border-box;
+		}
+		.tinComments{
+			position: relative;
+			width:100%;
+			min-height: 10.64vw;
+			padding-left:17vw;
+			font:3.19vw/10.64vw Arial;
+			font-weight: bold;
+			color:#aaa;
+			box-sizing: border-box;
+			/*border-top:1.33vw solid #efefef;*/
+			border-bottom:1.33vw solid #efefef;
+			display: none;
+		}
+		.tinComments>img:nth-child(1){
+			position: absolute;
+			top:50%;
+			left:10.64vw;
+			margin-top:-7.5px;
+			width:15px;
+			height:15px;
+			object-fit: cover;
+		}
+		.tinComments>img:nth-child(2){
+			position: absolute;
+			top:50%;
+			margin-top:-7.5px;
+			right:4.26vw;
+			width:15px;
+			height:15px;
+			object-fit: cover;
+		}
+		/*.detail{
+			position: relative;
+			width:100%;
+			display: inline-block;
+		}
+		.detail-container{
+			background-color: #EFEFEF;
+			width:100%;
+			padding: 2.66vw 2.66vw;
+			box-sizing: border-box;
+		}
+		.detail img{
+			float: left;
+			width: 13.33vw;
+			height: 13.33vw;
+			border-radius: 50%;
+			margin-right: 2.66vw;
+			object-fit: cover;
+		}
+		.info{
+			float: left;
+		}*/
+		/*.info h1{
+			width: 71.5vw;
+			color: #484848;
+			font-size: 4vw;
+			line-height: 5.86vw;
+
+			内容超过宽度自动换行，不带空格的全英文和全数字也都可以
+			white-space: pre-line;
+			word-wrap: break-word;
+		}
+		.info p{
+			font-size: 3.2vw;
+			color: #aaa;
+			line-height: 3vw;
+			font-weight: bold;
+			margin-top:2.2vw;
+		}*/
+		/*.info span{
+			margin-right: 1.33vw;
+		}*/
+		/*.detail-des{
+			display:block;
+			width: 75vw;
+			margin-left:16vw;
+			font-size: 3.2vw;
+			color: #aaa;
+			font-weight: bold;
+			line-height: 4.53vw;
+			clear: both;
+
+			内容超过宽度自动换行，不带空格的全英文和全数字也都可以
+			white-space: pre-line;
+			word-wrap: break-word;
+		}*/
+		/*.btn{按钮的容器*/
+		/*	position: absolute;
+			top:0vw;
+			right: 0vw;
+			width: 20vw;
+			/*margin-top:-15vw;*/
+
+		/*	display: -webkit-box;
+		    display: -webkit-flex;
+		    display: flex;
+		    display: inline-block;*/
+		    /*float:right;*/
+		    /*设置容器为弹性盒子*/
+		/*}*/
+		/*.btn a{按钮*/
+			/*display:inline-block;*/
+			/*margin: 0 auto;*//*自适应分布*/
+			/*height: 8vw;*/
+			/*border-radius: 5px;*/
+			/*text-align: center;*/
+			/*font-family: Arial;*/
+			/*color: #fff;*/
+			/*font-size: 3.4vw;*/
+			/*line-height: 9vw;*/
+			/*font-weight: bold;*/
+		/*}*/
+
+
+		.list{
+			width: 100%;
+			border-bottom:1.33vw solid #efefef;
+		}
+		.list li{
+			position: relative;
+			overflow: hidden;
+			line-height: 4.53vw;
+			height: auto;
+			/*padding-top:2.265vw;*/
+			/*padding-bottom:2.265vw;*/
+			/*border-top:1.33vw solid #efefef;*/
+
+			/*margin-top: 3.2vw;*/
+		}
+		.list li:nth-child(1){
+			border:0;
+		}
+		/*.list li a{
+			padding-top:3.2vw;
+			padding-bottom:1.33vw;
+			width: 100%;
+			height:100%;
+		}*/
+		.list img{
+			width: 10.64vw;
+			height: 10.64vw;
+			float: left;
+			margin: 0 2.66vw 0 3.99vw;
+			border-radius: 50%;
+			object-fit: cover;
+		}
+		.comment_line{
+			width:100%;
+			height:1.33vw;
+			background-color:#efefef;
+		}
+		.comment-container{
+			float: left;
+			width: 71.5vw;
+		}
+		.comment-container h2{
+			color: #F381A3;
+			margin: 0 0 1.06vw 0;
+
+			/*内容超过宽度自动换行，不带空格的全英文和全数字也都可以*/
+			white-space: pre-line;
+			word-wrap: break-word;
+			font-weight: bold;
+			font-size: 3.2vw;
+		}
+		.comment-container p{
+			width: 100%;
+			color: #101010;
+			margin: 0 0 1.06vw 0;
+			/*内容超过宽度自动换行，不带空格的全英文和全数字也都可以*/
+			white-space: pre-line;
+			word-wrap: break-word;
+			font-weight: bold;
+			font-size: 3.2vw;
+		}
+/*		.comment-container a{
+			color: #F381A3;
+			font-size: 3.2vw;
+		}*/
+		.comment-time{
+			position: absolute;
+			right: 3.99vw;
+			top: 1vw;
+			/*margin-top:4vw;*/
+			color: #aaa;
+			font-size: 3.2vw;
+			/*font-weight: bold;*/
+		}
+/*		.transs{
+			position: relative;
+			border-top:1px solid #efefef;
+			padding-left:17vw;
+			font:3.19vw/4.52vw Arial;
+			font-weight: bold;
+			color:#aaa;
+			box-sizing: border-box;
+			padding:2.66vw 3.98vw 2.66vw 17vw;
+			内容超过宽度自动换行，不带空格的全英文和全数字也都可以
+			white-space: pre-line;
+			word-wrap: break-word;
+			font-weight: bold;
+		}*/
+		.comment-container p .transs{
+			color:#aaa;
+			box-sizing: border-box;
+			/*内容超过宽度自动换行，不带空格的全英文和全数字也都可以*/
+			white-space: pre-line;
+			word-wrap: break-word;
+		}
+		.read-all{
+			width: 100%;
+			text-align: center;
+			background-color: #fff;
+			color: #aaa;
+			font-size: 3.19vw;
+			font-weight: bold;
+			height: 13.33vw;
+			line-height: 13.33vw;
+			display: none;
+			margin-bottom:13.3vw;
+		}
+
+		.details_pic {
+			width:100%;
+			height:100%;
+			background-position: center center;
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+		.video_box{
+			position:relative;
+			/*overflow: hidden;*/
+		}
+		#video_play{
+			float:left;
+		}
+		.video_box #video_bg{
+			width: 100vw;
+			position: absolute;
+			top: 0;
+			left: 0;
+			/*object-fit: contain;*/
+			/*display: none;*/
+		}
+		.fullscreen{
+			position: absolute;
+			bottom:2.66vw;
+			left:2.66vw;
+			width:7.98vw;
+			height:7.98vw;
+			background:url(../../icon/screen.png);
+			background-size:cover;
+		}
+		.imgplay{
+			position: absolute;
+			top:50%;
+			left:50%;
+			margin-left:-8vw;
+			margin-top:-8vw;
+			width:15.96vw;
+			height:15.96vw;
+			background:url(../../icon/play@3x2.png) no-repeat;
+			background-size: cover;
+			/*z-index:100;*/
+		}
+		.video_pic {
+			position: relative;
+		}
+		.playBtn {
+			display:block;
+			width: 36.1111vw;
+			height: 11.1111vw;
+			position: absolute;
+			top:50%;
+			left:50%;
+			margin-top:-5.55vw;
+			margin-left:-18vw;
+			background: url(../../image/details/play.png)no-repeat center center;
+			background-size: cover;
+			z-index: 10;
+		}
+		.no-comment{
+			padding: 16vw 0 26vw 0;
+			display: none;
+		}
+		.no-comment p{
+			text-align: center;
+			color: #AAC1D3;
+			font-size: 3.19vw;
+			line-height: 6vw;
+			font-weight: bold;
+
+			/*字体渐变*/
+			background: #AAA;
+		    -webkit-background-clip: text;
+		    -webkit-text-fill-color: transparent;
+		}
+		/*底部評論*/
+		.commentsbottom{
+			z-index: 999;
+			position: fixed;
+			bottom:0;
+			width:100%;
+			height:auto;
+			min-height:13.3vw;
+			border-top:1px solid #efefef;
+			background-color: #fff;
+		}
+		.commentsbottom_iphone{
+			z-index: 999;
+			position: relative;
+			/*bottom:0;*/
+			width:100%;
+			height:auto;
+			min-height:13.3vw;
+			border-top:1px solid #efefef;
+			background-color: #fff;
+		}
+		.commentzone{
+			float:left;
+			/*position: absolute;*/
+			margin-top:2.66vw;
+			margin-left:14.34vw;
+			width:63.13vw;
+			height:auto;
+			min-height:7.79vw;
+			border-radius:2.66vw;
+			background-color: #efefef;
+		}
+		.avatarbottom{
+			position: absolute;
+			top:2.66vw;
+			left:3.99vw;
+			width: 7.98vw;
+			height:7.98vw;
+			border:none;
+			border-radius: 50%;
+			object-fit: cover;
+			/*background-color: #000;*/
+		}
+		.commentzone-text{
+			float:left;
+			/*position: absolute;*/
+			margin-top:1vw;
+			margin-left:2.66vw;
+			line-height: 6.12vw;
+			min-height: 6.12vw;
+			/*height: 6.12vw;*/
+			width:58.49vw;
+			font:3.19vw/6.12vw Arial;
+			text-align: left;
+			color:#aaa;
+			font-weight: bold;
+
+			white-space: pre-line;
+			word-wrap: break-word;
+			/*内容超过宽度自动换行，不带空格的全英文和全数字也都可以*/
+			user-select:text;
+    		-webkit-user-select:text;
+    		outline:none;
+		}
+		.commentbtn{
+			position: absolute;
+			top:2.66vw;
+			right:2.93vw;
+			width:14.96vw;
+			height:6.98vw;
+			font-size: 3.19vw;
+			color: #000;
+			line-height: 7.48vw;
+			font-weight: bold;
+			border-radius: 8.78vw;
+			border:0.5vw solid #000;
+			background-color: #FFF;
+			text-align: center;
+			/*box-sizing: border-box;*/
+		}
+		.pointbottom{
+			position: absolute;
+			top:2.66vw;
+			right:4.26vw;
+			width: 7.98vw;
+			height:7.98vw;
+			border-radius: 50%;
+			background-color: #efefef;
+			padding:1.99vw;
+			box-sizing: border-box;
+		}
+		.pointbottomimg-box{
+			position: absolute;
+			top:2.66vw;
+			right:4.26vw;
+			width: 7.98vw;
+			height:7.98vw;
+		}
+		.pointbottomimg{
+			position: absolute;
+			top:1.995vw;
+			right: 1.995vw;
+			width: 3.99vw;
+			height:3.99vw;
+			display: block;
+		}
+		.visibilityh{
+			display: none;
+		}
+		.zhuangtailan{
+			width:100vw;
+			height:24px;
+			background-color: #fff;
+			position: fixed;
+			top:0;
+		}
+		.zhuangtailanbottom{
+			width:100vw;
+			height:34px;
+			background-color:#fff;
+			position: fixed;
+			bottom:0;
+			display: none;
+			z-index: 9999;
+		}
+		.sharetip{
+			position: fixed;
+			top:21vw;
+			right:1.33vw;
+			width:27.6vw;
+			height:5.32vw;
+			background-color: #fff;
+			font:3.12vw/5.32vw Arial;
+			font-weight: bold;
+			text-align: center;
+			border-radius: 2.66vw;
+			z-index: 999999;
+			box-shadow:0 0 1.33vw 0 #aaa;
+			display: none;
+		}
+		.horn{
+			position: absolute;
+			left:3.6vw;
+			top:-0.5vw;
+			width:3.98vw;
+			height:3.98vw;
+			transform: rotate(45deg);
+			background-color:#fff;
+			z-index: -10;
+			/*box-shadow:0 0 1.33vw 0 #aaa;*/
+		}
+		.clearfix:after{
+            content: "";
+            height: 0;
+            line-height: 0;
+            visibility: hidden;
+            display: block;
+            clear:both;
+        }
+        .clearfix{
+            zoom:1;
+        }
+    </style>
+</head>
+<body>
+	<!-- <div style="margin-top:100px;">啊啊啊啊啊</div>
+	<div>caonima</div> -->
+	<div class="sharetip animated 1 bounceIn delay-5s"><div class="horn"></div>share it</div>
+	<div class="zhuangtailan"></div>
+	<div class="zhuangtailanbottom"></div>
+	<div class="wrap">
+		<div class="container" id="container">
+
+		</div>
+		<div id="list">
+			<!-- <ul class="list"><li><img onclick=\"openHome('" + data[i]["from_uid"] + "','" + data[i]["from_nickname"] + "')\" src='http://bin.baopinghui.com/" + data[i]["from_avatar"] + "?imageView2/0/w/100'><div class='comment-container' onclick=\"openReplyy('" + data[i]["from_nickname"] + "','" + data[i]["id"] + "')\"  ontouchstart=\"touchstart(event,'" + data[i]["content"].replace(/&amp;nbsp;/g,'nbsp;') + "')\" ontouchmove='touchmove()' ontouchend='touchend()'><h2>" + data[i]["from_nickname"] + "</h2><p>" + replySomeone + data[i]["content"].replace(/&amp;nbsp;/g,' ')  + " <span class='transs' id="+domm+"></span></p></div><span class='comment-time'>" + shijianaa + "</span></li><li><img onclick=\"openHome('" + data[i]["from_uid"] + "','" + data[i]["from_nickname"] + "')\" src='http://bin.baopinghui.com/" + data[i]["from_avatar"] + "?imageView2/0/w/100'><div class='comment-container' onclick=\"openReplyy('" + data[i]["from_nickname"] + "','" + data[i]["id"] + "')\"  ontouchstart=\"touchstart(event,'" + data[i]["content"].replace(/&amp;nbsp;/g,'nbsp;') + "')\" ontouchmove='touchmove()' ontouchend='touchend()'><h2>" + data[i]["from_nickname"] + "</h2><p>" + replySomeone + data[i]["content"].replace(/&amp;nbsp;/g,' ')  + " <span class='transs' id="+domm+"></span></p></div><span class='comment-time'>" + shijianaa + "</span></li><li><img onclick=\"openHome('" + data[i]["from_uid"] + "','" + data[i]["from_nickname"] + "')\" src='http://bin.baopinghui.com/" + data[i]["from_avatar"] + "?imageView2/0/w/100'><div class='comment-container' onclick=\"openReplyy('" + data[i]["from_nickname"] + "','" + data[i]["id"] + "')\"  ontouchstart=\"touchstart(event,'" + data[i]["content"].replace(/&amp;nbsp;/g,'nbsp;') + "')\" ontouchmove='touchmove()' ontouchend='touchend()'><h2>" + data[i]["from_nickname"] + "</h2><p>" + replySomeone + data[i]["content"].replace(/&amp;nbsp;/g,' ')  + " <span class='transs' id="+domm+"></span></p></div><span class='comment-time'>" + shijianaa + "</span></li></ul> -->
+		</div>
+		<div class="read-all" id="read-all">Read More</div>
+		<div class="loading" id="loading">
+			<img src="../../icon/loading.gif" id="loadingImg">
+		</div>
+		<div class="no-comment" id="empty">
+			<p>No Comments Yet (๑•́ ₃ •̀๑)</p>
+			<p>Waiting For You！</p>
+		</div>
+		<div class="no-comment" id="noMore">
+			<p>No More Dataヽ(✿ﾟ▽ﾟ)ノ</p>
+			<p>You Can Try Refreshing The Page</p>
+		</div>
+	</div>
+	<div class="commentsbottom" id="commentsbottom">
+		<img src="" class="avatarbottom" id="avatarbottom">
+		<div class="commentzone">
+			<div contenteditable="true" class="commentzone-text" id="commentzone-text" name="textt">Add comment...</div>
+			<!-- <input type="text" class="commentzone-text" id="commentzone-text" name="textt" value="Add comment..." contenteditable="true"> -->
+		</div>
+		<div class="commentbtn" id="pointbottom">SEND</div>
+	<script src="../../script/jquery-3.1.0.min.js"></script>
+	<script type="text/javascript">
+	  var hehe = 66;
+		var aaaaa=1;
+		var shijian='';
+		var picAry = [],
+			isFollow,
+			testId,
+			otherId,
+			language,
+			postId,
+			replyTip,
+			readAll,
+			tempType,
+			empty,
+			noMore,
+			username,
+			list,
+			likenum,
+			img_video="?vframe/jpg/offset/5/w/400",
+			hotposttext='Selected as a Hot Post in ' ,
+			themetext1='The ',
+			themetext2='th theme posts ranked ',
+			themetext3='',
+			commentstext = ' Comments',
+			viewstext = ' Views',
+			likestext = ' Likes',
+			replyName,//所@的那个用户名
+			replyId,//所@的那个ID
+			avatar,
+			location_text;
+		var	startIndex = 0,
+			resTime = getRefreshTime();
+		var hhh=window.screen.height;
+		var www=window.screen.width;
+		// var frameh=Number(window.screen.width) * 0.187 + 10;
+		var frameh='66px';
+		var timeOutEvent = 0;
+		apiready = function(){
+			if(hhh/www > 2){
+				frameh=90+'px';
+				hehe = 90;
+				$api.css($api.dom('#commentsbottom'), 'padding-bottom:34px;');
+				// $api.css($api.dom('.zhuangtailanbottom'), 'display:block;');
+				$api.css($api.dom('.sharetip'), 'top:100px;');
+			}
+			api.addEventListener({
+				name: 'swiperight'
+			}, function() {
+				api.closeWin({
+					animation: {
+						type: "push", //动画类型（详见动画类型常量）
+						subType: "from_left", //动画子类型（详见动画子类型常量）
+						duration: 300 //动画过渡时间，默认300毫秒
+					}
+				});
+			});//右滑关闭win
+
+
+			var popNum = api.pageParam["popNum"],
+				tinCommentsNum,
+				tinCommentsNumm,
+				isText = api.pageParam["isText"],
+				container = $api.dom("#container"),
+				summary,
+				pointboof,
+				sendd = false,
+				tinTip = "Tins",
+				popTip = "Popular",
+				popularTip = "Popular",
+				followTip = "FOLLOW",
+				chatTip = "CHAT",
+				commentzonetext = document.getElementById("commentzone-text"),
+				pointbottomimg = document.getElementById("pointbottomimg"),
+				pointbottom = document.getElementById("pointbottom"),
+
+				loading = $api.dom("#loading"),
+				otherId = api.pageParam['otherId'];
+			list = $api.dom("#list");
+			empty = $api.dom("#empty");
+			noMore = $api.dom("#noMore");
+			replyTip = "Reply";
+			readAll = $api.dom("#read-all");
+			postId = api.pageParam["postId"];
+			language = $api.getStorage("language");
+			testId = $api.getStorage("id");
+			emptyP = $api.domAll(empty, "p");
+			noMorep = $api.domAll(noMore, "p");
+			console.log(postId+'----------'+testId);
+			if(language == "zho"){
+				viewstext = ' 次瀏覽';
+				likestext = ' 個贊';
+				hotposttext='帖 子 被 推 薦 為 熱 門 在 ';
+				themetext1='第 ';
+				themetext2=' 期专题作品排行 ';
+				themetext3=' 名';
+				commentstext = ' 條評論';
+				tinTip = "帖子";
+				popTip = "帖子熱度";
+				popularTip = "熱度";
+				followTip = "關&nbsp;註";
+				chatTip = "聊&nbsp;天";
+				replyTip = "回 復";
+				$api.html(readAll, "讀 取 更 多");
+				$api.html(emptyP[0], "還 沒 有 評 論 (๑•́ ₃ •̀๑)");
+				$api.html(emptyP[1], "就 等 你 了！");
+				$api.html(noMorep[0], "沒 有 更 多 信 息 了 ヽ(✿ﾟ▽ﾟ)ノ");
+				$api.html(noMorep[1], "你 可 以 嘗 試 刷 新 頁 面");
+				$api.html(commentzonetext, '添 加 評 論 ...');
+				$api.html($api.dom('.sharetip'), '<div class="horn"></div>喜 歡 就 分 享 吧');
+				$api.text($api.dom('#pointbottom'), '發 送');
+			};
+
+			api.openFrame({
+				name: "header",
+				url: "widget://html/nav/header.html",
+				rect: {
+					x: 0,
+					y: 0,
+					w: "auto",
+					h: frameh
+				},
+				pageParam:{
+					detail: true,
+					otherId:otherId,
+					postId:postId
+				}
+			});//打开通用头部
+			// 监听点赞事件
+			api.addEventListener({
+			    name: 'like_on'
+			}, function(ret, err) {
+				// 获取帖子本人的ID
+			    $.ajax({
+			    	url: 'http://api.baopinghui.com/app_dynamicCover/findPostInfo',
+			    	type: 'post',
+			    	dataType: 'json',
+			    	data: {
+			    		id:postId
+			    	},
+			    })
+			    .done(function(ret,err) {
+			    	likebtn(ret.data.ui_id);
+			    })
+			    .fail(function() {
+			    	console.log("error");
+			    });
+
+			});
+			// 獲取自己頭像
+                api.ajax({
+                    url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/userinfo',
+                    method: 'post',
+                    data: {
+                        values: {
+                            uiId: testId,
+                            pageUiId:testId
+                        }
+                    }
+                }, function(ret, err) {
+                    if (ret) {
+                        if(ret.status == 1){
+                        	$("#avatarbottom").attr('src','http://bin.baopinghui.com/' +ret.data.avatar_url);
+                        }
+                    }
+                    return;
+                });
+                // 点击评论框
+            commentzonetext.onclick=function(){
+    //         	// 判断是否IPHONE进行键盘弹出优化操作
+            	var u = navigator.userAgent;
+            	if(u.indexOf('iPhone') > -1){
+				$api.addCls($api.dom('#commentsbottom'), 'commentsbottom_iphone');
+            	$api.removeCls($api.dom('#commentsbottom'), 'commentsbottom');
+	            	if(hhh/www>2){
+					frameh=90+'px';
+					$api.css($api.dom('#commentsbottom'), 'padding-bottom:34px;');
+					}
+				}
+				focuss();
+
+            };
+
+            // 评论框失去焦点
+            commentzonetext.onblur=function(){
+            	blurr();
+            };
+            // 点击发送
+            pointbottom.onclick=function(){
+            	sendcomment(replyName,replyId);
+            };
+            // 監聽out傳過來的取消關注指令
+            // api.addEventListener({
+            //     name: 'cancelfollow'
+            // }, function(ret, err) {
+            //     followOne.call($api.dom('#isFollow'), "cancel");
+            // });
+
+
+			$api.addEvt(readAll, "click", getMoreComment);
+			//点击加载更多评论
+			$api.addEvt(list, "touchstart", function(e){//点击li有背景变化
+				var tar = e.target;
+				var tarTag = e.target.tagName.toLowerCase();
+				if(tarTag !== "div" && tarTag !== "ul"){
+					if(tarTag !== "li"){
+						if(tarTag !== "span" && tarTag !== "img"){
+							tar = tar.parentNode.parentNode;
+						}else{
+							tar = tar.parentNode;
+						};
+					};
+					$api.css(tar, "background-color:#efefef");
+				};
+			});
+			$api.addEvt(list, "touchend", function(e){//点击li有背景变化
+				var tar = e.target;
+				var tarTag = e.target.tagName.toLowerCase();
+				if(tarTag !== "div" && tarTag !== "ul"){
+					if(tarTag !== "li"){
+						if(tarTag !== "span" && tarTag !== "img"){
+							tar = tar.parentNode.parentNode;
+						}else{
+							tar = tar.parentNode;
+						};
+					};
+					$api.css(tar, "background-color:#fff");
+				};
+			});
+			// 获取用户信息
+			api.ajax({
+				url: "http://api.baopinghui.com/app_dynamicCover/findPostInfo?id=" + postId,
+				method: "post"
+			}, function(ret, err){
+				if(ret){
+					// alert(JSON.stringify(ret));
+					if(ret.status){
+						var data = ret["data"],
+							tagAry,
+							str = "";
+						username = data["nickname"];
+						avatar = data["avatar_url"];
+						tinCommentsNum = data.comment_num;
+						likenum = data.like_num;
+
+						// 获取用户地址
+						$.ajax({
+							async: false,
+							url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/userinfo',
+							type: 'post',
+							dataType: 'json',
+							data: {
+								uiId: data.ui_id,
+						        pageUiId: data.ui_id
+						    },
+						})
+						.done(function(rett,errr) {
+						    if(rett.data.location=='' || rett.data.location==undefined){
+						    	if($api.getStorage('language')=='zho'){
+		                            location_text='來自 火星';
+		                        }else{
+		                            location_text='from Mars';
+		                        }
+						    }else{
+						    	if($api.getStorage('language')=='zho'){
+						    		location_text='來自 '+rett.data.location.split(',')[0];
+						    	}else{
+						    		location_text='from '+rett.data.location.split(',')[1];
+						    	}
+						    }
+						    return;
+						})
+						.fail(function() {
+							console.log("error");
+						});
+
+						// 獲取帖子評論數量
+						var postTypee=data.post_type;
+						// $.ajax({
+		    //                 // async: false,
+		    //                 url: 'http://api.baopinghui.com/app_topicComment/findTopicCommentByTopicId',
+		    //                 type: 'post',
+		    //                 dataType: 'json',
+		    //                 data: {
+		    //                     topicId: postId,
+		    //                     topicType:postTypee,
+		    //                     startIndex: startIndex,
+						// 		maxResult: 100,
+						// 		refreshTime: resTime
+		    //                 },
+		    //             })
+		    //             .done(function(ret) {
+		    //             	if(ret.status !== 1){
+						// 		tinCommentsNum=0;
+		    //             	}else{
+		    //             		tinCommentsNum=ret.data.commentNum;
+		    //             	}
+		    //                 return;
+		    //             })
+		    //             .fail(function(){
+		    //             		console.log(ret.data.coverNum);
+		    //             });
+		                tinCommentsNumm=tinCommentsNum;
+		                // 获取帖子點贊数
+		                // $.ajax({
+		                // 	// async: false,
+		                // 	url: 'http://api.baopinghui.com/app_dynamicCover/checkPraise',
+		                // 	type: 'post',
+		                // 	dataType: 'json',
+		                // 	data: {
+		                // 		praiseUid:'90cabfe4a7cf4b04b9b886e9cc35c352',
+		                // 		dynId:postId
+		                // 	},
+		                // })
+		                // .done(function(ret,err) {
+		                // 	if(ret){
+		                // 		likenum=ret.data.like_num;
+		                // 		return;
+		                // 	}
+		                // });
+
+
+
+						if(data.post_type !== "text"){
+							var imgAry = data.cover_url.split(",");//获取帖子的图片
+						};
+						if(data.tag_name.length > 0){
+							tagAry = data.tag_name.split(",");//获取帖子的标签
+						};
+						if(data.post_type === "Video"){//类型为video则插入以下片段
+							console.log('http://bin.baopinghui.com/'+imgAry[0]);
+							var videoPlayer = api.require('videoPlayer');
+							var imgs = new Image();
+							var image = 'http://bin.baopinghui.com/' + imgAry[0] + img_video;
+							api.download({
+								    url: image,
+								    report: true,
+								    cache: true,
+								    allowResume: true
+								}, function(ret, err) {
+								    if (ret.state == 1) {
+							// 	        // alert(JSON.stringify(ret.savePath));
+												var images = ret.savePath
+												imgs.src = image;
+												imgs.onload = function(){
+													var imageH = imgs.height;
+													videoPlayer.open({
+													    path: 'http://bin.baopinghui.com/'+imgAry[0],
+													    scalingMode:'scaleAspectFit',
+															loop: true,
+															autoPlay: false,
+															coverImg: 'fs://' + ret.savePath,
+															rect: {
+													        x: 0,
+													        y: hehe,
+													        w: 'auto',
+																	h: imageH
+													    }
+													}, function(ret, err) {
+													    if (ret.status) {
+													        // alert(JSON.stringify(ret));
+																	var start = false;
+																	$('.wrap').css('padding-top',hehe + imageH + 'px');
+
+																	videoPlayer.addEventListener({
+																			name: 'play'
+																	}, function(ret, err) {
+																			if (ret) {
+																				if(ret.eventType == 'complete'){
+																					start = false;
+																				}
+																			}
+																	});
+																	videoPlayer.addEventListener({
+																	    name: 'click'
+																	}, function(ret, err) {
+																	    if (ret) {
+																				if(start){
+																					videoPlayer.pause();
+																					start = false;
+																					// $api.css(videoBg, "display:none");
+																					// $api.css($api.dom(".imgplay"), "display:none");
+																					return;
+																				};
+																				videoPlayer.start();
+																				start = true;
+																				// $api.css($api.dom(".imgplay"), "display:block");
+																				// console.log($('#video_play').height());
+																	    }
+																	});
+													    }
+													});
+
+							//openPlay在这里开始
+							// videoPlayer.openPlay({
+							//   rect:
+							//     {   x: 0,
+							//         y : hehe,
+							//         w : 'auto',
+							//         h:  imageH
+							//     },
+							//     texts: {
+							//         head: {
+							//             title: '顶部文字'
+							//         }
+							//     },
+							// 		centerPlayBtn: {
+							// 			 size: 50,
+							// 			 iconPath:'widget://icon/play@3x2.png'
+							// 		},
+							// 		coverImg: 'fs://' + images,
+							//     styles: {
+							//         head: {
+							//             bg: 'rgba(0.5,0.5,0.5,0.7)',
+							//             height: 44,
+							//             y:20,
+							//             titleSize: 20,
+							//             titleColor: '#fff',
+							//             backSize: 0,
+							//             backImg: 'fs://img/back.png',
+							//             customButtons:[],
+							//         },
+							//         foot: {
+							//             bg: 'rgba(0.5,0.5,0.5,0.7)',
+							//             height: 30,
+							//             playSize: 30,
+							//             playImg: 'fs://img/paly.png',
+							//             pauseImg: 'fs://img/pause.png',
+							//             timeSize: 14,
+							//             timeColor: '#fff',
+							//             sliderImg: 'fs://img/slder.png',
+							//             progressColor: '#696969',
+							//             progressSelected: '#76EE00',
+							//         }
+							//     },
+							//     path: 'http://bin.baopinghui.com/'+imgAry[0], //（可选项）字符串类型；文档的路径，支持网络和本地（fs://）路径；默认：未传值时不播放
+							//     //在 android 平台上不支持 widget://
+							//     autoPlay: false //（可选项）布尔类型；打开时是否自动播放；默认：true（自动播放）
+							// }, function(ret, err) {
+							//     if (ret) {
+							// 				alert(JSON.stringify(ret));
+							//         $('.wrap').css('padding-top',hehe + imageH + 'px');
+							//     }
+							// });
+
+							//openPlay到此结束
+												}
+								    }
+								});
+
+							// str += "<img class = 'bg_video' src = 'http://bin.baopinghui.com/" + imgAry[0] + img_video +"'>"
+							// str += "<div class='video_box clearfix'><video id='video_play'  onclick='playVideo()' style='width:100%' src='http://bin.baopinghui.com/" + imgAry[0] + "' class='details_pic video_pic'  webkit-playsinline='true' playsinline='true'x-webkit-airplay='true' x5-video-player-type='h5' x5-video-player-fullscreen='true'x5-video-ignore-metadata='true'  width='100%' height='100%' loop='loop' tapmode webkit-playsinline playsinline tapmode></video><img id='video_bg' src='http://bin.baopinghui.com/" + imgAry[0] + img_video +"' onerror='javascript:this.src=\"../../image/index/lost.png\"'  onclick='playVideo()'><label class='imgplay' for='video_bg' onclick='playVideo()'></label><span class='fullscreen' onclick='launchFullScreen(\""+imgAry[0]+"\")'></span></img></div>";
+						}else if(data.post_type !== "text"){//除了video和text类型，其他的类型插入以下片段
+							for(var i = 0, len = imgAry.length; i < len; i++){
+								var curEle = imgAry[i];
+								picAry.push("http://bin.baopinghui.com/" + curEle);
+								str += "<div class='box'><img src='http://bin.baopinghui.com/" + curEle + "' onerror='javascript:this.src=\"../../image/index/lost.png\"' onclick='showPic(\"" +'http://bin.baopinghui.com/'  +curEle+ "\")'><div class='screen' ></div></div>";
+							};
+						};
+						str += '<div class="page"><div class="views_likes">'+(Number(data.pop) > 1000 ? (data.pop / 1000).toFixed(1) + 'k' : data.pop) + viewstext +' | '+likenum+likestext+'</div><div class="box1"><img class="aimg" onclick=\'openHome("' + data.ui_id + '","' + data.nickname + '")\' src="http://bin.baopinghui.com/' + data.avatar_url + '?imageView2/0/w/100"><p class="nickname">'+data.nickname+'</p><p class="summary">'+location_text+'</p><div class="btn"><span class="gohome" onclick=\'openHome("' + data.ui_id + '","' + data.nickname + '")\'><img src="../../image/index/arrow.png" alt="" /></span><span class="isfollow" id="isFollow">'+followTip+'</span><span class="chat">'+chatTip+'</span></div></div><div style="width:100%;height:2.66vw;background-color:#fff;"></div><div class="box2"><p class="des"><span class="des_img"></span>' + data.title.replace(/\n/g,'<br>') + '</p><div class="tran_box"><p class="trans" id="trans"></p></div></div><div class="box3"><div class="tags">';
+						if(!!tagAry){
+							for(i = 0, len = tagAry.length; i < len; i++){
+								if(len == 1){
+									str += '<img src="../../icon/icon-tag@3x2.png"><span class="tag-item">' + tagAry[i] + '</span>'
+								}else{
+									if(i == 0){
+									str += '<img src="../../icon/icon-tag@3x2.png"><span class="tag-item">' + tagAry[i] + ', </span>'
+									}else if(i == len-1){
+										str += '<span class="tag-item">' + tagAry[i] + '</span>'
+									}else{
+										str += '<span class="tag-item">' + tagAry[i] + ',</span>'
+									};
+								}
+							};
+						};
+						var themenum='';
+						if(data.theme_id==null){
+							themenum='';
+						}else{
+							// themenum=parseInt(data.theme.title_CN.split('|')[0].replace(/[^0-9]/ig,""));
+							themenum = 1;
+						}
+						str += '</div><div class="box_popular"><span class="popular"><img src="../../icon/c.png">'+ (Number(data.pop) > 1000 ? (data.pop / 1000).toFixed(1) + 'k' : data.pop) + viewstext +'</span><span class="pointNum" id="pointNum"><img src="../../icon/a.png">'+likenum+likestext+'</span><div class="likebtn" id="likebtn" onclick="likebtn(\''+data.ui_id+'\')">LIKE</div></div><div class="box_hotpost">'+hotposttext+data.create_time.slice(0,10).replace(/-/g,'·')+'<span></span></div><div class="box_themetext"><span></span><span>'+themetext1+themenum+themetext2+data.rank+themetext3+'</span><img src="../../icon/search/toright2.png" alt="" /></div></div></div><div class="tinComments"><img src="../../icon/d.png"/>'+tinCommentsNumm+commentstext+'<img src="../../icon/search/toright2.png" alt="" /></div><div style="border-bottom:1.33vw solid #efefef"></div>';
+						$api.html(container, str);
+						// setTimeout(function(){
+						// 	$api.css($api.dom('.video_box'), 'height:'+$('#video_bg').height()+'px');
+						// 	console.log($('#video_play').height());
+						// },500);
+						// if(data.post_type === "Video"){
+						// 	var video_play1 = document.getElementById('video_play');
+						// 	// 如果视频过短，取视频第一帧
+						// 	setTimeout(function(){
+						// 		if(video_play1.duration<5){
+						// 			$('#video_bg').attr('src',"http://bin.baopinghui.com/" + imgAry[0] + '?vframe/jpg/offset/0/w/400' );
+						// 		}
+						// 	},800);
+						//
+						// 	setInterval(function(){
+						// 		$api.css($api.dom('#video_bg'), 'height:'+$('#video_play').height()+'px;top:0');
+						// 		// $api.css($api.dom('.video_box'), 'height:'+$('#video_play').height()+'px');
+						// 		// $api.css($api.dom('.video_box'), 'height:'+$('#video_bg').height()+'px');
+						// 	},500);
+						// }
+
+						$api.addEvt($api.dom('.box_themetext'), 'click',function(){
+							opentheme(data.theme);
+						});
+						if(data.theme_id==null){
+								$api.css($api.dom('.box_themetext'), 'display:none;');
+
+						}else {
+							if(data.theme.end_time==null || data.theme.end_time==''){
+							}else{
+								if(new Date(data.theme.end_time.replace(/-/g,"/")).getTime()>new Date().getTime()){
+									$api.css($api.dom('.box_themetext'), 'display:none;');
+								}
+							}
+						}
+
+						if(data.hot==0 || data.hot==2){
+							$api.css($api.dom('.box_hotpost'), 'display:none;');
+						}
+						if (data.tag_name.length==0) {
+							$api.css($api.dom('.tags'), 'border:0');
+						}
+						if(data.title == ''){
+							$api.html($api.dom('.des'), '');
+							$api.css($api.dom('.des'), 'padding:0;');
+							$api.css($api.dom('#trans'), 'padding:0');
+							$api.css($api.dom('.tran_box'), 'border:0');
+							$api.css($api.dom('.box2'), 'border:0');
+						}
+						if($api.html($api.dom('.tags'))==''){
+							$api.css($api.dom('.tags'), 'min-height:0;padding:0;line-height:0;');
+						}
+						//插入
+						var chat = $api.dom("#chat");
+						$api.addEvt($api.dom('.chat'), "click", openChat);
+						if(!!data.title){
+							translateTitle(data.title,'trans');//翻译帖子描述
+						};
+						otherId = data.ui_id;
+						tempType = data.post_type;
+						if($api.text($api.dom('.summary'))=='' || $api.text($api.dom('.summary'))=='null'){
+							if($api.getStorage('language')=='zho'){
+								$api.text($api.dom('.summary'),'這個人什麽都沒有留下 (｡ŏ_ŏ)');
+							}else{
+								$api.text($api.dom('.summary'),'This person has left nothing (｡ŏ_ŏ)');
+							}
+						}
+						if($api.getStorage('language')=='zho'){
+							$api.text($api.dom('#likebtn'), '贊');
+						}
+						getMoreComment();//第一次加载10条评论
+						// 判斷登陸用戶對當前帖子是否點贊
+						api.ajax({
+						    url: 'http://api.baopinghui.com/app_dynamicCover/checkPraise',
+						    method: 'post',
+						    data: {
+						        values: {
+						            praiseUid: testId,
+						            dynId: postId
+						        }
+						    }
+						}, function(ret, err) {
+						    if (ret) {
+						        if(ret.status == 1){
+
+						        	pointboof = ret.data.flag;
+						        	if(pointboof){
+						        		api.sendEvent({
+							        	    name: 'like_yesno'
+							        	});
+						        		if($api.getStorage('language')=='zho'){
+								    		$api.text($api.dom('#likebtn'), '已 贊');
+								    	}else{
+								    		$api.text($api.dom('#likebtn'), 'LIKED');
+								    	}
+						        		$api.css($api.dom('#likebtn'), 'background-color:#fff;border:0.5vw solid #aaa;color:#aaa');
+						        	}
+						        }
+						    } else {
+						        console.log(JSON.stringify(err));
+						    }
+						    return;
+						});
+						if(otherId === testId){
+						// 本人界面的话不显示关注和聊天按钮
+							$api.css($api.dom('.gohome'), 'display:none');
+							$api.css($api.dom('#isFollow'), "display:none;");
+							$api.css($api.dom('.chat'), 'display:none;');
+							return;
+						};
+						// isFollow = $api.dom("#isFollow");
+						// api.ajax({//如果不是登录用户的主页的话，判断是否关注了该用户
+						// 	url: "http://api.baopinghui.com/app_tinUserinfoControllerC/userinfo?uiId=" + testId + "&pageUiId=" + otherId,
+						// 	method: "post"
+						// }, function(ret, err){
+						// 	if(ret){
+						// 		if(ret["status"]){
+						// 			if(ret["data"]["isFocus"]){
+      //     								$api.css($api.dom('#isFollow'), 'display:none');
+      //                           		$api.css($api.dom('.chat'), 'display:block;');
+      //                           		// 给header.html发送关注事件
+      //                           		api.sendEvent({
+      //                           		    name: 'detail_isfollow_yes',
+      //                           		});
+						// 				//关注成功后，为按钮绑定取消关注的事件
+					 //    				return;
+						// 			};
+      //                       		$api.css($api.dom('.chat'), 'display:none;');
+      //                       		$api.css($api.dom('#isFollow'), 'display:block');
+      //                       		// 给header.html发送取消关注事件
+      //                       		api.sendEvent({
+      //                       		    name: 'detail_isfollow_no',
+      //                       		});
+						// 			isFollow.onclick = function(){
+						// 				followOne.call($api.dom('#isFollow'), "focus");
+						// 			};//没有关注的话，为按钮绑定关注事件
+						// 		};
+						// 		return;
+						// 	};
+						// 	console.log(err);
+						// });
+					};
+				};
+			});
+
+
+
+
+			function openChat(){
+				api.ajax({
+            url: 'http://api.baopinghui.com/app_dynamicCover/CheckFirstTin',
+            method: 'post',
+            data: {
+                values: {
+                    uiId:$api.getStorage('id')
+                }
+            }
+        	}, function(ret, err) {
+            if (ret) {
+                if(ret.data==0){
+                    api.openFrame({
+                        name: 'out',
+                        url: 'widget://html/nav/out.html',
+                        rect: {
+                            x: 0,
+                            y: 0,
+                            w: 'auto',
+                            h: 'auto'
+                        },
+                        pageParam: {
+                            chatlimit: 1
+                        }
+                    });
+                }else{
+		    	api.openWin({
+					name: 'chat2',
+					url: "widget://html/chat/chat2.html",
+					slidBackEnabled: false,
+					animation: {
+						type: "fade", //动画类型（详见动画类型常量）
+						subType: "fade", //动画子类型（详见动画子类型常量）
+						duration: 250 //动画过渡时间，默认300毫秒
+					},
+					pageParam: {
+						uiId: otherId,
+						nickname: username,
+						avatar: avatar
+					}
+				});
+		    	}
+		        }
+        	});
+		    };
+		};
+
+		function showPic(i){//定义查看大图函数
+			// var imageBrowser = api.require("imageBrowser");
+	  //   	imageBrowser.openImages({
+	  //   		imageUrls: picAry,
+	  //   		showList: false,
+	  //   		bg: "#000",
+	  //   		activeIndex: i,
+	  //   		tapClose: true
+	  //   	});
+	  		api.openWin({
+									name: 'im',
+									url: 'widget://html/chat/imgBrowser.html',
+									pageParam: {
+											isrc: i
+									}
+							});
+		};
+
+		function playVideo(){//定义播放暂停视频函数     维护的程序员  建议dom对象在一开始获取，不要每次触发的时候获取。
+			var videoPlay = $api.dom("#video_play"),
+				videoBg = $api.dom("#video_bg");
+			if(videoPlay.paused){
+				videoPlay.play();
+				$api.css(videoBg, "display:none");
+				$api.css($api.dom(".imgplay"), "display:none");
+				return;
+			};
+			videoPlay.pause();
+			$api.css($api.dom(".imgplay"), "display:block");
+			console.log($('#video_play').height());
+		};
+
+		function followOne(focus){//定义关注他人函数
+			var otherId = api.pageParam['otherId'];
+	    	isFollow.onclick = null;//每次点击关注按钮时，取消按钮所绑定的关注事件，防止快速点击出现的BUG
+	    	api.ajax({
+	    		url: "http://api.baopinghui.com/app_tinUserinfoControllerC/focus?uiId=" + testId + "&otherUiId=" + otherId + "&type=" + focus,
+	    		method: "post"
+	    	}, function(ret, err){
+	    		if(ret){
+	    			if(ret["status"]){
+	    				if(ret["msg"] === "关注成功"){//关注成功则为按钮绑定取消关注事件，取消关注则为按钮绑定关注事件，并根据情况设置按钮样式
+		    				followChange("cancel");
+							followTrans("cancel", username);
+							followNumberTran(true);
+							return;
+	    				};
+	    				followChange("focus");
+						followTrans("focus", username);
+						followNumberTran(false);
+						//点击关注或者点击取消关注，会触发另一个页面的关注按钮样式改变的函数
+	    			};
+	    			return;
+	    		};
+	    		console.log(err);
+	    	});
+	    };
+
+	    function translateTitle(title,domm){//翻译描述函数
+	    	var transLanguage,
+	    		languageTip,
+	    		languageTip2,
+	    		trann='#'+domm;
+	    		// trans = $api.dom(trann);
+	    	if(language == "zho"){
+	    		transLanguage = "zh";
+	    		languageTip = "「 ";
+	    		languageTip2= " 」";
+	    	}else{
+	    		transLanguage = "en";
+	    		languageTip = "「 ";
+	    		languageTip2= " 」";
+	    	};
+	    	if(domm=='trans'){
+	    		languageTip = "<span class='tran_img'></span>";
+	    		languageTip2= '';
+	    	}
+	    	var content_no = title.replace(/\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDE4F]/g, " ");
+				content_no = content_no.replace(/\r|\n|&nbsp;/g," ");
+	    	var salt = (new Date).getTime();
+	    	var str1 = "20161226000034707" + content_no + salt + "i1XmNFcDa7_Z4i6jUSZA";
+	    	var sign = MD5(str1);
+	    	api.ajax({
+				url: 'http://api.fanyi.baidu.com/api/trans/vip/translate',
+				method: 'post',
+				data: {
+					values: {
+						q: content_no,
+						appid: "20161226000034707",
+						salt: salt,
+						from: "auto",
+						to: transLanguage,
+						sign: sign
+					}
+				}
+			},
+			function(data, err) {
+				if(data){
+					if(data['trans_result']) {
+						console.log(JSON.stringify(data['trans_result']));
+						if(data['from'] != data['to']){
+							var t_text = data['trans_result'][0]['dst'];
+							// $api.html(trans, languageTip + t_text);
+							$(trann).html(languageTip + t_text+languageTip2);
+						}else{
+							$(trann).hide();
+							$(trann).css({
+								'padding': 0
+							});
+						}
+					} else {
+						if(transLanguage == 'zh'){
+							var t_text = "无法翻译";
+							// $api.text(trans, "无法翻译");
+							// $(trann).html("无法翻译");
+							$(trann).html(languageTip + t_text+languageTip2);
+						}else{
+							var t_text = "Unable to translate";
+							// $api.text(trans, "Unable to translate");
+							// $(trann).html("Unable to translate");
+							$(trann).html(languageTip + t_text+languageTip2);
+						}
+					}
+					if($api.text($(trann))==''){
+						$api.css($(trann), 'padding:0;border:0');
+					}
+				}else{
+					if(transLanguage == 'zh'){
+						var t_text = "无法翻译";
+							// $api.text(trans, "无法翻译");
+							// $(trann).html("无法翻译");
+							$(trann).html(languageTip + t_text+languageTip2);
+					}else{
+						var t_text = "Unable to translate";
+							// $api.text(trans, "Unable to translate");
+							// $(trann).html("Unable to translate");
+							$(trann).html(languageTip + t_text+languageTip2);
+					}
+				}
+				if($api.html($api.dom('.trans'))==''){
+					$api.css($api.dom('.tran_box'), 'border:0');
+				}
+			});
+
+	    };
+
+	    function openHome(tarId, user){//点击评论头像进入主页面
+	    	var winName = tarId === testId ? "home" : "otherDetail/" + user;//如果为本人，窗口名字为home，不是则为otherDetail + user，当打开的窗口的name与已经打开过的窗口的name相同时，会关闭之前的页面
+	    	api.openWin({
+	    		name: winName,
+	    		url: "widget://html/home/home.html",
+	    		reload: true,//页面打开过时重新打开执行刷新操作
+	    		vScrollBarEnabled: false,
+	    		slidBackEnabled: false,
+	    		pageParam:{
+					otherId: tarId//其他用户的ID
+				}
+	    	});
+	    };
+
+	    function getRefreshTime(){//定义刷新时间函数
+	    	var currentTime = new Date();
+	    	var year = currentTime.getFullYear(),
+	    		month = currentTime.getMonth() + 1 > 9 ? currentTime.getMonth() + 1 : "0" + (currentTime.getMonth() + 1),
+	    		today = currentTime.getDate() > 9 ? currentTime.getDate() : "0" + currentTime.getDate(),
+	    		hour = currentTime.getHours() > 9 ? currentTime.getHours() : "0" + currentTime.getHours(),
+	    		minute = currentTime.getMinutes() > 9 ? currentTime.getMinutes() : "0" + currentTime.getMinutes(),
+	    		second = currentTime.getSeconds() > 9 ? currentTime.getSeconds() : "0" + currentTime.getSeconds();
+	    	currentTime = year + "-" + month + "-" + today + " " + hour + ":" + minute + ":" + second;
+	    	return currentTime;
+	    };
+
+	    function getMoreComment(){//获取评论
+	    	$api.css(readAll, "display:none");
+			$api.css(loading, "display:block");
+	    	api.ajax({
+				url: "http://api.baopinghui.com/app_topicComment/findTopicCommentByTopicId",
+				method: "post",
+				data: {
+					values: {
+						topicId: postId,
+						topicType: tempType,
+						startIndex: startIndex,
+						maxResult: 10,
+						refreshTime: resTime
+					}
+				}
+			}, function(ret, err){
+				if(ret){
+					if(ret.status){
+						var data = ret.data.list,
+							str = "",
+							newUl;
+						var dommm = 'q';
+						newUl = document.createElement("ul");
+						newUl.className = "list";
+						var domm = 'a'+ parseInt(Math.random()*100);
+						for(var i = 0, len = data.length; i < len; i++){
+							domm += 'a';
+							var replySomeone = "";
+							if(!!data[i]["reply_nickname"]){
+								replySomeone = "@" + data[i]["reply_nickname"] + " : ";
+							};
+							var shijianaa=data[i]["create_time"].slice(0,10);
+							var shijianbb=data[i]["create_time"].slice(11,16);
+							// 获取当前时间
+							var currentTime = new Date();
+	    					var year = currentTime.getFullYear(),
+	    						month = currentTime.getMonth() + 1 > 9 ? currentTime.getMonth() + 1 : "0" + (currentTime.getMonth() + 1),
+	    						today = currentTime.getDate() > 9 ? currentTime.getDate() : "0" + currentTime.getDate();
+	    					if(year == data[i]["create_time"].slice(0,4) && month == data[i]["create_time"].slice(5,7) && today == data[i]["create_time"].slice(8,10)){
+	    						shijianaa = data[i]["create_time"].slice(11,16);
+	    					}
+	    					if(i==0 ){
+	    						str+="<li style='padding-bottom:1.33vw'><img onclick=\"openHome('" + data[i]["from_uid"] + "','" + data[i]["from_nickname"] + "')\" src='http://bin.baopinghui.com/" + data[i]["from_avatar"] + "?imageView2/0/w/100'><div class='comment-container' onclick=\"openReplyy('" + data[i]["from_nickname"] + "','" + data[i]["id"] + "')\"  ontouchstart=\"touchstart(event,'" + data[i]["content"].replace(/&amp;nbsp;/g,'nbsp;') + "')\" ontouchmove='touchmove()' ontouchend='touchend()'><h2>" + data[i]["from_nickname"] + "</h2><p>" + replySomeone + data[i]["content"].replace(/&amp;nbsp;/g,' ')  + " <span class='transs' id="+domm+"></span></p></div><span class='comment-time'>" + shijianaa + "</span></li>";
+	    						for(var j = 0, len = data.length; j < len; j++){
+	    							dommm += 'a';
+	    							shijianaa=data[j]["create_time"].slice(0,10);
+	    							replySomeone = "";
+									if(!!data[j]["reply_nickname"]){
+										replySomeone = "@" + data[j]["reply_nickname"] + " : ";
+									};
+									if(year == data[j]["create_time"].slice(0,4) && month == data[j]["create_time"].slice(5,7) && today == data[j]["create_time"].slice(8,10)){
+			    						shijianaa = data[j]["create_time"].slice(11,16);
+			    					}
+	    							if(data[j]["reply_id"]==data[i].id){
+	    								str+="<li><img onclick=\"openHome('" + data[j]["from_uid"] + "','" + data[j]["from_nickname"] + "')\" src='http://bin.baopinghui.com/" + data[j]["from_avatar"] + "?imageView2/0/w/100' style='visibility:hidden;'><div class='comment-container' onclick=\"openReplyy('" + data[j]["from_nickname"] + "','" + data[j]["id"] + "')\"  ontouchstart=\"touchstart(event,'" + data[j]["content"].replace(/&amp;nbsp;/g,'nbsp;') + "')\" ontouchmove='touchmove()' ontouchend='touchend()'><h2>" + data[j]["from_nickname"] + "</h2><p>" + replySomeone + data[j]["content"].replace(/&amp;nbsp;/g,' ')  + " <span class='transs' id="+dommm+"></span></p></div><span class='comment-time'>" + shijianaa + "</span></li>";
+	    								var contenttt =data[j]["content"].replace(/&amp;nbsp;/g,' ');
+										if(contenttt.replace(/ /g,'') == ''){
+											$api.css($('#'+dommm), 'padding:0');
+										}else{
+											translateTitle(contenttt,dommm);
+										}
+	    							}
+	    						}
+	    					// }else if(data[i]["reply_id"]!='' && data[i]["reply_id"]!=null){
+	    					// 	if(data[i]["reply_id"]==data[i-1].id){
+	    					// 		str+="<li><img onclick=\"openHome('" + data[i]["from_uid"] + "','" + data[i]["from_nickname"] + "')\" src='http://bin.baopinghui.com/" + data[i]["from_avatar"] + "?imageView2/0/w/100' style='visibility:hidden;'><div class='comment-container' onclick=\"openReplyy('" + data[i]["from_nickname"] + "','" + data[i]["id"] + "')\"  ontouchstart=\"touchstart(event,'" + data[i]["content"].replace(/&amp;nbsp;/g,'nbsp;') + "')\" ontouchmove='touchmove()' ontouchend='touchend()'><h2>" + data[i]["from_nickname"] + "</h2><p>" + replySomeone + data[i]["content"].replace(/&amp;nbsp;/g,' ')  + " <span class='transs' id="+domm+"></span></p></div><span class='comment-time'>" + shijianaa + "</span></li>";
+	    					// 	}
+	    					}else if(data[i]["reply_id"]=='' || data[i]["reply_id"]==null){
+	    						str+="<div class='comment_line'></div><li style='padding:1.33vw 0;'><img onclick=\"openHome('" + data[i]["from_uid"] + "','" + data[i]["from_nickname"] + "')\" src='http://bin.baopinghui.com/" + data[i]["from_avatar"] + "?imageView2/0/w/100'><div class='comment-container' onclick=\"openReplyy('" + data[i]["from_nickname"] + "','" + data[i]["id"] + "')\"  ontouchstart=\"touchstart(event,'" + data[i]["content"].replace(/&amp;nbsp;/g,'nbsp;') + "')\" ontouchmove='touchmove()' ontouchend='touchend()'><h2>" + data[i]["from_nickname"] + "</h2><p>" + replySomeone + data[i]["content"].replace(/&amp;nbsp;/g,' ')  + " <span class='transs' id="+domm+"></span></p></div><span class='comment-time'>" + shijianaa + "</span></li>";
+	    						for(var j = 0, len = data.length; j < len; j++){
+	    							dommm += 'w';
+	    							shijianaa=data[j]["create_time"].slice(0,10);
+	    							replySomeone = "";
+									if(!!data[j]["reply_nickname"]){
+										replySomeone = "@" + data[j]["reply_nickname"] + " : ";
+									};
+									if(year == data[j]["create_time"].slice(0,4) && month == data[j]["create_time"].slice(5,7) && today == data[j]["create_time"].slice(8,10)){
+			    						shijianaa = data[j]["create_time"].slice(11,16);
+			    					}
+	    							if(data[j]["reply_id"]==data[i].id){
+	    								str+="<li><img onclick=\"openHome('" + data[j]["from_uid"] + "','" + data[j]["from_nickname"] + "')\" src='http://bin.baopinghui.com/" + data[j]["from_avatar"] + "?imageView2/0/w/100' style='visibility:hidden;'><div class='comment-container' onclick=\"openReplyy('" + data[j]["from_nickname"] + "','" + data[j]["id"] + "')\"  ontouchstart=\"touchstart(event,'" + data[j]["content"].replace(/&amp;nbsp;/g,'nbsp;') + "')\" ontouchmove='touchmove()' ontouchend='touchend()'><h2>" + data[j]["from_nickname"] + "</h2><p>" + replySomeone + data[j]["content"].replace(/&amp;nbsp;/g,' ')  + " <span class='transs' id="+dommm+"></span></p></div><span class='comment-time'>" + shijianaa + "</span></li>";
+	    								var contenttt =data[j]["content"].replace(/&amp;nbsp;/g,' ');
+										if(contenttt.replace(/ /g,'') == ''){
+											$api.css($('#'+dommm), 'padding:0');
+										}else{
+											translateTitle(contenttt,dommm);
+										}
+	    							}
+	    						}
+	    					}
+
+	    					// str += "<li><img onclick=\"openHome('" + data[i]["from_uid"] + "','" + data[i]["from_nickname"] + "')\" src='http://bin.baopinghui.com/" + data[i]["from_avatar"] + "?imageView2/0/w/100'><div class='comment-container' onclick=\"openReplyy('" + data[i]["from_nickname"] + "','" + data[i]["id"] + "')\"  ontouchstart=\"touchstart(event,'" + data[i]["content"].replace(/&amp;nbsp;/g,'nbsp;') + "')\" ontouchmove='touchmove()' ontouchend='touchend()'><h2>" + data[i]["from_nickname"] + "</h2><p>" + replySomeone + data[i]["content"].replace(/&amp;nbsp;/g,' ')  + " <span class='transs' id="+domm+"></span></p></div><span class='comment-time'>" + shijianaa + "</span></li>";
+							var contentt =data[i]["content"].replace(/&amp;nbsp;/g,' ');
+							if(contentt.replace(/ /g,'') == ''){
+								$api.css($('#'+domm), 'padding:0');
+							}else{
+								translateTitle(contentt,domm);
+							}
+						};
+						$api.html(newUl, str);
+						$api.append(list, newUl.outerHTML);
+						if(data.length < 10){//这种情况就显示没有更多内容的提示
+							$api.css(loading, "display:none");
+							$api.css(noMore, "display:block");
+							return;
+						};
+						$api.css(readAll, "display:block");
+						$api.css(loading, "display:none");
+						startIndex += 10;
+						//这种情况就显示读取更多的按钮
+						return;
+					};
+					if(startIndex === 0){//这种情况就显示暂时没有评论的提示
+						$api.css(loading, "display:none");
+						$api.css(empty, "display:block");
+						return;
+					};
+					$api.css(loading, "display:none");
+					$api.css(noMore, "display:block");
+					//这种情况就显示没有更多内容的提示
+					return;
+				};
+				console.log(err);
+			});
+	    };
+
+	    function followTrans(focus, username){//当点击关注按钮时，会触发另一个窗口的关注按钮的样式改变函数
+	    	var jsfun = "followChange('" + focus + "')";
+	    	api.execScript({
+	    		name: "otherDetail/" + username,
+			    script: jsfun
+			});
+	    };
+
+	    function followChange(focus){
+	    	isFollow = $api.dom("#isFollow");
+	    	//另一个窗口点击关注按钮时，会触发本窗口的关注按钮样式改变的函数
+	    	if(focus === "focus"){
+	    		// $api.addCls(isFollow, 'isfollow');
+            	// $api.removeCls(isFollow, 'isfollowing');
+            	$api.css($api.dom('#isFollow'), 'display:block');
+               	// 给header.html发送取消关注事件
+            	api.sendEvent({
+               	    name: 'detail_isfollow_no',
+           		});
+            	$api.css($api.dom('.chat'), 'display:none;');
+	    		if(language == "zho"){
+					$api.html(isFollow, "關&nbsp;註");
+				}else{
+					$api.html(isFollow, "FOLLOW");
+				};
+	    		isFollow.onclick = function(){
+					followOne.call($api.dom('#isFollow'), "focus");
+				};
+	    		return;
+	    	};
+	    	// $api.html(isFollow, "");
+        	// $api.addCls(isFollow, 'isfollowing');
+        	// $api.removeCls(isFollow, 'isfollow');
+        	$api.css($api.dom('#isFollow'), 'display:none');
+               	// 给header.html发送取消关注事件
+            	api.sendEvent({
+               	    name: 'detail_isfollow_yes',
+           		});
+        	// $api.css($api.dom('.chat'), 'display:block;');
+
+
+
+	  //   	$api.dom('.isfollowing').onclick = function(){
+			// 	api.openFrame({
+			// 	    name: 'out',
+			// 	    url: 'widget://html/nav/out.html',
+			// 	    rect: {
+			// 	        x: 0,
+			// 	        y: 0,
+			// 	        w: 'auto',
+			// 	        h: 'auto'
+			// 	    },
+			// 	    pageParam: {
+			// 	        follow:1
+			// 	    }
+			// 	});
+			// };
+	    };
+
+	    function followNumberTran(plus){//点击关注或者取消关注，将会使主页面的关注人数发生变化
+	    	var jsfun = "followNumber('" + plus + "')";
+	    	api.execScript({
+	    		name: "home",
+			    script: jsfun
+			});
+	    };
+
+	    function openReply(replyName, replyId){//打开回复帖子的frame，传了replyName和replyId的话就是@别人
+	    	api.openFrame({
+				name: "reply",
+				url: "widget://html/details/reply.html",
+				rect: {
+					x: 0,
+					y: 0,
+					w: "auto",
+					h: "auto"
+				},
+				pageParam:{
+					replyName: replyName,//评论人名字
+					replyId: replyId//评论表唯一id
+				}
+			});
+	    };
+
+	    function reply(replyId, content, replyNamee){//发表评论
+	    	var values = {
+	    		topicId: postId,//帖子id
+				topicType: tempType,//帖子类型
+				content: content,//回复内容
+				uiId: testId//评论人id
+	    	};
+	    	if(!!replyId){
+	    		values = {
+	    			topicId: postId,
+					topicType: tempType,
+					replyId: replyId,//回复评论的id
+					content: content,
+					uiId: testId
+	    		};
+	    	};
+	    	api.ajax({
+	    		url: "http://api.baopinghui.com/app_topicComment/createTopicComment",
+	    		method: "post",
+	    		data: {
+	    			values: values
+	    		}
+	    	}, function(ret, err){
+	    		if(ret){
+						//alert(ret["status"]);
+						api.sendEvent({
+						    name: 'echo',
+						    extra: {
+						        key1: 'value1',
+						        key2: 'value2'
+						    }
+						});
+
+	    			if(ret["status"]){
+	    	// 			api.openFrame({//打开通用提示框
+						// 	name: "out",
+						// 	url: "widget://html/nav/out.html",
+						// 	rect: {
+						// 		x: 0,
+						// 		y: 0,
+						// 		w: "auto",
+						// 		h: "auto"
+						// 	},
+						// 	pageParam:{
+						// 		reply: true
+						// 	}
+						// });
+						var str = "",
+							domm = 'replyyy',
+							newUl;
+						newUl = document.createElement("ul");
+						newUl.className = "list";
+						var replySomeone = "";
+						if(replyName==undefined){
+							replySomeone = '';
+						}else{
+							console.log(replyName);
+							replySomeone = "@" + replyName + " : ";
+						}
+						str += "<li style='padding: 1.33vw 0'><img onclick=\"openHome('" + testId + "')\" src='http://bin.baopinghui.com/" + $api.getStorage("avatar") + "?imageView2/0/w/100'><div class='comment-container' onclick=\"openReplyy('" +$api.getStorage("nickname") + "','" + testId + "')\" ontouchstart=\"touchstart(event,'"+content+"')\" ontouchmove='touchmove()' ontouchend='touchend()'><h2>" + $api.getStorage("nickname") + "</h2><p>" + replySomeone + content + "<span class='transs' id="+domm+"></span></p></div><span class='comment-time'>" + getRefreshTime().slice(11,16) + "</span></li>";
+						var contentt =content.replace(/&amp;nbsp;/g,' ');
+						if(contentt == ''){
+							$api.css($('#'+domm), 'padding:0');
+						}else{
+							translateTitle(contentt,domm);
+						}
+						$api.html(newUl, str);
+						$api.append(list, newUl.outerHTML);
+	    			};
+	    			return;
+	    		};
+	    		console.log(err);
+	    	});
+	    };
+
+	    function openDelete(){
+	    	var popNum = api.pageParam["popNum"],
+				tinNum = api.pageParam["tinNum"],
+				otherId = api.pageParam['otherId']||testId;
+	    	if(testId === otherId){
+	    		api.openFrame({
+					name: "more",
+					url: "widget://html/nav/more(new).html",
+					rect: {
+						x: 0,
+						y: 0,
+						w: "auto",
+						h: "auto"
+					},
+					pageParam:{
+						deletePost: true,
+						otherId:otherId,
+						postId:postId,
+						popNum:popNum,
+						tinNum:tinNum
+					}
+				});
+	    	}else{
+	    		api.openFrame({
+					name: "more",
+					url: "widget://html/nav/more(new).html",
+					rect: {
+						x: 0,
+						y: 0,
+						w: "auto",
+						h: "auto"
+					},
+					pageParam:{
+						otheridshare: true,
+						otherId:otherId,
+						postId:postId,
+						popNum:popNum,
+						tinNum:tinNum
+					}
+				});
+	    	};
+	    };
+
+	    function deleteAndEnter(){
+	    	api.ajax({
+	    		url: "http://api.baopinghui.com/app_dynamicCover/removePost?uiId=" + testId + "&dynId=" + postId,
+	    		method: "post"
+	    	}, function(ret, err){
+	    		if(ret){
+	    			if(ret["status"]){
+	    				// api.openWin({
+				    	// 	name: "home",
+				    	// 	url: "widget://html/home/home.html",
+				    	// 	reload: true,
+				    	// 	vScrollBarEnabled: false,
+				    	// 	slidBackEnabled: false
+				    	// });
+				    	api.closeWin();
+	    			};
+	    			return;
+	    		};
+	    		console.log(err);
+	    	});
+	    };
+	    // 回復顯示
+	    function openReplyy(replyNamee,replyIdd){
+			var commentzonetext = document.getElementById("commentzone-text");
+			replyName=replyNamee;
+			replyId=replyIdd;
+			// 判断是否IPHONE进行键盘弹出优化操作
+            	var u = navigator.userAgent;
+            	if(u.indexOf('iPhone') > -1){
+				$api.addCls($api.dom('#commentsbottom'), 'commentsbottom_iphone');
+            	$api.removeCls($api.dom('#commentsbottom'), 'commentsbottom');
+	            	if(hhh/www>2){
+					frameh=90+'px';
+					$api.css($api.dom('#commentsbottom'), 'padding-bottom:34px;');
+					}
+					var timer=null;
+					var target=document.body.scrollHeight;
+					var leader=document.body.offsetHeight;
+					clearInterval(timer);
+					timer=setInterval(function(){
+						var step=(target-leader)/10;
+						leader=leader+step;
+						window.scrollTo(0,leader);
+						if(leader===0){
+							clearInterval(timer);
+						}
+					},20);
+					setTimeout(function(){
+						clearInterval(timer);
+					},500);
+					$('#commentzone-text').click();
+				}else{
+					$('#commentzone-text').focus();
+				}
+			focuss();
+			return;
+		};
+		// 底部評論獲取焦點函數
+		function focuss(){
+			console.log(replyName);
+	    	console.log(replyId);
+			var commentzonetext = document.getElementById("commentzone-text"),
+			pointbottomimg = document.getElementById("pointbottomimg"),
+			pointbottomimgbox = document.getElementById("pointbottomimg-box"),
+			pointbottom = document.getElementById("pointbottom");
+            	// alert(JSON.stringify(replyName));
+            	if(replyName=='' || replyName==undefined){
+            		if(commentzonetext.innerHTML == "添 加 評 論 ..." ||commentzonetext.innerHTML == "Add comment..."){
+					$api.html(commentzonetext, '');
+            		};
+            	}else{
+            		// $api.html(commentzonetext, '');
+            		$api.html(commentzonetext, '@'+replyName);
+            		var boof = true;
+            		commentzonetext.onkeydown=function(){
+            			if(boof){
+            				$api.html(commentzonetext, '');
+            				boof = false;
+            			};
+            		};
+            	};
+            	sendd = true;
+            	// $api.addCls(pointbottomimgbox, 'visibilityh');
+            	// $api.addCls(pointbottom, 'commentbtn');
+            	// $api.removeCls(pointbottom, 'pointbottom');
+            	if(language == "zho"){
+            		$api.html(pointbottom, '發 送');
+            		sendd = true;
+            		pointbottom.onclick=function(){
+            			if(replyId == undefined){
+            				replyId = "";
+            				sendcomment(replyName,replyId);
+            			}else{
+            				sendcomment(replyName,replyId);
+            			}
+            		};
+            	}else{
+            		$api.html(pointbottom, 'SEND');
+            		sendd = true;
+            		pointbottom.onclick=function(){
+            			if(replyId == undefined){
+            				replyId = "";
+            				sendcomment(replyName,replyId);
+            			}else{
+            				sendcomment(replyName,replyId);
+            			}
+            		};
+            	}
+            	return;
+            };
+            // 點擊發送按鈕
+            function  sendcomment(){
+
+            	var commentzonetext = document.getElementById("commentzone-text"),
+					// pointbottomimg = document.getElementById("pointbottomimg"),
+					// pointbottomimgbox = document.getElementById("pointbottomimg-box"),
+					pointbottom = document.getElementById("pointbottom");
+					$api.css($api.dom('#pointbottom'), 'background-color:#000;color:#fff;');
+					setTimeout(function(){
+						$api.css($api.dom('#pointbottom'), 'background-color:#fff;color:#000;');
+					},100);
+            	if(sendd == true){
+					var content = commentzonetext.innerText;
+					var jsfun = "reply('" + replyId + "','" + content.replace(/\'/g,' ') + "','" + replyName + "')";
+					api.execScript({
+					    script: jsfun
+					});
+					if(language == "zho"){
+            		$api.html(commentzonetext, '添 加 評 論 ...');
+	            	}else{
+	            		$api.html(commentzonetext, 'Add comment...');
+	            	};
+	            	// $api.removeCls(pointbottom, 'commentbtn');
+            		// $api.addCls(pointbottom, 'pointbottom');
+	            	// $api.removeCls(pointbottomimgbox, 'visibilityh');
+	            	// $api.html(pointbottom, '');
+	            	// sendd=false;
+            	};
+            	if(aaaaa){
+		       		aaaaa=0;
+		       		$api.css($api.dom('.sharetip'), 'display:block');
+		        	setTimeout(function(){
+		        		$api.css($api.dom('.sharetip'), 'display:none');
+		        		aaaaa=1;
+		        		return;
+	            	},5000);
+	            return;
+	        	}
+	        	replyName='';
+	        	replyId='';
+            	return;
+            };
+            // 底部評論失去焦點函數
+            function blurr() {
+            	// 判断是否IPHONE进行键盘弹出优化操作
+            	var u = navigator.userAgent;
+				if(u.indexOf('iPhone') > -1){
+					$api.addCls($api.dom('#commentsbottom'), 'commentsbottom');
+	            	$api.removeCls($api.dom('#commentsbottom'), 'commentsbottom_iphone');
+				}
+
+            	var commentzonetext = document.getElementById("commentzone-text"),
+					pointbottomimg = document.getElementById("pointbottomimg"),
+					pointbottomimgbox = document.getElementById("pointbottomimg-box"),
+					pointbottom = document.getElementById("pointbottom");
+            	if(commentzonetext.innerHTML == '' || commentzonetext.innerHTML.indexOf('@') == 0){
+            		if(language == "zho"){
+            			$api.html(commentzonetext, '添 加 評 論 ...');
+            			// sendd=false;
+            		}else{
+            			$api.html(commentzonetext, 'Add comment...');
+            			// sendd=false;
+            		};
+            		// $api.removeCls(pointbottom, 'commentbtn');
+            		// $api.addCls(pointbottom, 'pointbottom');
+            		// $api.html(pointbottom, '');
+            		// $api.removeCls(pointbottomimgbox, 'visibilityh');
+            		replyName='';
+	        		replyId='';
+            		sendd = false;
+            	};
+            	// alert(commentzonetext.innerHTML.indexOf('@'));
+            	return;
+            };
+            function touchstart(event,content){
+
+            	var u = navigator.userAgent;
+            	if (u.indexOf('iPhone') > -1) {
+            		event=event || window.event;
+    //         	var centerX=event.pageX ||scroll().left+event.clientX;
+				// var centerY=event.pageY ||scroll().top+event.clientY;
+				var centerX=event.pageX-scroll().left ||scroll().left+event.clientX;
+				var centerY=event.pageY-scroll().top ||scroll().top+event.clientY;
+			}else{
+				var centerX=event.changedTouches[0].pageX-scroll().left;
+				var centerY=event.changedTouches[0].pageY-scroll().top;
+			}
+				console.log(centerX);
+				console.log(centerY);
+		 		// e.preventDefault();
+		 		timeOutEvent = setTimeout("longPress("+centerX+","+centerY+",'"+content+"')",500);
+            }
+            function touchmove(){
+            	clearTimeout(timeOutEvent);
+		    	timeOutEvent = 0;
+            }
+            function touchend(){
+            	clearTimeout(timeOutEvent);
+				if(timeOutEvent!=0){
+				    // alert("你这是点击，不是长按");
+				}
+				return false;
+	            }
+	        // 评论长按操作
+            function longPress(centerX,centerY,content){
+            if($api.getStorage('language')=='zho'){
+            	var titlecc='複 製';
+            } else{
+            	var titlecc='copy';
+            }
+			    timeOutEvent = 0;
+			    // alert("长按事件触发发");
+			    var bubbleMenu = api.require('bubbleMenu');
+			    bubbleMenu.open({
+					style: {
+						//  mask: '#FFF',
+						maskColor:'rgba(0,0,0,0)',
+						bgColor:'#000',
+						lightColor:'#009acd',
+						borderColor:'#000',
+						cutLineColor:'#636363',
+						// titleColor'#00':  //(可选项)字符串类型；遮罩层题色，支持 rgb,rgba,#；默认：rgba(0,0,0,0)
+						cornerRadius: 8,  //(可选项)数字类型；圆角大小；默认：8
+						arrowSize: 10,    //(可选项)数字类型；尖角大小；默认：12
+						titleSize: 11,    //(可选项)数字类型；标题大小：默认：14
+						height: 50        //(可选项)数字类型；菜单高度；默认：50
+					},
+					centerX:centerX,
+					centerY: centerY,
+					btnArray:[{
+						title:titlecc
+					}] ,
+					fixedOn: api.frameName
+				}, function(ret, err) {
+					var clipBoard = api.require('clipBoard');
+					clipBoard.set({
+					    value: content
+					}, function(ret, err) {
+					    if (ret) {
+					        console.log(JSON.stringify(ret));
+					    } else {
+					        console.log(JSON.stringify(err));
+					    }
+					});
+				});
+			}
+			function scroll(){
+					if(window.pageYOffset!==undefined){
+						return{
+							top:document.body.scrollTop ||document.documentElement.scrollTop ||window.pageYOffset,
+							left:document.body.scrollLeft ||document.documentElement.scrollLeft ||window.pageXOffset
+						}
+					}
+			}
+	// 点赞功能
+	function likebtn(uiId){
+
+		api.ajax({
+		    url: 'http://api.baopinghui.com/app_dynamicCover/praiseDyn_cover',
+		        method: 'post',
+		        data: {
+			       	values: {
+				        uiId: uiId,
+				        praiseUid: testId,
+				        dynId: postId
+		        	}
+		        }
+		}, function(ret, err) {
+		    if (ret) {
+		       	if(ret.status == 1){
+		    	// $("#pointbottomimg").attr("src","../../icon/b.png");
+		    	if($api.getStorage('language')=='zho'){
+		    		$api.text($api.dom('#likebtn'), '已 贊');
+		    	}else{
+		    		$api.text($api.dom('#likebtn'), 'LIKED');
+		    	}
+		   			$api.css($api.dom('#likebtn'), 'background-color:#fff;border:0.5vw solid #aaa;color:#aaa');
+		           	api.ajax({
+		                url: 'http://api.baopinghui.com/app_dynamicCover/checkPraise',
+		                method: 'post',
+		                data: {
+		                    values: {
+		                        praiseUid:testId,
+		                	    dynId:postId
+		                    }
+		                }
+		            }, function(ret, err) {
+		                if (ret) {
+		                    $api.html($api.dom("#pointNum"), '<img src="../../icon/a.png">'+ret.data.like_num+likestext);
+		                }
+		           	});
+		       	}
+		    } else {
+		        console.log(JSON.stringify(err));
+		    }
+		});
+		if(aaaaa){
+		    aaaaa=0;
+		    $api.css($api.dom('.sharetip'), 'display:block');
+			setTimeout(function(){
+				$api.css($api.dom('.sharetip'), 'display:none');
+				aaaaa=1;
+				return;
+			},5000);
+			return;
+		}
+	}
+	// 点击打开专题页
+	function opentheme(theme){
+		console.log(JSON.stringify(theme));
+		api.openWin({
+		    name: 'huodong',
+		    url: 'widget://html/nav/huodong.html',
+		    pageParam: {
+		        the_me_obj: theme
+		    }
+		});
+	}
+	function scroll(){
+		if(window.pageYOffset!==undefined){
+			return{
+				top:window.pageYOffset ||document.body.scrollTop ||document.documentElement.scrollTop,
+				left:window.pgaeXOffset ||document.body.scrollLeft ||document.documentElement.scrollLeft
+			}
+		}
+	}
+// 视频全屏
+function launchFullScreen(url) {
+	var videoPlay = $api.dom("#video_play");
+	videoPlay.pause();
+	$api.css($api.dom(".imgplay"), "display:block");
+	api.openWin({
+	    name: 'video_fullscreen',
+	    url: 'widget://html/details/video_fullscreen.html',
+	    pageParam: {
+	        url:url
+	    }
+	});
+}
+	</script>
+</body>
+</html>

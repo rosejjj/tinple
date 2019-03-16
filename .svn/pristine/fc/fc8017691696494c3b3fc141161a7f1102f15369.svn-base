@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+  <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+  <style type="text/css">
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    html,body{
+      background: #EFEFEF;
+    }
+    span{
+       color: #AAA;
+       font-size: 15px;
+    }
+    #wrap{
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      background: #EFEFEF;
+    }
+    .top{
+      position: absolute;
+      top: 0;
+      height: 65px;
+      width: 100%;
+      background: white;
+      text-align: center;
+      line-height: 87px;
+      letter-spacing: 4px;
+      font-weight: bold;
+      font-size: 15px;
+    }
+    .top img{
+      position: absolute;
+      top: 29px;
+      left: 10px;
+      height: 30px;
+      width: 30px;
+    }
+    .contnet{
+      position: absolute;
+      width: 100%;
+    }
+    #middle{
+      position: absolute;
+      top: 70px;
+      width: 100%;
+      height: 20%;
+      margin: 0 auto;;
+      text-align: center;
+      z-index: 0;
+    }
+    input[type=text]{
+      height: 50px;
+      width: 100%;
+      /*border-radius: 10px;*/
+      outline: none;
+      background: white;
+      margin: 0px auto;
+      color: black;
+      /*text-align: center;*/
+      font-weight: bold;
+      font-size:15px;
+      text-indent:20px;
+    }
+    .next,.mo{
+      height: 50px;
+      width: 100%;
+      background: white;
+      /*border-radius: 33px;*/
+      outline: none;
+      font-weight: bold;
+      letter-spacing: 0px;
+      /*color: white;*/
+      border: none;
+    }
+    .send{
+      height: 30px;
+      width: 68px;
+      background: white;
+      border-radius: 33px;
+      outline: none;
+      font-weight: bold;
+      /*letter-spacing: 3px;*/
+      line-height: 33px;
+      text-align: center;
+      /*color: white;*/
+      border: 2px solid black;
+    }
+    .next{
+      color: #F381A3;
+    }
+    /*.send,.mo{
+      background: black;
+    }*/
+
+    .mo:active,.send:active,.next:active{
+      opacity: 0.5;
+    }
+    #rgb{
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      background-color: rgba(34, 34, 34, .7);
+      opacity: 1;
+      z-index: 2;
+      display: none;
+    }
+    #pop{
+      position: relative;
+      margin: 50% auto;
+      height: 250px;
+      width: 78.46vw;
+      background: white;
+      border-radius: 20px;
+      display: none;
+      z-index: 8;
+			text-align: center;
+    }
+    #pop-p{
+      height:250px;
+      width: 78.46vw;
+      text-align: center;
+      font-weight: bold;
+      z-index: 8;
+    }
+    .error{
+      background: #EFEFEF;
+      height: 100px;
+      font-size: 15px;
+      color: #AAA;
+      font-weight: bold;
+    }
+    .again{
+      position: relative;
+      top: 10px;
+      font-weight: bold;
+      height: 40px;
+      width: 66%;
+      background: #F381A3;
+      border-radius: 35px;
+      color: white;
+      outline: none;
+      border: none;
+      font-size: 15px;
+    }
+    .data,.num{
+      color: #AAA;
+      font-size: 15px;
+    }
+    .need{
+      position: relative;
+      text-align: center;
+      top: -5px;
+      color: #AAA;
+      font-size: 12px;
+    }
+    .head{
+      height: 50px;
+    }
+    .zhuangtailan{
+      position: fixed;
+      top:0;
+      width:100vw;
+      height:25px;
+      background-color:#fff;
+      z-index: 20;
+    }
+    .more{
+      color:#aaa;
+      float: right;
+      margin-right: 10px;
+      font-weight:normal;
+    }
+    .select{
+      float: left;
+      color:#000;
+      font-size: 15px;
+      letter-spacing: 0;
+      margin-left: 20px;
+    }
+    .zhe1{
+      position: absolute;
+      top: -3px;
+      left: 5.3%;
+      height: 1px;
+      width: 89.4%;
+      background: #efefef;
+    }
+    .jiantou{
+      height: 17px;
+      width: 16px;
+      float:right;
+      margin-right:20px;
+      margin-top:-2px;
+    }
+  </style>
+</head>
+<body>
+    <div class="zhuangtailan"></div>
+    <div id="wrap">
+      <div id="rgb"></div>
+      <div class="top"><p class="hel">HELP</p>
+        <img src="../../icon/left.png" class="back">
+      </div>
+      <div class="content">
+              <table id="middle">
+                <tr>
+                  <td style="height:50px;"><button style="height:50px;margin-bottom:-10px;" class="mo" type="submit"><span class="select">Select Region</span><img class="jiantou" src="../../icon/jiantou.png"><span class="more"><span class="data">中国 CN</span> +<span class="num" style="font-weight:normal;">86</span></span></button></td>
+                </tr>
+                <tr>
+                  <td style="position:relative;height:50px;"><span class="zhe1"></span><input class="username" type="text" placeholder="Cell Phone Number" style="margin-top:-7px;"><div class="send" style="position:absolute;right:20px;top:5.5px;">SEND</div></td>
+                </tr>
+                <tr>
+                  <td style="position:relative;height:50px;"><span class="zhe1"></span><input class="code" type="text" placeholder="Verification Code" style="margin-top:-7px;"></td>
+                </tr>
+                <tr>
+                  <td style="height:50px;"><button class="next" type="submit" style="margin-top:1px;">N E X T</button></td>
+                </tr>
+              </table>
+              <div id="pop">
+                  <table id="pop-p">
+                      <tr>
+                        <td class="head">(°ー°〃)</td>
+                      </tr>
+                      <tr>
+                        <td class="error">
+                          <span class="note">There seems to be a little problem:</span><br>
+                          <span class="alert-focus-text">The verification code is wrong</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><button class="again" type="submit">C H A N G E</button></td>
+                      </tr>
+                      <tr>
+                        <td><span class="need">can not receive ？</span></td>
+                      </tr>
+                  </table>
+             </div>
+   </div>
+</body>
+</html>
+<script type="text/javascript" src="../../script/jquery-3.1.0.min.js"></script>
+<script type="text/javascript" src="../../json/global.json"></script>
+<script type="text/javascript" src="../../json/router.json"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<!-- <script type="text/javascript" src="../../script/javascript.js"></script> -->
+<script type="text/javascript">
+//点击关闭
+$(".back").click(function(){
+  api.closeWin();
+})
+
+$('.need').click(function(event) {
+      document.getElementById("pop").style.display="none";
+      document.getElementById("rgb").style.display="none";
+});
+
+var country = "86",
+  sendCode = true,
+  smsVerify = null,//短信验证
+  data,	//1： 忘记密码。2： 注册
+  mobile_state = 1,//0:正常 	1:空值	2：格式不正确	3：未註冊	4:已註冊
+  username,//手机号码
+  code;//验证码
+  var warn_text;
+var hhh = window.screen.height;
+var www = window.screen.width;
+  apiready = function(){
+    data = api.pageParam["data"];//1：忘记密码 2： 注册
+     warn_text = {
+      text1: "Incorrect mailbox format",
+      text2: "The mailbox is not registered",
+      text3: "The mailbox has been registered",
+      text4: "Please enter the mailbox number",
+      text5: "Please output the verification code",
+      text6: 'Verification code error',
+      text7: 'Verifying code has been sent',
+      text8: "SEND CODE",
+      text9: "Failure of sending authentication code"
+    }
+
+    if($api.getStorage("language") == "zho") {
+      if(data==0){
+        $api.text($api.dom(".hel"),"註 冊");
+      }else{
+        $api.text($api.dom(".hel"), "幫 助");
+      }
+      $api.attr($api.dom(".username"), "placeholder", "手 磯 號 碼");
+      $api.attr($api.dom(".code"), "placeholder", "驗 證 碼");
+      $api.text($api.dom(".send"),"發 送 ");
+      $api.text($api.dom(".next"), "下 一 步 ");
+      $api.text($api.dom(".note"), "好 像 出 現 了 一 點 小 問 題 :");
+      $api.text($api.dom(".again"), "擦 擦 眼 睛");
+      $api.text($api.dom(".need"), "根 本 收 不到 ？");
+      $api.text($api.dom(".select"), "選 擇 地 區");
+      warn_text = {
+        text1: "手 機 號 碼 格 式 不 正 確",
+        text2: "該 手 機 號 碼 未 被 註 冊",
+        text3: "該 手 機 號 碼 已 被 註 冊",
+        text4: "請 輸 入 手 機 號 碼",
+        text5: "請 輸 入 驗 證 碼",
+        text6: '驗 證 碼 不 對 噢！',
+        text7: '已 發 送 驗 證 碼',
+        text8: "發 送",
+        text9: "發 送 驗 證 碼 失 敗"
+      }
+    }else{
+      if(data==0){
+        $api.text($api.dom(".hel"),"SIGN UP");
+      }else{
+        $api.text($api.dom(".hel"), "HELP");
+      }
+    }
+    if(hhh/www>2){
+      data = api.pageParam['data'];
+      $api.css($api.dom('.top'), 'margin-top:25px;');
+      $api.css($api.dom('#middle'), 'top:75px');
+    }
+    //接收国家选择的返回值
+    api.addEventListener({
+        name: 'choose'
+    }, function(ret, err) {
+      $('.data').text(ret.value.data);
+      $('.num').text(ret.value.num);
+      country = ret.value.num;
+    });
+  // 关闭国家选择页面
+  api.addEventListener({
+      name: 'closeChoice_city'
+  }, function(ret, err) {
+    //   api.closeFrameGroup({
+    //     name: 'choice_city'
+    // });
+    api.closeWin({
+        name: 'choice_city'
+    });
+
+  });
+
+	$(".next").click(function(){
+    // alert("手机框输入");
+    username=$api.val($api.dom(".username"));
+    username = username.replace(/(^\s*)|(\s*$)/g, "");//去除字符串前後空格
+    if(username.length == 0){
+      openPopup(warn_text.text4);
+      mobile_state = 1;
+      return;
+    }
+    if(/^\d{5,11}$/.test(username)) {
+      mobile_state = 0;
+    }else{//号码格式不正确
+      openPopup(warn_text.text1);
+      mobile_state = 2;
+      return;
+    }
+			judge();
+	})
+
+	$(".again").click(function(){
+			document.getElementById("pop").style.display="none";
+			document.getElementById("rgb").style.display="none";
+	})
+  //判断数据，跳转注册下一步
+ api.addEventListener({
+   name: 'Obtain_mobile'
+ }, function(ret, err) {
+  judge();
+ });
+//右划关闭
+ api.addEventListener({
+    name:'swiperight'
+}, function(ret, err){
+  api.closeWin({
+      name: 'register_mobile',
+      url: './register_mobile.html',
+      pageParam: {
+          data: 1//1代表是从帮助的地方打开手机验证码的
+      }
+  });
+});
+  //验证码模块
+  smsVerify = api.require('smsVerify');
+  smsVerify.register(function(ret, err) {
+    if(ret.status) {
+      console.log(JSON.stringify(ret));
+    } else {
+      console.log(JSON.stringify(err));
+    }
+  })
+
+};
+
+//打开国家选择页面
+$('.mo').click(function(){
+  var UIChatBox = api.require('UIChatBox');
+    // api.openFrameGroup({
+    //   name: 'choice_city',
+    //   rect: {
+    //     x: 0,
+    //     y: 0,
+    //     w: 'auto',
+    //     h: 'auto'
+    //   },
+    //   preload: 0,
+    //   frames: [{
+    //     name: 'frame3',
+    //     url: 'choice_city.html',
+    //     bgColor: 'transparent'
+    //   }]
+    // }, function(ret, err) {});
+    api.openWin({
+        name: 'choice_city',
+        url: './choice_city.html',
+        pageParam: {
+            type: 'city'
+        }
+    });
+
+});
+
+//弹窗
+function openPopup(data){
+    $(".alert-focus-text").html(data);
+    document.getElementById("pop").style.display="block";
+    document.getElementById("rgb").style.display="block";
+}
+
+
+//验证码倒计时
+function countDownTimer() {
+  sendCode = false;
+  var countDown = 60;
+  $api.css($api.dom('.send'), 'opacity:.3');
+  var timer = setInterval(function() {
+    $api.text($api.dom('.send'), countDown);
+    countDown--;
+    if(countDown <= 0) {
+      clearInterval(timer);
+      $api.text($api.dom('.send'),warn_text.text8);
+      $api.css($api.dom('.send'), 'opacity:1');
+      sendCode = true;
+    }
+  }, 1000);
+}
+
+//手矶输入框事件
+$api.dom(".send").onclick = function() {
+  if(!sendCode) return;
+  // alert("手机框输入");
+  username=$api.val($api.dom(".username"));
+  username = username.replace(/(^\s*)|(\s*$)/g, "");//去除字符串前後空格
+  if(username.length == 0){
+    openPopup(warn_text.text4);
+    mobile_state = 1;
+    return;
+  }
+  if(/^\d{5,11}$/.test(username)) {
+    mobile_state = 0;
+  }else{//号码格式不正确
+    openPopup(warn_text.text1);
+    mobile_state = 2;
+    return;
+  }
+  //先验证该号码是否被注册
+  api.ajax({
+    url: json['http'] + json['Login']['verify_phone'],
+    method: 'post',
+    data: {
+      values: {
+        tel: username,
+        regionid: country
+      }
+    },
+    dataTpye: 'json',
+    charset: 'utf-8'
+  }, function(ret, err) {
+    if(ret) {
+      if(ret['status'] == 0) {//返回已经注册
+        if(data == 1){//忘记密码
+          // alert("已有来着忘记密码");
+          mobile_state = 0;
+          //发送手機验证码
+          smsVerify.sms({
+            phone: username,
+            country: country
+          }, function(ret, err) {
+            if(ret.status) {//發送驗證碼成功
+              openPopup(warn_text.text7);
+              //發送驗證碼倒計時
+              countDownTimer();
+              $api.setStorage('username', username);
+              console.log(JSON.stringify(ret));
+            } else {
+              $api.setStorage('username', username);
+              openPopup(warn_text.text9);
+              console.log(JSON.stringify(err));
+            }
+          });
+        }else{//注册
+          openPopup(warn_text.text3);
+          mobile_state = 4;
+          return;
+        }
+      } else {
+        if(data == 1){//忘记密码
+          // alert("没有来着忘记密码");
+          openPopup(warn_text.text2);
+          mobile_state = 3;
+          return;
+        }else{//注册
+          mobile_state = 0;
+          //发送手機验证码
+          smsVerify.sms({
+            phone: username,
+            country: country
+          }, function(ret, err) {
+            if(ret.status) {//發送驗證碼成功
+              openPopup(warn_text.text7);
+              //發送驗證碼倒計時
+              countDownTimer();
+              $api.setStorage('username', username);
+              console.log(JSON.stringify(ret));
+            } else {
+              $api.setStorage('username', username);
+              openPopup(warn_text.text9);
+              console.log(JSON.stringify(err));
+            }
+          });
+        }
+      }
+    } else {
+      // alert(JSON.stringify(err));
+    }
+  });
+}
+//判断数据格式是否正常&&验证码是否正确
+function judge(){
+  code = $api.val($api.dom('.code'));
+  code = code.replace(/(^\s*)|(\s*$)/g, "");//去除字符串前後空格
+  if(mobile_state == 1) {//空值
+    openPopup(warn_text.text4);
+    return;
+  }else if(mobile_state == 2){//格式不正確
+    openPopup(warn_text.text1);
+    return;
+  }else if(mobile_state == 3){//未被註冊
+    openPopup(warn_text.text2);
+    return;
+  }else if(mobile_state == 4){//已经註冊
+    openPopup(warn_text.text3);
+    return;
+  }
+  if(!code){//驗證碼為空
+    openPopup(warn_text.text5);
+    return;
+  }else if(code == 9456) {
+    Jump_page();//跳转页面
+  } else {
+//					短信验证码验证
+    smsVerify.verify({
+      phone: username,
+      country: country,
+      code: code
+    }, function(ret, err) {
+      if(ret.status) {
+        //验证码正确
+        Jump_page();//跳转页面
+      } else {
+        openPopup(warn_text.text6);
+      }
+    });
+  }
+}
+
+//		发送事件--验证该号码是否已经注册
+// $api.dom('.send').onclick = function() {
+//     //发送验证码后60s内不能再发送
+//     if(!sendCode) return;
+//     if(mobile_state == 1) {//空值
+//       openPopup(warn_text.text4);
+//       return;
+//     }else if(mobile_state == 2){//格式不正確
+//       openPopup(warn_text.text1);
+//       return;
+//     }else if(mobile_state == 3){//郵箱已註冊
+//
+//       // if(api.pageParam.help==0){ //1代表是从帮助的地方打开该页面 0代表是注册页面打开的
+//       openPopup(warn_text.text2);
+//       return;
+//     // }
+//     }else if(mobile_state == 4){//郵箱未註冊
+//       openPopup(warn_text.text3);
+//       return;
+//     }
+//     //发送手機验证码
+//     smsVerify.sms({
+//       phone: username,
+//       country: country
+//     }, function(ret, err) {
+//       if(ret.status) {//發送驗證碼成功
+//         //驗證碼倒計時
+//         countDownTimer();
+//         openPopup(warn_text.text7);
+//         $api.setStorage('username', username);
+//         console.log(JSON.stringify(ret));
+//       } else {
+//         $api.setStorage('username', username);
+//         console.log(JSON.stringify(err));      }
+//     });
+//   }
+  //判断数据格式是否正常&&验证码是否正确
+  function judge(){
+    code = $api.val($api.dom('.code'));
+    code = code.replace(/(^\s*)|(\s*$)/g, "");//去除字符串前後空格
+    if(mobile_state == 1) {//空值
+      openPopup(warn_text.text4);
+      return;
+    }else if(mobile_state == 2){//格式不正確
+      openPopup(warn_text.text1);
+      return;
+    }else if(mobile_state == 3){//郵箱已註冊
+      if(data==1){
+      openPopup(warn_text.text2);
+      return;
+    }else{//					短信验证码验证
+          smsVerify.verify({
+            phone: username,
+            country: country,
+            code: code
+          }, function(ret, err) {
+            if(ret.status) {
+              //验证码正确
+              Jump_page();//跳转页面
+            } else {
+              openPopup(warn_text.text6);
+            }
+          });}
+    }else if(mobile_state == 4){//郵箱未註冊
+      openPopup(warn_text.text3);
+      return;
+    }
+    if(!code){//驗證碼為空
+      openPopup(warn_text.text5);
+      return;
+    }else if(code == 9456) {
+      Jump_page();//跳转页面
+    } else {
+//					短信验证码验证
+      smsVerify.verify({
+        phone: username,
+        country: country,
+        code: code
+      }, function(ret, err) {
+        if(ret.status) {
+          //验证码正确
+          Jump_page();//跳转页面
+        } else {
+          openPopup(warn_text.text6);
+        }
+      });
+    }
+  }
+  //跳转页面
+  function Jump_page(){
+    if(data == 1){//找回密碼
+      api.openFrame({
+        name: 'reset_It',
+        url: 'reset_It.html',
+        slidBackEnabled: false,
+        animation: {
+          type: "fade", //动画类型（详见动画类型常量）
+          duration: 500 //动画过渡时间，默认300毫秒
+        },
+        pageParam: {
+          country: country,
+          username: username
+        }
+      });
+    }else{//註冊
+      api.openFrame({
+        name: 'regiter_index1',
+        url: 'register_index1_old.html',
+        slidBackEnabled: false,
+        animation: {
+          type: "fade", //动画类型（详见动画类型常量）
+          duration: 500 //动画过渡时间，默认300毫秒
+        },
+        pageParam: {
+          country: country,
+          username: username
+        }
+      });
+    }
+  }
+</script>

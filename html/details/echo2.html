@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>detail</title>
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <script type="text/javascript" src="../../script/md5.js"></script>
+    <style>
+		html, body{
+			background-color: transparent;
+			font-family: Arial;
+			font-style: italic;
+			background: #efefef;
+		}
+		img[src=""]{
+			visibility: hidden;/*将src不存在的img隐藏*/
+		}
+		img{
+			display: block;
+		}
+		video{
+			width: 100vw;
+		}
+		header{
+			height: 65px;
+			background: #ffffff;
+			position: relative;
+			width: 100%;
+		}
+		header p{
+			display: block;
+
+			text-align: center;
+			width: 100%;
+			height: 65px;
+			line-height: 85px;
+			font-size: 15px;
+			font-weight: bold;
+		}
+		header img{
+			display: inline-block;
+			position: absolute;
+			width: 30px;
+			height: 30px;
+			left: 10px;
+			top: 27.5px;
+		}
+		.wrap{
+			/*padding-top: 18.7vw;*/
+			/*使导航出现在最上方，并且不遮挡到内容*/
+			width: 100vw;
+		}
+		.container{
+			margin-bottom: 2.67vw;
+		}
+		.loading{
+			width: 100vw;
+			padding: 13.3vw 0;
+		}
+		.loading img{
+			width: 13.3vw;
+			margin: 0 auto;
+		}
+		.box{
+			position: relative;
+			margin-bottom: 1px;
+		}
+		.box > img{
+			width: 100%;
+		}
+		.screen{
+			position: absolute;
+			width: 8vw;
+			height: 8vw;
+			bottom: 2.67vw;
+			right: 2.67vw;
+			background: url("../../icon/details/screen.png") no-repeat;
+			background-size: 100% 100%;
+			z-index: 9;
+		}
+		.page{
+			width: 89.3vw;
+			margin: 5.33vw auto;
+			font-weight: bold;
+		}
+		.des{
+			font-size: 4vw;
+			color: #484848;
+			line-height: 5.86vw;
+			margin-bottom: 2.67vw;
+
+			/*内容超过宽度自动换行，不带空格的全英文和全数字也都可以*/
+			white-space: pre-line;
+            word-wrap: break-word;
+		}
+		.trans{
+			font-size: 4vw;
+			color: #36A5B2;
+			line-height: 5.86vw;
+			margin-bottom: 4vw;
+
+			/*字体渐变*/
+			background: -webkit-linear-gradient(left, #d9afd9 , #97d9e1);
+		    -webkit-background-clip: text;
+		    -webkit-text-fill-color: transparent;
+
+		    /*内容超过宽度自动换行，不带空格的全英文和全数字也都可以*/
+		    white-space: pre-line;
+            word-wrap: break-word;
+		}
+		.tags, .popular{
+			color: #aaa;
+			font-size: 3.2vw;
+			line-height: 4.53vw;
+			margin-bottom: 2.67vw;
+		}
+		.tags span{
+			margin-right: 1.33vw;
+		}
+		.detail-container{
+			background-color: #EFEFEF;
+			padding: 5.33vw;
+		}
+		.detail img{
+			float: left;
+			width: 13.33vw;
+			height: 13.33vw;
+			border-radius: 50%;
+			margin-right: 4vw;
+			margin-bottom: 4vw;
+			object-fit: cover;
+		}
+		.info{
+			float: left;
+			margin-top: 1.33vw;
+		}
+		.info h1{
+			width: 71.5vw;
+			color: #484848;
+			font-size: 4vw;
+			line-height: 5.86vw;
+
+			/*内容超过宽度自动换行，不带空格的全英文和全数字也都可以*/
+			white-space: pre-line;
+			word-wrap: break-word;
+		}
+		.info p{
+			font-size: 3.2vw;
+			color: #484848;
+			line-height: 4.53vw;
+			font-weight: bold;
+			opacity: 0.8;
+		}
+		.info span{
+			margin-right: 1.33vw;
+		}
+		.detail-des{
+			width: 89.3vw;
+			font-size: 3.2vw;
+			color: #aaa;
+			font-weight: bold;
+			line-height: 4.53vw;
+			clear: both;
+
+			/*内容超过宽度自动换行，不带空格的全英文和全数字也都可以*/
+			white-space: pre-line;
+			word-wrap: break-word;
+		}
+		.btn{/*按钮的容器*/
+			width: 89.3vw;
+			margin: 5.33vw auto 0;
+
+			display: -webkit-box;
+		    display: -webkit-flex;
+		    display: flex;
+		    /*设置容器为弹性盒子*/
+		}
+		.btn a{/*按钮*/
+			display: block;
+			margin: 0 auto;/*自适应分布*/
+			height: 8vw;
+			border-radius: 4vw;
+			text-align: center;
+			font-family: Arial;
+			color: #fff;
+			font-size: 3.4vw;
+			line-height: 9vw;
+			font-weight: bold;
+		}
+		.btn a:first-child{/*第一个按钮*/
+			margin-left: 0;/*紧靠父元素的左边*/
+			width: 53.3vw;
+			background: linear-gradient(to right, #FFC2A0 0%, #FFAFBD 100%);
+			box-shadow: 0 0 10px #FFAFBD;
+		}
+		.btn a:last-child{/*最后一个按钮*/
+			margin-right: 0;/*紧靠父元素的右边*/
+			width: 29.3vw;
+			background: linear-gradient(to right, #D1ABCF 0%, #93D2D8 100%);
+			box-shadow: 0 0 10px #93D2D8;
+		}
+		.list{
+			width: 100%;
+		}
+		.list li{
+			position: relative;
+			overflow: hidden;
+			line-height: 4.53vw;
+			min-height: 18.7vw;
+			padding-top: 3.2vw;
+		}
+		.list img{
+			width: 13.33vw;
+			height: 13.33vw;
+			float: left;
+			margin: 0 4vw 0 10px;
+			border-radius: 50%;
+			object-fit: cover;
+		}
+		.comment-container{
+			float: left;
+			width: 71.5vw;
+		}
+		.comment-container h2{
+			color: #484848;
+			margin: 2.67vw 0 0;
+
+			/*内容超过宽度自动换行，不带空格的全英文和全数字也都可以*/
+			white-space: pre-line;
+			word-wrap: break-word;
+
+			font-size: 3.2vw;
+		}
+		.comment-container p{
+			width: 70%;
+			color: #aaa;
+
+			/*内容超过宽度自动换行，不带空格的全英文和全数字也都可以*/
+			white-space: nowrap;
+			/*word-wrap: break-word;*/
+			overflow: hidden;
+			text-overflow: ellipsis;
+			font-size: 3.2vw;
+		}
+		.comment-container a{
+			color: #36A5B2;
+			font-size: 3.2vw;
+		}
+		.comment-time{
+			position: absolute;
+			right: -5px!important;
+			top: 3.53vw;
+			color: #aaa;
+			font-size: 3.2vw;
+			border-radius: 15px!important;
+		}
+		.read-all{
+			width: 100%;
+			text-align: center;
+			background-color: #efefef;
+			color: #aaa;
+			font-size: 4vw;
+			font-weight: bold;
+			height: 13.33vw;
+			line-height: 13.33vw;
+			display: none;
+		}
+		.details_pic {
+			width:100%;
+			height:100%;
+			background-position: center center;
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+		.video_box{
+			position:relative;
+		}
+		.video_box img{
+			width: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+		.video_pic {
+			position: relative;
+		}
+		.playBtn {
+			display:block;
+			width: 36.1111vw;
+			height: 11.1111vw;
+			position: absolute;
+			top:50%;
+			left:50%;
+			margin-top:-5.55vw;
+			margin-left:-18vw;
+			background: url(../../image/details/play.png)no-repeat center center;
+			background-size: cover;
+			z-index: 10;
+		}
+		.no-comment{
+			padding: 16vw 0;
+			display: none;
+		}
+		.no-comment p{
+			text-align: center;
+			color: #AAC1D3;
+			font-size: 4vw;
+			line-height: 6vw;
+			font-weight: bold;
+
+			/*字体渐变*/
+			background: #aaa;
+		    -webkit-background-clip: text;
+		    -webkit-text-fill-color: transparent;
+		}
+    </style>
+</head>
+<body>
+	<header>
+		<img src="../../icon/messages/back.png" alt="">
+		<p>E C H O</p>
+	</header>
+	<div class="wrap">
+		<div class="container" id="container">
+
+		</div>
+		<div id="list">
+		</div>
+		<div class="read-all" id="read-all">Read More</div>
+		<div class="loading" id="loading">
+			<img src="../../icon/loading.gif" id="loadingImg">
+		</div>
+		<div class="no-comment" id="empty">
+			<p>No Comments Yet (๑•́ ₃ •̀๑)</p>
+			<p>Waiting For You！</p>
+		</div>
+		<div class="no-comment" id="noMore">
+			<p>No More Dataヽ(✿ﾟ▽ﾟ)ノ</p>
+			<p>You Can Try Refreshing The Page</p>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var picAry = [],
+			isFollow,
+			testId,
+			otherId,
+			language,
+			postId,
+			replyTip,
+			readAll,
+			tempType,
+			empty,
+			noMore,
+			username,
+			list,
+			avatar;
+		var	startIndex = 0,
+			resTime = getRefreshTime();
+		apiready = function(){
+
+			extra=api.pageParam.extra;
+			//alert(JSON.stringify(extra));
+			postId=api.pageParam.extra.topicId;
+			api.addEventListener({
+				name: 'swiperight'
+			}, function() {
+				api.closeWin({
+					animation: {
+						type: "push", //动画类型（详见动画类型常量）
+						subType: "from_left", //动画子类型（详见动画子类型常量）
+						duration: 300 //动画过渡时间，默认300毫秒
+					}
+				});
+			});//右滑关闭win
+			// api.openFrame({
+			// 	name: "header",
+			// 	url: "widget://html/nav/header.html",
+			// 	rect: {
+			// 		x: 0,
+			// 		y: 0,
+			// 		w: "auto",
+			// 		h: Number(window.screen.width) * 0.187 + 10
+			// 	},
+			// 	pageParam:{
+			// 		detail: true
+			// 	}
+			// });//打开通用头部
+
+			var popNum = api.pageParam["popNum"],
+				tinNum = api.pageParam["tinNum"],
+				summary = api.pageParam["summary"],
+				isText = api.pageParam["isText"],
+				container = $api.dom("#container"),
+				tinTip = "Tins",
+				popTip = "Popular",
+				popularTip = "Popular",
+				followTip = "F&nbsp;O&nbsp;L&nbsp;L&nbsp;O&nbsp;W",
+				chatTip = "C&nbsp;H&nbsp;A&nbsp;T",
+				loading = $api.dom("#loading");
+			!summary ? summary = "This person has left nothing (｡ŏ_ŏ)" : null;
+			list = $api.dom("#list");
+			empty = $api.dom("#empty");
+			noMore = $api.dom("#noMore");
+			replyTip = "Reply";
+			readAll = $api.dom("#read-all");
+			postId = api.pageParam["postId"];
+			language = $api.getStorage("language");
+			testId = $api.getStorage("id");
+			emptyP = $api.domAll(empty, "p");
+			noMorep = $api.domAll(noMore, "p");
+			console.log(postId+'----------'+testId);
+			if(language == "zho"){
+				if(summary == "This person has left nothing (｡ŏ_ŏ)"){
+					summary = "這個人什麽都沒有留下 (｡ŏ_ŏ)";
+				};
+				tinTip = "帖子";
+				popTip = "帖子熱度";
+				popularTip = "熱度";
+				followTip = "關&nbsp;註";
+				chatTip = "聊&nbsp;天";
+				replyTip = "";
+				$api.html(readAll, "讀取更多");
+				$api.html(emptyP[0], "還沒有評論 (๑•́ ₃ •̀๑)");
+				$api.html(emptyP[1], "就等你了！");
+				$api.html(noMorep[0], "沒有更多信息了ヽ(✿ﾟ▽ﾟ)ノ");
+				$api.html(noMorep[1], "你可以嘗試刷新頁面");
+			};
+			$api.addEvt(readAll, "click", getMoreComment);
+			//点击加载更多评论
+			$api.addEvt(list, "touchstart", function(e){//点击li有背景变化
+				var tar = e.target;
+				var tarTag = e.target.tagName.toLowerCase();
+				if(tarTag !== "div" && tarTag !== "ul"){
+					if(tarTag !== "li"){
+						if(tarTag !== "span" && tarTag !== "img"){
+							tar = tar.parentNode.parentNode;
+						}else{
+							tar = tar.parentNode;
+						};
+					};
+					$api.css(tar, "background-color:#efefef");
+				};
+			});
+			$api.addEvt(list, "touchend", function(e){//点击li有背景变化
+				var tar = e.target;
+				var tarTag = e.target.tagName.toLowerCase();
+				if(tarTag !== "div" && tarTag !== "ul"){
+					if(tarTag !== "li"){
+						if(tarTag !== "span" && tarTag !== "img"){
+							tar = tar.parentNode.parentNode;
+						}else{
+							tar = tar.parentNode;
+						};
+					};
+					$api.css(tar, "background-color:#fff");
+				};
+			});
+			api.ajax({
+				url: "http://api.baopinghui.com/app_dynamicCover/findPostInfo?id=" + postId,
+				method: "post"
+			}, function(ret, err){
+				if(ret){
+					if(ret.status){
+						var data = ret["data"],
+							tagAry,
+							str = "";
+						username = data["nickname"];
+						avatar = data["avatar_url"];
+
+						otherId = data.ui_id;
+						tempType = data.post_type;
+						getMoreComment();//第一次加载10条评论
+
+					};
+				};
+			});
+
+		};
+
+	    function openHome(tarId, user){//点击评论头像进入主页面
+	    	var winName = tarId === testId ? "home" : "otherDetail/" + user;//如果为本人，窗口名字为home，不是则为otherDetail + user，当打开的窗口的name与已经打开过的窗口的name相同时，会关闭之前的页面
+	    	api.openWin({
+	    		name: winName,
+	    		url: "widget://html/home/home.html",
+	    		reload: true,//页面打开过时重新打开执行刷新操作
+	    		vScrollBarEnabled: false,
+	    		slidBackEnabled: false,
+	    		pageParam:{
+					otherId: tarId//其他用户的ID
+				}
+	    	});
+	    };
+
+	    function getRefreshTime(){//定义刷新时间函数
+	    	var currentTime = new Date();
+	    	var year = currentTime.getFullYear(),
+	    		month = currentTime.getMonth() + 1 > 9 ? currentTime.getMonth() + 1 : "0" + (currentTime.getMonth() + 1),
+	    		today = currentTime.getDate() > 9 ? currentTime.getDate() : "0" + currentTime.getDate(),
+	    		hour = currentTime.getHours() > 9 ? currentTime.getHours() : "0" + currentTime.getHours(),
+	    		minute = currentTime.getMinutes() > 9 ? currentTime.getMinutes() : "0" + currentTime.getMinutes(),
+	    		second = currentTime.getSeconds() > 9 ? currentTime.getSeconds() : "0" + currentTime.getSeconds();
+	    	currentTime = year + "-" + month + "-" + today + " " + hour + ":" + minute + ":" + second;
+	    	return currentTime;
+	    };
+
+	    function getMoreComment(){//获取评论
+	    	$api.css(readAll, "display:none");
+			$api.css(loading, "display:block");
+	    	api.ajax({
+				url: "http://api.baopinghui.com/app_topicComment/findTopicCommentByTopicIdAndTopicType",
+				method: "post",
+				data: {
+					values: {
+						topicId: postId,
+						topicType: tempType,
+						startIndex: startIndex,
+						maxResult: 10,
+						refreshTime: resTime
+					}
+				}
+			}, function(ret, err){
+				if(ret){
+					if(ret.status){
+						var data = ret.data,
+							str = "",
+							newUl;
+						newUl = document.createElement("ul");
+						newUl.className = "list";
+						for(var i = 0, len = data.length; i < len; i++){
+							var replySomeone = "";
+							if(!!data[i]["reply_nickname"]){
+								replySomeone = "@" + data[i]["reply_nickname"] + " : ";
+							};
+							str += "<li><img onclick=\"openHome('" + data[i]["from_uid"] + "','" + data[i]["from_nickname"] + "')\" src='http://bin.baopinghui.com/" + data[i]["from_avatar"] + "?imageView2/0/w/100'><div class='comment-container' onclick=\"openReply('" + data[i]["from_nickname"] + "','" + data[i]["id"] + "')\"><h2>" + data[i]["from_nickname"] + "</h2><p>" + replySomeone + data[i]["content"] + "</p><p >" + data[i]["create_time"] + "</p><a href='javascript:;'>" + replyTip + "</a><img class='comment-time' src='http://bin.baopinghui.com/'/></div></li>";
+							                                                                                                                                                                                                                                                                                                                                                                                                             //class='comment-time'
+						};
+						$api.html(newUl, str);
+						$api.append(list, newUl.outerHTML);
+						if(data.length < 10){//这种情况就显示没有更多内容的提示
+							$api.css(loading, "display:none");
+							$api.css(noMore, "display:block");
+							return;
+						};
+						$api.css(readAll, "display:block");
+						$api.css(loading, "display:none");
+						startIndex += 10;
+						//这种情况就显示读取更多的按钮
+						return;
+					};
+					if(startIndex === 0){//这种情况就显示暂时没有评论的提示
+						$api.css(loading, "display:none");
+						$api.css(empty, "display:block");
+						return;
+					};
+					$api.css(loading, "display:none");
+					$api.css(noMore, "display:block");
+					//这种情况就显示没有更多内容的提示
+					return;
+				};
+				console.log(err);
+			});
+	    };
+
+	    function openReply(replyName, replyId){//打开回复帖子的frame，传了replyName和replyId的话就是@别人
+	    	api.openFrame({
+				name: "reply",
+				url: "widget://html/details/reply.html",
+				rect: {
+					x: 0,
+					y: 0,
+					w: "auto",
+					h: "auto"
+				},
+				pageParam:{
+					replyName: replyName,
+					replyId: replyId
+				}
+			});
+	    };
+
+	    function reply(replyId, content, replyName){//发表评论
+	    	var values = {
+	    		topicId: postId,
+				topicType: tempType,
+				content: content,
+				uiId: testId
+	    	};
+	    	if(!!replyId){
+	    		values = {
+	    			topicId: postId,
+					topicType: tempType,
+					replyId: replyId,
+					content: content,
+					uiId: testId
+	    		};
+	    	};
+	    	api.ajax({
+	    		url: "http://api.baopinghui.com/app_topicComment/createTopicComment",
+	    		method: "post",
+	    		data: {
+	    			values: values
+	    		}
+	    	}, function(ret, err){
+	    		if(ret){
+	    			if(ret["status"]){
+	    				api.openFrame({//打开通用提示框
+							name: "out",
+							url: "widget://html/nav/out.html",
+							rect: {
+								x: 0,
+								y: 0,
+								w: "auto",
+								h: "auto"
+							},
+							pageParam:{
+								reply: true
+							}
+						});
+						var str = "",
+							newUl;
+						newUl = document.createElement("ul");
+						newUl.className = "list";
+						var replySomeone = "";
+						if(!!replyName){
+							replySomeone = "@" + replyName + " : ";
+						};
+						str += "<li><img onclick=\"openHome('" + testId + "')\" src='http://bin.baopinghui.com/" + $api.getStorage("avatar") + "?imageView2/0/w/100'><div class='comment-container' ><h2>" + $api.getStorage("nickname") + "</h2><p>" + replySomeone + content + "</p><a href='javascript:;'>" + replyTip + "</a></div><span class='comment-time'>" + getRefreshTime() + "</span></li>";
+						$api.html(newUl, str);
+						$api.prepend(list, newUl.outerHTML);
+	    			};
+	    			return;
+	    		};
+	    		console.log(err);
+	    	});
+	    };
+
+	    function openDelete(){
+	    	if(testId === otherId){
+	    		api.openFrame({
+					name: "more",
+					url: "widget://html/nav/more.html",
+					rect: {
+						x: 0,
+						y: 0,
+						w: "auto",
+						h: "auto"
+					},
+					pageParam:{
+						deletePost: true
+					}
+				});
+	    	};
+	    };
+
+	    function deleteAndEnter(){
+	    	api.ajax({
+	    		url: "http://api.baopinghui.com/app_dynamicCover/removePost?uiId=" + testId + "&dynId=" + postId,
+	    		method: "post"
+	    	}, function(ret, err){
+	    		if(ret){
+	    			if(ret["status"]){
+	    				api.openWin({
+				    		name: "home",
+				    		url: "widget://html/home/home.html",
+				    		reload: true,
+				    		vScrollBarEnabled: false,
+				    		slidBackEnabled: false
+				    	});
+				    	api.closeWin();
+	    			};
+	    			return;
+	    		};
+	    		console.log(err);
+	    	});
+	    };
+	</script>
+</body>
+</html>

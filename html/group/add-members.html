@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>群设置</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <style>
+		html,body{
+			padding:0;
+			margin:0;
+		}
+	/*头部*/
+		header{
+			position: fixed;
+			top:0;
+			left:0;
+			display:inline-block;
+			width:100vw;
+			height:30vw;
+			/*background: linear-gradient(to right, #d9afd9 0%,#97d9e1 100%);*/
+			/*box-shadow: 0 0 10px #36A5B2;*/
+			z-index:10000;
+			box-shadow: 0px 0px 2px .9px #efefef;
+		}
+		header .left{
+			position: absolute;
+			/*bottom:1.8vw;*/
+			left: 8px;
+			top: 30px;
+			display:inline-block;
+			width:9vw;
+			height:9vw;
+			z-index:2;
+		}
+		/*搜索*/
+		input{
+			/*position: relative;z
+			right: 10px;*/
+			display: block;
+			border: none;
+			outline: none;
+			color: #aaa;
+			font-weight: bold;
+			font-size: 4vw;
+			line-height:32px;
+			float: left;
+			width: 54.65vw;
+			height: 30px;
+			margin-left: 10vw;
+			/*padding: 5.5vw 2.67vw 4.5vw;*/
+	}
+		.search{
+			border-radius: 5px;
+		position: fixed;
+		left: 10px;
+		right: 10px;
+		top: 19vw;
+		background: #EFEFEF;
+		/*width: 355px;*/
+		height: 30px;
+		font-size: 12px;
+			/*box-shadow: 0 0 10px #36A5B2;*/
+	}
+	.btn{
+		position: relative;
+		top: -38px;
+		/*right: 1px;*/
+		float: right;
+		/*padding: 4vw 5.33vw;*/
+	}
+	.btn p{
+		font-size: 3.47vw;
+		text-align: center;
+		color: #fff;
+		font-weight: bold;
+		width: 68px;
+		height: 30px;
+		line-height: 9.25vw;
+		border-radius: 5px;
+		background: #F381A3;
+		/*background: linear-gradient(to right, #FFC2A0 0%, #FFAFBD 100%);*/
+		/*box-shadow: 0 0 10px #FFAFBD;*/
+	}
+
+	/*朋友列表*/
+	.pals-wrapper{
+		position: absolute;
+		left: 0;
+		top: 30vw;
+		width:100vw;
+		height:83%;
+			font-size:3.5vw;
+			overflow: auto;
+			background-color: rgba(170,170,170,0.3);
+			z-index: -1;
+		}
+		.pals{
+			width: 89.33;
+			height:19.3vw;
+			/*margin-top: 10px;*/
+		}
+
+		.avatar{
+			width:13.33vw;
+			height:13.33vw;
+			border-radius: 13.33vw;
+			background: no-repeat center center;
+			background-size: cover;
+			display: inline-block;
+			vertical-align: top;
+
+		}
+		.info{
+			display: inline-block;
+			margin:0 0 0 2vw;
+		}
+		.pals .info .nickname{
+			width:50vw;
+			height:4.2vw;
+			line-height:5vw;
+			margin:1.8vw 0 0 0;
+			font-weight: bold;
+			display: -webkit-box;
+			-webkit-box-orient: vertical;
+			-webkit-line-clamp: 1;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			word-break: break-all;
+			color:#484848;
+		}
+		.pals .info .popular{
+			height:4.2vw;
+			line-height:5vw;
+			margin:1.8vw 0 0 0;
+			color:#AAAAAA;
+			white-space: pre;
+			font-size: 12px;
+		}
+		.pals .img{
+			display: inline-block;
+			float:right;
+			width: 8vw;
+			height: 8vw;
+			margin:2.67vw 0;
+		}
+		/*搜索空白页*/
+		.user_null{
+			width:100vw;
+			height:100vh;
+			line-height:110vh;
+			text-align:center;
+			color:#AAC1D3;
+			font-size:4.67vw;
+		}
+		.user_null .null_text{
+			display:inline-block;
+			line-height:8vw;
+
+		}
+		.search_img{
+				position: absolute;
+				left: 12px;
+				top: 7px;
+				height: 15px;
+				width:15px;
+				float: left;
+		}
+		/*input::-webkit-input-placeholder {padding-left: 11px;}*/
+		.pals-box{
+			position: relative;
+			/*top: 40px;*/
+			left: 3%;
+			/*right: 10px;*/
+			width: 88%;
+			/*height: 73px;*/
+			background: white;
+			border-radius: 10px;
+			padding: 3% 3%;
+			margin-top: 10px;
+		}
+		.invite{
+			float: right;
+			height: 30px;
+			width: 68px;
+			background: black;
+			font-weight: bold;
+			color: white;
+			line-height: 33px;
+			border-radius: 33px;
+			text-align: center;
+			margin-top: 10px;
+		}
+    </style>
+</head>
+<body>
+	<main id="add_memgbers">
+		<!--头部-->
+		<header style="background:white;">
+			<img class="left" src="../../image/icon-back@3x2.png" @click="back()">
+			<!--搜索-->
+			<div class="search" id="searchInput">
+				<img class="search_img" src="../../icon/search/search.png" />
+				<input type="text" placeholder="Search user name" id="search" >
+				<div id="btn" class="btn">
+					<p id="btn_text" @click='search()'>SEARCH</p>
+				</div>
+			</div>
+		</header>
+		<!--朋友列表-->
+		<ul class="pals-wrapper" v-if="pals.length > 0">
+			<li class="pals" v-for='pal in pals' @click='addMembers(pal.id)' tapmode>
+			<div class="pals-box">
+				<div class="avatar" :style='getPic(pal)'></div>
+				<div class="info">
+					<span class="nickname">{{pal.nickname}}</span>
+					<span class="popular"><span v-html="language=='zho'?'熱 度':'Popular'"></span>：{{pal.popular | getIndentation}}   <span v-html="language=='zho'?'粉 絲':'Followers'"></span>：{{pal.fans | getIndentation}}</span>
+				</div>
+				<!-- <img  class="img" src="../../icon/messages/toright.png" alt="" /> -->
+				<div class="invite">{{invite}}</div>
+			</div>
+			</li>
+		</ul>
+		<!--搜索的用户列表-->
+		<ul class="pals-wrapper" v-if="search_user.length > 0">
+			<li v-for='user_ in search_user' class="pals" @click='addMembers(user_.id)' tapmode>
+				<div class="pals-box">
+				<div class="avatar" :style='getPic(user_)'></div>
+				<div class="info">
+					<span class="nickname">{{user_.nickname}}</span>
+					<span class="popular"><span v-html="language=='zho'?'熱 度':'Popular'"></span>：{{user_.popular | getIndentation}}   <span v-html="language=='zho'?'粉 絲':'Followers'"></span>：{{user_.fansNum | getIndentation}}</span>
+				</div>
+				<!-- <img  class="img" src="../../icon/messages/toright.png" alt="" /> -->
+			<div class="invite">{{invite}}</div>
+				</div>
+			</li>
+		</ul>
+		<!--搜索空白页-->
+		<div v-if="null_type" class="user_null"><span class="null_text">No Results Were Found<br/>(°□°；)</span></div>
+
+
+	</main>
+</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script src="../../script/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../script/public.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../json/api.json" charset="utf-8"></script>
+	<script src="../../json/router.json" charset="utf-8"></script>
+	<script src="../../script/jquery-3.1.0.min.js" type="text/javascript"></script>
+
+	<script src="../../script/jmessage-sdk-web.2.5.0.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../script/base64.min.js" type="text/javascript"></script>
+	<script src="../../script/md5.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var uiid = '';//我的ID
+
+	apiready = function(){
+		uiid = $api.getStorage("id");
+
+		if($api.getStorage("language") == "zho"){
+			$("#search").attr("placeholder","搜 索 用 户 名");
+			$("#btn_text").html("搜 索");
+			group.invite="添 加";
+		}
+//		获取朋友列表
+		focusList();
+//		极光注册
+//		jim_init();
+
+		//向右滑关闭页面
+		api.addEventListener({
+			name: 'swiperight'
+		}, function(ret, err) {
+			api.closeFrame({});
+		});
+	};
+	var group = new Vue({
+	  	el: '#add_memgbers',
+	  	data: {
+	  		pals : [],//朋友列表
+	  		search_user : [],//搜索用户列表
+	  		null_type : false,//是否显示搜索空白页
+				language: $api.getStorage('language'),
+				invite: "INVITE"
+	  	},
+	  	methods: {
+			//关闭页面
+	  		back: function(item) {
+				api.closeFrame({});
+	  		},
+		  	//获取头像
+		  	getPic: function(item) {
+				$api.get(json['qiniu'] + item['avatar_url'] + '?imageAve', function(ret) {
+						group.$set(item,'avatarBg','#' + ret['RGB'].substring(2));
+				}, 'json');
+				return {
+					backgroundImage: 'url(' + json['qiniu'] + item['avatar_url'] + '?imageView2/0/w/100)',
+					backgroundColor: item['avatarBg']
+				}
+			},
+			search: function() { //搜索用户
+				var val = $('#search').val(),
+					this_ = this;
+				if(!val){//值为空就不搜索
+					return;
+				};
+				this_.pals = [];//清空朋友列表
+				api.ajax({
+					url: "http://api.baopinghui.com/app_tinUserinfoControllerC/findUserinfoByNicknamePrefix?NicknamePrefix=" + val,
+					method: "post"
+				}, function(ret, err){
+					if(ret){
+						if(ret["status"] == 1){//有值
+							console.log('搜索有返回值：' + JSON.stringify(ret));
+							this_.search_user = ret.data;
+							this_.null_type = false;
+						}else{//无值
+							console.log('搜索无返回值：' + JSON.stringify(ret));
+							this_.null_type = true;
+						}
+					}else{
+						console.log(err);
+					}
+				});
+			},
+			//添加群成员
+			addMembers: function(id) { //打开聊天界面
+
+
+
+
+
+
+				var jsfun = "addMembers('" + id +"')";
+				api.execScript({
+					script: jsfun
+				});
+
+
+
+				api.closeFrame({});
+			}
+		},
+		mounted : function(){
+			var _this = this;
+			setTimeout(function(){
+				if($api.getStorage('pals').length > 0){
+					_this.pals = $api.getStorage('pals');
+				}
+			},1000);
+		},
+		filters : {
+			getIndentation : function(count) {
+				if(count < 1000 && count >= 0) {
+					return count;
+				} else if(count < 10000) {
+					return(count / 1000).toFixed(1) + 'k';
+				} else if(count < 1000000) {
+					return parseInt(count / 1000) + 'k';
+				} else if(count < 10000000) {
+					return(count / 1000000).toFixed(1) + 'm';
+				} else if(count < 1000000000) {
+					return parseInt(count / 1000000) + 'm';
+				} else if(count < 10000000000) {
+					return(count / 1000000000).toFixed(1) + 'b';
+				} else if(count < 1000000000000) {
+					return parseInt(count / 1000000000) + 'b';
+				}
+			}
+		}
+	})
+
+
+		//关注列表
+		function focusList() {
+			currentTime = getRefreshTime();
+
+			api.ajax({
+				url: json['http'] + json['dynamic']['MyFoucusUserInfoList'],	//['MyFoucusUserInfoList'],我才是是真的的数据
+				method: 'post',
+				data: {
+					values: {
+						uiId: $api.getStorage('id'),
+						startIndex: 0,
+						maxResult: 99,
+						refreshTime: currentTime
+					}
+				}
+			}, function(ret, err) {
+				if(ret) {
+					if(ret["status"]) {
+						var noPinYin = '';
+						for(var i = 0;i<ret['data']['list'].length;i++){
+							if(/[A-Z]/.test(ret['data']['list'][i]['pinyin'])){
+								noPinYin = i;
+								break;
+							}
+						}
+
+						//把不是A-Z开头的放到后面去
+						var tempArr = ret['data']['list'].splice(0,noPinYin);
+						//朋友列表
+						group.pals = ret['data']['list'].concat(tempArr);
+						//我的关注缓存
+						$api.setStorage('pals',group.pals);
+					} else {
+						alert(JSON.stringify(ret));
+					}
+				} else {
+					uploadError(err);
+				}
+			});
+		}
+
+
+
+
+
+
+</script>
+</html>

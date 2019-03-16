@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+	<title>groupcreat</title>
+	<link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <script type="text/javascript" src="../../script/api.js"></script>
+		<script src="../../script/jquery-3.1.0.min.js" type="text/javascript"></script>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+		}
+		.bg{
+			position: fixed;
+			top:0;
+			width:100vw;
+			height:100vh;
+			background-color:#efefef;
+			z-index: -10;
+		}
+		body{
+			background-color: #efefef;
+			width: 100vw;
+			height:auto;
+		}
+		header{
+			position: fixed;
+			top:0;
+			width:100vw;
+			height:17.29vw;
+			background-color: #fff;
+			border-bottom:1px solid #efefef;
+			z-index: 20;
+		}
+		.return{
+			position: absolute;
+			left:2.66vw;
+			bottom:1.86vw;
+			width:7.98vw;
+			height:7.98vw;
+			background:url(../../image/icon-back@3x2.png);
+			background-size:cover;
+		}
+		.center{
+			position: absolute;
+			left:50%;
+			bottom:0;
+			margin-left:-35vw;
+			width:70vw;
+			height:11.97vw;
+			font:3.99vw/11.97vw Arial;
+			font-weight: bold;
+			text-align: center;
+		}
+		.avatarbox{
+			position: relative;
+			width:100vw;
+			height:100px;
+			background:white;
+			/*border-radius: 2.66vw;*/
+			margin:0 auto;
+			margin-top:18.7vw;
+			z-index: 1;
+		}
+		.avatar{
+			width:70px;
+			height:70px;
+			/*background:url(../../icon/group/icon-groups-image@3x2.png);*/
+			background-size: cover;
+			border-radius: 2.66vw;
+			/*background: #AAA;*/
+			float: right;
+			margin-top: 15px;
+			margin-right: 43px;
+			background: #AAA;
+		}
+		/*.avataricon{
+			position: absolute;
+			bottom:0;
+			right:0;
+			width:6.91vw;
+			height:6.91vw;
+			background:url(../../image/icon-update@3x2.png);
+			background-size:cover;
+		}*/
+		input[type=text]{
+			width:100vw;
+			height:50px;
+			margin-top:0;
+			font:3.99vw/10.64vw Arial;
+			font-weight: bold;
+			color:black;
+			/*text-align: center;*/
+			background-color:#fff;
+			/*border-radius: 2.66vw;*/
+			padding:0 2.66vw 0 20px;
+			box-sizing: border-box;
+			outline: none;
+		}
+		:placeholder{
+			color: #aaa;
+		}
+		.introduction{
+			width:100vw;
+			min-height:150px;
+			margin-top:5px;
+			/*border-top:5px solid #efefef;*/
+			/*z-index: 999999;*/
+			font:3.99vw/5.32vw Arial;
+			font-weight: bold;
+			color:black;
+			/*text-align: center;*/
+			background-color:#fff;
+			/*border-radius: 2.66vw;*/
+			padding:2.66vw;
+			padding-left: 20px;
+			box-sizing: border-box;
+			outline: none;
+			white-space: pre-line;
+			word-wrap: break-word;
+			/*内容超过宽度自动换行，不带空格的全英文和全数字也都可以*/
+			user-select:text;
+    		-webkit-user-select:text;
+    		outline:none;
+				font-size:15px;
+		}
+		.buttom{
+			width:100vw;
+			height:50px;
+			/*border-radius: 9.31vw;*/
+			background-color: white;
+			font:3.99vw/10.64vw Arial;
+			font-weight: bold;
+			color:#F381A3;
+			text-align: center;
+			margin:0 auto;
+			margin-top:1px;
+			/*margin-bottom:1.33vw;*/
+			font-size: 15px;
+			line-height: 50px;
+		}
+		.tip{
+			width:70vw;
+			height:5.85vw;
+			font:3.99vw/5.85vw Arial;
+			color:#aaa;
+			text-align: center;
+			font-weight: bold;
+			margin:0 auto;
+			margin-bottom:6.38vw;
+		}
+		.jinghao{
+			position: absolute;
+			left:10.64vw;
+			bottom:0;
+			width:5vw;
+			height:10.64vw;
+			line-height: 10.64vw;
+			font:3.99vw/10.64vw Arial;
+			font-weight: bold;
+			color:#aaa;
+			display: inline-block;
+		}
+		.portrait{
+			color: #101010;
+			font-weight: bold;
+			font-size:15px;
+			line-height: 98px;
+			margin-left: 20px;
+		}
+		.jiantou{
+			position: absolute;
+			right: 17px;
+			top:42px;
+			height: 17px;
+			width: 16px;
+			/*background: red;*/
+		}
+		.type{
+			position: relative;
+			width:89.2vw;
+			height:51px;
+			background:white;
+			/*border-radius: 2.66vw;*/
+			margin:0 auto;
+			/*margin-top:18.7vw;*/
+			z-index: 1;
+		}
+		.type2{
+			float: right;
+			margin-top: 15px;
+			margin-right: 23px;
+			color: #AAA;
+		}
+		.type1{
+			color: #101010;
+			font-weight: bold;
+			font-size: 15px;
+			margin-top: 15px;
+			/*margin-left: 20px;*/
+		}
+	</style>
+</head>
+<body>
+	<div class="bg"></div>
+	<header>
+		<div class="return" onclick="closeWin()"></div>
+		<div class="center">G R O U P</div>
+	</header>
+	<div class="avatarbox">
+		<span class="portrait">Group Image</span>
+		<div class="avatar"></div><img class="jiantou" src="../../icon/jiantou.png">
+	</div>
+	<input type="text" class="groupname" placeholder="Group Name" style="margin-top:5px;font-size:15px;">
+	<div class="type" style="width:100vw;">
+		<div class="type group_type" style="border-top:1px solid #efefef;height:50px;">
+			<span class="type1">Group Type</span>
+			<div class="type2"></div><img class="jiantou" src="../../icon/jiantou.png" style="position:absolute;right:0;top:17px;">
+		</div>
+	</div>
+	<div style="position:relative;display:none;"><input type="text" class="unique" disabled='disabled' value="Unique Code"><span class="jinghao">#</span></div>
+	<!-- <input type="text" class="introduction" value="Introduction"> -->
+	<!-- <div class="introduction" contenteditable="true" placeholder="adadasdasd">Introduction</div> -->
+	<textarea class="introduction" placeholder="Introduction"></textarea>
+	<div class="buttom">C R E A T E</div>
+	<!-- <div class="tip">TIPS</div> -->
+	<script type="text/javascript">
+		var hhh = window.screen.height;
+		var www = window.screen.width;
+		var groupname = document.getElementsByClassName('groupname')[0];
+		var unique = document.getElementsByClassName('unique')[0];
+		var introduction = document.getElementsByClassName('introduction')[0];
+		var type2;//class type2 对应的值
+		apiready = function(){
+			var gid = api.pageParam['gid'];
+			var GroupName='';
+			var qiniuKey='';
+			var groupdes;
+			var boof=true;
+			var key = api.pageParam['key'];
+			var buttom = $api.dom('.buttom');
+			//从group-setting传过来的群名和群公告
+			var gname = api.pageParam['groupname'],
+					desc = api.pageParam['descriptio'];
+
+					//监听choice_city页面传回来的群类型
+					api.addEventListener({
+							name: 'choose'
+					}, function(ret, err){
+							if( ret ){
+								if($api.getStorage('language')=='zho'){
+									$('.type2').text(ret.value.data);
+								}else{
+									$('.type2').text(ret.value.type);
+								}
+								type2 = ret.value.type;
+							}
+					});
+			if($api.getStorage('language')=='zho'){
+				$api.html($api.dom('.type1'),'群 類 型');
+			}
+			if(key==1){
+				var avatar = api.pageParam['avatar'];//group-setting过来的群头像
+				var typeGroup = api.pageParam['typeGroup'];//group-setting过来的群类型
+				introduction.value=desc;
+				groupname.value=gname;
+				$api.css($api.dom('.avatar'), 'background:url(http://bin.baopinghui.com/'+avatar+');background-size:cover;');
+				$api.html($api.dom('.type2'), typeGroup);
+				if($api.getStorage('language')=="zho"){
+					$api.html($api.dom('.center'),'信 息');
+					$api.html($api.dom('.buttom'),'更 改');
+					$api.html($api.dom('.type1'),'群 類 型');
+					$api.css($api.dom('.type2'),'margin-top:13px');
+				}else{
+					$api.html($api.dom('.center'),'I N F O R M A T I O N');
+					$api.html($api.dom('.buttom'),'C H A N G E');
+				}
+				$api.addEvt(buttom, 'click', function(){
+							GroupName = $('.groupname').val();
+							var intro=$(".introduction").val();
+							var groupT=type2;//群类型的 值
+							// alert(GroupName+","+intro+","+qiniuKey);
+							if(qiniuKey!=''){
+								var jsfun ="groupAvatar('"+qiniuKey+"')";
+								api.execScript({
+										name:'group_setting',
+										script: jsfun
+								});
+							}
+							if(GroupName!=''){
+								var jsfun ="groupName('"+GroupName+"')";
+								api.execScript({
+										name:'group_setting',
+										script: jsfun
+								});
+							}
+							if(intro!=''){
+								var jsfun ="notice('"+intro+"')";
+								api.execScript({
+										name:'group_setting',
+										script: jsfun
+								});
+							}
+						if(groupT!=undefined){
+							api.ajax({
+							    url: 'http://api.baopinghui.com/tin_Groups/type_alterGrouptype',
+							    method: 'get',
+							    data: {
+							        values: {
+							            gid: gid,
+													type: groupT
+							        }
+							    }
+							},function(ret, err){
+							    if (ret) {
+										//返回给group-setting和chat_list页面，同步更新群类型
+							       api.sendEvent({
+							           name: 'groupType',
+							           extra: {
+							               groupT: groupT,
+														 gid: gid
+							           }
+							       });
+
+							    }
+							});
+
+						}
+						api.toast({
+								msg: '修改成功',
+								duration: 2000,
+								location: 'bottom'
+						});
+						api.closeWin({
+								name: 'groupcreate'
+						});
+				})
+			}
+			//修改群类型
+			$('.group_type').click(function(){
+				api.openWin({
+				    name: 'choice_city',
+				    url: 'widget://html/logon-register/choice_city.html',
+				    pageParam: {
+				        type: 'groupType'
+				    }
+				});
+				// 关闭国家选择页面
+				api.addEventListener({
+				    name: 'closeChoice_city'
+				}, function(ret, err){
+				    if( ret ){
+							api.closeWin({
+									name: 'choice_city'
+							});
+				    }
+				});
+
+			})
+		    if(hhh/www > 2){
+		    	$api.css($api.dom('header'), 'height:23.67vw;');
+		    	$api.css($api.dom('.avatarbox'), 'margin-top:29.79vw;');
+		    }
+				if($api.getStorage('language')=='zho'){
+					$api.html($api.dom('.portrait'),'群 頭 像');
+					$api.attr($api.dom('.introduction'),'placeholder','群 介 紹');
+					$api.attr($api.dom('.groupname'),'placeholder','群 名');
+				}
+		    //向右滑关闭页
+	        api.addEventListener({
+	            name: 'swiperight'
+	        }, function(ret, err) {
+	            api.closeWin();
+	        });
+	        // 点击提示
+		    $api.addEvt($api.dom('.tip'), 'click',function(){
+		    	if($api.getStorage('language')=='zho'){
+		    		groupdes='<p>每 個 人 可 以 免 費 創 建 5 個 群 組</p><p>( '+$api.getStorage("group1_my_group").length+' / 5 )</p>';
+		    	}else{
+		    		groupdes='<p>One person can create 5 groups for free</p><p>( '+$api.getStorage("group1_my_group").length+' / 5 )</p>';
+		    	}
+		    	api.openFrame({
+		    	    name: 'out',
+		    	    url: 'widget://html/nav/out.html',
+		    	    rect: {
+		    	        x: 0,
+		    	        y: 0,
+		    	        w: 'auto',
+		    	        h: 'auto'
+		    	    },
+		    	    pageParam: {
+		    	        groupcreate: 1,
+		    	        groupdes:groupdes
+		    	    }
+		    	});
+		    });
+		    // 点击上传群封面
+		    $api.addEvt($api.dom('.avatarbox'), 'click', function(){
+		    	api.getPicture({
+		    	    sourceType: 'library',
+		    	    mediaValue: 'pic',
+		    	    destinationType: 'url',
+		    	    saveToPhotoAlbum: true,
+		    		quality: 70,
+		    		targetWidth: 1200,
+		    		targetHeight: 1200,
+		    	}, function(ret, err) {
+		    	    if (ret) {
+								// alert(JSON.stringify(ret));
+		    	    	if (ret.data) {
+		    	    		var data = ret.data,
+		    	    			myDate = new Date(),
+		    	    			avatar = data;
+		    	    		var obj = api.require('qiniuUpfile');
+		    	    		obj.upfile({
+		    	    			file:avatar,
+		    	    			name:myDate.getTime()+Math.random()
+		    	    		},function(ret,err){
+		    	    			if(ret.status){
+		    	    				if(ret.oper == "complete"){
+		    	    					qiniuKey = ret.info.key;
+		    	    					$api.css($api.dom('.avatar'), 'background:url(http://bin.baopinghui.com/'+qiniuKey+');background-size:cover;');
+		    	    				}
+		    	    			}
+		    	    		})
+		    	    	}
+		    	    }
+		    	    return;
+		    	});
+		    });
+		    // groupname.onfocus=function(){
+		    // 	if(this.value=='Group Name'||this.value=='群 名'){
+		    // 		this.value='';
+				// 		$api.css($api.dom('.groupname'),'color:black;');
+		    // 	}
+		    // }
+		    // groupname.onblur=function(){
+		    // 	if(this.value==''){
+				// 		if($api.getStorage('language')=='zho'){
+				// 			this.value='群 名';
+				// 		}else{
+		    // 		this.value='Group Name';
+				// 		}
+				// 		$api.css($api.dom('.groupname'),'color:#aaa;');
+		    // 	}
+		    // 	GroupName=this.value;
+		    // 	return;
+		    // }
+		    unique.onfocus=function(){
+		    	if(this.value=='Unique Code'){
+		    		this.value='';
+		    		$api.css($api.dom('.jinghao'), 'display:none;');
+		    	}
+		    }
+		    unique.onblur=function(){
+		    	if(this.value==''){
+						if($api.getStorage('language')=='zho'){
+								this.value='Unique Code';
+						}else{
+								this.value='Unique Code';
+						}
+		    		$api.css($api.dom('.jinghao'), 'display:block;');
+		    	}
+		    	return;
+		    }
+		    // introduction.onfocus=function(){
+		    // 	if(introduction.innerHTML=='Introduction'||introduction.innerHTML=='群 介 紹'){
+		    // 		$api.html($api.dom('.introduction'), '');
+				// 		$api.css($api.dom('.introduction'),'color:black');
+		    // 	}
+		    // }
+		    // introduction.onblur=function(){
+		    // 	if(introduction.innerHTML==''){
+				// 		if($api.getStorage('language')=='zho'){
+		    // 		$api.html($api.dom('.introduction'), '群 介 紹');
+				// 	}else{
+				// 		$api.html($api.dom('.introduction'), 'Introduction');
+				// 	}
+				// 		$api.css($api.dom('.introduction'),'color:#aaa');
+		    // 	}
+		    // 	return;
+		    // }
+		    var pp = /[^0-9a-zA-Z_]/g;
+				if(key==2){
+				if($api.getStorage('language')=='zho'){
+					$api.html($api.dom('.center'),'群 組');
+					$api.html($api.dom('.buttom'),'創 建');
+				}
+		    $api.addEvt($api.dom('.buttom'), 'click', function(){
+					 GroupName=$(".groupname").val();
+
+		    	if($api.getStorage('group1_my_group').length>=5){
+		    			if($api.getStorage('language')=='zho'){
+						    groupdes='<p>你 創 建 的 群 組</p><p>已 超 過 了 5 個</p>';
+		    			}else{
+						    groupdes='<p>You have created</p><p>more than 5 groups</p>';
+		    			}
+		    			api.openFrame({
+		    			    name: 'out',
+		    			    url: 'widget://html/nav/out.html',
+		    			    rect: {
+		    			        x: 0,
+		    			        y: 0,
+		    			        w: 'auto',
+		    			        h: 'auto'
+		    			    },
+		    			    pageParam: {
+		    			        groupcreate: 1,
+		    	        		groupdes:groupdes
+		    			    }
+		    			});
+		    	}else{
+		    		if(qiniuKey == ''){
+		    			if($api.getStorage('language')=='zho'){
+							groupdes='<p>請 上 傳</p><p>群 組 圖 片</p>';
+		    			}else{
+							groupdes='<p>Please Upload</p><p>A Group Image</p>';
+		    			}
+		    			api.openFrame({
+		    			    name: 'out',
+		    			    url: 'widget://html/nav/out.html',
+		    			    rect: {
+		    			        x: 0,
+		    			        y: 0,
+		    			        w: 'auto',
+		    			        h: 'auto'
+		    			    },
+		    			    pageParam: {
+		    			        groupcreate: 1,
+		    	        		groupdes:groupdes
+		    			    }
+		    			});
+		    		}else if(GroupName == ''){
+		    			if($api.getStorage('language')=='zho'){
+							groupdes='<p>請 輸 入</p><p>群 名 稱</p>';
+		    			}else{
+							groupdes='<p>Please Enter </p><p>A Group Name</p>';
+		    			}
+		    			api.openFrame({
+		    			    name: 'out',
+		    			    url: 'widget://html/nav/out.html',
+		    			    rect: {
+		    			        x: 0,
+		    			        y: 0,
+		    			        w: 'auto',
+		    			        h: 'auto'
+		    			    },
+		    			    pageParam: {
+		    			        groupcreate: 1,
+		    	        		groupdes:groupdes
+		    			    }
+		    			});
+		    		}
+						// else if(pp.test(unique.value)){
+		    		// 	if($api.getStorage('language')=='zho'){
+						// 	groupdes='<p>群 代 號 不 能</p><p>含 有 特 殊 字 符</p>';
+		    		// 	}else{
+						// 	groupdes="<p>Group Code Can't</p><p>Contain Special Characters</p>";
+		    		// 	}
+		    		// 	api.openFrame({
+		    		// 	    name: 'out',
+		    		// 	    url: 'widget://html/nav/out.html',
+		    		// 	    rect: {
+		    		// 	        x: 0,
+		    		// 	        y: 0,
+		    		// 	        w: 'auto',
+		    		// 	        h: 'auto'
+		    		// 	    },
+		    		// 	    pageParam: {
+		    		// 	        groupcreate: 1,
+		    	  //       		groupdes:groupdes
+		    		// 	    }
+		    		// 	});
+		    		// }else if(unique.value=='' || unique.value == 'Unique Code'){
+		    		// 	if($api.getStorage('language')=='zho'){
+						// 	groupdes='<p>請 輸 入</p><p>群 英 文 代 號</p>';
+		    		// 	}else{
+						// 	groupdes="<p>Please Enter</p><p>The Group Code</p>";
+		    		// 	}
+		    		// 	api.openFrame({
+		    		// 	    name: 'out',
+		    		// 	    url: 'widget://html/nav/out.html',
+		    		// 	    rect: {
+		    		// 	        x: 0,
+		    		// 	        y: 0,
+		    		// 	        w: 'auto',
+		    		// 	        h: 'auto'
+		    		// 	    },
+		    		// 	    pageParam: {
+		    		// 	        groupcreate: 1,
+		    	  //       		groupdes:groupdes
+		    		// 	    }
+		    		// 	});
+		    		// }
+						else{
+		    			if(boof){
+		    			// 将群信息传到群列表极光
+							var intro=$(".introduction").val();
+							// alert(intro);
+				    	api.sendEvent({
+				    	    name: 'groupcreateon',
+				    	    extra: {
+				    	        group_name:GroupName,
+				    	        group_imgurl:qiniuKey,
+											group_desc:intro,
+											type2:type2
+				    	    }
+				    	});
+		    			// 创建后刷新主页
+				    	api.sendEvent({
+				    	    name: 'home_loader',
+				    	});
+				    	setTimeout(function(){
+				    		api.closeWin({
+                  // name:"groupcreate"
+								});
+
+
+				    	},50);
+				    	// 执行之后点击无效
+				    	boof=false;
+		    			}
+
+		    		}
+		    	}
+		    });
+			}
+		}
+		function closeWin(){
+			api.closeWin();
+		}
+	</script>
+</body>
+</html>

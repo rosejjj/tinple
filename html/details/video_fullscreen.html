@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+	<title>video_fullscreen</title>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+		}
+		html{
+			width:100vw;
+			height:100vh;
+			background-color:#000;
+		}
+		header{
+			position: fixed;
+			top:50%;
+			right:-50vh;
+			margin-top:-27.5px;
+			margin-right:35px;
+			width:100vh;
+			height:55px;
+			/*background-color: #fff;*/
+			z-index: 999;
+			transform: rotate(90deg);
+			display: none;
+		}
+		.headershow{
+			animation:headershow 0.5s linear 0s 1 normal;
+		}
+		.headerhide{
+			animation:headerhide 0.5s linear 0s 1 normal;
+		}
+		header>img{
+			position: absolute;
+			bottom:7.5px;
+			left:30px;
+			width:40px;
+			height:40px;
+		}
+		.box{
+			width:100vw;
+			height:100vh;
+			/*padding:20% 0;*/
+			box-sizing: border-box;
+			position: relative;
+		}
+		video{
+			position: absolute;
+			display:block;
+			width:100%;
+			height:auto;
+		}
+		@keyframes headershow{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 1;
+			}
+		}
+		@keyframes headerhide{
+			0%{
+				opacity: 1;
+			}
+			100%{
+				opacity: 0;
+			}
+		}
+	</style>
+</head>
+<body>
+	<header class=""><img src="../../icon/function/function-return.png" alt="" onclick='closewin()'></header>
+	<div class="box">
+		<video id='videoo' onclick='playVideo()' src='' controls preload="block" poster='' webkit-playsinline='true' playsinline='true'x-webkit-airplay='true' x5-video-player-type='h5' x5-video-player-fullscreen='true'x5-video-ignore-metadata='true'  width='100%' height='100%'loop='loop' tapmode webkit-playsinline playsinline tapmode></video>
+	</div>
+</body>
+<script src="../../script/jquery-3.1.0.min.js"></script>
+<script type="text/javascript" src="../../script/md5.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript">
+	var videodom;
+	var headershow=false;
+	var boof=true;
+	var www=window.screen.width;
+	var hhh=window.screen.height;
+	apiready = function(){
+		// 适配刘海屏
+		if(hhh/www>2){
+			$api.css($api.dom('header'),'height:90px');
+		}
+	    var video_url=api.pageParam['url'];
+		$('#videoo').attr('src', 'http://bin.baopinghui.com/'+video_url);
+		$('#videoo').attr('poster', 'http://bin.baopinghui.com/'+video_url+'?vframe/jpg/offset/5/w/350');
+		videodom=document.getElementsByTagName('video')[0];
+		var box_height=$('.box').height()*0.9;
+		var box_width=$('.box').width();
+		var box_height2='-'+box_height/2+'px';
+		var box_width2='-'+box_width/2+'px';
+		
+		// 点击显示头部
+		videodom.onclick=function(){
+			console.log(boof);
+			if(boof){
+				boof=false;
+				if(headershow){
+					$('header').addClass('headerhide');
+					$('header').removeClass('headershow');
+					setTimeout(function(){
+						$('header').hide();
+						headershow=false;
+						boof=true;
+					},500);
+				}else{
+					$('header').addClass('headershow');
+					$('header').removeClass('headerhide');
+					setTimeout(function(){
+						$('header').show();
+						headershow=true;
+						boof=true;
+					},500);
+				}
+			}
+		}
+		setTimeout(function(){
+			// 判断是否视频横屏
+			// if($('#videoo').width()>$('#videoo').height()){
+				$('#videoo').css({
+					'transform': 'rotate(90deg)',
+					'width':box_height,
+					'height':box_width,
+					'top':'50%',
+					'left':'50%',
+					'margin-top':box_width2,
+					'margin-left':box_height2,
+				});
+
+			// }else{
+			// 	$('#videoo').css({
+			// 		'top':'50%',
+			// 		'margin-top':'-'+$('#videoo').height()/2+'px',
+			// 	});
+			// }
+		},500);
+	}
+	    
+	// jQuery(document).ready(function($) {
+	// 	$('#videoo').attr('src', 'http://bin.baopinghui.com/o_1cug2i9k228917m71o4b1ggt1642g.mp4');
+	// 	$('#videoo').attr('poster', 'http://bin.baopinghui.com/o_1cug2i9k228917m71o4b1ggt1642g.mp4?vframe/jpg/offset/5/w/500');
+	// 	videodom=document.getElementsByTagName('video')[0];
+	// 	var box_height=$('.box').height();
+	// 	var box_width=$('.box').width();
+	// 	var box_height2='-'+box_height/2+'px';
+	// 	var box_width2='-'+box_width/2+'px';
+	// 	setTimeout(function(){
+	// 		console.log($('#videoo').height());
+	// 		console.log($('#videoo').width());
+	// 		if($('#videoo').width()>$('#videoo').height()){
+	// 			$('#videoo').css({
+	// 				'transform': 'rotate(90deg)',
+	// 				'width':box_height,
+	// 				'height':box_width,
+	// 				'top':'50%',
+	// 				'left':'50%',
+	// 				'margin-top':box_width2,
+	// 				'margin-left':box_height2,
+	// 			});
+	// 		}
+	// 	},500);
+	// });
+	function playVideo(){//定义播放暂停视频函数     维护的程序员  建议dom对象在一开始获取，不要每次触发的时候获取。
+		if(videodom.paused){
+			videodom.play();
+			return;
+		};
+		videodom.pause();
+	};
+	function closewin(){
+		api.closeWin();
+	}
+</script>
+
+</html>

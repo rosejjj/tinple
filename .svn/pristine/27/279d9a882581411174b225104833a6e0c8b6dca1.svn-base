@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>聊天主页</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+    <style>
+    	body{
+
+    	}
+    </style>
+</head>
+<body>
+
+</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/nav.js"></script>
+	<script type="text/javascript" src="../../script/public.js"></script>
+	<script src="../../script/jquery-3.1.0.min.js" type="text/javascript"></script>
+	<script src="../../script/swiper-3.4.2.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="../../json/api.json"></script>
+	<script type="text/javascript" src="../../json/router.json"></script>
+	<script src="https://cdn.bootcss.com/stomp.js/2.3.3/stomp.min.js"></script>
+	<script src="https://cdn.bootcss.com/sockjs-client/1.1.0/sockjs.min.js"></script>
+	<script src="../../script/socket.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+		var head_Information = {
+			current_location : 'center',				//初始点击状态显示的位置  ,不传则默认全部隐藏 	值：left/center/right
+			left : {								//设置左边icon ,不传则不显示 , 但有点击事件
+				Icon : '../../icon/nav/aft2s.png',
+				//Icon :'../../icon/logon-page/ht1.png',
+//				text : 'M Y F O C U S',				//左邊文字
+				click_text : 'LATEST POSTS▼'//"CHAT LIST",		//点击后显示的文字 ,不传则不显示当前点击状态
+			},
+			center : {
+				//Icon : '../../icon/nav/chat2s.png',//'../../icon/nav/atf2.png',
+				Icon :'../../icon/logon-page/ht1.png',
+				click_text :"CHAT LIST"// 'LATEST&nbsp;&nbsp;&nbsp;POSTS'
+			},
+			right : {
+				Icon : '../../icon/nav/logo2.png',
+				click_text : 'RECOMMEND'//'ONLINE LIST'
+			}
+		};
+
+		var head_Information2 = {
+			current_location : 'center',				//初始点击状态显示的位置  ,不传则默认全部隐藏 	值：left/center/right
+			left : {								//设置左边icon ,不传则不显示 , 但有点击事件
+				Icon : '../../icon/nav/aft2s.png',	//左邊Icon--图片和文字二选一
+//				text : 'M Y F O C U S',				//左邊文字
+				click_text : '广场▼',//"聊天列表",		//点击后显示的文字 ,不传则不显示当前点击状态
+			},
+			center : {
+				//Icon : '../../icon/nav/chat2s.png',
+				Icon :'../../icon/logon-page/ht1.png',
+				click_text : "聊天列表",//'广场'
+			},
+			right : {
+				Icon : '../../icon/nav/logo2.png',
+				click_text : '推荐列表'
+			}
+		};
+
+		var head_Information3 = {
+			current_location : 'right',				//初始点击状态显示的位置  ,不传则默认全部隐藏 	值：left/center/right
+			left : {								//设置左边icon ,不传则不显示 , 但有点击事件
+				Icon : '../../icon/nav/chat2.png',	//左邊Icon--图片和文字二选一
+//				text : 'M Y F O C U S',				//左邊文字
+				click_text :'LATEST POSTS▼'// "CHAT LIST",//		//点击后显示的文字 ,不传则不显示当前点击状态
+			},
+			center : {
+				Icon : '../../icon/nav/atf2.png',
+				click_text : "CHAT LIST"// 'LATEST&nbsp;&nbsp;&nbsp;POSTS'
+			},
+			right : {
+				Icon : '../../icon/nav/logo.png',
+				click_text : 'RECOMMEND'//'ONLINE LIST'
+			}
+		};
+		var head_Information4 = {
+			current_location : 'right',				//初始点击状态显示的位置  ,不传则默认全部隐藏 	值：left/center/right
+			left : {								//设置左边icon ,不传则不显示 , 但有点击事件
+				Icon : '../../icon/nav/chat2.png',	//左邊Icon--图片和文字二选一
+//				text : 'M Y F O C U S',				//左邊文字
+				click_text : "广场▼",		//点击后显示的文字 ,不传则不显示当前点击状态
+			},
+			center : {
+				Icon : '../../icon/nav/atf2.png',
+				click_text : '聊天列表'
+			},
+			right : {
+				Icon : '../../icon/nav/logo.png',
+				click_text : '推荐列表'
+			}
+		};
+		var index_num = 1;
+
+	apiready = function(){
+
+		//监听发送过来的显示右页面事件
+		api.addEventListener({
+				name: 'toright'
+		}, function(ret, err){
+			api.setFrameGroupIndex({
+					name: 'index2',
+					index: 1
+			});
+		});
+
+//		获取我的信息-缓存信息
+if(api.pageParam['param1']){
+	index_num =2;
+}
+		getUserinfo();
+
+		fullScreen();
+
+		//创建用户搜索索引
+		createUserSearchIndex();
+
+		//定时刷新提交在线的我的id
+		bbOnline();
+		setInterval(function() {
+			bbOnline();
+		}, 45000);
+
+		//后台需要的  可以无视--检测IP
+		createipcheck();
+
+//		获取token
+		getToken();
+
+
+//		页面退出程序或返回桌面
+		closeWidget();
+
+
+		if($api.getStorage("language")=="zho"){
+			//如果是有值就是从快捷登录和注册进来的--首先进入推荐列表
+			if(api.pageParam['param1']){
+				openHead(head_Information4);//打开头部
+				index_num = 2;
+				openFrame();//打开列表组
+				openNav();//打开导航
+				return;
+			}
+			openHead(head_Information2);//打开头部
+			openFrame();
+		}else{
+			//如果是有值就是从快捷登录和注册进来的--首先进入推荐列表
+			if(api.pageParam['param1']){
+				openHead(head_Information3);//打开头部
+				index_num = 2;
+				openFrame();//打开列表组
+				openNav();//打开导航
+				return;
+			}
+			openHead(head_Information);//打开头部
+			openFrame();
+		}
+
+		openNav();//打开导航
+
+	};
+
+	//头部点击返回事件 data = left：左icon点击事件	center:中间icon点击事件		right：右icon点击事件
+	function funcGoto(data){
+		if(data == 'left'){
+			frameGroupIndex(0);
+		}else if(data == 'center'){
+			frameGroupIndex(1);
+		}else{
+			frameGroupIndex(2);
+		}
+	}
+
+	//切换frame组当前页面
+	function frameGroupIndex(num) {
+		api.setFrameGroupIndex({
+			name: 'index2',
+			scroll: true,
+			index: num
+		});
+	}
+
+			//发送信息 说宝宝上线了~
+	function bbOnline() {
+		api.ajax({
+			url: json['http'] + json['tin']['onlineHeartbeatConnection'],
+			method: 'post',
+			data: {
+				values: {
+					uid: $api.getStorage('id')
+				}
+			}
+		}, function(ret, err) {})
+	}
+
+//后台要的~~~  检测ip的
+	function createipcheck() {
+		api.ajax({
+			url: json['http'] + json['tin']['createipcheck'],
+			method: 'post',
+			data: {
+				values: {
+					uiid: $api.getStorage('id')
+				}
+			}
+		}, function(ret) {})
+	}
+
+//保存新的token
+	function getToken() {
+		api.ajax({
+			url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/getToken',
+			method: 'post',
+			data: {
+				values: {
+					uid: $api.getStorage("id") + "JHHJKUY32432"
+				}
+			}
+		}, function(ret, err) {
+			if(ret) {
+				$api.setStorage('token', ret["data"]);
+				//			        alert($api.getStorage('token'));
+			} else {}
+		});
+	}
+
+		//frame组
+		function openFrame() {
+			var UIChatBox = api.require('UIChatBox');
+			api.openFrameGroup({
+				name: 'index2',
+				rect: {
+					x: 0,
+					y: Number(window.screen.width) * 0.1867,
+					w: 'auto',
+					h: 'auto'
+				},
+				preload: 3,
+				index: index_num,
+				frames: [{
+				// name: 'friend_list',
+				// url: 'friend_list.html',//'chat_list.html',
+				name: 'pubuliu2',
+				url: 'pubuliu2.html',
+				bgColor: 'transparent',
+					pageParam: { //页面参数，页面中可以通过api.pageParam获取，JSON对象
+						dyn_id: 1
+					}
+				},
+				{
+					name: 'chat_list',//'friend_list',
+					url: 'chat_list.html',//'friend_list.html',
+					bgColor: 'transparent',
+					pageParam: { //页面参数，页面中可以通过api.pageParam获取，JSON对象
+						dyn_id: 1
+					}
+				},
+				{
+					name: 'recommend_list2',
+					url: 'recommend_list2.html',
+					bgColor: 'transparent'
+				}]
+			}, function(ret, err) {
+				index = ret.index;
+				$api.setStorage("frameName",ret.name);
+				if(index == 0) {
+					head_fram_dosomething('left');
+				} else if(index == 1) {
+					head_fram_dosomething('center');
+				} else {
+					head_fram_dosomething('right');
+				}
+			});
+		}
+
+	//创建用户搜索索引
+	function createUserSearchIndex() {
+		api.ajax({
+			url: 'http://api.baopinghui.com/app_search/createUserSearchIndex',
+			method: 'post',
+			data: {
+				values: {
+					uid: $api.getStorage("id")
+				}
+			}
+		}, function(ret, err) {
+			if(ret) {
+				if(ret.status == 1) {
+					console.log("createUserSearchIndex创建用户搜索索引");
+				}
+			} else {}
+		});
+	}
+
+	//获取个人信息--用于其他的地方（导航信息的显示）
+	function getUserinfo(){
+		api.ajax({
+			url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/userinfo',
+			method: 'post',
+			data: {
+				values: {
+					uid: $api.getStorage("id"),
+					pageUiId: $api.getStorage("id")
+				}
+			}
+		}, function(ret, err) {
+			console.log('缓存我的信息');
+			if(ret) {
+				$api.setStorage("summary",ret.data.summary);
+				$api.setStorage("avatar",ret.data.avatar_url);
+				$api.setStorage("sex",ret.data.sex);
+				$api.setStorage("nickname",ret.data.nickname);
+				$api.setStorage("avatar_url",'http://bin.baopinghui.com/' + ret.data.avatar_url + '?imageView2/0/w/200');
+			}
+		});
+	}
+</script>
+</html>

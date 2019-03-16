@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Tinkle</title>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+		}
+		html{
+			/*width: 100vw;*/
+			background: #efefef;
+			background: #efefef;
+			/*background-image: url('../../img/shabibaopinghui.png');*/
+			/*background-repeat: no-repeat;*/
+			/*background-size:contain;*/
+			background-position: top;
+			z-index: -2;
+			font-family: Arial;
+		}
+		body{
+
+
+
+		}
+		.bg{
+			position: absolute;
+			top:0;
+			width:100vw;
+			height:250px;
+			background-image: url('../../img/shabibaopinghui.png');
+			background-size:cover;
+			background-position: center;
+			z-index: -1;
+		}
+		section{background: #ffffff;padding:0.1vw 3.32vw 7.98vw 3.32vw;
+		margin:215px 10px 10px 10px;border-radius: 10px;
+		box-shadow: 0px 2px 10px 3px rgba(170,170,170,0.3)};
+		.img{
+			width:89.1vw;
+			height:50.27vw;
+			margin:0 auto 5.32vw;
+			background:url(./image/announcement20181009.jpg) no-repeat;
+			background-size: cover;
+		}
+		h1{
+			position: relative;
+			font:18px Arial;
+			font-weight: bold;
+			color:#101010;
+			margin-bottom:5.32vw;
+			line-height: 6.91vw;
+		}
+		h1>img{
+			margin-left:-5px;
+			margin-top:-5px;
+			width: 27px;
+	        height: 27px;
+	        display: inline-block;
+	        /*position: absolute;
+	        top: -6px;
+	        left: -6px;*/
+	        vertical-align: text-top;
+		}
+		.text{
+			font:12px Arial;
+			font-weight: bold;
+			color:#aaa;
+			line-height: 4.52vw;
+		}
+		p{
+			margin-top:1.32vw;
+			width: 100%;
+			white-space: pre-line;
+            word-wrap: break-word;
+            /*内容超过宽度自动换行，不带空格的全英文和全数字也可以*/
+		}
+		span{
+			color:#F381A3;
+		}
+		.upload{
+			display: flex;
+			justify-content: space-between;
+			width: 100%;
+			margin-top: 20px;
+		}
+		.upload span{
+			background-color: #fff;
+			text-align: center;
+			color: #000;
+			font-weight: bold;
+			height: 30px;
+			line-height: 30px;
+			width: 47%;
+			border-radius: 33px;
+			border:2px solid #000;
+			/*box-sizing: border-box;*/
+		}
+		.box{width: 100%;height: 11rem;background-size: cover;background-position: center;background-repeat: no-repeat;
+		background-color:#EFEFEF;border-radius: 8px 8px 0px 0px;display: inline-block; position: absolute;
+	background-image: url('http://bin.baopinghui.com/');}
+		/*.box:nth-of-type(2n+1){transform: translateY(-3.00rem);}*/
+		/*.box:nth-of-type(2n+1){transform: translateY(-3.00rem);}*/
+		/*.box:nth-of-type(1){width: 46%;height: 11.81rem;transform: translateY(0%);margin-top: 3.3%;}*/
+
+
+		.box>img:nth-of-type(1){width: 30px;height: 30px;display: inline-block;
+			position:absolute; top:10px;right:10px;}
+		/*.box:nth-of-type(7n+1){width: 93%;height: 21.62rem;margin-left:3.3%;}*/
+		/*.box:nth-of-type(7n+1)>img{width: 10%;height: 10%;margin: 5% 0% 0% 85%;}*/
+
+		.loading{
+			width: 18.62vw;
+			text-align: center;
+			height: 13.30vw;
+			position: fixed;
+			bottom:2.66vw;
+			left: 50%;
+			transform: translateX(-50%);
+			background: #fff;
+			border-radius:2.66vw;
+			opacity: 0.5;
+		}
+		.loading img{
+			position: absolute;
+			bottom:2.66vw;
+			left:50%;
+			margin-left:-4vw;
+			width:8vw;
+			height:8vw;
+		}
+		.touxiang{
+			width: 10.64vw;
+			height: 10.64vw;
+			background: #eeeeee;
+			border-radius: 50%;
+			border: 1.5px solid white;
+			position: absolute;
+			left: 10px;
+			/*top: 8.8rem;*/
+			bottom:-2vw;
+			background-position: center;
+			background-size: cover;
+		}
+		.huangguan{
+			/*display: none;*/
+			opacity: 0;
+			width: 25px;
+			height: 25px;
+			position: absolute;
+			right: 55px;
+			top: 158.5px;
+			z-index: 999999999;
+			border-radius: 10px;
+		}
+		.redu{
+			/*display: none;*/
+			opacity: 1;
+			width: 25px;
+			height: 25px;
+			right: 16px;
+			position: absolute;
+			top: 158.5px;
+			z-index: 999999999;
+			border-radius: 10px;
+		}
+		#continer .boxs:nth-of-type(1) .huangguan{
+			opacity: 1;
+		}
+		#continer .boxs:nth-of-type(2) .huangguan{
+			opacity: 1;
+		}
+		#continer .boxs:nth-of-type(3) .huangguan{
+			opacity: 1;
+		}
+		#continer .boxs:nth-of-type(1) .redu{
+			opacity: 1;
+		}
+		.boxs{display: inline-block;width: 46%;height: 15.6rem;margin:2.6% -1.6% -1.0% 2.9%;background: #ffffff;border-radius: 8px;position: relative;box-shadow: 0px 2px 10px 3px rgba(170,170,170,0.3);}
+		.boxs:nth-of-type(1){display: inline-block;width: 46%;height: 14.7rem;margin:2.6% -1.6% -1.0% 2.9%;background: #ffffff;border-radius: 8px;position: relative;}
+		.boxs:nth-of-type(2n+1){top: -0.9rem;}
+		.boxs p{font-size: 12px;display: inline-block;
+			position: absolute;top: 11.4rem;left: 6%;
+			line-height:16px;z-index: 999;
+			/*white-space:nowrap;*/
+			display: -webkit-box;
+					-webkit-line-clamp: 2;
+					-webkit-box-orient: vertical;
+					overflow: hidden;
+			width:88%;}
+			.boxs:nth-of-type(1) p{
+				margin-bottom:1vw;
+				display:-webkit-box;
+						-webkit-line-clamp: 1;
+						-webkit-box-orient: vertical;
+						overflow: hidden;}
+		.boxs p span:nth-of-type(1){font-weight: bold;display: inline;}
+		.boxs p span:nth-of-type(2){display: inline;}
+		.boxs .icon{position: absolute;bottom: 2.66vw;width: 88%;height:14px;left: 6%;display: flex;color: rgba(177,177,177,.8);
+			justify-content: space-between;
+		}
+		.boxs .icon img{width: 14px;height: 14px;margin-right:0.68vw;}
+		.boxs .icon span{height: 15px;font-size: 2.66vw;line-height: 14px;font-weight: bold;display: flex;align-items: center;position: absolute;}
+		.boxs .icon span samp{
+			margin-top:0.8vw;
+			}
+		.boxs .icon span:nth-child(1){
+					left:0;
+					top:0;
+				}
+				.boxs .icon span:nth-child(2){
+					left:14.7vw;
+					top:0;
+				}
+				.boxs .icon span:nth-child(3){
+					left:27vw;
+					top:0;
+				}
+		/*.cnm{}*/
+		@keyframes rubberBand {
+		from {
+			transform: scale3d(1, 1, 1);
+		}
+
+		30% {
+			transform: scale3d(1.25, 0.75, 1);
+		}
+
+		40% {
+			transform: scale3d(0.75, 1.25, 1);
+		}
+
+		50% {
+			transform: scale3d(1.15, 0.85, 1);
+		}
+
+		65% {
+			transform: scale3d(0.95, 1.05, 1);
+		}
+
+		75% {
+			transform: scale3d(1.05, 0.95, 1);
+		}
+
+		to {
+			transform: scale3d(1, 1, 1);
+		}
+	}
+
+	.rubberBand {
+		animation: rubberBand 1.5s;
+	}
+	#continer span{color: #101010;}
+	#continer samp{color: #AAAAAA;}
+
+	.fanhui{width: 30px;height: 30px;left: 20px;position: fixed;
+	top: 28px;z-index: 10;}
+	.youshangjiao{
+		position: absolute;
+		height: 30px;
+		top: 28px;
+		max-width: 85%;background: #ffffff;
+		padding:0 5px;
+		border-radius: 10px;
+		box-shadow: 0px 2px 10px 3px rgba(170, 170, 170, 0.3);
+		right: 10px;
+		line-height: 30px;
+		font-weight: bold;
+		font-size: 12px;
+		text-align: center;
+	}
+	</style>
+</head>
+<body>
+	<div class="bg"></div>
+	<img class="fanhui" src="../../icon/e.png" alt="" onclick="closeWin()">
+	<div class="youshangjiao" id="youshangjiao">
+	</div>
+	<!-- <div class="img"></div>
+	<h1>[ Theme Party 6 ] #Dream Place #Travel #Country #City Name</h1>
+	<div class="text">
+		<p>Everyone has a place to look forward to, where is the place you most want to go?</p>
+		<p style="margin-top:5.96vw">How to participate：</p>
+		<p><span>· Post a post with one of the above tags</span></p>
+		<p style="margin-top:5.96vw">What is special?</p>
+		<p><span>· Enjoy different life</span></p>
+		<p><span>· Choose excellent posts to put in hot</span></p>
+		<p style="margin-top:5.96vw">If you have questions and want feedback,</p>
+		<p>Search account: <span>Tinkleteam</span> , describe the problem, </p>
+		<p>we will help you solve it as soon as possible</p>
+		<p style="margin-top:5.96vw">Finally, I wish you have a good time.</p>
+	</div> -->
+	<section>
+	</section>
+	<!-- <div id="loadings" class="loading" style="z-index:-1;"><img src="../../icon/loading.gif" alt=""></div> -->
+	<div id="continer" style="background-color: #efefef;z-index:10;width:100vw;height:auto;">
+	</div>
+	<div id="loading" class="loading" style="opacity:0;">
+		<img src="../../icon/loading.gif"/ >
+	</div>
+	<footer style="margin-bottom:10px;"></footer>
+
+</body>
+<script src="../../script/jquery-3.1.0.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script>
+var img_qian = "http://bin.baopinghui.com/";
+var img_suo = "?imageView2/0/w/250";
+var img_video = "?vframe/jpg/offset/1/w/350";
+var numx=0;
+var numy=4;
+$(function(){
+	// var continer=$('#continer');
+	// //加载主题帖子数据
+	// function data_load(themeId,numx,numy,callback){
+	// 	let url='http://api.baopinghui.com/app_dynamicCover/findDynBytimeAndtheme?themeId='+themeId+'&numx='+numx+'&numy='+numy;
+	// 	fetch(url,{
+	// 		method:'get',
+	// 		// mode:'cors',//避免cors攻击
+	// 		// credentials: 'include',//带上cookie
+	// 		// headers: {
+	// 		// 	'Content-Type': 'application/json'
+	// 		// },
+	// 		// body:
+	// 	}).then(res=>{
+	// 		console.log(res);
+	// 		return res.json()
+	// 	})
+	// 		.then(data=>{
+	// 			console.log(data.data);
+	// 	});
+	//}
+
+	//调用
+	//data_load('c9187c6c1a61435bb3ef5d478b68ffff',0,5);
+})
+apiready=function(){
+	var temp=`
+	<h1 style="margin-top:15px">【预告】主題派對5期 #國慶節 #節日 #旅遊 #度假 </h1>
+	<div class="text">
+		<p id="description">國慶七天假期要來啦！妳將如何度過妳的假期呢？是去旅遊還是宅在家？是工作還是在學習？在tinkle分享妳的假期生活吧，看看大家都會在假期做些什麽呢。</p>
+		<p style="margin-top:5.96vw">怎麽參與：</p>
+		<p><span>· 發佈帖子並帶上上面的其中一個標簽</span></p>
+		<p style="margin-top:5.96vw">有什麽特別?</p>
+		<p><span>`+api.pageParam.the_me_obj.benefit_CN+`</span></p>
+
+		
+		<div class="upload">
+			<span style="
+			`+(new Date(api.pageParam.the_me_obj.end_time.replace(/-/g,"/")).getTime()>new Date().getTime() && new Date(api.pageParam.the_me_obj.start_time.replace(/-/g,'/')).getTime()<new Date().getTime()?'':'color:#aaaaaa;border-color:#aaa;')+`
+			" onclick="`
+			+(new Date(api.pageParam.the_me_obj.end_time.replace(/-/g,"/")).getTime()>new Date().getTime() && new Date(api.pageParam.the_me_obj.start_time.replace(/-/g,'/')).getTime()<new Date().getTime()?'openWin()':'')+
+			`" >
+			⊕ 上 傳 帖 子</span><span onclick="sharetheme('`+api.pageParam.the_me_obj.id+`','`+api.pageParam.the_me_obj.title_CN+`','`+api.pageParam.the_me_obj.img+`','`+api.pageParam.the_me_obj.description_CN+`')">分 享 專 題
+			</span>
+		</div>
+	</div>
+	`;
+// <p style="margin-top:5.96vw">如果你有問題想反饋，</p>
+// 		<p>搜索賬號：<span>Tinkleteam</span>，進行描述問題，</p>
+// 		<p>我們將儘快幫你解決</p>
+	var temp2=`
+	<h1 style="margin-top:15px">[ Theme Party 6 ] #Dream Place #Travel #Country #City Name</h1>
+	<div class="text">
+		<p id="description">Everyone has a place to look forward to, where is the place you most want to go?</p>
+		<p style="margin-top:5.96vw">How to participate：</p>
+		<p><span>· Select this theme when posting a post</span></p>
+		<p style="margin-top:5.96vw">What is special?</p>
+		<p><span>`+api.pageParam.the_me_obj.benefit_EN+`</span></p>
+		
+		<div class="upload">
+			<span style="
+			`+(new Date(api.pageParam.the_me_obj.end_time.replace(/-/g,"/")).getTime()>new Date().getTime()?'':'color:#aaaaaa;border-color:#aaa;')+`
+			" onclick="`
+			+(new Date(api.pageParam.the_me_obj.end_time.replace(/-/g,"/")).getTime()>new Date().getTime()?'openWin()':'')+
+			`" >
+			⊕ PARTICIPATE</span><span onclick="sharetheme('`+api.pageParam.the_me_obj.id+`','`+api.pageParam.the_me_obj.title_CN+`','`+api.pageParam.the_me_obj.img+`','`+api.pageParam.the_me_obj.description_CN+`')">SHARE</span>
+		</div>
+	</div>
+	`;
+	// <p style="margin-top:5.96vw">If you have questions and want feedback,</p>
+	// 	<p>Search account: <span>Tinkleteam</span> , describe the problem, </p>
+	// 	<p>we will help you solve it as soon as possible</p>
+	// 	<p style="margin-top:5.96vw">Finally, I wish you have a good time.</p>
+	var temp3=`
+	<div class="boxs">
+		<div class="box"  style="background-image:url()" >
+			<img src="../../icon/touming.png">
+			<div class="touxiang" style="background-image:url()">
+
+			</div>
+			<img class="huangguan" src="../../icon/i.gif" alt="">
+			<img class="redu" src="../../icon/i.gif" alt="">
+		</div>
+	<p class="box_content"><span>sdasdas:</span><span>dsadad</span></p>
+	<div class="icon"><span><img src="../../icon/c.png" alt="" /><samp> das</samp></span>
+		<span style="margin-left:56px;">
+			<img name="cnm" src="../../icon/a.png" alt=""/>
+			<samp name="cnmtext">525</samp>
+		</span>
+	</div>
+	</div>
+	`;
+
+	var continer=$('#continer');
+	var loading=document.getElementById('loading');
+	//加载主题帖子数据
+	function data_load(themeId,numx,numy,callback){
+		let url='http://api.baopinghui.com/app_dynamicCover/findDynByPopAndtheme?themeId='+themeId+'&numx='+numx+'&numy='+numy;
+		api.ajax({
+		    url: 'http://api.baopinghui.com/app_dynamicCover/findDynByPopAndtheme',
+		    method: 'get',
+		    data: {
+		        values: { 
+		            themeId:themeId,
+		            numx:numx,
+		            numy:numy
+		        }
+		    }
+		}, function(ret, err) {
+		    if (ret) {
+		      loading.style.opacity=0;
+				//alert(JSON.stringify(data.data))
+				let length=ret.data.length;
+				//alert(length);
+				let dyn_id=[];
+				let like_num=[];
+				let title=[];
+				let type=[];
+				let pop=[];
+				let nickname=[];
+				let img_url=[];
+				let avatar_url=[];
+				let qinniu='http://bin.baopinghui.com/';
+				let post_type=[];
+				let hot=[];
+				let areaNum=[];
+				for(let i=0;i<length;i++){
+					dyn_id.push(ret.data[i].dyn_id);
+					like_num.push(ret.data[i].like_num);
+					title.push(ret.data[i].title);
+					nickname.push(ret.data[i].nickname);
+					img_url.push(ret.data[i].img_url.split(",")[0]);
+					avatar_url.push(ret.data[i].avatar_url);
+					post_type.push(ret.data[i].type);
+					pop.push(ret.data[i].pop);
+					hot.push(ret.data[i].hot);
+					if(post_type[i]=="Video"){
+						let temp3=`
+						<div class="boxs" onclick="openDetail('${dyn_id[i]}')">
+							<div class="box"  style="background-image:url(${qinniu+`${img_url[i]}`+`${img_video}`})" >
+								<img src="../../icon/Video.png">
+								<div class="touxiang" style="background-image:url(${qinniu+`${avatar_url[i]}`+`${img_suo}`})">
+
+								</div>
+								<img class="huangguan" src="../../icon/i.gif" alt="" style="right:`+(`${hot[i]}`!=0?'55px':'14px')+`">
+								<img class="redu" src="../../icon/f.gif" alt="" style="display:`+(`${hot[i]}`!=0?'block':'none')+`">
+							</div>
+						<p class="box_content"><span>${nickname[i]}:</span><span>${title[i]}</span></p>
+						<div class="icon"><span><img src="../../icon/c.png" alt="" /><samp>`+(Number(`${pop[i]}`)> 1000 ? (`${pop[i]}`/ 1000).toFixed(1) + 'k' : `${pop[i]}`)+`</samp></span>
+							<span style="margin-left:60px;">
+								<img name="cnm" src="../../icon/a.png" alt=""/>
+								<samp name="cnmtext">`+(Number(`${like_num[i]}`)> 1000 ? (`${like_num[i]}`/ 1000).toFixed(1) + 'k' : `${like_num[i]}`)+`</samp>
+							</span>
+						</div>
+						</div>
+						`
+						if(i==1){
+							temp3=temp3.replace("i.gif","h.gif");
+						}else if (i==0) {
+							temp3=temp3.replace("i.gif","g.gif");
+						}
+						continer.append(temp3);
+					}else{
+						let temp3=`
+						<div class="boxs" onclick="openDetail('${dyn_id[i]}')">
+							<div class="box"  style="background-image:url(${qinniu+`${img_url[i]}`+`${img_suo}`})" >
+								<img src="../../icon/`+(`${post_type[i]}`!='imgs'?'touming.png':'imgs.png')+`">
+								<div class="touxiang" style="background-image:url(${qinniu+`${avatar_url[i]}`+`${img_suo}`})">
+
+								</div>
+								<img class="huangguan" src="../../icon/i.gif" alt="" style="right:`+(`${hot[i]}`!=0?'55px':'14px')+`">
+								<img class="redu" src="../../icon/f.gif" alt="" style="display:`+(`${hot[i]}`!=0?'block':'none')+`;">
+							</div>
+						<p class="box_content"><span>${nickname[i]}:</span><span>${title[i]}</span></p>
+						<div class="icon"><span><img src="../../icon/c.png" alt="" /><samp> `+(Number(`${pop[i]}`)> 1000 ? (`${pop[i]}`/ 1000).toFixed(1) + 'k' : `${pop[i]}`)+`</samp></span>
+							<span style="margin-left:60px;">
+								<img name="cnm" src="../../icon/a.png" alt=""/>
+								<samp name="cnmtext">`+(Number(`${like_num[i]}`)> 1000 ? (`${like_num[i]}`/ 1000).toFixed(1) + 'k' : `${like_num[i]}`)+`</samp>
+							</span>
+						</div>
+						</div>
+						`;
+						if(i==1){
+							temp3=temp3.replace("i.gif","h.gif");
+						}else if (i==0) {
+							temp3=temp3.replace("i.gif","g.gif");
+						}
+
+						continer.append(temp3);
+					}
+
+				}
+		    } else {
+		        console.log(JSON.stringify(err));
+		    }
+		});
+
+		// fetch(url,{
+		// 	method:'get',
+		// 	mode:'cors',//避免cors攻击
+		// 	credentials: 'include'//带上cookie
+		// 	//body:`themeId=${themeId}&numx=${numx}&${numy}`
+		// }).then(res=>{
+		// 	console.log(res);
+		// 	return res.json()
+		// })
+		// 	.then(data=>{
+		// 		console.log(data.data);
+		// 		loading.style.opacity=0;
+		// 		//alert(JSON.stringify(data.data))
+		// 		let length=data.data.length;
+		// 		//alert(length);
+		// 		let dyn_id=[];
+		// 		let like_num=[];
+		// 		let title=[];
+		// 		let type=[];
+		// 		let pop=[];
+		// 		let nickname=[];
+		// 		let img_url=[];
+		// 		let avatar_url=[];
+		// 		let qinniu='http://bin.baopinghui.com/';
+		// 		let post_type=[];
+		// 		let hot=[];
+		// 		let areaNum=[];
+		// 		for(let i=0;i<length;i++){
+		// 			dyn_id.push(data.data[i].dyn_id);
+		// 			like_num.push(data.data[i].like_num);
+		// 			title.push(data.data[i].title);
+		// 			nickname.push(data.data[i].nickname);
+		// 			img_url.push(data.data[i].img_url.split(",")[0]);
+		// 			avatar_url.push(data.data[i].avatar_url);
+		// 			post_type.push(data.data[i].type);
+		// 			pop.push(data.data[i].pop);
+		// 			hot.push(data.data[i].hot);
+		// 			if(post_type[i]=="Video"){
+		// 				let temp3=`
+		// 				<div class="boxs" onclick="openDetail('${dyn_id[i]}')">
+		// 					<div class="box"  style="background-image:url(${qinniu+`${img_url[i]}`+`${img_video}`})" >
+		// 						<img src="../../icon/Video.png">
+		// 						<div class="touxiang" style="background-image:url(${qinniu+`${avatar_url[i]}`+`${img_suo}`})">
+
+		// 						</div>
+		// 						<img class="huangguan" src="../../icon/g.gif" alt="" style="right:`+(`${hot[i]}`!=0?'55px':'14px')+`">
+		// 						<img class="redu" src="../../icon/f.gif" alt="" style="display:`+(`${hot[i]}`!=0?'block':'none')+`">
+		// 					</div>
+		// 				<p class="box_content"><span>${nickname[i]}:</span><span>${title[i]}</span></p>
+		// 				<div class="icon"><span><img src="../../icon/c.png" alt="" /><samp>`+(Number(`${pop[i]}`)> 1000 ? (`${pop[i]}`/ 1000).toFixed(1) + 'k' : `${pop[i]}`)+`</samp></span>
+		// 					<span style="margin-left:60px;">
+		// 						<img name="cnm" src="../../icon/a.png" alt=""/>
+		// 						<samp name="cnmtext">`+(Number(`${like_num[i]}`)> 1000 ? (`${like_num[i]}`/ 1000).toFixed(1) + 'k' : `${like_num[i]}`)+`</samp>
+		// 					</span>
+		// 				</div>
+		// 				</div>
+		// 				`
+		// 				if(i==1){
+		// 					temp3=temp3.replace("g.gif","h.gif");
+		// 				}else if (i==2) {
+		// 					temp3=temp3.replace("g.gif","i.gif");
+		// 				}
+		// 				continer.append(temp3)
+		// 			}else{
+		// 				let temp3=`
+		// 				<div class="boxs" onclick="openDetail('${dyn_id[i]}')">
+		// 					<div class="box"  style="background-image:url(${qinniu+`${img_url[i]}`+`${img_suo}`})" >
+		// 						<img src="../../icon/`+(`${post_type[i]}`!='imgs'?'touming.png':'imgs.png')+`">
+		// 						<div class="touxiang" style="background-image:url(${qinniu+`${avatar_url[i]}`+`${img_suo}`})">
+
+		// 						</div>
+		// 						<img class="huangguan" src="../../icon/g.gif" alt="" style="right:`+(`${hot[i]}`!=0?'55px':'14px')+`">
+		// 						<img class="redu" src="../../icon/f.gif" alt="" style="display:`+(`${hot[i]}`!=0?'block':'none')+`;">
+		// 					</div>
+		// 				<p class="box_content"><span>${nickname[i]}:</span><span>${title[i]}</span></p>
+		// 				<div class="icon"><span><img src="../../icon/c.png" alt="" /><samp> `+(Number(`${pop[i]}`)> 1000 ? (`${pop[i]}`/ 1000).toFixed(1) + 'k' : `${pop[i]}`)+`</samp></span>
+		// 					<span style="margin-left:60px;">
+		// 						<img name="cnm" src="../../icon/a.png" alt=""/>
+		// 						<samp name="cnmtext">`+(Number(`${like_num[i]}`)> 1000 ? (`${like_num[i]}`/ 1000).toFixed(1) + 'k' : `${like_num[i]}`)+`</samp>
+		// 					</span>
+		// 				</div>
+		// 				</div>
+		// 				`;
+		// 				if(i==1){
+		// 					temp3=temp3.replace("g.gif","h.gif");
+		// 				}else if (i==2) {
+		// 					temp3=temp3.replace("g.gif","i.gif");
+		// 				}
+
+		// 				continer.append(temp3);
+		// 			}
+
+		// 		}
+
+
+		// });
+	}
+
+	//调用
+	data_load(api.pageParam.the_me_obj.id,numx,numy);
+
+	//下拉加载
+	api.addEventListener({
+	    name: 'scrolltobottom'
+	}, function(ret, err){
+		    loading.style.opacity=1;
+				numx=numx+4;
+				data_load(api.pageParam.the_me_obj.id,numx,numy);
+	});
+
+
+
+
+
+
+	var section=document.getElementsByTagName('section')[0];
+	var youshangjiao=document.getElementById('youshangjiao');
+	var title_T='';
+	var popNUM = api.pageParam.the_me_obj.popNum;
+	popNUM = Number(api.pageParam.the_me_obj.popNum)>1000?(api.pageParam.the_me_obj.popNum/1000).toFixed(1)+'k':api.pageParam.the_me_obj.popNum==null?0:api.pageParam.the_me_obj.popNum;
+	// console.log(popNUM);
+  //中英文切换
+	if ($api.getStorage("language")=='zho') {
+		section.innerHTML=temp;
+		var h1=document.getElementsByTagName('h1')[0];
+		var description=document.getElementById('description');
+		var html_bg=document.getElementsByTagName('html')[0];
+		if(new Date(api.pageParam.the_me_obj.start_time.replace(/-/g,'/')).getTime()>new Date().getTime()){
+			title_T='【预告】';
+		}else if(new Date(api.pageParam.the_me_obj.end_time.replace(/-/g,'/')).getTime()<new Date().getTime()){
+			title_T='【结束】';
+		}else if(new Date(api.pageParam.the_me_obj.end_time.replace(/-/g,'/')).getTime()>=new Date().getTime()&&new Date(api.pageParam.the_me_obj.start_time.replace(/-/g,'/')).getTime()<=new Date().getTime()){
+			title_T='<img src="../../icon/f.gif" alt="">';
+		}
+		h1.innerHTML=title_T+api.pageParam.the_me_obj.title_CN;
+		description.innerHTML=api.pageParam.the_me_obj.description_CN;
+		youshangjiao.innerHTML=`<span style="color:#F381A3;">`+api.pageParam.the_me_obj.areaNum+`</span> 個 國 家 的 人 參 與，<span style="#F381A3;">`+popNUM+`</span> 個 參 與 人 次`;
+
+	}else{
+		section.innerHTML=temp2;
+		var h1=document.getElementsByTagName('h1')[0];
+		var description=document.getElementById('description');
+		var html_bg=document.getElementsByTagName('html')[0];
+		if(new Date(api.pageParam.the_me_obj.start_time.replace(/-/g,'/')).getTime()>new Date().getTime()){
+			title_T='【Ready】';
+		}else if(new Date(api.pageParam.the_me_obj.end_time.replace(/-/g,'/')).getTime()<new Date().getTime()){
+			title_T='【Over】';
+		}else if(new Date(api.pageParam.the_me_obj.end_time.replace(/-/g,'/')).getTime()>=new Date().getTime()&&new Date(api.pageParam.the_me_obj.start_time.replace(/-/g,'/')).getTime()<=new Date().getTime()){
+			title_T='<img src="../../icon/f.gif" alt="">';
+		}
+		h1.innerHTML=title_T+api.pageParam.the_me_obj.title_EN;
+		description.innerHTML=api.pageParam.the_me_obj.description_EN;
+		youshangjiao.innerHTML=`People from <span style="color:#F381A3;">`+api.pageParam.the_me_obj.areaNum+` </span> countries，<span style="#F381A3;">`+popNUM+` </span> participants`;
+	}
+	// html_bg.style.backgroundImage="url("+'http://bin.baopinghui.com/'+api.pageParam.the_me_obj.img+")";
+	$api.css($api.dom('.bg'), "background-image:url("+'http://bin.baopinghui.com/'+api.pageParam.the_me_obj.img+")");
+
+
+
+
+	api.addEventListener({
+		name: 'swiperight'
+	}, function() {
+		api.closeWin({
+			animation: {
+				type: "push", //动画类型（详见动画类型常量）
+				subType: "from_left", //动画子类型（详见动画子类型常量）
+				duration: 300 //动画过渡时间，默认300毫秒
+			}
+		});
+	});//右滑关闭win
+
+
+
+
+
+}
+
+function openWin(){
+	api.openWin({
+			name: 'post',
+			//url: '../logon-register/huodong2.html'
+			url: '../details/post.html',
+			pageParam: {
+					type: 'Topimg'
+			}
+	});
+}
+//关闭窗口
+function closeWin(){
+	api.closeWin({
+	});
+}
+
+//打开帖子
+function openDetail(dyn_id, pop_num, cover_num, otherId) {
+  api.openWin({
+    name: "detail",
+    url: "widget://html/details/detail.html",
+    reload: true,
+    vScrollBarEnabled: false,
+    slidBackEnabled: false,
+    softInputMode: 'resize',
+    pageParam: {
+      postId: dyn_id
+      // otherId: otherId,
+      // popNum: pop_num,
+      // tinNum: cover_num,
+      // text: true
+    }
+  });
+}
+// 分享主题
+function sharetheme(themeId,themeTitle,themeImg,themeContent){
+	console.log(themeId);
+	api.openFrame({
+		name: "more",
+		url: "widget://html/nav/more(new).html",
+		rect: {
+			x: 0,
+			y: 0,
+			w: "auto",
+			h: "auto"
+		},
+		pageParam:{
+			themeId:themeId,
+			themeTitle:themeTitle,
+			themeImg:themeImg,
+			themeContent:themeContent
+		}
+	});
+}
+</script>
+
+
+
+
+</html>

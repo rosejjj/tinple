@@ -1,0 +1,231 @@
+var json={
+
+	"http2":"http://192.168.16.192/",
+	"http2":"http://www.baopinghui.com/",
+	"httpwww":"http://www.baopinghui.com/",
+	"http":"http://api.baopinghui.com/",	
+	'http6' : "http://2607:8700:110:c7ef:2d8e:cba2:c117:5c4c/",	
+	"loginhttp" : "http://api.baopinghui.com/",
+	'http3' : 'http://test.baopinghui.com/',
+	"qiniu":"http://bin.baopinghui.com/",
+	"upload":"uploadControllerC/getUpToken",
+	"style_url":"http://c1693347l5.iok.la/",
+	"baidu_appid":"20170419000045193",
+	"baidu_key":"yQXVpsNoHLgQ9HT7LJU_",
+	"oss":"http://baopinghui.oss-cn-shenzhen.aliyuncs.com/",
+	"appconfig" : "appConfig/errorLog",
+	"live":{
+		"popularive":"live/everyDayPopularLive",
+		"popularuserlive":"live/everyDayPopularUserLive",
+		"liveinfo" : "live/liveInfo",
+		"classtop" :"live/classTop",
+		"morelive" : "live/moreLive",
+		"focuslive" : "live/findFocusLive",
+		"mylive" : "live/findMyLive",
+		"popularLiveByClass" : "live/everyDayPopularLiveByLclass",
+		"liveTimeLine" : "live/timeLineByLclass",
+		"everyDayPopularLiveByRandom" : "live/everyDayPopularLiveByRandom",
+		"timeLine" : "live/timeLine",
+		"getRefreshTime" : "live/getRefreshTime",
+		"getRefreshCountByRefreshTime" : "live/getRefreshCountByRefreshTime"
+	},
+	"Login":{
+		"qq_user":"qq_user/save",
+		"save":"wx_user/save",
+		"logon":"tinUserControllerC/login",
+		"register":"tinUserControllerC/register",
+		"verify_phone":"tinUserControllerC/valid",
+		"verify_nickname":"tinUserControllerC/validnick",
+		"forget_psw":"tinUserControllerC/forgetPassword",
+		"feedback":"tinUserControllerC/user/feedback",
+		"verify_email":"tinUserControllerC/email",
+		"verify_email_num":"app_tinUserinfoControllerC/equalsEmailVerifyCode",
+		"updateGuide":"guideController/updateGuide",
+		'findUserinfo' : 'app_tinUserinfoControllerC/findUserinfoByUsername',
+		'sendEmail' : 'app_tinUserinfoControllerC/sendEmailVerifyCode'
+	},
+	"style":{
+		"neuralStyle":"fastStyleController/neuralStyle",
+		"upload":"fastStyleController/upload",
+		"get":"fastNeuralStyleController/get",
+		"uploadSourceFile":"fastNeuralStyleController/uploadSourceFile",
+		"sendNeuralstyle":"fastNeuralStyleController/postNeuralStyle",
+		"newNeuralStyle" : "fastNeuralStyleController/waitBackNeuralStyle"
+
+	},
+	"guide":{
+		"people":"guideController/people",
+		"tags":"guideController/tags"
+	},
+	"act":{
+		"browseRecord":"indexController/browseRecord",
+		"tip":"indexController/message",
+		"act_more":"tinActivityControllerC/queryActivityInfo",
+		"coll_act":"tinActivityControllerC/favoriteActivity",
+		"del_act":"tinActivityControllerC/clickMoreOneself",
+		"dating_more":"tinAppointmentControllerC/appointmentInfo",
+		"act_pic_set":"tinActivityControllerC/multiCollection",
+		"focus_act":"indexController/queryMoments",
+		"join":"tinActivityControllerC/joinActivity",
+		"join_list":"tinActivityControllerC/queryJoinActivity",
+		"sure_list":"tinActivityControllerC/queryDetermined",
+		"sure_or_no":"tinActivityControllerC/handleDetermined",
+		"dating":"tinActivityControllerC/queryAppointment",
+		"push":"indexController/push",
+		"first_header":"indexController/browseRecord"
+
+	},
+	"pic":{
+		"forwarding":"tinTopimgControllerC/forwarding",
+		"focus":"tinTopimgControllerC/queryMoments",
+		"like_pic":"tinTopimgControllerC/clickTopImage",
+		"pic_more":"tinTopimgControllerC/queryTopImageInfo",
+		"del_pic":"tinTopimgControllerC/clickMoreOneself",
+		"like_list":"tinTopimgControllerC/manyTopTakeInfo",
+		"imgInfoTag":"tinTopimgControllerC/imgInfoTag",
+		"foundMroe":"relatedToMeController/foundMroe",
+		"delOnself":"tinUserinfoControllerC/delOnselfCustom"
+	},
+	"more":{
+		"organ":"tinActivityControllerC/releaseActivity",
+		"share_pic":"tinTopimgControllerC/shareImage",
+		"dating":"tinAppointmentControllerC/writeAppointment",
+		"open_dating":"tinAppointmentControllerC/openAppointment",
+		"upfile":"upload2/upload/image",
+		"latest":"tag/latest/use",
+		"daliy_top":"tag/every/day/use/top",
+		"act_tag":"tag/find/actTag/all",
+		"act_tag_name":"tag/check/tag/name",
+		"formInfo":"tag/actTag/formInfo",
+		"activity":"tag/apply/activity",
+	},
+	"dynamic":{
+		"alias":"push/set/alias",
+		"close":"push/set/close",
+		"dynamic":"dynamicControllerC/findDyn2",
+		"dyn_num":"dynamicControllerC/findDynNewNum",
+		"clear_dyn":"dynamicControllerC/removeNewMsgNum",
+		"clear_dynById":"dynamicControllerC/removeNewMsgNumByMsgId",
+		"dynamic_focus":"dynamicCover/byFoucsMan4",
+		"dynamic_gather":"dynamicCover/gatherInfo",
+		"dynamic_mygather":"dynamicCover/myGather",
+		"dynamic_popuser":"dynamicCover/topPageTopBoxEverydayPopUser",
+		"dynamic_popimg":"dynamicCover/topPageTopBoxEverydayPopImage2",
+		"dynamic_gathertimeline":"dynamicCover/gatherTimeline",
+		"dynamic_findMsgGather":"dynamicControllerC/findMsgGather",
+		"dynamic_popimg2":"dynamicCover/topPageTopBoxEverydayPopImage",
+		"gatherTimeline":"dynamicCover/gatherTimeline",
+		"dynamic_RefreshCount":"dynamicCover/byFoucsManRefreshCount",
+		"dynamic_timelineCount":"dynamicCover/gatherTimelineCount",
+		"my_gather" : "dynamicCover/myGather",
+		"countPopAndCoverAndLive" : "dynamicCover/countPopAndCoverAndLive",
+		"setBgImage" : "dynamicCover/setBackgroundImage",
+		"getBgImage" : "dynamicCover/getBackgroundImage",
+		"gatherTimeline3" : "dynamicCover/gatherTimeline3",
+		"todayPopGatherImgTop2" : "dynamicCover/todayPopGatherImgTop2",
+		"mygathercount" : "dynamicCover/myGatherCount",
+		"gatherTimelineCount" : "dynamicCover/gatherTimelineCount"
+
+	},
+	"me":{
+		"getImg":"tinUserinfoControllerC/getImg",
+		"link":"tinUserinfoControllerC/link",
+		"setImg":"tinUserinfoControllerC/setImg",
+		"info":"tinUserinfoControllerC/listUserinfo",
+		"setting":"tinUserinfoControllerC/installInfo",
+		"change_setting":"tinUserinfoControllerC/updateUserInfo",
+		"change_psw":"tinUserControllerC/updatePassword",
+		"pic_set":"tinUserinfoControllerC/queryTopImagesList",
+		"coll_set":"tinUserinfoControllerC/queryFavoriteCollection",
+		"fans_list":"tinUserinfoControllerC/queryFansList",
+		"focus_list":"tinUserinfoControllerC/queryConcenList",
+		"focus":"indexController/concen",
+		"like":"tinUserinfoControllerC/queryTakeTopImage",
+		"dingdong":"tinUserinfoControllerC/queryTinkle",
+		"custom":"tinUserinfoControllerC/queryCustomCollection",
+		"custom2":"tinUserinfoControllerC/userinfo",
+		"baseCount" : 'app_tinUserinfoControllerC/baseCount'
+	},
+	"people":{
+		"focus":"indexController/concen"
+	},
+	"search":{
+		"people":"search/nickname/or/summary",
+		"tins":"search/title",
+		"tag":"search/tag",
+		"search_faxian":"search/findActAndImg",
+		"main":"search/main",
+		"load":"findControllerC/findRecommend",
+		"user":"findControllerC/findUser",
+		"dating":"findControllerC/findApp",
+		"findDcGather":"search/findDcGatherBytagnameNotRandom",
+		"findLive" :"search/findLive",
+		"findUser" : "search/findUser",
+		"findDcGather2" : "search/findDcGather2",
+		"search_top" : "search/search_top"
+	},
+	"coll":{
+		"create_custom":"indexController/customFavorites",
+		"more":"indexController/addCollections",
+		"edit_custom":"tinUserinfoControllerC/installCustom",
+		"del_custom":"tinUserinfoControllerC/delCustom",
+		"init_custom":"tinUserinfoControllerC/queryCustom"
+	},
+	"find":{
+		"GifAndVideo":"dynamicCover/topPageTopBoxEverydayPopGifAndVideo",
+		"up_firstPage":"dynamicCover/topPageTopBox",
+		"mergePage":"dynamicCover/mergePage",
+		"AddMore":"dynamicCover/firstPage2AddMore",
+		"followTag":"relatedToMeController/followTag",
+		"theme":"relatedToMeController/themeBar",
+		"videoPlay":"relatedToMeController/videoPlay",
+		"message":"relatedToMeController/message",
+		"SNPMR":"dynamicCover/setNowPageMessageRead",
+		"FNPM":"dynamicCover/findNowPageMessage",
+		"everyAll":"relatedToMeController/everyAll",
+		"RandomLike":"relatedToMeController/RandomLike",
+		"firstPage":"dynamicCover/firstPage2",
+		"tagBar":"relatedToMeController/tagBar",
+		"everything":"relatedToMeController/everything",
+		"found":"relatedToMeController/found",
+		"foundTaginfo":"relatedToMeController/foundTaginfo",
+		"taginfo":"relatedToMeController/tagInfo",
+		"like_label":"relatedToMeController/followTag",
+		"themeBar":"relatedToMeController/themeBar",
+		"prefix":"relatedToMeController/prefix",
+	},
+	"domain":{
+		"relatedToMe":"relatedToMeController/relatedToMe",
+		"foundMroe":"relatedToMeController/foundMroe"
+	},
+	"chat":{
+		"chat_info":"chat/getUserinfo"
+	},
+	"video":{
+		"upload":"upload2/upload/video",
+		"share_vid":"video/shareVideo",
+		"shared_vid":"video/latest/share/video/log"
+	},
+	"web":{
+		"people":"webUserControllerC/listUserinfo",
+		"tins":"webUserControllerC/myTins",
+		"picinfo":"webInfoController/info",
+		"tagInfo":"webInfoController/tagInfo"
+	},
+	"comment":{
+		"create_comment":"dynamicCover/create/comment",
+		"select_comment":"dynamicCover/find/comment",
+	},
+	"real_time":{
+		"record":"mediaController/media"
+	},
+	"recommend":{
+		"findRecommendContent":"recommend/findRecommendContent"
+	},
+	"tag" : {
+		"useTag" : "tag/find/useTag"
+	},
+	"addActiveUser" : {
+		"addActiveUserLog" : "statistics/addActiveUserLog"
+	}
+}

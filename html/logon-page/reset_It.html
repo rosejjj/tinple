@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>找回密碼</title>
+		<link rel="stylesheet" type="text/css" href="../../css/alert.css" />
+    <style>
+    	body{
+    		width: 100%;
+			color:#FFF;
+			margin:0;
+			padding:0;
+			overflow: hidden;
+			background-color:rgba(0,0,0,0);
+    	}
+		input{border:0;outline:none;/*去除蓝色边框*/}
+		button{outline:none;/*去除蓝色边框*/}
+		    .input-con::-webkit-input-placeholder {
+			color: #fff;
+			font-size: 4.1666666vw;
+			font-weight: bold;
+			text-shadow: 0 0 2px #222222;
+			text-indent: 5.5555vw !important;
+			opacity: .5;
+		}
+
+		    .bg{
+			    position:fixed;
+			    left:0;
+			    top:0;
+		    	width:100%;
+		    	height:100%;
+		    	margin:0;
+		    	padding:0;
+		    	background:url(../../img/bg.gif);
+		    	background-size:cover;
+		    	z-index: -9999;
+		    	/*object-fit: cover;*/
+		    }
+		/*遮罩层*/
+			.mask {
+				width: 100%;
+				height: 100%;
+				background-color: rgba(0,0,0,0.8);
+				/*opacity: 0.2;*/
+				position: fixed;
+				left: 0;
+				top: 0;
+				z-index: 0;
+				display:none;
+			}
+    	.header{
+    		position: fixed;
+    		left:8vw;
+    		top:13vw;
+    		width:84vw;
+			height: 30vw;
+    	}
+    	.header img {
+			width: 8vw;
+			height: 8vw;
+		}
+    	.header .top {
+			width: 100%;
+			height: 15vw;
+		}
+		.top .left {
+			display: inline-block;
+			float: left;
+			width: 50%;
+		}
+		.top .right {
+			text-align: right;
+			font-size:8vw;
+			font-weight: bold;
+			display: inline-block;
+			text-shadow: 0 0 2px #222222;
+			width: 50%;
+			float: left;
+		}
+
+		.header .nav {
+			width: 100%;
+			height: 15vw;
+		}
+		.box{
+			display:inline-block;
+			width:34.2vw;
+			height:11.43vw;
+			padding: 0 5vw 0 0;
+			line-height:11.42vw;
+			border-radius: 10vw;
+			background-color: rgba(239, 239, 239, 0.4);
+			text-align:center;
+			text-indent: 5.5555vw;
+			text-shadow: 0 0 2px #222222;
+			font-weight: bold;
+			box-shadow: 0 1px 2px rgba(0, 0, 0, 0.18), 0 2px 2px rgba(0, 0, 0, 0.25);
+		}
+		.pass_box{
+			position: fixed;
+			left: 0;
+			top:30vw;
+			text-align:center;
+		}
+		.pass{
+			color: #fff;
+			font-size: 3.888888vw;
+			height: 11.111111vw;
+			width: 79vw;
+			padding: 0 5vw 0 0;
+			margin:2.5vw 0;
+			border-radius: 8.3333vw;
+			background-color: rgba(239, 239, 239, 0.4);
+			text-align:center;
+			text-indent: 5.5555vw;
+			text-shadow: 0 0 2px #222222;
+			font-weight: bold;
+			border-width: 0;
+			box-shadow: 0 1px 2px rgba(0, 0, 0, 0.18), 0 2px 2px rgba(0, 0, 0, 0.25);
+		}
+		/*登录*/
+		.save_login {
+			position: fixed;
+			left:8vw;
+			top:140vw;
+			height: 11.111111vw;
+			width: 83.3333vw;
+			color: #ffffff;
+			font-size: 15px;
+			font-weight: bold;
+			padding: 0 5vw 0 0;
+			position: relative;
+			text-align: center;
+			text-indent: 5.5555vw;
+			white-space: pre;
+			border-radius: 13.8888vw;
+			box-shadow: 0 1px 2px rgba(0, 0, 0, 0.18), 0 2px 2px rgba(0, 0, 0, 0.25);
+			background: linear-gradient(to right, #d9afd9 0%,#97d9e1 100%);
+		}
+
+	    	#logining{
+	    		width: 100vw;
+	    		height: 100vh;
+	    		background: url(../../image/logon-page/loading2.png)no-repeat center 97px;
+	    		background-size: 300px;
+	    		background-color: #282d35;
+	    		position: fixed;
+	    		top: 0;
+	    		left: 0;
+	    		display: none;
+	    		z-index: 9999;
+	    	}
+	    	#logining::after{
+	    		content: '';
+	    		display: block;
+	    		width: 100vw;
+	    		height: 270px;
+	    		position: absolute;
+	    		bottom: 0;
+	    		left: 0;
+	    		background: url(../../image/logon-page/danche.gif)no-repeat center center;
+	    		background-size: cover;
+	    	}
+
+		.alert-focus{
+	    	line-height:35vw;
+	    	text-align:center;
+	    	background-color:#FFF;
+	    	z-index: 10000;
+	    }
+	    .alert-focus-text{
+	    	display:inline-block;
+	    	line-height:5vw;
+	    }
+	    /*提示框*/
+
+			.toast {
+				width:55vw;
+				/*height: 66.6666666vw;*/
+				padding: 3.333333vw 13.888888vw 7.333333vw 13.888888vw;
+				border-radius: 20px;
+				background-color: #fff;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin-left: -41.6666665vw;
+				z-index: 99999;
+				text-align: center;
+				display: none;
+			}
+
+			.toast-title {
+				color: #484848;
+				font-size: 5.555555vw;
+				font-weight: bold;
+				margin-bottom: 3.333333vw;
+			}
+
+			.toast-line {
+				width: 100%;
+				height: 2px;
+				background-color: #efefef;
+				border-radius: 30px;
+			}
+
+			.toast-content {
+				width: 60vw;
+				color: #484848;
+				font-size: 4.1666666vw;
+				font-weight: bold;
+				line-height: 6.111111vw;
+				margin: 8.333333vw 0 0 -2vw;
+			}
+
+			.toast-define {
+				color: #fff;
+				font-size: 4.1666666vw;
+				font-weight: bold;
+				width: 44.444444vw;
+				background-color: #ff808a;
+				border-radius: 30px;
+				box-shadow: 0 1px 2px rgba(158, 158, 158, 0.18), 0 2px 2px rgba(158, 158, 158, 0.25);
+				font-size: 3.888888vw;
+				height: 11.111111vw;
+				line-height: 11.111111vw;
+				text-align: center;
+				margin: 8.333333vw auto 0;
+			}
+    </style>
+</head>
+<body>
+	<div class="bg"></div>
+
+	<div class="header">
+		<div class="top">
+			<div class="left"><img src="../../icon/logon-page/ht1.png" onclick="back()" /></div>
+			<div class="right">Reset It</div>
+		</div>
+	</div>
+
+	<div class="pass_box">
+		<input class="pass input-con newPassA" type="text" placeholder="New Password" />
+		<input class="pass input-con newPassB" type="text" placeholder="New Password Again" />
+	</div>
+
+	<button class="save_login">S A V E & L O G I N</button>
+
+	<!--遮罩层-->
+	<div class="mask"></div>
+
+	<!--loading-->
+	<div id="logining"></div>
+
+	<!--狀態或錯誤提示框-->
+	<div class="alert-focus">
+		<div class="alert-focus-text"></div>
+	</div>
+
+	<!--提示确认框-->
+	<div class="toast">
+		<h1 class="toast-title">Note</h1>
+		<div class="toast-line"></div>
+		<div class="toast-text"></div>
+		<div class="toast-define" tapmode>D E F I N E</div>
+	</div>
+
+</body>
+
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script src="../../script/jquery-3.1.0.min.js" type="text/javascript"></script>
+	<script src="../../json/router.json" type="text/javascript"></script>
+	<script src="../../script/public.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="../../json/api.json"></script>
+
+	<script type="text/javascript">
+		var pas1,//密碼一
+			pas2,//密碼二
+			username;//賬戶
+		var warn_text = {
+			text1: "Please enter the password",
+			text2: "Inconsistency of ciphers",
+			text3: "The password should not be less than 6 bits",
+			text4: "<p class='toast-content'>“Server Connection Failed, <br/> Tinkle Service May Not Cover Your Area”</p>",
+			text5: "<p class='toast-content'>-1-<br/>“Please Check The Network Is Normal”</p><p class='toast-content'>-2-<br/>“Please Check Whether Tinkle Network Permission Is Disabled”</p>"
+		}
+		if($api.getStorage("language") == "zho") {
+			$api.attr($api.domAll(".pass")[0], "placeholder", "設 定 新 密 碼 ");
+			$api.attr($api.domAll(".pass")[1], "placeholder", "再 次 輸 入");
+			$api.text($api.dom(".right"), "重設");
+			$api.text($api.dom(".save_login"), "保  存  & 登  陸");
+
+			var warn_text = {
+				text1: "請 輸 入 密 碼",
+				text2: "密碼不一致",
+				text3: "密 碼 不 能 少 於 6 位",
+				text4: "<p class='toast-content'>“服 務 器 連 接 失 敗 ，<br/> T i n k l e 的 服 務 可 能 還 沒 覆 蓋 您 所 在 的 地 區 ”</p>",
+				text5: "<p class='toast-content'>-1-<br/>“請 檢 查 網 絡 是 否 正 常”</p><p class='toast-content'>-2-<br/>“請 檢 查 是 否 禁 用 了 T i n k l e 的 網 絡 權 限”</p>",
+				text6 : "密 碼 修 改 成 功",
+				text7 : "密 碼 修 改 失 敗"
+			}
+		}
+
+		apiready = function(){
+			username = api.pageParam['username'];//賬戶
+			//向右滑关闭页面
+			api.addEventListener({
+				name: 'swiperight'
+			}, function(ret, err) {
+				back();
+			});
+			//隐藏register_index的Fram组
+			api.setFrameGroupAttr({
+				name: 'register',
+				hidden: true
+			});
+//			openPopup(warn_text.text1);
+		};
+
+		//彈窗
+		function openPopup(data){
+			$api.html($api.dom(".alert-focus-text"), data);
+			$api.css($api.dom(".alert-focus"), "display:block");
+			$api.css($api.dom(".mask"), "display:block");
+			setTimeout(function(){
+				$api.css($api.dom(".alert-focus"), "display:none");
+				$api.css($api.dom(".mask"), "display:none");
+			},1000);
+		}
+
+		//提示确认框
+		function openToast(data){
+			$api.html($api.dom(".toast-text"), data);
+			$('.toast').css('margin-top','-' + Number($(".toast").innerHeight()) / 2 +'px');
+			$api.css($api.dom(".toast"), "display:block");
+			$api.css($api.dom(".mask"), "display:block");
+		}
+
+
+			//修改密碼
+			$('.save_login').click(function(){
+//				alert(api.pageParam['username']);
+				pas1 = $('.newPassA').val();
+				pas2 = $('.newPassB').val();
+				if(pas1.length == 0 || pas2.length == 0){//密碼為空
+					openPopup(warn_text.text1);
+					return;
+				}
+				if(pas1 != pas2){//密碼不一致
+					openPopup(warn_text.text2);
+					return;
+				}
+				if(pas1.length < 6 ){//密碼少於6位
+					openPopup(warn_text.text3);
+					return;
+				}
+
+				api.ajax({
+					url:'http://api.baopinghui.com/app_tinUserinfoControllerC/forgetPassword',
+					method: 'post',
+					data: {
+						values: {
+							username: username,
+							password: pas2
+						}
+					}
+				}, function(ret, err) {
+					if(ret) {
+						if(ret['status']) {
+							openPopup(warn_text.text6);//修改密碼成功
+							login();
+						} else {
+							console.log('我是668行：'+JSON.stringify(ret));
+						}
+					} else {
+						openPopup(warn_text.text7);//修改密碼失敗
+						uploadError(err);
+					}
+				});
+			});
+
+			function login(){
+				$api.css($api.dom(".mask"), "display:block");
+				$api.css($api.dom("#logining"), "display:block");
+				api.ajax({
+					url: json['http'] + json['Login']['logon'],
+					method: 'post',
+					timeout : 15000,
+					data: {
+						values: {
+							"username": username,
+							"password": pas2,
+						}
+					},
+				}, function(ret, err) {
+				console.log(JSON.stringify(ret));
+					if(ret["status"] == 1) {
+						$api.setStorage('username',username);
+						ok_login();
+
+
+						$api.setStorage('id', ret["data"]['uiId']);
+
+						api.setFullScreen({
+							fullScreen : true
+						});
+						$api.setStorage('user_name', ret["data"]['username']);
+						$api.setStorage('token', ret["data"]['token']);
+
+						enterWin('chat_index', 'chat/chat_index.html');
+						setTimeout(function(){
+//							api.closeFrame();
+							api.closeWin({});
+						},1500);
+						return;
+					}
+					//错误码，数字类型。（0：连接错误、1：超时、2：授权错误、3：数据类型错误）
+					if(err.code == 0){
+						openToast(warn_text.text4);
+					}else if(err.code == 1){
+						 openToast(warn_text.text4);
+					}
+
+					if(err["statusCode"] == 0) {//離線了~~~
+						console.log(JSON.stringify(err));
+						openPopup(warn_text.text6);
+					}
+
+					$api.css($api.dom("#logining"), "display:none");
+
+				});
+			}
+		function ok_login() {
+			// 重新清空缓存
+			$api.rmStorage('id');
+			$api.rmStorage('apId');
+			$api.rmStorage('avatar')
+			$api.rmStorage('fans')
+			$api.rmStorage('follwer')
+			$api.rmStorage('summary')
+			$api.rmStorage('popular')
+			$api.rmStorage('active')
+			$api.rmStorage('nickname')
+			$api.rmStorage('my_message')
+			$api.rmStorage('focus_message')
+			$api.rmStorage('user_name');
+			$api.rmStorage('beginDate');
+			$api.rmStorage('cover');
+
+			$api.rmStorage('hasNews')//总的未读数
+			$api.rmStorage('chatList');//会话列表
+
+		}
+	</script>
+</html>

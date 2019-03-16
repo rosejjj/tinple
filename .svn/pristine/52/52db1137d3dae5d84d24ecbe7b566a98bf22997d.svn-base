@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>account</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <style type="text/css">
+		html, body{
+			background-color: #efefef;
+			font-family: Arial;
+			font-style: italic;
+		}
+		
+		img{
+			display: block;
+		}
+		img[src=""]{
+            visibility: hidden;
+        }
+		.wrap{
+			padding-top: 65px;
+			/*使导航出现在最上方，并且不遮挡到内容*/
+			width: 100%;
+			margin: 0 auto;
+			margin-top: 5px;
+		}
+/*		.left, .right{
+			float: left;
+		}
+		.left{
+			width: 55vw;
+			margin-right: 6.3vw;
+		}
+		.input{
+			width: 100%;
+			margin-bottom: 10.67vw;
+		}*/
+/*		.content{
+			font-size: 8vw;
+			line-height: 11.73vw;
+			font-weight: bold;
+			color: #484848;
+			min-height: 11.73vw;
+			white-space: pre-line;
+			word-wrap: break-word;*/
+			/*内容超过宽度自动换行，不带空格的全英文和全数字也都可以*/
+/*			user-select:text;
+    		-webkit-user-select:text;*/
+    		/*使标签内容可以编辑，配合contenteditable="true"使用*/
+/*    		outline: none;
+		}*/
+/*		#summary{
+			font-size: 3.2vw;
+			line-height: 4.53vw;
+			min-height: 4.53vw;
+		}
+		.title{
+			margin-top: 1.33vw;
+			color: #aaa;
+			font-size: 3.2vw;
+			line-height: 4.53vw;
+		}*/
+		/*.right{*/
+			/*头像相关*/
+/*			width: 28vw;
+			height: 28vw;
+			position: relative;
+			background-color: #efefef;
+			border-radius:50%;
+		}*/
+		/*.head{*/
+			/*头像*/
+/*			width: 100%;
+			height: 100%;
+			border-radius: 50%;
+			object-fit: cover;*/
+			/*对于替换的元素使用保持原有比例，覆盖整个区域的方法，图片可能会被裁减*/
+		/*}*/
+		/*.plus{*/
+			/*加号按钮*/
+/*			width: 6.7vw;
+			height: 6.7vw;
+			position: absolute;
+			bottom: 0;
+			right: 0;
+		}*/
+		.avatar{
+			position: relative;
+			width:100%;
+			height:26.6vw;
+			font:3.99vw/26.6vw Arial;
+			font-weight: bold;
+			border-bottom:1.33vw solid #efefef;
+			padding-left:5.32vw;
+			box-sizing: border-box;
+			background-color: #fff;
+		}
+		.avatar>img:nth-child(2){
+			position: absolute;
+			top:3.99vw;
+			right:11.44vw;
+			width:18.62vw;
+			height:18.62vw;
+			border-radius: 50%;
+			object-fit: cover;
+			background-color:#efefef;
+		}
+		.avatar>img:nth-child(3){
+			position: absolute;
+			right:5vw;
+			top:11.3vw;
+			width:4vw;
+			height:4vw;
+			transform: rotate(-90deg);
+		}
+		.input{
+			position: relative;
+			width:100%;
+			min-height:13.3vw;
+	   		outline: none;
+	   		background-color: #fff;
+		}
+
+		.input>p{
+			width:89.36vw;
+			margin:0 auto;
+			height:100%;
+			font:3.99vw/13.3vw Arial;
+			font-weight: bold;
+			border-bottom:1px solid #efefef;
+			box-sizing: border-box;
+			outline: none;
+		}
+		#summary,#profession{
+			color:#aaa;
+			font:3.99vw/13.3vw Arial;
+			font-weight: bold;
+			border:0;
+			min-height: 13.3vw;
+			line-height: 5.85vw;
+			padding-top:3.725vw;
+			padding-bottom:3.725vw;
+		}
+/*		.input:nth-of-type(3){
+			padding-top:3.725vw;
+			box-sizing: border-box;
+		}*/
+		#summary,#profession{
+			min-height: 13.3vw;
+			line-height: 5.85vw;
+			padding-top:3.725vw;
+			padding-bottom:3.725vw;
+			box-sizing: border-box;
+			white-space: pre-line;
+			word-wrap: break-word;
+			/*内容超过宽度自动换行，不带空格的全英文和全数字也都可以*/
+			user-select:text;
+    		-webkit-user-select:text;
+    		outline:none;
+		}
+		#profession{
+			border-bottom:1px solid #efefef;
+		}
+		.input:nth-of-type(3){
+			min-height: 13.3vw;
+			font:3.99vw/13.3vw Arial;
+			font-weight: bold;
+			border-bottom:5px solid #efefef;
+		}
+		#location,#birth{
+			position: absolute;
+			top:0;
+			right:11.44vw;
+			width:89.36vw;
+			text-align: right;
+			color:#aaa;
+			font-weight: normal;
+			border:0;
+		}
+		.input:nth-of-type(6)>img,.input:nth-of-type(5)>img{
+			position: absolute;
+			right:5vw;
+			top:4.65vw;
+			width:4vw;
+			height:4vw;
+			transform: rotate(-90deg);
+		}
+		.input:nth-of-type(6)>p{
+			border:0;
+		}
+		.input:nth-of-type(6){
+			border-bottom: 5px solid #efefef;
+		}
+		.send{
+			width:100%;
+			height:13.3vw;
+			font:3.99vw/13.3vw Arial;
+			font-weight: bold;
+			color:#f381a3;
+			text-align: center;
+			background-color:#fff;
+		}
+    </style>
+</head>
+<body>
+	<div class="wrap">
+		<!-- <div class="left"> -->
+			<div class="avatar">
+				<span id="avatartext">Head Portrait</span>
+				<img src="" class="head" id="head">
+				<img src="../../icon/search/toright2.png" alt="">
+<!-- 	   			<a href="javascript:;">
+	   				<img src="../../image/icon-update@3x2.png" alt="" class="plus" id="plus">
+	   			</a> -->
+			</div>
+			<div class="input">
+				<p class="content" id="nickname" contenteditable="true"></p>
+				<!-- <p class="title">Nickname</p> -->
+			</div>
+			<div class="input">
+				<p class="content" id="summary" contenteditable="true">Introduction</p>
+				<!-- <p class="title">Introduction</p> -->
+			</div>
+			<div class="input">
+				<p class="content" id="profession" contenteditable="true">Profession</p>
+				<!-- <p class="title">Profession</p> -->
+			</div>
+			<div class="input">
+				<p class="content" id="countryy">Country</p>
+				<p id="location">Country</p>
+				<img src="../../icon/search/toright2.png" alt="">
+			</div>
+			<div class="input">
+				<p class="content" id="datee">Date of birth</p>
+				<p  id="birth">Date of birth</p>
+				<img src="../../icon/search/toright2.png" alt="">
+			</div>
+			<div class="send" onclick='sendData()'>C O M P L E T E</div>
+		<!-- </div> -->
+<!-- 		<div class="right">
+			<img src="" class="head" id="head">
+   			<a href="javascript:;">
+   				<img src="../../image/icon-update@3x2.png" alt="" class="plus" id="plus">
+   			</a>
+		</div> -->
+	</div>
+	<script type="text/javascript">
+		var cLocation,
+			eLocation,
+			tempLocation = '';
+		var hhh = window.screen.height,
+			www = window.screen.width;
+		var headerH = '65px';
+		apiready = function(){
+			// 刘海屏适配
+			if(hhh/www > 2){
+				$api.css($api.dom('.wrap'), 'padding-top:89px');
+				headerH = 89+'px';
+			}else{
+				$api.css($api.dom('.wrap'), 'padding-top:'+headerH-1+'px;');
+			}
+			
+			api.addEventListener({
+				name: 'swiperight'
+			}, function() {
+				api.closeWin({
+					animation: {
+						type: "push", //动画类型（详见动画类型常量）
+						subType: "from_left", //动画子类型（详见动画子类型常量）
+						duration: 300 //动画过渡时间，默认300毫秒
+					}
+				});
+			});//右滑关闭win
+			api.openFrame({
+				name: "header",
+				url: "widget://html/nav/header.html",
+				rect: {
+					x: 0,
+					y: 0,
+					w: "auto",
+					h: headerH
+				},
+				pageParam: {
+					account: true
+				}
+			});//打开通用头部，参数account表示这是账户设置界面
+			var nickname = $api.dom("#nickname"),
+				summary = $api.dom("#summary"),
+				profession = $api.dom("#profession"),
+				head = $api.dom("#head"),
+				location = $api.dom("#location"),
+				birth = $api.dom("#birth");
+			if(!!$api.getStorage("location")){
+				tempLocation = $api.getStorage("location");
+				if($api.getStorage("language") == "zho"){
+					$api.html(location, tempLocation.split(",")[0] || "");
+				}else{
+					$api.html(location, tempLocation.split(",")[1] || "");
+				};//location存的值为中文地址和英文地址，中间用逗号隔开，所以英文取第一个，中文取第二个
+			};//由于地址包含中文和英文，使用tempLocation这个变量来存储location的值
+			if($api.getStorage("language") == "zho"){
+				var oTitle = $api.domAll(".title");
+				$api.text($api.dom('#avatartext'), '头 像');
+				$api.html(oTitle[0], "暱 稱");
+				$api.html($api.dom("#summary"), "簡 介");
+				$api.html($api.dom("#profession"), "職 業");
+				$api.html($api.dom('#countryy'), "位 置");
+				$api.html($api.dom('#datee'), "出 生 日 期");
+				$api.html($api.dom('.send'), '完 成');
+				$api.html(nickname, $api.getStorage("nickname") || "暱 稱");
+				$api.html(summary, $api.getStorage("summary") || "簡 介");
+				$api.html(profession, $api.getStorage("profession") || "職 業");
+				// if($api.html($api.dom("#summary"))=='Introduction'){
+				// 	$api.html($api.dom("#summary"), "簡 介");
+				// }
+			}else{
+				$api.html(nickname, $api.getStorage("nickname") || "nickname");
+				$api.html(summary, $api.getStorage("summary") || "Introduction");
+				$api.html(profession, $api.getStorage("profession") || "Profession");
+			}
+			
+			//需要获取的缓存nickname, summary, profession, language, birth, avatar, id
+			$api.html(birth, $api.getStorage("birth") || "");
+			head.src = "http://bin.baopinghui.com/" + $api.getStorage("avatar");
+
+			$api.addEvt(head, "click", changeHead);
+			//点击头像执行换头像函数
+			$api.addEvt(summary, "focus", function(){
+				$api.css(this, 'color:#000');
+				// $api.css(this, "font-size:8vw;line-height:11.73vw");
+				if($api.html(this)=='Introduction' || $api.html(this)=='簡 介'){
+					$api.html(this, '');
+				}
+			});//简介获取焦点时，字体变大
+			$api.addEvt(summary, "blur", function(){
+				// $api.css(this, "font-size: 3.2vw;line-height: 4.53vw");
+				if($api.html(this)==''){
+					$api.css(this, 'color:#aaa');
+					if($api.getStorage('language')=='zho'){
+						$api.html(this, '簡 介');
+					}else{
+						$api.html(this, 'Introduction');
+					}
+				}else{
+					$api.css(this, 'color:#000');
+				}
+			});//简介失去焦点时，字体变小
+
+			//職業获取焦点
+			$api.addEvt(profession, "focus", function(){
+				$api.css(this, 'color:#000');
+				if($api.html(this)=='Profession' || $api.html(this)=='職 業'){
+					$api.html(this, '');
+				}
+			});
+			//職業失去焦点
+			$api.addEvt(profession, "blur", function(){
+				if($api.html(this)==''){
+					$api.css(this, 'color:#aaa');
+					if($api.getStorage('language')=='zho'){
+						$api.html(this, '職 業');
+					}else{
+						$api.html(this, 'Profession');
+					}
+				}else{
+					$api.css(this, 'color:#000');
+				}
+			});
+			$api.addEvt(location, "click", function(){
+				api.openWin({
+		    		name: "location",
+		    		url: "widget://html/set-up/location.html",
+		    		reload: true,
+		    		vScrollBarEnabled: false,
+		    		slidBackEnabled: false
+		    	});
+			});
+
+			//点击地址时，打开地址选择页面
+			$api.addEvt(birth, "click", function(){
+				api.openFrame({
+					name: "dateBg",
+					url: "widget://html/set-up/selectDateBg.html",
+					rect: {
+						x: 0,
+						y: 0,
+						w: "auto",
+						h: "auto"
+					}
+	    		});
+			});//点击生日时，打开生日选择页面
+		};
+
+		function changeHead(){//定义换头像函数
+	    	api.getPicture({
+	    		sourceType: "library",
+	    		mediaValue: "pic",
+	    		destinationType: "url",
+	    		saveToPhotoAlbum: true,
+	    		quality: 70,
+	    		targetWidth: 1200,
+	    		targetHeight: 1200,
+	    	}, function(ret, err){
+	    		if(ret){
+	    			if(ret.data){
+	    				var data = ret.data,
+	    					myDate = new Date(),
+	    					avatar = data;
+	    				var obj = api.require('qiniuUpfile');
+						obj.upfile({
+							file: avatar,
+							name: myDate.getTime() + Math.random()
+						}, function(ret, err) {
+							if(ret.status) {
+								if(ret.oper == "complete") {
+									var qiniuKey = ret.info.key;
+									api.ajax({
+										url: "http://api.baopinghui.com/app_tinUserinfoControllerC/setting",
+										method: "post",
+										data: {
+											values: {
+												uiId: $api.getStorage('id'),
+												avatarUrl: qiniuKey
+											}
+										}
+									}, function(ret, err){
+										if(ret){
+											if(ret.status){
+												api.openFrame({
+													name: "tip",
+													url: "widget://html/nav/out.html",
+													rect: {
+														x: 0,
+														y: 0,
+														w: "auto",
+														h: "auto"
+													},
+													pageParam: {
+														head: true
+													}
+												});
+												$api.setStorage("avatar", qiniuKey);
+												//换头像成功后，将头像缓存设置为最新的头像地址
+												head.src = data;
+												return;
+											};
+											return;
+										};
+										console.log(JSON.stringify(err));
+									});
+								}
+								return;
+							}
+							console.log("上传失败");
+							return;
+						});
+	    			};
+	    			return;
+	    		};
+				console.log(err);
+	    	});
+	    };
+
+	    function setLocation(val, secVal){//定义获取地址信息的函数，规定地址格式为中文地址和英文地址，中间用逗号隔开，传进来的参数第一个是英文地址，第二个为中文地址
+	    	eLocation = val;
+	    	cLocation = secVal;
+	    	$api.html($api.dom("#location"), val);
+	    	if($api.getStorage("language") == "zho"){
+	    		$api.html($api.dom("#location"), secVal);
+	    	};
+	    };
+
+	    function sendData(){//定义提交信息的函数
+	    	var newReg = /([^a-zA-Z0-9\u4e00-\u9fa5])+/g;//定义正则，填写的职业不能包含符号
+	    	if(newReg.test($api.html($api.dom("#profession")))&&$api.html($api.dom("#profession"))!=='職 業'){
+	    		api.openFrame({//打开通用提示框提示不能输入符号
+					name: "tip",
+					url: "widget://html/nav/out.html",
+					rect: {
+						x: 0,
+						y: 0,
+						w: "auto",
+						h: "auto"
+					},
+					pageParam: {
+						profession: true
+					}
+	    		});
+	    		return;
+	    	};
+	    	var tarLocation,
+	    		values;
+	    	if(!!cLocation){
+	    		tarLocation = cLocation + "," + eLocation;
+	    	}else{
+	    		tarLocation = tempLocation;
+	    	};
+	    	if($api.html(birth)){
+	    		values = {
+	    			uiId: $api.getStorage('id'),
+					nickname: $api.text(nickname),
+					summary: $api.text(summary),
+					career: $api.text(profession),
+					location: tarLocation,
+					beginTime: $api.html(birth)
+	    		};
+	    	}else{
+	    		values = {
+	    			uiId: $api.getStorage('id'),
+					nickname: $api.text(nickname),
+					summary: $api.text(summary),
+					career: $api.text(profession),
+					location: tarLocation
+	    		};
+	    	};
+	    	console.log(JSON.stringify(values));
+	    	api.ajax({
+				url: "http://api.baopinghui.com/app_tinUserinfoControllerC/setting",
+				method: "post",
+				data: {
+						values: values
+					}
+			}, function(ret, err){
+				if(ret){
+					if(ret.status){
+						$api.setStorage("nickname", $api.text(nickname) || '');
+						$api.setStorage("birth", $api.text(birth) || '');
+						$api.setStorage("summary", $api.text(summary) || '');
+						$api.setStorage("profession", $api.text(profession) || '');
+						$api.setStorage("location", tarLocation);
+						api.openFrame({//打开通用提示框表示修改成功
+							name: "tip",
+							url: "widget://html/nav/out.html",
+							rect: {
+								x: 0,
+								y: 0,
+								w: "auto",
+								h: "auto"
+							},
+							pageParam: {
+								sendSuccess: true
+							}
+						});
+					};
+				}else{
+					api.openFrame({//打开通用提示框表示修改失败
+						name: "tip",
+						url: "widget://html/nav/out.html",
+						rect: {
+							x: 0,
+							y: 0,
+							w: "auto",
+							h: "auto"
+						},
+						pageParam: {
+							sendFail: true
+						}
+					});
+					console.log(JSON.stringify(err));
+				}
+
+			});
+	    };
+
+	    function setDate(val){//定义设置生日函数，使拿到的数据为年-月-日
+	    	if(!!val){
+	    		var ary = val.split(",");
+	    		$api.html(birth, ary[0] + "-" + ary[1] + "-" + ary[2]);
+	    	};
+	    };
+
+	    function closeFra(){
+	    	api.closeFrame({
+	    		name: "dateBg"
+	    	});
+	    	api.closeFrame({
+	    		name: "date"
+	    	});
+	    };
+	</script>
+</body>
+</html>

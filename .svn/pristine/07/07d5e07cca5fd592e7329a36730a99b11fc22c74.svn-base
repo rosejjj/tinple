@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+	<title>numerology_result</title>
+	<style type="text/css">
+	*{
+		padding:0;
+		margin:0;
+	}
+	.bg{
+		width:100vw;
+		height:auto;
+		background-image:url(../../icon/logon-page2/bg3.jpg);
+		/*background-position:center;*/
+		background-size:cover;
+		padding:5.32vw;
+		box-sizing: border-box;
+	}
+	.star-box{
+		width:89.1vw;
+		/*min-height:280px;*/
+		border-radius: 15.96vw;
+		margin:16.5vw auto 5.32vw;
+		padding:10.64vw 5.32vw 9vw 5.32vw;
+		box-sizing: border-box;
+		background-color:#7512f7;
+		text-align: center;
+	}
+	.star-title,.box1-title,.box2-title,.box3-title,.box4-title{
+		width:53.19vw;
+		height:5.32vw;
+		margin:0 auto 6.12vw;
+		border-radius: 7.98vw;
+		background-color:#fff321;
+		font:3.19vw/5.32vw Arial;
+		font-weight: bold;
+		color:#2d075c;
+		text-align: center;
+	}
+	.star-img{
+		width:26.6vw;
+		height:26.6vw;
+		border-radius: 50%;
+		border:2px solid rgba(45,7,92,1);
+		box-sizing: border-box;
+		background-color: #fff;
+		margin:0 auto 1.33vw;
+	}
+	.star-name{
+		font:9.31vw/13.56vw Arial;
+		font-weight: bold;
+		color:#fff;
+		margin:0 auto;
+	}
+	.content-box{
+		width:89.1vw;
+		height:auto;
+		border-radius: 15.96vw;
+		margin:0 auto 0vw;
+		padding:10.64vw 5.32vw 10.64vw 5.32vw;
+		box-sizing: border-box;
+		background-color:#7512f7;
+		text-align: center;
+	}
+	.box1-content,.box2-content,.box3-content,.box4-content{
+		width:100%;
+		height:auto;
+		font:2.7vw/4.52vw Arial;
+		font-weight: bold;
+		color:#fff;
+		text-align: center;
+	}
+	.transition{
+		width:100%;
+		height:2.66vw;
+		margin:10.64vw 0 10.64vw 0;
+	}
+	.transition span{
+		display: inline-block;
+		/*float:left;*/
+		width:9.31vw;
+		height:2.66vw;
+		border-radius: 2.66vw;
+		background-color: #2d075c;
+		vertical-align: top;
+		margin-right:5.85vw;
+	}
+	.transition span:nth-child(5){
+		margin-right:0vw;
+	}
+	.button,.saveimg{
+		width:66.49vw;
+		height:10.64vw;
+		border-radius: 7.98vw;
+		background-color:#c42d8e;
+		margin:0 auto 5.32vw;
+		font:3.72vw/10.64vw Arial;
+		font-weight: bold;
+		color:#fff;
+		text-align: center;
+	}
+	.saveimg{
+		background-color:#2D075C;
+		margin:0 auto;
+	}
+	a{
+		text-decoration: none;
+	}
+	.return{
+		position: fixed;
+		top:7.31vw;
+		left:5.32vw;
+		width:7.98vw;
+		height:7.98vw;
+		background:url(../../icon/logon-page2/return.png);
+		background-size: cover;
+		border-radius: 8px;
+		/*box-shadow: 0 0 0.5px #7512F7;*/
+	}
+	/*截屏段*/
+	.jieping{
+		position: absolute;
+		top:0;
+		width: 100%;
+		height:auto;
+		/*display: none;*/
+		z-index: -1;
+	}
+	#shareimg{
+		position: absolute;
+		width:100vw;
+		object-fit: cover;
+		z-index: 10;
+	}
+	.avatar{
+		position: absolute;
+		top:16vw;
+		left:26.5vw;
+		width:21vw;
+		height:21vw;
+		/*border-radius: 50%;*/
+		/*background-color:#efefef;*/
+		z-index: -1;
+		object-fit: cover;
+	}
+	.staravatar{
+		position: absolute;
+		top:16vw;
+		left:52.5vw;
+		width:21vw;
+		height:21vw;
+		/*border-radius: 50%;*/
+		/*background-color:#efefef;*/
+		z-index: -1;
+		object-fit: cover;
+	}
+	#sharetext{
+		position: absolute;
+		top:46vw;
+		left:50%;
+		margin-left:-28.5%;
+		width:57%;
+		/*height:10.52vw;*/
+		z-index: 20;
+		object-fit: cover;
+	}
+	.QRcode{
+		position: absolute;
+		top:110vw;
+		left:13.5vw;
+		/*margin-left:-18.25vw;*/
+		width:24vw;
+		height:24vw;
+		/*background-color:#efefef;*/
+		z-index: 20;
+		/*padding:1vw;*/
+		/*box-sizing: border-box;*/
+	}
+	.QRcode>img{
+		width: 100%;
+		height:100%;
+		object-fit: cover;
+	}
+	.sharecode{
+		position: absolute;
+		bottom:-2px;
+		width: 100%;
+		object-fit: cover;
+		/*background:url(../../icon/iloveimg-compressed/sharecode.png);*/
+		/*background-size:cover;*/
+		z-index: 19;
+	}
+	.starname{
+		position: absolute;
+		top:23vw;
+		left:73.5vw;
+		width:15vw;
+		font:3.19vw/4.52vw Arail;
+		font-weight: bold;
+		color:#2D075C;
+		z-index: 20;
+		white-space: pre-line;
+        word-wrap: break-word;
+        /*内容超过宽度自动换行，不带空格的全英文和全数字也可以*/
+	}
+	</style>
+</head>
+<body>
+
+	<div class="bg" crossorigin="anonymous">
+	<div class="return" onclick="closewin()"></div>
+	<div class="star-box">
+		<div class="star-title">I belong to the personality of type</div>
+		<div class="star-img" id="star-img"></div>
+		<div class="star-name"></div>
+	</div>
+	<div class="content-box">
+		<div class="en">
+		<div class="box1">
+			<div class="box1-title">Specific character analysis</div>
+			<div class="box1-content"></div>
+		</div>
+		<div class="transition"><span></span><span></span><span></span><span></span><span></span></div>
+		</div>
+		<div class="box2">
+			<div class="box2-title">my lucky color</div>
+			<div class="box2-content"></div>
+		</div>
+		<div class="transition"><span></span><span></span><span></span><span></span><span></span></div>
+		<div class="box3">
+			<div class="box3-title">my key words</div>
+			<div class="box3-content"></div>
+		</div>
+		<div class="transition"><span></span><span></span><span></span><span></span><span></span></div>
+		<div class="box4">
+			<div class="box4-title">suitable career</div>
+			<div class="box4-content"></div>
+		</div>
+		<div class="transition"><span></span><span></span><span></span><span></span><span></span></div>
+		<div class="button" id="button">N E X T</div>
+		<div class="saveimg" id="saveimg">L O A D I N G</div>
+	</div>
+	</div>
+	<div class="jieping">
+		<img src="../../icon/iloveimg-compressed/wechat1.png" alt="" id="shareimg">
+		<!-- <div class="avatar"></div> -->
+		<img src="" alt="" class="avatar" id="avatar">
+		<!-- <div class="staravatar"></div> -->
+		<img src="" alt="" class="staravatar" id="staravatar">
+		<img src="" alt="" id="sharetext">
+		<div class="starname"></div>
+		<!-- <img src="" alt="" class="QRcode" id="QRcode"> -->
+		<img src="../../icon/iloveimg-compressed/sharecode.png" alt="" class="sharecode">
+		<div class="QRcode" id="QRcode"></div>
+	</div>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="../../script/html2canvas.min.js"></script>
+<script src="https://cdn.bootcss.com/dom-to-image/2.6.0/dom-to-image.min.js"></script>
+<script type="text/javascript" src="../../script/FileSaver.min.js"></script>
+<script type="text/javascript" src="../../script/qrcode.min.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript">
+	// 明星数据
+		var star={
+			"1":{
+				star:"Lady Gaga,James,Obama,Tom Hanks,吴尊,Luffy,Scarlett,Hugh Jackman,蔡徐坤",
+				star_url:"1Lady Gaga,2James,3Obama,4Tom Hanks,5吴尊,6Luffy,8Scarlett,9Hugh Jackman,10蔡徐坤",
+				text_url:"1惊世骇俗,2最有价值,3威名远扬,4不老型男,5体贴耐心,6不屈神勇,8沉着冷静,9铁汉柔情,10火速爆红"
+			},
+			"2":{
+				star:"Emma Watson,Michael Jordan,Daniel Radcliffe,Edward Cullen,Gal Gadot,杨超越",
+				star_url:"11Emma Watson,12Michael Jordan,14Daniel Radcliffe,15Edward Cullen,17Gal Gadot,18杨超越",
+				text_url:"11聪明伶俐,12永不服输,14勇于冒险,15英俊不凡,17正义和平,18耿直率真"
+			},
+			"3":{
+				star:"金泰妍,Audrey Hepburn,Rihanna,Ronaldo,Hillary Clinton,Katy Perry,Angelababy,Ed Sheeran,王源",
+				star_url:"19金泰妍,20Audrey Hepburn,21Rihanna,22Ronaldo,23Hillary Clinton,24Katy Perry,25Angelababy,27Ed Sheeran,29王源",
+				text_url:"19安静沉着,20优雅气质,21坚强独立,15英俊不凡,22孤傲坚毅,23善于交谈,24直爽率真,25活泼豪爽,27诚恳憨厚,29品学兼优"
+			},
+			"4":{
+				star:"Avril Lavigne,Mickey Mouse,Benedict Cumberbatch,Chris Hemsworth,王俊凯",
+				star_url:"30Avril Lavigne,32Mickey Mouse,33Benedict Cumberbatch,34Chris Hemsworth,35王俊凯",
+				text_url:"30个性鲜明,32奇思妙想,33细致严谨,34义气正直,35温暖细腻,37谨言慎行,38目的性强"
+			},
+			"5":{
+				star:"Zuckerberg,Ivanka,Kristen Stewart,Selena Gomez,Beyonce,迪迦奥特曼,PINOCCHIO,Chris Evans,Tom Holland,易烊千玺,Utada Hikaru",
+				star_url:"37Zuckerberg,38Ivanka,39Kristen Stewart,40Selena Gomez,42Beyonce,44迪迦奥特曼,45PINOCCHIO,46Chris Evans,47Tom Holland,48易烊千玺,49Utada Hikaru",
+				text_url:"35温暖细腻,37谨言慎行,38目的性强,39坦荡自由,40活泼可爱,42独立强势,44正义凛凛,45诚实可爱,46坚固信念,47朝气满满,48单纯善良,49低调真诚"
+			},
+			"6":{
+				star:"宋智孝,Victoria Beckham,Robert Downey,Michael Jackson,石原里美,范丞丞",
+				star_url:"52宋智孝,53Victoria Beckham,54Robert Downey,56Michael Jackson,57石原里美,59范丞丞",
+				text_url:"52率真可爱,53特立独行,54外向聪明,56富有童心,57精灵古怪,59不争不抢"
+			},
+			"7":{
+				star:"Marilyn Monroe,Christian Bale,John Depp,Taylor swift,鹿晗,安室奈美惠,权志龙,木村拓哉,新垣结衣,孟美岐",
+				star_url:"61Marilyn Monroe,66Christian Bale,67John Depp,68Taylor swift,69鹿晗,70安室奈美惠,71权志龙,72木村拓哉,73新垣结衣,74孟美岐",
+				text_url:"61美丽性感,66强大意志,67足智多谋,68敢爱敢恨,69低调谦逊,70低调努力,71认真细致,72谦恭礼貌,73谨慎慢热,74可盐可甜"
+			},
+			"8":{
+				star:"Bill Gates,Troye Sivan,李敏镐,Jerry,邓紫棋",
+				star_url:"75Bill Gates,76Troye Sivan,77李敏镐,79Jerry,80邓紫棋",
+				text_url:"75高效专注,76用情至深,77温和顾家,79古灵精怪,80耿直聪明"
+			},
+			"9":{
+				star:"Lionel Messi,林允儿,Adele,Justin Bieber,吴亦凡,杨幂,薛之谦",
+				star_url:"81Lionel Messi,82林允儿,86Adele,87Justin Bieber,88吴亦凡,89杨幂,90薛之谦",
+				text_url:"81无畏逆境,82真实善良,86率真自信,87外向可爱,88自由率真,89豪放大气,90深情幽默"
+			}
+		}
+		var boof = false;
+		var shareboof = false;
+		
+	apiready = function(){
+		setTimeout(function(){
+			console.log('关闭多余页面');
+			api.closeWin({
+		    name: 'numerology_new'
+			});
+			api.sendEvent({
+		        name: 'numerology_new'
+		   	});
+		},100);
+		
+		// 监听关闭自己
+		api.addEventListener({
+		    name: 'numerology_result_new'
+		}, function(ret, err) {
+			api.closeWin({
+			    name: 'numerology_result_new'
+			});
+		});
+		var function1 = api.pageParam['function1'];
+		var random = api.pageParam['random'];
+		var numerology_number = api.pageParam['numerology_number'];
+		var avatarpath;
+		var staravatarpath;
+		var nickname;
+		var avatarurl;
+		var wechatshareimg,
+				QQshareimg;
+	if(api.systemType=='ios'){
+		console.log('iosssssss');
+			// 获取头像
+			api.ajax({
+			    url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/userinfo',
+			    method: 'post',
+			    data: {
+			        values: {
+			            uiId: $api.getStorage('id'),
+			            pageUiId:$api.getStorage('id')
+			        }
+			    }
+			}, function(ret, err) {
+			    if (ret) {
+			    	avatarpath = api.cacheDir + "/pic/" + ret.data.avatar_url.replace(/\./g,'1') + ".png";
+			    	avatarurl = 'http://bin.baopinghui.com/'+ret.data.avatar_url;
+			    	nickname = ret.data.nickname;
+			    	api.download({
+				       url: avatarurl+'?imageView2/0/w/800',
+				       savePath: avatarpath,
+				       report: true,
+				       cache: true,
+				       allowResume: true
+				   	}, function(ret, err) {
+				   		if(ret.state == 1){
+				   			console.log('下载头像');
+				   			var avatar = document.getElementById('avatar');
+							avatar.setAttribute('src',avatarpath);
+				   		}
+				   	});
+				   	return;
+			    };
+			    return;
+			});
+			// 下载描述文字
+			var textpath = api.cacheDir + "/pic/" + star[numerology_number].text_url.split(",")[random] + ".png";
+			var text_url = 'http://bin.baopinghui.com/sharetext/'+star[numerology_number].text_url.split(",")[random] + '.png';
+			console.log(text_url);
+			api.download({
+				url: text_url,
+				savePath: textpath,
+				report: true,
+				cache: true,
+				allowResume: true
+		   	}, function(ret, err) {
+				if(ret.state == 1){
+				   	console.log('下载描述文字');
+				}
+		   	});
+		if($api.getStorage('language')=='zho'){
+		   		// 设置明星名字
+			$api.html($api.dom('.star-name'), star[numerology_number].star.split(",")[random]);
+			// 设置明星头像
+			$api.css($api.dom('.star-img'), 'background:url(http://bin.baopinghui.com/star/'+ star[numerology_number].star_url.split(",")[random].replace(/ /g,"%20")+'.jpg) no-repeat center;background-size:cover;');
+		}else{
+			setTimeout(function(){
+				$api.html($api.dom('.star-name'), numerology_number);
+				$api.css($api.dom('.star-img'), 'background:url('+avatarurl+') no-repeat center;background-size:cover;');
+			},500);
+			$api.html($api.dom('.star-title'), 'I belong to the personality of type');
+			$api.css($api.dom('.en'), 'display:none;');
+		}
+
+		if($api.getStorage('language')=='zho'){
+			$api.html($api.dom('.star-title'), '和 我 性 格 最 相 似 的 明 星 是');
+			$api.html($api.dom('.box1-title'), '具 體 性 格 分 析');
+		    $api.html($api.dom('.box2-title'), '我 的 幸 運 色');
+		    $api.html($api.dom('.box3-title'), '我 的 關 鍵 字');
+				$api.html($api.dom('.box4-title'), '理 想 職 業');
+		    $api.html($api.dom('#button'), '下 一 步');
+				$api.html($api.dom('#saveimg'), '加 載 中');
+			$api.css($api.dom('.bg'), 'background-size:contain;');
+		}
+		   	// 生成微信二维码
+		   	var QRdata = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxc39fb69be43c8f3d&redirect_uri=http%3a%2f%2fparttime.baopinghui.com%2fchat%2fbin%2fnumerology(share)%2fhtml%2fcover.html%3fID%3d'+$api.getStorage('id')+'&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
+			new QRCode(document.getElementById("QRcode"), QRdata);
+			// 把截屏代码显示
+			
+			// $api.css($api.dom('.jieping'), 'display:block;');
+			var shareimg = document.getElementById('shareimg');
+			var sharetext = document.getElementById('sharetext');
+			// 生成分享图片背景
+			shareimg.setAttribute('src','../../icon/iloveimg-compressed/wechat'+numerology_number+'.png');
+			console.log($('#shareimg').height());
+			// 给分享图片定义高度
+			var heightt = $('#shareimg').height()-10;
+			$api.css($api.dom('.jieping'), 'height:'+heightt+'px;');
+			// 给分享图片增加形容词
+			sharetext.setAttribute('src',textpath);
+
+			$api.css($api.dom('.avatar'), 'object-fit:cover;');
+			// 给分享图片增加明星名字
+			$api.html($api.dom('.starname'), '· '+star[numerology_number].star.split(",")[random]);
+			console.log(avatarpath);
+			console.log($api.html($api.dom('.star-name')));
+			// $api.css($api.dom('.avatar'), 'background:url('+ avatarpath +'?imageView2/0/w/800) no-repeat center;background-size:cover;');
+			$api.css($api.dom('.QRcode'), 'object-fit:cover');
+			var date = new Date();
+		    var picname=date.getTime();
+		    var imgname= picname + '.png';
+		    var imgpath = api.cacheDir + "/pic/";
+		    var imgpath1=api.cacheDir + "/pic/" + picname  + picname + '.png';
+			var star_avatar_url = 'http://bin.baopinghui.com/star/'+ star[numerology_number].star_url.split(",")[random].replace(/ /g,"%20")+'.jpg';
+			staravatarpath = api.cacheDir + "/pic/" + star[numerology_number].star_url.split(",")[random].replace(/ /g,"1") + ".png";
+			// 下载明星头像
+			api.download({
+		        url: star_avatar_url + '?imageView2/0/w/800',
+				savePath: staravatarpath,
+				report: true,
+				cache: true,
+				allowResume: true
+		   	}, function(ret, err) {
+		   		if(ret.state == 1){
+		   			// alert(staravatarpath);
+		   			// $api.css($api.dom('.staravatar'), 'background:url('+ staravatarpath +'?imageView2/0/w/800) no-repeat center;background-size:cover;');
+		   			var staravatar = document.getElementById('staravatar');
+		   			staravatar.setAttribute('src',staravatarpath);
+		   			$api.css($api.dom('.staravatar'), 'object-fit:cover;');
+		   			// $api.css($api.dom('.avatar'), 'background:url('+ avatarpath +'?imageView2/0/w/800) no-repeat center;background-size:cover;');
+		   			console.log('下载明星头像');
+		   			// 截屏功能
+		   			setTimeout(function(){
+					html2canvas($('.jieping')[0]).then(canvas => {
+			    		var imgUri = canvas.toDataURL();
+			    		console.log('截屏成功');
+			    		// 调用base64转图片模块
+			    		var trans = api.require('trans');
+						trans.saveImage({
+				    		base64Str:imgUri.replace('data:image/png;base64,', ''),
+				    		imgPath:imgpath,
+				    		imgName:imgname
+						}, function(ret, err) {
+				    		if (ret.status) {
+				    			wechatshareimg = imgpath+imgname;
+				    			//将截屏保存
+					        console.log('截屏微信保存成功');
+					        // 清空微信二维码
+					        $api.html($api.dom('#QRcode'), '');
+					        imgname= picname + 'QQ' + '.png';
+					        // 生成QQ二维码图片
+					        QRdata = 'https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=101414137&redirect_uri=http%3a%2f%2fparttime.baopinghui.com%2fchat%2fbin%2fnumerology(share)%2fhtml%2fcover.html%3fID%3d'+$api.getStorage('id')+'&state=state&scope=get_user_info';
+							new QRCode(document.getElementById("QRcode"), QRdata);
+							setTimeout(function(){
+								html2canvas($('.jieping')[0]).then(canvas => {
+						    		var imgUri = canvas.toDataURL();
+						    		console.log('截屏成功');
+						    		// 调用base64转图片模块
+						    		var trans = api.require('trans');
+									trans.saveImage({
+							    		base64Str:imgUri.replace('data:image/png;base64,', ''),
+							    		imgPath:imgpath,
+							    		imgName:imgname
+									}, function(ret, err) {
+							    		if (ret.status) {
+							    			QQshareimg = imgpath+imgname;
+								    			//将截屏保存
+									        console.log('截屏QQ保存成功');
+									        $api.css($api.dom('.jieping'), 'display:none');
+									        shareboof = true;
+									        if($api.getStorage('language')=='zho'){
+												$api.text($api.dom('#saveimg'), '分 享');
+											}else{
+												$api.text($api.dom('#saveimg'), 'S H A R E');
+											}
+									        return;
+											} else {
+								        		console.log(JSON.stringify(err));
+								    		}
+									});
+									return;
+								});
+							},500);
+							return;
+				    		} else {
+				        		console.log(JSON.stringify(err));
+				    		}
+						});
+					});
+		   			},1000);
+		   			return;
+		   		}
+		   	return;	
+		   	});
+		   	
+	}else{
+		console.log('安卓');
+		//安卓申请访问资源的权限
+        api.requestPermission({
+            list: ["storage"],
+        }, function(ret, err) {
+        	if(ret.list[0].granted){
+        		// 获取头像
+			api.ajax({
+			    url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/userinfo',
+			    method: 'post',
+			    data: {
+			        values: {
+			            uiId: $api.getStorage('id'),
+			            pageUiId:$api.getStorage('id')
+			        }
+			    }
+			}, function(ret, err) {
+			    if (ret) {
+			    	avatarpath = api.cacheDir + "/pic/" + ret.data.avatar_url.replace(/\./g,'1') + ".png";
+			    	avatarurl = 'http://bin.baopinghui.com/'+ret.data.avatar_url;
+			    	nickname = ret.data.nickname;
+			    	api.download({
+				       url: avatarurl+'?imageView2/0/w/800',
+				       savePath: avatarpath,
+				       report: true,
+				       cache: true,
+				       allowResume: true
+				   	}, function(ret, err) {
+				   		if(ret.state == 1){
+				   			console.log('下载头像');
+				   			var avatar = document.getElementById('avatar');
+							avatar.setAttribute('src',avatarpath);
+				   		}
+				   	});
+				   	return;
+			    };
+			    return;
+			});
+			// 下载描述文字
+			var textpath = api.cacheDir + "/pic/" + star[numerology_number].text_url.split(",")[random] + ".png";
+			var text_url = 'http://bin.baopinghui.com/sharetext/'+star[numerology_number].text_url.split(",")[random] + '.png';
+			console.log(text_url);
+			api.download({
+				url: text_url,
+				savePath: textpath,
+				report: true,
+				cache: true,
+				allowResume: true
+		   	}, function(ret, err) {
+				if(ret.state == 1){
+				   	console.log('下载描述文字');
+				}
+		   	});
+		if($api.getStorage('language')=='zho'){
+		   		// 设置明星名字
+			$api.html($api.dom('.star-name'), star[numerology_number].star.split(",")[random]);
+			// 设置明星头像
+			console.log(star[numerology_number].star_url.split(",")[random]);
+			$api.css($api.dom('.star-img'), 'background:url(http://bin.baopinghui.com/star/'+ star[numerology_number].star_url.split(",")[random].replace(/ /g,"%20")+'.jpg) no-repeat center;background-size:cover;');
+		}else{
+			setTimeout(function(){
+				$api.html($api.dom('.star-name'), numerology_number);
+				$api.css($api.dom('.star-img'), 'background:url('+avatarurl+') no-repeat center;background-size:cover;');
+			},500);
+			$api.html($api.dom('.star-title'), 'I belong to the personality of type');
+			$api.css($api.dom('.en'), 'display:none;');
+		}
+
+		if($api.getStorage('language')=='zho'){
+			$api.html($api.dom('.star-title'), '和 我 性 格 最 相 似 的 明 星 是');
+			$api.html($api.dom('.box1-title'), '具 體 性 格 分 析');
+		    $api.html($api.dom('.box2-title'), '我 的 幸 運 色');
+		    $api.html($api.dom('.box3-title'), '我 的 關 鍵 字');
+				$api.html($api.dom('.box4-title'), '理 想 職 業');
+		    $api.html($api.dom('#button'), '下 一 步');
+				$api.html($api.dom('#saveimg'), '加 載 中');
+			$api.css($api.dom('.bg'), 'background-size:contain;');
+		}
+
+		   	// 生成微信二维码
+		   	var QRdata = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxc39fb69be43c8f3d&redirect_uri=http%3a%2f%2fparttime.baopinghui.com%2fchat%2fbin%2fnumerology(share)%2fhtml%2fcover.html%3fID%3d'+$api.getStorage('id')+'&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
+		   	// var QRdata = 'www.baidu.com';
+			new QRCode(document.getElementById("QRcode"), QRdata);
+			// 把截屏代码显示
+			// $api.css($api.dom('.jieping'), 'display:block;');
+			var shareimg = document.getElementById('shareimg');
+			var sharetext = document.getElementById('sharetext');
+			// 生成分享图片背景
+			shareimg.setAttribute('src','../../icon/iloveimg-compressed/wechat'+numerology_number+'.png');
+			console.log($('#shareimg').height());
+			// 给分享图片定义高度
+			var heightt = $('#shareimg').height()-10;
+			$api.css($api.dom('.jieping'), 'height:'+heightt+'px;');
+			// 给分享图片增加形容词
+			sharetext.setAttribute('src',textpath);
+
+			$api.css($api.dom('.avatar'), 'object-fit:cover;');
+			// 给分享图片增加明星名字
+			$api.html($api.dom('.starname'), '· '+star[numerology_number].star.split(",")[random]);
+			console.log(avatarpath);
+			console.log($api.html($api.dom('.star-name')));
+			// $api.css($api.dom('.avatar'), 'background:url('+ avatarpath +'?imageView2/0/w/800) no-repeat center;background-size:cover;');
+			$api.css($api.dom('.QRcode'), 'object-fit:cover');
+			var date = new Date();
+		    var picname=date.getTime();
+		    var imgname= picname + '.png';
+		    var imgpath = api.cacheDir + "/pic/";
+		    var imgpath1=api.cacheDir + "/pic/" + picname  + picname + '.png';
+			var star_avatar_url = 'http://bin.baopinghui.com/star/'+ star[numerology_number].star_url.split(",")[random].replace(/ /g,"%20")+'.jpg';
+			staravatarpath = api.cacheDir + "/pic/" + star[numerology_number].star_url.split(",")[random].replace(/ /g,"1") + ".png";
+			// 下载明星头像
+			api.download({
+		        url: star_avatar_url + '?imageView2/0/w/800',
+				savePath: staravatarpath,
+				report: true,
+				cache: true,
+				allowResume: true
+		   	}, function(ret, err) {
+		   		if(ret.state == 1){
+		   			// alert(staravatarpath);
+		   			// $api.css($api.dom('.staravatar'), 'background:url('+ staravatarpath +'?imageView2/0/w/800) no-repeat center;background-size:cover;');
+		   			var staravatar = document.getElementById('staravatar');
+		   			staravatar.setAttribute('src',staravatarpath);
+		   			$api.css($api.dom('.staravatar'), 'object-fit:cover;');
+		   			// $api.css($api.dom('.avatar'), 'background:url('+ avatarpath +'?imageView2/0/w/800) no-repeat center;background-size:cover;');
+		   			console.log('下载明星头像');
+		   			// 截屏功能
+		   			setTimeout(function(){
+					html2canvas($('.jieping')[0]).then(canvas => {
+			    		var imgUri = canvas.toDataURL();
+			    		console.log('截屏成功');
+			    		// 调用base64转图片模块
+			    		var trans = api.require('trans');
+						trans.saveImage({
+				    		base64Str:imgUri.replace('data:image/png;base64,', ''),
+				    		imgPath:imgpath,
+				    		imgName:imgname
+						}, function(ret, err) {
+				    		if (ret.status) {
+				    			wechatshareimg = imgpath+imgname;
+				    			//将截屏保存
+					        console.log('截屏微信保存成功');
+					        // 清空微信二维码
+					        $api.html($api.dom('#QRcode'), '');
+					        imgname= picname + 'QQ' + '.png';
+					        // 生成QQ二维码图片
+					        QRdata = 'https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=101414137&redirect_uri=http%3a%2f%2fparttime.baopinghui.com%2fchat%2fbin%2fnumerology(share)%2fhtml%2fcover.html%3fID%3d'+$api.getStorage('id')+'&state=state&scope=get_user_info';
+							new QRCode(document.getElementById("QRcode"), QRdata);
+							setTimeout(function(){
+								html2canvas($('.jieping')[0]).then(canvas => {
+						    		var imgUri = canvas.toDataURL();
+						    		console.log('截屏成功');
+						    		// 调用base64转图片模块
+						    		var trans = api.require('trans');
+									trans.saveImage({
+							    		base64Str:imgUri.replace('data:image/png;base64,', ''),
+							    		imgPath:imgpath,
+							    		imgName:imgname
+									}, function(ret, err) {
+							    		if (ret.status) {
+							    			QQshareimg = imgpath+imgname;
+								    			//将截屏保存
+									        console.log('截屏QQ保存成功');
+									        $api.css($api.dom('.jieping'), 'display:none');
+									        shareboof = true;
+									        if($api.getStorage('language')=='zho'){
+												$api.text($api.dom('#saveimg'), '分 享');
+											}else{
+												$api.text($api.dom('#saveimg'), 'S H A R E');
+											}
+									        return;
+											} else {
+								        		console.log(JSON.stringify(err));
+								    		}
+									});
+									return;
+								});
+							},500);
+							return;
+				    		} else {
+				        		console.log(JSON.stringify(err));
+				    		}
+						});
+					});
+		   			},1000);
+		   			return;
+		   		}
+		   	return;	
+		   	});
+        	}
+        });
+	
+	}
+		   	setTimeout(function(){
+		   		boof=true;
+		   		return;
+		   	},1000);
+		// 点击下一步
+		var button=$api.dom('.button');
+		$api.addEvt(button,'click',function(){
+			console.log(function1);
+			if(boof){
+				api.openWin({
+				    name: 'associated_user',
+				    url: 'widget://html/logon-register/associated_user.html',
+				    pageParam: {
+				        numerology_number: numerology_number,
+				        wechatshareimg: wechatshareimg,
+				        QQshareimg:QQshareimg,
+				        avatarpath: avatarpath,
+				        nickname:nickname,
+				        function1:function1
+				    }
+				});
+			}
+
+		});
+		// 点击分享图片
+		$api.addEvt($api.dom('#saveimg'), 'click', function(){
+			console.log(shareboof);
+			// 强制下载完截图才能点击按钮
+			if(shareboof){
+				// if($api.getStorage('language')=='zho'){
+				// 	$api.text($api.dom('#saveimg'), '分 享');
+				// }else{
+				// 	$api.text($api.dom('#saveimg'), 'S H A R E');
+				// }
+				// boof = false;
+				api.openFrame({
+				    name: 'more(new)',
+				    url: 'widget://html/nav/more(new).html',
+				    rect: {
+				        x: 0,
+				        y: 0,
+				        w: 'auto',
+				        h: 'auto'
+				    },
+				    pageParam: {
+				        wechatshareimg: wechatshareimg,
+				        QQshareimg:QQshareimg,
+				        avatarpath: avatarpath,
+				        numerology_number:numerology_number,
+				        nickname:nickname,
+				        star:star[numerology_number].star.split(",")[random]
+				    }
+				});
+		   	}
+		   	return;
+		});
+	    if(numerology_number == 1){
+	    	// $api.text($api.dom('.box1-content'), '1');
+	    	if($api.getStorage('language')=='zho'){
+	    		$api.html($api.dom('.box1-content'), '想 象 力 豐 富 並 富 有 野 心 的 領 導 型 <br /><br />目 標 不 是 “ 第 一 ” 而 是 “ 唯 一 ” <br />一 有 想 法 就 立 即 行 動<br /><br />但 是 偶 爾 也 會 有 後 悔 的 時 候<br />所 以 還 是 不 要 忘 記 冷 靜 思 考 哦 ！ ！<br /><br />自 尊 心 較 高<br />會 不 經 意 地 指 揮 起 周 圍 的 人<br />但 實 際 上 是 重 情 義 、 有 愛 心 的 人<br /><br />要 想 人 際 關 系 順 利 ， 那 就 對 自 己 坦 率 一 點 吧 ！<br />有 時 候 獨 特 的 想 法 會 驚 艷 到 周 圍 的 人');
+	    		$api.html($api.dom('.box2-content'), '紅色、白色');
+	    		$api.html($api.dom('.box3-content'), '自然、植物、海、神社佛塔');
+	    		$api.html($api.dom('.box4-content'), '發明家、設計師、策劃、節目製作人');
+	    	}else{
+	    		$api.html($api.dom('.box1-content'), "Imaginative and ambitious leadership <br>The goal is not \"first\", but \"Only One\"<br><br>One idea would actimmediately <br>But occasionally there will be regrets <br>So don't forget to think calmly! !<br><br>Higher self-esteem <br>Will inadvertently command the people around you But in fact you are a heavy friendship, caring person<br><br>If you want to have a good relationship, then be frank with yourself!Sometimes unique ideas can be amazing to the people around you.");
+	    		$api.html($api.dom('.box2-content'), 'Red、White');
+	    		$api.html($api.dom('.box3-content'), 'Nature, Plants, Sea, Shrine Pagoda');
+	    		$api.html($api.dom('.box4-content'), 'Inventor, Designer, Planner, Producer');
+	    	}
+	    }else if(numerology_number == 2){
+	    	// $api.text($api.dom('.box1-content'), '2');
+	    	if($api.getStorage('language')=='zho'){
+	    		$api.html($api.dom('.box1-content'), '充 滿 溫 柔 的 是 具 有 獻 身 精 神 的 勤 懇 的 人<br /><br />爲 他 人 着 想<br />對 他 人 太 過 感 同 身 受 而 無 法 拒 絕<br /><br />經 常 為 周 圍 的 人 花 心 思<br />所 以 非 常 被 人 們 所 信 賴 着<br /><br />很 容 易 寧 願 爲 他 人 而 犧 牲 自 己<br />請 注 意 要 好 好 珍 惜 自 己<br /><br />富 有 母 性 ，喜 歡 照 顧 他 人<br />適 合 養 育 、 照 顧 一 些 東 西');
+	    		$api.html($api.dom('.box2-content'), '橙色、米色');
+	    		$api.html($api.dom('.box3-content'), '鏡子、坐墊、寵物');
+	    		$api.html($api.dom('.box4-content'), '咨詢師、秘書、中介、服務業、保姆');
+	    	}else{
+	    		$api.html($api.dom('.box1-content'), 'Full of tenderness, of dedicated hardworking people<br /><br />Always care about others<br />Too much empathy to others and cannot be rejected.<br /><br />Often put in some effort for the people around<br />So it is trusted by people.<br /><br />It is easy to sacrifice yourself for others. <br />Please pay attention to cherish yourself.<br /><br />Full of motherhood, like to care for others, <br />Suitable for raising and taking care of some things.');
+	    		$api.html($api.dom('.box2-content'), 'Orange, Beige');
+	    		$api.html($api.dom('.box3-content'), 'Mirror, Cushion, Pet');
+	    		$api.html($api.dom('.box4-content'), 'Consultant, Secretary, Intermediary, Service Industry, Babysitter');
+	    	}
+	    }else if(numerology_number == 3){
+	    	$api.text($api.dom('.box1-content'), '3');
+	    	if($api.getStorage('language')=='zho'){
+	    		$api.html($api.dom('.box1-content'), '隨 心 所 欲 想 象 力 豐 富 的 淘 氣 鬼 ！<br /><br />開 朗 有 朝 氣 ， 喜 歡 説 話 閑 聊<br />生 存 價 值 就 是 令 大 家 開 心 的 表 演 者<br /><br />由 於 太 過 精 力 旺 盛<br />累 了 的 時 候 很 容 易 情 緒 低 落<br /><br />失 落 的 時 候 吃 最 喜 歡 的 食 物 就 會 馬 上 復 活<br />這 樣 的 單 純 也 是 他 們 的 特 點<br /><br />對 待 事 物 易 冷 易 熱 ， 容 易 厭 倦<br />頭 腦 靈 活 、 有 優 越 的 直 覺 力<br />提 起 自 信 活 用 它 們 吧。');
+	    		$api.html($api.dom('.box2-content'), '黃色、青綠色');
+	    		$api.html($api.dom('.box3-content'), '卡拉OK、鈴鐺、電視');
+	    		$api.html($api.dom('.box4-content'), '喜劇演員、魔術師');
+	    	}else{
+	    		$api.html($api.dom('.box1-content'), 'Arbitrary, rich imagination naughty!<br />Cheerful and energetic, like to chat!<br />Survival value is a performer<br />who makes everyone happy.<br /><br />However, because you are too energetic,<br />it is easy to be depressed when you are tired.<br />When you are depressed, you will get cured<br />as soon as you eat your favorite food.<br />Treating things is cold and hot, and easy to get bored.<br />This simplicity is also their characteristic.<br /><br />With a flexible mind and superior intuition, <br />you can use them with confidence.');
+	    		$api.html($api.dom('.box2-content'), 'Yellow, Cyan');
+	    		$api.html($api.dom('.box3-content'), 'Karaoke, Bell, TV');
+	    		$api.html($api.dom('.box4-content'), 'Comedy Actor, Magician');
+	    	}
+	    }else if(numerology_number == 4){
+	    	$api.text($api.dom('.box1-content'), '4');
+	    	if($api.getStorage('language')=='zho'){
+	    		$api.html($api.dom('.box1-content'), '我 行 我 素 的 追 求 安 定 的 人<br /><br />具 有 計 劃 性 、 一 點 點 努 力 纍 積 成 果 的 努 力 家<br /><br />有 在 存 錢 纍 積 財 富 ， 工 作 也 踏 踏 實 實 地 做<br />於 是 獲 得 了 很 多 的 信 賴<br /><br />不 過 ， 要 是 露 出 頑 固 的 一 面<br />就 有 可 能 會 被 孤 立<br />所 以 懂 得 坦 誠 、 靈 活 變 通 是 很 重 要 的<br /><br />認 真 負 責<br />很 可 能 成 爲 一 個 稱 職 的 丈 夫 或 妻 子 ！');
+	    		$api.html($api.dom('.box2-content'), '綠色、紅色');
+	    		$api.html($api.dom('.box3-content'), '自然食品、建築業、記賬本、花、香薰');
+	    		$api.html($api.dom('.box4-content'), '不動產業、建築業、會記、稅務師、技術人員');
+	    	}else{
+	    		$api.html($api.dom('.box1-content'), 'Go its own way, the pursuit of stable people <br /><br />A planner who strives to accumulate results. <br /><br />Saving money to accumulate wealth,<br />and work is also done in a down-to-earth manner, <br />so you have gained a lot of trust. <br /><br />However, if you show a stubborn side, <br />you may be isolated,<br />so it is important to be honest and flexible. <br /><br />Seriously responsible,<br />it is likely to become a competent husband or wife!');
+	    		$api.html($api.dom('.box2-content'), 'Green, Red');
+	    		$api.html($api.dom('.box3-content'), 'Natural Food, Construction, Bookkeeping, Flowers, Aromatherapy');
+	    		$api.html($api.dom('.box4-content'), 'Real Estate, Construction, Accounting, Taxation, Technical Staff');
+	    	}
+	    }else if(numerology_number == 5){
+	    	$api.text($api.dom('.box1-content'), '5');
+	    	if($api.getStorage('language')=='zho'){
+	    		$api.html($api.dom('.box1-content'), '總 是 追 求 刺 激 的 自 由 人<br /><br />想 自 由 地 到 處 走 動<br />不 喜 歡 被 束 縛<br /><br />由 於 腦 子 很 靈 活 、 溝 通 能 力 拔 群<br />有 很 多 在 國 外 活 躍 的 人<br />沒 有 出 國 的 人 出 國 之 後 可 能 會 得 到 更 多 機 會<br /><br />容 易 三 心 二 意 、 無 法 沉 着 下 來<br />愛 憎 分 明 ， 注 意 不 要 太 任 性 了 ！');
+	    		$api.html($api.dom('.box2-content'), '淺藍色、橙色');
+	    		$api.html($api.dom('.box3-content'), '飛機、海、鳥、辣椒、健身房');
+	    		$api.html($api.dom('.box4-content'), '翻譯、旅游業、演員、廣告編輯');
+	    	}else{
+	    		$api.html($api.dom('.box1-content'), 'Always free to pursue stimulating people <br /><br />You like to move around and don\'t like being tied.<br /><br />Because of the flexibility of the brain<br />and the ability to communicate, <br />there are many people who are active <br />in other countries.<br /><br />In other countries, you may get more <br />opportunities than in your own country. <br />However, it is also easy to be distracted <br />and unable to calm down. <br /><br />Love and jealousy, be careful not to be too capricious.');
+	    		$api.html($api.dom('.box2-content'), 'Light blue, Orange');
+	    		$api.html($api.dom('.box3-content'), 'Airplane, Sea, Bird, Pepper, Gym');
+	    		$api.html($api.dom('.box4-content'), 'Translation, Tourism, Actors, Advertising Editors');
+	    	}
+	    }else if(numerology_number == 6){
+	    	$api.text($api.dom('.box1-content'), '6');
+	    	if($api.getStorage('language')=='zho'){
+	    		$api.html($api.dom('.box1-content'), '充 滿 慈 愛 的 治 愈 系<br /><br />正 義 感 很 強 ， 看 重 跟 周 圍 人 的 和 諧 氛 圍<br /><br />珍 惜 家 庭 ， 責 任 感 也 很 強<br /><br />富 有 奉 獻 精 神 ， 具 備 能 無 條 件<br />給 予 愛 、 無 私 的 特 點<br /><br />但 若 是 不 管 不 顧 接 受 一 切 的 話<br />就 會 變 成 是 犧 牲 自 我<br />註 意 不 要 太 過 勉 強 了<br /><br />有 審 美 眼 光 ， 挺 藝 術 的');
+	    		$api.html($api.dom('.box2-content'), '藏藍色、白色');
+	    		$api.html($api.dom('.box3-content'), '美術館、教堂、樂器、音樂、珍珠項鏈');
+	    		$api.html($api.dom('.box4-content'), '有關時尚的、室內裝潢、藝術家、醫生、美容師');
+	    	}else{
+	    		$api.html($api.dom('.box1-content'), 'A loving, healing person<br /><br />A strong sense of justice,<br />value harmony with the environment around them.<br /><br />Cherish the family, <br />the sense of responsibility is also very strong.<br /><br />Dedicated, capable of unconditionally<br />giving love and selflessness.<br />But if you accept everything,<br />it will become a sacrifice of self.<br />Be careful not to push it too much.<br /><br />Have an aesthetic vision, very artistic.');
+	    		$api.html($api.dom('.box2-content'), 'Dark blue, White');
+	    		$api.html($api.dom('.box3-content'), 'Art gallery, Church, Musical Instrument, Music, Pearl Necklace');
+	    		$api.html($api.dom('.box4-content'), 'About Fashion, Interior, Artist, Doctor, Beautician');
+	    	}
+	    }else if(numerology_number == 7){
+	    	$api.text($api.dom('.box1-content'), '7');
+	    	if($api.getStorage('language')=='zho'){
+	    		$api.html($api.dom('.box1-content'), '探 究 真 理 的 哲 學 家<br /><br />無 關 年 齡 ， 看 著 很 成 熟 的 可 靠 的 人 <br /><br />有 優 越 的 看 穿 事 物 本 質 的 洞 察 力 和 先 見 之 明 ！<br /><br />喜 歡 研 究 分 析<br />比 起 和 大 家 壹 起 鬧 更 享 受 壹 個 人 獨 處<br /><br />完 美 主 義 並 且 抱 有 崇 高 理 想<br /><br />如 果 不 自 己 敞 開 心 扉<br />可 能 會 被 認 為 是 怪 癖 古 怪 的 人');
+	    		$api.html($api.dom('.box2-content'), '紫色、粉色');
+	    		$api.html($api.dom('.box3-content'), '星空、書、寺院、單間、電腦');
+	    		$api.html($api.dom('.box4-content'), '哲學家、科學家、研究人員、小說家、程序員');
+	    	}else{
+	    		$api.html($api.dom('.box1-content'), 'Philosopher who explores truth .<br /><br />Irrespective of age,<br />looking at mature and reliable people.<br /><br />Have superior insight and foresight to<br />see through the essence of things! <br /><br />You like to study and analyze, <br />and prefer to be alone when you play with everyone.<br /><br />Perfectionism and lofty ideals sometimes<br />confuse them by imposing them on others.<br /><br />If you don\'t open yourself up, <br />you might be considered a quirky person.');
+	    		$api.html($api.dom('.box2-content'), 'Purple, Pink');
+	    		$api.html($api.dom('.box3-content'), 'Starry Sky, Books, Monasteries, Single Rooms, Computers');
+	    		$api.html($api.dom('.box4-content'), 'Philosopher, Scientist, Researcher, Novelist, Programmer');
+	    	}
+	    }else if(numerology_number == 8){
+	    	$api.text($api.dom('.box1-content'), '8');
+	    	if($api.getStorage('language')=='zho'){
+	    		$api.html($api.dom('.box1-content'), '能 量 充 足 的 實 力 派 <br /><br />正 義 感 很 強 ， 不 喜 歡 扭 曲 的 事 物 <br /><br />物 欲 也 很 強 ， 想 壹 直 做 一 個 有 權 利 的 人<br /><br />有 領 導 能 力 ， 是 只 要 朝 著 目 標 突 飛 猛 進<br />就 一 定 會 取 得 成 果 的 實 力 派<br />為 了 實 現 自 己 的 夢 想<br />有 時 也 會 用 比 較 強 硬 的 手 段<br />雖 說 自 信 很 重 要 ， 但 不 能 傲 慢 <br /><br />秉 持 謙 虛 的 心 向 夢 想 前 進<br />周 圍 人 也 會 尊 敬 妳<br />妳 也 能 取 得 成 功');
+	    		$api.html($api.dom('.box2-content'), '金色、棕色');
+	    		$api.html($api.dom('.box3-content'), '山頂、城堡、王冠、鉆石');
+	    		$api.html($api.dom('.box4-content'), '創業家、投資人、法律人士、政治家、警官');
+	    	}else{
+	    		$api.html($api.dom('.box1-content'), 'Energy sufficient, Strength<br /><br />A sense of justice is strong, <br />you don\'t like things that are distorted. <br /><br />Material desire is also very strong,<br />you want to be a person with rights.<br /><br />Strong leadership ability,<br />as long as advances towards the goal,<br />they will bear fruit .<br />However, in order to realize their dreams, <br />sometimes with tougher means. <br /><br />Although self-confidence is important, <br />it cannot be arrogant. <br /><br />Adhere to the dream with a humble heart, <br />people around you will respect you, <br />and you will succeed.');
+	    		$api.html($api.dom('.box2-content'), 'Gold, Brown');
+	    		$api.html($api.dom('.box3-content'), 'Peak, Castle, Crown, Diamond');
+	    		$api.html($api.dom('.box4-content'), 'Entrepreneur, Investor, Lawyer, Politician, Police Officer');
+	    	}
+	    }else if(numerology_number == 9){
+	    	$api.text($api.dom('.box1-content'), '9');
+	    	if($api.getStorage('language')=='zho'){
+	    		$api.html($api.dom('.box1-content'), '夢 想 著 理 想 世 界 的 浪 漫 主 義 者<br /><br />對 宇 宙 、 精 神 世 界 有 興 趣 的 人 居 多<br />有 神 秘 感 和 存 在 感 的 人<br /><br />有 時 候 會 嚴 厲 地 樹 立 完 美 的 理 想 觀<br />而 不 讓 對 方 接 近<br /><br />有 逃 避 現 實 的 傾 向<br />好 好 腳 踏 實 地 接 受 現 實 吧<br /><br />有 很 強 的 奉 獻 精 神 ， 願 意 幫 助 有 困 難 的 人<br />也 有 這 樣 有 人 情 味 的 一 面');
+	    		$api.html($api.dom('.box2-content'), '銀色、紫色');
+	    		$api.html($api.dom('.box3-content'), '彩虹、跟宇宙有關的、神社、養老院');
+	    		$api.html($api.dom('.box4-content'), '藝術家、福利院方面、出版業、教師、演員');
+	    	}else{
+	    		$api.html($api.dom('.box1-content'), 'Dreaming of the ideal world, romantic .<br /><br />Most people who are interested<br />in the universe and the spiritual world . <br />A person with a sense of mystery and presence.<br /><br />Sometimes severely establish a perfect view<br />of the ideal and not let each other close. <br /><br />There is a tendency to escape from reality, <br />please accept the reality. <br /><br />Have a strong dedication,<br />willing to help people with difficulties, <br />human touch.');
+	    		$api.html($api.dom('.box2-content'), 'Silver, Purple');
+	    		$api.html($api.dom('.box3-content'), 'Rainbow, The Universe, Shrine, Nursing Home');
+	    		$api.html($api.dom('.box4-content'), 'Artists, Welfare Homes, Publishing, Teachers, Actors');
+	    	}
+	    }
+	}
+function closewin(){
+	api.closeWin();
+}
+</script>
+</html>

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>T-coins</title>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+		}
+		html{
+			background-color: #efefef;
+			width:100vw;
+			height:100vh;
+		}
+		.zhuangtailan{
+			position: fixed;
+			top:0;
+			width: 100vw;
+			height:24px;
+			background-color:#fff;
+		}
+		header{
+			position: fixed;
+			top:0;
+			width: 100vw;
+			height: 17.29vw;
+			background-color: #fff;
+			/*box-shadow: 0px 0px 2px 2px #efefef;*/
+		}
+		.topleft{
+			position: absolute;
+			left:2.66vw;
+			top:7.31vw;
+			width:7.98vw;
+			height:7.98vw;
+			line-height: 7.98vw;
+			text-align: center;
+		}
+		.topleft img{
+			width:7.98vw;
+			height:7.98vw;
+		}
+		.topcenter{
+			position: absolute;
+			left:50%;
+			margin-left:-50%;
+			width:100%;
+			height:11.97vw;
+			margin-top:5.32vw;
+			text-align: center;
+			font:3.99vw/11.97vw Arial;
+			font-weight: bold;
+		}
+		.wrap{
+			width:100vw;
+			height:auto;
+			margin-top:17.29vw;
+			padding:2.66vw 0 9.84vw 0;
+		}
+		.content-top{
+			position: relative;
+			width:94.41vw;
+			height:37.23vw;
+			margin:0 auto;
+			margin-bottom: 2.66vw;
+			background-color: #fff;
+			border-radius: 2.66vw;
+			box-shadow: 0px 2px 10px 3px rgba(170,170,170,0.3);
+		}
+		.content-top_img{
+			position: absolute;
+			top:2.66vw;
+			left:2.66vw;
+			width:31.91vw;
+			height:31.91vw;
+			background:url(../../icon/function/function-Tcoins-me@3x2.png);
+			background-size: cover;
+		}
+		.content-top_title{
+			position: absolute;
+			top:2.66vw;
+			left:37.23vw;
+			width:53.19vw;
+			height:6.91vw;
+			font:3.99vw/6.91vw Arial;
+			font-weight: bold;
+			color:#101010;
+			text-align: left;
+		}
+		.content-top_text{
+			position: absolute;
+			top:9.57vw;
+			left:37.23vw;
+			width:53.19vw;
+			height:19.41vw;
+			font:3.19vw/4.52vw Arial;
+			color:#aaa;
+			text-align: left;
+		}
+		.content-top_text p span{
+			color:#F381A3;
+			font-weight: bold;
+		}
+		.content-top_text p:nth-child(1),.content-top_text p:nth-child(2){
+			margin-bottom:1vw;
+		}
+		.long_gray{
+			position: absolute;
+			top:32.45vw;
+			left:37.23vw;
+			width: 53.19vw;
+			height:2.13vw;
+			background-color: #efefef;
+			border-radius: 13.3vw;
+		}
+		.long_pink{
+			position: absolute;
+			top:32.45vw;
+			left:37.23vw;
+			width: 30vw;
+			height:2.13vw;
+			background-color:#F381A3;
+			border-radius: 13.3vw; 
+		}
+		.content-mission{
+			position: relative;
+			width:45.74vw;
+			height:30.59vw;
+			border-radius: 2.66vw;
+			box-shadow: 0px 2px 10px 3px rgba(170,170,170,0.3);
+			background-color: #fff;
+			margin-left:2.66vw;
+			margin-bottom:2.66vw;
+			float:left;
+		}
+		.content-mission:nth-child(2n+1){
+			margin-left:2.93vw;
+		}
+		.content-mission_done{
+			position: absolute;
+			top:3.99vw;
+			right:3.99vw;
+			width: 3.99vw;
+			height:3.99vw;
+			background:url(../../icon/function/icon-Tcoins-done@3x2.png);
+			background-size: cover;
+		}
+		.content-mission_img{
+			position: absolute;
+			top:3.99vw;
+			left:17.55vw;
+			width:10.64vw;
+			height:10.64vw;
+		}
+		.content-mission:nth-child(2) .content-mission_img{
+			background: url(../../icon/function/icon-Tcoins-login@3x2.png);
+			background-size: cover;
+		}
+		.content-mission:nth-child(3) .content-mission_img{
+			background: url(../../icon/function/icon-Tcoins-comment@3x2.png);
+			background-size: cover;
+		}
+		.content-mission:nth-child(4) .content-mission_img{
+			background: url(../../icon/function/icon-Tcoins-follow@3x2.png);
+			background-size: cover;
+		}
+		.content-mission:nth-child(5) .content-mission_img{
+			background: url(../../icon/function/icon-Tcoins-groups@3x2.png);
+			background-size: cover;
+		}
+		.content-mission:nth-child(6) .content-mission_img{
+			background: url(../../icon/function/icon-Tcoins-post@3x2.png);
+			background-size: cover;
+		}
+		.content-mission:nth-child(7) .content-mission_img{
+			background: url(../../icon/function/icon-Tcoins-share@3x2.png);
+			background-size: cover;
+		}
+
+
+		.content-mission_title{
+			position: absolute;
+			top:14.63vw;
+			width:100%;
+			height: 6.91vw;
+			font:3.19vw/6.91vw Arial;
+			font-weight: bold;
+			text-align: center;
+		}
+		.content-mission_text{
+			position: absolute;
+			top:19.68vw;
+			width:100%;
+			height:6.91vw;
+			font:3.19vw/6.91vw Arial;
+			font-weight: bold;
+			color: #aaa;
+			text-align: center;
+		}
+		.share{
+			width: 45.74vw;
+			height:7.98vw;
+			background-color:#F381A3;
+			border-radius: 1.33vw;
+			font:3.19vw/7.98vw Arial;
+			font-weight: bold;
+			color:#fff;
+			text-align: center;
+			float:right;
+			margin-right:2.66vw;
+			box-shadow: 0px 2px 10px 3px rgba(170,170,170,0.3);
+		}
+	</style>
+</head>
+<body>
+	<div class="zhuangtailan"></div>
+	<header>
+		<div class="topcenter">T-coins</div>
+		<div class="topleft" onclick="closeWin()"><img src="../../image/icon-back@3x2.png" alt=""></div>
+	</header>
+	<div class="wrap">
+		<div class="content-top">
+			<div class="content-top_img"></div>
+			<div class="content-top_title">Currently I have</div>
+			<div class="content-top_text">
+				<p id="my_T-coins">T-coins ：<span>300</span></p>
+  				<p id="content-top_text_center">I can get 1,000 T-coins from the mission every day.</p>
+				<p>（ <span>+</span> <span id="add_T-coins">600</span> / 1,000 ）</p>
+			</div>
+			<div class="long_gray"></div>
+			<div class="long_pink" id="long_pink"></div>
+		</div>
+		<div class="content-mission">
+			<div class="content-mission_done"></div>
+			<div class="content-mission_img"></div>
+			<div class="content-mission_title" id="content-mission_title1">Login Tinkle</div>
+			<div class="content-mission_text">（ + 50 <span name="content-mission_text_T-coins">T-coins</span> ）</div>
+		</div>
+		<div class="content-mission">
+			<div class="content-mission_done"></div>
+			<div class="content-mission_img"></div>
+			<div class="content-mission_title" id="content-mission_title2">Comment on a Post</div>
+			<div class="content-mission_text">（ + 150 <span name="content-mission_text_T-coins">T-coins</span> ）</div>
+		</div>
+		<div class="content-mission">
+			<div class="content-mission_done"></div>
+			<div class="content-mission_img"></div>
+			<div class="content-mission_title" id="content-mission_title3">Follow a Friend</div>
+			<div class="content-mission_text">（ + 150 <span name="content-mission_text_T-coins">T-coins</span> ）</div>
+		</div>
+		<div class="content-mission">
+			<div class="content-mission_done"></div>
+			<div class="content-mission_img"></div>
+			<div class="content-mission_title" id="content-mission_title4">Chat on the Groups</div>
+			<div class="content-mission_text">（ + 50 <span name="content-mission_text_T-coins">T-coins</span> ）</div>
+		</div>
+		<div class="content-mission">
+			<div class="content-mission_done"></div>
+			<div class="content-mission_img"></div>
+			<div class="content-mission_title" id="content-mission_title5">Post a Post</div>
+			<div class="content-mission_text">（ + 150 <span name="content-mission_text_T-coins">T-coins</span> ）</div>
+		</div>
+		<div class="content-mission">
+			<div class="content-mission_done"></div>
+			<div class="content-mission_img"></div>
+			<div class="content-mission_title" id="content-mission_title6">Share Tinkle or Post</div>
+			<div class="content-mission_text">（ + 500 <span name="content-mission_text_T-coins">T-coins</span> ）</div>
+		</div>
+		<a href="www.baidu.com"><div class="share">SHARE</div></a>
+	</div>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript">
+		var hhh =window.screen.height;
+    	var www =window.screen.width;
+		apiready = function(){
+			if(hhh/www > 2){
+				$api.css($api.dom('header'), 'top:24px;');
+				$api.css($api.dom('.wrap'), 'margin-top:89px;');
+			}
+			// $api.html($api.dom('#my_T-coins'), '1');
+			var long=53.19*$api.html($api.dom('#add_T-coins'))/1000;
+			// alert(long);
+			$api.css($api.dom('#long_pink'), 'width:'+long+'vw;');
+			$api.html($api.dom('#my_T-coins'));
+
+			if($api.getStorage('language')=="zho"){
+				$api.html($api.dom('.topcenter'), 'T 幣');
+				$api.html($api.dom('.content-top_title'), '目 前 我 擁 有');
+				$api.html($api.dom('#my_T-coins'), 'T 幣 : <span>300</span>');
+				$api.html($api.dom('#content-top_text_center'), '每 天 我 都 可 以 完 成 指 定 的 操 作 以 獲 取 T 幣 獎 勵 。');
+				$api.html($api.dom('#content-mission_title1'), '登 陸 Tinkle');
+				$api.html($api.dom('#content-mission_title2'), '評 論 一 個 帖 子');
+				$api.html($api.dom('#content-mission_title3'), '關 注 一 個 好 友');
+				$api.html($api.dom('#content-mission_title4'), '在 群 上 參 與 討 論');
+				$api.html($api.dom('#content-mission_title5'), '發 佈 一 個 帖 子');
+				$api.html($api.dom('#content-mission_title6'), '分 享 Tinkle 或 者 帖 子');
+				for(var i=0;i<6;i++){
+					document.getElementsByName('content-mission_text_T-coins')[i].innerHTML="T 幣";
+				}
+				
+				$api.html($api.dom('.share'), '分 享');
+			}
+			// 右滑关闭页面
+		    api.addEventListener({
+		        name: 'swiperight'
+		    }, function() {
+		       closeWin();
+		    });
+		}
+		function closeWin(){
+			api.closeWin();
+		}    
+	</script>
+</body>
+</html>

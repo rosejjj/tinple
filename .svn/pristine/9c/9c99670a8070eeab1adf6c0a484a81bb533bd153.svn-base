@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>guide5</title>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+		}
+		body{
+			width:100vw;
+			height:100vh;
+			animation:bganimation 1s linear 1s 1 normal;
+			-webkit-animation: bganimation 1s linear 1s 1 normal;
+			-ms-animation: bganimation 1s linear 1s 1 normal;
+			-o-animation: bganimation 1s linear 1s 1 normal;
+			-moz-animation: bganimation 1s linear 1s 1 normal;
+			visibility: hidden;
+		}
+		.bg{
+			width:100vw;
+			height:100vh;
+			background-color:#000;
+			opacity: 0.8;
+			
+		}
+		.box{
+			position: fixed;
+			top:0;
+			width:100vw;
+		}
+		.window{
+			margin:0 auto;
+			margin-top:4.52vw;
+			width:23.94vw;
+			height:13.3vw;
+			background-color:#fff;
+			border-radius: 1.33vw;
+			font:3.99vw/13.3vw Arial;
+			font-weight: bold;
+			text-align: center;
+			color:#000;
+		}
+		.window>span{
+			border-bottom:2px solid #f381a3;
+		}
+		.arrow{
+/*			position: absolute;
+			top:20.21vw;
+			left:27.93vw;*/
+			margin-top:1.33vw;
+			margin-left:26.93vw;
+			width:10.64vw;
+			height:10.64vw;
+			background:url(../../icon/guide/arrow1.png) no-repeat;
+			background-size:contain;
+			transform: rotate(71deg);
+		}
+		.content{
+			position: relative;
+			/*top:35.57vw;
+			left:50%;
+			margin-left:-40vw;*/
+			margin:0 auto;
+			margin-top:2.66vw;
+			width:80vw;
+			font:3.99vw/5.85vw Arial;
+			font-weight: bold;
+			color:#fff;
+		}
+		.content>p>span{
+			color:#f381a3;
+		}
+		.content>p:nth-child(2)>span{
+			color:#fff;
+			border-bottom:2px solid #fff;
+		}
+		.content>p:nth-child(3){
+			margin-top:13.3vw;
+			margin-left:22.3vw;
+		}
+		.content>p:nth-child(4){
+			margin-left:22.3vw;
+		}
+		.arrow2{
+			position: absolute;
+			left:11vw;
+			bottom:0vw;
+			width:10.64vw;
+			height:10.64vw;
+			background:url(../../icon/guide/arrow2.png) no-repeat;
+			background-size:contain;
+			transform: rotate(-88deg);
+		}
+		.userbox{
+			position: relative;
+			/*top:81.12vw;
+			left:2.66vw;*/
+			margin:0 auto;
+			margin-top:2.66vw;
+			width:94.41vw;
+			height:19.41vw;
+			background-color:#fff;
+			box-shadow:0 0 10px 3px rgba(170,170,170,0.3);
+			border-radius: 2.66vw;
+		}
+		.avatar{
+			position: absolute;
+			top:3.055vw;
+			left:2.66vw;
+			width:13.3vw;
+			height:13.3vw;
+			border-radius: 50%;
+			background:url(../../icon/share/logo-icon.png) no-repeat;
+			background-size: cover;
+		}
+		.namebox{
+			position: absolute;
+			top:3.46vw;
+			left:18.62vw;
+			height:5.85vw;
+			font:3.99vw/5.85vw Arial;
+			font-weight: bold;
+		}
+		.green{
+			display: inline-block;
+			width:10px;
+			height:10px;
+			background-color: #9dda57;
+			border-radius: 50%;
+			margin-right: 1.33vw;
+		}
+		.new{
+			display: inline-block;
+			width:10.64vw;
+			height:5.32vw;
+			font:3.19vw/5.32vw Arial;
+			font-weight: bold;
+			color:#fff;
+			text-align: center;
+			border-radius: 7.99vw;
+			background-color:#f381a3;
+			margin-left:1.33vw;
+			vertical-align:top;
+		}
+		.location{
+			position: absolute;
+			top:10.90vw;
+			left:18.62vw;
+			font:3.19vw/4.52vw Arial;
+			font-weight: bold;
+			color:#aaa;
+		}
+		.chat{
+			position: absolute;
+			top:5.32vw;
+			right:2.66vw;
+			width:18.09vw;
+			height:7.98vw;
+			background-color: #fff;
+			border-radius: 8.78vw;
+			font:3.19vw/7.98vw Arial;
+			font-weight: bold;
+			text-align: center;
+			color:#000;
+			border:0.5vw solid #000;
+		}
+		.arrow3{
+			display: inline-block;
+			margin-top:2vw;
+			margin-left:-2vw;
+			float:right;
+			margin-right:14vw;
+			width:10.64vw;
+			height:10.64vw;
+			background:url(../../icon/guide/arrow2.png) no-repeat;
+			background-size:contain;
+			transform: rotate(100deg);
+		}
+		.content2{
+			display: inline-block;
+			float:right;
+			margin-top:8vw;
+			max-width: 44vw;
+			font:3.99vw/5.85vw Arial;
+			font-weight: bold;
+			color:#fff;
+		}
+		.content2>span{
+			border-bottom:2px solid #fff;
+		}
+		.buttom{
+			position: fixed;
+			bottom:10.64vw;
+			left:50%;
+			margin-left:-29.655vw;
+			width:59.31vw;
+			height:10.64vw;
+			border:2px solid rgba(255,255,255,1);
+			border-radius: 7.99vw;
+			font:3.99vw/10.64vw Arial;
+			font-weight: bold;
+			text-align: center;
+			color:#fff;
+		}
+		@keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 1;
+			}
+		}
+		@-webkit-keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 1;
+			}
+		}
+		@-ms-keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 1;
+			}
+		}
+		@-o-keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 1;
+			}
+		}
+		@-moz-keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 1;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="bg"></div>
+	<div class="box">
+		<div class="window"><span>Online</span></div>
+		<div class="arrow"></div>
+		<div class="content">
+			<p><span>Online user</span> list：</p>
+			<p>（ Do you want to chat with people online? ）</p>
+			
+			<p class="p1"><span>Green</span> dots represent <span>online</span> status.</p>
+			<p class="p2"><span>New</span> representative is a <span>newcomer</span>.</p>
+			<div class="arrow2"></div>
+		</div>
+		<div class="userbox">
+			<div class="avatar"></div>
+			<div class="namebox">
+				<span class="green"></span>
+				<span>Tinkle</span>
+				<span class="new">New</span>
+			</div>
+			<div class="location">from China</div>
+			<div class="chat">C H A T</div>
+		</div>
+		<div class="arrow3"></div>
+		<div class="content2">Direct private chat after <span>follow</span></div>
+	</div>
+	<div class="buttom">N E X T</div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript">
+	var www = window.screen.width;
+	var hhh = window.screen.height;
+	apiready = function(){
+		if(hhh/www > 2){
+			$api.css($api.dom('.box'), 'top:25px;');
+			$api.css($api.dom('.buttom'), 'bottom:19.64vw');
+		}
+		setTimeout(function(){
+			$api.css($api.dom('body'), 'visibility:visible;');
+		},1100);
+	    if($api.getStorage('language')=='zho'){
+	    	// $api.css($api.dom('.arrow2'), 'left:12vw');
+	    	// $api.css($api.dom('.p1'), 'margin-left:22.3vw');
+	    	// $api.css($api.dom('.p2'), 'margin-left:22.3vw');
+	    	$api.html($api.dom('.window'), '<span>推 薦</span>');
+	    	$api.html($api.dom('.chat'), '私 聊');
+	    	$api.html($api.dom('.content2'), '關 注 后 直 接 <span>私 聊</span> 噢');
+	    	$api.html($api.dom('.buttom'), '懂 了');
+	    	$api.html($api.dom('.content'), '<p><span>在 綫 用 戶</span> 列 表：</p><p>（ 想 找 在 綫 的 人 聊 天 嗎 ？ ）</p><p><span>綠 點</span> 代 表 <span>在 綫</span> 狀 態</p><p><span>New</span> 代 表 是 <span>新 人</span> 噢</p><div class="arrow2"></div>');
+	    }
+	    $api.addEvt($api.dom('.buttom'), 'click', function(){
+	    	api.openFrame({
+	    	    name: 'guide6',
+	    	    url: 'widget://html/guide/guide6.html',
+	    	    rect: {
+	    	        x: 0,
+	    	        y: 0,
+	    	        w: 'auto',
+	    	        h: 'auto'
+	    	    },
+	    	    pageParam: {
+	    	        name: 'value'
+	    	    }
+	    	});
+	    	api.closeFrame({
+	    	    name: 'guide5'
+	    	});
+	    });
+	}
+	    
+</script>
+</html>

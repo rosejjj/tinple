@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+	<title>guide3.5(new)</title>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+		}
+		body{
+			width:100vw;
+			/*height:100vh;*/
+			/*visibility: hidden;*/
+		}
+		.bg{
+			position: fixed;
+			top:0;
+			width:100vw;
+			height:100vh;
+			background-color:#000;
+			opacity: 0.8;
+			animation:bganimation 1s linear 0s 1 normal;
+			-webkit-animation: bganimation 1s linear 0s 1 normal;
+			-ms-animation: bganimation 1s linear 0s 1 normal;
+			-o-animation: bganimation 1s linear 0s 1 normal;
+			-moz-animation: bganimation 1s linear 0s 1 normal;
+			z-index: -1;
+		}
+		.box{
+			width:100vw;
+			margin-top: 6vw;
+			padding:0 1.33vw;
+			box-sizing: border-box;
+		}
+		.top{
+			width:100%;
+			height:13.3vw;
+			background-color:#fff;
+			border-radius:1.33vw;
+		}
+		.search{
+			float:left;
+			margin:1.995vw 0 0 2.66vw;
+			width:55.85vw;
+			height:9.31vw;
+			border-radius:1.33vw;
+			background-color:#efefef;
+			font:3.99vw/9.31vw Arial;
+			font-weight:bold;
+			color:#aaa;
+		}
+		.search>img{
+			display: inline-block;
+			width:3.99vw;
+			height:3.99vw;
+			margin:2.66vw;
+			vertical-align: middle;
+		}
+		.top>span{
+			width:7.98vw;
+			height:7.98vw;
+			float:left;
+			margin:2.66vw 0 0 2.66vw;
+		}
+		.top>span:nth-of-type(1){
+			margin-left:5.32vw;
+			background:url(../../image/index/discovery-post.png) no-repeat center;
+          	background-size:cover;
+		}
+		.top>span:nth-of-type(2){
+			position: relative;
+			background:url(../../image/index/bell.png) no-repeat center;
+          	background-size:cover;
+		}
+		.top>span:nth-of-type(3){
+			background:url(../../image/setting.png) no-repeat center;
+          	background-size:cover;
+		}
+		.top>span:nth-of-type(2)>span{
+			position: absolute;
+			top:0;
+			right:0;
+			border-radius:50%;
+			background-color:#f381a3;
+			width:2.66vw;
+			height:2.66vw;
+		}
+		.arrow{
+			width:10.64vw;
+			height:10.64vw;
+			background:url(../../icon/guide/arrow1.png) no-repeat;
+			background-size:contain;
+			transform: rotate(50deg);
+			margin-top:3.99vw;
+			float:left;
+			display: inline-block;
+			vertical-align: top;
+		}
+		.arrow2{
+			width:10.64vw;
+			height:10.64vw;
+			background:url(../../icon/guide/arrow2.png) no-repeat;
+			background-size:contain;
+			transform: rotate(50deg);
+			margin-right:5vw;
+			margin-top:3.99vw;
+			float:right;
+			display: inline-block;
+			vertical-align: top;
+		}
+		.text1,.text2{
+			float:left;
+			margin-top:16.66vw;
+			font:3.99vw/5.85vw Arial;
+			font-weight: bold;
+			color:#fff;
+			margin-left:-5vw;
+		}
+		.text1>span,.text2>span{
+			color:#f381a3;
+		}
+		.text2{
+			float:right;
+			margin-left:0;
+			margin-right:-5vw;
+		}
+		.button{
+			position: fixed;
+			bottom:10.64vw;
+			left:50%;
+			margin-left:-29.655vw;
+			width:59.31vw;
+			height:10.64vw;
+			border:2px solid rgba(255,255,255,1);
+			border-radius: 7.99vw;
+			font:3.99vw/10.64vw Arial;
+			font-weight: bold;
+			text-align: center;
+			color:#fff;
+		}
+		@keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 0.8;
+			}
+		}
+		@-webkit-keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 0.8;
+			}
+		}
+		@-ms-keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 0.8;
+			}
+		}
+		@-o-keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 0.8;
+			}
+		}
+		@-moz-keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 0.8;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="bg"></div>
+	<div class="box">
+		<div class="top">
+			<div class="search">
+				<img src="../../icon/search/search.png" alt="">Search
+			</div>
+			<span></span>
+			<span><span></span></span>
+			<span></span>
+		</div>
+		<div class="arrow"></div>
+		<div class="arrow2"></div>
+		<div class="text1">	<span>Search </span>includes: <br>Search friends <br>Search group<br>Create group</div>
+		<div class="text2">They are:<span><br>Post<br>View Echo<br>Setting</span></div>
+	</div>
+	<div class="button">N E X T</div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript">
+	var www = window.screen.width;
+	var hhh = window.screen.height;
+	apiready = function(){
+		if(hhh/www > 2){
+			$api.css($api.dom('.box'), 'margin-top:13vw');
+			$api.css($api.dom('.buttom'), 'bottom:19.64vw');
+		}
+
+		if($api.getStorage('language')=='zho'){
+			$api.html($api.dom('.text1'), '<span>搜 索</span> 包 含 ： <br>搜 索 好 友 <br>搜 索 群 組 <br>創 建 群 組');
+			$api.html($api.dom('.text2'), '分 別 爲 ：<span><br>發 佈 帖 子<br>查 看 動 態<br>設 置</span>');
+			$api.html($api.dom('.button'), '下一步');
+		}
+		$api.addEvt($api.dom('.button'), 'click', function(){
+			api.openFrame({
+			    name: 'guide5(new)',
+			    url: 'widget://html/guide/guide5(new).html',
+			    rect: {
+			        x: 0,
+			        y: 0,
+			        w: 'auto',
+			        h: 'auto'
+			    },
+			    pageParam: {
+			        name: 'value'
+			    }
+			});
+			api.closeFrame({
+	    	    name: 'guide3.5(new)'
+	    	});
+		});
+	}
+</script>
+</html>

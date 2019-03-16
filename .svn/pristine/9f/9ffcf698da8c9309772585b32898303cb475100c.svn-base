@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+	<title>guide4(new)</title>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+		}
+		.bg{
+			position: fixed;
+			top:0;
+			width:100vw;
+			height:100vh;
+			background-color:#000;
+			opacity: 0.8;
+			/*animation:bganimation 0.3s linear 0s 1 normal;*/
+			/*-webkit-animation: bganimation 0.3s linear 0s 1 normal;*/
+			/*-ms-animation: bganimation 0.3s linear 0s 1 normal;*/
+			/*-o-animation: bganimation 0.3s linear 0s 1 normal;*/
+			/*-moz-animation: bganimation 0.3s linear 0s 1 normal;*/
+			z-index: -1;
+		}
+		.box{
+			/*margin-top:8vw;*/
+			position: relative;
+			width: 100vw;
+			height:auto;
+		}
+		.more{
+			position: absolute;
+			top:6.65vw;
+			right:2.66vw;
+			width:10.64vw;
+			height:10.64vw;
+			background-color:#fff;
+			border-radius: 1.33vw;	
+		}
+		.more>img{
+			position: absolute;
+			left:50%;
+			top:50%;
+			margin-top:-4vw;
+			margin-left:-4vw;
+			width:8vw;
+			height:8vw;
+			transform:rotate(-45deg);
+			object-fit: cover;
+		}
+		.text1{
+			position: absolute;
+			top:13.3vw;
+			right:15.96vw;
+		}
+		.text1>.arrow{
+			width:10.64vw;
+			height:10.64vw;
+			background:url(../../icon/guide/arrow1.png) no-repeat;
+			background-size:contain;
+			transform: rotate(86deg);
+			float:right;
+		}
+		.text1>p{
+			margin-top:5.32vw;
+			float:right;
+			font:3.99vw/5.85vw Arial;
+			font-weight: bold;
+			color:#fff;
+		}
+		p>span{
+			color:#f381a3;
+		}
+		.function_box{
+			position: absolute;
+			top:49vw;
+			width:100vw;
+		}
+		.function_box>div:nth-of-type(1),.function_box>div:nth-of-type(2),.function_box>div:nth-of-type(3){
+			width:39.89vw;
+			height:31.94vw;
+			border-radius: 2.66vw;
+			background-color:#fff;
+			font:3.19vw/48vw Arial;
+			font-weight: bold;
+			text-align: center;
+			margin-left:3.99vw;
+			display: inline-block;
+		}
+		.function_box>div:nth-of-type(1){
+			background:url(../../icon/function/function-translation-ai@3x2.png) no-repeat  center 2.66vw;
+			background-size:18.62vw 18.62vw;
+			background-color:#fff;
+			margin-left:2.66vw;
+			float: left;
+		}
+		.function_box>div:nth-of-type(2){
+			background:url(../../icon/function/function-makefriends-ai@3x2.png) no-repeat  center 2.66vw;
+			background-size:18.62vw 18.62vw;
+			background-color:#fff;
+			float: left;
+		}
+		.function_box>div:nth-of-type(3){
+			width:9.58vw;
+			float: left;
+			border-radius: 2.66vw 0 0 2.66vw;
+			text-align: right;
+		}
+		.arrow2{
+			width:10.64vw;
+			height:10.64vw;
+			background:url(../../icon/guide/arrow1.png) no-repeat;
+			background-size:contain;
+			transform: rotate(8deg);
+			float:left;
+			margin-top:5.32vw;
+			margin-left:10.64vw;
+		}
+		.function_box>p{
+			margin-left:2.66vw;
+			margin-top:10vw;
+			float:left;
+			font:3.99vw/5.85vw Arial;
+			font-weight: bold;
+			color:#fff;
+		}
+		.button{
+			position: fixed;
+			bottom:10.64vw;
+			left:50%;
+			margin-left:-29.655vw;
+			width:59.31vw;
+			height:10.64vw;
+			border:2px solid rgba(255,255,255,1);
+			border-radius: 7.99vw;
+			font:3.99vw/10.64vw Arial;
+			font-weight: bold;
+			text-align: center;
+			color:#fff;
+		}
+	</style>
+</head>
+<body>
+	<div class="bg"></div>
+	<div class="box">
+		<div class="more"><img src="../../icon/icon-delete@3x2.png" alt=""></div>
+		<div class="text1">
+			<div class="arrow"></div>
+			<p class="textt"><span>Extension options</span> include:<br> Add friend <br>Search group <br>Creation group <br><span>All kinds of special functions</span> are waiting for you to play ~<br>For example, translation, Numerology,Daily Divination,Tarot Dating, etc.</p>
+		</div>
+		<!-- <div class="function_box">
+			<div>Translation System</div>
+			<div>Match Friends</div>
+			<div>Tra</div>
+		<div class="arrow2"></div>
+		<p class="textt2"><span>All kinds of special functions</span> are waiting for you to play ~ <br>
+			For example, translation, Numerology,Daily  <br>
+			Divination,Tarot Dating, etc. 
+		</p>	
+		</div> -->
+		
+	</div>
+	<div class="button">N E X T</div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript">
+	var www = window.screen.width;
+	var hhh = window.screen.height;
+	apiready = function(){
+	    if(hhh/www >2 ){
+	    	$api.css($api.dom('.box'), 'margin-top:8vw');
+	    	$api.css($api.dom('.buttom'), 'bottom:19.64vw');
+	    }
+	    if($api.getStorage('language')=='zho'){
+	    	$api.html($api.dom('.textt'), '<span>拓 展 選 項</span> 包 含 ：<br> 添 加 好 友 <br>搜 索 群 組 <br>創 建 群 組<br /><span>各 種 特 別 功 能</span> 等 你 來 玩 ~ <br />例 如 翻 譯 系 統 ， 數 秘 術 自 測 ， 每 日 一 測 ， 匹 配 好 友等 ···');
+	    	// $api.html($api.dom('.textt2'), '<span>各 種 特 別 功 能</span> 等 你 來 玩 ~ <br>例 如 翻 譯 系 統 ， 數 秘 術 自 測 ， <br>每 日 一 測 ， 匹 配 好 友 等 ···');
+	    	$api.html($api.dom('.button'), '下一步');
+	    }
+	    $api.addEvt($api.dom('.button'), 'click',function(){
+	    	api.openFrame({
+			    name: 'guide5(new)',
+			    url: 'widget://html/guide/guide5(new).html',
+			    rect: {
+			        x: 0,
+			        y: 0,
+			        w: 'auto',
+			        h: 'auto'
+			    },
+			    pageParam: {
+			        name: 'value'
+			    }
+			});
+			api.closeFrame({
+	    	    name: 'guide4(new)'
+	    	});
+	    });
+	}
+	    
+</script>
+</html>

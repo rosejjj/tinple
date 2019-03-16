@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Tinkle</title>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+		}
+		body{
+			padding:5.32vw 5.32vw 7.98vw 5.32vw;
+		}
+		.img{
+			width:89.1vw;
+			height:50.27vw;
+			margin:0 auto 5.32vw;
+			background:url(./image/announcement20181009.jpg) no-repeat;
+			background-size: cover;
+		}
+		h1{
+			font:18px Arial;
+			font-weight: bold;
+			color:#101010;
+			margin-bottom:5.32vw;
+			line-height: 6.91vw;
+		}
+		.text{
+			font:12px Arial;
+			font-weight: bold;
+			color:#aaa;
+			line-height: 4.52vw;
+		}
+		p{
+			margin-top:1.32vw;
+		}
+		span{
+			color:#F381A3;
+		}
+	</style>
+</head>
+<body>
+	<div class="img"></div>
+	<h1>[ Theme Party 6 ] #Dream Place #Travel #Country #City Name</h1>
+	<div class="text">
+		<p>Everyone has a place to look forward to, where is the place you most want to go?</p>
+		<p style="margin-top:5.96vw">How to participate：</p>
+		<p><span>· Post a post with one of the above tags</span></p>
+		<p style="margin-top:5.96vw">What is special?</p>
+		<p><span>· Enjoy different life</span></p>
+		<p><span>· Choose excellent posts to put in hot</span></p>
+		<p style="margin-top:5.96vw">If you have questions and want feedback,</p>
+		<p>Search account: <span>Tinkleteam</span> , describe the problem, </p>
+		<p>we will help you solve it as soon as possible</p>
+		<p style="margin-top:5.96vw">Finally, I wish you have a good time.</p>
+	</div>
+	<h1 style="margin-top:7.32vw">【 主題派對6期 】#梦想地 #城市名 #旅遊 </h1>
+	<div class="text">
+		<p>每个人心中都有一座叫做“远方”的城，说说你最想去的一个地方是哪里？</p>
+		<p style="margin-top:5.96vw">怎麽參與：</p>
+		<p><span>· 發佈帖子並帶上上面的其中一個標簽</span></p>
+		<p style="margin-top:5.96vw">有什麽特別?</p>
+		<p><span>· 欣賞不同的生活</span></p>
+		<p><span>· 我們會選取優秀的帖子置於熱門</span></p>
+		<p style="margin-top:5.96vw">如果你有問題想反饋，</p>
+		<p>搜索賬號：<span>Tinkleteam</span>，進行描述問題，</p>
+		<p>我們將儘快幫你解決</p>
+		<p style="margin-top:5.96vw">最後，祝你玩得開心。</p>
+	</div>
+</body>
+<script type="text/javascript" src="../../script/api.js">
+
+</script>
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style type="text/css">
+    *{
+      padding:0;
+      margin:0;
+    }
+    header{
+      width: 100vw;
+      height:auto;
+      background-color: #fff;
+      border-bottom:1px solid #efefef;
+    }
+    .top{
+      position: relative;
+      margin-top:20px;
+      width: 100%;
+      height:45px;
+    }
+    .return{
+      position: absolute;
+      top:1.995vw;
+      left:2.66vw;
+      width:7.98vw;
+      height:7.98vw;
+      background:url(../../image/icon-back@3x2.png);
+      background-size:cover;
+      z-index: 10;
+    }
+    .title{
+      width:100%;
+      height:45px;
+      font:3.99vw/45px Arial;
+      font-weight: bold;
+      text-align: center;
+      z-index: 5;
+    }
+    .header_content{
+      position: relative;
+      margin-top:-5px;
+      width: 100%;
+      height:40px;
+    }
+    .huadong{
+      position: absolute;
+      left:35vw;
+      width:10vw;
+      height:8.3vw;
+      background-color:#fff;
+      border-bottom:2px solid #F381A3 ;
+      transform:translateX(0vw);
+      transition:transform 0.3s;
+    }
+    .voice,.text{
+      position: absolute;
+      width:14vw;
+      height:40px;
+      font:3.99vw/40px Arial;
+      font-weight: bold;
+      text-align: center;
+    }
+    .voice{
+      left:33vw;
+    }
+    .text{
+      right:33vw;
+      color:#aaa;
+    }
+  </style>
+</head>
+<body>
+    <header>
+      <div class="top">
+        <div class="return" onclick="closewin()"></div>
+        <div class="title">T R A N S L A T I O N</div>
+      </div>
+      <div class="header_content">
+        <span class="huadong"></span>
+        <span class="voice" onclick="voice_list()">Voice</span>
+        <span class="text" onclick="text_list()">Text</span>
+      </div>
+    </header>
+</body>
+<script src="../../json/api.json"></script>
+<script src="../../script/md5.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../script/jquery-3.1.0.min.js" type="text/javascript"></script>
+<script src="../../script/vue.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript">
+  var huadong = $api.dom('.huadong'),
+        voice = $api.dom('.voice'),
+        text = $api.dom('.text');
+
+  var hhh = window.screen.height;
+  var www = window.screen.width;
+  var framey = '101px';
+  apiready=function(){
+
+    if(hhh/www>2){
+      $api.css($api.dom('.top'), 'margin-top:45px;');
+      framey = '126px';
+    }
+    if($api.getStorage('language') == 'zho'){
+      $api.html($api.dom('.title'), '智 能 翻 譯 系 統');
+      $api.html($api.dom('.voice'), '語 音');
+      $api.html($api.dom('.text'), '文 字');
+    }
+       // 右滑關閉頁面
+        api.addEventListener({
+            name: 'swiperight'
+        }, function() {
+           api.closeWin();
+        });
+    api.openFrameGroup ({
+        name: 'chat34',
+        background: '#fff',
+        scrollEnabled: true,
+        rect: {
+             x: 0,
+             y:framey,
+             w: 'auto',
+             h: 'auto'
+        },
+        index: 0,
+        preload: 2,
+        frames: [{
+            name: 'chat3',
+            url: 'chat3.html',
+            bgColor: '#fff'
+        },{
+            name: 'chat4',
+            url: 'chat4.html',
+            bgColor: '#fff'
+        }]
+    }, function(ret, err){
+        if(ret.index==0){
+          voicee();
+
+        }else{
+          textt();
+        }
+    });
+
+    api.addEventListener({
+        name: 'huadong_voice'
+    }, function(ret, err) {
+        api.setFrameGroupIndex({
+              name: 'chat34',
+              index:0,
+              scroll:true
+            });
+    });
+    api.addEventListener({
+        name: 'huadong_text'
+    }, function(ret, err) {
+        api.setFrameGroupIndex({
+              name: 'chat34',
+              index:1,
+              scroll:true
+            });
+    });
+  }
+  function voice_list(){
+    $api.css(huadong, 'transform:translateX(0);');
+    $api.css(voice, 'color:#000;');
+    $api.css(text, 'color:#aaa');
+    api.sendEvent({
+        name: 'huadong_voice',
+    });
+  }
+  function text_list(){
+    $api.css(huadong, 'transform:translateX(20vw);');
+    $api.css(text, 'color:#000;');
+    $api.css(voice, 'color:#aaa;');
+    api.sendEvent({
+        name: 'huadong_text',
+    });
+  }
+  function voicee(){
+    $api.css(huadong, 'transform:translateX(0);');
+    $api.css(voice, 'color:#000;');
+    $api.css(text, 'color:#aaa');
+  }
+  function textt(){
+    $api.css(huadong, 'transform:translateX(20vw);');
+    $api.css(text, 'color:#000;');
+    $api.css(voice, 'color:#aaa;');
+  }
+  function closewin(){
+    api.closeWin();
+  }
+</script>
+</html>

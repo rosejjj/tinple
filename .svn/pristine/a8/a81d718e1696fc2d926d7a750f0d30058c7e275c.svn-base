@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>群设置</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <style>
+     html{
+       background: #efefef;
+     }
+		/*头部*/
+			header{
+				position: fixed;
+				top:0;
+				left:0;
+				display:inline-block;
+				width:100vw;
+				height:18.67vw;
+				background: #ffffff;
+				/*box-shadow: 0 0 10px #efefef;*/
+				border-bottom: 1px solid #efefef;
+				z-index:10000;
+			}
+			header .left{
+				position: absolute;
+				/*bottom:1vw;
+				left:8vw;*/
+				bottom: 11%;
+				left:10px;
+				display:inline-block;
+				width:9vw;
+				height:9vw;
+				z-index:2;
+			}
+			header .center{
+				position: absolute;
+				font-weight: bold;
+				font-size: 15px;
+				/*bottom:2vw;
+				left:50%;*/
+
+				bottom: 23%;
+				left: 50%;
+			transform:translate(-50%);
+			color:#fff;
+				display:inline-block;
+				z-index:2;
+			}
+			header .right{
+				position: absolute;
+				/*bottom:1vw;
+				right:8vw;*/
+				bottom: 17%;
+				right: 10px;
+				display:inline-block;
+				width:9vw;
+				height:9vw;
+				z-index:2;
+			}
+			/*遮罩层*/
+			.mark{
+				position:absolute;
+				top:0;
+				left:0;
+				width:100%;
+				height:100%;
+				background-color:#000000;
+				opacity: 0.5;
+				z-index: 3;
+				display: none;
+			}
+      /*群成员*/
+      .group_member{
+        padding:2.7vw;
+        margin-top:18.67vw;
+        background-color: #EFEFEF;
+        overflow: hidden;
+        background: white;
+      }
+      .group_member .group_member_list{
+        display:inline-block;
+        float:left;
+        width:18.25vw;
+        margin:2.7vw;
+      }
+      .group_member_list .member_avatar{
+        position:relative;
+        width:18.25vw;
+        height:18.25vw;
+      border-radius: 18.25vw;
+			background: no-repeat center center;
+			background-size:cover;
+      }
+      .group_member_list .member_avatar .identity{
+        position:absolute;
+        right:0;
+        bottom:0;
+        width:6.67vw;
+        height:6.67vw;
+      }
+      .group_member_list .member_nickname{
+        position: relative;
+        /*left: -5px;*/
+        width:100%;
+        height:5vw;
+        line-height:7vw;
+        color:#484848;
+        font-size:12px;
+        text-align:center;
+        font-weight: bold;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+      .green{
+        position: absolute;
+        margin-left: -10px;
+        background-color: #9DDA57;
+        height: 10px;
+        width: 10px;
+        border-radius: 50%;
+        margin-top: 7px;
+      }
+    </style>
+</head>
+<body>
+	<div class="mask"></div>
+  <div id="group">
+		<header>
+			<img class="left" src="../../icon/messages/back.png" @click="back()">
+			<span class="center" style="color: #101010;"><span class="head" v-html="member"></span>
+		</header>
+    <div id="group_member" class="group_member" v-if="members.length > 0">
+      <div v-for="member in members" class="group_member_list" @click="management(member)" v-cloak>
+        <div class="member_avatar" v-bind:style="{backgroundImage: 'url(http://bin.baopinghui.com/' + member.avatar_url + '?imageView2/0/w/100)'}" v-html="avatar(member)">
+
+        </div>
+        <!-- v-if="member.state==1&&my_identity==1||member.state==1&&my_identity==2" -->
+            <div v-if="my_identity==1 || my_identity==2" v-html="green(member)">  </div>
+          <span class="member_nickname" v-html="member.nickname"></span>
+      </div>
+    </div>
+  </div>
+</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/jquery-3.1.0.min.js"></script>
+	<script type="text/javascript" src="../../script/vue.js"></script>
+  <script type="text/javascript">
+    var member;
+    apiready = function(){
+      getGreen();
+			api.addEventListener({
+	    name:'swiperight'
+			}, function(ret, err){
+			   api.closeWin({
+			       name: 'member'
+			   });
+
+			});
+       member = new Vue({
+         el: '#group',
+         data: {
+           members: api.pageParam['members'],
+           my_identity: api.pageParam['my_identity'],
+           member:'M E M B E R',
+           idBox: [],
+           ownId:$api.getStorage('id'),
+           gid: api.pageParam['gid'],
+         },
+         methods: {
+					 green: function(member){
+						 if(member.state==1){
+							 return '<span class="green"></span>';
+						 }
+					 },
+					 avatar: function(member){
+						 if(member.flag==1){
+							 return '<img class="identity" src="../../icon/group/leader.png" alt="" />';
+						 }else if(member.flag==2){
+							 return '<img class="identity" src="../../icon/group/administrators.png" alt="" />';
+						 }else{
+
+						 }
+					 },
+           back:function(){
+             api.closeWin({
+                 name: 'member'
+             });
+
+           },
+           //点击成员头像-管理扩展
+           management: function(item) {
+             //设置成员的标识flag   0普通成员 1群主 2管理员
+             //后端返回的普通成员是没有标识的所以会是null
+             var temFlag=0;
+             if(item.flag!=null){
+               temFlag=item.flag;
+             }else{
+               item.flag=0;
+             }
+           console.log(JSON.stringify(item));
+             var this_ = this;
+             if(item.id == member.ownId){
+               console.log('不可以点击自己的！');
+               return;
+             }
+             api.openFrame({
+             name: "management",
+             url: "widget://html/group/management.html",
+             rect: {
+               x: 0,
+               y: 0,
+               w: "auto",
+               h: "auto"
+             },
+             pageParam:{
+               members_int : item,
+               my_flag :member.my_identity
+             }
+           });
+           }
+         }
+       })
+       if($api.getStorage('language')=='zho'){
+         member.member = '群 成 員';
+       }
+       function getGreen(){
+         setTimeout(function(){
+           for(var i=0;i<member.members.length;i++){
+             member.idBox.push(member.members[i].id);
+           }
+          api.ajax({
+              url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/checkUserOnTimeOnLine',
+              method: 'post',
+              data: {
+                  values: {
+                      uiids:''+member.idBox,
+                      hour:3
+                  }
+              }
+          },function(ret, err){
+              // alert(JSON.stringify(ret))
+              for(var i=0;i<member.members.length;i++){
+                for(var j=0;j<ret.data.length;j++){
+                  if(member.members[i].id==ret.data[j].uiid){
+                    if(ret.data[j].state==1){
+                      Vue.set(member.members[i],'state',1);
+                    }else{
+                      Vue.set(member.members[i],'state',0);
+                    }
+                  }
+                }
+              }
+          });
+        },50)
+       }
+    }
+     //删除群成员
+		function delGroupMembers(username){
+			api.ajax({
+					url: 'http://api.baopinghui.com/jpushim/findnewbin8',
+					method: 'get',
+					data: {
+							values: {
+									gid: member.gid,
+									uiid:username,
+									type:"0" //0代表删除成员
+
+							}
+					}
+			},function(ret, err){
+					if (ret) {
+
+
+								api.toast({
+										msg: '删除群成员成功',
+										duration: 2000,
+										location: 'bottom'
+								});
+								var Mlength=member.members.length;
+								for(var i=0;i<Mlength;i++){
+									if(member.members[i].id==username){
+										//切掉数据中的这一行，不用刷新，不然加载的时间太久
+                      var bb = member.members.splice(i,1);
+											//发送给group-setting页面同步更新成员列表
+											 api.sendEvent({
+											     name: 'member2',
+											     extra: {
+											        bb: bb
+											     }
+											 });
+
+											 return;
+									}
+								}
+
+
+
+
+					} else {
+							api.toast({
+									msg: '操作失败失败',
+									duration: 2000,
+									location: 'bottom'
+							});
+
+					}
+			});
+
+
+
+		};
+
+    //添加群管理员
+   function addAdmin(username,num){
+     var execType="addAdmin";
+     if(num==2){
+       execType="removeAdmin";
+     }
+
+   api.sendEvent({
+       name: 'execJIM',
+       extra: {
+           type:execType,
+           gid: member.gid,
+           username: username
+       }
+   });
+ //group_chat传来管理员添加成功
+   api.addEventListener({
+       name: 'execJIMend'
+   }, function(ret, err){
+       if( ret ){
+         //切割改变数组让他的状态改变，不然就使用v-show来实现不使用v-if
+         api.toast({
+             msg: '操作成功',
+             duration: 2000,
+             location: 'bottom'
+         });
+
+
+         var Mlength=member.members.length;
+         for(var i=0;i<Mlength;i++){
+                if(member.members[i].id==username){
+                     // 	Vue.set(group.members[i],'flag',2);//更改最新一条消息
+                          //  alert("sss");
+                  // var qian=member.members.slice(0,i);
+                  //    var hou=member.members.slice(i+1,Mlength);
+                 var aa=member.members.splice(i,1);
+                 //判断类型是添加还是移除管理员
+                 if(ret.value.type=="addAdmin"){
+                     aa[0].flag=2;
+                 }else{
+                   aa[0].flag=0;
+                 }
+								 //发送给group-setting页面更改列表
+								api.sendEvent({
+								    name: 'member',
+								    extra: {
+								        aa: aa
+								    }
+								});
+
+                //    qian.push(aa[0]);
+                // member.members=qian.concat(hou);
+
+                      return;
+                }
+         }
+
+
+
+       }else{
+
+       }
+   });
+
+
+
+   }
+   //移除群管理员
+   function removeAdmin(username){
+     addAdmin(username,2);
+
+   }
+  </script>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+	<title>guide2</title>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+		}
+		body{
+			width:100vw;
+			height:100vh;
+		}
+		.bg{
+			width:100vw;
+			height:100vh;
+			background-color:#000;
+			opacity: 0.8;
+			/*animation:bganimation 0.3s linear 0s 1 normal;
+			-webkit-animation: bganimation 0.3s linear 0s 1 normal;
+			-ms-animation: bganimation 0.3s linear 0s 1 normal;
+			-o-animation: bganimation 0.3s linear 0s 1 normal;
+			-moz-animation: bganimation 0.3s linear 0s 1 normal;*/
+		}
+		.textbox{
+			position: fixed;
+			bottom:0;
+			width:100vw;
+		}
+		.arrow{
+			position: absolute;
+			bottom:14.29vw;
+			left:30.86vw;
+			width:10.64vw;
+			height:10.64vw;
+			background:url(../../icon/guide/arrow2.png) no-repeat;
+			background-size:contain;
+			transform: rotate(-98deg);
+		}
+		.textbox p{
+			margin-left:39.36vw;
+			font:3.99vw/5.85vw Arial;
+			font-weight: bold;
+			color:#fff;
+		}
+		.textbox p:nth-child(2)>span{
+			color:#f381a3;
+		}
+		.textbox p:nth-child(3){
+			margin-bottom:18.85vw;
+		}
+		.textbox p:nth-child(3) span{
+			border-bottom:2px solid #fff;
+		}
+		.window{
+			position: absolute;
+			bottom:1.33vw;
+			left:26.6vw;
+			width:21.28vw;
+			height:10.64vw;
+			border-radius: 1.33vw;
+			/*background:url(../../image/bottombtn0202.png) no-repeat top center;*/
+			/*background-size:30px 30px;*/
+			
+			font:2.66vw/16.64vw Arial;
+			font-weight: bold;
+			text-align: center;
+			color:#aaa;
+			background: url(../../image/index/search.png) no-repeat 0px; 
+			background-position:center 1vw;
+			background-size:5.32vw 5.32vw;
+			background-color:#fff;
+		}
+		@keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 0.8;
+			}
+		}
+		@-webkit-keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 0.8;
+			}
+		}
+		@-ms-keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 0.8;
+			}
+		}
+		@-o-keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 0.8;
+			}
+		}
+		@-moz-keyframes bganimation{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 0.8;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="bg"></div>
+	<div class="textbox">
+		<div class="arrow"></div>
+		<p>Next <span>click here</span>, </p>
+		<p>Let's go to the <span>Search</span> page.</p>
+		<div class="window">SEARCH</div>
+	</div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript">
+	var hhh=window.screen.height;
+    var www=window.screen.width;
+	apiready = function(){
+		if(hhh/www > 2){
+			$api.css($api.dom('.textbox'), 'bottom:34px;');
+		}
+	    if($api.getStorage('language')=='zho'){
+	    	$api.html($api.dom('.textbox'), '<div class="arrow"></div><p>接 下 來 <span>點 擊 這 裏</span></p><p>我 們 去 <span>搜 尋</span> 頁 面 看 看</p><div class="window">搜尋</div>');
+	    }
+	    $api.addEvt($api.dom('.window'), 'click',function(){
+	    	// 发送点击发现按钮事件
+	    	api.sendEvent({
+	    	    name: 'discovery'
+	    	});
+	    	setTimeout(function(){
+	    	api.openFrame({
+	    	    name: 'guide3(new)',
+	    	    url: 'widget://html/guide/guide3(new).html',
+	    	    rect: {
+	    	        x: 0,
+	    	        y: 0,
+	    	        w: 'auto',
+	    	        h: 'auto'
+	    	    },
+	    	    pageParam: {
+	    	        name: 'value'
+	    	    }
+	    	});	
+	    	api.closeFrame({
+	    	    name: 'guide2'
+	    	});
+	    	},100);
+	    	
+	    	
+	    });
+	}
+	     
+
+
+</script>
+</html>

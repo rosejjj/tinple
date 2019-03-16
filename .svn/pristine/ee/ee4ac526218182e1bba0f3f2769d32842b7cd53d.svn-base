@@ -1,0 +1,3 @@
+.aui-bar{background: #fff;position:fixed}
+.aui-bar .aui-iconfont{color:#26a59a;font-size: 1.4em;} 	
+.aui-pull-right{font-size: 1.5em;}	

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no" />
+    <title>selectDate</title>
+    <link rel="stylesheet" href="../../css/aui2.css" />
+    <link rel="stylesheet" href="../../css/frame.css" />
+</head>
+<body>
+		<header class="aui-bar aui-bar-nav" style="border-bottom: 1px solid #dfdfdf;">
+			<!--<img class="aui-pull-left" src="../image/icon/No86be51.png" style="width: 40px;margin: 20px 0 0 20px;" tapmode='' onclick='close_me()'>-->
+		    <div id="cancel"  style="position: absolute;left: 20px;line-height: 19px;top: 15px;color: #484848;font-size: 13px;font-weight: bold;" tapmode='' onclick='close_me2()'>CANCEL</div>
+		   <!-- <img class="aui-pull-right" src="../image/icon/Yes86be51.png" style="width: 40px;margin: 20px 20px 0 0;" tapmode='' onclick='close_me()'>-->
+		    <div id="complete"  style="position: absolute;right: 20px;line-height: 19px;top: 15px;color: #484848;font-size: 13px;font-weight: bold;" tapmode='' onclick='close_me()'>COMPLETE</div>
+		</header>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript">
+//var lan;
+
+//	定义了par：处理日期数据
+	var lan = "中 文";
+  //var lan;
+
+	apiready = function(){
+			if($api.getStorage("language")=="zho"){
+				$api.text($api.dom("#cancel"),"取消 ");
+				$api.text($api.dom("#complete"),"完成 ");
+			};
+			var UICustomPicker = api.require('UICustomPicker');
+			UICustomPicker.open({
+			    rect: {
+			        x: 0,
+			        y: api.frameHeight*'0.15',
+			    },
+			    styles: {
+					bg:'#fff',
+			        normalColor: '#a4a4a4',
+			        selectedColor: '#313131',
+			        selectedSize: 30,	//34
+			    },
+			    data: [{
+			    	scope:["E N G L I S H","中 文"]
+			    }],
+			    rows: 6,
+			    autoHide:false,
+			    loop:false,
+			    fixedOn: 'date',
+			    fixed: true
+			}, function(ret, err){
+			//if(ret.eventType=="show"){
+					//par=ret.data;
+          // UICustomPicker.setValue({
+          //     id: 1,
+          //     data: ['中 文']
+          // });
+
+				//}
+        if(ret.data){
+					lan=ret.data;
+					//+-alert(lan);
+        }
+
+			});
+	}
+	function close_me(){
+
+    //alert(api.pageParam.name);
+    if(api.pageParam.name=='left'){
+      api.sendEvent({
+          name: 'sets_lan',
+          extra: {
+            lan:lan
+          }
+      });
+    }else{
+			//if(!lan){
+				//alert(lan);
+				// api.toast({
+				// 		msg: '请滑动选择需要翻译的语言，否则无效',
+				// 		duration: 1000,
+				// 		location: 'middle'
+				// });
+			//}
+      api.sendEvent({
+          name: 'sets_lans',
+          extra: {
+            lan:lan
+          }
+      });
+    }
+    api.closeFrame({
+      name: "dateBg"
+    });
+    api.closeFrame({
+      name: "date"
+    });
+	}
+
+	function close_me2(){
+    // alert('nmb');
+    // api.closeFrame({
+    //     //name: 'dateBg'
+    // });
+    api.closeFrame({
+      name: "dateBg"
+    });
+    api.closeFrame({
+      name: "date"
+    });
+
+		// var jsfun = "closeFra();";
+		// api.execScript({
+		//     script: jsfun
+		// });
+	}
+</script>
+</html>

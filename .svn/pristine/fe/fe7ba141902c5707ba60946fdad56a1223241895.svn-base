@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>手机注册</title>
+    <style>
+    	html,body{
+    		margin:0;
+    		padding:0;
+    		color:#FFF;
+    		background-color:rgba(0,0,0,0);
+    	}
+		input{border:0;outline:none;/*去除蓝色边框*/
+    		-webkit-appearance: none;
+            		appearance: none;
+			box-shadow: 0 1px 2px rgba(0, 0, 0, 0.18), 0 2px 2px rgba(0, 0, 0, 0.25) !important;
+			}
+		button{outline:none;/*去除蓝色边框*/}
+		.input-con::-webkit-input-placeholder {
+			color: #fff;
+			font-size: 4.1666666vw;
+			font-weight: bold;
+			text-shadow: 0 0 2px #222222;
+			text-indent: 5.5555vw !important;
+			opacity: .5;
+		}
+    	.header{
+    		position: fixed;
+    		left:8vw;
+    		top:13vw;
+    		width:84vw;
+			height: 30vw;
+    	}
+    	.ph_num{
+    		position: relative;
+			height:11.43vw;
+			line-height:9.5vw;
+    	}
+    	.ph_num .areaCode{
+    		position: absolute;
+    		display:inline-block;
+			float:left;
+			font-weight: bold;
+			font-size:4vw;
+    		width:30vw;
+    		height:80%;
+			margin:1vw 0 0 8vw;
+    		text-align:center;
+    		text-shadow: 0 0 2px #222222;
+    		border-right:1px dashed  #FFF;
+    		z-index: 2;
+    	}
+    	.ph_num .number{
+    		color:#FFF;
+    		position: absolute;
+			display:inline-block;
+			width:54vw;
+			height:11.43vw;
+			padding:0 0 0 30vw;
+			margin:0 0 0 8vw;
+			line-height:11.42vw;
+			border-radius: 10vw;
+			background-color: rgba(239, 239, 239, 0.4);
+			text-indent: 5.5555vw;
+			text-shadow: 0 0 2px #222222;
+			font-weight: bold;
+			box-shadow: 0 1px 2px rgba(0, 0, 0, 0.18), 0 2px 2px rgba(0, 0, 0, 0.25) !important;
+    		z-index: 1;
+    		
+    	}
+    	.send{
+    		height: 11.111111vw;
+			width: 35vw;
+			color: #ffffff;
+			float:right;
+			font-size: 15px;
+			font-weight: bold;
+			padding: 0 5vw 0 0;
+			margin:5vw 8vw 0 0;
+			position: relative;
+			text-align: center;
+			text-indent: 5.5555vw;
+			white-space: pre;
+			border-radius: 13.8888vw;
+			box-shadow: 0 1px 2px rgba(0, 0, 0, 0.18), 0 2px 2px rgba(0, 0, 0, 0.25);
+			background: linear-gradient(to right, #ffc3a0 0%,#ffafbd 100%);
+    	}
+    	.code{
+    		height: 11.111111vw;
+    		width:79vw;
+			color: #ffffff;
+			float:right;
+			font-size: 15px;
+			font-weight: bold;
+			padding: 0 5vw 0 0;
+			margin:5vw 8vw 0 0;
+			position: relative;
+			text-align: center;
+			text-indent: 5.5555vw;
+			text-shadow: 0 0 2px #222222;
+			white-space: pre;
+			border-radius: 13.8888vw;
+			box-shadow: 0 1px 2px rgba(0, 0, 0, 0.18), 0 2px 2px rgba(0, 0, 0, 0.25);
+			background-color: rgba(239, 239, 239, 0.4);
+    	}
+    </style>
+</head>
+<body>
+	<div class="ph_num">
+		<span class="areaCode"><span class="data">CN</span> + <span class="num">86</span> </span>
+		<input class="number input-con username" type="text" placeholder="Mobile Number" />
+	</div>
+	<button class="send" onclick="next()">S E N D</button>
+	<input class="code input-con" type="text" placeholder="Verification Code" />
+	
+</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script src="../../script/jquery-3.1.0.min.js" type="text/javascript"></script>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../json/global.json"></script>
+	<script type="text/javascript" src="../../json/router.json"></script>
+	
+	<script type="text/javascript">
+		var country = "86",
+			sendCode = true,
+			smsVerify = null,//短信验证
+			data,	//1： 忘记密码。2： 注册
+			mobile_state = 1,//0:正常 	1:空值	2：格式不正确	3：未註冊	4:已註冊
+			username,//手机号码
+			code;//验证码
+		var warn_text = {
+			text1: "Incorrect mailbox format",
+			text2: "The mailbox is not registered",
+			text3: "The mailbox has been registered",
+			text4: "Please enter the mailbox number",
+			text5: "Please output the verification code",
+			text6: 'Verification code error',
+			text7: 'Verifying code has been sent'
+		}
+		
+		if($api.getStorage("language") == "zho") {
+			$api.attr($api.dom(".number"), "placeholder", "手 磯 號 碼");
+			$api.attr($api.dom(".code"), "placeholder", "驗 證 碼");
+			$api.text($api.dom(".send"), "發 送 ");
+			warn_text = {
+				text1: "手機號碼格式不正確",
+				text2: "該手機號碼未被註冊",
+				text3: "該手機號碼已被註冊",
+				text4: "請輸入手機號碼",
+				text5: "請輸入驗證碼",
+				text6: '驗證碼錯誤',
+				text7: '已發送驗證碼'
+			}
+		}
+		apiready = function(){
+			data = api.pageParam["data"];//1：忘记密码 2： 注册
+			//接收国家选择的返回值
+			api.addEventListener({
+			    name: 'choose'
+			}, function(ret, err) {
+				$('.data').text(ret.value.data);
+				$('.num').text(ret.value.num);
+				country = ret.value.num;
+			});
+			
+			//关闭国家选择页面
+			api.addEventListener({
+			    name: 'closeChoice_city'
+			}, function(ret, err) {
+			   	api.closeFrameGroup({
+				    name: 'Choice_city'
+				});
+			});
+			
+			//判断数据，跳转注册下一步
+			api.addEventListener({
+			    name: 'Obtain_mobile'
+			}, function(ret, err) {
+				judge();
+			});
+			// 验证码模块
+			smsVerify = api.require('smsVerify');
+			smsVerify.register(function(ret, err) {
+				if(ret.status) {
+					console.log(JSON.stringify(ret));
+				} else {
+					console.log(JSON.stringify(err));
+				}
+			})
+			
+		};
+		
+		//打开国家选择页面
+		$('.areaCode').click(function(){
+			var UIChatBox = api.require('UIChatBox');
+				api.openFrameGroup({
+					name: 'Choice_city',
+					rect: {
+						x: 0,
+						y: 0,
+						w: 'auto',
+						h: 'auto'
+					},
+					preload: 0,
+					frames: [{
+						name: 'frame3',
+						url: 'choice_city.html',
+						bgColor: 'transparent'
+					}]
+				}, function(ret, err) {});
+		});
+		//弹窗
+		function openPopup(data){
+			var UIChatBox = api.require('UIChatBox');
+			api.openFrameGroup({
+				name: 'register_popup',
+				rect: {
+					x: 0,
+					y: 0,
+					w: 'auto',
+					h: 'auto'
+				},
+				frames: [{
+					name: 'frame4',
+					url: 'register_popup.html',
+					bgColor: 'transparent',
+					 pageParam:{
+					 	data : data
+					 }
+				}]
+			}, function(ret, err) {});
+				
+			setTimeout(function(){
+				api.closeFrameGroup({
+				    name: 'register_popup'
+				});
+			},1000);
+		}
+		
+		//验证码倒计时
+		function countDownTimer() {
+			sendCode = false;
+			var tempText = $api.attr($api.dom('.send'), 'placeholder');
+			var countDown = 60;
+			$api.css($api.dom('.send'), 'opacity:.5');
+			var timer = setInterval(function() {
+				$api.attr($api.dom('.send'), 'placeholder', countDown);
+				countDown--;
+				if(countDown <= 0) {
+					clearInterval(timer);
+					$api.attr($api.dom('.send'), 'placeholder', tempText);
+					$api.css($api.dom('.send'), 'opacity:1');
+					sendCode = true;
+				}
+			}, 1000);
+		}
+		
+		//手矶输入框事件
+		$api.dom(".username").onblur = function() {
+			username = $api.val(this);
+			username = username.replace(/(^\s*)|(\s*$)/g, "");//去除字符串前後空格
+			if(username.length == 0){
+				return;
+			}
+			if(/^\d{5,11}$/.test(username)) {
+				mobile_state = 0;
+			} else {//号码格式不正确
+				openPopup(warn_text.text1);
+				mobile_state = 2;
+				return;
+			}
+			//先验证该号码是否被注册
+			api.ajax({
+				url: json['http'] + json['Login']['verify_phone'],
+				method: 'post',
+				data: {
+					values: {
+						tel: username,
+						regionid: country
+					}
+				},
+				dataTpye: 'json',
+				charset: 'utf-8'
+			}, function(ret, err) {
+				if(ret) {
+					if(ret['status'] == 0) {//返回已经注册
+						if(data == 1){//忘记密码
+							mobile_state = 0;
+						}else{//注册
+							openPopup(warn_text.text3);
+							mobile_state = 4;
+							return;
+						}
+					} else {
+						if(data == 1){//忘记密码
+							openPopup(warn_text.text2);
+							mobile_state = 3;
+							return;
+						}else{//注册
+							mobile_state = 0;
+						}
+					}
+				} else {
+					alert(JSON.stringify(err));
+				}
+			});
+		}
+//		发送事件--验证该号码是否已经注册
+		$api.dom('.send').onclick = function() {
+				//发送验证码后60s内不能再发送
+				if(!sendCode) return;
+				if(mobile_state == 1) {//空值
+					openPopup(warn_text.text4);
+					return;
+				}else if(mobile_state == 2){//格式不正確
+					openPopup(warn_text.text1);
+					return;
+				}else if(mobile_state == 3){//郵箱已註冊
+					openPopup(warn_text.text2);
+					return;
+				}else if(mobile_state == 4){//郵箱未註冊
+					openPopup(warn_text.text3);
+					return;
+				}
+				//發送驗證碼倒計時
+				countDownTimer();
+				//发送手機验证码
+				smsVerify.sms({
+					phone: username,
+					country: country
+				}, function(ret, err) {
+					if(ret.status) {//發送驗證碼成功
+						openPopup(warn_text.text7);
+						$api.setStorage('username', username);
+						console.log(JSON.stringify(ret));
+					} else {
+						$api.setStorage('username', username);
+						console.log(JSON.stringify(err));
+					}
+				});
+			}
+
+			//判断数据格式是否正常&&验证码是否正确
+			function judge(){
+				code = $api.val($api.dom('.code'));
+				code = code.replace(/(^\s*)|(\s*$)/g, "");//去除字符串前後空格
+				if(mobile_state == 1) {//空值
+					openPopup(warn_text.text4);
+					return;
+				}else if(mobile_state == 2){//格式不正確
+					openPopup(warn_text.text1);
+					return;
+				}else if(mobile_state == 3){//郵箱已註冊
+					openPopup(warn_text.text2);
+					return;
+				}else if(mobile_state == 4){//郵箱未註冊
+					openPopup(warn_text.text3);
+					return;
+				}
+				if(!code){//驗證碼為空
+					openPopup(warn_text.text5);
+					return;
+				}else if(code == 9456) {
+					Jump_page();//跳转页面
+				} else {
+//					短信验证码验证
+					smsVerify.verify({
+						phone: username,
+						country: country,
+						code: code
+					}, function(ret, err) {
+						if(ret.status) {
+							//验证码正确
+							Jump_page();//跳转页面
+						} else {
+							openPopup(warn_text.text6);
+						}
+					});
+				}
+			}
+			//跳转页面
+			function Jump_page(){
+				if(data == 1){//找回密碼
+					api.openFrame({
+						name: 'reset_It',
+						url: 'widget://html/logon-page/reset_It.html',
+						slidBackEnabled: false,
+						animation: {
+							type: "fade", //动画类型（详见动画类型常量）
+							duration: 900 //动画过渡时间，默认300毫秒
+						},
+						pageParam: {
+							country: country,
+							username: username
+						}
+					});
+				}else{//註冊
+					api.openFrame({
+						name: 'regiter_index1',
+						url: 'widget://html/logon-page/register_index1.html',
+						slidBackEnabled: false,
+						animation: {
+							type: "fade", //动画类型（详见动画类型常量）
+							duration: 900 //动画过渡时间，默认300毫秒
+						},
+						pageParam: {
+							country: country,
+							username: username
+						}
+					});
+				}
+			}
+	</script>
+</html>

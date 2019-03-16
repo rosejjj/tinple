@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>登录页面</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/mystyle.css" />
+    <style type="text/css">
+    .slider-pane3 img{
+      height: 76%;
+      width: 76%;
+    }
+    .slider-pane2 img{
+      height: 70%;
+      width: 70%;
+    }
+    .slider-left{
+    position: absolute;
+    top: 40%;
+    left: 4%;
+    height: 100%;
+    width: 100%;
+    }
+    .slider-bottom{
+    position: absolute;
+    top: 75%;
+    left: 4%;
+    height: 100%;
+    width: 100%;
+    }
+    #but{
+      position: absolute;
+      bottom: 3px;
+      height: 10%;
+      width: 95%;
+      margin: 5px 10px;
+      background: white;
+      border-radius: 10px;
+      color: #AAA;
+      font-size: 25px;
+      visibility: hidden;
+      z-index: 11;
+    }
+    #bottom{
+      position: absolute;
+      bottom: 12%;
+      width: 95%;
+      height: 45%;
+      text-align: center;
+      margin: 5px 10px;
+      visibility: hidden;
+      background: white;
+      border-radius: 10px;
+      border:none;
+      z-index: 11;
+    }
+    #mask{
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      background: #1C1C1E;
+      opacity: 0.7;
+      z-index: 10;
+      display: none;
+    }
+    .second,.third,.forth,.fifth,.sixth{
+      font-size: 20px;
+      border-top: 1px solid #F0F0F0;
+      font-weight: bold;
+    }
+
+    .first{
+      height: 40px;
+      color: #AAA;
+      font-size: 20px;
+    }
+    </style>
+</head>
+<body>
+  <div class="wrap">
+    <!--遮罩层-->
+    <div id="mask"></div>
+
+    <div class="slider">
+      <div class="slider-right">
+  		  <ul class="slider-main">
+  			  <li class="slider-panel"><img  src="../../icon/logon-page2/login-backg-trans@3x.png"></li>
+  			  <li class="slider-panel"><img src="../../icon/logon-page2/login-backg-world@3x.png"></li>
+  			  <li class="slider-panel"><img src="../../icon/logon-page2/login-backg-trap@3x.png"></li>
+  	     </ul>
+       </div>
+       <div class="slider-left">
+   		  <ul class="slider-main">
+   			  <li class="slider-pane2"><img src="../../icon/logon-page2/login-eng-trans@3x.png"></li>
+   			  <li class="slider-pane2"><img src="../../icon/logon-page2/login-eng-world@3x.png"></li>
+   			  <li class="slider-pane2"><img src="../../icon/logon-page2/login-eng-trap@3x.png"></li>
+   	     </ul>
+        </div>
+        <div class="slider-bottom">
+    		  <ul class="slider-main">
+    			  <li class="slider-pane3"><img  src="../../icon/logon-page2/login-eng-world2@3x.png"></li>
+    			  <li class="slider-pane3"><img src="../../icon/logon-page2/login-eng-trap2@3x.png"></li>
+    			  <li class="slider-pane3"><img src="../../icon/logon-page2/login-eng-trans2@3x.png"></li>
+    	     </ul>
+         </div>
+         <div class="slider-top">
+          <ul class="slider-main">
+            <li class="slider-pane4"><img  src="../../icon/logon-page2/logo-pink.png"></li>
+            <li class="slider-pane4"><img src="../../icon/logon-page2/logo-pink.png"></li>
+            <li class="slider-pane4"><img src="../../icon/logon-page2/logo-pink.png"></li>
+           </ul>
+          </div>
+    </div>
+  		<div class="slider-extra">
+  			<ul class="slider-nav">
+  				<li class="slider-item"></li>
+  				<li class="slider-item"></li>
+  				<li class="slider-item"></li>
+  			</ul>
+    </div>
+    </div>
+    <div class="footer">
+      <div class="wechat phone_1" >Phone or Eamil</div>
+      <div class="wechat fb_2" style="display:none">LOGIN WITH Facebook</div>
+      <div class="wechat wx_3" style="display:none">LOGIN WITH WECHAT</div>
+      <div class="wechat qq_4" style="display:none">LOGIN WITH QQ</div>
+      <div class="footer-bottom">
+        <ul>
+          <li class="sign">SIGN UP</a></li>
+          <li class="login">LOGIN</a></li>
+        </ul>
+        </div>
+      </div>
+      <table id="bottom">
+        <tr>
+          <td class="first">Choose a Type</td>
+        </tr>
+        <tr>
+          <td class="second">Number registration</td>
+        </tr>
+        <tr>
+          <td class="third">E-mail registration</td>
+        </tr>
+        <tr>
+          <td class="forth">Login with Facebook</td>
+        </tr>
+        <tr>
+          <td class="fifth">Login with Wechat</td>
+        </tr>
+        <tr>
+          <td class="sixth">Login with QQ</td>
+        </tr>
+    </table>
+    <button id="but" type="submit">Cancel</button>
+</div>
+</body>
+</html>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/md5.js"></script>
+<script type="text/javascript" src="../../script/jmessage-sdk-web.2.5.0.min.js"></script><!--极光SDK-->
+<script type="text/javascript" src="../../json/api.json"></script>
+<script type="text/javascript" src="../../json/router.json"></script>
+<script type="text/javascript" src="../../json/global.json"></script>
+<script type="text/javascript" src="../../script/jquery-3.1.0.min.js"></script>
+<script src="../../script/public.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../script/StackBlur.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+apiready = function(){
+
+
+//判断是否安装了facebook 微信 QQ 如果没有安装则对相应的状态码进行更改
+  facebook = api.require('facebook');
+    if(api.systemType == 'ios') {
+      facebook.isInstalled(function(ret, err) {
+        if(ret.installed) {
+
+        } else {
+              //			        alert("当前设备已安装facebook客户端");
+            fbstate=1;
+        }
+      });
+
+    } else {
+      api.appInstalled({
+        appBundle: 'com.facebook.katana'
+      }, function(ret, err) {
+        if(ret.installed) {
+        } else {
+          //应用未安装
+            fbstate=1;
+          //  openPopup("你的手机上没有安装facebook");
+        }
+      });
+    }
+    wx = api.require('wx');
+wx.isInstalled(function(ret, err) {
+  if(ret.installed) {} else {
+    //微信未安装
+      wxstate=1;
+  }
+  });
+  qq = api.require('qq');
+  qq.installed(function(ret, err) {
+  if(ret.status) {} else {
+    //qq未安装
+       qqstate=1;
+    }
+  });
+
+
+
+    // jMessage_init();
+  $(".sign").click(function(){
+      document.getElementById('bottom').style.visibility="visible";
+      document.getElementById('but').style.visibility="visible";
+      document.getElementById('mask').style.display="block";
+  });
+  $("#but").click(function(){
+    document.getElementById('bottom').style.visibility="hidden";
+    document.getElementById('but').style.visibility="hidden";
+    document.getElementById('mask').style.display="none";
+  });
+$(".login").click(function(){
+    api.openWin({
+        name: 'login',
+        url: './login.html',
+        vScrollBarEnabled: false,
+        slidBackEnabled: false,
+        animation: {
+          type: "movein",
+          subType: "from_right",
+          duration: 500
+        },
+        pageParam: {
+            // name: 'test'
+        }
+    });
+
+
+
+
+})
+   //根据手机内安装是否的facebook 微信  qq  优先级别是微信 facebook qq 如果都没的话就显示  手机与邮箱登陆
+
+   setTimeout(function(){
+   if(wxstate==0){
+    //  $api.css($api.dom(".mask"), "display:block");
+    //  setTimeout(function(){
+    //    $api.css($api.dom(".alert-focus"), "display:none");
+    //    $api.css($api.dom(".mask"), "display:none");
+         $api.css($api.dom(".phone_1"), "display:none");
+         $api.css($api.dom(".fb_2"), "display:none");
+         $api.css($api.dom(".wx_3"), "display:block");
+         $api.css($api.dom(".qq_4"), "display:none");
+   }else if(fbstate==0){
+         $api.css($api.dom(".phone_1"), "display:none");
+         $api.css($api.dom(".fb_2"), "display:block");
+         $api.css($api.dom(".wx_3"), "display:none");
+         $api.css($api.dom(".qq_4"), "display:none");
+
+   }else if(qqstate==0){
+         $api.css($api.dom(".phone_1"), "display:none");
+         $api.css($api.dom(".fb_2"), "display:none");
+         $api.css($api.dom(".wx_3"), "display:none");
+         $api.css($api.dom(".qq_4"), "display:block");
+   }
+   },200);
+//点击关联登陆是 手机与邮箱
+   $('.phone_1').click(function(event) {
+     api.openWin({
+         name: 'login',
+         url: './login.html',
+         vScrollBarEnabled: false,
+         slidBackEnabled: false,
+         animation: {
+           type: "movein",
+           subType: "from_right",
+           duration: 500
+         },
+         pageParam: {
+             // name: 'test'
+         }
+     });
+
+
+   });
+   $('.fb_2').click(function(event) {
+     jMessage_init();
+      console.log('facebook登录');
+      document.getElementById('bottom').style.visibility="hidden";
+      document.getElementById('but').style.visibility="hidden";
+      fblogin();
+   });
+   $('.wx_3').click(function(event) {
+     jMessage_init();
+     console.log('微信登录');
+     document.getElementById('bottom').style.visibility="hidden";
+     document.getElementById('but').style.visibility="hidden";
+      wxlogin();
+  });
+    $('.qq_4').click(function(event) {
+      jMessage_init();
+      console.log('qq登录');
+      document.getElementById('bottom').style.visibility="hidden";
+      document.getElementById('but').style.visibility="hidden";
+      qqlogin();
+    });
+
+
+
+
+
+
+var length,
+currentIndex = 0,
+interval,
+hasStarted = false, //是否已经开始轮播
+t = 1500; //轮播时间间隔
+length = $('.slider-panel').length;
+var wx;
+var qq;
+var facebook;
+// var JIM = new JMessage(); //极光对象
+
+//将除了第一张图片隐藏
+$('.slider-panel:not(:first)').hide();
+$('.slider-pane2:not(:first)').hide();
+$('.slider-pane3:not(:first)').hide();
+$('.slider-pane4:not(:first)').hide();
+//将第一个slider-item设为激活状态
+$('.slider-item:first').addClass('slider-item-selected');
+
+
+$('.slider-item').hover(function(e) {
+stop();
+var preIndex = $(".slider-item").filter(".slider-item-selected").index();
+currentIndex = $(this).index();
+play(preIndex, currentIndex);
+}, function() {
+start();
+});
+
+
+/**
+   * 向前翻页
+   */
+  function pre() {
+    var preIndex = currentIndex;
+    currentIndex = (--currentIndex + length) % length;
+    play(preIndex, currentIndex);
+  }
+  /**
+   * 向后翻页
+   */
+  function next() {
+    var preIndex = currentIndex;
+    currentIndex = ++currentIndex % length;
+    play(preIndex, currentIndex);
+  }
+
+function play(preIndex, currentIndex) {
+$('.slider-panel').eq(preIndex).fadeOut(0)
+  .parent().children().eq(currentIndex).fadeIn(0);
+$('.slider-pane2').eq(preIndex).fadeOut(0)
+    .parent().children().eq(currentIndex).fadeIn(0);
+$('.slider-pane3').eq(preIndex).fadeOut(0)
+    .parent().children().eq(currentIndex).fadeIn(0);
+$('.slider-pane4').eq(preIndex).fadeOut(0)
+    .parent().children().eq(currentIndex).fadeIn(0);
+$('.slider-item').removeClass('slider-item-selected');
+$('.slider-item').eq(currentIndex).addClass('slider-item-selected');
+}
+
+/**
+* 开始轮播
+*/
+function start() {
+if(!hasStarted) {
+  hasStarted = true;
+  interval = setInterval(next,t);
+}
+}
+
+api.addEventListener({
+  name:'swiperight'
+}, function(ret, err){
+  pre();
+});
+api.addEventListener({
+  name:'swipeleft'
+}, function(ret, err){
+next();
+});
+start();
+};
+
+var wx, qq, facebook,
+  loginMethod = 'Mobile',
+  focus_users = [];
+  var JIM = new JMessage();
+var warn_text = {
+  text1: "Wechat associated login failed",
+  text2: "S U B M I T   E R R O R",
+  text3: "I think it is the fault of WeChat",
+  text4: "Facebook associated login failed",
+  text5: "I think it is the fault of Facebook",
+  text6: "QQ associated login failed",
+  text7: "I think it is the fault of QQ",
+  text10: 'Getting WeChat data failure',
+  text12: "<p class='toast-content'>“Server Connection Failed, <br/> Tinkle Service May Not Cover Your Area”</p>",
+  text13: "<p class='toast-content'>-1-<br/>“Please Check The Network Is Normal”</p><p class='toast-content'>-2-<br/>“Please Check Whether Tinkle Network Permission Is Disabled”</p>"
+};
+
+//判断facebook 微信 qq 是否安装 0代表安装了，1代表没有安装
+  var fbstate=0;
+  var wxstate=0;
+  var qqstate=0;
+
+
+// apireday = function(){
+//
+//   //语言选择
+//
+//     language();
+// 	//彈窗
+//
+//
+// //			监听返回事件——返回则退出应用
+//   api.addEventListener({
+//       name: 'keyback'
+//   }, function(ret, err) {
+// //		关闭应用
+//       api.closeWidget({
+//         id: 'A6925336051394',
+//         retData: {
+//             name: 'closeWidget'
+//         },
+//         silent : true,//退出时不弹出提示框
+//         animation: {
+//             type: 'flip',
+//             subType: 'from_bottom',
+//             duration: 500
+//         }
+//     });
+//   });
+//   //初始化极光
+//
+// }
+//Frame登录页面
+  // $('.login').click(function(){
+  //   api.openWin({
+  //     name: 'login',
+  //     url: 'html/sign.html',
+  //     vScrollBarEnabled: false,
+  //     slidBackEnabled: false,
+  //     animation: {
+  //       type: "movein",
+  //       subType: "from_right",
+  //       duration: 300
+  //     },
+  //     pageParam: {
+  //       name:'sign'
+  //     }
+  //   });
+  // });
+  //帮助跳到手机，收取验证码，注册
+  $(".second").click(function() {
+    api.openWin({
+        name: 'register_mobile',
+        url: './register_mobile.html',
+        pageParam: {
+            data: 0//0代表是从注册页面打开的收取手机验证码的页面    1代表是从帮助页面进入的收取手机验证码的页面
+        }
+    });
+
+  });
+  //帮助跳到邮箱，收取验证码，注册
+  $(".third").click(function() {
+    api.openWin({
+        name: 'register_email',
+        url: './register_email.html',
+        pageParam: {
+            name: 'test'
+        }
+    });
+  });
+  //Facebook
+  // facebook登录
+
+  $('.forth').click(function(){
+
+        facebook = api.require('facebook');
+
+    jMessage_init();
+    // var returnback=0;
+
+
+    // setTimeout(function(){
+        // alert("returnback"+returnback);
+    //     return;
+    // },10);
+    //  alert(fbstate);
+    if(fbstate==1){
+     openPopup(warn_text.text4,warn_text.text2,warn_text.text5);
+      return;
+    }
+
+      // jMessage_init();
+
+    console.log('fb 登录');
+    document.getElementById('mask').style.display="none";
+    document.getElementById('bottom').style.visibility="hidden";
+    document.getElementById('but').style.visibility="hidden";
+  });
+
+
+
+  //qq登录
+  $('.sixth').click(function(){
+    jMessage_init();
+      // jMessage_init();
+    qq = api.require('qq');
+    if(qqstate==1){
+     openPopup(warn_text.text6,warn_text.text2,warn_text.text7);
+      return;
+    }
+    console.log('qq登录');
+    document.getElementById('mask').style.display="none";
+  document.getElementById('bottom').style.visibility="hidden";
+  document.getElementById('but').style.visibility="hidden";
+      qqlogin();
+  });
+  //微信登录
+  $('.fifth').click(function() {
+    jMessage_init();
+  wx = api.require('wx');
+  if(wxstate==1){
+   openPopup(warn_text.text1,warn_text.text2,warn_text.text3);
+    return;
+  }
+    console.log('微信登录');
+    document.getElementById('mask').style.display="none";
+    document.getElementById('bottom').style.visibility="hidden";
+    document.getElementById('but').style.visibility="hidden";
+    wxlogin();
+
+  });
+
+  function jMessage_init() {
+    // var JIM = new JMessage(); //极光对象
+    var appkey = 'c46c8bc128f41299334ec8e3';
+    var timestamp = (new Date()).valueOf(); //当前时间戳
+    var random_str = random(30); //生成随机字符串
+    var signature = MD5("appkey=" + appkey + "&timestamp=" + timestamp + "&random_str=" + random_str + "&key=269e7aa2881b1a8767f16ce6");
+    JIM.init({
+      "appkey": appkey,
+      "random_str": random_str,
+      "signature": signature,
+      "timestamp": timestamp,
+      "flag": 0
+    }).onSuccess(function(data) {
+      console.log('极光初始化成功');
+    }).onFail(function(data) {
+      console.log('错误，初始化失败');
+    }).onTimeout(function(data) {
+      openPopup(warn_text.text12,warn_text.text2,warn_text.text2);
+      console.log('请求超时 ' + JSON.stringify(data));
+    });
+  }
+
+  //	极光注册
+  function jMessage_register(id){
+    // var JIM = new JMessage(); //极光对象
+    console.log('开始极光注册');
+
+
+    JIM.register({
+        'username' : id,
+         'password' : 123456
+        }).onSuccess(function(data) {
+  //			 	注册成功 {"code":0,"message":"success"}
+      console.log('注册成功 ' + JSON.stringify(data));
+    }).onFail(function(data) {
+      //参数不合法（用户已注册） {"code":882002,"event":"register","message":"user exit or not exits or password err or uid err or gid err or appkey err"}
+      if(data.code == 882002){
+        console.log('参数不合法（用户已注册） ' + JSON.stringify(data));
+      }else{
+        console.log('请求错误' + JSON.stringify(data));
+        jMessage_register(id);
+      }
+    }).onTimeout(function(data) {
+      console.log('请求超时 ' + JSON.stringify(data));
+      jMessage_register(id);
+    });
+  }
+  //登录成功- 重新清空旧用户的缓存
+  function ok_login() {
+    $api.rmStorage('id');//用户ID
+    $api.rmStorage('apId');
+    $api.rmStorage('avatar')
+    $api.rmStorage('fans')
+    $api.rmStorage('follwer')
+    $api.rmStorage('summary')
+    $api.rmStorage('popular')
+    $api.rmStorage('active')
+    $api.rmStorage('nickname')
+    $api.rmStorage('my_message')
+    $api.rmStorage('focus_message')
+    $api.rmStorage('user_name');
+    $api.rmStorage('beginDate');
+    $api.rmStorage('cover');
+
+    $api.rmStorage('hasNews')//总的未读数
+    $api.rmStorage('chatList');//会话列表
+  }
+
+  //		打开loading页
+  function open_loading(){
+    api.openFrame({
+      name: 'loading',
+      url: 'widget://html/logon-register/loading.html',
+      vScrollBarEnabled: false,
+      slidBackEnabled: false,
+      animation: {
+        type: "fade", //动画类型（详见动画类型常量）
+        subType: "fade", //动画子类型（详见动画子类型常量）
+        duration: 900 //动画过渡时间，默认300毫秒
+      }
+    });
+  }
+  //		关闭loading页
+  function close_loading(){
+    api.closeFrame({
+        name: 'loading'
+    });
+  }
+
+  //============================================		极光		===================================================
+
+  //生成随机字符串--用于极光注册
+  function random(length) {
+    var str = Math.random().toString(36).substr(2);
+    if(str.length >= length) {
+      return str.substr(0, length);
+    }
+    str += random(length - str.length);
+    return str;
+  }
+
+  //查询关注数-跳轉myfollo頁面
+  function concern_number(){
+    api.ajax({
+      url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/baseCount',
+      method: 'post',
+      data: {
+        values: {
+          uiId: $api.getStorage("id")
+        }
+      }
+    }, function(ret, err) {
+      if(ret) {
+        if(ret["status"]) {
+          if(ret['data']['myFocusNum'] < 5) {
+            api.ajax({
+              url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/findRUlist',
+              method: 'post',
+              data: {
+                values: {
+
+                }
+              }
+            }, function(ret, err) {
+              if(ret) {
+                if(ret["status"]) {
+                  ret['data'] = ret['data'].slice(0, 30);
+                  for(var i = 0; i < 10; i++) {
+                    //选中的对象
+                    focus_users.push(ret['data'][i]['uid']);
+                  }
+                  var num_len = 0;
+                  for(var i = 0; i < focus_users.length; i++) {
+                    (function(i) {
+                      api.ajax({
+                        url: 'http://api.baopinghui.com/app_tinUserinfoControllerC/focus',
+                        method: 'post',
+                        data: {
+                          values: {
+                            uiId: $api.getStorage('id'),
+                            otherUiId: focus_users[i],
+                            type: 'focus'
+                          }
+                        }
+                      }, function(ret, err) {
+                        if(ret) {
+                          num_len++;
+                          if(num_len == focus_users.length){//最后一个
+                            setTimeout(function() {
+                              enterWin('index', 'chat/index.html','toRecommend_list');
+                              api.closeWin({});
+                            }, 3000);
+                          }
+                          console.log(JSON.stringify(ret));
+                        } else {
+                          uploadError(err);
+                        }
+                      });
+                    })(i)
+                  }
+                }
+              } else {
+                uploadError(err);
+              }
+            });
+          }
+          setTimeout(function() {
+            enterWin('index', 'chat/index.html','toRecommend_list');
+            api.closeWin({});
+          }, 3000);
+        } else {
+          console.log(JSON.stringify(ret));
+        }
+      } else {
+        uploadError(err);
+      }
+    });
+  }
+  function openPopup(data,value,none){
+    // var UIChatBox = api.require('UIChatBox');
+  api.openFrame({
+      name: 'pop',
+      url: './pop.html',
+      rect: {
+          x: 0,
+          y: 0
+
+      },
+      pageParam: {
+          data: data,
+          value:value,
+          none: none
+      },
+      // bounces: true,
+      bgColor: 'rgba(0,0,0,0)',
+      vScrollBarEnabled: true,
+      hScrollBarEnabled: true
+  });
+
+    //定時關閉彈窗
+  }
+  //qq 快速登录注册
+   function qqlogin(){
+     qq = api.require('qq');
+     qq.login(function(ret, err) {
+       if(ret) {
+         var openId = ret.openId;
+         var accessToken = ret.accessToken;
+         qq.getUserInfo(function(ret, err) {
+           if(ret.status) {
+             if(accessToken){
+               document.getElementById('bottom').style.visibility="hidden";
+               open_loading();
+               var nickname = ret['info']['nickname'];
+               var figureurl_2 = ret['info']['figureurl_2'];
+               var gender = ret['info']['gender'];
+
+               $.post(json['http'] + 'app_qq/get_unionid', //http://test.baopinghui.com/
+               {
+                 accessToken: accessToken
+               },
+               function(ret, err) {
+                 if(ret) {
+                   var ret = ret.replace('callback(', "");
+                   ret = ret.replace(');', "");
+
+                   ret = JSON.parse(ret);
+                   var unionid = ret['unionid'];
+                   api.ajax({
+                     url: json['http'] + 'app_qq/save',
+                     method: 'post',
+                     timeout : 10,//单位为：秒
+                     data: {
+                       values: {
+                         openid: openId,
+                         nickname: nickname,
+                         headimgurl: figureurl_2,
+                         unionid: unionid,
+                         sex: gender,
+                       }
+                     }
+                   }, function(ret, err) {
+                     if(ret['status'] == '1') {
+                     //清空以前的缓存
+                       ok_login();
+                     //极光注册
+                       jMessage_register(ret['data']);
+
+                       $api.setStorage('id', ret["data"]);
+                     //查詢關注數
+                       concern_number();
+                     } else {
+                       close_loading();
+                       //错误码，数字类型。（0：连接错误、1：超时、2：授权错误、3：数据类型错误）
+                       if(err.code == 0 || err.code == 1 || err.code == 2){
+                          openPopup(warn_text.text12,warn_text.text2,warn_text.text2);
+                       }
+                     }
+                   })
+                 } else {
+                   alert(JSON.stringify(err));
+                 }
+               });
+
+             }
+           } else {
+
+           }
+
+         });
+       }
+     });
+
+   }
+   //微信快速登录注册
+     function wxlogin(){
+        wx = api.require('wx');
+       wx.auth({
+         apiKey: 'wx2ccebd109467df4c'
+       }, function(ret, err) {
+       console.log(JSON.stringify(ret));
+         if(ret.status) {
+
+           wx.getToken({
+             apiKey: 'wx2ccebd109467df4c',
+             apiSecret: '2362da7382879554ed30006fb8f523d5',
+             code: ret.code
+           }, function(ret, err) {
+             if(ret.status) {
+               var accessToken = ret.accessToken;
+               var openId = ret.openId;
+               //							微信注册
+               wx.getUserInfo({
+                 accessToken: ret.accessToken,
+                 openId: ret.openId
+               }, function(ret, err) {
+                 if(ret.status) {
+                   if(accessToken){
+                     open_loading();
+     //										alert(ret['headimgurl']);
+                     api.ajax({
+                       url: json['http'] + "app_wx/save",
+                       method: 'post',
+                       timeout : 10,//单位为：秒
+                       data: {
+                         values: {
+                           openid: ret['openid'],
+                           nickname: ret['nickname'],
+                           headimgurl: ret['headimgurl'],
+                           unionid: ret['unionid'],
+                           sex: ret['sex'],
+                         }
+                       }
+                     }, function(ret, err) {
+                       if(ret['status'] == '1') {
+                       //清空以前的缓存
+                         ok_login();
+                       //极光注册
+                         jMessage_register(ret['data']);
+
+                         $api.setStorage('id', ret["data"]);
+                       //查詢關注數
+                         concern_number();
+
+                       } else {
+                         close_loading();
+                         //错误码，数字类型。（0：连接错误、1：超时、2：授权错误、3：数据类型错误）
+                         if(err.code == 0 || err.code == 1 || err.code == 2){
+                            openPopup(warn_text.text12,warn_text.text2,warn_text.text2);
+                         }
+                       }
+                     })
+                   }
+                 }
+               });
+             }
+           });
+
+         } else {
+           if(api.systemType == 'android' && err.code == 3) {
+             alert(warn_text.text1,warn_text.text2,warn_text.text3);
+           }
+         }
+       })
+
+     }
+
+  //facebook快速登录注册
+     function fblogin(){
+       facebook = api.require('facebook');
+       facebook.login({
+         appId: '121043455153956'
+       }, function(ret, err) {
+
+         if(ret.status){//成功返回数据
+
+           if(!ret.isCancelled) {
+             //登录后 获取用户信息
+             facebook.getUserInfo(function(ret, err) {
+               if(ret.status) {
+                 open_loading();
+                 //								alert(JSON.stringify(ret));
+                 api.ajax({
+                   url: json['http'] + json['fb']['check_bind'],
+                   method: 'post',
+                   timeout : 10,//单位为：秒
+                   data: {
+                     values: {
+                       unionid: ret['result']['id']
+                     }
+                   }
+                 }, function(ret, err) {
+                   if(ret) {
+                     if(ret['status']) {
+                       //									alert('进入fb没登陆过');
+                       //还没有fb登录过
+                       facebook.getUserInfo(function(ret, err) {
+                         if(ret.status) {
+
+                           api.ajax({
+                             url: json['http'] + json['fb']['save'],
+                             method: 'post',
+                             data: {
+                               values: {
+                                 unionid: ret['result']['id'],
+                                 nickname: ret['result']['name'],
+                                 sex: '男',
+                                 headimgurl: ret['result']['picture']['data']['url']
+                               }
+                             }
+                           }, function(ret, err) {
+                             if(ret) {
+                             //清空以前的缓存
+                               ok_login();
+                             //极光注册
+                               jMessage_register(ret['data']);
+
+                               $api.setStorage('id', ret["data"]);
+                               //查詢關注數
+                               concern_number();
+                             } else {
+                               //										alert(JSON.stringify(err) + '390');
+                             }
+                           })
+                         } else {
+                           api.alert({
+                             msg: JSON.stringify(err)
+                           });
+                         }
+                       });
+                     } else {
+
+                     //清空以前的缓存
+                       ok_login();
+                     //极光注册
+                       jMessage_register(ret['data']);
+
+                       //fb登录过了
+                       var uiId = ret['data'];
+                       $api.setStorage('id', ret["data"]);
+                       //查詢關注數
+                       concern_number();
+                     }
+                   } else {
+                     close_loading();
+                     //错误码，数字类型。（0：连接错误、1：超时、2：授权错误、3：数据类型错误）
+                     if(err.code == 0 || err.code == 1 || err.code == 2){
+                        openPopup(warn_text.text12,warn_text.text2,warn_text.text2);
+                     }
+                   }
+                 })
+
+               } else {
+                 //没有成功返回数据
+                 //返回内容：errMsg : an active access token must be used to query infomation about the current user
+                 openPopup(warn_text.text10,warn_text.text2,warn_text.text2);
+               }
+             });
+           }
+         } else {
+         //code: -1：未知错误	1：config.xml 未配置 appId 2：用户未授权 3：出现错误，详情参考错误信息 msg
+           //msg: ''  字符串类型；错误信息，当code 为 3 时有值
+           openPopup(warn_text.text10,warn_text.text2,warn_text.text2);
+         }
+       });
+
+     }
+
+
+
+
+</script>

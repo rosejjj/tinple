@@ -1,0 +1,452 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+	<title>followers</title>
+    <script src="../../json/api.json" type="text/javascript" charset="utf-8"></script>
+    <script src="../../json/router.json" type="text/javascript" charset="utf-8"></script>
+    <style type="text/css">
+        *{
+            padding:0;
+            margin:0;
+            box-sizing: border-box;
+        }
+        html,body{
+            width:100%;
+            height:100%;
+            background:#efefef;
+        }
+        .zhuangtailan{
+            position: fixed;
+            top:0;
+            width:100vw;
+            height:25px;
+            background-color:#fff;
+            /*z-index: 9999;*/
+        }
+
+        /*頭部*/
+        header span,header img {
+            display: inline-block;
+            }
+
+        header {
+            position: fixed;
+            top:0;
+            width:100vw;
+            height:17.29vw;
+            /*65px*/
+            background-color: #fff;
+            /*display: flex;*/
+            /*align-items: center;*/
+            /*box-shadow: 0px 0px 2px 2px #efefef;*/
+            /*display: none;*/
+            border-bottom:1px solid #efefef;
+        }
+        .header-center {
+            position: absolute;
+            left: 50%;
+            margin-left: -50%;        
+            width: 100%;
+            height:11.97vw;
+            margin-top:5.32vw;
+            text-align: center;
+            font: 3.99vw/11.97vw Arial;
+            font-weight: 700;
+        }
+        .return {
+            position: absolute;
+            left: 2.66vw;
+            /*10px*/
+            top:7.31vw;
+            width: 7.98vw;
+            /*30px*/
+            height: 7.98vw;
+            /*30px*/
+            line-height: 7.98vw;
+            /*30px*/
+            text-align: center;
+            /*font:25px/30px Arial;*/
+            z-index:999;
+        }
+        .return img {
+            width: 7.98vw;
+            /*30px*/
+            height: 7.98vw;
+            /*30px*/
+        }
+        /*内容*/
+            .container{
+                /*padding: 2.66vw 0;*/
+                margin-top:20.22vw;
+
+            }
+            .container li{
+                padding: 2.6vw 2.6vw;
+                background: #ffffff;
+                margin: 3.6vw 3.6vw;
+                border-radius: 10px;
+                box-shadow: 0px 0px 10px 3px rgba(170, 170, 170, 0.3);
+            }
+            .container li:active{
+                background-color: #EFEFEF;
+            }
+            /*.user{
+                background: blue;
+            }*/
+            .user,.userPic{
+                display: flex;
+                justify-content: space-between;
+            }
+            .userPic{
+                margin-top: 2.66vw;
+            }
+            .avatar{
+                flex: 1;
+            }
+            .avatar img{
+                width: 13.33vw;
+                height: 13.33vw;
+                border-radius: 6.66vw;
+                object-fit: cover;
+            }
+            .userInfo{
+                flex: 3;
+            }
+            .userInfo .userName{
+                font-weight: bold;
+                font-size: 4vw;
+                color: #484848;
+                margin:5px 0;
+                width:50vw;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 1;
+                text-overflow: ellipsis;
+                overflow: hidden;
+
+            }
+            .userInfo .from{
+                font-size: 3.2vw;
+                color: #AAAAAA;
+            }
+            .chat{
+                flex: 1;
+                height: 8vw;
+                margin-top: 2.66vw;
+                border-radius: 4vw;
+                /*background: -webkit-linear-gradient(left, #d9afd9 , #97d9e1);*/
+                background: black;
+                box-shadow: 0 0 10px #efefef;
+                text-align: center;
+                font-size: 12px;
+                color: white;
+                line-height: 8vw;
+                font-weight: bold;
+            }
+            .chat img{
+                width: 6.4vw;
+                margin: 0.8vw 0;
+            }
+            .userPic img{
+                width: 16vw;
+                height: 24vw;
+                object-fit: cover;
+                border-radius: 3px;
+                margin-right: 1.5vw;
+                box-shadow: 0 0 1px #999;
+            }
+            [v-cloak]{
+                display: none;
+            }
+            /*没有更多*/
+            .no-comment{
+                padding: 16vw 0;
+                /*display: none;*/
+            }
+            .no-comment p{
+                text-align: center;
+                color: #AAC1D3;
+                font-size: 4vw;
+                line-height: 6vw;
+                font-weight: bold;
+
+                /*字体渐变*/
+                background: #aaa;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            .loading{
+                width: 100%;
+                text-align: center;
+                height: 13.33vw;
+                position: fixed;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                background: #EFEFEF;
+                /*opacity: 0.6;*/
+            }
+            .loading img{
+                height: 100%;
+            }
+    </style>
+</head>
+<body>
+    <div class="zhuangtailan"></div>
+	<header>
+		<span class="return" tapmode onclick="CloseWin()"><img src="../../image/icon-back@3x2.png" alt=""></span><div class="header-center" id="header-center">F O L L O W I N G</div>
+	</header>
+    <!-- <div style="height:30px;"></div> -->
+        <!-- box-shadow:0px 5px 5px 5px rgba(239,239,239,1); -->
+        <div id="online" v-cloak  style="">
+
+            <ul class="container" >
+                <li v-for="user in userArr" @click="clcikHeader(user.id)" v-if="$api.getStorage('id')!=user.id">
+                    <div class="user" >
+                        <div class="avatar">
+                            <img :src="getPic(user)" />
+                        </div>
+                        <div class="userInfo">
+                            <p class="userName">{{user.nickname}}</p>
+                            <p class="from" v-if="user.location||user.career">
+                                {{user.location}} <span v-if="user.location&&user.career">,</span> {{user.career}}
+                            </p>
+                            <p class="from" id="pf" v-else>
+                                Popular：{{user.popular | getIndentation}}&nbsp;&nbsp;&nbsp;Followers：{{user.fans | getIndentation}}
+                            </p>
+                        </div>
+
+                        <div class="chat" @click="openChat(user.id,user.nickname,user.avatar_url)" id="chat">
+                            <!-- <img src="../../icon/nav/chat2.png" alt="" /> -->
+                            C H A T
+                        </div>
+                    </div>
+
+                    <div class="userPic" v-if="user.cover!==null">
+                        <div style="flex: 1;"></div>
+                        <div style="flex: 4;" class="userTin">
+                            <img :src="getTin(item)" v-for="item in getArr(user.cover)"/>
+                        </div>
+
+                    </div>
+                </li>
+            </ul>
+            <div class="loading" v-show="isLoading">
+                <img src="../../icon/loading.gif"/>
+            </div>
+            <div class="no-comment" id="noMore" v-show="isShow">
+                <p class="tips1">No More Dataヽ(✿ﾟ▽ﾟ)ノ</p>
+                <p class="tips2">You Can Try Refreshing The Page</p>
+            </div>
+        </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script src="../../script/vue.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../script/jquery-3.1.0.min.js" type="text/javascript"></script>
+<!-- <script type="text/javascript" src="../../script/nav.js"></script> -->
+<script src="../../script/public.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+    var hhh = window.screen.height;
+    var www = window.screen.width;
+    apiready = function(){
+        if(hhh/www>2){
+            $api.css($api.dom('header'), 'margin-top:25px');
+            $api.css($api.dom('.container'), 'margin-top:26.86vw;');
+        }
+            api.addEventListener({
+                name: 'swiperight'
+            }, function() {
+                api.closeWin({
+                    animation: {
+                        type: "push", //动画类型（详见动画类型常量）
+                        subType: "from_left", //动画子类型（详见动画子类型常量）
+                        duration: 300 //动画过渡时间，默认300毫秒
+                    }
+                });
+            });//右滑关闭win
+
+            // openNav();//打开导航
+
+            var countNum = 0;
+            var time = 0; //次数
+            var testId,
+                otherId;
+            testId = $api.getStorage("id"),//获取缓存ID
+            otherId = api.pageParam["uiid"];
+            if ($api.getStorage("language")=="zho") {
+                $api.text($api.dom(".tips1"), "沒有更多信息了ヽ(✿ﾟ▽ﾟ)ノ");
+                $api.text($api.dom(".tips2"), "你可以嘗試刷新頁面");
+                $api.text($api.dom(".center"), "在 线 找 人 聊");
+                $api.text($api.dom("#header-center"), "關 注");
+                $api.text($api.dom("#chat"), "私 聊");
+                $api.html($api.dom("#pf"), "熱 度：{{user.popular | getIndentation}}&nbsp;&nbsp;&nbsp;粉 絲：{{user.fans | getIndentation}}");
+            };
+            if(!$api.getStorage("language")){
+                console.log('')
+            }else{
+                console.log($api.getStorage("language"))
+            };
+
+            var online = new Vue({
+                el:"#online",
+                data:{
+                    userArr:[],
+                    isShow:false,
+                    isLoading:false,
+                    //meid:$api.getStorage('id')
+                },
+                methods:{
+                    //进入个人页
+                    clcikHeader: function(targetId) {
+                        openPersonal(api.winName,targetId);
+                    },
+                    getPic: function(item) { //获取头像
+                        return json['qiniu'] + item.avatar_url + '?imageView2/0/w/100';
+                    },
+                    getTin:function(item){//获取帖子图片
+                        return json['qiniu'] + item + '?imageView2/0/w/200' ;
+                    },
+                    getArr:function(item){//获取帖子数组
+                        item=item.replace(/;/g,",");
+                        item=item.split(",");
+                        if (item.length>4) {
+                            item.length = 4;
+                        }
+                        return item
+                    },
+                    openChat: function(id,nickname,avatar_url) { //打开聊天界面
+                        event.stopPropagation();
+                        api.ajax({
+                            url: 'http://api.baopinghui.com/app_dynamicCover/CheckFirstTin',
+                            method: 'post',
+                            data: {
+                                values: { 
+                                    uiId:$api.getStorage('id')
+                                }
+                            }
+                        }, function(ret, err) {
+                            if (ret) {
+                                if(ret.data==0){
+                                    api.openFrame({
+                                        name: 'out',
+                                        url: 'widget://html/nav/out.html',
+                                        rect: {
+                                            x: 0,
+                                            y: 0,
+                                            w: 'auto',
+                                            h: 'auto'
+                                        },
+                                        pageParam: {
+                                            chatlimit: 1
+                                        }
+                                    });
+                        }else{
+                        
+                        api.openWin({
+                            name: id,
+                            url: router['widget'] + router['chat']['chat'],
+                            slidBackEnabled: false,
+                            animation: {
+                                type: "fade", //动画类型（详见动画类型常量）
+                                subType: "fade", //动画子类型（详见动画子类型常量）
+                                duration: 250 //动画过渡时间，默认300毫秒
+                            },
+                            pageParam: {
+                                uiId: id,
+                                nickname: nickname,
+                                avatar: avatar_url
+                            }
+                        });
+                        }
+                        }
+                    });
+                    }
+
+                },
+                filters : {
+                    getIndentation : function(count) {
+                        if(count < 1000 && count >= 0) {
+                            return count;
+                        } else if(count < 10000) {
+                            return(count / 1000).toFixed(1) + 'k';
+                        } else if(count < 1000000) {
+                            return parseInt(count / 1000) + 'k';
+                        } else if(count < 10000000) {
+                            return(count / 1000000).toFixed(1) + 'm';
+                        } else if(count < 1000000000) {
+                            return parseInt(count / 1000000) + 'm';
+                        } else if(count < 10000000000) {
+                            return(count / 1000000000).toFixed(1) + 'b';
+                        } else if(count < 1000000000000) {
+                            return parseInt(count / 1000000000) + 'b';
+                        }
+
+                    }
+                }
+
+
+            })
+
+            getUser();
+            //第一次加载
+            function getUser(){
+                online.isLoading = true;
+                api.ajax({
+                    url: 'http://api.baopinghui.com/app_IntegrationController/findFocusListById?uiid=' + otherId,
+                    method: 'post',
+                    cache:true,
+                }, function(ret, err) {
+                    if (ret) {
+//                      api.alert({ msg: JSON.stringify(ret) });
+                        if (ret.status==1) {
+                            if ($api.getStorage("language")=="zho") {
+                                for(var i = 0;i < ret.data.length;i++){
+                                    if (ret.data[i].location!==null) {
+                                        ret.data[i].location = ret.data[i].location.split(",")[0];
+                                    }
+                                }
+                            }else{
+                                for(var i = 0;i < ret.data.length;i++){
+                                    if (ret.data[i].location!==null) {
+                                        ret.data[i].location = ret.data[i].location.split(",")[1];
+                                    }
+                                }
+                            }
+
+                            online.userArr = online.userArr.concat(ret.data);
+                            countNum += ret.data.length;
+                            time++;
+                            online.isLoading = false;
+                        }
+                    } else {
+                        api.alert({ msg: JSON.stringify(err) });
+                    }
+                });
+            }
+
+            api.addEventListener({
+                name:'scrolltobottom',
+                extra:{
+                    threshold:300//设置距离底部多少距离时触发，默认值为0，数字类型
+                }
+            }, function(ret, err){
+                if (time<1) {
+                    getUser();
+                }else{
+                    online.isShow = true;
+                    //alert('已滚动到底部');
+                }
+
+            });
+
+        };
+        
+    function CloseWin(){
+        api.closeWin();
+    }
+
+</script>
+</html>

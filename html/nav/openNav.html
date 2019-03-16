@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" href="../../css/animate.min.css" />
+    <title>导航按钮</title>
+    <style>
+    	body{
+    		margin:0;
+    		padding:0;
+    		width:100%;
+    		height:100%;
+			/*opacity: 0;*/
+			/*background-color:red;*/
+			/*background:none;*/
+    	}
+    	/*导航按钮*/
+    	.openNav{
+    		width:50px;
+    		height:50px;
+    		border-radius:50px;
+	    	background:url(../../icon/nav/nav.png);
+	    	background-size:100%;
+    	}
+    	/*警告提示*/
+    	.prompt{
+    		display:inline-block;
+    		width:20px;
+    		height:20px;
+    		float:right;
+    		margin:0 0 5px 0;
+    		background-color:red;
+    		background:url(../../icon/nav/red.png);
+	    	background-size:100%;
+	    	display:none;
+    	}
+    	
+   	</style>
+</head>
+
+<body>
+	<div class="openNav animated bounceIn"><span class="prompt"></span></div>
+</body>
+
+	<script src="../../script/api.js" type="text/javascript"></script>
+	<script src="../../script/jquery-3.1.0.min.js" type="text/javascript"></script>
+	
+	<script type="text/javascript">
+		apiready = function(){
+//			有未读消息
+				if(Number($api.getStorage('hasNews')) > 0){
+					$('.prompt').css('display','block');//提示红点显示
+				}
+				
+			//接收未读消息广播
+				api.addEventListener({
+				    name: 'hasNews'
+				}, function(ret, err) {
+					if(ret.value.num > 0){//有未读消息
+						$('.prompt').css('display','block');//提示红点显示
+					}else{
+						$('.prompt').css('display','none');//提示红点显示
+					}
+				});
+		};
+		$('.openNav').click(function(){
+		
+			api.openFrame({
+				name: 'regiter_index1',
+				url: 'nav.html',
+				 rect: {
+			        x: 0,
+			        y: 0,
+			        w: 'auto',
+			        h: 'auto'
+			    },
+				pageParam: {}
+			});
+		});
+		
+	</script>
+</html>

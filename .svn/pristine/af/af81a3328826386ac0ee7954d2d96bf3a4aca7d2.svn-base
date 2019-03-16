@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+	<title>divination_result</title>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+		}
+		img[src=""]{
+            visibility: hidden;
+        }
+		.bg{
+			position: absolute;
+			top:0;
+			width:100vw;
+			min-height:100vh;
+			background:url(../../icon/logon-page2/bg3.jpg);
+			background-size:cover;
+			padding-bottom:5.32vw;
+			box-sizing: border-box;
+		}
+		.return{
+			position: absolute;
+			top:7.98vw;
+			left:5.32vw;
+			width:7.98vw;
+			height:7.98vw;
+			background:url(../../icon/logon-page2/return.png);
+			background-size: cover;
+		}
+		.share{
+			position: absolute;
+			top:7.98vw;
+			right:5.32vw;
+			width:40.69vw;
+			height:7.98vw;
+			border:5px solid #7512f7;
+			border-radius: 10.64vw;
+			font:3.19vw/7.98vw Arial;
+			font-weight: bold;
+			color:#fff;
+			text-align: center;
+			background-color:#2d075c;
+			/*display: none;*/
+		}
+		.box{
+			position: relative;
+			width:89.1vw;
+			/*height:150.8vw;*/
+			background-color:#7512f7;
+			border-radius: 10.64vw;
+			margin:22.07vw auto 0;
+			padding:2.66vw;
+			box-sizing: border-box;
+		}
+		.box1{
+			width:83.51vw;
+			height:109.57vw;
+			border-radius: 7.98vw;
+			box-sizing: border-box;
+			background-color:#2d075c;
+			border: 0.8vw solid #2d075c;
+			overflow: hidden;
+		}
+		.card_time{
+			width:8.51vw;
+			height:100%;
+			background-color:#ff39a6;
+			font-size:3.99vw;
+			font-weight: bold;
+			color:#fff;
+			text-align: center;
+			/*padding:26.6vw 2.66vw 26.6vw 2.66vw;*/
+			/*box-sizing: border-box;*/
+			line-height:8.51vw;
+			writing-mode:tb-rl;
+			white-space:normal;
+         	word-break:break-all;
+         	word-wrap:break-word;
+         	
+         	writing-mode: vertical-rl;
+         	-webkit-writing-mode: vertical-rl;
+         	float:left;
+		}
+		.card_title{
+			width:13.3vw;
+			height:100%;
+			background-color:#2D075C;
+			font-size:5.32vw;
+			font-weight: bold;
+			color:#fff;
+			line-height:13.3vw;
+			writing-mode:tb-rl;
+			text-align: center;
+			/*padding:38.6vw 5vw 0vw 5vw;*/
+			/*box-sizing: border-box;*/
+			white-space:normal;
+         	word-break:break-all;
+         	word-wrap:break-word;
+         	writing-mode: vertical-rl;
+         	-webkit-writing-mode: vertical-rl;
+         	float:left;
+		}
+		.card_img{
+			width:60.1vw;
+			height:100%;
+			object-fit:fill;
+			float:left;
+		}
+		.box2{
+			width:83.51vw;
+			/*height:109.57vw;*/
+			border-radius: 7.98vw;
+			box-sizing: border-box;
+			background-color:#2d075c;
+			border: 0.8vw solid #2d075c;
+			margin-top:2.66vw;
+			overflow: hidden;
+		}
+		.content_title{
+			width:8.51vw;
+			height:auto;
+			background-color:#ff39a6;
+			font-size:3.19vw;
+			font-weight: bold;
+			color:#fff;
+			text-align: center;
+			/*padding:3.6vw 2.66vw 0 2.66vw;*/
+			/*box-sizing: border-box;*/
+			line-height:8.51vw;
+			writing-mode:tb-rl;
+			white-space:normal;
+         	word-break:break-all;
+         	word-wrap:break-word;
+         	writing-mode: vertical-rl;
+         	
+         	-webkit-writing-mode: vertical-rl;
+         	float:left;
+		}
+		.content_text{
+			width:73vw;
+			height:auto;
+			padding:3.99vw 3.19vw;
+			box-sizing: border-box;
+			background-color: #2d075c;
+			font:3.19vw/4.52vw Arial;
+			font-weight: bold;
+			color:#fff;
+			float:left;
+		}
+		.jieping{
+			/*position: relative;*/
+			z-index: -1;
+		}
+		.QRcode{
+			position: absolute;
+			right:2.66vw;
+			top:2.66vw;
+			width:18.62vw;
+			height:18.62vw;
+			/*border-radius: 7.98vw;*/
+			overflow: hidden;
+			background-color: #fff;
+		}
+		.QRcode>img{
+			width: 100%;
+			height:100%;
+			object-fit: cover;
+		}
+	</style>
+</head>
+<body>
+	<div class="bg" style="z-index: 10;" id="bg">
+		<div class="return"></div>
+		<!-- <div class="share">S H A R E</div> -->
+		<div class="share">G E T</div>
+		<div class="box">
+			<div class="box1">
+				<div class="card_time">jdkfnflkdnf</div>
+				<div class="card_title">假按揭东方科技</div>
+				<img src="" alt="" class="card_img">
+			</div>
+			<div class="box2">
+				<div class="content_title">A N A L Y S I S</div>
+				<div class="content_text"></div>
+			</div>
+		</div>
+	</div>
+	<div class="jieping">
+	<div class="bg">
+		<!-- <div class="return"></div> -->
+		<!-- <div class="share">S H A R E</div> -->
+		<!-- <div class="share">G E T</div> -->
+		<div class="box" style="margin-top:12vw;">
+			<div class="box1" style="position: relative;">
+				<div class="card_time" id="card_time"></div>
+				<div class="card_title" id="card_title"></div>
+				<img src="" alt="" class="card_img" id="card_img">
+				<div class="QRcode" id="QRcode"></div>
+			</div>
+			<div class="box2">
+				<div class="content_title" id="content_title">A N A L Y S I S</div>
+				<div class="content_text" id="content_text"></div>
+			</div>
+		</div>
+	</div>
+	</div>
+</body>
+<script type="text/javascript" src="../../script/html2canvas.min.js"></script>
+<script type="text/javascript" src="../../script/qrcode.min.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script type="text/javascript">
+	var wechatshareimg,
+		QQshareimg;
+	var card;
+	var boof = false;
+	apiready = function(){
+			// 监听关闭自己
+		api.addEventListener({
+		    name: 'divination_result_new'
+		}, function(ret, err) {
+			api.closeWin({
+			    name: 'divination_result_new'
+			});
+		});
+		var function1 = api.pageParam['function1'];
+		card = api.pageParam['card'];
+		var cardcontent = api.pageParam['cardcontent'];
+		var cardtitlecn='';
+		var timee='';
+		var timet='';
+		var nowdate = new Date(),
+			nowyear = nowdate.getFullYear(),
+			nowmonth = nowdate.getMonth(),
+			nowday = nowdate.getDate();
+		console.log(card);
+		cardcontent = cardcontent.replace(/'/g,'');
+		nowmonth = nowmonth + 1;
+		nowmonth<=9?nowmonth='0'+nowmonth:nowmonth;
+		nowday<=9?nowday='0'+nowday:nowday;
+		timee=nowyear + '·' + nowmonth + '·' + nowday;
+		
+		for(var i=0;i<timee.length;i++){
+			timet += timee[i]+'&nbsp;';
+		}
+		$api.html($api.dom('.card_time'),timet);
+		$api.html($api.dom('#card_time'),timet);
+
+		$(".card_img").attr("src",'http://bin.baopinghui.com/tarot1/'+card.replace(/ /g,"%20")+'.jpg');
+
+		// $("#card_img").attr("src",'http://bin.baopinghui.com/tarot1/'+card.replace(/ /g,"%20")+'.jpg');
+
+		$api.html($api.dom('.content_text'), cardcontent);
+		$api.html($api.dom('#content_text'), cardcontent);
+		if($api.getStorage('language')=='zho'){
+			$api.html($api.dom('.content_title'), '分&nbsp;&nbsp;析');
+			$api.html($api.dom('#content_title'), '分&nbsp;&nbsp;析');
+			// $api.text($api.dom('.share'), '分 享');
+			$api.text($api.dom('.share'), '確 定');
+			for(var i=0;i<card.split(',')[1].length;i++){
+				cardtitlecn+=card.split(',')[1][i]+'&nbsp;&nbsp;&nbsp;';
+			};
+			$api.html($api.dom('.card_title'), cardtitlecn);
+			$api.html($api.dom('#card_title'), cardtitlecn);
+		}else{
+			$api.html($api.dom('.card_title'), card.split(',')[0]);
+			$api.html($api.dom('#card_title'), card.split(',')[0]);
+		}
+	    console.log($('.box2').height());
+		$('.content_title').height($('.box2').height());
+		// 给截屏部分添加高度
+		$('.jieping').height($('#bg').height());
+		// 截屏操作
+		// if(api.systemType=='ios'){
+		// 	jieping();
+		// 	console.log(wechatshareimg);
+	 //        console.log(QQshareimg);
+		// }else{
+		// 	//安卓申请访问资源的权限
+	 //        api.requestPermission({
+	 //            list: ["storage"],
+	 //        }, function(ret, err) {
+	 //        	if(ret.list[0].granted){
+	 //        		jieping();
+	 //        		setTimeout(function(){
+	 //        			console.log(wechatshareimg);
+	 //        		console.log(QQshareimg);
+	 //        	},5000);
+	        		
+	 //        	}
+	 //        });
+		// }
+		$api.addEvt($api.dom('.return'), 'click',function(){
+			if(function1){
+				api.closeWin({
+				    name: 'divination_new'
+				});
+				api.closeWin({
+				    name: 'divination_result_new'
+				});
+			}else{
+				api.sendEvent({
+		    	    name: 'login_function_load'
+		    	});
+		    	api.openWin({
+		    	    name: 'login_function',
+			        url: 'widget://html/logon-register/login_function.html',
+			        pageParam: {
+			            indexx:3
+			        }
+		    	});	
+		    	api.closeWin();
+			}
+		});
+		$api.addEvt($api.dom('.share'), 'click', function(){
+			console.log(wechatshareimg);
+			console.log(QQshareimg);
+			// if(boof){
+			// 	api.openFrame({
+			// 	    name: 'more(new)',
+			// 	    url: 'widget://html/nav/more(new).html',
+			// 	    rect: {
+			// 	        x: 0,
+			// 	        y: 0,
+			// 	        w: 'auto',
+			// 	        h: 'auto'
+			// 	    },
+			// 	    pageParam: {
+			// 	        wechatshareimg: wechatshareimg,
+			// 	        QQshareimg:QQshareimg
+			// 	        // avatarpath: avatarpath,
+			// 	        // numerology_number:numerology_number,
+			// 	        // nickname:nickname
+			// 	    }
+			// 	});
+			// }
+			if(function1){
+				// api.openWin({
+				//     name: 'index',
+				//     url: 'widget://html/chat/index.html',
+				//     pageParam: {
+				//         name: 'value'
+				//     }
+				// });	
+				api.closeWin({
+				    name: 'divination_new'
+				});
+				api.closeWin({
+				    name: 'divination_result_new'
+				});
+			}else{
+				api.sendEvent({
+		    	    name: 'login_function_load'
+		    	});
+		    	api.openWin({
+		    	    name: 'login_function',
+			        url: 'widget://html/logon-register/login_function.html',
+			        pageParam: {
+			            indexx:3
+			        }
+		    	});	
+		  //   	api.sendEvent({
+				//     name: 'divination_result_new'
+				// });
+				api.closeWin();
+			}
+		});
+	}
+function jieping(){
+	// 下载卡片
+		var date = new Date();
+		var picname=date.getTime();
+		var cardpath =  api.cacheDir + "/pic/" + card.replace(/ /g,"1").replace(/,/g,"1") + ".jpg",
+			card_url = 'http://bin.baopinghui.com/tarot1/'+card.replace(/ /g,"%20")+'.jpg';
+		api.download({
+			url: card_url,
+			savePath: cardpath,
+			report: true,
+			cache: true,
+			allowResume: true
+		}, function(ret, err) {
+			if(ret.state == 1){
+				console.log(cardpath);
+				$("#card_img").attr("src",cardpath);
+			   	console.log('下载卡片');
+			   	// 生成微信二维码
+		   	var QRdata = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxc39fb69be43c8f3d&redirect_uri=http%3a%2f%2fparttime.baopinghui.com%2fchat%2fbin%2fnumerology(share)%2fhtml%2fcover.html%3fID%3d'+$api.getStorage('id')+'&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
+			new QRCode(document.getElementById("QRcode"), QRdata);
+			var imgname= picname + '.png';
+		    var imgpath = api.cacheDir + "/pic/";
+			setTimeout(function(){
+				html2canvas($('.jieping')[0]).then(canvas => {
+					var imgUri = canvas.toDataURL();
+					console.log('截屏成功');
+					// 调用base64转图片模块
+					var trans = api.require('trans');
+					trans.saveImage({
+			    		base64Str:imgUri.replace('data:image/png;base64,', ''),
+			    		imgPath:imgpath,
+			    		imgName:imgname
+					}, function(ret, err) {
+			    		if (ret.status) {
+			    			wechatshareimg = imgpath+imgname;
+			    			console.log('截屏微信保存成功');
+			    			// 清空微信二维码
+					        $api.html($api.dom('#QRcode'), '');
+					        imgname= picname + 'QQ' + '.png';
+					        // 生成QQ二维码图片
+					        QRdata = 'https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=101414137&redirect_uri=http%3a%2f%2fparttime.baopinghui.com%2fchat%2fbin%2fnumerology(share)%2fhtml%2fcover.html%3fID%3d'+$api.getStorage('id')+'&state=state&scope=get_user_info';
+							new QRCode(document.getElementById("QRcode"), QRdata);
+							setTimeout(function(){
+								html2canvas($('.jieping')[0]).then(canvas => {
+						    		var imgUri = canvas.toDataURL();
+						    		console.log('截屏成功');
+						    		// 调用base64转图片模块
+						    		var trans = api.require('trans');
+									trans.saveImage({
+							    		base64Str:imgUri.replace('data:image/png;base64,', ''),
+							    		imgPath:imgpath,
+							    		imgName:imgname
+									}, function(ret, err) {
+										if (ret.status) {
+							    			QQshareimg = imgpath+imgname;
+								    			//将截屏保存
+									        console.log('截屏QQ保存成功');
+									        boof = true;
+									        $api.text($api.dom('.share'), 'S H A R E');
+									    }
+									});
+						    	})
+						    	return;
+							},500);
+			    		}
+			    	});
+				});
+				return;
+			},500);
+			}
+	   	});
+	   	return;
+} 
+</script>
+</html>
